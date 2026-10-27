@@ -39,6 +39,24 @@ C_B = "\033[90m"  # Grey
 C_W = "\033[93m"  # Yellow
 C_R = "\033[0m"   # Reset
 
+def clean_len(s): return len(re.sub(r'\033\[[0-9;]*m', '', s))
+
+def box(title, lines, w):
+    """Return the box as a list of lines, each w + 1 characters wide."""
+    title_str = f" {title} "
+    out = [f"{C_H}┌─{title_str}{'─'*(w - clean_len(title_str) - 2)}┐{C_R}"]
+    for l in lines:
+        v_len = clean_len(l)
+        if v_len > w - 4:
+            l = l[:w-7] + "..." + C_R
+            v_len = clean_len(l)
+        out.append(f"{C_B}│{C_R} {l}{' '*(w - v_len - 2)}{C_B}│{C_R}")
+    out.append(f"{C_H}└{'─'*(w - 1)}┘{C_R}")
+    return out
+
+def draw_box(title, lines, w):
+    print("\n".join(box(title, lines, w)))
+
 # ==============================================================================
 # Main Application
 # ==============================================================================
@@ -81,18 +99,6 @@ class SorlockTUI:
     def log(self, msg):
         self.logs.append(msg)
         if len(self.logs) > 6: self.logs.pop(0)
-
-    def draw_box(self, title, lines, w):
-        def clean_len(s): return len(re.sub(r'\033\[[0-9;]*m', '', s))
-        title_str = f" {title} "
-        print(f"{C_H}┌─{title_str}{'─'*(w - clean_len(title_str) - 2)}┐{C_R}")
-        for l in lines:
-            v_len = clean_len(l)
-            if v_len > w - 4:
-                l = l[:w-7] + "..."
-                v_len = clean_len(l)
-            print(f"{C_B}│{C_R} {l}{' '*(w - v_len - 2)}{C_B}│{C_R}")
-        print(f"{C_H}└{'─'*(w)}┘{C_R}")
 
     # --- Combat Logic ---
 
@@ -144,7 +150,7 @@ class SorlockTUI:
             w = self.get_terminal_width()
             display = self.campaign_notes if self.campaign_notes else ["Journal is empty."]
             
-            self.draw_box("CAMPAIGN JOURNAL (Auto-Saving)", display, w)
+            draw_box("CAMPAIGN JOURNAL (Auto-Saving)", display, w)
             print(f" {C_H}A{C_R}: Add | {C_H}C{C_R}: Clear | {C_H}B{C_R}: Back")
             
             cmd = input(f"\n{C_H}journal_cmd> {C_R}").strip().upper()
@@ -169,14 +175,14 @@ class SorlockTUI:
                 f"Sorc Slots: {self.res['sorc_slots']}/{self.cfg['max_resources']['sorc_slots']} | Pact: {self.res['pact_slots']}/{self.cfg['max_resources']['pact_slots']}",
                 f"Hex Curse: {'ON' if self.hex_curse else 'OFF'} | Bonus: +{self.atk_bonus}"
             ]
-            self.draw_box("CHARACTER STATUS", stats, w)
+            draw_box("CHARACTER STATUS", stats, w)
 
             # 2. Spells Box
             menu = [f"{eid:<2} | {s['name']:<18} | Lv:{s['level']} | {s['desc']}" for eid, s in SPELL_DB.items()]
-            self.draw_box("SPELLBOOK", menu, w)
+            draw_box("SPELLBOOK", menu, w)
 
             # 3. Logs Box
-            self.draw_box("COMBAT LOG", self.logs, w)
+            draw_box("COMBAT LOG", self.logs, w)
 
             print(f" {C_H}H{C_R}: Hex | {C_H}I{C_R}: Journal | {C_H}R{C_R}: Long Rest | {C_H}Q{C_R}: Quit")
             cmd = input(f"\n{C_H}{self.cfg['name'].lower()}> {C_R}").strip().upper()

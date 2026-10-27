@@ -1,0 +1,51 @@
+{
+  "name": "Rowan Ashford",
+  "race": "Variant Human",
+  "background": "Noble",
+  "class_title": "Fighter {level} (Battle Master)",
+  "level": 3,
+  "hit_die": 10,
+  "abilities": { "STR": 9, "DEX": 16, "CON": 14, "INT": 16, "WIS": 11, "CHA": 10 },
+  "save_profs": ["STR", "CON"],
+  "skills": ["Insight", "Perception", "History", "Persuasion", "Investigation"],
+  "ac_base": 11,
+  "spell_ability": "INT",
+  "progression": "fighter-battle-master",
+  "maneuver_pool": "superiority",
+  "maneuvers": ["Maneuvering Attack", "Commander's Strike", "Distracting Strike"],
+  "resources": [
+    { "id": "superiority", "name": "Superiority", "recharge": "short", "max": "table", "pips": true, "die": "superiority" },
+    { "id": "second_wind", "name": "Second Wind", "recharge": "short", "max": 1, "pips": true },
+    { "id": "action_surge", "name": "Action Surge", "recharge": "short", "max": "table", "pips": true },
+    { "id": "indomitable", "name": "Indomitable", "recharge": "long", "max": "table", "pips": true },
+    { "id": "misty_step", "name": "Misty Step", "recharge": "long", "max": 1, "pips": true },
+    { "id": "command", "name": "Command", "recharge": "long", "max": 1, "pips": true },
+    { "id": "hit_dice", "name": "Hit Dice", "max": "level" },
+    { "id": "daggers", "name": "Daggers", "start": 10 }
+  ],
+  "actions": [
+    { "name": "Thrown dagger", "desc": "20/60 ft", "ability": "DEX", "dice": [1, 4], "dmg_ability": true, "bonus": 2, "dmg_type": "piercing", "uses": "daggers" },
+    { "name": "Melee dagger", "ability": "DEX", "dice": [1, 4], "dmg_ability": true, "dmg_type": "piercing" },
+    { "name": "Off-hand thrown", "desc": "Bonus action, 20/60 ft", "ability": "DEX", "dice": [1, 4], "bonus": 2, "dmg_type": "piercing", "uses": "daggers" },
+    { "name": "Off-hand melee", "desc": "Bonus action", "ability": "DEX", "dice": [1, 4], "dmg_type": "piercing" },
+    { "name": "Second Wind", "desc": "Bonus action, heal d10+level", "dice": [1, 10], "level_bonus": true, "heal": true, "uses": "second_wind" },
+    { "name": "Action Surge", "desc": "One extra action this turn", "uses": "action_surge" },
+    { "name": "Indomitable", "desc": "Reroll a failed save", "uses": "indomitable" },
+    { "name": "Misty Step", "desc": "Bonus action, teleport 30 ft", "uses": "misty_step" },
+    { "name": "Command", "desc": "WIS save DC {dc:INT}, one-word command", "uses": "command" }
+  ],
+  "features": [
+    { "name": "Fighting Style", "desc": "Thrown Weapon Fighting: draw with attack, +2 thrown dmg" },
+    { "name": "Second Wind", "desc": "Bonus action, heal d10 + level, 1/short rest" },
+    { "name": "Action Surge", "desc": "One extra action, per short rest" },
+    { "name": "Combat Superiority", "desc": "Maneuvers fueled by superiority dice, short rest" },
+    { "name": "Student of War", "desc": "Cartographer's tools" },
+    { "name": "Feat: Fey Touched", "desc": "Misty Step + Command 1/long rest, INT" }
+  ],
+  "info": [
+    "Tools: chess set, cartographer's tools",
+    "Armor: all + shields | Weapons: simple + martial",
+    "Gear: leather armor, daggers, chess set, fine clothes, signet ring, scroll of pedigree",
+    "Languages: Common + 1 from Variant Human + 1 from Noble (to agree with the DM)"
+  ]
+}

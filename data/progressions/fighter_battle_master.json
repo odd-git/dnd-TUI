@@ -1,0 +1,26 @@
+{
+  "asi_levels": [4, 6, 8, 12, 14, 16, 19],
+  "resources": {
+    "superiority": { "3": 4, "7": 5, "15": 6 },
+    "action_surge": { "2": 1, "17": 2 },
+    "indomitable": { "9": 1, "13": 2, "17": 3 }
+  },
+  "dice": { "superiority": { "3": 8, "10": 10, "18": 12 } },
+  "maneuvers_known": { "3": 3, "7": 5, "10": 7, "15": 9 },
+  "attacks_per_action": { "1": 1, "5": 2, "11": 3, "20": 4 },
+  "features": {
+    "5": [{ "name": "Extra Attack", "desc": "2 attacks per Attack action" }],
+    "7": [{ "name": "Know Your Enemy", "desc": "1 min outside combat: DM says if a creature is equal/superior/inferior in 2 traits" }],
+    "9": [{ "name": "Indomitable", "desc": "Reroll a failed save, 1/long rest" }],
+    "10": [{ "name": "Improved Combat Superiority", "desc": "Superiority dice become d10" }],
+    "11": [{ "name": "Extra Attack", "desc": "3 attacks per Attack action" }],
+    "13": [{ "name": "Indomitable", "desc": "Reroll a failed save, 2/long rest" }],
+    "15": [{ "name": "Relentless", "desc": "Roll initiative with no superiority dice: regain 1" }],
+    "17": [
+      { "name": "Action Surge", "desc": "One extra action, 2 per short rest" },
+      { "name": "Indomitable", "desc": "Reroll a failed save, 3/long rest" }
+    ],
+    "18": [{ "name": "Improved Combat Superiority", "desc": "Superiority dice become d12" }],
+    "20": [{ "name": "Extra Attack", "desc": "4 attacks per Attack action" }]
+  }
+}
