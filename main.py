@@ -7,6 +7,7 @@ from dnd_data import SAVE_FILE
 # Import dei moduli
 from builder import DndBuilder
 from combat_engine import CombatEngine
+from rowan import RowanTUI
 
 class AppLauncher:
     def clear(self): os.system('cls' if os.name == 'nt' else 'clear')
@@ -24,7 +25,8 @@ class AppLauncher:
                 print("1. [Empty] Load Character")
             
             print("2. Create New Character")
-            print("3. Quit")
+            print("3. Rowan Ashford")
+            print("4. Quit")
 
             ch = input("\nSelect> ")
             
@@ -34,6 +36,8 @@ class AppLauncher:
             elif ch == '2':
                 DndBuilder().run()
             elif ch == '3':
+                RowanTUI().run()
+            elif ch == '4':
                 break
 
 if __name__ == "__main__":
