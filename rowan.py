@@ -3,7 +3,7 @@ import os
 import shutil
 import json
 
-from sorlock import draw_box, C_H, C_W, C_R
+from sorlock import box, C_H, C_W, C_R
 
 # ==============================================================================
 # Configuration & Persistence
@@ -111,6 +111,9 @@ ATTACKS = [
 # Main Application
 # ==============================================================================
 
+# Terminal width from which the combat log goes beside the other boxes
+SIDE_MIN, LOG_W = 120, 50
+
 def roll(n, f): return sum(random.randint(1, f) for _ in range(n))
 def by_level(lvl, table): return table[max(k for k in table if k <= lvl)]
 def mod(score): return (score - 10) // 2
@@ -187,7 +190,7 @@ class RowanTUI:
 
     def log(self, msg):
         self.logs.append(msg)
-        if len(self.logs) > 6: self.logs.pop(0)
+        if len(self.logs) > 50: self.logs.pop(0)
 
     def ask_int(self, prompt):
         try: return int(input(f"{C_W}{prompt}{C_R}"))
@@ -368,7 +371,8 @@ class RowanTUI:
                 f"Action Surge: {r['action_surge']}/{mr['action_surge']}" + (f" | Indomitable: {r['indomitable']}" if mr["indomitable"] else ""),
                 f"Misty Step: {r['misty_step']} | Command: {r['command']} | Hit Dice d10: {r['hit_dice']}/{mr['hit_dice']} | Daggers: {s['daggers']}",
             ]
-            draw_box("CHARACTER STATUS", status, w)
+            left_w = w if w < SIDE_MIN else w - LOG_W - 3
+            left = box("CHARACTER STATUS", status, left_w)
 
             acts = self.actions()
             menu = []
@@ -378,13 +382,19 @@ class RowanTUI:
                     menu.append(f"{k:<2} | {a['name']:<20} | {dex + p:+} | d4{f'{dmg:+}' if dmg else ''} {a.get('desc', '')}")
                 else:
                     menu.append(f"{k:<2} | {a['name']:<20} | {a['desc']}")
-            draw_box("ACTIONS", menu, w)
-            draw_box("MANEUVERS (M: roll superiority die)", [f"{m}: {MANEUVERS.get(m, '')}" for m in c["maneuvers"]], w)
+            left += box("ACTIONS", menu, left_w)
+            left += box("MANEUVERS (M: roll superiority die)", [f"{m}: {MANEUVERS.get(m, '')}" for m in c["maneuvers"]], left_w)
 
             check_lines = [f"{i}.{n} {v:+}" for i, (n, v) in enumerate(checks.items(), 1)]
-            draw_box("CHECKS", [" ".join(check_lines[i:i + 5]) for i in range(0, len(check_lines), 5)], w)
-            draw_box("PROFILE", [f"{k}: {v}" for k, v in c["features"].items()] + c["info"], w)
-            draw_box("COMBAT LOG", self.logs, w)
+            left += box("CHECKS", [" ".join(check_lines[i:i + 5]) for i in range(0, len(check_lines), 5)], left_w)
+            left += box("PROFILE", [f"{k}: {v}" for k, v in c["features"].items()] + c["info"], left_w)
+            if w < SIDE_MIN:
+                print("\n".join(left + box("COMBAT LOG", self.logs[-6:], w)))
+            else:
+                n = len(left) - 2  # log fills the height of the left column
+                log = self.logs[-n:]
+                right = box("COMBAT LOG", log + [""] * (n - len(log)), LOG_W)
+                print("\n".join(f"{l} {r}" for l, r in zip(left, right)))
 
             print(f" {C_H}D{C_R}: Damage | {C_H}H{C_R}: Heal | {C_H}I{C_R}: Initiative | {C_H}M{C_R}: Superiority | {C_H}T{C_R}: Check | "
                   f"{C_H}P{C_R}: Pick up daggers | {C_H}S{C_R}: Short Rest | {C_H}L{C_R}: Long Rest | "

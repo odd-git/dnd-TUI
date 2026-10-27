@@ -1,10 +1,16 @@
-# dnd-TUI 
-## Main goal 
-  This pythn program is born to help me to manage a dnd character during session. 
-  TUI is inpsired by [pythops](https://github.com/pythops/bluetui) work.
+# dnd-TUI
+Terminal character sheets for D&D 5e sessions, written in Rust ([ratatui](https://ratatui.rs)), inspired by [pythops](https://github.com/pythops/bluetui)' work.
 
-  <img width="2184" height="824" alt="image" src="https://github.com/user-attachments/assets/fd86cfea-d174-40a1-8ad7-fe7066350fd1" />
+## Run
+```
+cargo build --release
+install -Dm755 target/release/dnd-tui ~/.local/bin/dnd-tui
+dnd-tui
+```
+Pick a sheet at start. Keys are shown in the footer and every footer button, list row, check and tab is clickable.
 
-## Future goal
-  - Script to make it act as a native app
-  - A character builder
+## Sheets are data
+Each character is one JSON file in `~/.local/share/dnd-tui/` (sheet and live state together, saved after every action). The bundled sheets in `data/characters/` are copied there on first run; delete a file to reset it, drop a new `.json` there to add a character. Class progression tables live in `data/progressions/` (Fighter / Battle Master so far, level up is disabled for sheets without one).
+
+## Python version
+The original Python scripts (`main.py`, `builder.py`, `combat_engine.py`, `sorlock.py`, `rowan.py`) are still here until the Rust version replaces them.
