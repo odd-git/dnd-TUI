@@ -351,6 +351,17 @@ mod tests {
     }
 
     #[test]
+    fn domains_with_wis_uses_per_long_rest() {
+        for (sub, id) in [("Tempest", "wrath_of_the_storm"), ("War", "war_priest")] {
+            let c = cleric(sub, 1);
+            assert_eq!(c.res_max(id), Some(3), "{sub}");
+            assert_eq!(c.def(id).map(|r| r.recharge.as_str()), Some("long"));
+        }
+        let wrath = cleric("Tempest", 1);
+        assert_eq!(wrath.actions.iter().find(|a| a.name == "Wrath of the Storm").and_then(|a| wrath.dice(a)), Some((2, 8)));
+    }
+
+    #[test]
     fn berserker_frenzy_and_presence() {
         let c = barbarian(3);
         assert!(c.toggles.iter().any(|t| t.name == "Frenzy" && t.exhaust));

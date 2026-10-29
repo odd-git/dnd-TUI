@@ -212,6 +212,16 @@ SUB_MECH = {
             channel("Cloak of Shadows", "Turn invisible through your next turn; attacking or casting breaks it", 6),
             divine_strike("poison"),
         ]},
+        "War": {
+            "tables": DIVINE_STRIKE,
+            "resources": [res("war_priest", "War Priest", "long", "mod:WIS")],
+            "actions": [
+                {"name": "War Priest", "desc": "Bonus action after you take the Attack action: one more weapon attack", "uses": "war_priest"},
+                channel("Guided Strike", "+10 to one of your attack rolls, chosen after you see the d20"),
+                channel("War God's Blessing", "Reaction: +10 to the attack roll of a creature within 30 ft, chosen after the d20", 6),
+                divine_strike("of the weapon's type"),
+            ],
+        },
     },
 }
 

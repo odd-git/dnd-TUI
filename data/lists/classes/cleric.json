@@ -1733,10 +1733,52 @@
    "name": "War",
    "source": "Player's Handbook",
    "needs_spells": false,
-   "resources": [],
-   "actions": [],
+   "resources": [
+    {
+     "id": "war_priest",
+     "name": "War Priest",
+     "recharge": "long",
+     "max": "mod:WIS",
+     "pips": true
+    }
+   ],
+   "actions": [
+    {
+     "name": "War Priest",
+     "desc": "Bonus action after you take the Attack action: one more weapon attack",
+     "uses": "war_priest"
+    },
+    {
+     "name": "Guided Strike",
+     "desc": "+10 to one of your attack rolls, chosen after you see the d20",
+     "uses": "channel_divinity",
+     "min_level": 2
+    },
+    {
+     "name": "War God's Blessing",
+     "desc": "Reaction: +10 to the attack roll of a creature within 30 ft, chosen after the d20",
+     "uses": "channel_divinity",
+     "min_level": 6
+    },
+    {
+     "name": "Divine Strike",
+     "desc": "Once per turn, on a weapon hit",
+     "dice": [
+      1,
+      8
+     ],
+     "dice_table": "divine_strike",
+     "dmg_type": "of the weapon's type",
+     "min_level": 8
+    }
+   ],
    "maneuver_pool": null,
-   "tables": {},
+   "tables": {
+    "divine_strike": {
+     "8": 1,
+     "14": 2
+    }
+   },
    "dice": {},
    "maneuvers_known": {},
    "features": {
