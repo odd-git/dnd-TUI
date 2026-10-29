@@ -315,6 +315,24 @@ mod tests {
         assert_eq!(bard("Lore", 6).attacks(), 1);
     }
 
+    fn cleric(sub: &str, level: u32) -> Character {
+        let s = |x: &str| x.to_string();
+        build(&Draft {
+            name: s("Pell"), lineage: s("Human"), class: s("Cleric"), subclass: Some(s(sub)), level, background: s("Acolyte"),
+            base: [("STR", 13), ("DEX", 10), ("CON", 14), ("INT", 8), ("WIS", 15), ("CHA", 12)].iter().map(|(a, v)| (a.to_string(), *v)).collect(),
+            class_skills: vec![s("Medicine"), s("History")], ..Default::default()
+        })
+    }
+
+    #[test]
+    fn knowledge_channel_divinity_options() {
+        let c = cleric("Knowledge", 6);
+        let read = c.actions.iter().find(|a| a.name == "Read Thoughts").expect("read thoughts");
+        assert_eq!((read.uses.as_deref(), read.min_level), (Some("channel_divinity"), 6));
+        assert!(c.fmt(&read.desc).contains("DC 14")); // 8 + 3 + WIS 16
+        assert!(c.actions.iter().any(|a| a.name == "Knowledge of the Ages"));
+    }
+
     #[test]
     fn berserker_frenzy_and_presence() {
         let c = barbarian(3);

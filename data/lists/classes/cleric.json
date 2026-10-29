@@ -758,7 +758,20 @@
    "source": "Player's Handbook",
    "needs_spells": false,
    "resources": [],
-   "actions": [],
+   "actions": [
+    {
+     "name": "Knowledge of the Ages",
+     "desc": "Proficient in one skill or tool of your choice for 10 minutes",
+     "uses": "channel_divinity",
+     "min_level": 2
+    },
+    {
+     "name": "Read Thoughts",
+     "desc": "A creature within 60 ft, WIS save DC {dc:WIS}: on a fail, its surface thoughts are yours for 1 minute",
+     "uses": "channel_divinity",
+     "min_level": 6
+    }
+   ],
    "maneuver_pool": null,
    "tables": {},
    "dice": {},

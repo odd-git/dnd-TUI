@@ -146,6 +146,10 @@ CONFIG = {
 }
 
 
+def channel(name, desc, level=2):
+    return {"name": name, "desc": desc, "uses": "channel_divinity", "min_level": level}
+
+
 # PHB subclass mechanics the page cannot say (like BATTLE_MASTER in fetch_lists.py), merged into the scraped subclass
 SUB_MECH = {
     "barbarian": {
@@ -162,6 +166,12 @@ SUB_MECH = {
                         {"name": "Peerless Skill", "desc": "Add the roll to one of your own ability checks", "uses": "bardic_inspiration", "dice": [1, 6], "die_table": "inspiration", "min_level": 14}],
         },
         "Valor": {"attacks_per_action": {"1": 1, "6": 2}},
+    },
+    "cleric": {
+        "Knowledge": {"actions": [
+            channel("Knowledge of the Ages", "Proficient in one skill or tool of your choice for 10 minutes"),
+            channel("Read Thoughts", "A creature within 60 ft, WIS save DC {dc:WIS}: on a fail, its surface thoughts are yours for 1 minute", 6),
+        ]},
     },
 }
 
@@ -406,7 +416,10 @@ def build(slug):
             continue
         sub = subclass(s, sub_level, cfg["strip"], cfg.get("spell_table"))
         if sub:
-            sub.update(SUB_MECH.get(slug, {}).get(sub["name"], {}))
+            mech = SUB_MECH.get(slug, {}).get(sub["name"], {})
+            for lvl, names in mech.get("always", {}).items():  # added to the domain/oath spells read from the page
+                sub.setdefault("always", {}).setdefault(lvl, []).extend(names)
+            sub.update({k: v for k, v in mech.items() if k != "always"})
             sub["needs_spells"] = s.endswith("four-elements")
             if s.endswith("arcane-trickster"):
                 sub["casting"] = third_caster(s, "Rogue", {"ability": "INT", "kind": "third", "mode": "known", "list": "Wizard"})

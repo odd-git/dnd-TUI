@@ -116,8 +116,11 @@ impl App {
         }
         let hits = sp.count + if sp.count_up { above } else { 0 } + if sp.beams { tier - 1 } else { 0 };
         let rolls = if crit { 2 * dice } else { dice };
-        let per: Vec<u32> = (0..hits).map(|_| (0..rolls).map(|_| d(*sides)).sum::<u32>() + sp.flat).collect();
-        let flat = if sp.flat > 0 { format!("+{}", sp.flat) } else { String::new() };
+        // Potent Spellcasting (Knowledge, Light): WIS to the damage of cleric cantrips
+        let potent = sp.level == 0 && sp.classes.iter().any(|c| c == "Cleric") && self.ch.features.iter().any(|f| f.name == "Potent Spellcasting");
+        let add = sp.flat as i32 + if potent { self.ch.md("WIS") } else { 0 };
+        let per: Vec<u32> = (0..hits).map(|_| ((0..rolls).map(|_| d(*sides)).sum::<u32>() as i32 + add).max(0) as u32).collect();
+        let flat = if add != 0 { format!("{add:+}") } else { String::new() };
         if hits == 1 {
             self.say(format!(" >> Damage: {} {kind} ({rolls}d{sides}{flat})", per[0]), Tone::Good);
         } else {
