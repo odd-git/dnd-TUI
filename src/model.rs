@@ -239,6 +239,19 @@ impl Character {
         self.casters().iter().any(|(c, _, p)| sp.classes.contains(&c.list) || crate::lists::expanded_spells(p, 9).contains(&sp.name))
     }
 
+    /// Castable as a ritual (10 minutes longer, no slot): a wizard from the spellbook, a cleric or druid if prepared,
+    /// a bard if known, or any ritual the sheet has with Book of Ancient Secrets or the Ritual Caster feat.
+    pub fn ritual_ok(&self, name: &str) -> bool {
+        let Some(sp) = crate::lists::spell(name).filter(|s| s.ritual && s.level > 0) else { return false };
+        let (known, prepared) = (self.spells.contains(&sp.name), self.prepared.contains(&sp.name));
+        let book = self.features.iter().any(|f| f.name == "Invocation: Book of Ancient Secrets" || f.name == "Feat: Ritual Caster");
+        (book && (known || prepared)) || self.casters().iter().any(|(c, ..)| sp.classes.contains(&c.list) && match c.list.as_str() {
+            "Wizard" | "Bard" => known,
+            "Cleric" | "Druid" => prepared,
+            _ => false,
+        })
+    }
+
     pub fn cantrips_max(&self) -> usize { self.cast_src().map_or(0, |(c, l, _)| at(&c.cantrips, l) as usize) }
 
     /// Spells to know: the class table, or for a wizard 6 in the book plus 2 per level after the first.

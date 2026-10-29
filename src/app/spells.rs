@@ -16,7 +16,8 @@ impl App {
             v.sort_by(|a, b| (a.level, &a.name).cmp(&(b.level, &b.name)));
             v
         };
-        let all: Vec<String> = self.ch.cantrips.iter().cloned().chain(self.ch.castable()).collect();
+        let rituals = self.ch.spells.iter().filter(|n| self.ch.ritual_ok(n)).cloned();
+        let all: Vec<String> = self.ch.cantrips.iter().cloned().chain(self.ch.castable()).chain(rituals).collect();
         let mut rows = by(&all);
         rows.dedup_by_key(|s| &s.name);
         rows
@@ -40,27 +41,38 @@ impl App {
         v
     }
 
+    /// Slots this spell may use: none for a spellbook ritual the wizard has not prepared.
+    fn cast_slots(&self, sp: &Spell) -> Vec<(String, u32, u32)> {
+        if self.ch.castable().contains(&sp.name) { self.slot_options(sp.level) } else { vec![] }
+    }
+
     pub(super) fn cast(&mut self, name: &str) {
         let Some(sp) = lists::spell(name) else { return };
         if sp.level == 0 { return self.cast_effect(sp, 0); }
-        let opts = self.slot_options(sp.level);
-        match opts.len() {
-            0 => self.say(format!("{}: no slots left!", sp.name), Tone::Warn),
-            1 => self.cast_with(sp, &opts[0].0.clone(), opts[0].1),
+        let opts = self.cast_slots(sp);
+        match (opts.len(), self.ch.ritual_ok(name)) {
+            (0, false) => self.say(format!("{}: no slots left!", sp.name), Tone::Warn),
+            (1, false) => self.cast_with(sp, &opts[0].0.clone(), opts[0].1),
             _ => self.open(Step::CastSlot(sp.name.clone())),
         }
     }
 
     pub(super) fn cast_slot_items(&self, name: &str) -> Vec<String> {
         let Some(sp) = lists::spell(name) else { return vec![] };
-        self.slot_options(sp.level).iter().map(|(id, l, left)| {
+        let mut v: Vec<String> = self.cast_slots(sp).iter().map(|(id, l, left)| {
             if id == "pact" { format!("Pact slot, level {l} ({left} left)") } else { format!("Level {l} slot ({left} left)") }
-        }).collect()
+        }).collect();
+        if self.ch.ritual_ok(name) { v.push("As a ritual (+10 min, no slot)".into()); }
+        v
     }
 
     pub(super) fn cast_slot_pick(&mut self, name: &str, i: usize) {
         let Some(sp) = lists::spell(name) else { return };
-        if let Some((id, l, _)) = self.slot_options(sp.level).get(i).cloned() { self.cast_with(sp, &id, l); }
+        match self.cast_slots(sp).get(i).cloned() {
+            Some((id, l, _)) => self.cast_with(sp, &id, l),
+            None if self.ch.ritual_ok(name) => { self.snap(); self.say(format!("{} as a ritual: 10 minutes longer.", sp.name), Tone::Dim); self.cast_effect(sp, sp.level); }
+            None => {}
+        }
     }
 
     fn cast_with(&mut self, sp: &'static Spell, id: &str, slot_level: u32) {

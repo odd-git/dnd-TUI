@@ -448,6 +448,22 @@ mod tests {
     }
 
     #[test]
+    fn rituals_follow_each_class_rule() {
+        let mut w = half("Wizard", "School of Evocation", 1);
+        w.spells = vec!["Find Familiar".into(), "Magic Missile".into()]; // in the book, not prepared
+        assert!(w.ritual_ok("Find Familiar") && !w.ritual_ok("Magic Missile") && !w.castable().contains(&"Find Familiar".to_string()));
+        let mut c = half("Cleric", "Life", 1);
+        assert!(!c.ritual_ok("Detect Magic"));
+        c.prepared.push("Detect Magic".into());
+        assert!(c.ritual_ok("Detect Magic"));
+        let mut s = half("Sorcerer", "Draconic Bloodline", 1);
+        s.spells.push("Detect Magic".into());
+        assert!(!s.ritual_ok("Detect Magic"));
+        s.features.push(crate::model::Feature { name: "Feat: Ritual Caster".into(), ..Default::default() });
+        assert!(s.ritual_ok("Detect Magic"));
+    }
+
+    #[test]
     fn spells_from_outside_the_class_list() {
         let mut c = half("Ranger", "Hunter", 1); // no spells yet at ranger level 1
         assert!(!c.has_spells());
