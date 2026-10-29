@@ -54,14 +54,14 @@ def parse(slug):
     rng = g("Range", "Components:")
     comp = re.sub(r"\s*\(.*", "", g("Components", "Duration:"))
     dur = g("Duration", "END")
-    body = [t for tag, _, t in b if tag == "p" and not t.startswith(("Source:", "Casting Time:", "Spell Lists.", "At Higher Levels")) and t != head and "nitroAds" not in t and not t.startswith("id=\"page-content")]
+    body = [t for tag, _, t in b if tag in ("p", "li") and not t.startswith(("Source:", "Casting Time:", "Spell Lists.", "At Higher Levels")) and t != head and "nitroAds" not in t and not t.startswith("id=\"page-content")]
     higher = next((t for _, _, t in b if t.startswith("At Higher Levels")), "")
     lists_ = next((t for _, _, t in b if t.startswith("Spell Lists.")), "")
     lists_ = lists_.split("window[")[0]
     classes = sorted({re.sub(r"\s*\(.*\)", "", c).strip() for c in lists_.replace("Spell Lists.", "").split(",")} - {"", "None"})
     text = " ".join(body)
     dm = re.search(r"(\d+)d(\d+)(?: \+ (\d+))? (\w+) damage", text)
-    if not dm and (m2 := re.search(r"(\d+)d(\d+) damage of the type", text)):  # Chromatic Orb, Dragon's Breath...
+    if not dm and (m2 := re.search(r"(\d+)d(\d+) (?:damage of the type|\w+(?:,? (?:or )?\w+)+ damage)", text)):  # Chromatic Orb, Glyph of Warding...
         dm = [None, m2[1], m2[2], None, "chosen"]
     hm = re.search(r"hit points equal to (\d+)d(\d+) \+ your spellcasting ability modifier", text)
     hf = re.search(r"regains? (\d+)d(\d+) hit points", text)

@@ -519,7 +519,7 @@
   "count_up": false,
   "beams": false,
   "attack": false,
-  "save": null,
+  "save": "STR",
   "upcast": null,
   "scales": false,
   "healing": false
@@ -4166,7 +4166,11 @@
   "desc": "You assume a different form. When you cast the spell, choose one of the following options, the effects of which last for the duration of the spell. While the spell lasts, you can end one option as an action to gain the benefits of a different one. Aquatic Adaptation. You adapt your body to an aquatic environment, sprouting gills and growing webbing between your fingers. You can breathe underwater and gain a swimming speed equal to your walking speed. Change Appearance. You transform your appearance. You decide what you look like, including your height, weight, facial features, sound of your voice, hair length, coloration, and distinguishing characteristics, if any. You can make yourself appear as a member of another race, though none of your statistics change. You also can't appear as a creature of a different size than you, and your basic shape stays the same; if you're bipedal, you can't use this spell to become quadrupedal, for instance. At any time for the duration of the spell, you can use your action to change your appearance in this way again. Natural Weapons. You grow claws, fangs, spines, horns, or a different natural weapon of your choice. Your unarmed strikes deal 1d6 bludgeoning, piercing, or slashing damage, as appropriate to the natural weapon you chose, and you are proficient with your unarmed strikes. Finally, the natural weapon is magic and you have a +1 bonus to the attack and damage rolls you make using it.",
   "srd": true,
   "url": "http://dnd5e.wikidot.com/spell:alter-self",
-  "dmg": null,
+  "dmg": [
+   1,
+   6,
+   "chosen"
+  ],
   "flat": 0,
   "heal_mod": false,
   "count": 1,
@@ -4740,7 +4744,11 @@
   "desc": "A willing creature can use its action to breathe a 15 ft cone of acid, cold, fire, lightning or poison: DEX save, 3d6 (half on a success). +1d6 per slot level above 2nd.",
   "srd": false,
   "url": "http://dnd5e.wikidot.com/spell:dragons-breath",
-  "dmg": null,
+  "dmg": [
+   3,
+   6,
+   "chosen"
+  ],
   "flat": 0,
   "heal_mod": false,
   "count": 1,
@@ -5366,7 +5374,11 @@
   "desc": "+10 ft speed, no opportunity attacks from moving, and you can move through creatures' spaces (difficult terrain), not ending there.",
   "srd": false,
   "url": "http://dnd5e.wikidot.com/spell:kinetic-jaunt",
-  "dmg": null,
+  "dmg": [
+   1,
+   8,
+   "force"
+  ],
   "flat": 0,
   "heal_mod": false,
   "count": 1,
@@ -7014,7 +7026,11 @@
   "desc": "You touch a creature, and that creature must succeed on a wisdom saving throw or become cursed for the duration of the spell. When you cast this spell, choose the nature of the curse from the following options: - Choose one ability score. While cursed, the target has disadvantage on ability checks and saving throws made with that ability score. - While cursed, the target has disadvantage on attack rolls against you. - While cursed, the target must make a wisdom saving throw at the start of each of its turns. If it fails, it wastes its action that turn doing nothing. - While the target is cursed, your attacks and spells deal an extra 1d8 necrotic damage to the target. A remove curse spell ends this effect. At the DM's option, you may choose an alternative curse effect, but it should be no more powerful than those described above. The DM has final say on such a curse's effect. At Higher Levels. If you cast this spell using a spell slot of 4th level or higher, the duration is concentration, up to 10 minutes. If you use a spell slot of 5th level or higher, the duration is 8 hours. If you use a spell slot of 7th level or higher, the duration is 24 hours. If you use a 9th level spell slot, the spell lasts until it is dispelled. Using a spell slot of 5th level or higher grants a duration that doesn't require concentration.",
   "srd": true,
   "url": "http://dnd5e.wikidot.com/spell:bestow-curse",
-  "dmg": null,
+  "dmg": [
+   1,
+   8,
+   "necrotic"
+  ],
   "flat": 0,
   "heal_mod": false,
   "count": 1,
@@ -7237,7 +7253,11 @@
   "desc": "60 ft cone of copies of a weapon or ammunition: DEX save, 3d8 of its damage type (half on a success).",
   "srd": false,
   "url": "http://dnd5e.wikidot.com/spell:conjure-barrage",
-  "dmg": null,
+  "dmg": [
+   3,
+   8,
+   "chosen"
+  ],
   "flat": 0,
   "heal_mod": false,
   "count": 1,
@@ -7792,7 +7812,11 @@
   "desc": "When you cast this spell, you inscribe a glyph that harms other creatures, either upon a surface (such as a table or a section of floor or wall) or within an object that can be closed (such as a book, a scroll, or a treasure chest) to conceal the glyph. If you choose a surface, the glyph can cover an area of the surface no larger than 10 feet in diameter. If you choose an object, that object must remain in its place; if the object is moved more than 10 feet from where you cast this spell, the glyph is broken, and the spell ends without being triggered. The glyph is nearly invisible and requires a successful Intelligence (Investigation) check against your spell save DC to be found. You decide what triggers the glyph when you cast the spell. For glyphs inscribed on a surface, the most typical triggers include touching or standing on the glyph, removing another object covering the glyph, approaching within a certain distance of the glyph, or manipulating the object on which the glyph is inscribed. For glyphs inscribed within an object, the most common triggers include opening that object, approaching within a certain distance of the object, or seeing or reading the glyph. Once a glyph is triggered, this spell ends. You can further refine the trigger so the spell activates only under certain circumstances or according to physical characteristics (such as height or weight), creature kind (for example, the ward could be set to affect aberrations or drow), or alignment. You can also set conditions for creatures that don't trigger the glyph, such as those who say a certain password. When you inscribe the glyph, choose explosive runes or a spell glyph. Explosive Runes. When triggered, the glyph erupts with magical energy in a 20-­foot-­radius sphere centered on the glyph. The sphere spreads around corners. Each creature in the area must make a Dexterity saving throw. A creature takes 5d8 acid, cold, fire, lightning, or thunder damage on a failed saving throw (your choice when you create the glyph), or half as much damage on a successful one. Spell Glyph. You can store a prepared spell of 3rd level or lower in the glyph by casting it as part of creating the glyph. The spell must target a single creature or an area. The spell being stored has no immediate effect when cast in this way. When the glyph is triggered, the stored spell is cast. If the spell has a target, it targets the creature that triggered the glyph. If the spell affects an area, the area is centered on that creature. If the spell summons hostile creatures or creates harmful objects or traps, they appear as close as possible to the intruder and attack it. If the spell requires concentration, it lasts until the end of its full duration. At Higher Levels. When you cast this spell using a spell slot of 4th level or higher, the damage of an explosive runes glyph increases by 1d8 for each slot level above 3rd. If you create a spell glyph, you can store any spell of up to the same level as the slot you use for the glyph of warding.",
   "srd": true,
   "url": "http://dnd5e.wikidot.com/spell:glyph-of-warding",
-  "dmg": null,
+  "dmg": [
+   5,
+   8,
+   "chosen"
+  ],
   "flat": 0,
   "heal_mod": false,
   "count": 1,
@@ -8126,7 +8150,7 @@
   "count_up": false,
   "beams": false,
   "attack": false,
-  "save": null,
+  "save": "CHA",
   "upcast": null,
   "scales": false,
   "healing": false
@@ -10065,14 +10089,18 @@
   "desc": "Become a Primal Beast (+10 speed, darkvision, STR attack advantage, +1d6 force) or a Great Tree (10 temp HP, advantage on CON saves and DEX/WIS attacks, difficult ground around you).",
   "srd": false,
   "url": "http://dnd5e.wikidot.com/spell:guardian-of-nature",
-  "dmg": null,
+  "dmg": [
+   1,
+   6,
+   "force"
+  ],
   "flat": 0,
   "heal_mod": false,
   "count": 1,
   "count_up": false,
   "beams": false,
   "attack": false,
-  "save": null,
+  "save": "CON",
   "upcast": null,
   "scales": false,
   "healing": false
@@ -11014,13 +11042,17 @@
   "desc": "Large force hand (AC 20, HP = your max): bonus action to move it 60 ft and punch (4d8 force), shove, grapple (crush 2d6 + mod) or block. +2d8 punch, +2d6 crush per slot level above 5th.",
   "srd": false,
   "url": "http://dnd5e.wikidot.com/spell:bigbys-hand",
-  "dmg": null,
+  "dmg": [
+   4,
+   8,
+   "force"
+  ],
   "flat": 0,
   "heal_mod": false,
   "count": 1,
   "count_up": false,
   "beams": false,
-  "attack": false,
+  "attack": true,
   "save": null,
   "upcast": [
    2,
@@ -11239,7 +11271,11 @@
   "desc": "40 ft radius, 20 ft high cylinder of duplicate ammunition: DEX save, 8d8 of its damage type (half on a success).",
   "srd": false,
   "url": "http://dnd5e.wikidot.com/spell:conjure-volley",
-  "dmg": null,
+  "dmg": [
+   8,
+   8,
+   "chosen"
+  ],
   "flat": 0,
   "heal_mod": false,
   "count": 1,
@@ -11341,7 +11377,7 @@
   "count_up": false,
   "beams": false,
   "attack": false,
-  "save": null,
+  "save": "STR",
   "upcast": null,
   "scales": false,
   "healing": false
@@ -11528,8 +11564,8 @@
   "count": 1,
   "count_up": false,
   "beams": false,
-  "attack": false,
-  "save": null,
+  "attack": true,
+  "save": "CHA",
   "upcast": null,
   "scales": false,
   "healing": false
@@ -12658,14 +12694,18 @@
   "desc": "A 40 ft cube of stone becomes mud (difficult terrain, creatures sink) or mud becomes stone (DEX save or restrained).",
   "srd": false,
   "url": "http://dnd5e.wikidot.com/spell:transmute-rock",
-  "dmg": null,
+  "dmg": [
+   4,
+   8,
+   "bludgeoning"
+  ],
   "flat": 0,
   "heal_mod": false,
   "count": 1,
   "count_up": false,
   "beams": false,
   "attack": false,
-  "save": null,
+  "save": "STR",
   "upcast": null,
   "scales": false,
   "healing": false
@@ -13362,7 +13402,11 @@
   "desc": "You create a ward against magical travel that protects up to 40,000 square feet of floor space to a height of 30 feet above the floor. For the duration, creatures can't teleport into the area or use portals, such as those created by the gate spell, to enter the area. The spell proofs the area against planar travel, and therefore prevents creatures from accessing the area by way of the Astral Plane, Ethereal Plane, Feywild, Shadowfell, or the plane shift spell. In addition, the spell damages types of creatures that you choose when you cast it. Choose one or more of the following: celestials, elementals, fey, fiends, and undead. When a chosen creature enters the spell's area for the first time on a turn or starts its turn there, the creature takes 5d10 radiant or necrotic damage (your choice when you cast this spell). When you cast this spell, you can designate a password. A creature that speaks the password as it enters the area takes no damage from the spell. The spell's area can't overlap with the area of another forbiddance spell. If you cast forbiddance every day for 30 days in the same location, the spell lasts until it is dispelled, and the material components are consumed on the last casting.",
   "srd": true,
   "url": "http://dnd5e.wikidot.com/spell:forbiddance",
-  "dmg": null,
+  "dmg": [
+   5,
+   10,
+   "chosen"
+  ],
   "flat": 0,
   "heal_mod": false,
   "count": 1,
@@ -13548,14 +13592,18 @@
   "desc": "Fire immunity, cold resistance; creatures near or hitting you take 1d10 fire; action for a 15 ft x 5 ft fire line, DEX save, 4d8 fire (half on a success).",
   "srd": false,
   "url": "http://dnd5e.wikidot.com/spell:investiture-of-flame",
-  "dmg": null,
+  "dmg": [
+   1,
+   10,
+   "fire"
+  ],
   "flat": 0,
   "heal_mod": false,
   "count": 1,
   "count_up": false,
   "beams": false,
   "attack": false,
-  "save": null,
+  "save": "DEX",
   "upcast": null,
   "scales": false,
   "healing": false
@@ -13580,14 +13628,18 @@
   "desc": "Cold immunity, fire resistance, ice doesn't slow you, ground within 10 ft is difficult terrain for others; action for a 15 ft cone, CON save, 4d6 cold and slowed (half on a success).",
   "srd": false,
   "url": "http://dnd5e.wikidot.com/spell:investiture-of-ice",
-  "dmg": null,
+  "dmg": [
+   4,
+   6,
+   "cold"
+  ],
   "flat": 0,
   "heal_mod": false,
   "count": 1,
   "count_up": false,
   "beams": false,
   "attack": false,
-  "save": null,
+  "save": "CON",
   "upcast": null,
   "scales": false,
   "healing": false
@@ -13619,7 +13671,7 @@
   "count_up": false,
   "beams": false,
   "attack": false,
-  "save": null,
+  "save": "DEX",
   "upcast": null,
   "scales": false,
   "healing": false
@@ -13644,14 +13696,18 @@
   "desc": "Ranged weapon attacks against you at disadvantage, 60 ft fly speed; action for a 15 ft cube of wind, CON save, 2d10 bludgeoning (half on a success), Large or smaller pushed 10 ft on a fail.",
   "srd": false,
   "url": "http://dnd5e.wikidot.com/spell:investiture-of-wind",
-  "dmg": null,
+  "dmg": [
+   2,
+   10,
+   "bludgeoning"
+  ],
   "flat": 0,
   "heal_mod": false,
   "count": 1,
   "count_up": false,
   "beams": false,
   "attack": false,
-  "save": null,
+  "save": "CON",
   "upcast": null,
   "scales": false,
   "healing": false
@@ -14117,7 +14173,11 @@
   "desc": "No spellcasting; 50 temp HP, advantage on weapon attacks, +2d12 force on weapon hits, martial weapons, shields and STR/CON saves, two attacks per Attack action; CON save or exhaustion after.",
   "srd": false,
   "url": "http://dnd5e.wikidot.com/spell:tensers-transformation",
-  "dmg": null,
+  "dmg": [
+   2,
+   12,
+   "force"
+  ],
   "flat": 0,
   "heal_mod": false,
   "count": 1,
@@ -15067,14 +15127,18 @@
   "desc": "When you cast this spell, you inscribe a harmful glyph either on a surface (such as a section of floor, a wall, or a table) or within an object that can be closed to conceal the glyph (such as a book, a scroll, or a treasure chest). If you choose a surface, the glyph can cover an area of the surface no larger than 10 feet in diameter. If you choose an object, that object must remain in its place; if the object is moved more than 10 feet from where you cast this spell, the glyph is broken, and the spell ends without being triggered. The glyph is nearly invisible, requiring an Intelligence (Investigation) check against your spell save DC to find it. You decide what triggers the glyph when you cast the spell. For glyphs inscribed on a surface, the most typical triggers include touching or stepping on the glyph, removing another object covering it, approaching within a certain distance of it, or manipulating the object that holds it. For glyphs inscribed within an object, the most common triggers are opening the object, approaching within a certain distance of it, or seeing or reading the glyph. You can further refine the trigger so the spell is activated only under certain circumstances or according to a creature's physical characteristics (such as height or weight), or physical kind (for example, the ward could be set to affect hags or shapechangers). You can also specify creatures that don't trigger the glyph, such as those who say a certain password. When you inscribe the glyph, choose one of the options below for its effect. Once triggered, the glyph glows, filling a 60-foot-radius sphere with dim light for 10 minutes, after which time the spell ends. Each creature in the sphere when the glyph activates is targeted by its effect, as is a creature that enters the sphere for the first time on a turn or ends its turn there. Death. Each target must make a constitution saving throw, taking 10d 10 necrotic damage on a failed save, or half as much damage on a successful save Discord. Each target must make a constitution saving throw. On a failed save, a target bickers and argues with other creatures for 1 minute. During this time, it is incapable of meaningful communication and has disadvantage on attack rolls and ability checks. Fear. Each target must make a wisdom saving throw and becomes frightened for 1 minute on a failed save. While frightened, the target drops whatever it is holding and must move at least 30 feet away from the glyph on each of its turns, if able. Hopelessness. Each target must make a charisma saving throw. On a failed save, the target is overwhelmed with despair for 1 minute. During this time, it can't attack or target any creature with harmful abilities, spells, or other magical effects. Insanity. Each target must make an intelligence saving throw. On a failed save, the target is driven insane for 1 minute. An insane creature can't take actions, can't understand what other creatures say, can't read, and speaks only in gibberish. The DM controls its movement, which is erratic. Pain. Each target must make a constitution saving throw and becomes incapacitated with excruciating pain for 1 minute on a failed save. Sleep. Each target must make a wisdom saving throw and falls unconscious for 10 minutes on a failed save. A creature awakens if it takes damage or if someone uses an action to shake or slap it awake. Stunning. Each target must make a wisdom saving throw and becomes stunned for 1 minute on a failed save.",
   "srd": true,
   "url": "http://dnd5e.wikidot.com/spell:symbol",
-  "dmg": null,
+  "dmg": [
+   10,
+   10,
+   "necrotic"
+  ],
   "flat": 0,
   "heal_mod": false,
   "count": 1,
   "count_up": false,
   "beams": false,
   "attack": false,
-  "save": null,
+  "save": "CON",
   "upcast": null,
   "scales": false,
   "healing": false
@@ -15098,7 +15162,11 @@
   "desc": "This spell instantly transports you and up to eight willing creatures of your choice that you can see within range, or a single object that you can see within range, to a destination you select. If you target an object, it must be able to fit entirely inside a 10-foot cube, and it can't be held or carried by an unwilling creature. The destination you choose must be known to you, and it must be on the same plane of existence as you. Your familiarity with the destination determines whether you arrive there successfully. The DM rolls d100 and consults the table. Familiarity. \"Permanent circle\" means a permanent teleportation circle whose sigil sequence you know. \"Associated object\" means that you possess an object taken from the desired destination within the last six months, such as a book from a wizard's library, bed linen from a royal suite, or a chunk of marble from a lich's secret tomb. \"Very familiar\" is a place you have been very often, a place you have carefully studied, or a place you can see when you cast the spell. \"Seen casually\" is someplace you have seen more than once but with which you aren't very familiar. \"Viewed once\" is a place you have seen once, possibly using magic. \"Description\" is a place whose location and appearance you know through someone else's description, perhaps from a map. \"False destination\" is a place that doesn't exist. Perhaps you tried to scry an enemy's sanctum but instead viewed an illusion, or you are attempting to teleport to a familiar location that no longer exists. On Target. You and your group (or the target object) appear where you want to. Off Target. You and your group (or the target object) appear a random distance away from the destination in a random direction. Distance off target is 1d10 × 1d10 percent of the distance that was to be traveled. For example, if you tried to travel 120 miles, landed off target, and rolled a 5 and 3 on the two d10s, then you would be off target by 15 percent, or 18 miles. The GM determines the direction off target randomly by rolling a d8 and designating 1 as north, 2 as northeast, 3 as east, and so on around the points of the compass. If you were teleporting to a coastal city and wound up 18 miles out at sea, you could be in trouble. Similar Area. You and your group (or the target object) wind up in a different area that's visually or thematically similar to the target area. If you are heading for your home laboratory, for example, you might wind up in another wizard's laboratory or in an alchemical supply shop that has many of the same tools and implements as your laboratory. Generally, you appear in the closest similar place, but since the spell has no range limit, you could conceivably wind up anywhere on the plane. Mishap. The spell's unpredictable magic results in a difficult journey. Each teleporting creature (or the target object) takes 3d10 force damage, and the GM rerolls on the table to see where you wind up (multiple mishaps can occur, dealing damage each time).",
   "srd": true,
   "url": "http://dnd5e.wikidot.com/spell:teleport",
-  "dmg": null,
+  "dmg": [
+   3,
+   10,
+   "force"
+  ],
   "flat": 0,
   "heal_mod": false,
   "count": 1,
@@ -15292,7 +15360,7 @@
   "count_up": false,
   "beams": false,
   "attack": false,
-  "save": null,
+  "save": "WIS",
   "upcast": null,
   "scales": false,
   "healing": false
@@ -15439,7 +15507,11 @@
   "desc": "You create a seismic disturbance at a point on the ground that you can see within range. For the duration, an intense tremor rips through the ground in a 100-foot-radius circle centered on that point and shakes creatures and structures in contact with the ground in that area. The ground in the area becomes difficult terrain. Each creature on the ground that is concentrating must make a constitution saving throw. On a failed save, the creature's concentration is broken. When you cast this spell and at the end of each turn you spend concentrating on it, each creature on the ground in the area must make a dexterity saving throw. On a failed save, the creature is knocked prone. This spell can have additional effects depending on the terrain in the area, as determined by the DM. Fissures. Fissures open throughout the spell's area at the start of your next turn after you cast the spell. A total of 1d6 such fissures open in locations chosen by the DM. Each is 1d10 × 10 feet deep, 10 feet wide, and extends from one edge of the spell's area to the opposite side. A creature standing on a spot where a fissure opens must succeed on a dexterity saving throw or fall in. A creature that successfully saves moves with the fissure's edge as it opens. A fissure that opens beneath a structure causes it to automatically collapse (see below). Structures. The tremor deals 50 bludgeoning damage to any structure in contact with the ground in the area when you cast the spell and at the start of each of your turns until the spell ends. If a structure drops to 0 hit points, it collapses and potentially damages nearby creatures. A creature within half the distance of a structure's height must make a dexterity saving throw. On a failed save, the creature takes 5d6 bludgeoning damage, is knocked prone, and is buried in the rubble, requiring a DC 20 Strength (Athletics) check as an action to escape. The DM can adjust the DC higher or lower, depending on the nature of the rubble. On a successful save, the creature takes half as much damage and doesn't fall prone or become buried.",
   "srd": true,
   "url": "http://dnd5e.wikidot.com/spell:earthquake",
-  "dmg": null,
+  "dmg": [
+   5,
+   6,
+   "bludgeoning"
+  ],
   "flat": 0,
   "heal_mod": false,
   "count": 1,
@@ -15563,7 +15635,11 @@
   "desc": "Huge shadow dragon: enemies WIS save or frightened; bonus action to move it 60 ft and breathe a 60 ft cone, INT save, 7d6 of a chosen type (half on a success).",
   "srd": false,
   "url": "http://dnd5e.wikidot.com/spell:illusory-dragon",
-  "dmg": null,
+  "dmg": [
+   7,
+   6,
+   "chosen"
+  ],
   "flat": 0,
   "heal_mod": false,
   "count": 1,
