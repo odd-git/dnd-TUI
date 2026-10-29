@@ -84,6 +84,7 @@ pub struct ActionDef {
     pub min_level: u32,             // hidden below this level
     pub pool: Option<String>,       // spend any number of points from this resource (Lay on Hands)
     pub special: Option<String>,    // own mechanics: smite, recover, font_slot, font_points, wild_shape
+    pub hit: Option<i32>,           // fixed attack bonus (a beast's stat block) instead of ability + proficiency
 }
 
 #[derive(Serialize, Deserialize, Clone, Default)]
@@ -97,6 +98,10 @@ pub struct Toggle {
     pub dmg_table: Option<String>,   // level table of a flat damage bonus
     pub dmg_ability: Option<String>, // ...applied to attacks made with this ability
 }
+
+/// The beast a druid has turned into: its name and AC (its HP are the "beast_hp" counter, its attacks "Beast: " actions).
+#[derive(Serialize, Deserialize, Clone)]
+pub struct Beast { pub name: String, pub ac: i32 }
 
 /// A class taken besides the main one (multiclassing): its "Class/Subclass" progression and levels in it.
 #[derive(Serialize, Deserialize, Clone)]
@@ -137,6 +142,7 @@ pub struct Character {
     // live state
     pub hp: Option<i32>,
     #[serde(default)] pub temp_hp: i32,
+    #[serde(default)] pub beast: Option<Beast>,
     #[serde(default)] pub concentration: Option<String>, // spell being concentrated on
     #[serde(default)] pub death: [u8; 2], // successes, failures
     #[serde(default)] pub conditions: Vec<String>,
@@ -275,6 +281,7 @@ impl Character {
     pub fn prof(&self) -> i32 { (self.level as i32 - 1) / 4 + 2 }
     pub fn md(&self, ab: &str) -> i32 { mod_of(self.abilities.get(ab).copied().unwrap_or(10)) }
     pub fn ac(&self) -> Option<i32> {
+        if let Some(b) = &self.beast { return Some(b.ac); }
         let dex = self.md("DEX");
         let extra = match &self.ac_extra {
             Some(ab) if !self.ac_armored && (self.ac_extra_shield || !self.ac_shield) => self.md(ab),

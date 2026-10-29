@@ -137,6 +137,7 @@ pub fn build(d: &Draft) -> Character {
         class_title: title,
         multi: vec![],
         temp_hp: 0,
+        beast: None,
         concentration: None,
         level: d.level,
         hit_die: Some(class.hit_die),

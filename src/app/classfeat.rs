@@ -197,14 +197,13 @@ impl App {
             "font_points" => self.open(Step::FontPoints),
             "wild_shape" => {
                 self.snap();
-                if let Some(p) = self.ch.active.iter().position(|x| x == "Wild Shape") {
-                    self.ch.active.remove(p);
-                    self.ch.res.remove("beast_hp");
+                if self.ch.active.iter().any(|x| x == "Wild Shape") {
+                    self.end_beast();
                     return self.say("Wild Shape: back to normal form.", Tone::Dim);
                 }
                 if self.have("wild_shape") == 0 { return self.say("Wild Shape: none left!", Tone::Warn); }
                 *self.ch.res.entry("wild_shape".into()).or_insert(1) -= 1;
-                self.open(Step::BeastHp);
+                self.open(Step::BeastName);
             }
             _ => {}
         }
@@ -304,10 +303,18 @@ impl App {
         if !ok { self.ch.concentration = None; }
     }
 
-    pub(super) fn beast_form(&mut self, hp: i32) {
+    pub(super) fn beast_form(&mut self, name: String, hp: i32, ac: i32) {
         self.ch.res.insert("beast_hp".into(), hp.max(1) as u32);
         self.ch.active.push("Wild Shape".into());
-        self.say(format!("Wild Shape: beast form with {} HP (max CR {}).", hp.max(1), self.wild_cr()), Tone::Good);
+        self.say(format!("Wild Shape: {name}, {} HP, AC {ac}.", hp.max(1)), Tone::Good);
+        self.ch.beast = Some(Beast { name, ac });
+    }
+
+    fn end_beast(&mut self) {
+        self.ch.active.retain(|x| x != "Wild Shape");
+        self.ch.res.remove("beast_hp");
+        self.ch.beast = None;
+        self.ch.actions.retain(|a| !a.name.starts_with("Beast: "));
     }
 
     /// Damage hits the beast form first; what is left over carries to the druid and ends the form.
@@ -319,8 +326,7 @@ impl App {
             self.say(format!("Beast form takes {n}, {} HP left.", b - n), Tone::Warn);
             return 0;
         }
-        self.ch.active.retain(|x| x != "Wild Shape");
-        self.ch.res.remove("beast_hp");
+        self.end_beast();
         self.say(format!("Beast form drops! {} damage carries over.", n - b), Tone::Warn);
         n - b
     }

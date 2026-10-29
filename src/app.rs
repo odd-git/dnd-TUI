@@ -40,7 +40,7 @@ pub enum Step {
     Maneuver { required: bool }, ReplaceAsk, Forget, Extras, Skill, NoteName, NoteDesc(String), JournalAdd,
     Subclass, DeleteSheet(usize), Expertise, Style, Pool(String),
     Learn(bool), Prepare, CastSlot(String), SpellAdd, SpellDel, LevelClass,
-    Opt(String), Arcanum(u32), Secret, Smite, Recover(u32), FontSlot, FontPoints, BeastHp, Hd(usize), AnyCantrip, TempHp,
+    Opt(String), Arcanum(u32), Secret, Smite, Recover(u32), FontSlot, FontPoints, BeastName, BeastHp(String), BeastAc(String, i32), BeastAtk, Hd(usize), AnyCantrip, TempHp,
     // editor
     Ident, IdentSet(usize), Scores, ScoreSet(String), Unskill, ArmorPick, ShieldPick(Option<String>), WeaponPick,
     CustomName, CustomAb(String), CustomDice(String, Option<String>), CustomType(String, Option<String>, (u32, u32)),
@@ -164,6 +164,8 @@ impl App {
     pub fn visible(&self) -> Vec<Item> {
         let mut v: Vec<Item> = (0..self.ch.actions.len())
             .filter(|&i| self.ch.actions[i].uses.as_ref().map_or(true, |u| self.ch.res_max(u) != Some(0)) && self.ch.class_level() >= self.ch.actions[i].min_level)
+            // in beast form the druid's own weapons give way to the beast's attacks
+            .filter(|&i| self.ch.beast.is_none() || self.ch.actions[i].ability.is_none() || self.ch.actions[i].hit.is_some())
             .map(Item::Action).collect();
         v.extend((0..self.ch.toggles.len()).map(Item::Toggle));
         v
@@ -537,8 +539,7 @@ impl App {
         };
         let prof = self.ch.prof();
         let mut crit = false;
-        if let Some(ab) = &a.ability {
-            let hit = self.ch.md(ab) + prof;
+        if let Some(hit) = a.hit.or_else(|| a.ability.as_ref().map(|ab| self.ch.md(ab) + prof)) {
             let crit_min = self.ch.toggles.iter().filter(|t| self.ch.active.contains(&t.name)).filter_map(|t| t.crit_min).min().unwrap_or(20);
             let (r, note) = self.d20();
             crit = r >= crit_min;
@@ -719,7 +720,10 @@ impl App {
                 self.list("Slot into sorcery points", items, step, true);
             }
             Step::AnyCantrip => { let items = self.any_cantrips(); self.list("Book of Shadows: a cantrip from any class", items, step, false) }
-            Step::BeastHp => { let t = format!("Beast HP (max CR {})", self.wild_cr()); self.input(t, step, true) }
+            Step::BeastName => { let t = format!("Beast (max CR {})", self.wild_cr()); self.input(t, step, false) }
+            Step::BeastHp(ref n) => { let t = format!("{n}: hit points"); self.input(t, step, true) }
+            Step::BeastAc(ref n, _) => { let t = format!("{n}: armor class"); self.input(t, step, true) }
+            Step::BeastAtk => self.input("Beast attack, e.g. Bite +4 2d4+2 piercing (empty: done)", step, false),
             Step::Hd(i) => {
                 let Some(id) = self.hd_pools().get(i).cloned() else { return };
                 let t = format!("{} d{} to spend (0-{})", self.res_name(&id), self.ch.res_die(&id).unwrap_or(0), self.have(&id));
@@ -821,7 +825,17 @@ impl App {
                 self.reset(false);
                 self.say("Short Rest: short-rest resources back.", Tone::Good);
             }
-            Step::BeastHp => { if let Ok(n) = num { self.beast_form(n); } }
+            Step::BeastName => { let n = if text.trim().is_empty() { "Beast".to_string() } else { text.trim().to_string() }; self.open(Step::BeastHp(n)) }
+            Step::BeastHp(name) => { if let Ok(hp) = num { self.open(Step::BeastAc(name, hp)) } }
+            Step::BeastAc(name, hp) => { if let Ok(ac) = num { self.beast_form(name, hp, ac); self.open(Step::BeastAtk); } }
+            Step::BeastAtk => {
+                if text.trim().is_empty() { return; }
+                match parse_attack(&text) {
+                    Some(a) => { self.say(format!("{}: {:+} to hit.", a.name, a.hit.unwrap_or(0)), Tone::Dim); self.ch.actions.insert(0, a); }
+                    None => self.say("Could not read that: write name, +to-hit, dice, type.", Tone::Warn),
+                }
+                self.open(Step::BeastAtk);
+            }
             Step::TempHp => {
                 let Ok(n) = num else { return };
                 self.snap();
@@ -1115,4 +1129,32 @@ pub(crate) fn prepare_options(c: &Character) -> Vec<String> {
     if cast.mode == "spellbook" { return c.spells.iter().filter(|s| !always.contains(s) && c.on_list(s)).cloned().collect(); }
     crate::lists::spell_choices(cast, &prog, cl, false).iter()
         .map(|s| s.name.clone()).filter(|n| !always.contains(n)).collect()
+}
+
+/// "Bite +4 2d4+2 piercing" -> a beast attack with a fixed to-hit.
+fn parse_attack(line: &str) -> Option<ActionDef> {
+    let t: Vec<&str> = line.split_whitespace().collect();
+    let h = t.iter().position(|w| w.len() > 1 && w.starts_with(['+', '-']) && w[1..].chars().all(|c| c.is_ascii_digit()))?;
+    let hit: i32 = t[h].parse().ok()?;
+    let dice = t.get(h + 1)?;
+    let (main, bonus) = match dice.find(['+', '-']) { Some(k) => (&dice[..k], dice[k..].parse().ok()?), None => (*dice, 0) };
+    let (n, s) = main.split_once('d')?;
+    let n = if n.is_empty() { 1 } else { n.parse().ok()? };
+    Some(ActionDef {
+        name: format!("Beast: {}", if h == 0 { "Attack".to_string() } else { t[..h].join(" ") }),
+        desc: String::new(), hit: Some(hit), dice: Some((n, s.parse().ok()?)), bonus, dmg_type: t[h + 2..].join(" "),
+        ..Default::default()
+    })
+}
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn beast_attack_lines() {
+        let a = super::parse_attack("Bite +4 2d4+2 piercing").unwrap();
+        assert_eq!((a.name.as_str(), a.hit, a.dice, a.bonus, a.dmg_type.as_str()), ("Beast: Bite", Some(4), Some((2, 4)), 2, "piercing"));
+        let b = super::parse_attack("Giant claws +6 d8 slashing").unwrap();
+        assert_eq!((b.name.as_str(), b.dice, b.bonus), ("Beast: Giant claws", Some((1, 8)), 0));
+        assert!(super::parse_attack("Bite 2d4").is_none());
+    }
 }

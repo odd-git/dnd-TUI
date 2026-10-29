@@ -186,7 +186,10 @@ fn status_lines(app: &App) -> Vec<Line<'static>> {
     }
     if !r.is_empty() { v.push(Line::from(r)); }
     if let Some(l) = slots_line(c) { v.push(l); }
-    if c.active.iter().any(|a| a == "Wild Shape") { v.push(Line::styled(format!("Wild Shape: beast HP {}", c.res.get("beast_hp").copied().unwrap_or(0)), Style::new().fg(GREEN))); }
+    if c.active.iter().any(|a| a == "Wild Shape") {
+        let (name, ac) = c.beast.as_ref().map_or(("beast".to_string(), 0), |b| (b.name.clone(), b.ac));
+        v.push(Line::styled(format!("Wild Shape: {name}, HP {}, AC {ac}", c.res.get("beast_hp").copied().unwrap_or(0)), Style::new().fg(GREEN)));
+    }
 
     let mut st = vec![];
     if !c.conditions.is_empty() { st.push(Span::styled(format!("Conditions: {}", c.conditions.join(", ")), Style::new().fg(Color::Yellow))); }
@@ -204,7 +207,7 @@ fn action_row(c: &Character, it: Item) -> (String, bool) {
         Item::Action(i) => {
             let a = &c.actions[i];
             let dice = c.dice(a);
-            let hit = match (&a.ability, dice) { (Some(ab), Some(_)) => format!("{:+}", c.md(ab) + c.prof()), (None, Some(_)) => if a.heal { "heal".into() } else { "auto".into() }, _ => String::new() };
+            let hit = match (a.hit.map(|h| format!("{h:+}")).or_else(|| a.ability.as_ref().map(|ab| format!("{:+}", c.md(ab) + c.prof()))), dice) { (Some(h), Some(_)) => h, (None, Some(_)) => if a.heal { "heal".into() } else { "auto".into() }, _ => String::new() };
             let dmg = dice.map(|(n, s)| {
                 let mut b = a.bonus + if a.level_bonus { c.level as i32 } else { 0 };
                 if a.dmg_ability { b += a.ability.as_deref().map_or(0, |x| c.md(x)); }
