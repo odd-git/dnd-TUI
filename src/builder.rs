@@ -163,7 +163,7 @@ pub fn build(d: &Draft) -> Character {
         journal: vec![],
         hp: None,
         death: [0; 2],
-        conditions: vec![], exhaustion: 0, inspiration: false,
+        conditions: vec![], exhaustion: 0, inspiration: false, portent: vec![],
         inventory: vec![], coins: [0; 5],
         active: vec![],
         res: BTreeMap::new(),

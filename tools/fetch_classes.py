@@ -392,6 +392,7 @@ SUB_MECH = {
             "resources": [res("benign_transportation", "Benign Transportation", "long", "table")],
             "actions": [{"name": "Benign Transportation", "desc": "Action: teleport up to 30 ft, or swap places with a willing Small or Medium creature; back after a conjuration spell", "uses": "benign_transportation"}],
         },
+        "Divination": {"actions": [{"name": "Portent", "desc": "Replace an attack, check or save you can see (yours or another's) with one of the rolls", "special": "portent"}]},
     },
 }
 

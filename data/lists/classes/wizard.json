@@ -547,7 +547,13 @@
    "source": "Player's Handbook",
    "needs_spells": false,
    "resources": [],
-   "actions": [],
+   "actions": [
+    {
+     "name": "Portent",
+     "desc": "Replace an attack, check or save you can see (yours or another's) with one of the rolls",
+     "special": "portent"
+    }
+   ],
    "maneuver_pool": null,
    "tables": {},
    "dice": {},

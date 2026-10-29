@@ -168,6 +168,7 @@ pub struct Character {
     #[serde(default)] pub conditions: Vec<String>,
     #[serde(default)] pub exhaustion: u8, // 0-6
     #[serde(default)] pub inspiration: bool,
+    #[serde(default)] pub portent: Vec<u32>, // Portent d20s rolled at the last long rest, not used yet
     #[serde(default)] pub active: Vec<String>,
     #[serde(default)] pub res: BTreeMap<String, u32>,
 }

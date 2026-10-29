@@ -205,6 +205,8 @@ impl App {
                 self.open(Step::Smite);
             }
             "companion" => self.open(Step::Companion),
+            "portent" if self.ch.portent.is_empty() => self.say("Portent: no rolls left until the next long rest.", Tone::Warn),
+            "portent" => self.open(Step::Portent),
             "dark_one" => {
                 // Dark One's Blessing: CHA + warlock level temporary HP (min 1); the higher of old and new stays
                 let n = (self.ch.md("CHA") + self.level_of("Warlock") as i32).max(1);
@@ -418,6 +420,13 @@ impl App {
                 if let Some(max) = self.ch.res_max("benign_transportation").filter(|&m| self.have("benign_transportation") < m) {
                     self.ch.res.insert("benign_transportation".into(), max);
                     self.say("Benign Transportation is ready again.", Tone::Good);
+                }
+            }
+            // Expert Divination: a divination spell of 2nd level or higher gives back a lower slot, up to 5th
+            "Divination" if level >= 2 && self.has_feature("Expert Divination") > 0 => {
+                if let Some(l) = (1..level.min(6)).rev().find(|l| self.have(&format!("slot{l}")) < self.ch.res_max(&format!("slot{l}")).unwrap_or(0)) {
+                    *self.ch.res.entry(format!("slot{l}")).or_insert(0) += 1;
+                    self.say(format!("Expert Divination: a level {l} slot back."), Tone::Good);
                 }
             }
             _ => {}

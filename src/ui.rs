@@ -194,6 +194,10 @@ fn status_lines(app: &App) -> Vec<Line<'static>> {
 
     let mut st = vec![];
     if c.inspiration { st.push(Span::styled("Inspiration ★", Style::new().fg(Color::Cyan).bold())); }
+    if !c.portent.is_empty() {
+        if !st.is_empty() { st.push(Span::raw("  ")); }
+        st.push(Span::styled(format!("Portent: {}", c.portent.iter().map(|r| r.to_string()).collect::<Vec<_>>().join(", ")), Style::new().fg(Color::Cyan)));
+    }
     if !c.conditions.is_empty() { if !st.is_empty() { st.push(Span::raw("  ")); } st.push(Span::styled(format!("Conditions: {}", c.conditions.join(", ")), Style::new().fg(Color::Yellow))); }
     if c.exhaustion > 0 { if !st.is_empty() { st.push(Span::raw("  ")); } st.push(Span::styled(format!("Exhaustion {}: {}", c.exhaustion, c.exhaustion_text()), Style::new().fg(Color::Yellow))); }
     if !c.active.is_empty() { if !st.is_empty() { st.push(Span::raw("  ")); } st.push(Span::styled(format!("Active: {}", c.active.join(", ")), Style::new().fg(GREEN))); }

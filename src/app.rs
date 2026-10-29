@@ -45,7 +45,7 @@ pub enum Step {
     Maneuver { required: bool }, ReplaceAsk, Forget, Extras, Skill, NoteName, NoteDesc(String), JournalAdd,
     Subclass, DeleteSheet(usize), Expertise, Style, Pool(String),
     Learn(bool), Prepare, CastSlot(String), SpellAdd, SpellDel, LevelClass,
-    Opt(String), Arcanum(u32), Secret, Smite, MoonHeal, Companion, Recover(u32), FontSlot, FontPoints, BeastPick, BeastName, BeastHp(String), BeastAc(String, i32), BeastAtk, Hd(usize), AnyCantrip, TempHp,
+    Opt(String), Arcanum(u32), Secret, Smite, MoonHeal, Companion, Portent, Recover(u32), FontSlot, FontPoints, BeastPick, BeastName, BeastHp(String), BeastAc(String, i32), BeastAtk, Hd(usize), AnyCantrip, TempHp,
     // editor
     Ident, IdentSet(usize), Scores, ScoreSet(String), Unskill, ArmorPick, ShieldPick(Option<String>), WeaponPick,
     CustomName, CustomAb(String), CustomDice(String, Option<String>), CustomType(String, Option<String>, (u32, u32)),
@@ -669,6 +669,10 @@ impl App {
         self.ch.hp = self.ch.hp_max().or(self.ch.hp);
         self.ch.death = [0, 0];
         self.ch.temp_hp = 0;
+        // Portent: two d20s (three with Greater Portent) to use before the next long rest
+        let has = |n: &str| self.ch.features.iter().any(|f| f.name == n);
+        self.ch.portent = if has("Portent") { (0..if has("Greater Portent") { 3 } else { 2 }).map(|_| d(20)).collect() } else { vec![] };
+        if !self.ch.portent.is_empty() { self.say(format!("Portent rolls: {}", self.ch.portent.iter().map(|r| r.to_string()).collect::<Vec<_>>().join(", ")), Tone::Good); }
         self.say("Long Rest completed.", Tone::Good);
     }
 
@@ -759,6 +763,10 @@ impl App {
                 self.list("Magical Secrets: a spell from any class", items, step, false);
             }
             Step::Smite => { let items = self.smite_items(); self.list("Divine Smite: which slot?", items, step, true) }
+            Step::Portent => {
+                let items = self.ch.portent.iter().map(|r| format!("{r}")).collect();
+                self.list("Portent: which roll replaces the d20?", items, step, true)
+            }
             Step::Companion => {
                 let items = self.companion_options().iter().map(|b| format!("{} (CR {}, {}) AC {} HP {}, {}", b.name, b.challenge, b.size, b.ac, b.hp, classfeat::speed_text(b))).collect();
                 self.list("Ranger's Companion: which beast?", items, step, true)
@@ -990,6 +998,11 @@ impl App {
             Step::Smite => self.smite_pick(i),
             Step::MoonHeal => self.moon_heal_pick(i),
             Step::Companion => self.companion_pick(i),
+            Step::Portent if i < self.ch.portent.len() => {
+                self.snap();
+                let r = self.ch.portent.remove(i);
+                self.say(format!("Portent: the d20 is a {r}."), Tone::Good);
+            }
             Step::Recover(b) => self.recover_pick(b, i),
             Step::FontSlot => self.font_slot_pick(i),
             Step::FontPoints => self.font_points_pick(i),
