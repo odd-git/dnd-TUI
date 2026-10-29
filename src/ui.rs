@@ -183,6 +183,7 @@ fn status_lines(app: &App) -> Vec<Line<'static>> {
     }
     if !r.is_empty() { v.push(Line::from(r)); }
     if let Some(l) = slots_line(c) { v.push(l); }
+    if c.active.iter().any(|a| a == "Wild Shape") { v.push(Line::styled(format!("Wild Shape: beast HP {}", c.res.get("beast_hp").copied().unwrap_or(0)), Style::new().fg(GREEN))); }
 
     let mut st = vec![];
     if !c.conditions.is_empty() { st.push(Span::styled(format!("Conditions: {}", c.conditions.join(", ")), Style::new().fg(Color::Yellow))); }
@@ -483,7 +484,8 @@ fn draw_spells(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
         let row = Rect::new(inner.x, inner.y + hh + (k - start) as u16, inner.width, 1);
         let lvl = if sp.level == 0 { "C".to_string() } else { sp.level.to_string() };
         let usable = sp.level == 0 || c.casting().is_some_and(|k| k.kind == "pact" && c.res.get("pact").copied().unwrap_or(0) > 0)
-            || (sp.level..=9).any(|l| c.res.get(&format!("slot{l}")).copied().unwrap_or(0) > 0);
+            || (sp.level..=9).any(|l| c.res.get(&format!("slot{l}")).copied().unwrap_or(0) > 0)
+            || c.res.get(&format!("arcanum{}", sp.level)).copied().unwrap_or(0) > 0;
         let style = if k == app.ssel { selected() } else if usable { Style::new() } else { tone(Tone::Dim) };
         let tag = format!("{}{}", if sp.conc { "c" } else { " " }, if sp.ritual { "r" } else { " " });
         f.render_widget(Paragraph::new(format!(" {lvl} {tag} {}", sp.name)).style(style), row);
@@ -500,7 +502,7 @@ fn draw_spells(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
             Line::default(),
             Line::from(sp.desc.clone()),
         ];
-        if let Some((n, s, k)) = &sp.dmg { lines.push(Line::default()); lines.push(Line::styled(format!("Damage {n}d{s} {k}{}", sp.upcast.map_or(String::new(), |u| format!(", +{}d{} per slot level", u.0, u.1))), tone(Tone::Dim))); }
+        if let Some((n, s, k)) = &sp.dmg { lines.push(Line::default()); lines.push(Line::styled(format!("{} {}{n}d{s}{} {k}{}", if sp.healing { "Heals" } else { "Damage" }, if sp.count > 1 { format!("{} x ", sp.count) } else { String::new() }, if sp.flat > 0 { format!("+{}", sp.flat) } else { String::new() }, sp.upcast.map_or(String::new(), |u| format!(", +{}d{} per slot level", u.0, u.1))), tone(Tone::Dim))); }
         lines.push(Line::styled(format!("{}", lists_abbr(&sp.source)), tone(Tone::Dim)));
         f.render_widget(Paragraph::new(lines).wrap(Wrap { trim: false }), di);
     } else {

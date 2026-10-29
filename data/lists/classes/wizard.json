@@ -234,6 +234,7 @@
   }
  },
  "dice": {},
+ "options": {},
  "name": "Wizard",
  "hit_die": 6,
  "saves": [
@@ -293,7 +294,8 @@
   {
    "name": "Arcane Recovery",
    "desc": "After a short rest: recover slots totalling up to half your wizard level (rounded up), none 6th or higher",
-   "uses": "arcane_recovery"
+   "uses": "arcane_recovery",
+   "special": "recover"
   }
  ],
  "toggles": [],

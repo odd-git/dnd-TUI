@@ -67,7 +67,7 @@ impl App {
     /// (how many to pick, names offered) for cantrips or known / spellbook spells.
     fn spell_pick(&self, cantrips: bool) -> (usize, Vec<String>) {
         let prog = self.prog();
-        let Some(c) = lists::casting_of(&prog) else { return (0, vec![]) };
+        if lists::casting_of(&prog).is_none() { return (0, vec![]) }
         let c = build(self.dr());
         let n = if cantrips { c.cantrips_max() } else if c.casting().is_some_and(|x| x.mode == "prepared") { 0 } else { c.known_max() };
         let names = lists::spell_choices(c.casting().unwrap(), &prog, c.level, cantrips).iter().map(|s| s.name.clone()).collect::<Vec<_>>();

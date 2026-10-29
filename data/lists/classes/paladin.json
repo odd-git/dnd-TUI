@@ -229,6 +229,7 @@
   }
  },
  "dice": {},
+ "options": {},
  "name": "Paladin",
  "hit_die": 10,
  "saves": [
@@ -388,6 +389,12 @@
    "desc": "Oath power, see your Sacred Oath",
    "uses": "channel_divinity",
    "min_level": 3
+  },
+  {
+   "name": "Divine Smite",
+   "desc": "On a melee hit: spend a slot for 2d8 radiant, +1d8 per slot level above 1st (max 5d8), +1d8 vs undead or fiend",
+   "special": "smite",
+   "min_level": 2
   }
  ],
  "toggles": [],

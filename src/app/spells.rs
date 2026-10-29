@@ -23,18 +23,20 @@ impl App {
     }
 
     /// Slots a spell of `level` can be cast with: (resource id, slot level, left).
-    fn slot_options(&self, level: u32) -> Vec<(String, u32, u32)> {
+    pub(super) fn slot_options(&self, level: u32) -> Vec<(String, u32, u32)> {
         let mut v = vec![];
         if let Some((c, cl, _)) = self.ch.casters().into_iter().find(|(c, ..)| c.kind == "pact") {
             let pl = at(&c.pact_level, cl);
             if pl >= level && self.have("pact") > 0 { v.push(("pact".to_string(), pl, self.have("pact"))); }
-        } else {
-            for l in level.max(1)..=9 {
-                let id = format!("slot{l}");
-                let left = self.have(&id);
-                if left > 0 { v.push((id, l, left)); }
-            }
         }
+        for l in level.max(1)..=9 {
+            let id = format!("slot{l}");
+            let left = self.have(&id);
+            if left > 0 { v.push((id, l, left)); }
+        }
+        // Mystic Arcanum: once per long rest, at the spell's own level
+        let id = format!("arcanum{level}");
+        if level >= 6 && self.have(&id) > 0 { v.push((id, level, 1)); }
         v
     }
 
@@ -83,16 +85,30 @@ impl App {
             let dc = self.ch.dc(&ab);
             self.say(format!("Save: {} DC {dc}", sp.save.as_deref().unwrap_or("")), Tone::Warn);
         }
-        match &sp.dmg {
-            Some((n, sides, kind)) if !sp.healing => {
-                let mut dice = *n;
-                if sp.level > 0 { dice += sp.upcast.map_or(0, |u| u.0) * slot_level.saturating_sub(sp.level); }
-                if sp.scales { dice = n * (1 + u32::from(self.ch.level >= 5) + u32::from(self.ch.level >= 11) + u32::from(self.ch.level >= 17)); }
-                let rolls = if crit { 2 * dice } else { dice };
-                let total: u32 = (0..rolls).map(|_| d(*sides)).sum();
-                self.say(format!(" >> Damage: {total} {kind} ({rolls}d{sides})"), Tone::Good);
-            }
-            _ => { if !sp.attack && sp.save.is_none() { self.say(sp.desc.clone(), Tone::Dim); } }
+        let Some((n, sides, kind)) = &sp.dmg else {
+            if !sp.attack && sp.save.is_none() { self.say(sp.desc.clone(), Tone::Dim); }
+            return;
+        };
+        let above = slot_level.saturating_sub(sp.level);
+        let tier = 1 + u32::from(self.ch.level >= 5) + u32::from(self.ch.level >= 11) + u32::from(self.ch.level >= 17);
+        let mut dice = *n;
+        if sp.level > 0 { dice += sp.upcast.map_or(0, |u| u.0) * above; }
+        if sp.scales && !sp.beams { dice = n * tier; }
+        if sp.healing {
+            let m = if sp.heal_mod { self.ch.md(&ab) } else { 0 };
+            let total = (0..dice).map(|_| d(*sides) as i32).sum::<i32>() + m;
+            return self.say(format!(" >> Heals {total} HP ({dice}d{sides}{m:+})"), Tone::Good);
+        }
+        let hits = sp.count + if sp.count_up { above } else { 0 } + if sp.beams { tier - 1 } else { 0 };
+        let rolls = if crit { 2 * dice } else { dice };
+        let per: Vec<u32> = (0..hits).map(|_| (0..rolls).map(|_| d(*sides)).sum::<u32>() + sp.flat).collect();
+        let flat = if sp.flat > 0 { format!("+{}", sp.flat) } else { String::new() };
+        if hits == 1 {
+            self.say(format!(" >> Damage: {} {kind} ({rolls}d{sides}{flat})", per[0]), Tone::Good);
+        } else {
+            let each = per.iter().map(|x| x.to_string()).collect::<Vec<_>>().join(", ");
+            let roll_each = if sp.attack { ", attack roll for each" } else { "" };
+            self.say(format!(" >> {hits} x {rolls}d{sides}{flat} {kind}: {each} (total {}{roll_each})", per.iter().sum::<u32>()), Tone::Good);
         }
     }
 
@@ -105,7 +121,10 @@ impl App {
         let want = if cantrips { self.ch.cantrips_max() } else if c.mode == "prepared" { 0 } else { self.ch.known_max() };
         let names: Vec<String> = lists::spell_choices(c, &prog, cl, cantrips).iter()
             .map(|s| s.name.clone()).filter(|n| !have.contains(n)).collect();
-        (want.saturating_sub(have.len()).min(names.len()), names)
+        // Mystic Arcanum spells (above the slot levels) do not count against spells known
+        let top = c.top_level(cl);
+        let counted = have.iter().filter(|n| lists::spell(n).is_none_or(|s| s.level <= top)).count();
+        (want.saturating_sub(counted).min(names.len()), names)
     }
 
     pub(super) fn prepare_items(&self) -> (usize, Vec<String>) {

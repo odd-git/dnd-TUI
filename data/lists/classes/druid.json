@@ -234,6 +234,7 @@
   }
  },
  "dice": {},
+ "options": {},
  "name": "Druid",
  "hit_die": 8,
  "saves": [
@@ -300,9 +301,10 @@
  "actions": [
   {
    "name": "Wild Shape",
-   "desc": "Bonus action: become a beast you have seen (see the Druid page for limits)",
+   "desc": "Bonus action: become a beast you have seen; its HP soak damage first",
    "uses": "wild_shape",
-   "min_level": 2
+   "min_level": 2,
+   "special": "wild_shape"
   }
  ],
  "toggles": [],

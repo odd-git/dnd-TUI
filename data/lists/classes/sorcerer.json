@@ -249,6 +249,13 @@
   }
  },
  "dice": {},
+ "options": {
+  "metamagic": {
+   "3": 2,
+   "10": 3,
+   "17": 4
+  }
+ },
  "name": "Sorcerer",
  "hit_die": 6,
  "saves": [
@@ -327,7 +334,26 @@
    "20": 20
   }
  },
- "actions": [],
+ "actions": [
+  {
+   "name": "Metamagic",
+   "desc": "Spend sorcery points on a Metamagic option you know",
+   "pool": "sorcery_points",
+   "min_level": 3
+  },
+  {
+   "name": "Create Spell Slot",
+   "desc": "Bonus action: sorcery points into a slot (1st 2, 2nd 3, 3rd 5, 4th 6, 5th 7)",
+   "special": "font_slot",
+   "min_level": 2
+  },
+  {
+   "name": "Slot to Sorcery Points",
+   "desc": "Bonus action: expend a slot, gain points equal to its level",
+   "special": "font_points",
+   "min_level": 2
+  }
+ ],
  "toggles": [],
  "style_level": 1,
  "expertise": [],

@@ -33,6 +33,7 @@ CONFIG = {
             {"name": "Divine Sense", "desc": "Know celestials, fiends, undead within 60 ft (and consecrated places)", "uses": "divine_sense"},
             {"name": "Lay on Hands", "desc": "Spend points from the pool; 5 points cure a disease or poison", "pool": "lay_on_hands"},
             {"name": "Channel Divinity", "desc": "Oath power, see your Sacred Oath", "uses": "channel_divinity", "min_level": 3},
+            {"name": "Divine Smite", "desc": "On a melee hit: spend a slot for 2d8 radiant, +1d8 per slot level above 1st (max 5d8), +1d8 vs undead or fiend", "special": "smite", "min_level": 2},
         ],
         "unarmored": None, "style_level": 2, "spell_table": "always",
         "casting": {"ability": "CHA", "kind": "half", "mode": "prepared", "prepared": "mod+half", "list": "Paladin"},
@@ -52,7 +53,7 @@ CONFIG = {
         "subclass_title": "Arcane Tradition",
         "columns": {}, "toggles": [], "unarmored": None, "attacks": {"1": 1},
         "resources": [res("arcane_recovery", "Arcane Recovery", "long", 1)],
-        "actions": [{"name": "Arcane Recovery", "desc": "After a short rest: recover slots totalling up to half your wizard level (rounded up), none 6th or higher", "uses": "arcane_recovery"}],
+        "actions": [{"name": "Arcane Recovery", "desc": "After a short rest: recover slots totalling up to half your wizard level (rounded up), none 6th or higher", "uses": "arcane_recovery", "special": "recover"}],
         "casting": {"ability": "INT", "kind": "full", "mode": "spellbook", "prepared": "mod+level", "list": "Wizard"},
     },
     "cleric": {
@@ -69,7 +70,7 @@ CONFIG = {
         "subclass_title": "Druid Circle",
         "columns": {}, "toggles": [], "unarmored": None, "attacks": {"1": 1}, "spell_table": "always",
         "resources": [res("wild_shape", "Wild Shape", "short", 2)],
-        "actions": [{"name": "Wild Shape", "desc": "Bonus action: become a beast you have seen (see the Druid page for limits)", "uses": "wild_shape", "min_level": 2}],
+        "actions": [{"name": "Wild Shape", "desc": "Bonus action: become a beast you have seen; its HP soak damage first", "uses": "wild_shape", "min_level": 2, "special": "wild_shape"}],
         "casting": {"ability": "WIS", "kind": "full", "mode": "prepared", "prepared": "mod+level", "list": "Druid"},
     },
     "bard": {
@@ -86,7 +87,12 @@ CONFIG = {
         "subclass_title": "Sorcerous Origin",
         "columns": {"Sorcery Points": "sorcery_points"}, "toggles": [], "unarmored": None, "attacks": {"1": 1},
         "resources": [res("sorcery_points", "Sorcery Points", "long", "table")],
-        "actions": [], "spell_table": "always",
+        "actions": [
+            {"name": "Metamagic", "desc": "Spend sorcery points on a Metamagic option you know", "pool": "sorcery_points", "min_level": 3},
+            {"name": "Create Spell Slot", "desc": "Bonus action: sorcery points into a slot (1st 2, 2nd 3, 3rd 5, 4th 6, 5th 7)", "special": "font_slot", "min_level": 2},
+            {"name": "Slot to Sorcery Points", "desc": "Bonus action: expend a slot, gain points equal to its level", "special": "font_points", "min_level": 2},
+        ],
+        "options": {"metamagic": {"3": 2, "10": 3, "17": 4}}, "spell_table": "always",
         "casting": {"ability": "CHA", "kind": "full", "mode": "known", "list": "Sorcerer"},
     },
     "warlock": {
@@ -94,7 +100,7 @@ CONFIG = {
         "subclass_title": "Otherworldly Patron",
         "columns": {"Invocations Known": "invocations"}, "toggles": [], "unarmored": None, "attacks": {"1": 1},
         "skip_slugs": ["eldritch-invocations"], "spell_table": "expanded",
-        "resources": [], "actions": [],
+        "resources": [], "actions": [], "options": {"invocations": "invocations", "pact_boons": {"3": 1}},
         "casting": {"ability": "CHA", "kind": "pact", "mode": "known", "list": "Warlock"},
     },
     "monk": {
@@ -388,6 +394,7 @@ def build(slug):
     casting = {**cfg["casting"], **casting_tables(heads, rows)} if cfg.get("casting") else None
     return {
         "casting": casting, "dice": cfg.get("dice", {}),
+        "options": {k: tables[v] if isinstance(v, str) else v for k, v in cfg.get("options", {}).items()},
         "name": slug.capitalize(), "hit_die": hit_die, "saves": saves, "skills": skills, "armor": arm, "weapons": wp,
         "tools": tl, "equipment": equip, "styles": fighting_styles(b), "asi_levels": asi, "subclass_level": sub_level, "subclass_title": cfg["subclass_title"],
         "attacks_per_action": cfg["attacks"], "resources": cfg["resources"], "tables": tables, "actions": cfg["actions"],

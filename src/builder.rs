@@ -403,6 +403,25 @@ mod tests {
     }
 
     #[test]
+    fn class_options_and_multiclass_tables() {
+        use crate::model::{at, Extra, Max, ResourceDef};
+        assert_eq!(lists::options("metamagic").len(), 10);
+        assert!(lists::options("invocations").iter().any(|o| o.name == "Agonizing Blast" && o.prereq.as_deref() == Some("eldritch blast cantrip")));
+        assert_eq!(lists::options("pact_boons").len(), 4);
+        let s = lists::class_data("Sorcerer").unwrap();
+        assert_eq!((at(&s.options["metamagic"], 2), at(&s.options["metamagic"], 3), at(&s.options["metamagic"], 17)), (0, 2, 4));
+        let w = lists::class_data("Warlock").unwrap();
+        assert_eq!((at(&w.options["invocations"], 2), at(&w.options["invocations"], 18), at(&w.options["pact_boons"], 3)), (2, 8, 1));
+        // a Paladin 3 taking 2 levels of Barbarian: rage table read at barbarian level, hit dice per class
+        let mut c = half("Paladin", "Devotion", 3);
+        c.level = 5;
+        c.multi.push(Extra { prog: "Barbarian".into(), level: 2 });
+        assert_eq!((c.table("rage"), c.table("rage_damage"), c.table("lay_on_hands")), (Some(2), Some(2), Some(15)));
+        c.resources.push(ResourceDef { id: "hd_Barbarian".into(), name: "hd".into(), recharge: String::new(), max: Some(Max::Kw("class:Barbarian".into())), start: None, pips: false, die: None });
+        assert_eq!((c.res_max("hit_dice"), c.res_max("hd_Barbarian"), c.res_die("hd_Barbarian")), (Some(3), Some(2), Some(12)));
+    }
+
+    #[test]
     fn casters_match_the_wikidot_tables() {
         use crate::model::at;
         let w = lists::casting_of("Wizard/School of Evocation").unwrap();

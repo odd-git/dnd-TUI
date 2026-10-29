@@ -83,6 +83,7 @@ pub struct ActionDef {
     pub die_table: Option<String>,  // level table giving the die size (Martial Arts)
     pub min_level: u32,             // hidden below this level
     pub pool: Option<String>,       // spend any number of points from this resource (Lay on Hands)
+    pub special: Option<String>,    // own mechanics: smite, recover, font_slot, font_points, wild_shape
 }
 
 #[derive(Serialize, Deserialize, Clone, Default)]
@@ -244,16 +245,21 @@ impl Character {
     pub fn toggle_bonus(&self, ability: Option<&str>) -> i32 {
         self.toggles.iter().filter(|t| self.active.contains(&t.name))
             .filter(|t| t.dmg_ability.is_some() && t.dmg_ability.as_deref() == ability)
-            .filter_map(|t| Some(at(self.prog()?.resources.get(t.dmg_table.as_ref()?)?, self.class_level()) as i32))
+            .filter_map(|t| Some(self.table(t.dmg_table.as_ref()?)? as i32))
             .sum()
     }
     /// Dice of an action, the count coming from a level table when it has one.
     pub fn dice(&self, a: &ActionDef) -> Option<(u32, u32)> {
         let (n, sides) = a.dice?;
-        let table = |t: &Option<String>| t.as_ref().and_then(|t| self.prog()?.resources.get(t)).map(|t| at(t, self.class_level()));
+        let table = |t: &Option<String>| t.as_ref().and_then(|t| self.table(t));
         Some((table(&a.dice_table).unwrap_or(n), table(&a.die_table).unwrap_or(sides)))
     }
     pub fn dc(&self, ab: &str) -> i32 { 8 + self.prof() + self.md(ab) }
+    /// A level table of any of the classes, at the levels in that class.
+    pub fn table(&self, id: &str) -> Option<u32> {
+        self.classes().iter().find_map(|(p, l)| Some(at(progression(p)?.resources.get(id)?, *l)))
+    }
+
     /// Attacks per action: the best of the classes, Extra Attack does not stack.
     pub fn attacks(&self) -> u32 {
         self.classes().iter().filter_map(|(p, l)| Some(at(&progression(p)?.attacks_per_action, *l))).max().unwrap_or(1)
@@ -282,19 +288,22 @@ impl Character {
     pub fn res_max(&self, id: &str) -> Option<u32> {
         match self.def(id)?.max.as_ref()? {
             Max::N(n) => Some(*n),
+            Max::Kw(k) if k == "level" && id == "hit_dice" => Some(self.class_level()),
             Max::Kw(k) if k == "level" => Some(self.level),
+            Max::Kw(k) if k.starts_with("class:") => Some(self.classes().iter().find(|(p, _)| p.split('/').next() == Some(&k[6..])).map_or(0, |c| c.1)),
             Max::Kw(k) if k == "pact" => Some(self.casters().iter().find(|(c, ..)| c.kind == "pact").map_or(0, |(c, l, _)| at(&c.pact_slots, *l))),
             Max::Kw(k) if k.starts_with("slot:") => Some(self.slots(k[5..].parse().unwrap_or(1))),
             Max::Kw(k) if k.starts_with("mod:") => Some(self.md(&k[4..]).max(1) as u32),
             Max::Kw(k) if k.starts_with("1+mod:") => Some((1 + self.md(&k[6..])).max(1) as u32),
-            Max::Kw(_) => Some(self.prog().and_then(|p| p.resources.get(id)).map(|t| at(t, self.class_level())).unwrap_or(0)),
+            Max::Kw(_) => Some(self.prog().and_then(|p| p.resources.get(id)).map(|t| at(t, self.class_level())).or_else(|| self.table(id)).unwrap_or(0)),
         }
     }
 
     pub fn res_die(&self, id: &str) -> Option<u32> {
         if id == "hit_dice" { return self.hit_die; }
+        if let Some(class) = id.strip_prefix("hd_") { return crate::lists::class_data(class).map(|c| c.hit_die); }
         let table = self.def(id)?.die.as_ref()?;
-        self.prog()?.dice.get(table).map(|t| at(t, self.class_level()))
+        self.classes().iter().find_map(|(p, l)| Some(at(progression(p)?.dice.get(table)?, *l)))
     }
 
     /// Fill in state missing from a fresh sheet (first run, or a resource added later).

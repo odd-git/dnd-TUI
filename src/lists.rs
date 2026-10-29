@@ -118,6 +118,28 @@ pub struct Background {
 #[derive(Deserialize)]
 pub struct FeatAsi { pub options: Vec<String>, pub amount: i32 }
 
+/// A Metamagic option, Eldritch Invocation or Pact Boon.
+#[derive(Deserialize)]
+pub struct OptionDef {
+    pub name: String,
+    pub source: String,
+    pub prereq: Option<String>,
+    pub desc: String,
+}
+
+#[derive(Deserialize)]
+pub struct Options {
+    pub metamagic: Vec<OptionDef>,
+    pub invocations: Vec<OptionDef>,
+    pub pact_boons: Vec<OptionDef>,
+}
+
+pub fn options(kind: &str) -> &'static [OptionDef] {
+    static C: OnceLock<Options> = OnceLock::new();
+    let o = C.get_or_init(|| serde_json::from_str(include_str!("../data/lists/options.json")).expect("options.json"));
+    match kind { "metamagic" => &o.metamagic, "invocations" => &o.invocations, "pact_boons" => &o.pact_boons, _ => &[] }
+}
+
 #[derive(Deserialize)]
 pub struct FeatDef {
     pub name: String,
@@ -172,7 +194,12 @@ pub struct Spell {
     pub save: Option<String>,
     pub upcast: Option<(u32, u32)>, // extra dice per slot level above the spell's own
     pub scales: bool,               // cantrip damage grows at levels 5, 11, 17
-    pub healing: bool,
+    pub healing: bool,                // dmg then holds the healing dice
+    #[serde(default)] pub heal_mod: bool,  // ...plus the spellcasting modifier
+    #[serde(default)] pub flat: u32,       // flat bonus per hit (Magic Missile's +1)
+    #[serde(default = "one")] pub count: u32, // darts / rays, each rolled on its own
+    #[serde(default)] pub count_up: bool,  // one more per slot level above the spell's own
+    #[serde(default)] pub beams: bool,     // cantrip that scales in beams, not dice (Eldritch Blast)
 }
 
 pub fn spell(name: &str) -> Option<&'static Spell> { spells().iter().find(|s| s.name.eq_ignore_ascii_case(name)) }
@@ -262,6 +289,7 @@ pub struct ClassData {
     #[serde(default)] pub expertise: Vec<u32>, // levels that grant two skills with double proficiency
     pub features: BTreeMap<u32, Vec<Feature>>,
     #[serde(default)] pub styles: Vec<Style>,
+    #[serde(default)] pub options: BTreeMap<String, Table>, // option kind -> how many known by class level
     pub subclasses: Vec<Subclass>,
 }
 

@@ -40,7 +40,12 @@ def parse(slug):
     lists_ = lists_.split("window[")[0]
     classes = sorted({re.sub(r"\s*\(.*\)", "", c).strip() for c in lists_.replace("Spell Lists.", "").split(",")} - {"", "None"})
     text = " ".join(body)
-    dm = re.search(r"(\d+)d(\d+)(?: \+ \d+)? (\w+) damage", text)
+    dm = re.search(r"(\d+)d(\d+)(?: \+ (\d+))? (\w+) damage", text)
+    if not dm and (m2 := re.search(r"(\d+)d(\d+) damage of the type", text)):  # Chromatic Orb, Dragon's Breath...
+        dm = [None, m2[1], m2[2], None, "chosen"]
+    hm = re.search(r"hit points equal to (\d+)d(\d+) \+ your spellcasting ability modifier", text)
+    hf = re.search(r"regains? (\d+)d(\d+) hit points", text)
+    count = re.search(r"\b(two|three|four|five) (?:glowing )?(?:darts|rays|beams|bolts)", text)
     save = re.search(r"(Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma) saving throw", text)
     up = re.search(r"increases? by (\d+)d(\d+)[^.]*each (?:slot )?level above", higher)
     name = re.sub(r"[-_]", " ", slug.split(":")[1]).title()
@@ -52,7 +57,12 @@ def parse(slug):
         "name": name, "level": level, "school": school.capitalize(), "source": src, "time": time, "range": rng, "comp": comp,
         "duration": dur, "ritual": "(ritual)" in head.lower(), "conc": "oncentration" in dur, "classes": classes,
         "desc": clip(text, 220),
-        "dmg": [int(dm[1]), int(dm[2]), dm[3].lower()] if dm else None,
+        "dmg": [int(dm[1]), int(dm[2]), dm[4].lower()] if dm else [int(h[1]), int(h[2]), "healing"] if (h := hm or hf) else None,
+        "flat": int(dm[3]) if dm and dm[3] else 0,
+        "heal_mod": bool(hm) and not dm,
+        "count": {"two": 2, "three": 3, "four": 4, "five": 5}[count[1]] if count else 1,
+        "count_up": bool(re.search(r"one (?:more|additional) (?:dart|ray|beam|bolt)", higher)),
+        "beams": level == 0 and "beam" in text,
         "attack": "spell attack" in text.lower(), "save": ABIL[save[1]] if save else None,
         "upcast": [int(up[1]), int(up[2])] if up else None,
         "scales": level == 0 and "5th level" in higher,

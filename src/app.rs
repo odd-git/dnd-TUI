@@ -6,6 +6,7 @@ use ratatui::layout::Rect;
 
 use crate::model::*;
 
+mod classfeat;
 mod editor;
 mod spells;
 mod wizard;
@@ -39,6 +40,7 @@ pub enum Step {
     Maneuver { required: bool }, ReplaceAsk, Forget, Extras, Skill, NoteName, NoteDesc(String), JournalAdd,
     Subclass, DeleteSheet(usize), Expertise, Style, Pool(String),
     Learn(bool), Prepare, CastSlot(String), SpellAdd, SpellDel, LevelClass,
+    Opt(String), Arcanum(u32), Secret, Smite, Recover(u32), FontSlot, FontPoints, BeastHp, Hd(usize),
     // editor
     Ident, IdentSet(usize), Scores, ScoreSet(String), Unskill, ArmorPick, ShieldPick(Option<String>), WeaponPick,
     CustomName, CustomAb(String), CustomDice(String, Option<String>), CustomType(String, Option<String>, (u32, u32)),
@@ -139,6 +141,11 @@ impl App {
     fn snap(&mut self) {
         self.undo.push(self.ch.clone());
         if self.undo.len() > 100 { self.undo.remove(0); }
+    }
+
+    /// Hit dice pools: the main class, then one per extra class.
+    fn hd_pools(&self) -> Vec<String> {
+        self.ch.resources.iter().filter(|r| r.id == "hit_dice" || r.id.starts_with("hd_")).map(|r| r.id.clone()).collect()
     }
 
     fn have(&self, id: &str) -> u32 { self.ch.res.get(id).copied().unwrap_or(0) }
@@ -479,6 +486,7 @@ impl App {
         self.undo.clear();
         self.adv = Adv::Normal;
         self.log = vec![Entry(format!("{} ready.", self.ch.name), Tone::Dim)];
+        self.catch_up();
     }
 
     // --- rolls -------------------------------------------------------------
@@ -506,6 +514,7 @@ impl App {
         };
         let a = self.ch.actions[ai].clone();
         if let Some(id) = &a.pool { return self.open(Step::Pool(id.clone())); }
+        if let Some(s) = &a.special { return self.special(s, &a); }
         if let Some(u) = &a.uses {
             if self.have(u) == 0 { return self.say(format!("{}: none left!", a.name), Tone::Warn); }
         }
@@ -594,7 +603,7 @@ impl App {
         for def in self.ch.resources.clone() {
             let Some(max) = self.ch.res_max(&def.id) else { continue };
             let v = self.ch.res.entry(def.id.clone()).or_insert(0);
-            if def.id == "hit_dice" {
+            if def.id == "hit_dice" || def.id.starts_with("hd_") {
                 if long { *v = (*v + (max / 2).max(1)).min(max); }
             } else if def.recharge == "short" || (long && def.recharge == "long") {
                 *v = max;
@@ -652,9 +661,7 @@ impl App {
             }
             Step::SetItem(id) => { let t = format!("{} now in hand", self.res_name(&id)); self.input(t, step, true) }
             Step::Short => {
-                let hd = self.have("hit_dice");
-                if self.ch.def("hit_dice").is_some() { self.input(format!("Hit dice to spend (0-{hd})"), step, true); }
-                else { self.resolve_input(step, "0".into()); }
+                if self.hd_pools().is_empty() { self.resolve_input(step, "0".into()) } else { self.open(Step::Hd(0)) }
             }
             Step::Asi => self.list("Ability Score Improvement", vec!["+2 to one ability".into(), "+1 to two abilities".into(), "Feat".into()], step, false),
             Step::Ability { n, optional } => {
@@ -685,6 +692,33 @@ impl App {
                 self.list(&c.subclass_title.clone(), items, step, false);
             }
             Step::LevelClass => { let items = self.level_options().into_iter().map(|o| o.0).collect(); self.list("Level up in which class?", items, step, true) }
+            Step::Opt(ref kind) => { let k = kind.clone(); self.opt_open(&k, step) }
+            Step::Arcanum(l) => { let items = self.arcanum_items(l); self.list(&format!("Mystic Arcanum: a level {l} warlock spell"), items, step, false) }
+            Step::Secret => {
+                let items = self.secret_items().iter().map(|s| format!("{} {} ({})", if s.level == 0 { "C".into() } else { s.level.to_string() }, s.name, s.classes.join("/"))).collect();
+                self.list("Magical Secrets: a spell from any class", items, step, false);
+            }
+            Step::Smite => { let items = self.smite_items(); self.list("Divine Smite: which slot?", items, step, true) }
+            Step::Recover(b) => {
+                let items = self.recover_items(b).iter().map(|l| format!("Level {l} slot ({}/{})", self.have(&format!("slot{l}")), self.ch.res_max(&format!("slot{l}")).unwrap_or(0))).collect();
+                self.list(&format!("Arcane Recovery: {b} slot levels left"), items, step, true);
+            }
+            Step::FontSlot => {
+                let items: Vec<String> = self.font_slot_items().iter().map(|l| format!("Level {l} slot for {} points", [2, 3, 5, 6, 7][*l as usize - 1])).collect();
+                if items.is_empty() { return self.say("Not enough sorcery points.", Tone::Warn); }
+                self.list(&format!("Create a slot ({} points)", self.have("sorcery_points")), items, step, true);
+            }
+            Step::FontPoints => {
+                let items: Vec<String> = self.font_points_items().iter().map(|l| format!("Level {l} slot: +{l} points")).collect();
+                if items.is_empty() { return self.say("No slots to convert.", Tone::Warn); }
+                self.list("Slot into sorcery points", items, step, true);
+            }
+            Step::BeastHp => { let t = format!("Beast HP (max CR {})", self.wild_cr()); self.input(t, step, true) }
+            Step::Hd(i) => {
+                let Some(id) = self.hd_pools().get(i).cloned() else { return };
+                let t = format!("{} d{} to spend (0-{})", self.res_name(&id), self.ch.res_die(&id).unwrap_or(0), self.have(&id));
+                self.input(t, step, true);
+            }
             Step::Learn(c) => self.open_learn(c, step),
             Step::Prepare => self.open_prepare(step),
             Step::CastSlot(ref name) => { let items = self.cast_slot_items(name); self.list("Cast with which slot?", items, step, true); }
@@ -733,6 +767,8 @@ impl App {
                     self.heal(n);
                     return self.say(format!("Healed {n} HP."), Tone::Good);
                 }
+                let n = self.beast_soak(n);
+                if n == 0 { return; }
                 let hp = self.ch.hp.unwrap_or(0);
                 self.ch.hp = Some((hp - n).max(0));
                 let mut msg = format!("Took {n} damage.");
@@ -756,16 +792,26 @@ impl App {
                 self.say(format!("{name}: {}", n.max(0)), Tone::Dim);
             }
             Step::Short => {
-                let hd = self.have("hit_dice") as i32;
-                let n = num.unwrap_or(0).clamp(0, hd);
                 self.snap();
-                let (die, con) = (self.ch.hit_die.unwrap_or(0), self.ch.md("CON"));
-                let healed: i32 = (0..n).map(|_| (d(die.max(1)) as i32 + con).max(1)).sum();
-                if let Some(v) = self.ch.res.get_mut("hit_dice") { *v = (hd - n) as u32; }
-                self.heal(healed);
                 self.reset(false);
-                self.say(format!("Short Rest: +{healed} HP, short-rest resources back."), Tone::Good);
+                self.say("Short Rest: short-rest resources back.", Tone::Good);
             }
+            Step::Hd(i) => {
+                let pools = self.hd_pools();
+                let id = pools[i].clone();
+                if i == 0 { self.snap(); }
+                let hd = self.have(&id) as i32;
+                let n = num.unwrap_or(0).clamp(0, hd);
+                let (die, con) = (self.ch.res_die(&id).unwrap_or(0), self.ch.md("CON"));
+                let healed: i32 = (0..n).map(|_| (d(die.max(1)) as i32 + con).max(1)).sum();
+                if let Some(v) = self.ch.res.get_mut(&id) { *v = (hd - n) as u32; }
+                self.heal(healed);
+                if n > 0 { self.say(format!("{n} x d{die}: +{healed} HP."), Tone::Good); }
+                if i + 1 < pools.len() { return self.open(Step::Hd(i + 1)); }
+                self.reset(false);
+                self.say("Short Rest: short-rest resources back.", Tone::Good);
+            }
+            Step::BeastHp => { if let Ok(n) = num { self.beast_form(n); } }
             Step::NoteName => { if !text.is_empty() { self.open(Step::NoteDesc(text)); } }
             Step::NoteDesc(name) => { self.snap_in_flow(); self.ch.features.push(Feature { name, desc: text }); }
             Step::JournalAdd => {
@@ -831,6 +877,13 @@ impl App {
                 }
             }
             Step::Subclass => { if let Some(c) = self.class_data() { self.choose_subclass(c, i); } }
+            Step::Opt(kind) => self.opt_pick(&kind, i),
+            Step::Arcanum(l) => self.arcanum_pick(l, i),
+            Step::Secret => self.secret_pick(i),
+            Step::Smite => self.smite_pick(i),
+            Step::Recover(b) => self.recover_pick(b, i),
+            Step::FontSlot => self.font_slot_pick(i),
+            Step::FontPoints => self.font_points_pick(i),
             Step::LevelClass => { if let Some((_, t, new)) = self.level_options().into_iter().nth(i) { self.level_in(t, new); } }
             Step::CastSlot(name) => self.cast_slot_pick(&name, i),
             Step::Style => {
@@ -934,18 +987,16 @@ impl App {
         self.ch.init();
     }
 
-    /// Bring the resources and actions of a secondary class up to its `level`; their level tables are frozen into numbers.
-    // ponytail: toggles (Rage), actions with dice tables and starting proficiencies of a second class are not taken, add them in the editor
+    /// Bring the resources, actions and toggles of a secondary class up to its `level` (its level tables are looked up by `Character::table`).
     fn take_class(&mut self, target: usize, level: u32) {
         let prog = self.ch.multi[target - 1].prog.clone();
         let (cls, sub) = prog.split_once('/').map_or((prog.as_str(), None), |(c, s)| (c, Some(s)));
-        let (Some(cd), Some(p)) = (crate::lists::class_data(cls), crate::lists::progression(cls, sub)) else { return };
+        let Some(cd) = crate::lists::class_data(cls) else { return };
         let sd = sub.and_then(|s| cd.subclasses.iter().find(|x| x.name == s));
         let defs = cd.resources.iter().chain(sd.iter().flat_map(|s| s.resources.iter()));
         for r in defs {
             let max = match &r.max {
                 Some(Max::Kw(k)) if k == "level" => Some(Max::N(level)),
-                Some(Max::Kw(k)) if k == "table" => Some(Max::N(p.resources.get(&r.id).map_or(0, |t| at(t, level)))),
                 m => m.clone(),
             };
             match self.ch.resources.iter_mut().find(|x| x.id == r.id) {
@@ -954,8 +1005,9 @@ impl App {
             }
         }
         for a in cd.actions.iter().chain(sd.iter().flat_map(|s| s.actions.iter())) {
-            if a.dice_table.is_none() && a.die_table.is_none() && !self.ch.actions.iter().any(|x| x.name == a.name) { self.ch.actions.push(a.clone()); }
+            if a.min_level <= level && !self.ch.actions.iter().any(|x| x.name == a.name) { self.ch.actions.push(ActionDef { min_level: 0, ..a.clone() }); }
         }
+        for t in &cd.toggles { if !self.ch.toggles.iter().any(|x| x.name == t.name) { self.ch.toggles.push(t.clone()); } }
         for (_, fs) in sd.iter().flat_map(|s| s.features.range(..=level)) {
             for f in fs { if !self.ch.features.iter().any(|x| x.name == f.name) { self.ch.features.push(f.clone()); } }
         }
@@ -1000,7 +1052,7 @@ impl App {
 
     /// Level up in class `target` (0 the main one, n the n-th of `multi`), starting `new` first when given.
     fn level_in(&mut self, target: usize, new: Option<&str>) {
-        if let Some(n) = new { self.ch.multi.push(Extra { prog: n.to_string(), level: 0 }); }
+        if let Some(n) = new { self.ch.multi.push(Extra { prog: n.to_string(), level: 0 }); self.multiclass_into(n); }
         let (prog, old) = self.ch.classes()[target].clone();
         let (cls, sub) = prog.split_once('/').map_or((prog.as_str(), None), |(c, s)| (c, Some(s)));
         let Some(p) = crate::lists::progression(cls, sub) else { return };
@@ -1026,10 +1078,11 @@ impl App {
         self.queue.push_back(Step::Learn(true));
         self.queue.push_back(Step::Learn(false));
         self.queue.push_back(Step::Prepare);
-        if target == 0 {
-            if cd.is_some_and(|c| c.style_level == l && l > 1 && !c.styles.is_empty()) { self.queue.push_back(Step::Style); }
-            if cd.is_some_and(|c| c.expertise.contains(&l)) { self.queue.push_back(Step::Expertise); }
-        }
+        let owed = self.owed();
+        self.queue.extend(owed);
+        // the main class got its level 1 style from the wizard; a new class gets it here
+        if cd.is_some_and(|c| c.style_level == l && (l > 1 || target > 0) && !c.styles.is_empty()) { self.queue.push_back(Step::Style); }
+        if cd.is_some_and(|c| c.expertise.contains(&l)) { self.queue.push_back(Step::Expertise); }
         if asi { self.queue.push_back(Step::Asi); }
         for _ in 0..new_m { self.queue.push_back(Step::Maneuver { required: true }); }
         if new_m > 0 || (asi && target == 0 && self.ch.maneuver_pool.is_some()) { self.queue.push_back(Step::ReplaceAsk); }
