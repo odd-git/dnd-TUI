@@ -539,6 +539,15 @@ mod tests {
     }
 
     #[test]
+    fn fiend_luck_and_hell() {
+        let c = warlock("Fiend", 14);
+        assert_eq!((c.res_max("dark_ones_own_luck"), c.res_max("hurl_through_hell")), (Some(1), Some(1)));
+        let hell = c.actions.iter().find(|a| a.name == "Hurl Through Hell").unwrap();
+        assert_eq!((c.dice(hell), hell.dmg_type.as_str()), (Some((10, 10)), "psychic"));
+        assert_eq!(warlock("Fiend", 5).res_max("dark_ones_own_luck"), Some(0));
+    }
+
+    #[test]
     fn berserker_frenzy_and_presence() {
         let c = barbarian(3);
         assert!(c.toggles.iter().any(|t| t.name == "Frenzy" && t.exhaust));

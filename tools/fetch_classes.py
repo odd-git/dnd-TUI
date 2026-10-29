@@ -370,6 +370,15 @@ SUB_MECH = {
                 {"name": "Dark Delirium", "desc": "Action: a creature within 60 ft, WIS save DC {dc:CHA} or charmed or frightened in an illusion for 1 minute (concentration)", "uses": "dark_delirium"},
             ],
         },
+        "Fiend": {
+            "tables": {"dark_ones_own_luck": {"6": 1}, "hurl_through_hell": {"14": 1}},
+            "resources": [res("dark_ones_own_luck", "Dark One's Own Luck", "short", "table"), res("hurl_through_hell", "Hurl Through Hell", "long", "table")],
+            "actions": [
+                {"name": "Dark One's Blessing", "desc": "You dropped a hostile creature to 0 HP: temporary HP", "special": "dark_one"},
+                {"name": "Dark One's Own Luck", "desc": "Add the roll to one of your checks or saves, after seeing the d20", "uses": "dark_ones_own_luck", "dice": [1, 10]},
+                {"name": "Hurl Through Hell", "desc": "On a hit: the target tours the lower planes until your next turn ends (non-fiends take the damage)", "uses": "hurl_through_hell", "dice": [10, 10], "dmg_type": "psychic"},
+            ],
+        },
     },
 }
 

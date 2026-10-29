@@ -205,6 +205,13 @@ impl App {
                 self.open(Step::Smite);
             }
             "companion" => self.open(Step::Companion),
+            "dark_one" => {
+                // Dark One's Blessing: CHA + warlock level temporary HP (min 1); the higher of old and new stays
+                let n = (self.ch.md("CHA") + self.level_of("Warlock") as i32).max(1);
+                self.snap();
+                self.ch.temp_hp = self.ch.temp_hp.max(n);
+                self.say(format!("Dark One's Blessing: temporary HP {}.", self.ch.temp_hp), Tone::Good);
+            }
             "tides" => {
                 if self.have("tides_of_chaos") == 0 { return self.say("Tides of Chaos: used, back after a long rest or a surge.", Tone::Warn); }
                 self.snap();

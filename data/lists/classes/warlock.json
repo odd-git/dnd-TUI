@@ -429,10 +429,57 @@
    "name": "Fiend",
    "source": "Player's Handbook",
    "needs_spells": false,
-   "resources": [],
-   "actions": [],
+   "resources": [
+    {
+     "id": "dark_ones_own_luck",
+     "name": "Dark One's Own Luck",
+     "recharge": "short",
+     "max": "table",
+     "pips": true
+    },
+    {
+     "id": "hurl_through_hell",
+     "name": "Hurl Through Hell",
+     "recharge": "long",
+     "max": "table",
+     "pips": true
+    }
+   ],
+   "actions": [
+    {
+     "name": "Dark One's Blessing",
+     "desc": "You dropped a hostile creature to 0 HP: temporary HP",
+     "special": "dark_one"
+    },
+    {
+     "name": "Dark One's Own Luck",
+     "desc": "Add the roll to one of your checks or saves, after seeing the d20",
+     "uses": "dark_ones_own_luck",
+     "dice": [
+      1,
+      10
+     ]
+    },
+    {
+     "name": "Hurl Through Hell",
+     "desc": "On a hit: the target tours the lower planes until your next turn ends (non-fiends take the damage)",
+     "uses": "hurl_through_hell",
+     "dice": [
+      10,
+      10
+     ],
+     "dmg_type": "psychic"
+    }
+   ],
    "maneuver_pool": null,
-   "tables": {},
+   "tables": {
+    "dark_ones_own_luck": {
+     "6": 1
+    },
+    "hurl_through_hell": {
+     "14": 1
+    }
+   },
    "dice": {},
    "maneuvers_known": {},
    "features": {
