@@ -118,6 +118,29 @@ pub struct Background {
 #[derive(Deserialize)]
 pub struct FeatAsi { pub options: Vec<String>, pub amount: i32 }
 
+/// A Wild Shape form from the SRD 5.1 (CC-BY-4.0): beast, or elemental for the Circle of the Moon.
+#[derive(Deserialize)]
+pub struct BeastDef {
+    pub name: String,
+    pub cr: f64,
+    pub challenge: String,
+    pub ac: i32,
+    pub hp: i32,
+    pub speed: BTreeMap<String, u32>,
+    pub attacks: Vec<BeastAttack>,
+    pub multiattack: Option<String>,
+    pub elemental: bool,
+}
+
+#[derive(Deserialize)]
+pub struct BeastAttack {
+    pub name: String,
+    pub hit: i32,
+    pub dice: Option<(u32, u32)>, // None: fixed damage, all in bonus
+    pub bonus: i32,
+    #[serde(rename = "type")] pub kind: String,
+}
+
 /// A Metamagic option, Eldritch Invocation or Pact Boon.
 #[derive(Deserialize)]
 pub struct OptionDef {
@@ -320,6 +343,7 @@ list!(feats, FeatDef, "feats.json");
 list!(weapons, Weapon, "weapons.json");
 list!(armors, Armor, "armor.json");
 list!(spells, Spell, "spells.json");
+list!(beasts, BeastDef, "beasts.json");
 
 pub fn classes() -> &'static Vec<ClassData> {
     static C: OnceLock<Vec<ClassData>> = OnceLock::new();

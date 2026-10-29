@@ -27,6 +27,12 @@ fn multiclass_profs(class: &str) -> (&'static str, bool) {
     }
 }
 
+/// "40 ft, climb 30 ft": walking speed first, then the others.
+pub(super) fn speed_text(b: &lists::BeastDef) -> String {
+    let walk = b.speed.get("walk").filter(|v| **v > 0).map(|v| format!("{v} ft"));
+    walk.into_iter().chain(b.speed.iter().filter(|(k, v)| *k != "walk" && **v > 0).map(|(k, v)| format!("{k} {v} ft"))).collect::<Vec<_>>().join(", ")
+}
+
 impl App {
     fn level_of(&self, class: &str) -> u32 {
         self.ch.classes().iter().find(|(p, _)| p.split('/').next() == Some(class)).map_or(0, |c| c.1)
@@ -203,13 +209,50 @@ impl App {
                 }
                 if self.have("wild_shape") == 0 { return self.say("Wild Shape: none left!", Tone::Warn); }
                 *self.ch.res.entry("wild_shape".into()).or_insert(1) -= 1;
-                self.open(Step::BeastName);
+                self.open(Step::BeastPick);
             }
             _ => {}
         }
     }
 
     /// Highest beast CR for Wild Shape (Circle of the Moon goes higher).
+    /// Wild Shape limits: (max CR, no flying, no swimming, elementals allowed).
+    fn wild_limits(&self) -> (f64, bool, bool, bool) {
+        let l = self.level_of("Druid");
+        let moon = self.ch.classes().iter().any(|(p, _)| p == "Druid/Moon");
+        let cr = match (moon, l) { (true, l) if l >= 6 => (l / 3) as f64, (true, _) => 1.0, (_, l) if l >= 8 => 1.0, (_, l) if l >= 4 => 0.5, _ => 0.25 };
+        (cr, l < 8, l < 4, moon && l >= 10)
+    }
+
+    /// SRD forms the druid can take now.
+    pub(super) fn beast_options(&self) -> Vec<&'static lists::BeastDef> {
+        let (cr, no_fly, no_swim, elem) = self.wild_limits();
+        let has = |b: &lists::BeastDef, k: &str| b.speed.get(k).is_some_and(|v| *v > 0);
+        lists::beasts().iter().filter(|b| if b.elemental { elem } else { b.cr <= cr && !(no_fly && has(b, "fly")) && !(no_swim && has(b, "swim")) }).collect()
+    }
+
+    pub(super) fn beast_pick(&mut self, i: usize) {
+        let opts = self.beast_options();
+        let Some(b) = opts.get(i).copied() else { return self.open(Step::BeastName) };
+        if b.elemental {
+            // an elemental costs two uses: one was spent opening the menu
+            if self.have("wild_shape") == 0 {
+                *self.ch.res.entry("wild_shape".into()).or_insert(0) += 1;
+                return self.say("Elemental form needs two Wild Shape uses.", Tone::Warn);
+            }
+            *self.ch.res.entry("wild_shape".into()).or_insert(1) -= 1;
+        }
+        let info = format!("{}{}", speed_text(b), b.multiattack.as_ref().map_or(String::new(), |m| format!(". {m}")));
+        self.beast_form(b.name.clone(), b.hp, b.ac, info);
+        for (k, a) in b.attacks.iter().enumerate().rev() {
+            self.ch.actions.insert(0, ActionDef {
+                name: format!("Beast: {}", a.name), hit: Some(a.hit), dice: Some(a.dice.unwrap_or((0, 1))), bonus: a.bonus, dmg_type: a.kind.clone(),
+                desc: if k == 0 { b.multiattack.clone().unwrap_or_default() } else { String::new() },
+                ..Default::default()
+            });
+        }
+    }
+
     pub(super) fn wild_cr(&self) -> String {
         let l = self.level_of("Druid");
         let moon = self.ch.classes().iter().any(|(p, _)| p == "Druid/Moon");
@@ -303,11 +346,12 @@ impl App {
         if !ok { self.ch.concentration = None; }
     }
 
-    pub(super) fn beast_form(&mut self, name: String, hp: i32, ac: i32) {
+    pub(super) fn beast_form(&mut self, name: String, hp: i32, ac: i32, info: String) {
         self.ch.res.insert("beast_hp".into(), hp.max(1) as u32);
         self.ch.active.push("Wild Shape".into());
         self.say(format!("Wild Shape: {name}, {} HP, AC {ac}.", hp.max(1)), Tone::Good);
-        self.ch.beast = Some(Beast { name, ac });
+        if !info.is_empty() { self.say(info.clone(), Tone::Dim); }
+        self.ch.beast = Some(Beast { name, ac, info });
     }
 
     fn end_beast(&mut self) {

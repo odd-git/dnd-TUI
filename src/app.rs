@@ -40,7 +40,7 @@ pub enum Step {
     Maneuver { required: bool }, ReplaceAsk, Forget, Extras, Skill, NoteName, NoteDesc(String), JournalAdd,
     Subclass, DeleteSheet(usize), Expertise, Style, Pool(String),
     Learn(bool), Prepare, CastSlot(String), SpellAdd, SpellDel, LevelClass,
-    Opt(String), Arcanum(u32), Secret, Smite, Recover(u32), FontSlot, FontPoints, BeastName, BeastHp(String), BeastAc(String, i32), BeastAtk, Hd(usize), AnyCantrip, TempHp,
+    Opt(String), Arcanum(u32), Secret, Smite, Recover(u32), FontSlot, FontPoints, BeastPick, BeastName, BeastHp(String), BeastAc(String, i32), BeastAtk, Hd(usize), AnyCantrip, TempHp,
     // editor
     Ident, IdentSet(usize), Scores, ScoreSet(String), Unskill, ArmorPick, ShieldPick(Option<String>), WeaponPick,
     CustomName, CustomAb(String), CustomDice(String, Option<String>), CustomType(String, Option<String>, (u32, u32)),
@@ -720,6 +720,14 @@ impl App {
                 self.list("Slot into sorcery points", items, step, true);
             }
             Step::AnyCantrip => { let items = self.any_cantrips(); self.list("Book of Shadows: a cantrip from any class", items, step, false) }
+            Step::BeastPick => {
+                let mut items: Vec<String> = self.beast_options().iter().map(|b| {
+                    format!("{} (CR {}) AC {} HP {}, {}{}", b.name, b.challenge, b.ac, b.hp, classfeat::speed_text(b), if b.elemental { "  [2 uses]" } else { "" })
+                }).collect();
+                items.push("Other beast (enter its stats)".into());
+                let t = format!("Wild Shape: max CR {}", self.wild_cr());
+                self.list(&t, items, step, true);
+            }
             Step::BeastName => { let t = format!("Beast (max CR {})", self.wild_cr()); self.input(t, step, false) }
             Step::BeastHp(ref n) => { let t = format!("{n}: hit points"); self.input(t, step, true) }
             Step::BeastAc(ref n, _) => { let t = format!("{n}: armor class"); self.input(t, step, true) }
@@ -827,7 +835,7 @@ impl App {
             }
             Step::BeastName => { let n = if text.trim().is_empty() { "Beast".to_string() } else { text.trim().to_string() }; self.open(Step::BeastHp(n)) }
             Step::BeastHp(name) => { if let Ok(hp) = num { self.open(Step::BeastAc(name, hp)) } }
-            Step::BeastAc(name, hp) => { if let Ok(ac) = num { self.beast_form(name, hp, ac); self.open(Step::BeastAtk); } }
+            Step::BeastAc(name, hp) => { if let Ok(ac) = num { self.beast_form(name, hp, ac, String::new()); self.open(Step::BeastAtk); } }
             Step::BeastAtk => {
                 if text.trim().is_empty() { return; }
                 match parse_attack(&text) {
@@ -907,6 +915,7 @@ impl App {
                 }
             }
             Step::Subclass => { if let Some(c) = self.class_data() { self.choose_subclass(c, i); } }
+            Step::BeastPick => self.beast_pick(i),
             Step::Opt(kind) => self.opt_pick(&kind, i),
             Step::Arcanum(l) => self.arcanum_pick(l, i),
             Step::Secret => self.secret_pick(i),

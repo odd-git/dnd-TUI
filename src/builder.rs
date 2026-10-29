@@ -451,6 +451,16 @@ mod tests {
     }
 
     #[test]
+    fn srd_beasts_load() {
+        let b = lists::beasts();
+        assert!(b.len() > 90 && b.iter().filter(|x| x.elemental).count() == 4);
+        let wolf = b.iter().find(|x| x.name == "Wolf").unwrap();
+        assert_eq!((wolf.ac, wolf.hp, wolf.attacks[0].hit, wolf.attacks[0].dice, wolf.attacks[0].bonus), (13, 11, 4, Some((2, 4)), 2));
+        let cat = b.iter().find(|x| x.name == "Cat").unwrap();
+        assert_eq!((cat.attacks[0].dice, cat.attacks[0].bonus), (None, 1));
+    }
+
+    #[test]
     fn casters_match_the_wikidot_tables() {
         use crate::model::at;
         let w = lists::casting_of("Wizard/School of Evocation").unwrap();

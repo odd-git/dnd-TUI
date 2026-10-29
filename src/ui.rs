@@ -188,7 +188,8 @@ fn status_lines(app: &App) -> Vec<Line<'static>> {
     if let Some(l) = slots_line(c) { v.push(l); }
     if c.active.iter().any(|a| a == "Wild Shape") {
         let (name, ac) = c.beast.as_ref().map_or(("beast".to_string(), 0), |b| (b.name.clone(), b.ac));
-        v.push(Line::styled(format!("Wild Shape: {name}, HP {}, AC {ac}", c.res.get("beast_hp").copied().unwrap_or(0)), Style::new().fg(GREEN)));
+        let info = c.beast.as_ref().map_or(String::new(), |b| if b.info.is_empty() { String::new() } else { format!(" | {}", b.info) });
+        v.push(Line::styled(format!("Wild Shape: {name}, HP {}, AC {ac}{info}", c.res.get("beast_hp").copied().unwrap_or(0)), Style::new().fg(GREEN)));
     }
 
     let mut st = vec![];
@@ -212,6 +213,7 @@ fn action_row(c: &Character, it: Item) -> (String, bool) {
                 let mut b = a.bonus + if a.level_bonus { c.level as i32 } else { 0 };
                 if a.dmg_ability { b += a.ability.as_deref().map_or(0, |x| c.md(x)); }
                 b += c.toggle_bonus(a.ability.as_deref());
+                if n == 0 { return b.to_string(); } // fixed damage (a cat's claws)
                 format!("{}d{s}{}", if n == 1 { String::new() } else { n.to_string() }, if b != 0 { format!("{b:+}") } else { String::new() })
             }).unwrap_or_default();
             let left = a.uses.as_ref().map(|u| c.res.get(u).copied().unwrap_or(0));

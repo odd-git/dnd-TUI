@@ -1,0 +1,2635 @@
+[
+ {
+  "name": "Baboon",
+  "cr": 0.0,
+  "challenge": "0",
+  "ac": 12,
+  "hp": 3,
+  "speed": {
+   "walk": 30,
+   "climb": 30
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 1,
+    "dice": [
+     1,
+     4
+    ],
+    "bonus": -1,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Badger",
+  "cr": 0.0,
+  "challenge": "0",
+  "ac": 10,
+  "hp": 3,
+  "speed": {
+   "walk": 20,
+   "burrow": 5
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 2,
+    "dice": null,
+    "bonus": 1,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Bat",
+  "cr": 0.0,
+  "challenge": "0",
+  "ac": 12,
+  "hp": 1,
+  "speed": {
+   "walk": 5,
+   "fly": 30
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 0,
+    "dice": null,
+    "bonus": 1,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Cat",
+  "cr": 0.0,
+  "challenge": "0",
+  "ac": 12,
+  "hp": 2,
+  "speed": {
+   "walk": 40,
+   "climb": 30
+  },
+  "attacks": [
+   {
+    "name": "Claws",
+    "hit": 0,
+    "dice": null,
+    "bonus": 1,
+    "type": "slashing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Crab",
+  "cr": 0.0,
+  "challenge": "0",
+  "ac": 11,
+  "hp": 2,
+  "speed": {
+   "walk": 20,
+   "swim": 20
+  },
+  "attacks": [
+   {
+    "name": "Claw",
+    "hit": 0,
+    "dice": null,
+    "bonus": 1,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Deer",
+  "cr": 0.0,
+  "challenge": "0",
+  "ac": 13,
+  "hp": 4,
+  "speed": {
+   "walk": 50
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 2,
+    "dice": [
+     1,
+     4
+    ],
+    "bonus": 0,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Eagle",
+  "cr": 0.0,
+  "challenge": "0",
+  "ac": 12,
+  "hp": 3,
+  "speed": {
+   "walk": 10,
+   "fly": 60
+  },
+  "attacks": [
+   {
+    "name": "Talons",
+    "hit": 4,
+    "dice": [
+     1,
+     4
+    ],
+    "bonus": 2,
+    "type": "slashing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Frog",
+  "cr": 0.0,
+  "challenge": "0",
+  "ac": 11,
+  "hp": 1,
+  "speed": {
+   "walk": 20,
+   "swim": 20
+  },
+  "attacks": [],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Fire Beetle",
+  "cr": 0.0,
+  "challenge": "0",
+  "ac": 13,
+  "hp": 4,
+  "speed": {
+   "walk": 30
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 1,
+    "dice": [
+     1,
+     6
+    ],
+    "bonus": -1,
+    "type": "slashing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Goat",
+  "cr": 0.0,
+  "challenge": "0",
+  "ac": 10,
+  "hp": 4,
+  "speed": {
+   "walk": 40
+  },
+  "attacks": [
+   {
+    "name": "Ram",
+    "hit": 3,
+    "dice": [
+     1,
+     4
+    ],
+    "bonus": 1,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Hawk",
+  "cr": 0.0,
+  "challenge": "0",
+  "ac": 13,
+  "hp": 1,
+  "speed": {
+   "walk": 10,
+   "fly": 60
+  },
+  "attacks": [
+   {
+    "name": "Talons",
+    "hit": 5,
+    "dice": null,
+    "bonus": 1,
+    "type": "slashing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Hyena",
+  "cr": 0.0,
+  "challenge": "0",
+  "ac": 11,
+  "hp": 5,
+  "speed": {
+   "walk": 50
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 2,
+    "dice": [
+     1,
+     6
+    ],
+    "bonus": 0,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Jackal",
+  "cr": 0.0,
+  "challenge": "0",
+  "ac": 12,
+  "hp": 3,
+  "speed": {
+   "walk": 40
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 1,
+    "dice": [
+     1,
+     4
+    ],
+    "bonus": -1,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Lizard",
+  "cr": 0.0,
+  "challenge": "0",
+  "ac": 10,
+  "hp": 2,
+  "speed": {
+   "walk": 20,
+   "climb": 20
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 0,
+    "dice": null,
+    "bonus": 1,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Octopus",
+  "cr": 0.0,
+  "challenge": "0",
+  "ac": 12,
+  "hp": 3,
+  "speed": {
+   "walk": 5,
+   "swim": 30
+  },
+  "attacks": [
+   {
+    "name": "Tentacles",
+    "hit": 4,
+    "dice": null,
+    "bonus": 1,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Owl",
+  "cr": 0.0,
+  "challenge": "0",
+  "ac": 11,
+  "hp": 1,
+  "speed": {
+   "walk": 5,
+   "fly": 60
+  },
+  "attacks": [
+   {
+    "name": "Talons",
+    "hit": 3,
+    "dice": null,
+    "bonus": 1,
+    "type": "slashing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Quipper",
+  "cr": 0.0,
+  "challenge": "0",
+  "ac": 13,
+  "hp": 1,
+  "speed": {
+   "swim": 40
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 5,
+    "dice": null,
+    "bonus": 1,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Rat",
+  "cr": 0.0,
+  "challenge": "0",
+  "ac": 10,
+  "hp": 1,
+  "speed": {
+   "walk": 20
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 0,
+    "dice": null,
+    "bonus": 1,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Raven",
+  "cr": 0.0,
+  "challenge": "0",
+  "ac": 12,
+  "hp": 1,
+  "speed": {
+   "walk": 10,
+   "fly": 50
+  },
+  "attacks": [
+   {
+    "name": "Beak",
+    "hit": 4,
+    "dice": null,
+    "bonus": 1,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Scorpion",
+  "cr": 0.0,
+  "challenge": "0",
+  "ac": 11,
+  "hp": 1,
+  "speed": {
+   "walk": 10
+  },
+  "attacks": [
+   {
+    "name": "Sting",
+    "hit": 2,
+    "dice": null,
+    "bonus": 1,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Sea Horse",
+  "cr": 0.0,
+  "challenge": "0",
+  "ac": 11,
+  "hp": 1,
+  "speed": {
+   "swim": 20
+  },
+  "attacks": [],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Spider",
+  "cr": 0.0,
+  "challenge": "0",
+  "ac": 12,
+  "hp": 1,
+  "speed": {
+   "walk": 20,
+   "climb": 20
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 4,
+    "dice": null,
+    "bonus": 1,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Vulture",
+  "cr": 0.0,
+  "challenge": "0",
+  "ac": 10,
+  "hp": 5,
+  "speed": {
+   "walk": 10,
+   "fly": 50
+  },
+  "attacks": [
+   {
+    "name": "Beak",
+    "hit": 2,
+    "dice": [
+     1,
+     4
+    ],
+    "bonus": 0,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Weasel",
+  "cr": 0.0,
+  "challenge": "0",
+  "ac": 13,
+  "hp": 1,
+  "speed": {
+   "walk": 30
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 5,
+    "dice": null,
+    "bonus": 1,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Blood Hawk",
+  "cr": 0.125,
+  "challenge": "1/8",
+  "ac": 12,
+  "hp": 7,
+  "speed": {
+   "walk": 10,
+   "fly": 60
+  },
+  "attacks": [
+   {
+    "name": "Beak",
+    "hit": 4,
+    "dice": [
+     1,
+     4
+    ],
+    "bonus": 2,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Camel",
+  "cr": 0.125,
+  "challenge": "1/8",
+  "ac": 9,
+  "hp": 15,
+  "speed": {
+   "walk": 50
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 5,
+    "dice": [
+     1,
+     4
+    ],
+    "bonus": 0,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Flying Snake",
+  "cr": 0.125,
+  "challenge": "1/8",
+  "ac": 14,
+  "hp": 5,
+  "speed": {
+   "walk": 30,
+   "fly": 60,
+   "swim": 30
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 6,
+    "dice": null,
+    "bonus": 1,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Crab",
+  "cr": 0.125,
+  "challenge": "1/8",
+  "ac": 15,
+  "hp": 13,
+  "speed": {
+   "walk": 30,
+   "swim": 30
+  },
+  "attacks": [
+   {
+    "name": "Claw",
+    "hit": 3,
+    "dice": [
+     1,
+     6
+    ],
+    "bonus": 1,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Rat",
+  "cr": 0.125,
+  "challenge": "1/8",
+  "ac": 12,
+  "hp": 7,
+  "speed": {
+   "walk": 30
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 4,
+    "dice": [
+     1,
+     4
+    ],
+    "bonus": 2,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Rat (Diseased)",
+  "cr": 0.125,
+  "challenge": "1/8",
+  "ac": 12,
+  "hp": 7,
+  "speed": {
+   "walk": 30
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 4,
+    "dice": [
+     1,
+     4
+    ],
+    "bonus": 2,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Weasel",
+  "cr": 0.125,
+  "challenge": "1/8",
+  "ac": 13,
+  "hp": 9,
+  "speed": {
+   "walk": 40
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 5,
+    "dice": [
+     1,
+     4
+    ],
+    "bonus": 3,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Mastiff",
+  "cr": 0.125,
+  "challenge": "1/8",
+  "ac": 12,
+  "hp": 5,
+  "speed": {
+   "walk": 40
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 3,
+    "dice": [
+     1,
+     6
+    ],
+    "bonus": 1,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Mule",
+  "cr": 0.125,
+  "challenge": "1/8",
+  "ac": 10,
+  "hp": 11,
+  "speed": {
+   "walk": 40
+  },
+  "attacks": [
+   {
+    "name": "Hooves",
+    "hit": 2,
+    "dice": [
+     1,
+     4
+    ],
+    "bonus": 2,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Poisonous Snake",
+  "cr": 0.125,
+  "challenge": "1/8",
+  "ac": 13,
+  "hp": 2,
+  "speed": {
+   "walk": 30,
+   "swim": 30
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 5,
+    "dice": null,
+    "bonus": 1,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Pony",
+  "cr": 0.125,
+  "challenge": "1/8",
+  "ac": 10,
+  "hp": 11,
+  "speed": {
+   "walk": 40
+  },
+  "attacks": [
+   {
+    "name": "Hooves",
+    "hit": 4,
+    "dice": [
+     2,
+     4
+    ],
+    "bonus": 2,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Stirge",
+  "cr": 0.125,
+  "challenge": "1/8",
+  "ac": 14,
+  "hp": 2,
+  "speed": {
+   "walk": 10,
+   "fly": 40
+  },
+  "attacks": [
+   {
+    "name": "Blood Drain",
+    "hit": 5,
+    "dice": [
+     1,
+     4
+    ],
+    "bonus": 3,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Axe Beak",
+  "cr": 0.25,
+  "challenge": "1/4",
+  "ac": 11,
+  "hp": 19,
+  "speed": {
+   "walk": 50
+  },
+  "attacks": [
+   {
+    "name": "Beak",
+    "hit": 4,
+    "dice": [
+     1,
+     8
+    ],
+    "bonus": 2,
+    "type": "slashing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Boar",
+  "cr": 0.25,
+  "challenge": "1/4",
+  "ac": 11,
+  "hp": 11,
+  "speed": {
+   "walk": 40
+  },
+  "attacks": [
+   {
+    "name": "Tusk",
+    "hit": 3,
+    "dice": [
+     1,
+     6
+    ],
+    "bonus": 1,
+    "type": "slashing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Constrictor Snake",
+  "cr": 0.25,
+  "challenge": "1/4",
+  "ac": 12,
+  "hp": 13,
+  "speed": {
+   "walk": 30,
+   "swim": 30
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 4,
+    "dice": [
+     1,
+     6
+    ],
+    "bonus": 2,
+    "type": "piercing"
+   },
+   {
+    "name": "Constrict",
+    "hit": 4,
+    "dice": [
+     1,
+     8
+    ],
+    "bonus": 2,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Draft Horse",
+  "cr": 0.25,
+  "challenge": "1/4",
+  "ac": 10,
+  "hp": 19,
+  "speed": {
+   "walk": 40
+  },
+  "attacks": [
+   {
+    "name": "Hooves",
+    "hit": 6,
+    "dice": [
+     2,
+     4
+    ],
+    "bonus": 4,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Elk",
+  "cr": 0.25,
+  "challenge": "1/4",
+  "ac": 10,
+  "hp": 13,
+  "speed": {
+   "walk": 50
+  },
+  "attacks": [
+   {
+    "name": "Ram",
+    "hit": 5,
+    "dice": [
+     1,
+     6
+    ],
+    "bonus": 3,
+    "type": "bludgeoning"
+   },
+   {
+    "name": "Hooves",
+    "hit": 5,
+    "dice": [
+     2,
+     4
+    ],
+    "bonus": 3,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Badger",
+  "cr": 0.25,
+  "challenge": "1/4",
+  "ac": 10,
+  "hp": 13,
+  "speed": {
+   "walk": 30,
+   "burrow": 10
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 3,
+    "dice": [
+     1,
+     6
+    ],
+    "bonus": 1,
+    "type": "piercing"
+   },
+   {
+    "name": "Claws",
+    "hit": 3,
+    "dice": [
+     2,
+     4
+    ],
+    "bonus": 1,
+    "type": "slashing"
+   }
+  ],
+  "multiattack": "The badger makes two attacks: one with its bite and one with its claws.",
+  "elemental": false
+ },
+ {
+  "name": "Giant Bat",
+  "cr": 0.25,
+  "challenge": "1/4",
+  "ac": 13,
+  "hp": 22,
+  "speed": {
+   "walk": 10,
+   "fly": 60
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 4,
+    "dice": [
+     1,
+     6
+    ],
+    "bonus": 2,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Centipede",
+  "cr": 0.25,
+  "challenge": "1/4",
+  "ac": 13,
+  "hp": 4,
+  "speed": {
+   "walk": 30,
+   "climb": 30
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 4,
+    "dice": [
+     1,
+     4
+    ],
+    "bonus": 2,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Frog",
+  "cr": 0.25,
+  "challenge": "1/4",
+  "ac": 11,
+  "hp": 18,
+  "speed": {
+   "walk": 30,
+   "swim": 30
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 3,
+    "dice": [
+     1,
+     6
+    ],
+    "bonus": 1,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Lizard",
+  "cr": 0.25,
+  "challenge": "1/4",
+  "ac": 12,
+  "hp": 19,
+  "speed": {
+   "walk": 30,
+   "climb": 30
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 4,
+    "dice": [
+     1,
+     8
+    ],
+    "bonus": 2,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Owl",
+  "cr": 0.25,
+  "challenge": "1/4",
+  "ac": 12,
+  "hp": 19,
+  "speed": {
+   "walk": 5,
+   "fly": 60
+  },
+  "attacks": [
+   {
+    "name": "Talons",
+    "hit": 3,
+    "dice": [
+     2,
+     6
+    ],
+    "bonus": 1,
+    "type": "slashing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Poisonous Snake",
+  "cr": 0.25,
+  "challenge": "1/4",
+  "ac": 14,
+  "hp": 11,
+  "speed": {
+   "walk": 30,
+   "swim": 30
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 6,
+    "dice": [
+     1,
+     4
+    ],
+    "bonus": 4,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Wolf Spider",
+  "cr": 0.25,
+  "challenge": "1/4",
+  "ac": 13,
+  "hp": 11,
+  "speed": {
+   "walk": 40,
+   "climb": 40
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 3,
+    "dice": [
+     1,
+     6
+    ],
+    "bonus": 1,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Panther",
+  "cr": 0.25,
+  "challenge": "1/4",
+  "ac": 12,
+  "hp": 13,
+  "speed": {
+   "walk": 50,
+   "climb": 40
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 4,
+    "dice": [
+     1,
+     6
+    ],
+    "bonus": 2,
+    "type": "piercing"
+   },
+   {
+    "name": "Claw",
+    "hit": 4,
+    "dice": [
+     1,
+     4
+    ],
+    "bonus": 2,
+    "type": "slashing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Riding Horse",
+  "cr": 0.25,
+  "challenge": "1/4",
+  "ac": 10,
+  "hp": 13,
+  "speed": {
+   "walk": 60
+  },
+  "attacks": [
+   {
+    "name": "Hooves",
+    "hit": 5,
+    "dice": [
+     2,
+     4
+    ],
+    "bonus": 3,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Swarm of Bats",
+  "cr": 0.25,
+  "challenge": "1/4",
+  "ac": 12,
+  "hp": 22,
+  "speed": {
+   "walk": 0,
+   "fly": 30
+  },
+  "attacks": [
+   {
+    "name": "Bites",
+    "hit": 4,
+    "dice": [
+     2,
+     4
+    ],
+    "bonus": 0,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Swarm of Rats",
+  "cr": 0.25,
+  "challenge": "1/4",
+  "ac": 10,
+  "hp": 24,
+  "speed": {
+   "walk": 30
+  },
+  "attacks": [
+   {
+    "name": "Bites",
+    "hit": 2,
+    "dice": [
+     2,
+     6
+    ],
+    "bonus": 0,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Swarm of Ravens",
+  "cr": 0.25,
+  "challenge": "1/4",
+  "ac": 12,
+  "hp": 24,
+  "speed": {
+   "walk": 10,
+   "fly": 50
+  },
+  "attacks": [
+   {
+    "name": "Beaks",
+    "hit": 4,
+    "dice": [
+     2,
+     6
+    ],
+    "bonus": 0,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Wolf",
+  "cr": 0.25,
+  "challenge": "1/4",
+  "ac": 13,
+  "hp": 11,
+  "speed": {
+   "walk": 40
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 4,
+    "dice": [
+     2,
+     4
+    ],
+    "bonus": 2,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Ape",
+  "cr": 0.5,
+  "challenge": "1/2",
+  "ac": 12,
+  "hp": 19,
+  "speed": {
+   "walk": 30,
+   "climb": 30
+  },
+  "attacks": [
+   {
+    "name": "Fist",
+    "hit": 5,
+    "dice": [
+     1,
+     6
+    ],
+    "bonus": 3,
+    "type": "bludgeoning"
+   },
+   {
+    "name": "Rock",
+    "hit": 5,
+    "dice": [
+     1,
+     6
+    ],
+    "bonus": 3,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": "The ape makes two fist attacks.",
+  "elemental": false
+ },
+ {
+  "name": "Black Bear",
+  "cr": 0.5,
+  "challenge": "1/2",
+  "ac": 11,
+  "hp": 19,
+  "speed": {
+   "walk": 40,
+   "climb": 30
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 4,
+    "dice": [
+     1,
+     6
+    ],
+    "bonus": 2,
+    "type": "piercing"
+   },
+   {
+    "name": "Claws",
+    "hit": 4,
+    "dice": [
+     2,
+     4
+    ],
+    "bonus": 2,
+    "type": "slashing"
+   }
+  ],
+  "multiattack": "The bear makes two attacks: one with its bite and one with its claws.",
+  "elemental": false
+ },
+ {
+  "name": "Crocodile",
+  "cr": 0.5,
+  "challenge": "1/2",
+  "ac": 12,
+  "hp": 19,
+  "speed": {
+   "walk": 20,
+   "swim": 20
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 4,
+    "dice": [
+     1,
+     10
+    ],
+    "bonus": 2,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Goat",
+  "cr": 0.5,
+  "challenge": "1/2",
+  "ac": 11,
+  "hp": 19,
+  "speed": {
+   "walk": 40
+  },
+  "attacks": [
+   {
+    "name": "Ram",
+    "hit": 5,
+    "dice": [
+     2,
+     4
+    ],
+    "bonus": 3,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Sea Horse",
+  "cr": 0.5,
+  "challenge": "1/2",
+  "ac": 13,
+  "hp": 16,
+  "speed": {
+   "walk": 0,
+   "swim": 40
+  },
+  "attacks": [
+   {
+    "name": "Ram",
+    "hit": 3,
+    "dice": [
+     1,
+     6
+    ],
+    "bonus": 1,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Wasp",
+  "cr": 0.5,
+  "challenge": "1/2",
+  "ac": 12,
+  "hp": 13,
+  "speed": {
+   "walk": 10,
+   "fly": 50
+  },
+  "attacks": [
+   {
+    "name": "Sting",
+    "hit": 4,
+    "dice": [
+     1,
+     6
+    ],
+    "bonus": 2,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Reef Shark",
+  "cr": 0.5,
+  "challenge": "1/2",
+  "ac": 12,
+  "hp": 22,
+  "speed": {
+   "swim": 40
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 4,
+    "dice": [
+     1,
+     8
+    ],
+    "bonus": 2,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Swarm of Beetles",
+  "cr": 0.5,
+  "challenge": "1/2",
+  "ac": 12,
+  "hp": 22,
+  "speed": {
+   "walk": 20,
+   "burrow": 5,
+   "climb": 20
+  },
+  "attacks": [
+   {
+    "name": "Bites",
+    "hit": 3,
+    "dice": [
+     4,
+     4
+    ],
+    "bonus": 0,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Swarm of Centipedes",
+  "cr": 0.5,
+  "challenge": "1/2",
+  "ac": 12,
+  "hp": 22,
+  "speed": {
+   "walk": 20,
+   "climb": 20
+  },
+  "attacks": [
+   {
+    "name": "Bites",
+    "hit": 3,
+    "dice": [
+     4,
+     4
+    ],
+    "bonus": 0,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Swarm of Insects",
+  "cr": 0.5,
+  "challenge": "1/2",
+  "ac": 12,
+  "hp": 22,
+  "speed": {
+   "walk": 20,
+   "climb": 20
+  },
+  "attacks": [
+   {
+    "name": "Bites",
+    "hit": 3,
+    "dice": [
+     4,
+     4
+    ],
+    "bonus": 0,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Swarm of Spiders",
+  "cr": 0.5,
+  "challenge": "1/2",
+  "ac": 12,
+  "hp": 22,
+  "speed": {
+   "walk": 20,
+   "climb": 20
+  },
+  "attacks": [
+   {
+    "name": "Bites",
+    "hit": 3,
+    "dice": [
+     4,
+     4
+    ],
+    "bonus": 0,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Swarm of Wasps",
+  "cr": 0.5,
+  "challenge": "1/2",
+  "ac": 12,
+  "hp": 22,
+  "speed": {
+   "walk": 5,
+   "fly": 30
+  },
+  "attacks": [
+   {
+    "name": "Bites",
+    "hit": 3,
+    "dice": [
+     4,
+     4
+    ],
+    "bonus": 0,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Warhorse",
+  "cr": 0.5,
+  "challenge": "1/2",
+  "ac": 11,
+  "hp": 19,
+  "speed": {
+   "walk": 60
+  },
+  "attacks": [
+   {
+    "name": "Hooves",
+    "hit": 6,
+    "dice": [
+     2,
+     6
+    ],
+    "bonus": 4,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Brown Bear",
+  "cr": 1.0,
+  "challenge": "1",
+  "ac": 11,
+  "hp": 34,
+  "speed": {
+   "walk": 40,
+   "climb": 30
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 6,
+    "dice": [
+     1,
+     8
+    ],
+    "bonus": 4,
+    "type": "piercing"
+   },
+   {
+    "name": "Claws",
+    "hit": 6,
+    "dice": [
+     2,
+     6
+    ],
+    "bonus": 4,
+    "type": "slashing"
+   }
+  ],
+  "multiattack": "The bear makes two attacks: one with its bite and one with its claws.",
+  "elemental": false
+ },
+ {
+  "name": "Dire Wolf",
+  "cr": 1.0,
+  "challenge": "1",
+  "ac": 14,
+  "hp": 37,
+  "speed": {
+   "walk": 50
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 5,
+    "dice": [
+     2,
+     6
+    ],
+    "bonus": 3,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Eagle",
+  "cr": 1.0,
+  "challenge": "1",
+  "ac": 13,
+  "hp": 26,
+  "speed": {
+   "walk": 10,
+   "fly": 80
+  },
+  "attacks": [
+   {
+    "name": "Beak",
+    "hit": 5,
+    "dice": [
+     1,
+     6
+    ],
+    "bonus": 3,
+    "type": "piercing"
+   },
+   {
+    "name": "Talons",
+    "hit": 5,
+    "dice": [
+     2,
+     6
+    ],
+    "bonus": 3,
+    "type": "slashing"
+   }
+  ],
+  "multiattack": "The eagle makes two attacks: one with its beak and one with its talons.",
+  "elemental": false
+ },
+ {
+  "name": "Giant Hyena",
+  "cr": 1.0,
+  "challenge": "1",
+  "ac": 12,
+  "hp": 45,
+  "speed": {
+   "walk": 50
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 5,
+    "dice": [
+     2,
+     6
+    ],
+    "bonus": 3,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Octopus",
+  "cr": 1.0,
+  "challenge": "1",
+  "ac": 11,
+  "hp": 52,
+  "speed": {
+   "walk": 10,
+   "swim": 60
+  },
+  "attacks": [
+   {
+    "name": "Tentacles",
+    "hit": 5,
+    "dice": [
+     2,
+     6
+    ],
+    "bonus": 3,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Spider",
+  "cr": 1.0,
+  "challenge": "1",
+  "ac": 14,
+  "hp": 26,
+  "speed": {
+   "walk": 30,
+   "climb": 30
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 5,
+    "dice": [
+     1,
+     8
+    ],
+    "bonus": 3,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Toad",
+  "cr": 1.0,
+  "challenge": "1",
+  "ac": 11,
+  "hp": 39,
+  "speed": {
+   "walk": 20,
+   "swim": 40
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 4,
+    "dice": [
+     1,
+     10
+    ],
+    "bonus": 2,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Vulture",
+  "cr": 1.0,
+  "challenge": "1",
+  "ac": 10,
+  "hp": 22,
+  "speed": {
+   "walk": 10,
+   "fly": 60
+  },
+  "attacks": [
+   {
+    "name": "Beak",
+    "hit": 4,
+    "dice": [
+     2,
+     4
+    ],
+    "bonus": 2,
+    "type": "piercing"
+   },
+   {
+    "name": "Talons",
+    "hit": 4,
+    "dice": [
+     2,
+     6
+    ],
+    "bonus": 2,
+    "type": "slashing"
+   }
+  ],
+  "multiattack": "The vulture makes two attacks: one with its beak and one with its talons.",
+  "elemental": false
+ },
+ {
+  "name": "Lion",
+  "cr": 1.0,
+  "challenge": "1",
+  "ac": 12,
+  "hp": 26,
+  "speed": {
+   "walk": 50
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 5,
+    "dice": [
+     1,
+     8
+    ],
+    "bonus": 3,
+    "type": "piercing"
+   },
+   {
+    "name": "Claw",
+    "hit": 5,
+    "dice": [
+     1,
+     6
+    ],
+    "bonus": 3,
+    "type": "slashing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Swarm of Quippers",
+  "cr": 1.0,
+  "challenge": "1",
+  "ac": 13,
+  "hp": 28,
+  "speed": {
+   "walk": 0,
+   "swim": 40
+  },
+  "attacks": [
+   {
+    "name": "Bites",
+    "hit": 5,
+    "dice": [
+     4,
+     6
+    ],
+    "bonus": 0,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Tiger",
+  "cr": 1.0,
+  "challenge": "1",
+  "ac": 12,
+  "hp": 37,
+  "speed": {
+   "walk": 40
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 5,
+    "dice": [
+     1,
+     10
+    ],
+    "bonus": 3,
+    "type": "piercing"
+   },
+   {
+    "name": "Claw",
+    "hit": 5,
+    "dice": [
+     1,
+     8
+    ],
+    "bonus": 3,
+    "type": "slashing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Boar",
+  "cr": 2.0,
+  "challenge": "2",
+  "ac": 12,
+  "hp": 42,
+  "speed": {
+   "walk": 40
+  },
+  "attacks": [
+   {
+    "name": "Tusk",
+    "hit": 5,
+    "dice": [
+     2,
+     6
+    ],
+    "bonus": 3,
+    "type": "slashing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Constrictor Snake",
+  "cr": 2.0,
+  "challenge": "2",
+  "ac": 12,
+  "hp": 60,
+  "speed": {
+   "walk": 30,
+   "swim": 30
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 6,
+    "dice": [
+     2,
+     6
+    ],
+    "bonus": 4,
+    "type": "piercing"
+   },
+   {
+    "name": "Constrict",
+    "hit": 6,
+    "dice": [
+     2,
+     8
+    ],
+    "bonus": 4,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Elk",
+  "cr": 2.0,
+  "challenge": "2",
+  "ac": 15,
+  "hp": 42,
+  "speed": {
+   "walk": 60
+  },
+  "attacks": [
+   {
+    "name": "Ram",
+    "hit": 6,
+    "dice": [
+     2,
+     6
+    ],
+    "bonus": 4,
+    "type": "bludgeoning"
+   },
+   {
+    "name": "Hooves",
+    "hit": 6,
+    "dice": [
+     4,
+     8
+    ],
+    "bonus": 4,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Hunter Shark",
+  "cr": 2.0,
+  "challenge": "2",
+  "ac": 12,
+  "hp": 45,
+  "speed": {
+   "swim": 40
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 6,
+    "dice": [
+     2,
+     8
+    ],
+    "bonus": 4,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Plesiosaurus",
+  "cr": 2.0,
+  "challenge": "2",
+  "ac": 13,
+  "hp": 68,
+  "speed": {
+   "walk": 20,
+   "swim": 40
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 6,
+    "dice": [
+     3,
+     6
+    ],
+    "bonus": 4,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Polar Bear",
+  "cr": 2.0,
+  "challenge": "2",
+  "ac": 12,
+  "hp": 42,
+  "speed": {
+   "walk": 40,
+   "swim": 30
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 7,
+    "dice": [
+     1,
+     8
+    ],
+    "bonus": 5,
+    "type": "piercing"
+   },
+   {
+    "name": "Claws",
+    "hit": 7,
+    "dice": [
+     2,
+     6
+    ],
+    "bonus": 5,
+    "type": "slashing"
+   }
+  ],
+  "multiattack": "The bear makes two attacks: one with its bite and one with its claws.",
+  "elemental": false
+ },
+ {
+  "name": "Rhinoceros",
+  "cr": 2.0,
+  "challenge": "2",
+  "ac": 11,
+  "hp": 45,
+  "speed": {
+   "walk": 40
+  },
+  "attacks": [
+   {
+    "name": "Gore",
+    "hit": 7,
+    "dice": [
+     2,
+     8
+    ],
+    "bonus": 5,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Saber-Toothed Tiger",
+  "cr": 2.0,
+  "challenge": "2",
+  "ac": 12,
+  "hp": 52,
+  "speed": {
+   "walk": 40
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 6,
+    "dice": [
+     1,
+     10
+    ],
+    "bonus": 5,
+    "type": "piercing"
+   },
+   {
+    "name": "Claw",
+    "hit": 6,
+    "dice": [
+     2,
+     6
+    ],
+    "bonus": 5,
+    "type": "slashing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Swarm of Poisonous Snakes",
+  "cr": 2.0,
+  "challenge": "2",
+  "ac": 14,
+  "hp": 36,
+  "speed": {
+   "walk": 30,
+   "swim": 30
+  },
+  "attacks": [
+   {
+    "name": "Bites",
+    "hit": 6,
+    "dice": [
+     2,
+     6
+    ],
+    "bonus": 0,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Scorpion",
+  "cr": 3.0,
+  "challenge": "3",
+  "ac": 15,
+  "hp": 52,
+  "speed": {
+   "walk": 40
+  },
+  "attacks": [
+   {
+    "name": "Claw",
+    "hit": 4,
+    "dice": [
+     1,
+     8
+    ],
+    "bonus": 2,
+    "type": "bludgeoning"
+   },
+   {
+    "name": "Sting",
+    "hit": 4,
+    "dice": [
+     1,
+     10
+    ],
+    "bonus": 2,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": "The scorpion makes three attacks: two with its claws and one with its sting.",
+  "elemental": false
+ },
+ {
+  "name": "Killer Whale",
+  "cr": 3.0,
+  "challenge": "3",
+  "ac": 12,
+  "hp": 90,
+  "speed": {
+   "swim": 60
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 6,
+    "dice": [
+     5,
+     6
+    ],
+    "bonus": 4,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Elephant",
+  "cr": 4.0,
+  "challenge": "4",
+  "ac": 12,
+  "hp": 76,
+  "speed": {
+   "walk": 40
+  },
+  "attacks": [
+   {
+    "name": "Gore",
+    "hit": 8,
+    "dice": [
+     3,
+     8
+    ],
+    "bonus": 6,
+    "type": "piercing"
+   },
+   {
+    "name": "Stomp",
+    "hit": 8,
+    "dice": [
+     3,
+     10
+    ],
+    "bonus": 6,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Air Elemental",
+  "cr": 5.0,
+  "challenge": "5",
+  "ac": 15,
+  "hp": 90,
+  "speed": {
+   "walk": 0,
+   "fly": 90
+  },
+  "attacks": [
+   {
+    "name": "Slam",
+    "hit": 8,
+    "dice": [
+     2,
+     8
+    ],
+    "bonus": 5,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": "The elemental makes two slam attacks.",
+  "elemental": true
+ },
+ {
+  "name": "Earth Elemental",
+  "cr": 5.0,
+  "challenge": "5",
+  "ac": 17,
+  "hp": 126,
+  "speed": {
+   "walk": 30,
+   "burrow": 30
+  },
+  "attacks": [
+   {
+    "name": "Slam",
+    "hit": 8,
+    "dice": [
+     2,
+     8
+    ],
+    "bonus": 5,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": "The elemental makes two slam attacks.",
+  "elemental": true
+ },
+ {
+  "name": "Fire Elemental",
+  "cr": 5.0,
+  "challenge": "5",
+  "ac": 13,
+  "hp": 102,
+  "speed": {
+   "walk": 50
+  },
+  "attacks": [
+   {
+    "name": "Touch",
+    "hit": 6,
+    "dice": [
+     2,
+     6
+    ],
+    "bonus": 3,
+    "type": "fire"
+   }
+  ],
+  "multiattack": "The elemental makes two touch attacks.",
+  "elemental": true
+ },
+ {
+  "name": "Giant Crocodile",
+  "cr": 5.0,
+  "challenge": "5",
+  "ac": 14,
+  "hp": 85,
+  "speed": {
+   "walk": 30,
+   "swim": 50
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 8,
+    "dice": [
+     3,
+     10
+    ],
+    "bonus": 5,
+    "type": "piercing"
+   },
+   {
+    "name": "Tail",
+    "hit": 8,
+    "dice": [
+     2,
+     8
+    ],
+    "bonus": 5,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": "The crocodile makes two attacks: one with its bite and one with its tail.",
+  "elemental": false
+ },
+ {
+  "name": "Giant Shark",
+  "cr": 5.0,
+  "challenge": "5",
+  "ac": 13,
+  "hp": 126,
+  "speed": {
+   "swim": 50
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 9,
+    "dice": [
+     3,
+     10
+    ],
+    "bonus": 6,
+    "type": "piercing"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Triceratops",
+  "cr": 5.0,
+  "challenge": "5",
+  "ac": 13,
+  "hp": 95,
+  "speed": {
+   "walk": 50
+  },
+  "attacks": [
+   {
+    "name": "Gore",
+    "hit": 9,
+    "dice": [
+     4,
+     8
+    ],
+    "bonus": 6,
+    "type": "piercing"
+   },
+   {
+    "name": "Stomp",
+    "hit": 9,
+    "dice": [
+     3,
+     10
+    ],
+    "bonus": 6,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Water Elemental",
+  "cr": 5.0,
+  "challenge": "5",
+  "ac": 14,
+  "hp": 114,
+  "speed": {
+   "walk": 30,
+   "swim": 90
+  },
+  "attacks": [
+   {
+    "name": "Slam",
+    "hit": 7,
+    "dice": [
+     2,
+     8
+    ],
+    "bonus": 4,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": "The elemental makes two slam attacks.",
+  "elemental": true
+ },
+ {
+  "name": "Mammoth",
+  "cr": 6.0,
+  "challenge": "6",
+  "ac": 13,
+  "hp": 126,
+  "speed": {
+   "walk": 40
+  },
+  "attacks": [
+   {
+    "name": "Gore",
+    "hit": 10,
+    "dice": [
+     4,
+     8
+    ],
+    "bonus": 7,
+    "type": "piercing"
+   },
+   {
+    "name": "Stomp",
+    "hit": 10,
+    "dice": [
+     4,
+     10
+    ],
+    "bonus": 7,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": null,
+  "elemental": false
+ },
+ {
+  "name": "Giant Ape",
+  "cr": 7.0,
+  "challenge": "7",
+  "ac": 12,
+  "hp": 157,
+  "speed": {
+   "walk": 40,
+   "climb": 40
+  },
+  "attacks": [
+   {
+    "name": "Fist",
+    "hit": 9,
+    "dice": [
+     3,
+     10
+    ],
+    "bonus": 6,
+    "type": "bludgeoning"
+   },
+   {
+    "name": "Rock",
+    "hit": 9,
+    "dice": [
+     7,
+     6
+    ],
+    "bonus": 6,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": "The ape makes two fist attacks.",
+  "elemental": false
+ },
+ {
+  "name": "Tyrannosaurus Rex",
+  "cr": 8.0,
+  "challenge": "8",
+  "ac": 13,
+  "hp": 136,
+  "speed": {
+   "walk": 50
+  },
+  "attacks": [
+   {
+    "name": "Bite",
+    "hit": 10,
+    "dice": [
+     4,
+     12
+    ],
+    "bonus": 7,
+    "type": "piercing"
+   },
+   {
+    "name": "Tail",
+    "hit": 10,
+    "dice": [
+     3,
+     8
+    ],
+    "bonus": 7,
+    "type": "bludgeoning"
+   }
+  ],
+  "multiattack": "The tyrannosaurus makes two attacks: one with its bite and one with its tail. It can't make both attacks against the same target.",
+  "elemental": false
+ }
+]

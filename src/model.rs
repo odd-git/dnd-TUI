@@ -101,7 +101,7 @@ pub struct Toggle {
 
 /// The beast a druid has turned into: its name and AC (its HP are the "beast_hp" counter, its attacks "Beast: " actions).
 #[derive(Serialize, Deserialize, Clone)]
-pub struct Beast { pub name: String, pub ac: i32 }
+pub struct Beast { pub name: String, pub ac: i32, #[serde(default)] pub info: String }
 
 /// A class taken besides the main one (multiclassing): its "Class/Subclass" progression and levels in it.
 #[derive(Serialize, Deserialize, Clone)]
