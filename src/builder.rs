@@ -548,6 +548,23 @@ mod tests {
         assert_eq!((warlock("Great Old One", 5).res_max("entropic_ward"), warlock("Great Old One", 6).res_max("entropic_ward")), (Some(0), Some(1)));
     }
 
+    fn wizard(sub: &str, level: u32) -> Character {
+        let s = |x: &str| x.to_string();
+        build(&Draft {
+            name: s("Quill"), lineage: s("Human"), class: s("Wizard"), subclass: Some(s(sub)), level, background: s("Sage"),
+            base: [("STR", 8), ("DEX", 14), ("CON", 13), ("INT", 15), ("WIS", 12), ("CHA", 10)].iter().map(|(a, v)| (a.to_string(), *v)).collect(),
+            class_skills: vec![s("Arcana"), s("History")], ..Default::default()
+        })
+    }
+
+    #[test]
+    fn arcane_ward_starts_empty() {
+        let c = wizard("Abjuration", 6);
+        assert_eq!(c.res_max("arcane_ward"), Some(2 * 6 + 3)); // INT 16
+        assert_eq!(c.res["arcane_ward"], 0);
+        assert_eq!(wizard("Evocation", 6).res_max("arcane_ward"), None);
+    }
+
     #[test]
     fn berserker_frenzy_and_presence() {
         let c = barbarian(3);

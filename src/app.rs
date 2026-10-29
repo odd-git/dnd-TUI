@@ -664,6 +664,8 @@ impl App {
         self.snap();
         if (1..6).contains(&self.ch.exhaustion) { self.ch.exhaustion -= 1; self.say(format!("Exhaustion drops to {}.", self.ch.exhaustion), Tone::Good); }
         self.reset(true);
+        // the Arcane Ward fades: the next abjuration spell makes a new one
+        if self.ch.def("arcane_ward").is_some() { self.ch.res.insert("arcane_ward".into(), 0); self.ch.res.remove("ward_made"); }
         self.ch.hp = self.ch.hp_max().or(self.ch.hp);
         self.ch.death = [0, 0];
         self.ch.temp_hp = 0;
@@ -847,6 +849,7 @@ impl App {
                 }
                 let taken = n;
                 let n = self.beast_soak(n);
+                let n = self.ward_soak(n);
                 let n = self.temp_soak(n);
                 if n > 0 {
                     let hp = self.ch.hp.unwrap_or(0);

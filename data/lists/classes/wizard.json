@@ -335,7 +335,16 @@
    "name": "Abjuration",
    "source": "Player's Handbook",
    "needs_spells": false,
-   "resources": [],
+   "resources": [
+    {
+     "id": "arcane_ward",
+     "name": "Arcane Ward",
+     "recharge": "",
+     "max": "arcane_ward",
+     "pips": false,
+     "start": 0
+    }
+   ],
    "actions": [],
    "maneuver_pool": null,
    "tables": {},

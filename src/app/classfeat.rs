@@ -400,6 +400,24 @@ impl App {
     }
 
     /// Temporary HP go first; returns the damage left for real HP.
+    /// Arcane Ward: its hit points take the damage before temporary HP.
+    pub(super) fn ward_soak(&mut self, n: i32) -> i32 {
+        let t = (self.have("arcane_ward") as i32).min(n);
+        if t <= 0 { return n; }
+        *self.ch.res.get_mut("arcane_ward").unwrap() -= t as u32;
+        self.say(format!("Arcane Ward absorbs {t} ({} left).", self.have("arcane_ward")), Tone::Warn);
+        n - t
+    }
+
+    /// Casting an abjuration spell of 1st level or higher: makes the ward (once per long rest) or restores 2 HP per spell level.
+    pub(super) fn ward_cast(&mut self, level: u32) {
+        let Some(max) = self.ch.res_max("arcane_ward").filter(|_| self.ch.def("arcane_ward").is_some()) else { return };
+        let made = self.ch.res.insert("ward_made".into(), 1).is_some();
+        let hp = if made { (self.have("arcane_ward") + 2 * level).min(max) } else { max };
+        self.ch.res.insert("arcane_ward".into(), hp);
+        self.say(format!("Arcane Ward: {hp}/{max} HP."), Tone::Good);
+    }
+
     pub(super) fn temp_soak(&mut self, n: i32) -> i32 {
         let t = self.ch.temp_hp.min(n);
         if t == 0 { return n; }

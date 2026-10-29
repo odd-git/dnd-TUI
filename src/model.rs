@@ -430,15 +430,20 @@ impl Character {
 
     pub fn def(&self, id: &str) -> Option<&ResourceDef> { self.resources.iter().find(|r| r.id == id) }
 
+    fn res_max_class(&self, class: &str) -> u32 {
+        self.classes().iter().find(|(p, _)| p.split('/').next() == Some(class)).map_or(0, |c| c.1)
+    }
+
     pub fn res_max(&self, id: &str) -> Option<u32> {
         match self.def(id)?.max.as_ref()? {
             Max::N(n) => Some(*n),
             Max::Kw(k) if k == "level" && id == "hit_dice" => Some(self.class_level()),
             Max::Kw(k) if k == "level" => Some(self.level),
-            Max::Kw(k) if k.starts_with("class:") => Some(self.classes().iter().find(|(p, _)| p.split('/').next() == Some(&k[6..])).map_or(0, |c| c.1)),
+            Max::Kw(k) if k.starts_with("class:") => Some(self.res_max_class(&k[6..])),
             Max::Kw(k) if k == "pact" => Some(self.casters().iter().find(|(c, ..)| c.kind == "pact").map_or(0, |(c, l, _)| at(&c.pact_slots, *l))),
             Max::Kw(k) if k.starts_with("slot:") => Some(self.slots(k[5..].parse().unwrap_or(1))),
             Max::Kw(k) if k.starts_with("mod:") => Some(self.md(&k[4..]).max(1) as u32),
+            Max::Kw(k) if k == "arcane_ward" => Some((2 * self.res_max_class("Wizard") as i32 + self.md("INT")).max(0) as u32),
             Max::Kw(k) if k.starts_with("1+mod:") => Some((1 + self.md(&k[6..])).max(1) as u32),
             Max::Kw(_) => Some(self.prog().and_then(|p| p.resources.get(id)).map(|t| at(t, self.class_level())).or_else(|| self.table(id)).unwrap_or(0)),
         }
@@ -459,7 +464,7 @@ impl Character {
     pub fn init(&mut self) {
         for d in self.resources.clone() {
             if !self.res.contains_key(&d.id) {
-                let v = self.res_max(&d.id).or(d.start).unwrap_or(0);
+                let v = d.start.or_else(|| self.res_max(&d.id)).unwrap_or(0);
                 self.res.insert(d.id, v);
             }
         }

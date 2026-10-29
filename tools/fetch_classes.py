@@ -385,6 +385,9 @@ SUB_MECH = {
             "actions": [{"name": "Entropic Ward", "desc": "Reaction: an attack on you rolls with disadvantage; if it misses, your next attack on that creature has advantage", "uses": "entropic_ward"}],
         },
     },
+    "wizard": {
+        "Abjuration": {"resources": [{"id": "arcane_ward", "name": "Arcane Ward", "recharge": "", "max": "arcane_ward", "pips": False, "start": 0}]},
+    },
 }
 
 def split_top(s):
