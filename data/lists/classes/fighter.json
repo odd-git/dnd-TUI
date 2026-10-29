@@ -468,7 +468,12 @@
    "resources": [],
    "actions": [],
    "maneuver_pool": null,
-   "tables": {},
+   "tables": {
+    "crit_range": {
+     "3": 19,
+     "15": 18
+    }
+   },
    "dice": {},
    "maneuvers_known": {},
    "features": {

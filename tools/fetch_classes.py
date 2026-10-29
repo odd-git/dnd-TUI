@@ -230,6 +230,9 @@ SUB_MECH = {
         },
         "Moon": {"actions": [{"name": "Combat Wild Shape", "desc": "Bonus action in beast form: spend a slot, heal 1d8 per slot level", "special": "moon_heal"}]},
     },
+    "fighter": {
+        "Champion": {"tables": {"crit_range": {"3": 19, "15": 18}}},
+    },
 }
 
 def split_top(s):
@@ -527,6 +530,7 @@ if __name__ == "__main__":
         path = OUT / "classes" / "fighter.json"
         data = json.loads(path.read_text())
         for sub in data["subclasses"]:
+            sub.update(SUB_MECH["fighter"].get(sub["name"], {}))
             if sub["name"] == "Eldritch Knight":
                 sub["casting"] = third_caster("fighter:eldritch-knight", "Fighter", {"ability": "INT", "kind": "third", "mode": "known", "list": "Wizard"})
         path.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n")

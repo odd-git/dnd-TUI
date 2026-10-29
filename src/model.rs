@@ -459,13 +459,12 @@ impl Character {
 
     /// Modifier of an ability ("DEX"), a save ("DEX save") or a skill ("Stealth").
     pub fn check_mod(&self, name: &str) -> i32 {
-        let base = match name.strip_suffix(" save") {
-            Some(a) => self.md(a),
-            None if ABILITIES.contains(&name) => return self.md(name),
-            None => self.md(SKILLS.iter().find(|(n, _)| *n == name).map_or("INT", |x| x.1)),
-        };
+        let save = name.strip_suffix(" save");
+        let ab = save.unwrap_or_else(|| if ABILITIES.contains(&name) { name } else { SKILLS.iter().find(|(n, _)| *n == name).map_or("INT", |x| x.1) });
         let mult = if self.expertise.iter().any(|s| s == name) { 2 } else { i32::from(self.proficient(name)) };
-        base + mult * self.prof()
+        // Remarkable Athlete (Champion): half proficiency, rounded up, to STR, DEX and CON checks without it
+        let athlete = mult == 0 && save.is_none() && ["STR", "DEX", "CON"].contains(&ab) && self.features.iter().any(|f| f.name == "Remarkable Athlete");
+        self.md(ab) + mult * self.prof() + if athlete { (self.prof() + 1) / 2 } else { 0 }
     }
 
     /// Abilities, saves and proficient skills (the quick-roll list).

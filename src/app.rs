@@ -562,7 +562,9 @@ impl App {
         let prof = self.ch.prof();
         let mut crit = false;
         if let Some(hit) = a.hit.or_else(|| a.ability.as_ref().map(|ab| self.ch.md(ab) + prof)) {
-            let crit_min = self.ch.toggles.iter().filter(|t| self.ch.active.contains(&t.name)).filter_map(|t| t.crit_min).min().unwrap_or(20);
+            // active toggles (Hex on the bundled sheet) or a subclass's crit range (Champion)
+            let crit_min = self.ch.toggles.iter().filter(|t| self.ch.active.contains(&t.name)).filter_map(|t| t.crit_min)
+                .chain(self.ch.table("crit_range").filter(|&c| c > 0)).min().unwrap_or(20);
             let (r, note) = self.d20(Roll::Attack);
             crit = r >= crit_min;
             let tag = if crit { " CRIT!" } else if r == 1 { " miss (nat 1)" } else { "" };

@@ -377,6 +377,20 @@ mod tests {
     }
 
     #[test]
+    fn champion_crits_and_athletics() {
+        let champ = |level| build(&Draft { subclass: Some("Champion".into()), level, maneuvers: vec![], ..rowan() });
+        assert_eq!(champ(3).table("crit_range"), Some(19));
+        assert_eq!(champ(15).table("crit_range"), Some(18));
+        assert_eq!(build(&rowan()).table("crit_range"), None);
+        let c = champ(7); // prof +3, DEX 16, STR 9; Perception proficient, Acrobatics not
+        assert_eq!(c.check_mod("Acrobatics"), 3 + 2);
+        assert_eq!(c.check_mod("STR"), -1 + 2);
+        assert_eq!(c.check_mod("DEX save"), 3);
+        assert_eq!(c.check_mod("Arcana"), champ(3).check_mod("Arcana"));
+        assert_eq!(champ(3).check_mod("Acrobatics"), 3);
+    }
+
+    #[test]
     fn berserker_frenzy_and_presence() {
         let c = barbarian(3);
         assert!(c.toggles.iter().any(|t| t.name == "Frenzy" && t.exhaust));
