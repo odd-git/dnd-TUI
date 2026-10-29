@@ -6,7 +6,7 @@ use std::sync::{Mutex, OnceLock};
 
 use serde::Deserialize;
 
-use crate::model::{ActionDef, Feature, ResourceDef};
+use crate::model::{ActionDef, Feature, ResourceDef, Toggle};
 
 type Table = BTreeMap<u32, u32>;
 
@@ -124,6 +124,7 @@ pub struct FeatDef {
     pub source: String,
     pub prereq: Option<String>,
     pub asi: Option<FeatAsi>,
+    #[serde(default)] pub min_ability: BTreeMap<String, i32>,
     #[serde(default)] pub desc: String,
 }
 
@@ -177,6 +178,10 @@ pub struct Subclass {
     #[serde(default)] pub features: BTreeMap<u32, Vec<Feature>>,
 }
 
+/// Unarmored Defense: AC is 10 + DEX + `ability` while no armor is worn.
+#[derive(Deserialize)]
+pub struct Unarmored { pub ability: String, pub shield: bool }
+
 #[derive(Deserialize)]
 pub struct ClassData {
     pub name: String,
@@ -194,6 +199,9 @@ pub struct ClassData {
     #[serde(default)] pub resources: Vec<ResourceDef>,
     #[serde(default)] pub tables: BTreeMap<String, Table>,
     #[serde(default)] pub actions: Vec<ActionDef>,
+    #[serde(default)] pub toggles: Vec<Toggle>,
+    pub unarmored: Option<Unarmored>,
+    #[serde(default)] pub expertise: Vec<u32>, // levels that grant two skills with double proficiency
     pub features: BTreeMap<u32, Vec<Feature>>,
     #[serde(default)] pub styles: Vec<Style>,
     pub subclasses: Vec<Subclass>,
@@ -226,7 +234,11 @@ list!(armors, Armor, "armor.json");
 
 pub fn classes() -> &'static Vec<ClassData> {
     static C: OnceLock<Vec<ClassData>> = OnceLock::new();
-    C.get_or_init(|| vec![serde_json::from_str(include_str!("../data/lists/classes/fighter.json")).expect("fighter")])
+    C.get_or_init(|| {
+        [include_str!("../data/lists/classes/fighter.json"), include_str!("../data/lists/classes/barbarian.json"),
+         include_str!("../data/lists/classes/rogue.json")]
+            .iter().map(|j| serde_json::from_str(j).expect("class json")).collect()
+    })
 }
 
 pub fn class_data(name: &str) -> Option<&'static ClassData> { classes().iter().find(|c| c.name == name) }

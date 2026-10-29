@@ -6,6 +6,7 @@ use ratatui::layout::Rect;
 
 use crate::model::*;
 
+mod editor;
 mod wizard;
 
 #[derive(Clone, Copy, PartialEq)]
@@ -26,16 +27,20 @@ pub enum Item { Action(usize), Toggle(usize) }
 pub enum Cmd {
     Tab(Tab), Pick(usize), Select(usize), Click(usize), Enter, Up, Down, PageUp, PageDown,
     Damage, Heal, Init, Maneuver, Roll(String), CheckMenu, Adv, Cond, Death, Items, Short, Long,
-    Level, Edit, Undo, Back, New, JournalAdd, JournalDel, JournalSel(usize), ModalPick(usize),
+    Level, Edit, Undo, Back, New, Delete, JournalAdd, JournalDel, JournalSel(usize), ModalPick(usize),
 }
 
 /// What a modal is asking; the answer is handled in `resolve_*`.
 #[derive(Clone)]
 pub enum Step {
     Damage, Heal, Check, Cond, Items, SetItem(String), Short,
-    Asi, Ability { n: i32, optional: bool }, FeatName, FeatDesc(String),
+    Asi, Ability { n: i32, optional: bool }, FeatList, FeatAsi(String),
     Maneuver { required: bool }, ReplaceAsk, Forget, Extras, Skill, NoteName, NoteDesc(String), JournalAdd,
-    Subclass,
+    Subclass, DeleteSheet(usize), Expertise,
+    // editor
+    Ident, IdentSet(usize), Scores, ScoreSet(String), Unskill, ArmorPick, ShieldPick(Option<String>), WeaponPick,
+    CustomName, CustomAb(String), CustomDice(String, Option<String>), CustomType(String, Option<String>, (u32, u32)),
+    RmAction, ResName, ResMax(String), ResRecharge(String, u32), RmRes, RmFeat,
     Wiz(wizard::Wz),
 }
 
@@ -90,9 +95,14 @@ fn data_dir() -> PathBuf {
 fn load_sheets() -> Vec<(PathBuf, Character)> {
     let dir = data_dir();
     let _ = std::fs::create_dir_all(&dir);
-    for (name, json) in BUNDLED {
-        let p = dir.join(name);
-        if !p.exists() { let _ = std::fs::write(p, json); }
+    // seeded once: a deleted bundled sheet must stay deleted
+    let marker = dir.join(".seeded");
+    if !marker.exists() {
+        for (name, json) in BUNDLED {
+            let p = dir.join(name);
+            if !p.exists() { let _ = std::fs::write(p, json); }
+        }
+        let _ = std::fs::write(marker, "");
     }
     let mut v: Vec<(PathBuf, Character)> = std::fs::read_dir(&dir).into_iter().flatten().flatten()
         .map(|e| e.path())
@@ -106,7 +116,7 @@ fn load_sheets() -> Vec<(PathBuf, Character)> {
 impl App {
     pub fn new() -> Self {
         let sheets = load_sheets();
-        let ch = sheets.first().map(|s| s.1.clone()).expect("no character sheets");
+        let ch = sheets.first().map(|s| s.1.clone()).unwrap_or_else(|| serde_json::from_str(BUNDLED[0].1).expect("bundled sheet")); // placeholder while picking
         App {
             picking: true, sheets, psel: 0, path: PathBuf::new(), ch, tab: Tab::Combat, sel: 0, jsel: 0,
             scroll: 0, log_off: 0, adv: Adv::Normal, log: vec![Entry("System start.".into(), Tone::Dim)],
@@ -206,9 +216,11 @@ impl App {
             KeyCode::Tab => Cmd::Tab(match self.tab { Tab::Combat => Tab::Character, Tab::Character => Tab::Journal, Tab::Journal => Tab::Combat }),
             KeyCode::BackTab => Cmd::Tab(match self.tab { Tab::Combat => Tab::Journal, Tab::Character => Tab::Combat, Tab::Journal => Tab::Character }),
             KeyCode::F(1) => Cmd::Tab(Tab::Combat), KeyCode::F(2) => Cmd::Tab(Tab::Character), KeyCode::F(3) => Cmd::Tab(Tab::Journal),
-            KeyCode::Delete | KeyCode::Backspace if self.tab == Tab::Journal => Cmd::JournalDel,
+            KeyCode::Delete if self.picking => Cmd::Delete,
+            KeyCode::Delete | KeyCode::Backspace if self.tab == Tab::Journal && !self.picking => Cmd::JournalDel,
             _ => match (self.tab, c) {
                 (_, 'n') if self.picking => Cmd::New,
+                (_, 'd') if self.picking => Cmd::Delete,
                 (_, 'q') => Cmd::Back, (_, 'z') => Cmd::Undo, (_, 'k') => Cmd::Up, (_, 'j') => Cmd::Down,
                 (Tab::Combat, 'd') => Cmd::Damage, (Tab::Combat, 'h') => Cmd::Heal, (Tab::Combat, 'i') => Cmd::Init,
                 (Tab::Combat, 'm') => Cmd::Maneuver, (Tab::Combat, 't') => Cmd::CheckMenu, (Tab::Combat, 'v') => Cmd::Adv,
@@ -286,7 +298,14 @@ impl App {
             let last = if limit == 0 { items.len() - 1 } else { items.len() };
             self.query.clear();
             let picked = (0..last).filter(|&i| on[i]).collect();
-            if let Step::Wiz(w) = step { self.wiz_multi_done(w, picked); }
+            match step {
+                Step::Wiz(w) => self.wiz_multi_done(w, picked),
+                Step::Expertise => {
+                    let opts = self.expertise_options();
+                    for i in picked { let s = opts[i].clone(); self.snap_in_flow(); self.say(format!("Expertise: {s}."), Tone::Good); self.ch.expertise.push(s); }
+                }
+                _ => {}
+            }
             self.advance();
         }
     }
@@ -334,6 +353,7 @@ impl App {
                 Cmd::Enter => self.pick_sheet(self.psel),
                 Cmd::Pick(i) => self.pick_sheet(i),
                 Cmd::New => self.wiz_start(),
+                Cmd::Delete => { if self.psel < self.sheets.len() { self.open(Step::DeleteSheet(self.psel)); } }
                 Cmd::Back => self.quit = true,
                 _ => {}
             }
@@ -407,7 +427,7 @@ impl App {
                 }
             }
             Cmd::JournalSel(i) => self.jsel = i,
-            Cmd::Pick(_) | Cmd::ModalPick(_) | Cmd::New => {}
+            Cmd::Pick(_) | Cmd::ModalPick(_) | Cmd::New | Cmd::Delete => {}
         }
         let n = self.visible().len();
         self.sel = self.sel.min(n.saturating_sub(1));
@@ -416,6 +436,13 @@ impl App {
     /// The last row of the picker is "+ New character".
     fn pick_sheet(&mut self, i: usize) {
         if i >= self.sheets.len() { self.wiz_start() } else { self.open_sheet(i) }
+    }
+
+    fn delete_sheet(&mut self, i: usize) {
+        let (path, c) = self.sheets.remove(i);
+        let _ = std::fs::remove_file(path);
+        self.psel = self.psel.min(self.sheets.len());
+        self.say(format!("Deleted {}.", c.name), Tone::Dim);
     }
 
     fn open_sheet(&mut self, i: usize) {
@@ -443,6 +470,10 @@ impl App {
                     self.ch.active.remove(p);
                     self.say(format!("{n}: OFF"), Tone::Dim);
                 } else {
+                    if let Some(u) = self.ch.toggles[t].uses.clone() {
+                        if self.have(&u) == 0 { return self.say(format!("{n}: none left!"), Tone::Warn); }
+                        if let Some(v) = self.ch.res.get_mut(&u) { *v -= 1; }
+                    }
                     self.ch.active.push(n.clone());
                     self.say(format!("{n}: ON"), Tone::Good);
                 }
@@ -465,7 +496,7 @@ impl App {
         for r in a.uses.iter().chain(slot.iter()) {
             if let Some(v) = self.ch.res.get_mut(r) { *v -= 1; }
         }
-        let Some((n, sides)) = a.dice else {
+        let Some((n, sides)) = self.ch.dice(&a) else {
             let from = slot.map(|s| format!(" [{}]", self.res_name(&s))).unwrap_or_default();
             return self.say(format!("{}{from}: {}", a.name, self.ch.fmt(&a.desc)), Tone::Norm);
         };
@@ -485,6 +516,7 @@ impl App {
         let mut bonus = a.bonus;
         if a.dmg_ability { bonus += a.ability.as_deref().map_or(0, |ab| self.ch.md(ab)); }
         if a.level_bonus { bonus += self.ch.level as i32; }
+        if !a.heal { bonus += self.ch.toggle_bonus(a.ability.as_deref()); }
         if !a.heal && self.ch.toggles.iter().any(|t| t.dmg_bonus_prof && self.ch.active.contains(&t.name)) { bonus += prof; }
         if a.heal {
             self.heal(base + bonus);
@@ -561,9 +593,10 @@ impl App {
     }
 
     fn extras_options(&self) -> Vec<(&'static str, &'static str)> {
-        let mut v = vec![("skill", "Skill proficiency")];
+        let mut v = vec![("ident", "Name / race / background"), ("scores", "Ability scores"), ("skill", "Add skill proficiency"), ("unskill", "Remove skill proficiency"),
+                         ("armor", "Armor and shield"), ("weapon", "Add weapon attack"), ("custom", "Add custom attack"), ("rmaction", "Remove attack or action")];
         if self.ch.maneuver_pool.is_some() { v.push(("learn", "Learn maneuver")); v.push(("replace", "Replace maneuver")); }
-        v.extend([("note", "Feature / note"), ("ability", "+1 ability"), ("done", "Done")]);
+        v.extend([("feat", "Add feat"), ("resource", "Add resource"), ("rmres", "Remove resource"), ("note", "Add feature / note"), ("rmfeat", "Remove feature"), ("done", "Done")]);
         v
     }
 
@@ -601,8 +634,6 @@ impl App {
                 if optional { items.push("None".into()); }
                 self.list(&format!("+{n} to which ability?"), items, step, false);
             }
-            Step::FeatName => self.input("Feat name", step, false),
-            Step::FeatDesc(_) => self.input("What does it do?", step, false),
             Step::Maneuver { required } => {
                 let items = self.unknown_maneuvers().iter().map(|m| format!("{m}: {}", maneuvers()[m])).collect();
                 self.list("Learn a maneuver", items, step, !required);
@@ -611,7 +642,7 @@ impl App {
             Step::Forget => { let items = self.ch.maneuvers.clone(); self.list("Forget which maneuver?", items, step, true) }
             Step::Extras => {
                 let items = self.extras_options().iter().map(|o| o.1.to_string()).collect();
-                self.list("Anything else?", items, step, true);
+                self.list("Edit sheet", items, step, true);
             }
             Step::Skill => {
                 let items = SKILLS.iter().filter(|(n, _)| !self.ch.skills.iter().any(|s| s == n)).map(|(n, a)| format!("{n} ({a})")).collect();
@@ -625,7 +656,17 @@ impl App {
                 let items = c.subclasses.iter().map(|s| format!("{} ({})", s.name, crate::lists::abbr(&s.source))).collect();
                 self.list(&c.subclass_title.clone(), items, step, false);
             }
+            Step::Expertise => {
+                self.query.clear();
+                let items = self.expertise_options();
+                self.modal = Some(Modal::Multi { title: "Expertise: choose 2 skills".into(), on: vec![false; items.len()], items, sel: 0, limit: 2, step });
+            }
             Step::Wiz(w) => self.wiz_open(w),
+            Step::DeleteSheet(i) => {
+                let n = self.sheets[i].1.name.clone();
+                self.list(&format!("Delete {n}? This removes the file."), vec!["No".into(), "Yes, delete".into()], step, true);
+            }
+            _ => self.edit_open(step),
         }
     }
 
@@ -676,19 +717,13 @@ impl App {
                 self.reset(false);
                 self.say(format!("Short Rest: +{healed} HP, short-rest resources back."), Tone::Good);
             }
-            Step::FeatName => self.open(Step::FeatDesc(if text.is_empty() { "Feat".into() } else { text })),
-            Step::FeatDesc(name) => {
-                self.snap_in_flow();
-                self.ch.features.push(Feature { name: format!("Feat: {name}"), desc: text });
-                self.queue.push_front(Step::Ability { n: 1, optional: true });
-            }
             Step::NoteName => { if !text.is_empty() { self.open(Step::NoteDesc(text)); } }
             Step::NoteDesc(name) => { self.snap_in_flow(); self.ch.features.push(Feature { name, desc: text }); }
             Step::JournalAdd => {
                 if !text.is_empty() { self.snap(); self.ch.journal.push(format!("- {text}")); self.jsel = self.ch.journal.len() - 1; }
             }
             Step::Wiz(w) => self.wiz_input(w, text),
-            _ => {}
+            _ => self.edit_input(step, text),
         }
     }
 
@@ -711,7 +746,7 @@ impl App {
             Step::Asi => match i {
                 0 => self.open(Step::Ability { n: 2, optional: false }),
                 1 => { self.queue.push_front(Step::Ability { n: 1, optional: false }); self.open(Step::Ability { n: 1, optional: false }) }
-                _ => self.open(Step::FeatName),
+                _ => self.open(Step::FeatList),
             },
             Step::Ability { n, .. } => {
                 if let Some(ab) = self.ch.ability_names().get(i).copied() {
@@ -748,19 +783,22 @@ impl App {
             }
             Step::Subclass => { if let Some(c) = self.class_data() { self.choose_subclass(c, i); } }
             Step::Wiz(w) => self.wiz_pick(w, i),
+            Step::DeleteSheet(n) => { if i == 1 { self.delete_sheet(n); } }
             Step::Extras => {
                 let key = self.extras_options()[i].0;
                 if key == "done" { return; }
                 self.queue.push_front(Step::Extras);
                 self.open(match key {
+                    "ident" => Step::Ident, "scores" => Step::Scores, "unskill" => Step::Unskill, "armor" => Step::ArmorPick,
+                    "weapon" => Step::WeaponPick, "custom" => Step::CustomName, "rmaction" => Step::RmAction, "feat" => Step::FeatList,
+                    "resource" => Step::ResName, "rmres" => Step::RmRes, "rmfeat" => Step::RmFeat,
                     "skill" => Step::Skill,
                     "learn" => Step::Maneuver { required: false },
                     "replace" => Step::Forget,
-                    "note" => Step::NoteName,
-                    _ => Step::Ability { n: 1, optional: false },
+                    _ => Step::NoteName,
                 });
             }
-            _ => {}
+            _ => self.edit_pick(step, i),
         }
     }
 
@@ -821,6 +859,10 @@ impl App {
         self.ch.init();
     }
 
+    fn expertise_options(&self) -> Vec<String> {
+        self.ch.skills.iter().filter(|s| !self.ch.expertise.contains(s)).cloned().collect()
+    }
+
     fn level_up(&mut self) {
         let Some(p) = self.ch.prog() else { return self.say("No level table for this sheet.", Tone::Warn) };
         if self.ch.level >= 20 { return self.say("Already level 20.", Tone::Dim); }
@@ -840,6 +882,7 @@ impl App {
         if self.class_data().is_some_and(|c| c.subclass_level == l) && !self.ch.progression.as_deref().unwrap_or("").contains('/') {
             self.queue.push_back(Step::Subclass);
         }
+        if self.class_data().is_some_and(|c| c.expertise.contains(&l)) { self.queue.push_back(Step::Expertise); }
         if asi { self.queue.push_back(Step::Asi); }
         for _ in 0..new { self.queue.push_back(Step::Maneuver { required: true }); }
         if new > 0 || (asi && self.ch.maneuver_pool.is_some()) { self.queue.push_back(Step::ReplaceAsk); }

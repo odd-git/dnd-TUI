@@ -1,0 +1,535 @@
+{
+ "name": "Rogue",
+ "hit_die": 8,
+ "saves": [
+  "DEX",
+  "INT"
+ ],
+ "skills": {
+  "choose": 4,
+  "from": [
+   "Acrobatics",
+   "Athletics",
+   "Deception",
+   "Insight",
+   "Intimidation",
+   "Investigation",
+   "Perception",
+   "Performance",
+   "Persuasion",
+   "Sleight of Hand",
+   "Stealth"
+  ]
+ },
+ "armor": [
+  "Light"
+ ],
+ "weapons": [
+  "Simple",
+  "Hand crossbows",
+  "Longswords",
+  "Rapiers",
+  "Shortswords"
+ ],
+ "tools": [
+  "Thieves' tools"
+ ],
+ "equipment": [
+  "(a) a rapier or (b) a shortsword",
+  "(a) a shortbow and quiver of 20 arrows or (b) a shortsword",
+  "(a) a burglar's pack, (b) dungeoneer's pack, or (c) an explorer's pack",
+  "Leather armor, two daggers, and thieves' tools"
+ ],
+ "asi_levels": [
+  4,
+  8,
+  10,
+  12,
+  16,
+  19
+ ],
+ "subclass_level": 3,
+ "subclass_title": "Roguish Archetype",
+ "attacks_per_action": {
+  "1": 1
+ },
+ "resources": [],
+ "tables": {
+  "sneak": {
+   "1": 1,
+   "3": 2,
+   "5": 3,
+   "7": 4,
+   "9": 5,
+   "11": 6,
+   "13": 7,
+   "15": 8,
+   "17": 9,
+   "19": 10
+  }
+ },
+ "actions": [
+  {
+   "name": "Sneak Attack",
+   "desc": "Once per turn: finesse or ranged weapon, with advantage or an ally next to the target",
+   "dice": [
+    1,
+    6
+   ],
+   "dice_table": "sneak",
+   "dmg_type": "extra"
+  }
+ ],
+ "toggles": [],
+ "expertise": [
+  1,
+  6
+ ],
+ "unarmored": null,
+ "features": {
+  "1": [
+   {
+    "name": "Expertise",
+    "desc": "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make..."
+   },
+   {
+    "name": "Sneak Attack",
+    "desc": "Beginning at 1st level, you know how to strike subtly and exploit a foe's distraction. Once per turn, you can deal an extra 1d6 damage to one creature you hit with an attack if you have advantage on..."
+   },
+   {
+    "name": "Thieves' Cant",
+    "desc": "During your rogue training you learned thieves' cant, a secret mix of dialect, jargon, and code that allows you to hide messages in seemingly normal conversation. Only another creature that knows..."
+   }
+  ],
+  "2": [
+   {
+    "name": "Cunning Action",
+    "desc": "Starting at 2nd level, your quick thinking and agility allow you to move and act quickly. You can take a bonus action on each of your turns in combat. This action can be used only to take the Dash..."
+   }
+  ],
+  "5": [
+   {
+    "name": "Uncanny Dodge",
+    "desc": "Starting at 5th level, when an attacker that you can see hits you with an attack, you can use your reaction to halve the attack's damage against you."
+   }
+  ],
+  "6": [
+   {
+    "name": "Expertise",
+    "desc": "At 1st level, choose two of your skill proficiencies, or one of your skill proficiencies and your proficiency with thieves' tools. Your proficiency bonus is doubled for any ability check you make..."
+   }
+  ],
+  "7": [
+   {
+    "name": "Evasion",
+    "desc": "Beginning at 7th level, you can nimbly dodge out of the way of certain area effects, such as a red dragon's fiery breath or an Ice Storm spell. When you are subjected to an effect that allows you to..."
+   }
+  ],
+  "11": [
+   {
+    "name": "Reliable Talent",
+    "desc": "By 11th level, you have refined your chosen skills until they approach perfection. Whenever you make an ability check that lets you add your proficiency bonus, you can treat a d20 roll of 9 or lower..."
+   }
+  ],
+  "14": [
+   {
+    "name": "Blindsense",
+    "desc": "Starting at 14th level, if you are able to hear, you are aware of the location of any hidden or invisible creature within 10 feet of you."
+   }
+  ],
+  "15": [
+   {
+    "name": "Slippery Mind",
+    "desc": "By 15th level, you have acquired greater mental strength. You gain proficiency in Wisdom saving throws."
+   }
+  ],
+  "18": [
+   {
+    "name": "Elusive",
+    "desc": "Beginning at 18th level, you are so evasive that attackers rarely gain the upper hand against you. No attack roll has advantage against you while you aren't incapacitated."
+   }
+  ],
+  "20": [
+   {
+    "name": "Stroke of Luck",
+    "desc": "At 20th level, you have an uncanny knack for succeeding when you need to. If your attack misses a target within range, you can turn the miss into a hit. Alternatively, if you fail an ability check..."
+   }
+  ]
+ },
+ "styles": [],
+ "subclasses": [
+  {
+   "name": "Arcane Trickster",
+   "source": "Player's Handbook",
+   "needs_spells": true,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Spellcasting",
+      "desc": "When you reach 3rd level, you augment your martial prowess with the ability to cast spells. You learn three cantrips: Mage Hand and two..."
+     },
+     {
+      "name": "Mage Hand Legerdemain",
+      "desc": "Starting at 3rd level, when you cast Mage Hand, you can make the spectral hand invisible, and you can perform the following additional..."
+     }
+    ],
+    "9": [
+     {
+      "name": "Magical Ambush",
+      "desc": "Starting at 9th level, if you are hidden from a creature when you cast a spell on it, the creature has disadvantage on any saving throw it..."
+     }
+    ],
+    "13": [
+     {
+      "name": "Versatile Trickster",
+      "desc": "At 13th level, you gain the ability to distract targets with your Mage Hand. As a bonus action on your turn, you can designate a creature..."
+     }
+    ],
+    "17": [
+     {
+      "name": "Spell Thief",
+      "desc": "At 17th level, you gain the ability to magically steal the knowledge of how to cast a spell from another spellcaster. Immediately after a..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Assassin",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Bonus Proficiencies",
+      "desc": "When you choose this archetype at 3rd level, you gain proficiency with the disguise kit and the poisoner's kit."
+     },
+     {
+      "name": "Assassinate",
+      "desc": "Starting at 3rd level, you are at your deadliest when you get the drop on your enemies. You have advantage on attack rolls against any..."
+     }
+    ],
+    "9": [
+     {
+      "name": "Infiltration Expertise",
+      "desc": "Starting at 9th level, you can unfailingly create false identities for yourself. You must spend seven days and 25 gp to establish the..."
+     }
+    ],
+    "13": [
+     {
+      "name": "Impostor",
+      "desc": "At 13th level, you gain the ability to unerringly mimic another person's speech, writing, and behavior. You must spend at least three hours..."
+     }
+    ],
+    "17": [
+     {
+      "name": "Death Strike",
+      "desc": "Starting at 17th level, you become a master of instant death. When you attack and hit a creature that is surprised, it must make a..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Inquisitive",
+   "source": "Xanathar's Guide to Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Ear for Deceit",
+      "desc": "When you choose this archetype at 3rd level, you develop a keen ear for picking out lies. Whenever you make a Wisdom (Insight) check to..."
+     },
+     {
+      "name": "Eye for Detail",
+      "desc": "Starting at 3rd level, you can use a bonus action to make a Wisdom (Perception) check to spot a hidden creature or object or to make an..."
+     },
+     {
+      "name": "Insightful Fighting",
+      "desc": "At 3rd level, you gain the ability to decipher an opponent's tactics and develop a counter to them. As a bonus action, you make a Wisdom..."
+     }
+    ],
+    "9": [
+     {
+      "name": "Steady Eye",
+      "desc": "At 9th level, you gain advantage on any Wisdom (Perception) or Intelligence (Investigation) check if you move no more than half your speed..."
+     }
+    ],
+    "13": [
+     {
+      "name": "Unerring Eye",
+      "desc": "At 13th level, your senses are almost impossible to foil. As an action, you sense the presence of illusions, shapechangers not in their..."
+     }
+    ],
+    "17": [
+     {
+      "name": "Eye for Weakness",
+      "desc": "At 17th level, you learn to exploit a creature's weaknesses by carefully studying its tactics and movement. While your Insightful Fighting..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Mastermind",
+   "source": "Xanathar's Guide to Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Master of Intrigue",
+      "desc": "When you choose this archetype at 3rd level, you gain proficiency with the disguise kit, the forgery kit, and one gaming set of your..."
+     },
+     {
+      "name": "Master of Tactics",
+      "desc": "Starting at 3rd level, you can use the Help action as a bonus action. Additionally, when you use the Help action to aid an ally in..."
+     }
+    ],
+    "9": [
+     {
+      "name": "Insightful Manipulator",
+      "desc": "Starting at 9th level, if you spend at least 1 minute observing or interacting with another creature outside combat, you can learn certain..."
+     }
+    ],
+    "13": [
+     {
+      "name": "Misdirection",
+      "desc": "Beginning at 13th level, you can sometimes cause another creature to suffer an attack meant for you. When you are targeted by an attack..."
+     }
+    ],
+    "17": [
+     {
+      "name": "Soul of Deceit",
+      "desc": "Starting at 17th level, your thoughts can't be read by telepathy or other means, unless you allow it. You can present false thoughts by..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Phantom",
+   "source": "Tasha's Cauldron of Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Whispers of the Dead",
+      "desc": "When you choose this archetype at 3rd level, echoes of those who have died cling to you. Whenever you finish a short or long rest, you can..."
+     },
+     {
+      "name": "Wails from the Grave",
+      "desc": "At 3rd level, as you nudge someone closer to the grave, you can channel the power of death to harm someone else as well. Immediately after..."
+     }
+    ],
+    "9": [
+     {
+      "name": "Tokens of the Departed",
+      "desc": "At 9th level, when a life ends in your presence, you're able to snatch a token from the departing soul, a sliver of its life essence that..."
+     }
+    ],
+    "13": [
+     {
+      "name": "Ghost Walk",
+      "desc": "At 13th level, you can phase partially into the realm of the dead, becoming like a ghost. As a bonus action, you assume a spectral form...."
+     }
+    ],
+    "17": [
+     {
+      "name": "Death's Friend",
+      "desc": "At 17th level, your association with death has become so close that you gain the following benefits: When you use your Wails from the..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Scout",
+   "source": "Xanathar's Guide to Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Skirmisher",
+      "desc": "Starting at 3rd level, you are difficult to pin down during a fight. You can move up to half your speed as a reaction when an enemy ends..."
+     },
+     {
+      "name": "Survivalist",
+      "desc": "When you choose this archetype at 3rd level, you gain proficiency in the Nature and Survival skills if you don't already have it. Your..."
+     }
+    ],
+    "9": [
+     {
+      "name": "Superior Mobility",
+      "desc": "At 9th level, your walking speed increases by 10 feet. If you have a climbing or swimming speed, this increase applies to that speed as..."
+     }
+    ],
+    "13": [
+     {
+      "name": "Ambush Master",
+      "desc": "Starting at 13th level, you excel at leading ambushes and acting first in a fight. You have advantage on initiative rolls. In addition, the..."
+     }
+    ],
+    "17": [
+     {
+      "name": "Sudden Strike",
+      "desc": "Starting at 17th level, you can strike with deadly speed. If you take the Attack action on your turn, you can make one additional attack as..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Soulknife",
+   "source": "Tasha's Cauldron of Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Psionic Power",
+      "desc": "Starting at 3rd level, you harbor a wellspring of psionic energy within yourself. This energy is represented by your Psionic Energy dice..."
+     },
+     {
+      "name": "Psychic Blades",
+      "desc": "Also at 3rd level, You can manifest your psionic power as shimmering blades of psychic energy. Whenever you take the Attack action, you can..."
+     }
+    ],
+    "9": [
+     {
+      "name": "Soul Blades",
+      "desc": "Starting at 9th level, your Psychic Blades are now an expression of your psi-suffused soul, giving you these powers that use your Psionic..."
+     }
+    ],
+    "13": [
+     {
+      "name": "Psychic Veil",
+      "desc": "At 13th level, you can weave a veil of psychic static to mask yourself. As an action, you can magically become invisible, along with..."
+     }
+    ],
+    "17": [
+     {
+      "name": "Rend Mind",
+      "desc": "When you reach 17th level, you can sweep your Psychic Blade directly through a creature's mind. When you use your Psychic Blades to deal..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Swashbuckler",
+   "source": "Xanathar's Guide to Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Fancy Footwork",
+      "desc": "When you choose this archetype at 3rd level, you learn how to land a strike and then slip away without reprisal. During your turn, if you..."
+     },
+     {
+      "name": "Rakish Audacity",
+      "desc": "Starting at 3rd level, your confidence propels you into battle. You can give yourself a bonus to your initiative rolls equal to your..."
+     }
+    ],
+    "9": [
+     {
+      "name": "Panache",
+      "desc": "At 9th level, your charm becomes extraordinarily beguiling. As an action, you can make a Charisma (Persuasion) check contested by a..."
+     }
+    ],
+    "13": [
+     {
+      "name": "Elegant Maneuver",
+      "desc": "Starting at 13th level, you can use a bonus action on your turn to gain advantage on the next Dexterity (Acrobatics) or Strength..."
+     }
+    ],
+    "17": [
+     {
+      "name": "Master Duelist",
+      "desc": "Beginning at 17th level, your mastery of the blade lets you turn failure into success in combat. If you miss with an attack roll, you can..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Thief",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Fast Hands",
+      "desc": "Starting at 3rd level, you can use the bonus action granted by your Cunning Action to make a Dexterity (Sleight of Hand) check, use your..."
+     },
+     {
+      "name": "Second-Story Work",
+      "desc": "When you choose this archetype at 3rd level, you gain the ability to climb faster than normal; climbing no longer costs you extra movement...."
+     }
+    ],
+    "9": [
+     {
+      "name": "Supreme Sneak",
+      "desc": "Starting at 9th level, you have advantage on a Dexterity (Stealth) check if you move no more than half your speed on the same turn."
+     }
+    ],
+    "13": [
+     {
+      "name": "Use Magic Device",
+      "desc": "By 13th level, you have learned enough about the workings of magic that you can improvise the use of items even when they are not intended..."
+     }
+    ],
+    "17": [
+     {
+      "name": "Thief's Reflexes",
+      "desc": "When you reach 17th level, you have become adept at laying ambushes and quickly escaping danger. You can take two turns during the first..."
+     }
+    ]
+   }
+  }
+ ]
+}

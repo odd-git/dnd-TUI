@@ -125,7 +125,7 @@ fn draw_picker(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
         hot.push((new, Cmd::New));
     }
     let hint = Rect::new(inner.x, inner.y + inner.height.saturating_sub(1), inner.width, 1);
-    f.render_widget(Paragraph::new(" ↑↓ select, Enter open, N new, Q quit").style(tone(Tone::Dim)), hint);
+    f.render_widget(Paragraph::new(" ↑↓ select, Enter open, N new, D delete, Q quit").style(tone(Tone::Dim)), hint);
 }
 
 fn status_lines(app: &App) -> Vec<Line<'static>> {
@@ -167,7 +167,7 @@ fn status_lines(app: &App) -> Vec<Line<'static>> {
         let die = c.res_die(&def.id).map(|x| format!(" d{x}")).unwrap_or_default();
         let text = match c.res_max(&def.id) {
             Some(0) => continue,
-            Some(max) if def.pips => format!("{}{die} {}{}", def.name, "●".repeat(cur.min(max) as usize), "○".repeat((max - cur.min(max)) as usize)),
+            Some(max) if def.pips && max <= 12 => format!("{}{die} {}{}", def.name, "●".repeat(cur.min(max) as usize), "○".repeat((max - cur.min(max)) as usize)),
             Some(max) => format!("{}{die} {cur}/{max}", def.name),
             None => format!("{}: {cur}", def.name),
         };
@@ -191,10 +191,12 @@ fn action_row(c: &Character, it: Item) -> (String, bool) {
         }
         Item::Action(i) => {
             let a = &c.actions[i];
-            let hit = match (&a.ability, a.dice) { (Some(ab), Some(_)) => format!("{:+}", c.md(ab) + c.prof()), (None, Some(_)) => if a.heal { "heal".into() } else { "auto".into() }, _ => String::new() };
-            let dmg = a.dice.map(|(n, s)| {
+            let dice = c.dice(a);
+            let hit = match (&a.ability, dice) { (Some(ab), Some(_)) => format!("{:+}", c.md(ab) + c.prof()), (None, Some(_)) => if a.heal { "heal".into() } else { "auto".into() }, _ => String::new() };
+            let dmg = dice.map(|(n, s)| {
                 let mut b = a.bonus + if a.level_bonus { c.level as i32 } else { 0 };
                 if a.dmg_ability { b += a.ability.as_deref().map_or(0, |x| c.md(x)); }
+                b += c.toggle_bonus(a.ability.as_deref());
                 format!("{}d{s}{}", if n == 1 { String::new() } else { n.to_string() }, if b != 0 { format!("{b:+}") } else { String::new() })
             }).unwrap_or_default();
             let left = a.uses.as_ref().map(|u| c.res.get(u).copied().unwrap_or(0));

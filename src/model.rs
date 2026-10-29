@@ -79,6 +79,7 @@ pub struct ActionDef {
     pub heal: bool,
     pub uses: Option<String>,      // resource spent
     pub cost: Vec<String>,         // first resource with something left is spent (spell slots)
+    pub dice_table: Option<String>, // level table giving the number of dice (Sneak Attack)
 }
 
 #[derive(Serialize, Deserialize, Clone, Default)]
@@ -87,6 +88,10 @@ pub struct Toggle {
     pub name: String,
     pub crit_min: Option<u32>,
     pub dmg_bonus_prof: bool,
+    pub desc: String,
+    pub uses: Option<String>,        // resource spent when switched on (Rage)
+    pub dmg_table: Option<String>,   // level table of a flat damage bonus
+    pub dmg_ability: Option<String>, // ...applied to attacks made with this ability
 }
 
 #[derive(Serialize, Deserialize, Clone)]
@@ -100,8 +105,13 @@ pub struct Character {
     pub abilities: BTreeMap<String, i32>,
     #[serde(default)] pub save_profs: Vec<String>,
     #[serde(default)] pub skills: Vec<String>,
+    #[serde(default)] pub expertise: Vec<String>, // double proficiency
     pub ac_base: Option<i32>, // armor base (+ shield, style bonus) before DEX
     #[serde(default)] pub ac_dex_max: Option<i32>, // medium armor 2, heavy 0; None = full DEX
+    #[serde(default)] pub ac_extra: Option<String>, // Unarmored Defense: second ability added with no armor
+    #[serde(default)] pub ac_extra_shield: bool,    // ...and still while carrying a shield
+    #[serde(default)] pub ac_armored: bool,
+    #[serde(default)] pub ac_shield: bool,
     pub spell_ability: Option<String>,
     pub progression: Option<String>,
     pub maneuver_pool: Option<String>,
@@ -128,7 +138,26 @@ impl Character {
     pub fn md(&self, ab: &str) -> i32 { mod_of(self.abilities.get(ab).copied().unwrap_or(10)) }
     pub fn ac(&self) -> Option<i32> {
         let dex = self.md("DEX");
-        Some(self.ac_base? + self.ac_dex_max.map_or(dex, |m| dex.min(m)))
+        let extra = match &self.ac_extra {
+            Some(ab) if !self.ac_armored && (self.ac_extra_shield || !self.ac_shield) => self.md(ab),
+            _ => 0,
+        };
+        Some(self.ac_base? + self.ac_dex_max.map_or(dex, |m| dex.min(m)) + extra)
+    }
+
+    /// Flat damage from active toggles (Rage) for an attack made with `ability`.
+    pub fn toggle_bonus(&self, ability: Option<&str>) -> i32 {
+        self.toggles.iter().filter(|t| self.active.contains(&t.name))
+            .filter(|t| t.dmg_ability.is_some() && t.dmg_ability.as_deref() == ability)
+            .filter_map(|t| Some(at(self.prog()?.resources.get(t.dmg_table.as_ref()?)?, self.level) as i32))
+            .sum()
+    }
+    /// Dice of an action, the count coming from a level table when it has one.
+    pub fn dice(&self, a: &ActionDef) -> Option<(u32, u32)> {
+        match &a.dice_table {
+            Some(t) => Some((self.prog().and_then(|p| p.resources.get(t)).map_or(1, |t| at(t, self.level)), a.dice.map_or(6, |d| d.1))),
+            None => a.dice,
+        }
     }
     pub fn dc(&self, ab: &str) -> i32 { 8 + self.prof() + self.md(ab) }
     pub fn title(&self) -> String { self.class_title.replace("{level}", &self.level.to_string()) }
@@ -184,7 +213,8 @@ impl Character {
             None if ABILITIES.contains(&name) => return self.md(name),
             None => self.md(SKILLS.iter().find(|(n, _)| *n == name).map_or("INT", |x| x.1)),
         };
-        base + if self.proficient(name) { self.prof() } else { 0 }
+        let mult = if self.expertise.iter().any(|s| s == name) { 2 } else { i32::from(self.proficient(name)) };
+        base + mult * self.prof()
     }
 
     /// Abilities, saves and proficient skills (the quick-roll list).

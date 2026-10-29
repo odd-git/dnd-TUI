@@ -14,7 +14,7 @@ const METHODS: [&str; 4] = ["Standard array (15 14 13 12 10 8)", "Roll 4d6, drop
 #[derive(Clone, Copy)]
 pub enum Wz {
     Name, Level, Lineage, Sub, Class, Subclass, Background, Method, Score(usize), Asi(usize),
-    ClassSkills, FreeSkills, Languages, Tool, Feat(usize), FeatPick(usize), Style, Maneuvers,
+    ClassSkills, FreeSkills, Languages, Tool, Feat(usize), FeatPick(usize), Style, Maneuvers, Expertise,
     Armor, Shield, Weapons, Review,
 }
 
@@ -55,6 +55,8 @@ impl App {
         v.extend(d.free_skills.clone());
         v
     }
+
+    fn expertise_count(&self) -> usize { 2 * self.class().expertise.iter().filter(|&&l| l <= self.dr().level).count() }
 
     fn free_skill_count(&self) -> usize { (self.eff().extra_skills + self.bg().map_or(0, |b| b.extra_skills)) as usize }
     fn language_count(&self) -> usize { (self.eff().extra_languages + self.bg().map_or(0, |b| b.extra_languages)) as usize }
@@ -188,9 +190,14 @@ impl App {
             }
             Wz::Maneuvers => {
                 let n = self.maneuver_count();
-                if n == 0 { return skip(self, Wz::Armor); }
+                if n == 0 { return skip(self, Wz::Expertise); }
                 let items = maneuvers().iter().map(|(k, v)| format!("{k}: {v}")).collect();
                 self.wiz_multi(&format!("Maneuvers: choose {n}"), items, n, w);
+            }
+            Wz::Expertise => {
+                let n = self.expertise_count();
+                if n == 0 { return skip(self, Wz::Armor); }
+                self.wiz_multi(&format!("Expertise (double proficiency): choose {n}"), self.known_skills(), n, w);
             }
             Wz::Armor => {
                 let mut items = vec!["No armor".to_string()];
@@ -339,6 +346,11 @@ impl App {
             Wz::Maneuvers => {
                 let names: Vec<String> = maneuvers().keys().cloned().collect();
                 self.d().maneuvers = picked.iter().map(|&i| names[i].clone()).collect();
+                self.wiz_open(Wz::Expertise);
+            }
+            Wz::Expertise => {
+                let opts = self.known_skills();
+                self.d().expertise = picked.iter().map(|&i| opts[i].clone()).collect();
                 self.wiz_open(Wz::Armor);
             }
             Wz::Weapons => {

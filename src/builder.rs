@@ -18,6 +18,7 @@ pub struct Draft {
     pub asi_picks: Vec<String>,   // one ability per "choose" slot of the lineage, in order
     pub class_skills: Vec<String>,
     pub free_skills: Vec<String>, // lineage/background "of your choice"
+    pub expertise: Vec<String>,
     pub feats: Vec<String>,
     pub feat_picks: Vec<String>,  // ability raised by each feat, "" when it has no choice
     pub style: Option<String>,
@@ -40,7 +41,7 @@ fn put_feature(v: &mut Vec<Feature>, f: &Feature) {
     }
 }
 
-fn weapon_actions(w: &Weapon, c: &Character, style: Option<&str>) -> Vec<ActionDef> {
+pub fn weapon_actions(w: &Weapon, c: &Character, style: Option<&str>) -> Vec<ActionDef> {
     // finesse: whichever of STR/DEX is higher
     let ability = if w.ranged || (w.finesse && c.md("DEX") >= c.md("STR")) { "DEX" } else { "STR" };
     let mk = |name: String, desc: String, bonus: i32| ActionDef {
@@ -60,6 +61,23 @@ fn weapon_actions(w: &Weapon, c: &Character, style: Option<&str>) -> Vec<ActionD
         }
     }
     out
+}
+
+/// (AC before DEX, DEX cap) for the armor, shield and Defense style.
+pub fn armor_class(armor: Option<&str>, shield: bool, defense: bool) -> (Option<i32>, Option<i32>) {
+    let a = armor.and_then(|a| lists::armors().iter().find(|x| x.name == a));
+    let (base, cap) = match a {
+        Some(a) => (a.ac + i32::from(defense), match a.dex.as_str() { "none" => Some(0), "max2" => Some(2), _ => None }),
+        None => (10, None),
+    };
+    (Some(base + if shield { 2 } else { 0 }), cap)
+}
+
+/// Effect tag of the fighting style written on a sheet ("thrown", "dueling", "defense"...).
+pub fn style_effect(c: &Character) -> Option<&'static str> {
+    let class = lists::class_data(c.progression.as_deref()?.split('/').next()?)?;
+    let desc = &c.features.iter().find(|f| f.name == "Fighting Style")?.desc;
+    class.styles.iter().find(|s| desc.starts_with(&s.name))?.effect.as_deref()
 }
 
 pub fn build(d: &Draft) -> Character {
@@ -116,15 +134,20 @@ pub fn build(d: &Draft) -> Character {
         abilities,
         save_profs: class.saves.clone(),
         skills,
+        expertise: d.expertise.clone(),
         ac_base: None,
         ac_dex_max: None,
+        ac_extra: class.unarmored.as_ref().map(|u| u.ability.clone()),
+        ac_extra_shield: class.unarmored.as_ref().is_some_and(|u| u.shield),
+        ac_armored: d.armor.is_some(),
+        ac_shield: d.shield,
         spell_ability: None,
         progression: Some(match sub { Some(s) => format!("{}/{}", class.name, s.name), None => class.name.clone() }),
         maneuver_pool: sub.and_then(|s| s.maneuver_pool.clone()),
         maneuvers: d.maneuvers.clone(),
         resources,
         actions: vec![],
-        toggles: vec![],
+        toggles: class.toggles.clone(),
         features,
         info: vec![],
         journal: vec![],
@@ -136,14 +159,8 @@ pub fn build(d: &Draft) -> Character {
     };
 
     // armor class
-    let armor = d.armor.as_ref().and_then(|a| lists::armors().iter().find(|x| &x.name == a));
     let defense = d.style.as_ref().and_then(|s| class.styles.iter().find(|x| &x.name == s)).and_then(|s| s.effect.as_deref()) == Some("defense");
-    let (base, cap) = match armor {
-        Some(a) => (a.ac + i32::from(defense), match a.dex.as_str() { "none" => Some(0), "max2" => Some(2), _ => None }),
-        None => (10, None),
-    };
-    c.ac_base = Some(base + if d.shield { 2 } else { 0 });
-    c.ac_dex_max = cap;
+    (c.ac_base, c.ac_dex_max) = armor_class(d.armor.as_deref(), d.shield, defense);
 
     // attacks from the chosen weapons, then the class actions
     let style = d.style.as_ref().and_then(|s| class.styles.iter().find(|x| &x.name == s)).and_then(|s| s.effect.as_deref());
@@ -208,6 +225,85 @@ mod tests {
         assert_eq!(a, b);
         assert_eq!(c.save_profs, paper.save_profs);
         assert!(c.actions.iter().any(|x| x.name == "Thrown dagger" && x.bonus == 2));
+    }
+
+    #[test]
+    fn armor_class_rules() {
+        assert_eq!(armor_class(Some("Chain Mail"), true, false), (Some(18), Some(0)));
+        assert_eq!(armor_class(Some("Halfplate"), false, true), (Some(16), Some(2)));
+        assert_eq!(armor_class(None, true, true), (Some(12), None));
+    }
+
+    fn barbarian(level: u32) -> Character {
+        let s = |x: &str| x.to_string();
+        build(&Draft {
+            name: s("Grok"), lineage: s("Human"), class: s("Barbarian"), subclass: Some(s("Berserker")), level, background: s("Soldier"),
+            base: [("STR", 15), ("DEX", 13), ("CON", 13), ("INT", 8), ("WIS", 10), ("CHA", 8)].iter().map(|(a, v)| (a.to_string(), *v)).collect(),
+            class_skills: vec![s("Athletics"), s("Perception")], ..Default::default()
+        })
+    }
+
+    #[test]
+    fn barbarian_matches_the_wikidot_table() {
+        // (level, proficiency, rages, rage damage); CON 14 after the Human bonus
+        for (lvl, prof, rages, dmg) in [(1, 2, 2, 2), (5, 3, 3, 2), (11, 4, 4, 3), (20, 6, 99, 4)] {
+            let c = barbarian(lvl);
+            assert_eq!(c.prof(), prof, "prof at {lvl}");
+            assert_eq!(c.res_max("rage"), Some(rages), "rages at {lvl}");
+            let mut raging = c.clone();
+            raging.active.push("Rage".into());
+            assert_eq!(raging.toggle_bonus(Some("STR")), dmg, "rage damage at {lvl}");
+            assert_eq!(raging.toggle_bonus(Some("DEX")), 0);
+        }
+        assert_eq!(barbarian(1).hp_max(), Some(14)); // 12 + CON 2
+        assert_eq!(barbarian(5).hp_max(), Some(14 + 4 * (7 + 2)));
+        assert!(barbarian(11).features.iter().any(|f| f.name == "Relentless Rage"));
+        assert!(!barbarian(5).features.iter().any(|f| f.name == "Relentless Rage"));
+        assert!(barbarian(3).features.iter().any(|f| f.name == "Frenzy"));
+    }
+
+    #[test]
+    fn unarmored_defense_stops_with_armor() {
+        let mut c = barbarian(1);
+        assert_eq!(c.ac(), Some(10 + 2 + 2)); // DEX 14, CON 14
+        c.ac_shield = true;
+        assert_eq!(c.ac(), Some(14)); // barbarians keep it with a shield
+        c.ac_armored = true;
+        (c.ac_base, c.ac_dex_max) = armor_class(Some("Leather"), false, false);
+        assert_eq!(c.ac(), Some(13));
+    }
+
+    fn rogue(level: u32) -> Character {
+        let s = |x: &str| x.to_string();
+        build(&Draft {
+            name: s("Vex"), lineage: s("Human"), class: s("Rogue"), subclass: Some(s("Thief")), level, background: s("Criminal"),
+            base: [("STR", 8), ("DEX", 15), ("CON", 13), ("INT", 12), ("WIS", 10), ("CHA", 14)].iter().map(|(a, v)| (a.to_string(), *v)).collect(),
+            class_skills: ["Acrobatics", "Insight", "Perception", "Persuasion"].iter().map(|x| s(x)).collect(),
+            expertise: vec![s("Stealth"), s("Acrobatics")], ..Default::default()
+        })
+    }
+
+    #[test]
+    fn rogue_matches_the_wikidot_table() {
+        // (level, proficiency, sneak attack dice)
+        for (lvl, prof, dice) in [(1, 2, 1), (5, 3, 3), (11, 4, 6), (20, 6, 10)] {
+            let c = rogue(lvl);
+            assert_eq!(c.prof(), prof, "prof at {lvl}");
+            let sneak = c.actions.iter().find(|a| a.name == "Sneak Attack").unwrap();
+            assert_eq!(c.dice(sneak), Some((dice, 6)), "sneak attack at {lvl}");
+        }
+        assert_eq!(rogue(1).hp_max(), Some(8 + 2)); // CON 14
+        assert!(rogue(1).features.iter().any(|f| f.name == "Expertise"));
+        assert!(rogue(3).features.iter().any(|f| f.name == "Fast Hands"));
+    }
+
+    #[test]
+    fn expertise_doubles_proficiency() {
+        let c = rogue(1);
+        // DEX 16: Stealth and Acrobatics expert (+3 +4), Insight plain (+0 +2), Arcana untrained
+        assert_eq!(c.check_mod("Stealth"), 3 + 4);
+        assert_eq!(c.check_mod("Insight"), 0 + 2);
+        assert_eq!(c.check_mod("Arcana"), 1);
     }
 
     #[test]

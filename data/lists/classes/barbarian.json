@@ -1,0 +1,517 @@
+{
+ "name": "Barbarian",
+ "hit_die": 12,
+ "saves": [
+  "STR",
+  "CON"
+ ],
+ "skills": {
+  "choose": 2,
+  "from": [
+   "Animal Handling",
+   "Athletics",
+   "Intimidation",
+   "Nature",
+   "Perception",
+   "Survival"
+  ]
+ },
+ "armor": [
+  "Light",
+  "Medium",
+  "Shield"
+ ],
+ "weapons": [
+  "Simple",
+  "Martial"
+ ],
+ "tools": [],
+ "equipment": [
+  "(a) a greataxe or (b) any martial melee weapon",
+  "(a) two handaxes or (b) any simple weapon",
+  "An explorer's pack and four javelins"
+ ],
+ "asi_levels": [
+  4,
+  8,
+  12,
+  16,
+  19
+ ],
+ "subclass_level": 3,
+ "subclass_title": "Primal Path",
+ "attacks_per_action": {
+  "1": 1,
+  "5": 2
+ },
+ "resources": [
+  {
+   "id": "rage",
+   "name": "Rage",
+   "recharge": "long",
+   "max": "table",
+   "pips": true
+  }
+ ],
+ "tables": {
+  "rage": {
+   "1": 2,
+   "3": 3,
+   "6": 4,
+   "12": 5,
+   "17": 6,
+   "20": 99
+  },
+  "rage_damage": {
+   "1": 2,
+   "9": 3,
+   "16": 4
+  }
+ },
+ "actions": [],
+ "toggles": [
+  {
+   "name": "Rage",
+   "uses": "rage",
+   "dmg_table": "rage_damage",
+   "dmg_ability": "STR",
+   "desc": "Resistance to bludgeoning, piercing, slashing; advantage on STR checks and saves; bonus melee damage"
+  }
+ ],
+ "unarmored": {
+  "ability": "CON",
+  "shield": true
+ },
+ "features": {
+  "1": [
+   {
+    "name": "Rage",
+    "desc": "In battle, you fight with primal ferocity. On your turn, you can enter a rage as a bonus action. While raging, you gain the following benefits if you aren't wearing heavy armor: You have advantage on..."
+   },
+   {
+    "name": "Unarmored Defense",
+    "desc": "While you are not wearing any armor, your armor class equals 10 + your Dexterity modifier + your Constitution modifier. You can use a shield and still gain this benefit."
+   }
+  ],
+  "2": [
+   {
+    "name": "Reckless Attack",
+    "desc": "Starting at 2nd level, you can throw aside all concern for defense to attack with fierce desperation. When you make your first attack on your turn, you can decide to attack recklessly. Doing so gives..."
+   },
+   {
+    "name": "Danger Sense",
+    "desc": "At 2nd level, you gain an uncanny sense of when things nearby aren't as they should be, giving you an edge when you dodge away from danger. You have advantage on Dexterity saving throws against..."
+   }
+  ],
+  "5": [
+   {
+    "name": "Extra Attack",
+    "desc": "Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn."
+   },
+   {
+    "name": "Fast Movement",
+    "desc": "Starting at 5th level, your speed increases by 10 feet while you aren't wearing heavy armor."
+   }
+  ],
+  "7": [
+   {
+    "name": "Feral Instinct",
+    "desc": "By 7th level, your instincts are so honed that you have advantage on initiative rolls. Additionally, if you are surprised at the beginning of combat and aren't incapacitated, you can act normally on..."
+   }
+  ],
+  "9": [
+   {
+    "name": "Brutal Critical",
+    "desc": "Beginning at 9th level, you can roll one additional weapon damage die when determining the extra damage for a critical hit with a melee attack. This increases to two additional dice at 13th level and..."
+   }
+  ],
+  "11": [
+   {
+    "name": "Relentless Rage",
+    "desc": "Starting at 11th level, your rage can keep you fighting despite grievous wounds. If you drop to 0 hit points while you're raging and don't die outright, you can make a DC 10 Constitution saving..."
+   }
+  ],
+  "13": [
+   {
+    "name": "Brutal Critical",
+    "desc": "Beginning at 9th level, you can roll one additional weapon damage die when determining the extra damage for a critical hit with a melee attack. This increases to two additional dice at 13th level and..."
+   }
+  ],
+  "15": [
+   {
+    "name": "Persistent Rage",
+    "desc": "Beginning at 15th level, your rage is so fierce that it ends early only if you fall unconscious or if you choose to end it."
+   }
+  ],
+  "17": [
+   {
+    "name": "Brutal Critical",
+    "desc": "Beginning at 9th level, you can roll one additional weapon damage die when determining the extra damage for a critical hit with a melee attack. This increases to two additional dice at 13th level and..."
+   }
+  ],
+  "18": [
+   {
+    "name": "Indomitable Might",
+    "desc": "Beginning at 18th level, if your total for a Strength check is less than your Strength score, you can use that score in place of the total."
+   }
+  ],
+  "20": [
+   {
+    "name": "Primal Champion",
+    "desc": "At 20th level, you embody the power of the wilds. Your Strength and Constitution scores increase by 4. Your maximum for those scores is now 24. window['nitroAds'].createAd('wad-dnd5e-floating-video'..."
+   }
+  ]
+ },
+ "styles": [],
+ "subclasses": [
+  {
+   "name": "Ancestral Guardian",
+   "source": "Xanathar's Guide to Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Ancestral Protectors",
+      "desc": "Starting when you choose this path at 3rd level, spectral warriors appear when you enter your rage. While you're raging, the first creature..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Spirit Shield",
+      "desc": "Beginning at 6th level, the guardian spirits that aid you can provide supernatural protection to those you defend. If you are raging and..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Consult the Spirits",
+      "desc": "At 10th level, you gain the ability to consult with your ancestral spirits. When you do so, you cast the Augury or Clairvoyance spell..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Vengeful Ancestors",
+      "desc": "At 14th level, your ancestral spirits grow powerful enough to retaliate. When you use your Spirit Shield to reduce the damage of an attack..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Battlerager",
+   "source": "Sword Coast Adventurer's Guide",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Battlerager Armor",
+      "desc": "When you choose this path at 3rd level, you gain the ability to use spiked armor as a weapon. While you are wearing spiked armor and are..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Reckless Abandon",
+      "desc": "Beginning at 6th level, when you use Reckless Attack while raging, you also gain temporary hit points equal to your Constitution modifier..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Battlerager Charge",
+      "desc": "Beginning at 10th level, you can take the Dash action as a bonus action while you are raging."
+     }
+    ],
+    "14": [
+     {
+      "name": "Spiked Retribution",
+      "desc": "Starting at 14th level, when a creature within 5 feet of you hits you with a melee attack, the attacker takes 3 piercing damage if you are..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Beast",
+   "source": "Tasha's Cauldron of Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Form of the Beast",
+      "desc": "Starting when you choose this path at 3rd level, when you enter your rage, you can transform, revealing the bestial power within you. Until..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Bestial Soul",
+      "desc": "Beginning at 6th level, the feral power within you increases, causing the natural weapons of your Form of the Beast to count as magical for..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Infectious Fury",
+      "desc": "At 10th level, when you hit a creature with your natural weapons while you are raging, the beast within you can curse your target with..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Call the Hunt",
+      "desc": "At 14th level, the beast within you grows so powerful that you can spread its ferocity to others and gain resilience from them joining your..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Berserker",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Frenzy",
+      "desc": "Starting when you choose this path at 3rd level, you can go into a frenzy when you rage. If you do so, for the duration of your rage you..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Mindless Rage",
+      "desc": "Beginning at 6th level, you can't be charmed or frightened while raging. If you are charmed or frightened when you enter your rage, the..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Intimidating Presence",
+      "desc": "Beginning at 10th level, you can use your action to frighten someone with your menacing presence. When you do so, choose one creature that..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Retaliation",
+      "desc": "Starting at 14th level, when you take damage from a creature that is within 5 feet of you, you can use your reaction to make a melee weapon..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Giant",
+   "source": "Bigby Presents - Glory of the Giants",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Giant’s Power",
+      "desc": "When you choose this path, you learn to speak, read, and write Giant or one other language of your choice if you already know Giant...."
+     },
+     {
+      "name": "Giant’s Havoc",
+      "desc": "Your rages pull strength from the primal might of giants, transforming you into a hulking force of destruction. While raging, you gain the..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Elemental Cleaver",
+      "desc": "Your bond with the elemental might of giants grows, and you learn to infuse weapons with primordial energy. When you enter your rage, you..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Mighty Impel",
+      "desc": "Your connection to giant strength allows you to hurl both allies and enemies on the battlefield. As a bonus action while raging, you can..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Demiurgic Colossus",
+      "desc": "The primordial power of your rage intensifies. When you rage, your reach increases by 10 feet, your size can increase to Large or Huge..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Storm Herald",
+   "source": "Xanathar's Guide to Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Storm Aura",
+      "desc": "When you select this path at 3rd level, you emanate a stormy, magical aura while you rage. The aura extends 10 feet from you in every..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Storm Soul",
+      "desc": "At 6th level, the storm grants you benefits even when your aura isn't active. The benefits are based on the environment you chose for your..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Shielding Storm",
+      "desc": "At 10th level, you learn to use your mastery of the storm to protect others. Each creature of your choice has the damage resistance you..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Raging Storm",
+      "desc": "At 14th level, the power of the storm you channel grows mightier, lashing out at your foes. The effect is based on the environment you..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Totem Warrior",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Spirit Seeker",
+      "desc": "Yours is a path that seeks attunement with the natural world, giving you a kinship with beasts. At 3rd level when you adopt this path, you..."
+     },
+     {
+      "name": "Totem Spirit",
+      "desc": "At 3rd level, when you adopt this path, you choose a totem spirit and gain its feature. You must make or acquire a physical totem object –..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Aspect of the Beast",
+      "desc": "At 6th level, you gain a magical benefit based on the totem animal of your choice. You can choose the same animal you selected at 3rd level..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Spirit Walker",
+      "desc": "At 10th level, you can cast the Commune with Nature spell, but only as a ritual. When you do so, a spiritual version of one of the animals..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Totemic Attunement",
+      "desc": "At 14th level, you gain a magical benefit based on a totem animal of your choice. You can choose the same animal you selected previously or..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Wild Magic",
+   "source": "Tasha's Cauldron of Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Magic Awareness",
+      "desc": "When you choose this path at 3rd level, as an action, you can open your awareness to the presence of concentrated magic. Until the end of..."
+     },
+     {
+      "name": "Wild Surge",
+      "desc": "Also at 3rd level, the magical energy roiling inside you sometimes erupts from you. When you enter your rage, roll on the Wild Magic table..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Bolstering Magic",
+      "desc": "Beginning at 6th level, you can harness your wild magic to bolster yourself or a companion. As an action, you can touch one creature (which..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Unstable Backlash",
+      "desc": "At 10th level, when you are imperiled during your rage, the magic within you can lash out; immediately after you take damage or fail a..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Controlled Surge",
+      "desc": "At 14th level, whenever you roll on the Wild Magic table, you can roll the die twice and choose which of the two effects to unleash. If you..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Zealot",
+   "source": "Xanathar's Guide to Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Divine Fury",
+      "desc": "Starting when you choose this path at 3rd level, you can channel divine fury into your weapon strikes. While you're raging, the first..."
+     },
+     {
+      "name": "Warrior of the Gods",
+      "desc": "At 3rd level, your soul is marked for endless battle. If a spell, such as Raise Dead, has the sole effect of restoring you to life (but not..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Fanatical Focus",
+      "desc": "Starting at 6th level, the divine power that fuels your rage can protect you. If you fail a saving throw while raging, you can reroll it..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Zealous Presence",
+      "desc": "At 10th level, you learn to channel divine power to inspire zealotry in others. As a bonus action, you unleash a battle cry infused with..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Rage Beyond Death",
+      "desc": "Beginning at 14th level, the divine power that fuels your rage allows you to shrug off fatal blows. While you're raging, having 0 hit..."
+     }
+    ]
+   }
+  }
+ ]
+}
