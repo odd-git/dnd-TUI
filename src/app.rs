@@ -851,7 +851,7 @@ impl App {
                 self.say(format!("Temporary HP: {}.", self.ch.temp_hp), Tone::Good);
             }
             Step::NoteName => { if !text.is_empty() { self.open(Step::NoteDesc(text)); } }
-            Step::NoteDesc(name) => { self.snap_in_flow(); self.ch.features.push(Feature { name, desc: text }); }
+            Step::NoteDesc(name) => { self.snap_in_flow(); self.ch.features.push(Feature { name, desc: text, ..Default::default() }); }
             Step::JournalAdd => {
                 if !text.is_empty() { self.snap(); self.ch.journal.push(format!("- {text}")); self.jsel = self.ch.journal.len() - 1; }
             }
@@ -929,7 +929,7 @@ impl App {
             Step::Style => {
                 if let Some(s) = self.class_data().and_then(|c| c.styles.get(i)) {
                     self.snap_in_flow();
-                    let f = Feature { name: "Fighting Style".into(), desc: format!("{}: {}", s.name, s.desc) };
+                    let f = Feature { name: "Fighting Style".into(), desc: format!("{}: {}", s.name, s.desc), ..Default::default() };
                     match self.ch.features.iter_mut().find(|x| x.name == f.name) { Some(x) => *x = f, None => self.ch.features.push(f) }
                     self.say(format!("Fighting style: {}.", s.name), Tone::Good);
                 }
@@ -1104,7 +1104,7 @@ impl App {
         if new.is_some() { self.say(format!("Multiclass: {cls}."), Tone::Good); }
         for f in p.features.get(&l).into_iter().flatten() {
             match self.ch.features.iter_mut().find(|x| x.name == f.name) {
-                Some(x) => x.desc = f.desc.clone(),
+                Some(x) => { x.desc = f.desc.clone(); x.url = f.url.clone(); }
                 None => self.ch.features.push(f.clone()),
             }
             self.say(format!("New: {}: {}", f.name, f.desc), Tone::Good);

@@ -119,7 +119,7 @@ impl App {
     pub(super) fn opt_pick(&mut self, kind: &str, i: usize) {
         let Some(o) = self.opt_items(kind).get(i).copied() else { return };
         self.snap_in_flow();
-        self.ch.features.push(Feature { name: format!("{}: {}", label(kind), o.name), desc: o.desc.clone() });
+        self.ch.features.push(Feature { name: format!("{}: {}", label(kind), o.name), desc: o.desc.clone(), url: o.url.clone() });
         self.say(format!("{}: {}.", label(kind), o.name), Tone::Good);
         match o.name.as_str() {
             "Pact of the Tome" => for _ in 0..3 { self.queue.push_front(Step::AnyCantrip); },
@@ -136,7 +136,7 @@ impl App {
     pub(super) fn grant_spell(&mut self, name: &str, from: &str) {
         let Some(sp) = lists::spell(name) else { return };
         if sp.level == 0 { self.ch.cantrips.push(sp.name.clone()) } else { self.ch.spells.push(sp.name.clone()) }
-        self.ch.features.push(Feature { name: format!("Bonus spell: {}", sp.name), desc: format!("From {from}") });
+        self.ch.features.push(Feature { name: format!("Bonus spell: {}", sp.name), desc: format!("From {from}"), url: sp.url.clone() });
         self.say(format!("{from}: {}.", sp.name), Tone::Good);
     }
 
@@ -165,7 +165,7 @@ impl App {
         let Some(s) = self.secret_items().get(i).copied() else { return };
         self.snap_in_flow();
         if s.level == 0 { self.ch.cantrips.push(s.name.clone()) } else { self.ch.spells.push(s.name.clone()) }
-        self.ch.features.push(Feature { name: format!("Magical Secret: {}", s.name), desc: format!("{} spell from the {} list", s.school, s.classes.join("/")) });
+        self.ch.features.push(Feature { name: format!("Magical Secret: {}", s.name), desc: format!("{} spell from the {} list", s.school, s.classes.join("/")), url: s.url.clone() });
         self.say(format!("Magical Secret: {}.", s.name), Tone::Good);
     }
 

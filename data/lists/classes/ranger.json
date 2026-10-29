@@ -241,6 +241,7 @@
   }
  },
  "dice": {},
+ "options": {},
  "name": "Ranger",
  "hit_die": 10,
  "saves": [
@@ -280,43 +281,43 @@
   {
    "name": "Archery",
    "source": "",
-   "desc": "You gain a +2 bonus to attack rolls you make with ranged weapons.",
+   "desc": "+2 to hit with ranged weapons.",
    "effect": "archery"
   },
   {
    "name": "Blind Fighting",
    "source": "",
-   "desc": "You have blind sight with a range of 10 feet. Within that range, you can effectively see anything that isn't behind total cover...",
+   "desc": "Blindsight 10 ft: see through darkness and blindness, and invisible creatures that aren't hidden.",
    "effect": null
   },
   {
    "name": "Defense",
    "source": "",
-   "desc": "While you are wearing armor, you gain a +1 bonus to AC.",
+   "desc": "+1 AC while wearing armor.",
    "effect": "defense"
   },
   {
    "name": "Druidic Warrior",
    "source": "",
-   "desc": "You learn two cantrips of your choice from the Druid spell list. They count as ranger spells for you, and Wisdom is your...",
+   "desc": "Two druid cantrips as ranger spells (WIS); swap one on level up.",
    "effect": null
   },
   {
    "name": "Dueling",
    "source": "",
-   "desc": "When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon.",
+   "desc": "+2 damage with a one-handed melee weapon and no other weapon.",
    "effect": "dueling"
   },
   {
    "name": "Thrown Weapon Fighting",
    "source": "",
-   "desc": "You can draw a weapon that has the thrown property as part of the attack you make with the weapon.",
+   "desc": "Draw thrown weapons as part of the attack; +2 damage with them.",
    "effect": "thrown"
   },
   {
    "name": "Two-Weapon Fighting",
    "source": "",
-   "desc": "When you engage in two-weapon fighting, you can add your ability modifier to the damage of the second attack.",
+   "desc": "Add your ability modifier to the off-hand attack's damage.",
    "effect": "two_weapon"
   }
  ],
@@ -344,81 +345,96 @@
   "1": [
    {
     "name": "Favored Enemy",
-    "desc": "Beginning at 1st level, you have significant experience studying, tracking, hunting, and even talking to a certain type of enemy. Choose a type of favored enemy: aberrations, beasts, celestials..."
+    "desc": "Pick a creature type (or two humanoid races): advantage on Survival to track them and INT checks to recall lore, plus one of their languages. Another at 6th and 14th.",
+    "url": "http://dnd5e.wikidot.com/ranger"
    },
    {
     "name": "Natural Explorer",
-    "desc": "Also at 1st level, you are particularly familiar with one type of natural environment and are adept at traveling and surviving in such regions. Choose one type of favored terrain: arctic, coast..."
+    "desc": "Favored terrain: doubled proficiency on INT/WIS checks about it; while traveling there the group ignores difficult terrain, can't get lost, stays alert, forages double, and you learn number, size and age of tracks. More terrains at 6th and 10th.",
+    "url": "http://dnd5e.wikidot.com/ranger"
    }
   ],
   "2": [
    {
     "name": "Fighting Style",
-    "desc": "At 2nd level, you adopt a particular style of fighting as your specialty. Choose one of the following options. You can't take a Fighting Style option more than once, even if you later get to choose..."
+    "desc": "Choose a style: Archery, Blind Fighting, Defense, Druidic Warrior, Dueling, Thrown Weapon Fighting or Two-Weapon Fighting.",
+    "url": "http://dnd5e.wikidot.com/ranger"
    },
    {
     "name": "Spellcasting",
-    "desc": "By the time you reach 2nd level, you have learned to use the magical essence of nature to cast spells, much as a druid does."
+    "desc": "Half caster with nature magic, spells known, WIS.",
+    "url": "http://dnd5e.wikidot.com/ranger"
    }
   ],
   "3": [
    {
     "name": "Primeval Awareness",
-    "desc": "Beginning at 3rd level, you can use your action and expend one ranger spell slot to focus your awareness on the region around you. For 1 minute per level of the spell slot you expend, you can sense..."
+    "desc": "Action and a ranger slot: for 1 min per slot level sense aberrations, celestials, dragons, elementals, fey, undead and fiends within 1 mile (6 in favored terrain); no location or count.",
+    "url": "http://dnd5e.wikidot.com/ranger"
    }
   ],
   "5": [
    {
     "name": "Extra Attack",
-    "desc": "Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn."
+    "desc": "Attack twice when you take the Attack action.",
+    "url": "http://dnd5e.wikidot.com/ranger"
    }
   ],
   "6": [
    {
     "name": "Favored Enemy Improvement",
-    "desc": "Beginning at 1st level, you have significant experience studying, tracking, hunting, and even talking to a certain type of enemy. Choose a type of favored enemy: aberrations, beasts, celestials..."
+    "desc": "Pick a creature type (or two humanoid races): advantage on Survival to track them and INT checks to recall lore, plus one of their languages. Another at 6th and 14th.",
+    "url": "http://dnd5e.wikidot.com/ranger"
    },
    {
     "name": "Natural Explorer Improvement",
-    "desc": "Also at 1st level, you are particularly familiar with one type of natural environment and are adept at traveling and surviving in such regions. Choose one type of favored terrain: arctic, coast..."
+    "desc": "Favored terrain: doubled proficiency on INT/WIS checks about it; while traveling there the group ignores difficult terrain, can't get lost, stays alert, forages double, and you learn number, size and age of tracks. More terrains at 6th and 10th.",
+    "url": "http://dnd5e.wikidot.com/ranger"
    }
   ],
   "8": [
    {
     "name": "Land's Stride",
-    "desc": "Starting at 8th level, moving through nonmagical difficult terrain costs you no extra movement. You can also pass through nonmagical plants without being slowed by them and without taking damage from..."
+    "desc": "Nonmagical difficult terrain and plants don't slow or harm you; advantage on saves against magical plants that hinder movement.",
+    "url": "http://dnd5e.wikidot.com/ranger"
    }
   ],
   "10": [
    {
     "name": "Natural Explorer Improvement",
-    "desc": "Also at 1st level, you are particularly familiar with one type of natural environment and are adept at traveling and surviving in such regions. Choose one type of favored terrain: arctic, coast..."
+    "desc": "Favored terrain: doubled proficiency on INT/WIS checks about it; while traveling there the group ignores difficult terrain, can't get lost, stays alert, forages double, and you learn number, size and age of tracks. More terrains at 6th and 10th.",
+    "url": "http://dnd5e.wikidot.com/ranger"
    },
    {
     "name": "Hide in Plain Sight",
-    "desc": "Starting at 10th level, you can spend 1 minute creating camouflage for yourself. You must have access to fresh mud, dirt, plants, soot, and other naturally occurring materials with which to create..."
+    "desc": "1 min of natural camouflage: +10 Stealth while pressed still against a surface; moving or acting ends it.",
+    "url": "http://dnd5e.wikidot.com/ranger"
    }
   ],
   "14": [
    {
     "name": "Favored Enemy Improvement",
-    "desc": "Beginning at 1st level, you have significant experience studying, tracking, hunting, and even talking to a certain type of enemy. Choose a type of favored enemy: aberrations, beasts, celestials..."
+    "desc": "Pick a creature type (or two humanoid races): advantage on Survival to track them and INT checks to recall lore, plus one of their languages. Another at 6th and 14th.",
+    "url": "http://dnd5e.wikidot.com/ranger"
    },
    {
     "name": "Vanish",
-    "desc": "Starting at 14th level, you can use the Hide action as a bonus action on your turn. Also, you can't be tracked by nonmagical means, unless you choose to leave a trail."
+    "desc": "Hide as a bonus action; nonmagical tracking can't follow you unless you allow it.",
+    "url": "http://dnd5e.wikidot.com/ranger"
    }
   ],
   "18": [
    {
     "name": "Feral Senses",
-    "desc": "At 18th level, you gain preternatural senses that help you fight creatures you can't see. When you attack a creature you can't see, your inability to see it doesn't impose disadvantage on your attack..."
+    "desc": "No disadvantage attacking creatures you can't see; you know where invisible, unhidden creatures within 30 ft are unless blinded or deafened.",
+    "url": "http://dnd5e.wikidot.com/ranger"
    }
   ],
   "20": [
    {
     "name": "Foe Slayer",
-    "desc": "At 20th level, you become an unparalleled hunter of your enemies. Once on each of your turns, you can add your Wisdom modifier to the attack roll or the damage roll of an attack you make against one..."
+    "desc": "Once per turn add WIS to the attack or damage roll against a favored enemy, before or after rolling.",
+    "url": "http://dnd5e.wikidot.com/ranger"
    }
   ]
  },
@@ -437,29 +453,34 @@
     "3": [
      {
       "name": "Ranger's Companion",
-      "desc": "At 3rd level, you gain a beast companion that accompanies you on your adventures and is trained to fight alongside you. Choose a beast that..."
+      "desc": "A CR 1/4 Medium-or-smaller beast companion: adds your prof bonus to AC, attacks, damage, saves and skills, HP max of 4 x ranger level if higher; your action commands it to attack, Dash, Disengage or Help, otherwise it Dodges; replace with 8 h bonding.",
+      "url": "http://dnd5e.wikidot.com/ranger:beast-master"
      },
      {
       "name": "Primal Companion (Optional)",
-      "desc": "This 3rd-level feature replaces the Ranger's Companion feature. You magically summon a primal beast, which draws strength from your bond..."
+      "desc": "Replaces Ranger's Companion: a primal beast of the Land, Sea or Sky scaling with PB; it Dodges unless you command it with a bonus action or trade one of your attacks; revive with a slot within an hour; swap after a long rest.",
+      "url": "http://dnd5e.wikidot.com/ranger:beast-master"
      }
     ],
     "7": [
      {
       "name": "Exceptional Training",
-      "desc": "Beginning at 7th level, on any of your turns when your beast companion doesn’t attack, you can use a bonus action to command the beast to..."
+      "desc": "Bonus action to have a non-attacking beast Dash, Disengage or Help; its attacks count as magical.",
+      "url": "http://dnd5e.wikidot.com/ranger:beast-master"
      }
     ],
     "11": [
      {
       "name": "Bestial Fury",
-      "desc": "Starting at 11th level, when you command your beast companion to take the Attack action, the beast can make two attacks, or it can take the..."
+      "desc": "The commanded beast makes two attacks or uses Multiattack.",
+      "url": "http://dnd5e.wikidot.com/ranger:beast-master"
      }
     ],
     "15": [
      {
       "name": "Share Spells",
-      "desc": "Beginning at 15th level, when you cast a spell targeting yourself, you can also affect your beast companion with the spell if the beast is..."
+      "desc": "Self-target spells can also affect your beast within 30 ft.",
+      "url": "http://dnd5e.wikidot.com/ranger:beast-master"
      }
     ]
    }
@@ -478,29 +499,34 @@
     "3": [
      {
       "name": "Draconic Gift",
-      "desc": "At 3rd level, the bond you share with your drake creates a connection to dragonkind, granting you understanding and empowering your..."
+      "desc": "Thaumaturgy cantrip and Draconic or another language.",
+      "url": "http://dnd5e.wikidot.com/ranger:drakewarden"
      },
      {
       "name": "Drake Companion",
-      "desc": "At 3rd level, as an action, you can magically summon the drake that is bound to you. It appears in an unoccupied space of your choice..."
+      "desc": "Action: summon your drake within 30 ft, choosing its essence damage; it acts after you, Dodges unless commanded with a bonus action, and stays until 0 HP or resummoned; once per long rest or a 1st+ slot.",
+      "url": "http://dnd5e.wikidot.com/ranger:drakewarden"
      }
     ],
     "7": [
      {
       "name": "Bond of Fang and Scale",
-      "desc": "At 7th level the bond you share with your drake intensifies, protecting you and stoking the drake’s fury. When you summon your drake, it..."
+      "desc": "The drake grows wings (fly speed) and to Medium, can be ridden (no flying then), its bite deals +1d6 essence damage, and you resist its essence type.",
+      "url": "http://dnd5e.wikidot.com/ranger:drakewarden"
      }
     ],
     "11": [
      {
       "name": "Drake’s Breath",
-      "desc": "At 11th level, as an action, you can exhale a 30-foot cone of damaging breath or cause your drake to exhale it. Choose acid, cold, fire..."
+      "desc": "Action: you or the drake breathe a 30 ft cone, DEX save, 8d6 of a chosen element (10d6 at 15th), half on a success; once per long rest or a 3rd+ slot.",
+      "url": "http://dnd5e.wikidot.com/ranger:drakewarden"
      }
     ],
     "15": [
      {
       "name": "Perfected Bond",
-      "desc": "At 15th level, your bond to your drake reaches the pinnacle of its power. While your drake is summoned, you and the drake gain the..."
+      "desc": "Bite deals 2d6 extra essence damage, the drake is Large and can fly while ridden, reaction resistance for you or it within 30 ft (prof bonus/long rest).",
+      "url": "http://dnd5e.wikidot.com/ranger:drakewarden"
      }
     ]
    }
@@ -519,33 +545,39 @@
     "3": [
      {
       "name": "Dreadful Strikes",
-      "desc": "At 3rd level, you can augment your weapon strikes with mind-scarring magic, drawn from the gloomy hollows of the Feywild. When you hit a..."
+      "desc": "Weapon hits deal +1d4 psychic once per turn per target (1d6 at 11th).",
+      "url": "http://dnd5e.wikidot.com/ranger:fey-wanderer"
      },
      {
       "name": "Fey Wanderer Magic",
-      "desc": "Also at 3rd level, you learn an additional spell when you reach certain levels in this class, as shown in the Fey Wanderer Spells table...."
+      "desc": "Bonus subclass spells at set levels, not counted as known, and a Feywild gift.",
+      "url": "http://dnd5e.wikidot.com/ranger:fey-wanderer"
      },
      {
       "name": "Otherworldly Glamour",
-      "desc": "Additionally at 3rd level, your fey qualities give you a supernatural charm. As a result, whenever you make a Charisma check, you gain a..."
+      "desc": "Add WIS (min +1) to CHA checks; proficiency in Deception, Performance or Persuasion.",
+      "url": "http://dnd5e.wikidot.com/ranger:fey-wanderer"
      }
     ],
     "7": [
      {
       "name": "Beguiling Twist",
-      "desc": "Beginning at 7th level, the magic of the Feywild guards your mind. You have advantage on saving throws against being charmed or frightened...."
+      "desc": "Advantage against charm and fear; when someone within 120 ft resists one, reaction to make another creature WIS save or be charmed or frightened for 1 min.",
+      "url": "http://dnd5e.wikidot.com/ranger:fey-wanderer"
      }
     ],
     "11": [
      {
       "name": "Fey Reinforcements",
-      "desc": "At 11th level, the royal courts of the Feywild have blessed you with the assistance of fey beings: you know the spell Summon Fey. It..."
+      "desc": "Summon Fey known, no material component, once free per long rest; can drop concentration for a 1 min duration.",
+      "url": "http://dnd5e.wikidot.com/ranger:fey-wanderer"
      }
     ],
     "15": [
      {
       "name": "Misty Wanderer",
-      "desc": "When you reach 15th level, you can slip in and out of the Feywild to move in a blink of an eye: you can cast Misty Step without expending a..."
+      "desc": "Misty Step free WIS mod times per long rest, bringing a willing creature within 5 ft.",
+      "url": "http://dnd5e.wikidot.com/ranger:fey-wanderer"
      }
     ]
    }
@@ -564,33 +596,39 @@
     "3": [
      {
       "name": "Gloom Stalker Magic",
-      "desc": "Starting at 3rd level, you learn an additional spell when you reach certain levels in this class, as shown in the Gloom Stalker Spells..."
+      "desc": "Bonus subclass spells at set levels, not counted as known.",
+      "url": "http://dnd5e.wikidot.com/ranger:gloom-stalker"
      },
      {
       "name": "Dread Ambusher",
-      "desc": "At 3rd level, you master the art of the ambush. You can give yourself a bonus to your initiative rolls equal to your Wisdom modifier. At..."
+      "desc": "Add WIS to initiative; first turn of combat +10 ft speed and one extra attack dealing +1d8 on a hit.",
+      "url": "http://dnd5e.wikidot.com/ranger:gloom-stalker"
      },
      {
       "name": "Umbral Sight",
-      "desc": "At 3rd level, you gain darkvision out to a range of 60 feet. If you already have darkvision from your race, its range increases by 30 feet...."
+      "desc": "Darkvision 60 ft (or +30 ft); invisible in darkness to creatures relying on darkvision.",
+      "url": "http://dnd5e.wikidot.com/ranger:gloom-stalker"
      }
     ],
     "7": [
      {
       "name": "Iron Mind",
-      "desc": "By 7th level, you have honed your ability to resist the mind-altering powers of your prey. You gain proficiency in Wisdom saving throws. If..."
+      "desc": "Proficiency in WIS saves, or INT or CHA if you already have it.",
+      "url": "http://dnd5e.wikidot.com/ranger:gloom-stalker"
      }
     ],
     "11": [
      {
       "name": "Stalker's Flurry",
-      "desc": "At 11th level, you learn to attack with such unexpected speed that you can turn a miss into another strike. Once on each of your turns when..."
+      "desc": "Once per turn, a missed weapon attack grants another one.",
+      "url": "http://dnd5e.wikidot.com/ranger:gloom-stalker"
      }
     ],
     "15": [
      {
       "name": "Shadowy Dodge",
-      "desc": "Starting at 15th level, you can dodge in unforeseen ways, with wisps of supernatural shadow around you. Whenever a creature makes an attack..."
+      "desc": "Reaction: impose disadvantage on an attack against you made without advantage, before the result.",
+      "url": "http://dnd5e.wikidot.com/ranger:gloom-stalker"
      }
     ]
    }
@@ -609,33 +647,39 @@
     "3": [
      {
       "name": "Horizon Walker Magic",
-      "desc": "Starting at 3rd level, you learn an additional spell when you reach certain levels in this class, as shown in the Horizon Walker Spells..."
+      "desc": "Bonus subclass spells at set levels, not counted as known.",
+      "url": "http://dnd5e.wikidot.com/ranger:horizon-walker"
      },
      {
       "name": "Detect Portal",
-      "desc": "At 3rd level, you gain the ability to magically sense the presence of a planar portal. As an action, you detect the distance and direction..."
+      "desc": "Action: distance and direction of the nearest planar portal within 1 mile; once per short rest.",
+      "url": "http://dnd5e.wikidot.com/ranger:horizon-walker"
      },
      {
       "name": "Planar Warrior",
-      "desc": "At 3rd level, you learn to draw on the energy of the multiverse to augment your attacks. As a bonus action, choose one creature you can see..."
+      "desc": "Bonus action on a creature within 30 ft: your next hit this turn deals force and +1d8 force (2d8 at 11th).",
+      "url": "http://dnd5e.wikidot.com/ranger:horizon-walker"
      }
     ],
     "7": [
      {
       "name": "Ethereal Step",
-      "desc": "At 7th level, you learn to step through the Ethereal Plane. As a bonus action on your turn, you can cast the Etherealness spell with this..."
+      "desc": "Bonus action Etherealness until the end of the turn, no slot; once per short rest.",
+      "url": "http://dnd5e.wikidot.com/ranger:horizon-walker"
      }
     ],
     "11": [
      {
       "name": "Distant Strike",
-      "desc": "At 11th level, you gain the ability to pass between the planes in a blink of an eye. When you use the Attack action, you can teleport up to..."
+      "desc": "Attack action: teleport 10 ft before each attack; hitting two different creatures grants an attack on a third.",
+      "url": "http://dnd5e.wikidot.com/ranger:horizon-walker"
      }
     ],
     "15": [
      {
       "name": "Spectral Defense",
-      "desc": "At 15th level, your ability to move between planes enables you to slip through the planar boundaries to lessen the harm done to you during..."
+      "desc": "Reaction when hit: resistance to that attack's damage.",
+      "url": "http://dnd5e.wikidot.com/ranger:horizon-walker"
      }
     ]
    }
@@ -654,25 +698,29 @@
     "3": [
      {
       "name": "Hunter's Prey",
-      "desc": "At 3rd level, you gain one of the following features of your choice. Colossus Slayer. Your tenacity can wear down the most potent foes...."
+      "desc": "Colossus Slayer (+1d8 once per turn against a wounded target), Giant Killer (reaction attack on a Large+ attacker within 5 ft) or Horde Breaker (extra attack on an adjacent second target).",
+      "url": "http://dnd5e.wikidot.com/ranger:hunter"
      }
     ],
     "7": [
      {
       "name": "Defensive Tactics",
-      "desc": "At 7th level, you gain one of the following features of your choice. Escape the Horde. Opportunity attacks against you are made with..."
+      "desc": "Escape the Horde (opportunity attacks at disadvantage), Multiattack Defense (+4 AC against an attacker after its first hit) or Steel Will (advantage against fear).",
+      "url": "http://dnd5e.wikidot.com/ranger:hunter"
      }
     ],
     "11": [
      {
       "name": "Multiattack",
-      "desc": "At 11th level, you gain one of the following features of your choice. Volley. You can use your action to make a ranged attack against any..."
+      "desc": "Volley (ranged attack at every creature within 10 ft of a point) or Whirlwind Attack (melee attack at every creature within 5 ft).",
+      "url": "http://dnd5e.wikidot.com/ranger:hunter"
      }
     ],
     "15": [
      {
       "name": "Superior Hunter's Defense",
-      "desc": "At 15th level, you gain one of the following features of your choice. Evasion. When you are subjected to an effect, such as a red dragon’s..."
+      "desc": "Evasion, Stand Against the Tide (reaction to redirect a missed melee attack to another creature) or Uncanny Dodge (reaction to halve a hit).",
+      "url": "http://dnd5e.wikidot.com/ranger:hunter"
      }
     ]
    }
@@ -691,33 +739,39 @@
     "3": [
      {
       "name": "Monster Slayer Magic",
-      "desc": "Starting at 3rd level, you learn an additional spell when you reach certain levels in this class, as shown in the Monster Slayer Spells..."
+      "desc": "Bonus subclass spells at set levels, not counted as known.",
+      "url": "http://dnd5e.wikidot.com/ranger:monster-slayer"
      },
      {
       "name": "Hunter's Sense",
-      "desc": "At 3rd level, you gain the ability to peer at a creature and magically discern how best to hurt it. As an action, choose one creature you..."
+      "desc": "Action: learn a creature's damage immunities, resistances and vulnerabilities (WIS mod/long rest).",
+      "url": "http://dnd5e.wikidot.com/ranger:monster-slayer"
      },
      {
       "name": "Slayer's Prey",
-      "desc": "Starting at 3rd level, you can focus your ire on one foe, increasing the harm you inflict on it. As a bonus action, you designate one..."
+      "desc": "Bonus action mark within 60 ft: first weapon hit on it each turn deals +1d6, until a rest or a new mark.",
+      "url": "http://dnd5e.wikidot.com/ranger:monster-slayer"
      }
     ],
     "7": [
      {
       "name": "Supernatural Defense",
-      "desc": "At 7th level, you gain extra resilience against your prey's assaults on your mind and body. Whenever the target of your Slayer's Prey..."
+      "desc": "+1d6 to saves forced by your prey and checks to escape its grapple.",
+      "url": "http://dnd5e.wikidot.com/ranger:monster-slayer"
      }
     ],
     "11": [
      {
       "name": "Magic-User's Nemesis",
-      "desc": "At 11th level, you gain the ability to thwart someone else's magic. When you see a creature casting a spell or teleporting within 60 feet..."
+      "desc": "Reaction when a creature within 60 ft casts or teleports: WIS save or it fails; once per short rest.",
+      "url": "http://dnd5e.wikidot.com/ranger:monster-slayer"
      }
     ],
     "15": [
      {
       "name": "Slayer's Counter",
-      "desc": "At 15th level, you gain the ability to counterattack when your prey tries to sabotage you. If the target of your Slayer’s Prey forces you..."
+      "desc": "When your Slayer's Prey target forces a save, reaction attack first; a hit makes the save succeed.",
+      "url": "http://dnd5e.wikidot.com/ranger:monster-slayer"
      }
     ]
    }
@@ -736,29 +790,34 @@
     "3": [
      {
       "name": "Gathered Swarm",
-      "desc": "At 3rd level, a swarm of intangible nature spirits has bonded itself to you and can assist you in battle. While you’re alive, the swarm..."
+      "desc": "Once per turn after a hit: +1d6 piercing, or push the target 15 ft (STR save), or move yourself 5 ft.",
+      "url": "http://dnd5e.wikidot.com/ranger:swarmkeeper"
      },
      {
       "name": "Swarmkeeper Magic",
-      "desc": "Also at 3rd level, you learn the Mage Hand cantrip if you don't already know it. When you cast it, the hand takes the form of your swarming..."
+      "desc": "Mage Hand cantrip as a swarm and bonus subclass spells at set levels, not counted as known.",
+      "url": "http://dnd5e.wikidot.com/ranger:swarmkeeper"
      }
     ],
     "7": [
      {
       "name": "Writhing Tide",
-      "desc": "Beginning at 7th level, you can condense part of your swarm into a focused mass that lifts you up. As a bonus action, you gain a flying..."
+      "desc": "Bonus action: 10 ft fly speed and hover for 1 min (prof bonus/long rest).",
+      "url": "http://dnd5e.wikidot.com/ranger:swarmkeeper"
      }
     ],
     "11": [
      {
       "name": "Mighty Swarm",
-      "desc": "At 11th level, your Gathered Swarm grows mightier in the following ways: The damage of Gathered Swarm increases to 1d8. If a creature fails..."
+      "desc": "Swarm damage 1d8, moved targets can also be knocked prone, and moving yourself gives half cover.",
+      "url": "http://dnd5e.wikidot.com/ranger:swarmkeeper"
      }
     ],
     "15": [
      {
       "name": "Swarming Dispersal",
-      "desc": "When you reach 15th level, you can discorporate into your swarm, avoiding danger. When you take damage, you can use your reaction to give..."
+      "desc": "Reaction when damaged: resistance, then teleport 30 ft (prof bonus/long rest).",
+      "url": "http://dnd5e.wikidot.com/ranger:swarmkeeper"
      }
     ]
    }

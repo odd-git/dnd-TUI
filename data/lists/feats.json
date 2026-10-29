@@ -10,7 +10,8 @@
    ],
    "amount": 1
   },
-  "desc": "You have manifested an aberrant dragonmark. Determine its appearance and the flaw associated with it. You gain the following benefits: Increase your Constitution score by 1, to a maximum of 20. You learn a cantrip of..."
+  "desc": "+1 CON. A sorcerer cantrip and a sorcerer 1st-level spell cast through the mark once per short rest (CON). Casting it, you may roll a Hit Die: even = temp HP, odd = force damage to a random creature within 30 ft. Comes with a flaw.",
+  "url": "http://dnd5e.wikidot.com/feat:aberrant-dragonmark"
  },
  {
   "name": "Actor",
@@ -23,7 +24,8 @@
    ],
    "amount": 1
   },
-  "desc": "Skilled at mimicry and dramatics, you gain the following benefits: Increase your Charisma score by 1, to a maximum of 20. You have an advantage on Charisma (Deception) and Charisma (Performance) checks when trying to..."
+  "desc": "+1 CHA. Advantage on Deception/Performance to pass as someone else; mimic voices and sounds heard for 1 min (Insight vs your Deception to see through).",
+  "url": "http://dnd5e.wikidot.com/feat:actor"
  },
  {
   "name": "Adept of the Black Robes",
@@ -31,7 +33,8 @@
   "prereq": "4th Level, Initiate of High Sorcery (Nuitari) Feat",
   "min_ability": {},
   "asi": null,
-  "desc": "You chose the moon Nuitari to influence your magic, and your ambition and loyalty to the Order of the Black Robes has been recognized, granting you these benefits: Ambitious Magic. You learn one 2nd-level spell of your..."
+  "desc": "Needs Initiate of High Sorcery (Nuitari). One 2nd-level enchantment/necromancy spell, free once per long rest. When a creature within 60 ft fails a save against your damaging spell, spend Hit Dice up to the spell level and add their roll to the damage.",
+  "url": "http://dnd5e.wikidot.com/feat:adept-of-the-black-robes"
  },
  {
   "name": "Adept of the Red Robes",
@@ -39,7 +42,8 @@
   "prereq": "4th Level, Initiate of High Sorcery (Lunitari) Feat",
   "min_ability": {},
   "asi": null,
-  "desc": "You chose the moon Lunitari to influence your magic, and your dedication to maintaining the balance between all things has been recognized by the Order of the Red Robes, granting you these benefits: Insightful Magic...."
+  "desc": "Needs Initiate of High Sorcery (Lunitari). One 2nd-level illusion/transmutation spell, free once per long rest. Prof bonus/long rest: an attack roll or ability check d20 of 9 or less counts as a 10.",
+  "url": "http://dnd5e.wikidot.com/feat:adept-of-the-red-robes"
  },
  {
   "name": "Adept of the White Robes",
@@ -47,7 +51,8 @@
   "prereq": "4th Level, Initiate of High Sorcery Feat",
   "min_ability": {},
   "asi": null,
-  "desc": "You chose the moon Solinari to influence your magic, and your oath to use magic to make the world a better place has been recognized by the Order of the White Robes, granting you these benefits: Protective Magic. You..."
+  "desc": "Needs Initiate of High Sorcery (Solinari). One 2nd-level abjuration/divination spell, free once per long rest. Reaction when you or a creature within 30 ft takes damage: spend a slot, reduce it by slot-level d6 + your spell modifier.",
+  "url": "http://dnd5e.wikidot.com/feat:adept-of-the-white-robes"
  },
  {
   "name": "Agent of Order",
@@ -55,7 +60,8 @@
   "prereq": "4th Level, Scion of the Outer Planes (Lawful Outer Plane) Feat",
   "min_ability": {},
   "asi": null,
-  "desc": "You can channel cosmic forces of order to gain these benefits: Ability Score Increase. Increase an ability score of your choice by 1, to a maximum of 20. Stasis Strike. Once per turn when you damage a creature you can..."
+  "desc": "Needs Scion of the Outer Planes (lawful). +1 to any ability. Once per turn, on damaging a creature within 60 ft: +1d8 force and a WIS save or restrained until your next turn (prof bonus/long rest).",
+  "url": "http://dnd5e.wikidot.com/feat:agent-of-order"
  },
  {
   "name": "Alert",
@@ -63,7 +69,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "Always on the lookout for danger, you gain the following benefits: You can't be surprised while you are conscious. You gain a +5 bonus to initiative."
+  "desc": "+5 initiative, can't be surprised while conscious, and hidden attackers gain no advantage against you.",
+  "url": "http://dnd5e.wikidot.com/feat:alert"
  },
  {
   "name": "Artificer Initiate",
@@ -71,7 +78,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "You’ve learned some of an artificer’s inventiveness: You learn one cantrip of your choice from the Artificer spell list, and you learn one 1st-level spell of your choice from that list. Intelligence is your spellcasting..."
+  "desc": "An artificer cantrip and 1st-level spell (INT), the spell free once per long rest; proficiency with one artisan's tool, usable as a focus.",
+  "url": "http://dnd5e.wikidot.com/feat:artificer-initiate"
  },
  {
   "name": "Athlete",
@@ -85,7 +93,8 @@
    ],
    "amount": 1
   },
-  "desc": "You have undergone extensive physical training to gain the following benefits: Increase your Strength or Dexterity score by 1, to a maximum of 20. When you are prone, standing up uses only 5 feet of your movement."
+  "desc": "+1 STR or DEX. Standing from prone costs 5 ft, climbing costs no extra movement, running jumps need only a 5 ft run-up.",
+  "url": "http://dnd5e.wikidot.com/feat:athlete"
  },
  {
   "name": "Baleful Scion",
@@ -93,7 +102,8 @@
   "prereq": "4th Level, Scion of the Outer Planes (Evil Outer Plane) Feat.",
   "min_ability": {},
   "asi": null,
-  "desc": "You can channel cosmic forces of evil to gain these benefits: Ability Score Increase. Increase an ability score of your choice by 1, to a maximum of 20. Grasp of Avarice. Once per turn, when you damage a creature you..."
+  "desc": "Needs Scion of the Outer Planes (evil). +1 to any ability. Once per turn, on damaging a creature within 60 ft: +1d6 + prof necrotic and you heal that much (prof bonus/long rest).",
+  "url": "http://dnd5e.wikidot.com/feat:baleful-scion"
  },
  {
   "name": "Bountiful Luck",
@@ -101,7 +111,8 @@
   "prereq": "Halfling",
   "min_ability": {},
   "asi": null,
-  "desc": "Your people have extraordinary luck, which you have learned to mystically lend to your companions whenever you see them falter. You're not sure how you do it, you just wish it, and it happens. Surely a sign of fortune's..."
+  "desc": "Halfling. Reaction: an ally within 30 ft who rolls a 1 on an attack, check or save rerolls it; you can't use your own Lucky trait until the end of your next turn.",
+  "url": "http://dnd5e.wikidot.com/feat:bountiful-luck"
  },
  {
   "name": "Cartomancer",
@@ -109,7 +120,8 @@
   "prereq": "4th Level, Spellcasting Feature",
   "min_ability": {},
   "asi": null,
-  "desc": "You have learned to channel your magic through a deck of cards. You can use a card deck as your spellcasting focus, and you gain the following benefits: Card Tricks. You learn the Prestidigitation cantrip and can use it..."
+  "desc": "Card deck as focus; Prestidigitation as card tricks. After a long rest, store a 1-action spell from your class list (of a level you have slots for) in a card for 8 h; cast it from the card as a bonus action.",
+  "url": "http://dnd5e.wikidot.com/feat:cartomancer"
  },
  {
   "name": "Charger",
@@ -117,7 +129,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "When you use your action to Dash, you can use a bonus action to make one melee weapon attack or to shove a creature. If you move at least 10 feet in a straight line immediately before taking this bonus action, you..."
+  "desc": "After Dash, bonus action melee attack or shove; with 10 ft straight-line movement first, +5 damage or push 10 ft.",
+  "url": "http://dnd5e.wikidot.com/feat:charger"
  },
  {
   "name": "Chef",
@@ -131,7 +144,8 @@
    ],
    "amount": 1
   },
-  "desc": "Time and effort spent mastering the culinary arts has paid off. You gain the following benefits: Increase your Constitution or Wisdom score by 1, to a maximum of 20. You gain proficiency with cook’s utensils if you..."
+  "desc": "+1 CON or WIS, cook's utensils. Short rest meal for 4 + prof creatures: +1d8 HP when spending Hit Dice. After a long rest or 1 h, prof-bonus treats (8 h): bonus action to eat for temp HP equal to prof bonus.",
+  "url": "http://dnd5e.wikidot.com/feat:chef"
  },
  {
   "name": "Cohort of Chaos",
@@ -139,7 +153,8 @@
   "prereq": "4th Level, Scion of the Outer Planes (Chaotic Outer Plane) Feat.",
   "min_ability": {},
   "asi": null,
-  "desc": "You can channel cosmic forces of chaos to gain these benefits: Ability Score Increase. Increase an ability score of your choice by 1, to a maximum of 20. Chaotic Flare. When you roll a 1 or a 20 on an attack roll or a..."
+  "desc": "Needs Scion of the Outer Planes (chaotic). +1 to any ability. A natural 1 or 20 on an attack or save triggers a random chaotic flare (d4 table) until the end of your next turn.",
+  "url": "http://dnd5e.wikidot.com/feat:cohort-of-chaos"
  },
  {
   "name": "Crossbow Expert",
@@ -147,7 +162,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "Thanks to extensive practice with the crossbow, you gain the following benefits: You ignore the loading quality of crossbows with which you are proficient. Being within 5 feet of a hostile creature doesn’t impose..."
+  "desc": "Ignore loading on crossbows, no disadvantage for ranged attacks in melee, bonus action hand crossbow attack after attacking with a one-handed weapon.",
+  "url": "http://dnd5e.wikidot.com/feat:crossbow-expert"
  },
  {
   "name": "Crusher",
@@ -155,7 +171,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "You are practiced in the art of crushing your enemies, granting you the following benefits: Increase your Strength or Constitution by 1, to a maximum of 20. Once per turn, when you hit a creature with an attack that..."
+  "desc": "+1 STR or CON. Once per turn a bludgeoning hit moves the target 5 ft; a bludgeoning crit gives all attacks against it advantage until your next turn.",
+  "url": "http://dnd5e.wikidot.com/feat:crusher"
  },
  {
   "name": "Defensive Duelist",
@@ -165,7 +182,8 @@
    "DEX": 13
   },
   "asi": null,
-  "desc": "When you are wielding a finesse weapon with which you are proficient and another creature hits you with a melee attack, you can use your reaction to add your proficiency bonus to your AC for that attack, potentially..."
+  "desc": "Needs DEX 13. Reaction while wielding a proficient finesse weapon: add prof bonus to AC against one melee attack.",
+  "url": "http://dnd5e.wikidot.com/feat:defensive-duelist"
  },
  {
   "name": "Divinely Favored",
@@ -173,7 +191,8 @@
   "prereq": "4th Level, Dragonlance Campaign",
   "min_ability": {},
   "asi": null,
-  "desc": "A god chose you to carry a spark of their power. You learn one cantrip of your choice from the Cleric spell list and one 1st-level spell based on the alignment of your character, as specified in the Alignment Spells..."
+  "desc": "A cleric cantrip, a 1st-level spell by alignment and Augury, each free once per long rest; holy symbol as focus.",
+  "url": "http://dnd5e.wikidot.com/feat:divinely-favored"
  },
  {
   "name": "Dragon Fear",
@@ -188,7 +207,8 @@
    ],
    "amount": 1
   },
-  "desc": "When angered, you radiate menace. You gain the following benefits: Increase your Strength, Constitution, or Charisma score by 1, to a maximum of 20. Instead of exhaling destructive energy, you can expend a use of your..."
+  "desc": "Dragonborn. +1 STR, CON or CHA. Spend a Breath Weapon use to roar: chosen creatures within 30 ft WIS save (DC 8 + prof + CHA) or frightened 1 min, new save when damaged.",
+  "url": "http://dnd5e.wikidot.com/feat:dragon-fear"
  },
  {
   "name": "Dragon Hide",
@@ -203,7 +223,8 @@
    ],
    "amount": 1
   },
-  "desc": "You manifest scales and claws reminiscent of your draconic ancestors. You gain the following benefits: Increase your Strength, Constitution, or Charisma score by 1, up to a maximum of 20. Your scales harden. While you..."
+  "desc": "Dragonborn. +1 STR, CON or CHA. Unarmored AC 13 + DEX (shield allowed); retractable claws deal 1d4 + STR slashing as unarmed strikes.",
+  "url": "http://dnd5e.wikidot.com/feat:dragon-hide"
  },
  {
   "name": "Drow High Magic",
@@ -211,7 +232,8 @@
   "prereq": "Elf (drow)",
   "min_ability": {},
   "asi": null,
-  "desc": "You learn more of the magic typical of dark elves. You learn the Detect Magic spell and can cast it at will, without expending a spell slot. You also learn Levitate and Dispel Magic, each of which you can cast once..."
+  "desc": "Drow. Detect Magic at will; Levitate and Dispel Magic once each per long rest (CHA).",
+  "url": "http://dnd5e.wikidot.com/feat:drow-high-magic"
  },
  {
   "name": "Dual Wielder",
@@ -219,7 +241,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "You master fighting with two weapons, gaining the following benefits: You gain a +1 bonus to AC while you are wielding a separate melee weapon in each hand. You can use two-weapon fighting even when the one-handed melee..."
+  "desc": "+1 AC while wielding a melee weapon in each hand, two-weapon fighting with non-light one-handed weapons, draw or stow two weapons at once.",
+  "url": "http://dnd5e.wikidot.com/feat:dual-wielder"
  },
  {
   "name": "Dungeon Delver",
@@ -227,7 +250,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "Alert to the hidden traps and secret doors found in many dungeons, you gain the following benefits: You have advantage on Wisdom (Perception) and Intelligence (Investigation) checks made to detect the presence of secret..."
+  "desc": "Advantage on checks to find secret doors and on saves against traps, resistance to trap damage, fast pace costs no passive Perception.",
+  "url": "http://dnd5e.wikidot.com/feat:dungeon-delver"
  },
  {
   "name": "Durable",
@@ -240,7 +264,8 @@
    ],
    "amount": 1
   },
-  "desc": "Hardy and resilient, you gain the following benefits: Increase your Constitution score by 1, to a maximum of 20. When you roll a Hit Die to regain hit points, the minimum number of hit points you regain from the roll..."
+  "desc": "+1 CON. Hit Dice spent to heal restore at least twice your CON modifier (minimum 2).",
+  "url": "http://dnd5e.wikidot.com/feat:durable"
  },
  {
   "name": "Dwarven Fortitude",
@@ -253,7 +278,8 @@
    ],
    "amount": 1
   },
-  "desc": "You have the blood of dwarf heroes flowing through your veins. You gain the following benefits: Increase your Constitution score by 1, to a maximum of 20. Whenever you take the Dodge action in combat, you can spend one..."
+  "desc": "Dwarf. +1 CON. When you take the Dodge action, spend a Hit Die to heal (die + CON).",
+  "url": "http://dnd5e.wikidot.com/feat:dwarven-resilience"
  },
  {
   "name": "Eldritch Adept",
@@ -261,7 +287,8 @@
   "prereq": "Spellcasting or Pact Magic feature",
   "min_ability": {},
   "asi": null,
-  "desc": "Studying occult lore, you learn one Eldritch Invocation option of your choice from the warlock class. Your spellcasting ability for the invocation is Intelligence, Wisdom, or Charisma (choose when you select this feat)...."
+  "desc": "Needs spellcasting or Pact Magic. Learn one Eldritch Invocation (prerequisites only if you are a warlock); swap it on level up.",
+  "url": "http://dnd5e.wikidot.com/feat:eldritch-adept"
  },
  {
   "name": "Elemental Adept",
@@ -269,7 +296,8 @@
   "prereq": "The ability to cast at least one spell",
   "min_ability": {},
   "asi": null,
-  "desc": "When you gain this feat, choose one of the following damage types: acid, cold, fire, lightning, or thunder. Spells you cast ignore resistance to damage of the chosen type. In addition, when you roll damage for a spell..."
+  "desc": "Needs spellcasting. Pick acid, cold, fire, lightning or thunder: your spells ignore resistance to it and treat 1s on its damage dice as 2s. Repeatable.",
+  "url": "http://dnd5e.wikidot.com/feat:elemental-adept"
  },
  {
   "name": "Ember of the Fire Giant",
@@ -284,7 +312,8 @@
    ],
    "amount": 1
   },
-  "desc": "You’ve manifested the fiery combat emblematic of fire giants, granting you the following benefits: Ability Score Increase. Increase your Strength, Constitution, or Wisdom score by 1, to a maximum of 20. Born of Flame...."
+  "desc": "+1 STR, CON or WIS, fire resistance. Replace one attack with a 15 ft fiery burst: DEX save, 1d8 + prof fire and blinded until your next turn on a fail (prof bonus/long rest).",
+  "url": "http://dnd5e.wikidot.com/feat:ember-of-the-fire-giant"
  },
  {
   "name": "Fey Touched",
@@ -299,7 +328,8 @@
    ],
    "amount": 1
   },
-  "desc": "Your exposure to the Feywild's magic has changed you, granting you the following benefits: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20. You learn the Misty Step spell and one 1st-level..."
+  "desc": "+1 INT, WIS or CHA. Misty Step and one 1st-level divination/enchantment spell, each free once per long rest.",
+  "url": "http://dnd5e.wikidot.com/feat:fey-touched"
  },
  {
   "name": "Fighting Initiate",
@@ -307,7 +337,8 @@
   "prereq": "Proficiency with a martial weapon",
   "min_ability": {},
   "asi": null,
-  "desc": "Your martial training has helped you develop a particular style of fighting. As a result, you learn one Fighting Style option of your choice from the fighter class. If you already have a style, the one you choose must..."
+  "desc": "Needs proficiency with a martial weapon. Learn one fighter Fighting Style; swap it at each ASI level.",
+  "url": "http://dnd5e.wikidot.com/feat:fighting-initiate"
  },
  {
   "name": "Flames Of Phlegethos",
@@ -321,7 +352,8 @@
    ],
    "amount": 1
   },
-  "desc": "You learn to call on hellfire to serve your commands. You gain the following benefits: Increase your Intelligence or Charisma score by 1, to a maximum of 20. When you roll fire damage for a spell you cast, you can..."
+  "desc": "Tiefling. +1 INT or CHA. Reroll 1s on fire spell damage; after a fire spell, flames wreathe you until your next turn: light 30 ft, 1d4 fire to creatures hitting you in melee.",
+  "url": "http://dnd5e.wikidot.com/feat:flames-of-phlegethos"
  },
  {
   "name": "Fury of the Frost Giant",
@@ -336,7 +368,8 @@
    ],
    "amount": 1
   },
-  "desc": "You’ve manifested the icy might emblematic of frost giants, granting you the following benefits: Ability Score Increase. Increase your Strength, Constitution, or Wisdom score by 1, to a maximum of 20. Born of Ice. You..."
+  "desc": "+1 STR, CON or WIS, cold resistance. Reaction when hit by a creature within 30 ft: CON save, 1d8 + prof cold and speed 0 on a fail (prof bonus/long rest).",
+  "url": "http://dnd5e.wikidot.com/feat:fury-of-the-frost-giant"
  },
  {
   "name": "Gift of the Chromatic Dragon",
@@ -344,7 +377,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "You’ve manifested some of the power of chromatic dragons, granting you the following benefits: Chromatic Infusion. As a bonus action, you can touch a simple or martial weapon and infuse it with one of the following..."
+  "desc": "Bonus action: a weapon deals +1d4 acid/cold/fire/lightning/poison for 1 min (once per long rest). Reaction: resistance to one instance of those types (prof bonus/long rest).",
+  "url": "http://dnd5e.wikidot.com/feat:gift-of-the-chromatic-dragon"
  },
  {
   "name": "Gift of the Gem Dragon",
@@ -359,7 +393,8 @@
    ],
    "amount": 1
   },
-  "desc": "You’ve manifested some of the power of gem dragons, granting you the following benefits: Ability Score Increase. Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20. Telekinetic Reprisal. When..."
+  "desc": "+1 INT, WIS or CHA. Reaction when damaged by a creature within 10 ft: STR save, 2d8 force and pushed 10 ft on a fail (prof bonus/long rest).",
+  "url": "http://dnd5e.wikidot.com/feat:gift-of-the-gem-dragon"
  },
  {
   "name": "Gift of the Metallic Dragon",
@@ -367,7 +402,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "You’ve manifested some of the power of metallic dragons, granting you the following benefits: Draconic Healing. You learn the Cure Wounds spell. You can cast this spell without expending a spell slot. Once you cast this..."
+  "desc": "Cure Wounds free once per long rest (INT, WIS or CHA). Reaction when you or a creature within 5 ft is hit: +prof bonus to its AC against that attack (prof bonus/long rest).",
+  "url": "http://dnd5e.wikidot.com/feat:gift-of-the-metallic-dragon"
  },
  {
   "name": "Grappler",
@@ -377,7 +413,8 @@
    "STR": 13
   },
   "asi": null,
-  "desc": "You've developed the skills necessary to hold your own in close-quarters grappling. You gain the following benefits: You have advantage on attack rolls against a creature you are grappling. You can use your action to..."
+  "desc": "Needs STR 13. Advantage on attacks against a creature you grapple; action to pin it (both restrained) with another grapple check.",
+  "url": "http://dnd5e.wikidot.com/feat:grappler"
  },
  {
   "name": "Great Weapon Master",
@@ -385,7 +422,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "You've learned to put the weight of a weapon to your advantage, letting its momentum empower your strikes. You gain the following benefits: On your turn, when you score a critical hit with a melee weapon or reduce a..."
+  "desc": "Bonus action melee attack after a crit or a kill; before a heavy weapon attack, take -5 to hit for +10 damage.",
+  "url": "http://dnd5e.wikidot.com/feat:great-weapon-master"
  },
  {
   "name": "Greater Dragonmark (UA)",
@@ -393,7 +431,8 @@
   "prereq": "8th level, character must possess a dragonmark",
   "min_ability": {},
   "asi": null,
-  "desc": "Your dragonmark has grown in size and power. This enhances your existing dragonmark, and the benefits are based on the mark that you already possess. A greater dragonmark provides the following benefits: The die type of..."
+  "desc": "Needs a dragonmark and level 8. Intuition die grows one size, +1 to an ability set by the mark, and a set of mark spells, each free once per long rest.",
+  "url": "http://dnd5e.wikidot.com/feat:greater-dragonmark"
  },
  {
   "name": "Guile of the Cloud Giant",
@@ -408,7 +447,8 @@
    ],
    "amount": 1
   },
-  "desc": "You’ve manifested the confounding magic emblematic of cloud giants, granting you the following benefits: Ability Score Increase. Increase your Strength, Constitution, or Charisma score by 1, to a maximum of 20. Cloudy..."
+  "desc": "+1 STR, CON or CHA. Reaction when hit: resistance to that damage and teleport 30 ft (prof bonus/long rest).",
+  "url": "http://dnd5e.wikidot.com/feat:guile-of-the-cloud-giant"
  },
  {
   "name": "Gunner",
@@ -421,7 +461,8 @@
    ],
    "amount": 1
   },
-  "desc": "You have a quick hand and keen eye when employing firearms, granting you the following benefits: Increase your Dexterity score by 1, to a maximum of 20. You gain proficiency with firearms (see “Firearms” in the Dungeon..."
+  "desc": "+1 DEX. Firearms proficiency, ignore their loading property, no disadvantage for ranged attacks in melee.",
+  "url": "http://dnd5e.wikidot.com/feat:gunner"
  },
  {
   "name": "Healer",
@@ -429,7 +470,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "You are an able physician, allowing you to mend wounds quickly and get your allies back in the fight. You gain the following benefits: When you use a healer's kit to stabilize a dying creature, that creature also..."
+  "desc": "Stabilizing with a healer's kit also restores 1 HP. Action, one kit use: heal 1d6 + 4 + the target's max Hit Dice, once per creature per rest.",
+  "url": "http://dnd5e.wikidot.com/feat:healer"
  },
  {
   "name": "Heavily Armored",
@@ -442,7 +484,8 @@
    ],
    "amount": 1
   },
-  "desc": "You have trained to master the use of heavy armor, gaining the following benefits: Increase your Strength score by 1, to a maximum of 20. You gain proficiency with heavy armor...."
+  "desc": "Needs medium armor proficiency. +1 STR, heavy armor proficiency.",
+  "url": "http://dnd5e.wikidot.com/feat:heavily-armored"
  },
  {
   "name": "Heavy Armor Master",
@@ -455,7 +498,8 @@
    ],
    "amount": 1
   },
-  "desc": "You can use your armor to deflect strikes that would kill others. You gain the following benefits: Increase your Strength score by 1, to a maximum of 20. While you are wearing heavy armor, bludgeoning, piercing, and..."
+  "desc": "Needs heavy armor proficiency. +1 STR. In heavy armor, nonmagical bludgeoning, piercing and slashing damage is reduced by 3.",
+  "url": "http://dnd5e.wikidot.com/feat:heavy-armor-master"
  },
  {
   "name": "Infernal Constitution",
@@ -468,7 +512,8 @@
    ],
    "amount": 1
   },
-  "desc": "Fiendish blood runs strong in you, unlocking a resilience akin to that possessed by some fiends. You gain the following benefits: Increase your Constitution score by 1, up to a maximum of 20. You have resistance to cold..."
+  "desc": "Tiefling. +1 CON, resistance to cold and poison, advantage on saves against being poisoned.",
+  "url": "http://dnd5e.wikidot.com/feat:infernal-constitution"
  },
  {
   "name": "Initiate of High Sorcery",
@@ -476,7 +521,8 @@
   "prereq": "Dragonlance Campaign, Sorcerer or Wizard Class or Mage of High Sorcery Background",
   "min_ability": {},
   "asi": null,
-  "desc": "You've received training from magic-users affiliated with the Mages of High Sorcery. Choose one of the three moons of Krynn to influence your magic: the black moon, Nuitari; the red moon, Lunitari; or the white moon..."
+  "desc": "Pick a moon of Krynn: a wizard cantrip and two 1st-level lunar spells, each free once per long rest (INT, WIS or CHA).",
+  "url": "http://dnd5e.wikidot.com/feat:initiate-of-high-sorcery"
  },
  {
   "name": "Inspiring Leader",
@@ -486,7 +532,8 @@
    "CHA": 13
   },
   "asi": null,
-  "desc": "You can spend 10 minutes inspiring your companions, shoring up their resolve to fight. When you do so, choose up to six friendly creatures (which can include yourself) within 30 feet of you who can see or hear you and..."
+  "desc": "Needs CHA 13. 10-minute speech: up to six allies within 30 ft gain temp HP equal to your level + CHA, once per rest each.",
+  "url": "http://dnd5e.wikidot.com/feat:inspiring-leader"
  },
  {
   "name": "Keen Mind",
@@ -499,7 +546,8 @@
    ],
    "amount": 1
   },
-  "desc": "You have a mind that can track time, direction, and detail with uncanny precision. You gain the following benefits. Increase your Intelligence score by 1, to a maximum of 20. You always know which way is north."
+  "desc": "+1 INT. Always know north and the hours to sunrise or sunset; perfect recall of the last month.",
+  "url": "http://dnd5e.wikidot.com/feat:keen-mind"
  },
  {
   "name": "Keenness of the Stone Giant",
@@ -514,7 +562,8 @@
    ],
    "amount": 1
   },
-  "desc": "You’ve manifested the physical talents emblematic of stone giants, granting you the following benefits: Ability Score Increase. Increase your Strength, Constitution, or Wisdom score by 1, to a maximum of 20. Cavernous..."
+  "desc": "+1 STR, CON or WIS, darkvision 60 ft (or +60). Bonus action rock throw: ranged spell attack 60 ft, 1d10 force, STR save or prone (prof bonus/long rest).",
+  "url": "http://dnd5e.wikidot.com/feat:keenness-of-the-stone-giant"
  },
  {
   "name": "Knight of the Crown",
@@ -529,7 +578,8 @@
    ],
    "amount": 1
   },
-  "desc": "You are a Knight of Solamnia aligned with the Order of the Crown, a group that extols the virtues of cooperation, loyalty, and obedience. You excel in group combat and gain these benefits: Ability Score Increase...."
+  "desc": "Needs Squire of Solamnia. +1 STR, DEX or CON. Bonus action: an ally within 30 ft makes a weapon attack as a reaction, +1d8 damage on a hit (prof bonus/long rest).",
+  "url": "http://dnd5e.wikidot.com/feat:knight-of-the-crown"
  },
  {
   "name": "Knight of the Rose",
@@ -544,7 +594,8 @@
    ],
    "amount": 1
   },
-  "desc": "You are a Knight of Solamnia aligned with the Order of the Rose, a group known for leadership, justice, and wisdom. Your resolve grants you these benefits: Ability Score Increase. Increase your Constitution, Wisdom, or..."
+  "desc": "Needs Squire of Solamnia. +1 CON, WIS or CHA. Bonus action: a creature within 30 ft gains 1d8 + prof + your ability modifier temp HP (prof bonus/long rest).",
+  "url": "http://dnd5e.wikidot.com/feat:knight-of-the-rose"
  },
  {
   "name": "Knight of the Sword",
@@ -559,7 +610,8 @@
    ],
    "amount": 1
   },
-  "desc": "You are a Knight of Solamnia aligned with the Order of the Sword, a group devoted to heroism and courage. Bravery steels your spirit, granting you these benefits: Ability Score Increase Increase your Intelligence..."
+  "desc": "Needs Squire of Solamnia. +1 INT, WIS or CHA. Once per turn on a weapon hit: WIS save or frightened until your next turn (prof bonus/long rest).",
+  "url": "http://dnd5e.wikidot.com/feat:knight-of-the-sword"
  },
  {
   "name": "Lightly Armored",
@@ -573,7 +625,8 @@
    ],
    "amount": 1
   },
-  "desc": "You have trained to master the use of light armor, gaining the following benefits. Increase your Strength or Dexterity score by 1, to a maximum of 20. You gain proficiency with light armor...."
+  "desc": "+1 STR or DEX, light armor proficiency.",
+  "url": "http://dnd5e.wikidot.com/feat:lightly-armored"
  },
  {
   "name": "Linguist",
@@ -586,7 +639,8 @@
    ],
    "amount": 1
   },
-  "desc": "You have studied languages and codes, gaining the following benefits: Increase your Intelligence score by 1, to a maximum of 20. You learn three languages of your choice."
+  "desc": "+1 INT, three languages, and ciphers others can't read without your help, an INT check (DC your INT + prof) or magic.",
+  "url": "http://dnd5e.wikidot.com/feat:linguist"
  },
  {
   "name": "Lucky",
@@ -594,7 +648,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "You have inexplicable luck that seems to kick in at just the right moment. You have 3 luck points. Whenever you make an attack roll, an ability check, or a saving throw, you can spend one luck point to roll an..."
+  "desc": "3 luck points per long rest: roll an extra d20 for your attack, check or save (pick which counts), or against an attack on you.",
+  "url": "http://dnd5e.wikidot.com/feat:lucky"
  },
  {
   "name": "Mage Slayer",
@@ -602,7 +657,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "You have practiced techniques in melee combat against spellcasters, gaining the following benefits. When a creature within 5 feet of you casts a spell, you can use your reaction to make a melee weapon attack against..."
+  "desc": "Reaction melee attack on a creature within 5 ft that casts a spell; your damage gives disadvantage on its concentration save; advantage on saves vs spells cast within 5 ft.",
+  "url": "http://dnd5e.wikidot.com/feat:mage-slayer"
  },
  {
   "name": "Magic Initiate",
@@ -610,7 +666,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "Choose a class: bard, cleric, druid, sorcerer, warlock, or wizard. You learn two cantrips of your choice from that class's spell list. In addition, choose one 1st-level spell to learn from that same list. Using this..."
+  "desc": "Two cantrips and one 1st-level spell from one of the bard, cleric, druid, sorcerer, warlock, wizard lists; the spell free once per long rest at its lowest level.",
+  "url": "http://dnd5e.wikidot.com/feat:magic-initiate"
  },
  {
   "name": "Martial Adept",
@@ -618,7 +675,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "You have martial training that allows you to perform special combat maneuvers. You gain the following benefits. You learn two maneuvers of your choice from among those available to the Battle Master archetype in the..."
+  "desc": "Two Battle Master maneuvers and one d6 superiority die (short rest); save DC 8 + prof + STR or DEX.",
+  "url": "http://dnd5e.wikidot.com/feat:martial-adept"
  },
  {
   "name": "Medium Armor Master",
@@ -626,7 +684,8 @@
   "prereq": "Proficiency with medium armor",
   "min_ability": {},
   "asi": null,
-  "desc": "You have practiced moving in medium armor to gain the following benefits: Wearing medium armor doesn't impose disadvantage on your Dexterity (Stealth) checks. When you wear medium armor, you can add 3, rather than 2, to..."
+  "desc": "Needs medium armor proficiency. No Stealth disadvantage in medium armor; with DEX 16+ it adds up to +3 DEX to AC instead of +2.",
+  "url": "http://dnd5e.wikidot.com/feat:medium-armor-master"
  },
  {
   "name": "Metamagic Adept",
@@ -634,7 +693,8 @@
   "prereq": "Spellcasting or Pact Magic feature",
   "min_ability": {},
   "asi": null,
-  "desc": "You've learned how to exert your will on your spells to alter how they function: You learn two Metamagic options of your choice from the sorcerer class. You can use only one Metamagic option on a spell when you cast it..."
+  "desc": "Needs spellcasting or Pact Magic. Two Metamagic options and 2 sorcery points for them (long rest); swap an option at ASI levels.",
+  "url": "http://dnd5e.wikidot.com/feat:metamagic-adept"
  },
  {
   "name": "Mobile",
@@ -642,7 +702,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "You are exceptionally speedy and agile. You gain the following benefits: Your speed increases by 10 feet. When you use the Dash action, difficult terrain doesn't cost you extra movement on that turn."
+  "desc": "+10 ft speed; Dash ignores difficult terrain; a creature you attack in melee can't make opportunity attacks against you that turn.",
+  "url": "http://dnd5e.wikidot.com/feat:mobile"
  },
  {
   "name": "Moderately Armored",
@@ -656,7 +717,8 @@
    ],
    "amount": 1
   },
-  "desc": "You have trained to master the use of medium armor and shields, gaining the following benefits: Increase your Strength or Dexterity score by 1, to a maximum of 20. You gain proficiency with medium armor and shields...."
+  "desc": "Needs light armor proficiency. +1 STR or DEX, proficiency with medium armor and shields.",
+  "url": "http://dnd5e.wikidot.com/feat:moderately-armored"
  },
  {
   "name": "Mounted Combatant",
@@ -664,7 +726,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "You are a dangerous foe to face while mounted. While you are mounted and aren't incapacitated, you gain the following benefits: You have advantage on melee attack rolls against any unmounted creature that is smaller..."
+  "desc": "While mounted: advantage on melee attacks vs unmounted creatures smaller than the mount, redirect attacks on the mount to you, mount gets evasion on DEX saves.",
+  "url": "http://dnd5e.wikidot.com/feat:mounted-combatant"
  },
  {
   "name": "Observant",
@@ -678,7 +741,8 @@
    ],
    "amount": 1
   },
-  "desc": "Quick to notice details of your environment, you gain the following benefits: Increase your Intelligence or Wisdom score by 1, to a maximum of 20. If you can see a creature's mouth while it is speaking a language you..."
+  "desc": "+1 INT or WIS, lip reading in known languages, +5 passive Perception and Investigation.",
+  "url": "http://dnd5e.wikidot.com/feat:observant"
  },
  {
   "name": "Orcish Fury",
@@ -692,7 +756,8 @@
    ],
    "amount": 1
   },
-  "desc": "Your fury burns tirelessly. You gain the following benefits: Increase your Strength or Constitution score by 1, up to a maximum of 20. When you hit with an attack made with a simple or martial weapon, you can roll one..."
+  "desc": "Half-orc. +1 STR or CON. Once per short rest roll one extra weapon damage die on a hit; reaction weapon attack right after Relentless Endurance.",
+  "url": "http://dnd5e.wikidot.com/feat:orcish-fury"
  },
  {
   "name": "Outlands Envoy",
@@ -700,7 +765,8 @@
   "prereq": "4th Level, Scion of the Outer Planes (The Outlands) Feat.",
   "min_ability": {},
   "asi": null,
-  "desc": "You have spent significant time in Sigil or the Outlands, the crossroads of the multiverse. Being steeped in converging planar energies grants you these benefits: Ability Score Increase. Increase an ability score of..."
+  "desc": "Needs Scion of the Outer Planes. +1 to any ability. Misty Step and Tongues (no material), each free once per long rest.",
+  "url": "http://dnd5e.wikidot.com/feat:outlands-envoy"
  },
  {
   "name": "Piercer",
@@ -708,7 +774,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "You have achieved a penetrating precision in combat, granting you the following benefits: Increase your Strength or Dexterity by 1, to a maximum of 20. Once per turn, when you hit a creature with an attack that deals..."
+  "desc": "+1 STR or DEX. Once per turn reroll one piercing damage die; piercing crits add one more damage die.",
+  "url": "http://dnd5e.wikidot.com/feat:piercer"
  },
  {
   "name": "Planar Wanderer",
@@ -716,7 +783,8 @@
   "prereq": "4th Level, Scion of the Outer Planes Feat",
   "min_ability": {},
   "asi": null,
-  "desc": "You can draw upon the forces of the multiverse to survive cosmic extremes and to traverse its infinite realms, granting you these benefits: Planar Adaption. When you finish a long rest, you gain resistance to either..."
+  "desc": "Needs Scion of the Outer Planes. Pick acid, cold or fire resistance each long rest; DC 20 Arcana to force a portal open or shut for 1 h (3d8 psychic on a fail); sense nearby portals.",
+  "url": "http://dnd5e.wikidot.com/feat:planar-wanderer"
  },
  {
   "name": "Poisoner",
@@ -724,7 +792,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "You can prepare and deliver deadly poisons, gaining the following benefits: When you make a damage roll, you ignore resistance to poison damage. You can coat a weapon in poison as a bonus action, instead of an action."
+  "desc": "Damage ignores poison resistance, coat weapons as a bonus action, poisoner's kit. 1 h + 50 gp: prof-bonus doses; a hit forces DC 14 CON save or 2d8 poison and poisoned until your next turn.",
+  "url": "http://dnd5e.wikidot.com/feat:poisoner"
  },
  {
   "name": "Polearm Master",
@@ -732,7 +801,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "You gain the following benefits: When you take the Attack action and attack with only a glaive, halberd, quarterstaff, or spear, you can use a bonus action to make a melee attack with the opposite end of the weapon...."
+  "desc": "Glaive, halberd, quarterstaff or spear: bonus action butt-end attack (d4 bludgeoning). With those or a pike, creatures entering your reach provoke opportunity attacks.",
+  "url": "http://dnd5e.wikidot.com/feat:polearm-master"
  },
  {
   "name": "Prodigy",
@@ -740,7 +810,8 @@
   "prereq": "Half-Elf, Half-Orc or Human",
   "min_ability": {},
   "asi": null,
-  "desc": "You have a knack for learning new things. You gain the following benefits: You gain one skill proficiency of your choice, one tool proficiency of your choice, and fluency in one language of your choice. Choose one skill..."
+  "desc": "Half-elf, half-orc or human. One skill, one tool, one language, and expertise in one proficient skill.",
+  "url": "http://dnd5e.wikidot.com/feat:prodigy"
  },
  {
   "name": "Quicksmithing",
@@ -750,7 +821,8 @@
    "INT": 13
   },
   "asi": null,
-  "desc": "You have mastered the art of on-the-fly invention, improvement, and jury-rigging. You can use your talents to create immediate, short-term magical effects similar to spells, given time and an adequate supply of aether...."
+  "desc": "Two 1st-level ritual spells from any list as INT effects (learn more from schematics), quicksmith's tools, and Tiny clockwork devices that work for 24 h.",
+  "url": "http://dnd5e.wikidot.com/feat:quicksmithing"
  },
  {
   "name": "Resilient",
@@ -768,7 +840,8 @@
    ],
    "amount": 1
   },
-  "desc": "Choose one ability score. You gain the following benefits: Increase the chosen ability score by 1, to a maximum of 20. You gain proficiency in saving throws using the chosen ability...."
+  "desc": "+1 to one ability and proficiency in its saving throws.",
+  "url": "http://dnd5e.wikidot.com/feat:resilient"
  },
  {
   "name": "Revenant Blade",
@@ -782,7 +855,8 @@
    ],
    "amount": 1
   },
-  "desc": "You are descended from a master of the double-bladed scimitar, and some of that mastery has passed on to you. You gain the following benefits: Increase your Dexterity or Strength score by 1, to a maximum of 20. While..."
+  "desc": "Elf. +1 DEX or STR. +1 AC while wielding a double-bladed scimitar in two hands, which counts as finesse for you.",
+  "url": "http://dnd5e.wikidot.com/feat:revenant-blade"
  },
  {
   "name": "Righteous Heritor",
@@ -790,7 +864,8 @@
   "prereq": "4th Level, Scion of the Outer Planes (Good Outer Plane) Feat.",
   "min_ability": {},
   "asi": null,
-  "desc": "You can channel cosmic forces of good to gain these benefits: Ability Score Increase. Increase an ability score of your choice by 1, to a maximum of 20. Soothe Pain. When you or a creature within 30 feet of you takes..."
+  "desc": "Needs Scion of the Outer Planes (good). +1 to any ability. Reaction: reduce damage to you or a creature within 30 ft by 1d10 + prof (prof bonus/long rest).",
+  "url": "http://dnd5e.wikidot.com/feat:righteous-heritor"
  },
  {
   "name": "Ritual Caster",
@@ -798,7 +873,8 @@
   "prereq": "Intelligence or Wisdom of 13 or higher",
   "min_ability": {},
   "asi": null,
-  "desc": "You have learned a number of spells that you can cast as rituals. These spells are written in a ritual book, which you must have in hand while casting one of them. When you choose this feat, you acquire a ritual book..."
+  "desc": "Needs INT or WIS 13. Ritual book with two 1st-level ritual spells from one class list; copy more rituals (level up to half yours, 2 h and 50 gp per level).",
+  "url": "http://dnd5e.wikidot.com/feat:ritual-caster"
  },
  {
   "name": "Rune Shaper",
@@ -806,7 +882,8 @@
   "prereq": "Spellcasting Feature or Rune Carver Background",
   "min_ability": {},
   "asi": null,
-  "desc": "You’ve studied the magic of Giant runes, granting you the following benefits: Comprehend Languages. You learn the Comprehend Languages spell. You can cast this spell without expending a spell slot, and you must finish a..."
+  "desc": "Comprehend Languages free once per long rest. Know runes equal to half prof bonus; after a long rest inscribe them on objects to gain their 1st-level spells, each castable free once.",
+  "url": "http://dnd5e.wikidot.com/feat:rune-shaper"
  },
  {
   "name": "Savage Attacker",
@@ -814,7 +891,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "Once per turn when you roll damage for a melee weapon attack, you can reroll the weapon's damage dice and use either total. window['nitroAds'].createAd('wad-dnd5e-floating-video', { \"refreshTime\": 30, \"format\"..."
+  "desc": "Once per turn, reroll a melee weapon's damage dice and keep either total.",
+  "url": "http://dnd5e.wikidot.com/feat:savage-attacker"
  },
  {
   "name": "Scion of the Outer Planes",
@@ -822,7 +900,8 @@
   "prereq": "Planescape Campaign.",
   "min_ability": {},
   "asi": null,
-  "desc": "Your connection to an Outer Plane infuses you with the energy there. Choose a type of plane listed in the Planar Infusion Table. Your choice gives you a resistance to a damage type and the ability to cast a cantrip, as..."
+  "desc": "Pick a kind of Outer Plane: a damage resistance and a cantrip (no material, INT, WIS or CHA) from the Planar Infusion table.",
+  "url": "http://dnd5e.wikidot.com/feat:scion-of-the-outer-planes"
  },
  {
   "name": "Second Chance",
@@ -837,7 +916,8 @@
    ],
    "amount": 1
   },
-  "desc": "Fortune favors you when someone tries to strike you. You gain the following benefits: Increase your Dexterity, Constitution, or Charisma score by 1, to a maximum of 20. When a creature you can see hits you with an..."
+  "desc": "Halfling. +1 DEX, CON or CHA. Reaction: a creature that hits you rerolls the attack; recharges on initiative or a rest.",
+  "url": "http://dnd5e.wikidot.com/feat:second-chance"
  },
  {
   "name": "Sentinel",
@@ -845,7 +925,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "You have mastered techniques to take advantage of every drop in any enemy's guard, gaining the following benefits. When you hit a creature with an opportunity attack, the creature's speed becomes 0 for the rest of the..."
+  "desc": "Opportunity attack hits drop speed to 0; Disengage doesn't stop your opportunity attacks; reaction attack on an adjacent creature that attacks someone else.",
+  "url": "http://dnd5e.wikidot.com/feat:sentinel"
  },
  {
   "name": "Servo Crafting",
@@ -855,7 +936,8 @@
    "INT": 13
   },
   "asi": null,
-  "desc": "You are skilled in the creation of servos—tiny constructs that function as personal assistants. You can cast the Find Familiar spell as a ritual, creating a servo to serve as your familiar instead of an animal. It uses..."
+  "desc": "Find Familiar as a ritual, the familiar a servo; telepathy and speech through it; give up one of your attacks for it to attack.",
+  "url": "http://dnd5e.wikidot.com/feat:servo-crafting"
  },
  {
   "name": "Shadow Touched",
@@ -870,7 +952,8 @@
    ],
    "amount": 1
   },
-  "desc": "Your exposure to the Shadowfell's magic has changed you, granting you the following benefits: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20. You learn the Invisibility spell and one..."
+  "desc": "+1 INT, WIS or CHA. Invisibility and one 1st-level illusion/necromancy spell, each free once per long rest.",
+  "url": "http://dnd5e.wikidot.com/feat:shadow-touched"
  },
  {
   "name": "Sharpshooter",
@@ -878,7 +961,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "You have mastered ranged weapons and can make shots that others find impossible. You gain the following benefits: Attacking at long range doesn't impose disadvantage on your ranged weapon attack rolls. Your ranged..."
+  "desc": "No disadvantage at long range, ignore half and three-quarters cover; with a proficient ranged weapon take -5 to hit for +10 damage.",
+  "url": "http://dnd5e.wikidot.com/feat:sharpshooter"
  },
  {
   "name": "Shield Master",
@@ -886,7 +970,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "You use shields not just for protection but also for offense. You gain the following benefits while you are wielding a shield: If you take the Attack action on your turn, you can use a bonus action to try to shove a..."
+  "desc": "With a shield: bonus action shove after attacking, shield AC added to DEX saves vs effects targeting only you, reaction to take no damage on a successful DEX save for half.",
+  "url": "http://dnd5e.wikidot.com/feat:shield-master"
  },
  {
   "name": "Skill Expert",
@@ -894,7 +979,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "You have honed your proficiency with particular skills, granting you the following benefits: Increase one ability score of your choice by 1, to a maximum of 20. You gain proficiency in one skill of your choice."
+  "desc": "+1 to any ability, one skill proficiency, expertise in one proficient skill.",
+  "url": "http://dnd5e.wikidot.com/feat:skill-expert"
  },
  {
   "name": "Skilled",
@@ -902,7 +988,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "You gain proficiency in any combination of three skills or tools of your choice. window['nitroAds'].createAd('wad-dnd5e-floating-video', { \"refreshTime\": 30, \"format\": \"floating\", \"mediaQuery\": \"(min-width: 1025px)\" })..."
+  "desc": "Proficiency in any three skills or tools.",
+  "url": "http://dnd5e.wikidot.com/feat:skilled"
  },
  {
   "name": "Skulker",
@@ -912,7 +999,8 @@
    "DEX": 13
   },
   "asi": null,
-  "desc": "You are an expert at slinking through shadows. You gain the following benefits: You can try to hide when you are lightly obscured from the creature from which you are hiding. When you are hidden from a creature and miss..."
+  "desc": "Needs DEX 13. Hide when lightly obscured; a missed ranged attack doesn't reveal you; dim light doesn't hinder sight-based Perception.",
+  "url": "http://dnd5e.wikidot.com/feat:skulker"
  },
  {
   "name": "Slasher",
@@ -920,7 +1008,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "You've learned where to cut to have the greatest results, granting you the following benefits: Increase your Strength or Dexterity by 1, to a maximum of 20. Once per turn when you hit a creature with an attack that..."
+  "desc": "+1 STR or DEX. Once per turn a slashing hit cuts speed by 10 ft; a slashing crit gives the target disadvantage on attacks until your next turn.",
+  "url": "http://dnd5e.wikidot.com/feat:slasher"
  },
  {
   "name": "Soul of the Storm Giant",
@@ -935,7 +1024,8 @@
    ],
    "amount": 1
   },
-  "desc": "You’ve manifested the tempest magic emblematic of storm giants, granting you the following benefits: Ability Score Increase. Increase your Strength, Wisdom, or Charisma score by 1, to a maximum of 20. Maelstrom Aura. As..."
+  "desc": "+1 STR, WIS or CHA. Bonus action 10 ft aura until your next turn: lightning/thunder resistance, attacks against you at disadvantage, creatures starting there STR save or half speed (prof bonus/long rest).",
+  "url": "http://dnd5e.wikidot.com/feat:soul-of-the-storm-giant"
  },
  {
   "name": "Spell Sniper",
@@ -943,7 +1033,8 @@
   "prereq": "The ability to cast at least one spell",
   "min_ability": {},
   "asi": null,
-  "desc": "You have learned techniques to enhance your attacks with certain kinds of spells, gaining the following benefits: When you cast a spell that requires you to make an attack roll, the spell's range is doubled. Your ranged..."
+  "desc": "Needs spellcasting. Attack-roll spells reach twice as far and ignore half and three-quarters cover; learn one attack cantrip.",
+  "url": "http://dnd5e.wikidot.com/feat:spell-sniper"
  },
  {
   "name": "Squat Nimbleness",
@@ -957,7 +1048,8 @@
    ],
    "amount": 1
   },
-  "desc": "You are uncommonly nimble for your race. You gain the following benefits: Increase your Strength or Dexterity score by 1, to a maximum of 20. Increase your walking speed by 5 feet."
+  "desc": "Dwarf or Small race. +1 STR or DEX, +5 ft speed, Acrobatics or Athletics, advantage on checks to escape a grapple.",
+  "url": "http://dnd5e.wikidot.com/feat:squat-nimbleness"
  },
  {
   "name": "Squire of Solamnia",
@@ -965,7 +1057,8 @@
   "prereq": "Dragonlance Campaign, Fighter or Paladin Class or Knight of Solamnia Background",
   "min_ability": {},
   "asi": null,
-  "desc": "Your training in the ways of the Knights of Solamnia grants you these benefits: Mount Up. Mounting or dismounting costs you only 5 feet of movement. Precise Strike. Once per turn, when you make a weapon attack roll..."
+  "desc": "Mounting costs 5 ft. Once per turn give a weapon attack advantage; on a hit +1d8 damage (prof bonus uses per long rest, spent only on hits).",
+  "url": "http://dnd5e.wikidot.com/feat:squire-of-solamnia"
  },
  {
   "name": "Strike of the Giants",
@@ -973,7 +1066,8 @@
   "prereq": "Martial Weapon Proficiency or Giant Foundling Background",
   "min_ability": {},
   "asi": null,
-  "desc": "You have absorbed primeval magic that gives you an echo of the might of giants. When you take this feat, choose one of the benefits listed below. Once per turn, when you hit a target with a melee weapon attack or a..."
+  "desc": "Pick a giant kind. Once per turn on a melee or thrown weapon hit: extra damage plus that giant's rider (prone, push, slow, invisibility...) (prof bonus/long rest).",
+  "url": "http://dnd5e.wikidot.com/feat:strike-of-the-giants"
  },
  {
   "name": "Strixhaven Initiate",
@@ -981,7 +1075,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "You have studied some magical theory and have learned a few spells associated with Strixhaven University. Choose one of Strixhaven's colleges: Lorehold, Prismari. Quandrix, Silverquill, or Witherbloom. You learn two..."
+  "desc": "Pick a Strixhaven college: two cantrips and one 1st-level spell from its table, the spell free once per long rest (INT, WIS or CHA).",
+  "url": "http://dnd5e.wikidot.com/feat:strixhaven-initiate"
  },
  {
   "name": "Strixhaven Mascot",
@@ -989,7 +1084,8 @@
   "prereq": "4th Level, Strixhaven Initiate Feat",
   "min_ability": {},
   "asi": null,
-  "desc": "You have learned how to summon a Strixhaven mascot to assist you, granting you these benefits: You can cast the Find Familiar spell as a ritual. Your familiar can take the form of the mascot associated with the college..."
+  "desc": "Needs Strixhaven Initiate. Find Familiar as a ritual with your college's mascot; give up an attack for it to attack; action to swap places with it within 60 ft, once per long rest or with a 2nd+ slot.",
+  "url": "http://dnd5e.wikidot.com/feat:strixhaven-mascot"
  },
  {
   "name": "Svirfneblin Magic",
@@ -997,7 +1093,8 @@
   "prereq": "Gnome (Deep Gnome)",
   "min_ability": {},
   "asi": null,
-  "desc": "You have inherited the innate spellcasting ability of your ancestors. This ability allows you to cast Nondetection on yourself at will, without needing a material component. You can also cast each of the following..."
+  "desc": "Deep gnome. Nondetection on yourself at will; Blindness/Deafness, Blur and Disguise Self once each per long rest (INT).",
+  "url": "http://dnd5e.wikidot.com/feat:svirfneblin-magic"
  },
  {
   "name": "Tavern Brawler",
@@ -1011,7 +1108,8 @@
    ],
    "amount": 1
   },
-  "desc": "Accustomed to the rough-and-tumble fighting using whatever weapons happen to be at hand, you gain the following benefits: Increase your Strength or Constitution score by 1, to a maximum of 20. You are proficient with..."
+  "desc": "+1 STR or CON, proficiency with improvised weapons, d4 unarmed strikes, bonus action grapple after an unarmed or improvised hit.",
+  "url": "http://dnd5e.wikidot.com/feat:tavern-brawler"
  },
  {
   "name": "Telekinetic",
@@ -1026,7 +1124,8 @@
    ],
    "amount": 1
   },
-  "desc": "You learn to move things with your mind, granting you the following benefits: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20. You learn the mage hand cantrip. You can cast it without..."
+  "desc": "+1 INT, WIS or CHA. Mage Hand without components, invisible if you like (+30 ft if known). Bonus action: STR save or a creature within 30 ft is moved 5 ft.",
+  "url": "http://dnd5e.wikidot.com/feat:telekinetic"
  },
  {
   "name": "Telepathic",
@@ -1041,7 +1140,8 @@
    ],
    "amount": 1
   },
-  "desc": "You awaken the ability to mentally connect with others, granting you the following benefits: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20. You can speak telepathically to any creature..."
+  "desc": "+1 INT, WIS or CHA. One-way telepathy 60 ft in a language you know; Detect Thoughts free once per long rest.",
+  "url": "http://dnd5e.wikidot.com/feat:telepathic"
  },
  {
   "name": "Tough",
@@ -1049,7 +1149,8 @@
   "prereq": null,
   "min_ability": {},
   "asi": null,
-  "desc": "Your hit point maximum increases by an amount equal to twice your level when you gain this feat. Whenever you gain a level thereafter, your hit point maximum increases by an additional 2 hit points...."
+  "desc": "Hit point maximum +2 per level.",
+  "url": "http://dnd5e.wikidot.com/feat:tough"
  },
  {
   "name": "Vampiric Exultation",
@@ -1057,7 +1158,8 @@
   "prereq": "Vampire (Ixalan)",
   "min_ability": {},
   "asi": null,
-  "desc": "As an action, you can transform the lower half of your body into an inky black vapor, allowing you to float through the air. While transformed, you have a flying speed of 30 feet. You can maintain this form for up to 10..."
+  "desc": "Action: misty lower body, 30 ft flying speed for up to 10 min, once per short rest.",
+  "url": "http://dnd5e.wikidot.com/feat:vampiric-exultation"
  },
  {
   "name": "Vigor of the Hill Giant",
@@ -1072,7 +1174,8 @@
    ],
    "amount": 1
   },
-  "desc": "You’ve manifested the resilience emblematic of hill giants, granting you the following benefits: Ability Score Increase. Increase your Strength, Constitution, or Wisdom score by 1, to a maximum of 20. Bulwark. When you..."
+  "desc": "+1 STR, CON or WIS. Reaction to avoid being moved or knocked prone; eating on a short rest adds CON + prof to HP from Hit Dice.",
+  "url": "http://dnd5e.wikidot.com/feat:vigor-of-the-hill-giant"
  },
  {
   "name": "War Caster",
@@ -1080,7 +1183,8 @@
   "prereq": "The ability to cast at least one spell",
   "min_ability": {},
   "asi": null,
-  "desc": "You have practiced casting spells in the midst of combat, learning techniques that grant you the following benefits: You have advantage on Constitution saving throws that you make to maintain your concentration on a..."
+  "desc": "Needs a spell. Advantage on concentration saves, somatic components with hands full, a single-target 1-action spell instead of an opportunity attack.",
+  "url": "http://dnd5e.wikidot.com/feat:war-caster"
  },
  {
   "name": "Weapon Master",
@@ -1094,7 +1198,8 @@
    ],
    "amount": 1
   },
-  "desc": "You have practiced extensively with a variety of weapons, gaining the following benefits: Increase your Strength or Dexterity score by 1, to a maximum of 20. You gain proficiency with four weapons of your choice. Each..."
+  "desc": "+1 STR or DEX, proficiency with four simple or martial weapons.",
+  "url": "http://dnd5e.wikidot.com/feat:weapon-master"
  },
  {
   "name": "Wood Elf Magic",
@@ -1102,6 +1207,7 @@
   "prereq": "Elf (Wood)",
   "min_ability": {},
   "asi": null,
-  "desc": "You learn the magic of the primeval woods, which are revered and protected by your people. You learn one Druid cantrip of your choice. You also learn the Longstrider and Pass Without Trace spells, each of which you can..."
+  "desc": "Wood elf. A druid cantrip; Longstrider and Pass without Trace once each per long rest (WIS).",
+  "url": "http://dnd5e.wikidot.com/feat:wood-elf-magic"
  }
 ]

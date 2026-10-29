@@ -113,57 +113,67 @@
   "1": [
    {
     "name": "Fighting Style",
-    "desc": "Choose a fighting style (see the sheet)"
+    "desc": "Choose a fighting style (see the sheet)",
+    "url": "http://dnd5e.wikidot.com/fighter"
    },
    {
     "name": "Second Wind",
-    "desc": "Bonus action, heal d10 + level, 1/short rest"
+    "desc": "Bonus action, heal d10 + level, 1/short rest",
+    "url": "http://dnd5e.wikidot.com/fighter"
    }
   ],
   "2": [
    {
     "name": "Action Surge",
-    "desc": "One extra action, per short rest"
+    "desc": "One extra action, per short rest",
+    "url": "http://dnd5e.wikidot.com/fighter"
    }
   ],
   "5": [
    {
     "name": "Extra Attack",
-    "desc": "2 attacks per Attack action"
+    "desc": "2 attacks per Attack action",
+    "url": "http://dnd5e.wikidot.com/fighter"
    }
   ],
   "9": [
    {
     "name": "Indomitable",
-    "desc": "Reroll a failed save, 1/long rest"
+    "desc": "Reroll a failed save, 1/long rest",
+    "url": "http://dnd5e.wikidot.com/fighter"
    }
   ],
   "11": [
    {
     "name": "Extra Attack",
-    "desc": "3 attacks per Attack action"
+    "desc": "3 attacks per Attack action",
+    "url": "http://dnd5e.wikidot.com/fighter"
    }
   ],
   "13": [
    {
     "name": "Indomitable",
-    "desc": "Reroll a failed save, 2/long rest"
+    "desc": "Reroll a failed save, 2/long rest",
+    "url": "http://dnd5e.wikidot.com/fighter"
    }
   ],
   "17": [
    {
     "name": "Action Surge",
-    "desc": "One extra action, 2 per short rest"
+    "desc": "One extra action, 2 per short rest",
+    "url": "http://dnd5e.wikidot.com/fighter"
    },
    {
     "name": "Indomitable",
-    "desc": "Reroll a failed save, 3/long rest"
+    "desc": "Reroll a failed save, 3/long rest",
+    "url": "http://dnd5e.wikidot.com/fighter"
    }
   ],
   "20": [
    {
     "name": "Extra Attack",
-    "desc": "4 attacks per Attack action"
+    "desc": "4 attacks per Attack action",
+    "url": "http://dnd5e.wikidot.com/fighter"
    }
   ]
  },
@@ -171,67 +181,67 @@
   {
    "name": "Archery",
    "source": "PHB",
-   "desc": "You gain a +2 bonus to attack rolls you make with ranged weapons.",
+   "desc": "+2 to hit with ranged weapons.",
    "effect": "archery"
   },
   {
    "name": "Blind Fighting",
    "source": "TCE",
-   "desc": "You have blindsight with a range of 10 feet. Within that range, you can effectively see anything that isn't behind total cover...",
+   "desc": "Blindsight 10 ft: see through darkness and blindness, and invisible creatures that aren't hidden.",
    "effect": null
   },
   {
    "name": "Defense",
    "source": "PHB",
-   "desc": "While you are wearing armor, you gain a +1 bonus to AC.",
+   "desc": "+1 AC while wearing armor.",
    "effect": "defense"
   },
   {
    "name": "Dueling",
    "source": "PHB",
-   "desc": "When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon.",
+   "desc": "+2 damage with a one-handed melee weapon and no other weapon.",
    "effect": "dueling"
   },
   {
    "name": "Great Weapon Fighting",
    "source": "PHB",
-   "desc": "When you roll a 1 or 2 on a damage die for an attack you make with a melee weapon that you are wielding with two hands, you can...",
+   "desc": "Reroll 1s and 2s on damage dice of two-handed or versatile melee weapons held in two hands (keep the reroll).",
    "effect": null
   },
   {
    "name": "Interception",
    "source": "TCE",
-   "desc": "When a creature you can see hits a target, other than you, within 5 feet of you with an attack, you can use your reaction to...",
+   "desc": "Reaction with a shield or weapon: reduce a hit on an adjacent ally by 1d10 + prof.",
    "effect": null
   },
   {
    "name": "Protection",
    "source": "PHB",
-   "desc": "When a creature you can see attacks a target other than you that is within 5 feet of you, you can use your reaction to impose...",
+   "desc": "Reaction with a shield: impose disadvantage on an attack against an adjacent ally.",
    "effect": null
   },
   {
    "name": "Superior Technique",
    "source": "TCE",
-   "desc": "You learn one maneuver of your choice from among those available to the Battle Master archetype. If a maneuver you use requires...",
+   "desc": "One Battle Master maneuver and one d6 superiority die (short rest).",
    "effect": null
   },
   {
    "name": "Thrown Weapon Fighting",
    "source": "TCE",
-   "desc": "You can draw a weapon that has the thrown property as part of the attack you make with the weapon.",
+   "desc": "Draw thrown weapons as part of the attack; +2 damage with them.",
    "effect": "thrown"
   },
   {
    "name": "Two-Weapon Fighting",
    "source": "PHB",
-   "desc": "When you engage in two-weapon fighting, you can add your ability modifier to the damage of the second attack.",
+   "desc": "Add your ability modifier to the off-hand attack's damage.",
    "effect": "two_weapon"
   },
   {
    "name": "Unarmed Fighting",
    "source": "TCE",
-   "desc": "Your unarmed strikes can deal bludgeoning damage equal to 1d6 + your Strength modifier on a hit. If you aren't wielding any...",
+   "desc": "Unarmed strikes deal 1d6 + STR (1d8 with no weapon or shield); 1d4 to a creature you grapple at the start of your turn.",
    "effect": null
   }
  ],
@@ -250,27 +260,32 @@
     "3": [
      {
       "name": "Arcane Archer Lore",
-      "desc": "At 3rd level, you learn magical theory or some of the secrets of nature – typical for practitioners of of this elven martial tradition. You..."
+      "desc": "Arcana or Nature, and Prestidigitation or Druidcraft.",
+      "url": "http://dnd5e.wikidot.com/fighter:arcane-archer"
      },
      {
       "name": "Arcane Shot",
-      "desc": "At 3rd level, you learn to unleash special magical effects with some of your shots. When you gain this feature, you learn two Arcane Shot..."
+      "desc": "Once per turn, apply a known Arcane Shot option to a bow attack (choose on hit); 2 uses per short rest; two options at 3rd, one more at 7th, 10th, 15th, 18th. Save DC 8 + prof + INT.",
+      "url": "http://dnd5e.wikidot.com/fighter:arcane-archer"
      }
     ],
     "7": [
      {
       "name": "Magic Arrow",
-      "desc": "At 7th level, you gain the ability to infuse arrows with magic. Whenever you fire a nonmagical arrow from a shortbow or longbow, you can..."
+      "desc": "Arrows you fire from a bow count as magical.",
+      "url": "http://dnd5e.wikidot.com/fighter:arcane-archer"
      },
      {
       "name": "Curving Shot",
-      "desc": "At 7th level, you learn how to direct an errant arrow toward a new target. When you make an attack roll with a magic arrow and miss, you..."
+      "desc": "Bonus action after missing with a magic arrow: reroll against another target within 60 ft.",
+      "url": "http://dnd5e.wikidot.com/fighter:arcane-archer"
      }
     ],
     "15": [
      {
       "name": "Ever-Ready Shot",
-      "desc": "Starting at 15th level, your magical archery is available whenever battle starts. If you roll initiative and have no uses of Arcane Shot..."
+      "desc": "Regain one Arcane Shot use when you roll initiative with none left.",
+      "url": "http://dnd5e.wikidot.com/fighter:arcane-archer"
      }
     ]
    }
@@ -289,19 +304,22 @@
     "3": [
      {
       "name": "Rallying Cry",
-      "desc": "When you choose this archetype at 3rd level, you learn how to inspire your allies to fight on past their injuries. When you use your Second..."
+      "desc": "Second Wind also heals up to three allies within 60 ft for your fighter level.",
+      "url": "http://dnd5e.wikidot.com/fighter:banneret"
      }
     ],
     "10": [
      {
       "name": "Inspiring Surge",
-      "desc": "Starting at 10th level, when you use your Action Surge feature, you can choose one creature within 60 feet of you that is allied with you...."
+      "desc": "Action Surge lets an ally within 60 ft make a reaction weapon attack (two allies at 18th).",
+      "url": "http://dnd5e.wikidot.com/fighter:banneret"
      }
     ],
     "15": [
      {
       "name": "Bulwark",
-      "desc": "Beginning at 15th level, you can extend the benefit of your Indomitable feature to an ally. When you decide to use Indomitable to reroll an..."
+      "desc": "When Indomitable rerolls your INT, WIS or CHA save, an ally within 60 ft that failed the same save rerolls too.",
+      "url": "http://dnd5e.wikidot.com/fighter:banneret"
      }
     ]
    }
@@ -346,35 +364,41 @@
     "3": [
      {
       "name": "Combat Superiority",
-      "desc": "Maneuvers fueled by superiority dice, short rest"
+      "desc": "Maneuvers fueled by superiority dice, short rest",
+      "url": "http://dnd5e.wikidot.com/fighter:battle-master"
      },
      {
       "name": "Student of War",
-      "desc": "One artisan's tools proficiency"
+      "desc": "One artisan's tools proficiency",
+      "url": "http://dnd5e.wikidot.com/fighter:battle-master"
      }
     ],
     "7": [
      {
       "name": "Know Your Enemy",
-      "desc": "1 min outside combat: DM says if a creature is equal/superior/inferior in 2 traits"
+      "desc": "1 min outside combat: DM says if a creature is equal/superior/inferior in 2 traits",
+      "url": "http://dnd5e.wikidot.com/fighter:battle-master"
      }
     ],
     "10": [
      {
       "name": "Improved Combat Superiority",
-      "desc": "Superiority dice become d10"
+      "desc": "Superiority dice become d10",
+      "url": "http://dnd5e.wikidot.com/fighter:battle-master"
      }
     ],
     "15": [
      {
       "name": "Relentless",
-      "desc": "Roll initiative with no superiority dice: regain 1"
+      "desc": "Roll initiative with no superiority dice: regain 1",
+      "url": "http://dnd5e.wikidot.com/fighter:battle-master"
      }
     ],
     "18": [
      {
       "name": "Improved Combat Superiority",
-      "desc": "Superiority dice become d12"
+      "desc": "Superiority dice become d12",
+      "url": "http://dnd5e.wikidot.com/fighter:battle-master"
      }
     ]
    }
@@ -393,39 +417,46 @@
     "3": [
      {
       "name": "Bonus Proficiency",
-      "desc": "When you choose this archetype at 3rd level, you gain proficiency in one of the following skills of your choice: Animal Handling, History..."
+      "desc": "Animal Handling, History, Insight, Performance or Persuasion, or a language.",
+      "url": "http://dnd5e.wikidot.com/fighter:cavalier"
      },
      {
       "name": "Born to the Saddle",
-      "desc": "Starting at 3rd level, your mastery as a rider becomes apparent. You have advantage on saving throws made to avoid falling off your mount...."
+      "desc": "Advantage on saves to stay mounted, land on your feet from short falls, mount or dismount for 5 ft.",
+      "url": "http://dnd5e.wikidot.com/fighter:cavalier"
      },
      {
       "name": "Unwavering Mark",
-      "desc": "Starting at 3rd level, you can menace your foes, foiling their attacks and punishing them for harming others. When you hit a creature with..."
+      "desc": "A creature you hit in melee is marked: disadvantage attacking others near you; if it damages someone else, bonus action attack with advantage and +half level damage (STR mod uses per long rest).",
+      "url": "http://dnd5e.wikidot.com/fighter:cavalier"
      }
     ],
     "7": [
      {
       "name": "Warding Maneuver",
-      "desc": "At 7th level, you learn to fend off strikes directed at you, your mount, or other creatures nearby. If you or a creature you can see within..."
+      "desc": "Reaction with a melee weapon or shield: add 1d8 to the AC of you or an adjacent creature against a hit, resistance if it still hits; CON mod uses per long rest.",
+      "url": "http://dnd5e.wikidot.com/fighter:cavalier"
      }
     ],
     "10": [
      {
       "name": "Hold the Line",
-      "desc": "At 10th level, you become a master of locking down your enemies. Creatures provoke an opportunity attack from you when they move 5 feet or..."
+      "desc": "Creatures moving 5 ft within your reach provoke opportunity attacks; your opportunity hits drop their speed to 0.",
+      "url": "http://dnd5e.wikidot.com/fighter:cavalier"
      }
     ],
     "15": [
      {
       "name": "Ferocious Charger",
-      "desc": "Starting at 15th level, you can run down your foes, whether you're mounted or not. If you move at least 10 feet in a straight line right..."
+      "desc": "Once per turn, hitting after a 10 ft straight move: STR save or prone.",
+      "url": "http://dnd5e.wikidot.com/fighter:cavalier"
      }
     ],
     "18": [
      {
       "name": "Vigilant Defender",
-      "desc": "Starting at 18th level, you respond to danger with extraordinary vigilance. In combat, you get a special reaction that you can take once on..."
+      "desc": "An extra reaction on every other creature's turn, only for opportunity attacks.",
+      "url": "http://dnd5e.wikidot.com/fighter:cavalier"
      }
     ]
    }
@@ -444,31 +475,36 @@
     "3": [
      {
       "name": "Improved Critical",
-      "desc": "Beginning when you choose this archetype at 3rd level, your weapon attacks score a critical hit on a roll of 19 or 20."
+      "desc": "Weapon attacks crit on 19-20.",
+      "url": "http://dnd5e.wikidot.com/fighter:champion"
      }
     ],
     "7": [
      {
       "name": "Remarkable Athlete",
-      "desc": "Starting at 7th level, you can add half your proficiency bonus (rounded up) to any Strength, Dexterity, or Constitution check you make that..."
+      "desc": "Add half proficiency (round up) to STR, DEX and CON checks without proficiency; running long jumps +STR mod ft.",
+      "url": "http://dnd5e.wikidot.com/fighter:champion"
      }
     ],
     "10": [
      {
       "name": "Additional Fighting Style",
-      "desc": "At 10th level, you can choose a second option from the Fighting Style class feature."
+      "desc": "A second Fighting Style.",
+      "url": "http://dnd5e.wikidot.com/fighter:champion"
      }
     ],
     "15": [
      {
       "name": "Superior Critical",
-      "desc": "Starting at 15th level, your weapon attacks score a critical hit on a roll of 18-20."
+      "desc": "Weapon attacks crit on 18-20.",
+      "url": "http://dnd5e.wikidot.com/fighter:champion"
      }
     ],
     "18": [
      {
       "name": "Survivor",
-      "desc": "At 18th level, you attain the pinnacle of resilience in battle. At the start of each of your turns, you regain hit points equal to 5 + your..."
+      "desc": "At the start of your turn, with half HP or less (but above 0), regain 5 + CON.",
+      "url": "http://dnd5e.wikidot.com/fighter:champion"
      }
     ]
    }
@@ -487,35 +523,41 @@
     "3": [
      {
       "name": "Manifest Echo",
-      "desc": "At 3rd level, you can use a bonus action to magically manifest an echo of yourself in an unoccupied space you can see within 15 feet of..."
+      "desc": "Bonus action: an echo of you within 15 ft (AC 14 + prof, 1 HP); move it 30 ft free, swap places for 15 ft of movement, attack and make opportunity attacks from its space.",
+      "url": "http://dnd5e.wikidot.com/fighter:echo-knight"
      },
      {
       "name": "Unleash Incarnation",
-      "desc": "At 3rd level, you can heighten your echo's fury. Whenever you take the Attack action, you can make one additional melee attack from the..."
+      "desc": "With the Attack action, one extra melee attack from the echo; CON mod uses per long rest.",
+      "url": "http://dnd5e.wikidot.com/fighter:echo-knight"
      }
     ],
     "7": [
      {
       "name": "Echo Avatar",
-      "desc": "Starting at 7th level, you can temporarily transfer your consciousness to your echo. As an action, you can see through your echo's eyes and..."
+      "desc": "Action: see and hear through your echo up to 1,000 ft away for 10 min, blind and deaf yourself.",
+      "url": "http://dnd5e.wikidot.com/fighter:echo-knight"
      }
     ],
     "10": [
      {
       "name": "Shadow Martyr",
-      "desc": "Starting at 10th level, you can make your echo throw itself in front of an attack directed at another creature that you can see. Before the..."
+      "desc": "Reaction: teleport your echo next to an attacked creature so the attack targets the echo; once per short rest.",
+      "url": "http://dnd5e.wikidot.com/fighter:echo-knight"
      }
     ],
     "15": [
      {
       "name": "Reclaim Potential",
-      "desc": "By 15th level, you've learned to absorb the fleeting magic of your echo. When an echo of yours is destroyed by taking damage, you can gain..."
+      "desc": "When your echo is destroyed, gain 2d6 + CON temp HP; CON mod uses per long rest.",
+      "url": "http://dnd5e.wikidot.com/fighter:echo-knight"
      }
     ],
     "18": [
      {
       "name": "Legion of One",
-      "desc": "At 18th level, you can use a bonus action to create two echos with your Manifest Echo feature, and these echoes can co-exist. If you try to..."
+      "desc": "Keep two echoes at once; regain one Unleash Incarnation use on initiative with none left.",
+      "url": "http://dnd5e.wikidot.com/fighter:echo-knight"
      }
     ]
    }
@@ -534,35 +576,41 @@
     "3": [
      {
       "name": "Spellcasting",
-      "desc": "When you reach 3rd level, you augment your martial prowess with the ability to cast spells. You learn two cantrips of your choice from the..."
+      "desc": "INT third-caster with wizard spells known, mostly abjuration and evocation (some from any school); two cantrips (three at 10th).",
+      "url": "http://dnd5e.wikidot.com/fighter:eldritch-knight"
      },
      {
       "name": "Weapon Bond",
-      "desc": "At 3rd level, you learn a ritual that creates a magical bond between yourself and one weapon. You perform the ritual over the course of 1..."
+      "desc": "1 h ritual bonds up to two weapons: you can't be disarmed of them and summon one to your hand as a bonus action.",
+      "url": "http://dnd5e.wikidot.com/fighter:eldritch-knight"
      }
     ],
     "7": [
      {
       "name": "War Magic",
-      "desc": "Beginning at 7th level, when you use your action to cast a cantrip, you can make one weapon attack as a bonus action."
+      "desc": "After casting a cantrip with your action, bonus action weapon attack.",
+      "url": "http://dnd5e.wikidot.com/fighter:eldritch-knight"
      }
     ],
     "10": [
      {
       "name": "Eldritch Strike",
-      "desc": "At 10th level, you learn how to make your weapon strikes undercut a creature's resistance to your spells. When you hit a creature with a..."
+      "desc": "A weapon hit gives the target disadvantage on its next save against your spell before your next turn ends.",
+      "url": "http://dnd5e.wikidot.com/fighter:eldritch-knight"
      }
     ],
     "15": [
      {
       "name": "Arcane Charge",
-      "desc": "At 15th level, you gain the ability to teleport up to 30 feet to an unoccupied space you can see when you use your Action Surge. You can..."
+      "desc": "Action Surge also lets you teleport 30 ft.",
+      "url": "http://dnd5e.wikidot.com/fighter:eldritch-knight"
      }
     ],
     "18": [
      {
       "name": "Improved War Magic",
-      "desc": "Starting at 18th level, when you use your action to cast a spell, you can make one weapon attack as a bonus action...."
+      "desc": "After casting a spell with your action, bonus action weapon attack.",
+      "url": "http://dnd5e.wikidot.com/fighter:eldritch-knight"
      }
     ]
    },
@@ -804,31 +852,36 @@
     "3": [
      {
       "name": "Psionic Power",
-      "desc": "At 3rd level, you harbor a wellspring of psionic energy within yourself. This energy is represented by your Psionic Energy dice, which are..."
+      "desc": "Psionic dice (d6, twice prof bonus, long rest; bonus action regains one per short rest): Protective Field (reaction, reduce damage), Psionic Strike (+die + INT force), Telekinetic Movement.",
+      "url": "http://dnd5e.wikidot.com/fighter:psi-warrior"
      }
     ],
     "7": [
      {
       "name": "Telekinetic Adept",
-      "desc": "By the 7th level, You have mastered new ways to use your telekinetic abilities, detailed below. Psi-Powered Leap. As a bonus action, you..."
+      "desc": "Psi-Powered Leap (bonus action, fly twice your speed this turn) and Telekinetic Thrust (Psionic Strike can knock prone or push 10 ft, STR save).",
+      "url": "http://dnd5e.wikidot.com/fighter:psi-warrior"
      }
     ],
     "10": [
      {
       "name": "Guarded Mind",
-      "desc": "Starting at 10th level, the psionic energy flowing through you has bolstered your mind. You have resistance to psychic damage. Moreover, if..."
+      "desc": "Psychic resistance; spend a die at turn start to end charmed and frightened effects.",
+      "url": "http://dnd5e.wikidot.com/fighter:psi-warrior"
      }
     ],
     "15": [
      {
       "name": "Bulwark of Force",
-      "desc": "At 15th level, you can shield yourself and others with telekinetic force. As a bonus action, you can choose creatures, which can include..."
+      "desc": "Bonus action: up to INT mod creatures within 30 ft get half cover for 1 min; once per long rest or spend a die.",
+      "url": "http://dnd5e.wikidot.com/fighter:psi-warrior"
      }
     ],
     "18": [
      {
       "name": "Telekinetic Master",
-      "desc": "By 18th level, your ability to move creatures and objects with your mind is matched by few. You can cast the Telekinesis spell, requiring..."
+      "desc": "Telekinesis without components (INT), bonus action weapon attack each turn while concentrating; once per long rest or spend a die.",
+      "url": "http://dnd5e.wikidot.com/fighter:psi-warrior"
      }
     ]
    }
@@ -847,39 +900,46 @@
     "3": [
      {
       "name": "Bonus Proficiencies",
-      "desc": "When you choose this archetype at 3rd level, you gain proficiency with smith’s tools, and you learn to speak, read, and write Giant."
+      "desc": "Smith's tools and the Giant language.",
+      "url": "http://dnd5e.wikidot.com/fighter:rune-knight"
      },
      {
       "name": "Rune Carver",
-      "desc": "Starting at 3rd level, you can use magic runes to enhance your gear. You learn two runes of your choice, from among the runes described..."
+      "desc": "Inscribe known runes (two at 3rd, more later) on gear after a long rest: each gives a passive benefit and a once-per-short-rest invocation (cloud, fire, frost, stone, hill, storm).",
+      "url": "http://dnd5e.wikidot.com/fighter:rune-knight"
      },
      {
       "name": "Giant's Might",
-      "desc": "At 3rd level, you have learned how to imbue yourself with the might of giants. As a bonus action, you magically gain the following..."
+      "desc": "Bonus action for 1 min: Large size, advantage on STR checks and saves, +1d6 to one weapon hit per turn (prof bonus/long rest).",
+      "url": "http://dnd5e.wikidot.com/fighter:rune-knight"
      }
     ],
     "7": [
      {
       "name": "Runic Shield",
-      "desc": "At 7th level, you learn to invoke your rune magic to protect your allies. When another creature you can see within 60 feet of you is hit by..."
+      "desc": "Reaction: an attacker that hits a creature within 60 ft rerolls (prof bonus/long rest).",
+      "url": "http://dnd5e.wikidot.com/fighter:rune-knight"
      }
     ],
     "10": [
      {
       "name": "Great Stature",
-      "desc": "By 10th level, the magic of your runes permanently alters you. When you gain this feature, roll 3d4. You grow a number of inches in height..."
+      "desc": "Grow 3d4 inches; Giant's Might extra damage becomes 1d8.",
+      "url": "http://dnd5e.wikidot.com/fighter:rune-knight"
      }
     ],
     "15": [
      {
       "name": "Master of Runes",
-      "desc": "At 15th level, you can invoke each rune you know from your Rune Carver feature twice, rather than once, and you regain all expended uses..."
+      "desc": "Invoke each rune twice per short rest.",
+      "url": "http://dnd5e.wikidot.com/fighter:rune-knight"
      }
     ],
     "18": [
      {
       "name": "Runic Juggernaut",
-      "desc": "At 18th level, you learn how to amplify your rune-powered transformation. As a result, the extra damage you deal with the Giant's Might..."
+      "desc": "Giant's Might deals 1d10 extra, can make you Huge with +5 ft reach.",
+      "url": "http://dnd5e.wikidot.com/fighter:rune-knight"
      }
     ]
    }
@@ -898,35 +958,41 @@
     "3": [
      {
       "name": "Bonus Proficiency",
-      "desc": "When you choose this archetype at 3rd level, you gain proficiency in one of the following skills of your choice: History, Insight..."
+      "desc": "History, Insight, Performance or Persuasion, or a language.",
+      "url": "http://dnd5e.wikidot.com/fighter:samurai"
      },
      {
       "name": "Fighting Spirit",
-      "desc": "Starting at 3rd level, your intensity in battle can shield you and help you strike true. As a bonus action on your turn, you can give..."
+      "desc": "Bonus action: advantage on weapon attacks this turn and 5 temp HP (10 at 10th, 15 at 15th); 3 uses per long rest.",
+      "url": "http://dnd5e.wikidot.com/fighter:samurai"
      }
     ],
     "7": [
      {
       "name": "Elegant Courtier",
-      "desc": "Starting at 7th level, your discipline and attention to detail allow you to excel in social situations. Whenever you make a Charisma..."
+      "desc": "Add WIS to Persuasion; WIS save proficiency (or INT or CHA if you have it).",
+      "url": "http://dnd5e.wikidot.com/fighter:samurai"
      }
     ],
     "10": [
      {
       "name": "Tireless Spirit",
-      "desc": "Starting at 10th level, when you roll initiative and have no uses of Fighting Spirit remaining, you regain one use."
+      "desc": "Regain one Fighting Spirit use when you roll initiative with none left.",
+      "url": "http://dnd5e.wikidot.com/fighter:samurai"
      }
     ],
     "15": [
      {
       "name": "Rapid Strike",
-      "desc": "Starting at 15th level, you learn to trade accuracy for swift strikes. If you take the Attack action on your turn and have advantage on an..."
+      "desc": "Once per turn, trade advantage on an attack for an extra attack on that target.",
+      "url": "http://dnd5e.wikidot.com/fighter:samurai"
      }
     ],
     "18": [
      {
       "name": "Strength Before Death",
-      "desc": "Starting at 18th level, your fighting spirit can delay the grasp of death. If you take damage that reduces you to 0 hit points, you can use..."
+      "desc": "Reaction when dropped to 0 HP: take an extra turn before falling unconscious; once per long rest.",
+      "url": "http://dnd5e.wikidot.com/fighter:samurai"
      }
     ]
    }

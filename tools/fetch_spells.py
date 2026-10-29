@@ -1,16 +1,36 @@
 """Build data/lists/spells.json from dnd5e.wikidot.com (run: python3 -I tools/fetch_spells.py).
 
-Keeps the numbers a sheet needs (level, school, damage dice, save, upcasting, class lists) and a short
-description. Unearthed Arcana and non-WotC sources are skipped.
+Keeps the numbers a sheet needs (level, school, damage dice, save, upcasting, class lists) and a link to the page.
+The description is the full text for the SRD 5.1 spells (CC-BY-4.0, from the Open5e API) and our own summary for the
+others (data/lists/summaries.json). Unearthed Arcana and non-WotC sources are skipped.
 """
 import json
 import re
 import sys
+import urllib.request
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 import wikidot as w
-from fetch_lists import ABIL, OUT, clip, official, source_of
+from fetch_lists import ABIL, OUT, official, source_of
+
+OPEN5E = "https://api.open5e.com/v1/spells/?document__slug=wotc-srd&limit=500"
+OPEN5E_CACHE = w.CACHE.parent / "dnd-open5e-spells.json"
+
+
+def srd_spells() -> dict:
+    """SRD 5.1 spell texts by lowercase name: description plus "At Higher Levels", markdown removed."""
+    if not OPEN5E_CACHE.exists():
+        req = urllib.request.Request(OPEN5E, headers={"User-Agent": w.UA})
+        OPEN5E_CACHE.write_bytes(urllib.request.urlopen(req, timeout=30).read())
+    out = {}
+    for s in json.loads(OPEN5E_CACHE.read_text())["results"]:
+        text = s["desc"] + (f" At Higher Levels. {s['higher_level']}" if s.get("higher_level") else "")
+        out[s["name"].lower()] = re.sub(r"\s+", " ", re.sub(r"[*_#]+", "", text)).strip()
+    return out
+
+
+SRD = srd_spells()
 
 LEVEL = re.compile(r"^(\d)(?:st|nd|rd|th)-level (\w+)(?: \(ritual\))?$", re.I)
 CANTRIP = re.compile(r"^(\w+) cantrip$", re.I)
@@ -56,7 +76,7 @@ def parse(slug):
     return {
         "name": name, "level": level, "school": school.capitalize(), "source": src, "time": time, "range": rng, "comp": comp,
         "duration": dur, "ritual": "(ritual)" in head.lower(), "conc": "oncentration" in dur, "classes": classes,
-        "desc": clip(text, 220),
+        "desc": SRD.get(name.lower()) or w.summary(slug, text + " " + higher), "srd": name.lower() in SRD, "url": w.url(slug),
         "dmg": [int(dm[1]), int(dm[2]), dm[4].lower()] if dm else [int(h[1]), int(h[2]), "healing"] if (h := hm or hf) else None,
         "flat": int(dm[3]) if dm and dm[3] else 0,
         "heal_mod": bool(hm) and not dm,
@@ -81,4 +101,5 @@ if __name__ == "__main__":
             print(i, len(slugs), file=sys.stderr)
     out.sort(key=lambda x: (x["level"], x["name"]))
     (OUT / "spells.json").write_text(json.dumps(out, indent=1, ensure_ascii=False) + "\n")
-    print(len(out), "spells of", len(slugs))
+    print(len(out), "spells of", len(slugs), "-", sum(s["srd"] for s in out), "from the SRD")
+    w.save_todo()

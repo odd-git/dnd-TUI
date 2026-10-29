@@ -48,7 +48,11 @@ pub const BUNDLED: [(&str, &str); 2] = [
 // --- Character sheet + live state (one JSON file per character) --------------
 
 #[derive(Serialize, Deserialize, Clone, Default)]
-pub struct Feature { pub name: String, pub desc: String }
+pub struct Feature {
+    pub name: String,
+    pub desc: String,
+    #[serde(default, skip_serializing_if = "String::is_empty")] pub url: String, // the wiki page with the full text
+}
 
 #[derive(Serialize, Deserialize, Clone)]
 #[serde(untagged)]

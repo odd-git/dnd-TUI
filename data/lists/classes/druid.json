@@ -315,45 +315,53 @@
   "1": [
    {
     "name": "Druidic",
-    "desc": "You know Druidic, the secret language of druids. You can speak the language and use it to leave hidden messages. You and others who know this language automatically spot such a message. Others spot..."
+    "desc": "You know Druidic and can leave hidden messages in it (DC 15 Perception to notice, magic to read).",
+    "url": "http://dnd5e.wikidot.com/druid"
    },
    {
     "name": "Spellcasting",
-    "desc": "Drawing on the divine essence of nature itself, you can cast spells to shape that essence to your will."
+    "desc": "WIS spellcaster preparing WIS mod + druid level spells from the druid list each long rest; druidic focus; rituals you prepared.",
+    "url": "http://dnd5e.wikidot.com/druid"
    }
   ],
   "2": [
    {
     "name": "Wild Shape",
-    "desc": "Starting at 2nd level, you can use your action to magically assume the shape of a beast that you have seen before. You can use this feature twice. You regain expended uses when you finish a short or..."
+    "desc": "Action: become a beast you have seen (CR 1/4, no fly or swim at 2nd; CR 1/2 no fly at 4th; CR 1 at 8th) for half your level in hours; 2 uses per short rest; its HP soak damage first.",
+    "url": "http://dnd5e.wikidot.com/druid"
    }
   ],
   "4": [
    {
     "name": "Wild Shape improvement",
-    "desc": "Wild Shape improvement"
+    "desc": "Wild Shape allows tougher beasts: CR 1/2 without flying at 4th level, CR 1 at 8th.",
+    "url": "http://dnd5e.wikidot.com/druid"
    }
   ],
   "8": [
    {
     "name": "Wild Shape improvement",
-    "desc": "Wild Shape improvement"
+    "desc": "Wild Shape allows tougher beasts: CR 1/2 without flying at 4th level, CR 1 at 8th.",
+    "url": "http://dnd5e.wikidot.com/druid"
    }
   ],
   "18": [
    {
     "name": "Timeless Body",
-    "desc": "Starting at 18th level, the primal magic that you wield causes you to age more slowly. For every 10 years that pass, your body ages only 1 year."
+    "desc": "You age one year every ten.",
+    "url": "http://dnd5e.wikidot.com/druid"
    },
    {
     "name": "Beast Spells",
-    "desc": "Beginning at 18th level, you can cast many of your druid spells in any shape you assume using Wild Shape. You can perform the somatic and verbal components of a druid spell while in a beast shape..."
+    "desc": "Cast druid spells in Wild Shape (verbal and somatic only, no material).",
+    "url": "http://dnd5e.wikidot.com/druid"
    }
   ],
   "20": [
    {
     "name": "Archdruid",
-    "desc": "At 20th level, you can use your Wild Shape an unlimited number of times. Additionally, you can ignore the verbal and somatic components of your druid spells, as well as any material components that..."
+    "desc": "Unlimited Wild Shape; ignore verbal, somatic and free non-consumed material components of druid spells.",
+    "url": "http://dnd5e.wikidot.com/druid"
    }
   ]
  },
@@ -372,25 +380,29 @@
     "2": [
      {
       "name": "Balm of the Summer Court",
-      "desc": "At 2nd level, you become imbued with the blessings of the Summer Court. You are a font of energy that offers respite from injuries. You..."
+      "desc": "Pool of d6s equal to druid level: bonus action, spend up to half your level of them to heal an ally within 120 ft, plus 1 temp HP per die; long rest.",
+      "url": "http://dnd5e.wikidot.com/druid:dreams"
      }
     ],
     "6": [
      {
       "name": "Hearth of Moonlight and Shadow",
-      "desc": "At 6th level, home can be wherever you are. During a short or long rest, you can invoke the shadowy power of the Gloaming Court to help..."
+      "desc": "During a rest, a 30 ft sphere gives +5 Stealth and Perception and hides your fire's light.",
+      "url": "http://dnd5e.wikidot.com/druid:dreams"
      }
     ],
     "10": [
      {
       "name": "Hidden Paths",
-      "desc": "Starting at 10th level, you can use the hidden, magical pathways that some fey use to traverse space in a blink of an eye. As a bonus..."
+      "desc": "Bonus action: teleport 60 ft, or action: teleport a willing touched creature 30 ft; WIS mod uses per long rest.",
+      "url": "http://dnd5e.wikidot.com/druid:dreams"
      }
     ],
     "14": [
      {
       "name": "Walker in Dreams",
-      "desc": "At 14th level, the magic of the Feywild grants you the ability to travel mentally or physically through dreamlands. When you finish a short..."
+      "desc": "After a short rest, cast Dream, Scrying or a Teleportation Circle back to your last long rest spot, no slot or material; once per long rest.",
+      "url": "http://dnd5e.wikidot.com/druid:dreams"
      }
     ]
    }
@@ -409,35 +421,41 @@
     "2": [
      {
       "name": "Bonus Cantrip",
-      "desc": "When you choose this circle at 2nd level, you learn one additional druid cantrip of your choice. This cantrip doesn’t count against the..."
+      "desc": "One extra druid cantrip.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
      },
      {
       "name": "Natural Recovery",
-      "desc": "Starting at 2nd level, you can regain some of your magical energy by sitting in meditation and communing with nature. During a short rest..."
+      "desc": "Once per long rest, on a short rest recover slots totalling half your druid level (rounded up), none 6th or higher.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
      }
     ],
     "9": [
      {
       "name": "Circle Spells",
-      "desc": "Your mystical connection to the land infuses you with the ability to cast certain spells. At 3rd, 5th, 7th, and 9th level you gain access..."
+      "desc": "Always prepared spells tied to the land you chose (arctic, coast, desert, forest, grassland, mountain, swamp, Underdark), gained at 3rd, 5th, 7th and 9th level.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
      }
     ],
     "6": [
      {
       "name": "Land's Stride",
-      "desc": "Starting at 6th level, moving through nonmagical difficult terrain costs you no extra movement. You can also pass through nonmagical plants..."
+      "desc": "Nonmagical difficult terrain and plants don't slow or hurt you; advantage on saves vs magical plants like Entangle.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
      }
     ],
     "10": [
      {
       "name": "Nature's Ward",
-      "desc": "When you reach 10th level, you can't be charmed or frightened by elementals or fey, and you are immune to poison and disease."
+      "desc": "Immune to poison and disease; elementals and fey can't charm or frighten you.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
      }
     ],
     "14": [
      {
       "name": "Nature's Sanctuary",
-      "desc": "When you reach 14th level, creatures of the natural world sense your connection to nature and become hesitant to attack you. When a beast..."
+      "desc": "Beasts and plants attacking you WIS save or must pick another target.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
      }
     ]
    }
@@ -456,29 +474,34 @@
     "2": [
      {
       "name": "Combat Wild Shape",
-      "desc": "When you choose this circle at 2nd level, you gain the ability to use Wild Shape on your turn as a bonus action, rather than as an action...."
+      "desc": "Wild Shape as a bonus action; in beast form, bonus action to spend a slot and heal 1d8 per slot level.",
+      "url": "http://dnd5e.wikidot.com/druid:moon"
      },
      {
       "name": "Circle Forms",
-      "desc": "The rites of your circle grant you the ability to transform into more dangerous animal forms. Starting at 2nd level, you can use your Wild..."
+      "desc": "Wild Shape into beasts of CR 1 from 2nd level, then CR of druid level / 3 from 6th.",
+      "url": "http://dnd5e.wikidot.com/druid:moon"
      }
     ],
     "6": [
      {
       "name": "Primal Strike",
-      "desc": "Starting at 6th level, your attacks in beast form count as magical for the purpose of overcoming resistance and immunity to nonmagical..."
+      "desc": "Beast form attacks count as magical.",
+      "url": "http://dnd5e.wikidot.com/druid:moon"
      }
     ],
     "10": [
      {
       "name": "Elemental Wild Shape",
-      "desc": "At 10th level, you can expend two uses of Wild Shape at the same time to transform into an air elemental, an earth elemental, a fire..."
+      "desc": "Spend two Wild Shape uses to become an air, earth, fire or water elemental.",
+      "url": "http://dnd5e.wikidot.com/druid:moon"
      }
     ],
     "14": [
      {
       "name": "Thousand Forms",
-      "desc": "By 14th level, you have learned to use magic to alter your physical form in more subtle ways. You can cast the Alter Self spell at will...."
+      "desc": "Alter Self at will.",
+      "url": "http://dnd5e.wikidot.com/druid:moon"
      }
     ]
    }
@@ -497,29 +520,34 @@
     "2": [
      {
       "name": "Speech of the Woods",
-      "desc": "At 2nd level, you gain the ability to converse with beasts and many fey. You learn to speak, read, and write Sylvan. In addition, beasts..."
+      "desc": "Sylvan, and beasts understand you and you them.",
+      "url": "http://dnd5e.wikidot.com/druid:shepherd"
      },
      {
       "name": "Spirit Totem",
-      "desc": "Starting at 2nd level, you gain the ability to call forth nature spirits and use them to influence the world around you. As a bonus action..."
+      "desc": "Bonus action: a 30 ft spirit aura for 1 min, movable 60 ft. Bear: temp HP and STR advantage; Hawk: reaction advantage on an attack; Unicorn: detection and extra healing. Once per short rest.",
+      "url": "http://dnd5e.wikidot.com/druid:shepherd"
      }
     ],
     "6": [
      {
       "name": "Mighty Summoner",
-      "desc": "At 6th level, beasts and fey that you conjure are more resilient than normal. Any beast or fey summoned or created by a spell that you cast..."
+      "desc": "Beasts and fey you summon get +2 HP per Hit Die and magical natural weapons.",
+      "url": "http://dnd5e.wikidot.com/druid:shepherd"
      }
     ],
     "10": [
      {
       "name": "Guardian Spirit",
-      "desc": "Beginning at 10th level, your Spirit Totem safeguards the beasts and fey that you call forth with your magic. When a beast or fey that you..."
+      "desc": "Your summoned beasts and fey ending a turn in the totem aura heal half your druid level.",
+      "url": "http://dnd5e.wikidot.com/druid:shepherd"
      }
     ],
     "14": [
      {
       "name": "Faithful Summons",
-      "desc": "Starting at 14th level, the nature spirits you commune with protect you when you are the most defenseless. If you are reduced to 0 hit..."
+      "desc": "When dropped to 0 HP or incapacitated, four CR 2 beasts appear to protect you for 1 h (as a 9th-level Conjure Animals); once per long rest.",
+      "url": "http://dnd5e.wikidot.com/druid:shepherd"
      }
     ]
    }
@@ -538,33 +566,39 @@
     "2": [
      {
       "name": "Circle Spells",
-      "desc": "Your symbiotic link to fungi and your ability to tap into the cycle of life and death grants you access to certain spells. At 2nd level..."
+      "desc": "Chill Touch, then always prepared spores spells from 3rd level (also at 5th, 7th, 9th).",
+      "url": "http://dnd5e.wikidot.com/druid:spores"
      },
      {
       "name": "Halo of Spores",
-      "desc": "Starting at 2nd level, you are surrounded by invisible, necrotic spores that are harmless until you unleash them on a creature nearby. When..."
+      "desc": "Reaction: a creature within 10 ft CON save or 1d4 necrotic (1d6 at 6th, 1d8 at 10th, 1d10 at 14th).",
+      "url": "http://dnd5e.wikidot.com/druid:spores"
      },
      {
       "name": "Symbiotic Entity",
-      "desc": "Also at 2nd level, you gain the ability to channel magic into your spores. As an action, you can expend a use of your Wild Shape feature to..."
+      "desc": "Spend a Wild Shape use: 4 temp HP per druid level, Halo of Spores rolls twice, melee hits +1d6 necrotic, for 10 min or until the temp HP are gone.",
+      "url": "http://dnd5e.wikidot.com/druid:spores"
      }
     ],
     "6": [
      {
       "name": "Fungal Infestation",
-      "desc": "At 6th level, your spores gain the ability to infest a corpse and animate it. If a beast or a humanoid that is Small or Medium dies within..."
+      "desc": "Reaction: a Small or Medium beast or humanoid dying within 10 ft rises as a 1 HP zombie for 1 h; WIS mod uses per long rest.",
+      "url": "http://dnd5e.wikidot.com/druid:spores"
      }
     ],
     "10": [
      {
       "name": "Spreading Spores",
-      "desc": "At 10th level, you gain the ability to seed an area with deadly spores. As a bonus action while your Symbiotic Entity feature is active..."
+      "desc": "Bonus action while Symbiotic Entity is active: a 10 ft cube of spores within 30 ft deals Halo of Spores damage (CON save) for 1 min.",
+      "url": "http://dnd5e.wikidot.com/druid:spores"
      }
     ],
     "14": [
      {
       "name": "Fungal Body",
-      "desc": "At 14th level, the fungal spores in your body alter you: you can't be blinded, deafened, frightened, or poisoned, and any critical hit..."
+      "desc": "Can't be blinded, deafened, frightened or poisoned; crits on you are normal hits.",
+      "url": "http://dnd5e.wikidot.com/druid:spores"
      }
     ]
    },
@@ -604,29 +638,34 @@
     "2": [
      {
       "name": "Star Map",
-      "desc": "At 2nd level, you've created a star chart as part of your heavenly studies. It is a Tiny object and can serve as a spellcasting focus for..."
+      "desc": "A focus that grants Guidance and Guiding Bolt prepared, Guiding Bolt free prof-bonus times per long rest.",
+      "url": "http://dnd5e.wikidot.com/druid:stars"
      },
      {
       "name": "Starry Form",
-      "desc": "At 2nd level, you gain the ability to harness constellations' power to alter your form. As a bonus action, you can expend a use of your..."
+      "desc": "Bonus action, spend a Wild Shape use for 10 min: Archer (bonus action ranged spell attack 1d8 + WIS radiant), Chalice (heal extra 1d8 + WIS when healing), or Dragon (INT/WIS checks and concentration count 10 minimum).",
+      "url": "http://dnd5e.wikidot.com/druid:stars"
      }
     ],
     "6": [
      {
       "name": "Cosmic Omen",
-      "desc": "When you reach 6th level, you learn to use your star map to divine the will of the cosmos. Whenever you finish a long rest, you can consult..."
+      "desc": "After a long rest roll: even gives reactions to add 1d6, odd to subtract 1d6, to a roll of a creature within 30 ft (prof bonus uses).",
+      "url": "http://dnd5e.wikidot.com/druid:stars"
      }
     ],
     "10": [
      {
       "name": "Twinkling Constellations",
-      "desc": "At 10th level, the constellations of your Starry Form improve. The 1d8 of the Archer and the Chalice becomes 2d8, and while the Dragon is..."
+      "desc": "Archer and Chalice deal 2d8, Dragon gives a 20 ft hover fly speed, and you can switch constellation each turn.",
+      "url": "http://dnd5e.wikidot.com/druid:stars"
      }
     ],
     "14": [
      {
       "name": "Full of Stars",
-      "desc": "At 14th level, while in your Starry Form, you become partially incorporeal, giving you resistance to bludgeoning, piercing, and slashing..."
+      "desc": "Resistance to bludgeoning, piercing and slashing in Starry Form.",
+      "url": "http://dnd5e.wikidot.com/druid:stars"
      }
     ]
    }
@@ -645,29 +684,34 @@
     "2": [
      {
       "name": "Circle Spells",
-      "desc": "When you join this circle at 2nd level, you have formed a bond with a wildfire spirit, a primal being of creation and destruction. Your..."
+      "desc": "Always prepared wildfire spells at 2nd, 3rd, 5th, 7th and 9th level.",
+      "url": "http://dnd5e.wikidot.com/druid:wildfire"
      },
      {
       "name": "Summon Wildfire Spirit",
-      "desc": "At 2nd level, You can summon the primal spirit bound to your soul. As an action, you can expend one use of your Wild Shape feature to..."
+      "desc": "Spend a Wild Shape use: a wildfire spirit appears within 30 ft (creatures within 10 ft DEX save or 2d6 fire) and fights for you for 1 h.",
+      "url": "http://dnd5e.wikidot.com/druid:wildfire"
      }
     ],
     "6": [
      {
       "name": "Enhanced Bond",
-      "desc": "At 6th level, the bond with your wildfire spirit enhances your destructive and restorative spells. Whenever you cast a spell that deals..."
+      "desc": "With the spirit out: +1d8 to one roll of your fire or healing spells, and spells can originate from the spirit.",
+      "url": "http://dnd5e.wikidot.com/druid:wildfire"
      }
     ],
     "10": [
      {
       "name": "Cauterizing Flames",
-      "desc": "At 10th level, you gain the ability to turn death into magical flames that can heal or incinerate. When a Small or larger creature dies..."
+      "desc": "A creature dying near you or the spirit leaves a flame; reaction when someone enters it: heal or burn them 2d10 + WIS (prof bonus/long rest).",
+      "url": "http://dnd5e.wikidot.com/druid:wildfire"
      }
     ],
     "14": [
      {
       "name": "Blazing Revival",
-      "desc": "At 14th level, the bond with your wildfire spirit can save you from death. If the spirit is within 120 feet of you when you are reduced to..."
+      "desc": "When dropped to 0 HP with the spirit within 120 ft, it drops to 0 and you rise with half your HP; once per long rest.",
+      "url": "http://dnd5e.wikidot.com/druid:wildfire"
      }
     ]
    }

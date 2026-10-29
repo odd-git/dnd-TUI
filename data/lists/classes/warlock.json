@@ -121,49 +121,57 @@
   "1": [
    {
     "name": "Pact Magic",
-    "desc": "Your arcane research and the magic bestowed on you by your patron have given you facility with spells."
+    "desc": "Few slots, all of your highest level, back on a short rest; spells known, CHA.",
+    "url": "http://dnd5e.wikidot.com/warlock"
    }
   ],
   "2": [
    {
     "name": "Eldritch Invocations",
-    "desc": "In your study of occult lore, you have unearthed Eldritch Invocations, fragments of forbidden knowledge that imbue you with an abiding magical ability. At 2nd level, you gain two eldritch invocations..."
+    "desc": "Two invocations, more by level (see table); swap one on each warlock level.",
+    "url": "http://dnd5e.wikidot.com/warlock"
    }
   ],
   "3": [
    {
     "name": "Pact Boon",
-    "desc": "At 3rd level, your otherworldly patron bestows a gift upon you for your loyal service. You gain one of the following features of your choice. Pact of the Blade You can use your action to create a..."
+    "desc": "Blade (summoned proficient magical weapon, bind a magic one), Chain (Find Familiar with imp, pseudodragon, quasit or sprite forms, it attacks in your place), Tome (Book of Shadows with three cantrips from any list) or Talisman (+d4 to a failed check, prof bonus/long rest).",
+    "url": "http://dnd5e.wikidot.com/warlock"
    }
   ],
   "11": [
    {
     "name": "Mystic Arcanum",
-    "desc": "At 11th level, your patron bestows upon you a magical secret called an arcanum. Choose one 6th-level spell from the warlock spell list as this arcanum. You can cast your arcanum spell once without..."
+    "desc": "One 6th-level spell castable once per long rest without a slot; a 7th at 13th, 8th at 15th, 9th at 17th.",
+    "url": "http://dnd5e.wikidot.com/warlock"
    }
   ],
   "13": [
    {
     "name": "Mystic Arcanum",
-    "desc": "At 11th level, your patron bestows upon you a magical secret called an arcanum. Choose one 6th-level spell from the warlock spell list as this arcanum. You can cast your arcanum spell once without..."
+    "desc": "One 6th-level spell castable once per long rest without a slot; a 7th at 13th, 8th at 15th, 9th at 17th.",
+    "url": "http://dnd5e.wikidot.com/warlock"
    }
   ],
   "15": [
    {
     "name": "Mystic Arcanum",
-    "desc": "At 11th level, your patron bestows upon you a magical secret called an arcanum. Choose one 6th-level spell from the warlock spell list as this arcanum. You can cast your arcanum spell once without..."
+    "desc": "One 6th-level spell castable once per long rest without a slot; a 7th at 13th, 8th at 15th, 9th at 17th.",
+    "url": "http://dnd5e.wikidot.com/warlock"
    }
   ],
   "17": [
    {
     "name": "Mystic Arcanum",
-    "desc": "At 11th level, your patron bestows upon you a magical secret called an arcanum. Choose one 6th-level spell from the warlock spell list as this arcanum. You can cast your arcanum spell once without..."
+    "desc": "One 6th-level spell castable once per long rest without a slot; a 7th at 13th, 8th at 15th, 9th at 17th.",
+    "url": "http://dnd5e.wikidot.com/warlock"
    }
   ],
   "20": [
    {
     "name": "Eldritch Master",
-    "desc": "At 20th level, you can draw on your inner reserve of mystical power while entreating your patron to regain expended spell slots. You can spend 1 minute entreating your patron for aid to regain all..."
+    "desc": "1 min plea to your patron restores all Pact Magic slots; once per long rest.",
+    "url": "http://dnd5e.wikidot.com/warlock"
    }
   ]
  },
@@ -182,25 +190,29 @@
     "1": [
      {
       "name": "Fey Presence",
-      "desc": "Starting at 1st level, your patron bestows upon you the ability to project the beguiling and fearsome presence of the fey. As an action..."
+      "desc": "Action, 10 ft cube: WIS save or charmed or frightened until your next turn ends; once per short rest.",
+      "url": "http://dnd5e.wikidot.com/warlock:archfey"
      }
     ],
     "6": [
      {
       "name": "Misty Escape",
-      "desc": "Starting at 6th level, you can vanish in a puff of mist in response to harm. When you take damage, you can use your reaction to turn..."
+      "desc": "Reaction when damaged: invisible and teleport 60 ft until your next turn or you attack or cast; once per short rest.",
+      "url": "http://dnd5e.wikidot.com/warlock:archfey"
      }
     ],
     "10": [
      {
       "name": "Beguiling Defenses",
-      "desc": "Beginning at 10th level, your patron teaches you how to turn the mind-affecting magic of your enemies against them. You are immune to being..."
+      "desc": "Immune to charm; reaction to turn a charm attempt back, WIS save or charmed 1 min or until damaged.",
+      "url": "http://dnd5e.wikidot.com/warlock:archfey"
      }
     ],
     "14": [
      {
       "name": "Dark Delirium",
-      "desc": "Starting at 14th level, you can plunge a creature into an illusory realm. As an action, choose a creature that you can see within 60 feet..."
+      "desc": "Action, creature within 60 ft: WIS save or charmed or frightened in an illusory realm for 1 min (concentration), ends on damage; once per short rest.",
+      "url": "http://dnd5e.wikidot.com/warlock:archfey"
      }
     ]
    },
@@ -241,29 +253,34 @@
     "1": [
      {
       "name": "Bonus Cantrips",
-      "desc": "At 1st level, you learn the Light and Sacred Flame cantrips. They count as warlock cantrips for you, but they don’t count against your..."
+      "desc": "Light and Sacred Flame, not counted as known.",
+      "url": "http://dnd5e.wikidot.com/warlock:celestial"
      },
      {
       "name": "Healing Light",
-      "desc": "At 1st level, you gain the ability to channel celestial energy to heal wounds. You have a pool of d6s that you spend to fuel this healing...."
+      "desc": "Pool of 1 + level d6; bonus action heal a creature within 60 ft spending up to CHA mod dice; long rest.",
+      "url": "http://dnd5e.wikidot.com/warlock:celestial"
      }
     ],
     "6": [
      {
       "name": "Radiant Soul",
-      "desc": "Starting at 6th level, your link to the Celestial allows you to serve as a conduit for radiant energy. You have resistance to radiant..."
+      "desc": "Radiant resistance; your radiant or fire spells add CHA to one damage roll against one target.",
+      "url": "http://dnd5e.wikidot.com/warlock:celestial"
      }
     ],
     "10": [
      {
       "name": "Celestial Resistance",
-      "desc": "Starting at 10th level, you gain temporary hit points whenever you finish a short or long rest. These temporary hit points equal your..."
+      "desc": "After each rest, temp HP equal to level + CHA, and up to five others half level + CHA.",
+      "url": "http://dnd5e.wikidot.com/warlock:celestial"
      }
     ],
     "14": [
      {
       "name": "Searing Vengeance",
-      "desc": "Starting at 14th level, the radiant energy you channel allows you to resist death. When you have to make a death saving throw at the start..."
+      "desc": "Instead of a death save, regain half your HP max and stand; chosen creatures within 30 ft take 2d8 + CHA radiant and are blinded this turn; once per long rest.",
+      "url": "http://dnd5e.wikidot.com/warlock:celestial"
      }
     ]
    },
@@ -304,33 +321,39 @@
     "1": [
      {
       "name": "Tentacle of the Deep",
-      "desc": "At 1st level, you can magically summon a spectral tentacle that strikes at your foes. As a bonus action, you create a 10-foot-long tentacle..."
+      "desc": "Bonus action: 10 ft spectral tentacle within 60 ft for 1 min, melee spell attack 1d8 cold (2d8 at 10th) and -10 ft speed; bonus action to move and strike again (prof bonus/long rest).",
+      "url": "http://dnd5e.wikidot.com/warlock:fathomless"
      },
      {
       "name": "Gift of the Sea",
-      "desc": "Also at 1st level, you gain a swimming speed of 40 feet, and you can breathe underwater."
+      "desc": "Swim 40 ft and breathe water.",
+      "url": "http://dnd5e.wikidot.com/warlock:fathomless"
      }
     ],
     "6": [
      {
       "name": "Oceanic Soul",
-      "desc": "At 6th level, you are now even more at home in the depths. You gain resistance to cold damage. In addition, when you are fully submerged..."
+      "desc": "Cold resistance; fully submerged, you and other submerged creatures understand each other.",
+      "url": "http://dnd5e.wikidot.com/warlock:fathomless"
      },
      {
       "name": "Guardian Coil",
-      "desc": "At 6th level, your Tentacle of the Deeps can defend you and others, interposing itself between them and harm. When you or a creature you..."
+      "desc": "Reaction: reduce damage to a creature within 10 ft of the tentacle by 1d8 (2d8 at 10th).",
+      "url": "http://dnd5e.wikidot.com/warlock:fathomless"
      }
     ],
     "10": [
      {
       "name": "Grasping Tentacles",
-      "desc": "Starting at 10th level, you learn the spell Evard's Black Tentacles. It counts as a warlock spell for you, but it doesn't count against the..."
+      "desc": "Evard's Black Tentacles known, once free per long rest; casting it grants temp HP equal to level and damage can't break its concentration.",
+      "url": "http://dnd5e.wikidot.com/warlock:fathomless"
      }
     ],
     "14": [
      {
       "name": "Fathomless Plunge",
-      "desc": "When you reach 14th level, you can magically open temporary conduits to watery destinations. As an action, you can teleport yourself and up..."
+      "desc": "Action: you and up to five willing creatures teleport up to 1 mile to a body of water you have seen; once per short rest.",
+      "url": "http://dnd5e.wikidot.com/warlock:fathomless"
      }
     ]
    },
@@ -371,25 +394,29 @@
     "1": [
      {
       "name": "Dark One's Blessing",
-      "desc": "Starting at 1st level, when you reduce a hostile creature to 0 hit points, you gain temporary hit points equal to your Charisma modifier +..."
+      "desc": "Dropping a hostile creature to 0 HP: temp HP equal to CHA + warlock level (min 1).",
+      "url": "http://dnd5e.wikidot.com/warlock:fiend"
      }
     ],
     "6": [
      {
       "name": "Dark One's Own Luck",
-      "desc": "Starting at 6th level, you can call on your patron to alter fate in your favor. When you make an ability check or a saving throw, you can..."
+      "desc": "Add a d10 to a check or save after seeing the roll; once per short rest.",
+      "url": "http://dnd5e.wikidot.com/warlock:fiend"
      }
     ],
     "10": [
      {
       "name": "Fiendish Resilience",
-      "desc": "Starting at 10th level, you can choose one damage type when you finish a short or long rest. You gain resistance to that damage type until..."
+      "desc": "After a rest pick a damage type to resist, except from magical or silver weapons.",
+      "url": "http://dnd5e.wikidot.com/warlock:fiend"
      }
     ],
     "14": [
      {
       "name": "Hurl Through Hell",
-      "desc": "Starting at 14th level, when you hit a creature with an attack, you can use this feature to instantly transport the target through the..."
+      "desc": "On a hit, the target vanishes through the lower planes until your next turn ends and takes 10d10 psychic unless a fiend; once per long rest.",
+      "url": "http://dnd5e.wikidot.com/warlock:fiend"
      }
     ]
    },
@@ -430,25 +457,29 @@
     "1": [
      {
       "name": "Awakened Mind",
-      "desc": "Starting at 1st level, your alien knowledge gives you the ability to touch the minds of other creatures. You can telepathically speak to..."
+      "desc": "Telepathy with any creature within 30 ft that understands a language.",
+      "url": "http://dnd5e.wikidot.com/warlock:great-old-one"
      }
     ],
     "6": [
      {
       "name": "Entropic Ward",
-      "desc": "At 6th level, you learn to magically ward yourself against attack and to turn an enemy's failed strike into good luck for yourself. When a..."
+      "desc": "Reaction: disadvantage on an attack against you; if it misses, advantage on your next attack against it; once per short rest.",
+      "url": "http://dnd5e.wikidot.com/warlock:great-old-one"
      }
     ],
     "10": [
      {
       "name": "Thought Shield",
-      "desc": "Starting at 10th level, your thoughts can't be read by telepathy or other means unless you allow it. You also have resistance to psychic..."
+      "desc": "Your thoughts can't be read unless you allow it; psychic resistance, and psychic damage dealt to you is mirrored on its source.",
+      "url": "http://dnd5e.wikidot.com/warlock:great-old-one"
      }
     ],
     "14": [
      {
       "name": "Create Thrall",
-      "desc": "At 14th level, you gain the ability to infect a humanoid's mind with the alien magic of your patron. You can use your action to touch an..."
+      "desc": "Action, touch an incapacitated humanoid: charmed until Remove Curse or a new thrall, with telepathy on the same plane.",
+      "url": "http://dnd5e.wikidot.com/warlock:great-old-one"
      }
     ]
    },
@@ -489,29 +520,34 @@
     "1": [
      {
       "name": "Hexblade's Curse",
-      "desc": "Starting at 1st level, you gain the ability to place a baleful curse on someone. As a bonus action, choose one creature you can see within..."
+      "desc": "Bonus action curse within 30 ft for 1 min: + prof bonus damage, crits on 19-20, heal level + CHA if it dies; once per short rest.",
+      "url": "http://dnd5e.wikidot.com/warlock:hexblade"
      },
      {
       "name": "Hex Warrior",
-      "desc": "At 1st level, you acquire the training necessary to effectively arm yourself for battle. You gain proficiency with medium armor, shields..."
+      "desc": "Medium armor, shields, martial weapons; after a long rest use CHA for attacks with one non-two-handed weapon (all pact weapons with Pact of the Blade).",
+      "url": "http://dnd5e.wikidot.com/warlock:hexblade"
      }
     ],
     "6": [
      {
       "name": "Accursed Specter",
-      "desc": "Starting at 6th level, you can curse the soul of a person you slay, temporarily binding it in your service. When you slay a humanoid, you..."
+      "desc": "A humanoid you slay rises as a specter under your command until your next long rest, with temp HP half your level and + CHA to attacks; once per long rest.",
+      "url": "http://dnd5e.wikidot.com/warlock:hexblade"
      }
     ],
     "10": [
      {
       "name": "Armor of Hexes",
-      "desc": "At 10th level, your hex grows more powerful. If the target cursed by your Hexblade’s Curse hits you with an attack roll, you can use your..."
+      "desc": "Reaction when the cursed target hits you: d6, on 4+ it misses.",
+      "url": "http://dnd5e.wikidot.com/warlock:hexblade"
      }
     ],
     "14": [
      {
       "name": "Master of Hexes",
-      "desc": "Starting at 14th level, you can spread your Hexblade's Curse from a slain creature to another creature. When the creature cursed by your..."
+      "desc": "When the cursed target dies, move the curse to another creature within 30 ft (no healing then).",
+      "url": "http://dnd5e.wikidot.com/warlock:hexblade"
      }
     ]
    },
@@ -552,29 +588,34 @@
     "1": [
      {
       "name": "Expanded Spell List",
-      "desc": "At 1st level, the Genie lets you choose from an expanded list of spells when you learn a warlock spell. The Genie Expanded Spells table..."
+      "desc": "Extra spells on your warlock list, by genie kind.",
+      "url": "http://dnd5e.wikidot.com/warlock:the-genie"
      },
      {
       "name": "Genie's Vessel",
-      "desc": "Also at 1st level, your patron gifts you a magical vessel that grants you a measure of the genie's power. The vessel is a Tiny object, and..."
+      "desc": "Tiny vessel and focus: once per long rest hide inside for up to 2 x prof bonus hours; once per turn a hit deals + prof bonus damage of your genie's type.",
+      "url": "http://dnd5e.wikidot.com/warlock:the-genie"
      }
     ],
     "6": [
      {
       "name": "Elemental Gift",
-      "desc": "At 6th level, you begin to take on characteristics of your patron's kind. You now have resistance to a damage type determined by your..."
+      "desc": "Resistance to your genie's damage type; bonus action 30 ft fly and hover for 10 min (prof bonus/long rest).",
+      "url": "http://dnd5e.wikidot.com/warlock:the-genie"
      }
     ],
     "10": [
      {
       "name": "Sanctuary Vessel",
-      "desc": "At 10th level, when you enter your Genie's Vessel via the Bottled Respite feature, you can now choose up to five willing creatures that you..."
+      "desc": "Bring up to five willing creatures into the vessel; 10 min inside counts as a short rest with + prof bonus to Hit Die healing.",
+      "url": "http://dnd5e.wikidot.com/warlock:the-genie"
      }
     ],
     "14": [
      {
       "name": "Limited Wish",
-      "desc": "At 14th level, you entreat your patron to grant you a small wish. As an action, you can speak your desire to your Genie's Vessel..."
+      "desc": "Action: the effect of any 6th-level-or-lower, 1-action spell without requirements; once per 1d4 long rests.",
+      "url": "http://dnd5e.wikidot.com/warlock:the-genie"
      }
     ]
    }
@@ -593,29 +634,34 @@
     "1": [
      {
       "name": "Expanded Spell List",
-      "desc": "At 1st level, the Undead lets you choose from an expanded list of spells when you learn a warlock spell. The following spells are added to..."
+      "desc": "Extra spells on your warlock list.",
+      "url": "http://dnd5e.wikidot.com/warlock:undead"
      },
      {
       "name": "Form of Dread",
-      "desc": "At 1st level, you manifest an aspect of your patron’s dreadful power. As a bonus action, you transform for 1 minute. You gain the following..."
+      "desc": "Bonus action, 1 min: 1d10 + level temp HP, immune to fear, once per turn a hit forces a WIS save or frightened (prof bonus/long rest).",
+      "url": "http://dnd5e.wikidot.com/warlock:undead"
      }
     ],
     "6": [
      {
       "name": "Grave Touched",
-      "desc": "At 6th level, your patron’s powers have a profound effect on your body and magic. You don’t need to eat, drink, or breathe. In addition..."
+      "desc": "No need to eat, drink or breathe; once per turn change a hit's damage to necrotic, +1 die in Form of Dread.",
+      "url": "http://dnd5e.wikidot.com/warlock:undead"
      }
     ],
     "10": [
      {
       "name": "Necrotic Husk",
-      "desc": "At 10th level, Your connection to undeath and necrotic energy now saturates your body. You have resistance to necrotic damage. If you are..."
+      "desc": "Necrotic resistance (immunity in Form of Dread); reaction at 0 HP to stay at 1, dealing 2d10 + level necrotic to chosen creatures within 30 ft, then one exhaustion level; once per 1d4 long rests.",
+      "url": "http://dnd5e.wikidot.com/warlock:undead"
      }
     ],
     "14": [
      {
       "name": "Spirit Projection",
-      "desc": "At 14th level, your spirit can become untethered from your physical form. As an action, you can project your spirit from your body. The..."
+      "desc": "Action, up to 1 h (concentration): your spirit leaves your body, resists weapon damage, flies and passes through objects, casts conjuration and necromancy without most components; once per long rest.",
+      "url": "http://dnd5e.wikidot.com/warlock:undead"
      }
     ]
    },
@@ -656,25 +702,29 @@
     "1": [
      {
       "name": "Among the Dead",
-      "desc": "Starting at 1st level, you learn the Spare the Dying cantrip, which counts as a warlock cantrip for you. You also have advantage on saving..."
+      "desc": "Spare the Dying, advantage on saves against disease; undead targeting you directly must pass a WIS save or pick another target.",
+      "url": "http://dnd5e.wikidot.com/warlock:undying"
      }
     ],
     "6": [
      {
       "name": "Defy Death",
-      "desc": "Starting at 6th level, you can give yourself vitality when you cheat death or when you help someone else cheat it. You can regain hit..."
+      "desc": "Regain 1d8 + CON HP on a successful death save or when you stabilize someone with Spare the Dying; once per long rest.",
+      "url": "http://dnd5e.wikidot.com/warlock:undying"
      }
     ],
     "10": [
      {
       "name": "Undying Nature",
-      "desc": "Beginning at 10th level, you can hold your breath indefinitely, and you don't require food, water, or sleep, although you still require..."
+      "desc": "No need to breathe, eat, drink or sleep; you age one year per ten.",
+      "url": "http://dnd5e.wikidot.com/warlock:undying"
      }
     ],
     "14": [
      {
       "name": "Indestructible Life",
-      "desc": "When you reach 14th level, you partake of some of the true secrets of the Undying. On your turn, you can use a bonus action to regain hit..."
+      "desc": "Bonus action: regain 1d8 + level HP and reattach severed parts; once per short rest.",
+      "url": "http://dnd5e.wikidot.com/warlock:undying"
      }
     ]
    },

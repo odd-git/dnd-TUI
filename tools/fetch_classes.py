@@ -10,7 +10,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 import wikidot as w
-from fetch_lists import ABIL, NUM, OUT, SKILLS, STYLE_EFFECTS, clip, official, page_name, source_of
+from fetch_lists import ABIL, NUM, OUT, SKILLS, STYLE_EFFECTS, official, page_name, source_of
 
 SKIP_FEATURES = ("Ability Score Improvement", "feature", "Optional")
 
@@ -89,7 +89,7 @@ CONFIG = {
         "resources": [res("sorcery_points", "Sorcery Points", "long", "table")],
         "actions": [
             {"name": "Metamagic", "desc": "Spend sorcery points on a Metamagic option you know", "pool": "sorcery_points", "min_level": 3},
-            {"name": "Create Spell Slot", "desc": "Bonus action: sorcery points into a slot (1st 2, 2nd 3, 3rd 5, 4th 6, 5th 7)", "special": "font_slot", "min_level": 2},
+            {"name": "Create Spell Slot", "desc": "Bonus action: sorcery points into a slot, levels 1-5 cost 2/3/5/6/7", "special": "font_slot", "min_level": 2},
             {"name": "Slot to Sorcery Points", "desc": "Bonus action: expend a slot, gain points equal to its level", "special": "font_points", "min_level": 2},
         ],
         "options": {"metamagic": {"3": 2, "10": 3, "17": 4}}, "spell_table": "always",
@@ -294,6 +294,9 @@ def subclass(slug, level, strip, spell_table_kind=None):
     src = source_of(sb)
     if not official(src or ""):
         return None
+    title = re.sub(r"^[A-Za-z]+:\s*", "", page_name(sh, slug))
+    if "(HB)" in title:  # homebrew pages hosted on the wiki
+        return None
     by_level, name, para = {}, None, []
 
     LEVEL = re.compile(r"(\d+)(?:st|nd|rd|th)[- ]level", re.I)
@@ -301,7 +304,7 @@ def subclass(slug, level, strip, spell_table_kind=None):
     def flush():
         if name and para and (m := LEVEL.search(para[0])):
             body = [x for x in para if not re.fullmatch(r"\d+(?:st|nd|rd|th)-Level .* Feature", x)] or para
-            by_level.setdefault(m[1], []).append({"name": name, "desc": clip(" ".join(body), 140)})
+            by_level.setdefault(m[1], []).append({"name": name, "desc": w.summary(w.key(slug, m[1], name), " ".join(body)), "url": w.url(slug)})
 
     for tag, _, t in sb:
         if tag in ("h2", "h3", "h4"):
@@ -310,9 +313,6 @@ def subclass(slug, level, strip, spell_table_kind=None):
         elif tag in ("p", "li") and name and not t.startswith("Source:"):
             para.append(t)
     flush()
-    title = re.sub(r"^[A-Za-z]+:\s*", "", page_name(sh, slug))
-    if "(HB)" in title:  # homebrew pages hosted on the wiki
-        return None
     out = {"name": re.sub(strip, "", re.sub(r"\s*\([^)]*\)$", "", title), flags=re.I), "source": src, "needs_spells": False, "resources": [], "actions": [],
            "maneuver_pool": None, "tables": {}, "dice": {}, "maneuvers_known": {}, "features": by_level}
     if spell_table_kind and (table := spell_table(sb)):
@@ -330,7 +330,7 @@ def fighting_styles(b):
             if "(UA)" in t[:60]:
                 break
             if m := re.match(r"([A-Z][A-Za-z' -]+?)(?: \(([A-Z]+)\))?\.\s*(.*)", t):
-                styles.append({"name": m[1], "source": m[2] or "", "desc": clip(m[3], 130), "effect": STYLE_EFFECTS.get(m[1])})
+                styles.append({"name": m[1], "source": m[2] or "", "desc": w.summary(w.key("fighting-style", m[1]), m[3]), "effect": STYLE_EFFECTS.get(m[1])})
     return styles
 
 
@@ -374,8 +374,8 @@ def build(slug):
                 continue
             else:
                 body = sections.get(name) or sections.get(name.replace(" Improvement", "")) or [name]
-                desc = clip(" ".join(body), 200)
-                features.setdefault(str(lvl), []).append({"name": name, "desc": desc})
+                desc = w.summary(w.key(slug, lvl, name), " ".join(body))
+                features.setdefault(str(lvl), []).append({"name": name, "desc": desc, "url": w.url(slug)})
     tables = dict(cfg.get("extra_tables", {}))
     for c, spec in cfg["columns"].items():
         tid, die = (spec, False) if isinstance(spec, str) else spec
@@ -416,3 +416,4 @@ if __name__ == "__main__":
         data = build(slug)
         (OUT / "classes" / f"{slug}.json").write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n")
         print(slug, "hd", data["hit_die"], "asi", data["asi_levels"], "sub@", data["subclass_level"], [(s["name"], s["source"][:12], sorted(map(int, s["features"]))) for s in data["subclasses"]])
+    w.save_todo()

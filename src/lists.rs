@@ -113,6 +113,7 @@ pub struct Background {
     #[serde(default)] pub extra_languages: u32,
     #[serde(default)] pub equipment: String,
     pub feature: Option<String>,
+    #[serde(default)] pub url: String,
 }
 
 #[derive(Deserialize)]
@@ -148,6 +149,7 @@ pub struct OptionDef {
     pub source: String,
     pub prereq: Option<String>,
     pub desc: String,
+    #[serde(default)] pub url: String,
 }
 
 #[derive(Deserialize)]
@@ -171,6 +173,7 @@ pub struct FeatDef {
     pub asi: Option<FeatAsi>,
     #[serde(default)] pub min_ability: BTreeMap<String, i32>,
     #[serde(default)] pub desc: String,
+    #[serde(default)] pub url: String,
 }
 
 #[derive(Deserialize)]
@@ -211,7 +214,8 @@ pub struct Spell {
     pub ritual: bool,
     pub conc: bool,
     pub classes: Vec<String>,
-    pub desc: String,
+    pub desc: String, // full text for SRD 5.1 spells, our summary for the others
+    #[serde(default)] pub url: String,
     pub dmg: Option<(u32, u32, String)>,
     pub attack: bool,
     pub save: Option<String>,

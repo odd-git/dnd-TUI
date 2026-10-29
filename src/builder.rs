@@ -39,7 +39,7 @@ fn push_unique(v: &mut Vec<String>, items: impl IntoIterator<Item = String>) {
 
 fn put_feature(v: &mut Vec<Feature>, f: &Feature) {
     match v.iter_mut().find(|x| x.name == f.name) {
-        Some(x) => x.desc = f.desc.clone(),
+        Some(x) => { x.desc = f.desc.clone(); x.url = f.url.clone(); }
         None => v.push(f.clone()),
     }
 }
@@ -109,15 +109,15 @@ pub fn build(d: &Draft) -> Character {
 
     let mut features: Vec<Feature> = vec![];
     for t in &eff.traits { put_feature(&mut features, t); }
-    if let Some(f) = bg.and_then(|b| b.feature.as_ref()) { put_feature(&mut features, &Feature { name: f.clone(), desc: format!("{} background feature", d.background) }); }
+    if let Some(f) = bg.and_then(|b| b.feature.as_ref()) { put_feature(&mut features, &Feature { name: f.clone(), desc: format!("{} background feature", d.background), url: bg.map_or(String::new(), |b| b.url.clone()) }); }
     for f in &d.feats {
-        let desc = lists::feats().iter().find(|x| &x.name == f).map(|x| x.desc.clone()).unwrap_or_default();
-        put_feature(&mut features, &Feature { name: format!("Feat: {f}"), desc });
+        let (desc, url) = lists::feats().iter().find(|x| &x.name == f).map(|x| (x.desc.clone(), x.url.clone())).unwrap_or_default();
+        put_feature(&mut features, &Feature { name: format!("Feat: {f}"), desc, url });
     }
     for (_, fs) in class.features.range(..=d.level) { for f in fs { put_feature(&mut features, f); } }
     if let Some(s) = sub { for (_, fs) in s.features.range(..=d.level) { for f in fs { put_feature(&mut features, f); } } }
     if let Some(s) = d.style.as_ref().filter(|_| d.level >= class.style_level).and_then(|s| class.styles.iter().find(|x| &x.name == s)) {
-        put_feature(&mut features, &Feature { name: "Fighting Style".into(), desc: format!("{}: {}", s.name, s.desc) });
+        put_feature(&mut features, &Feature { name: "Fighting Style".into(), desc: format!("{}: {}", s.name, s.desc), ..Default::default() });
     }
 
     let mut resources: Vec<ResourceDef> = class.resources.clone();

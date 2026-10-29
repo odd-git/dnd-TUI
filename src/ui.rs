@@ -354,7 +354,12 @@ fn draw_character(f: &mut Frame, app: &App, area: Rect) {
     }
     v.push(Line::default());
     v.push(head("FEATURES"));
-    for ft in &c.features { v.push(Line::from(vec![Span::styled(format!("  {}: ", ft.name), Style::new().bold()), Span::raw(c.fmt(&ft.desc))])); }
+    for (i, ft) in c.features.iter().enumerate() {
+        v.push(Line::from(vec![Span::styled(format!("  {}: ", ft.name), Style::new().bold()), Span::raw(c.fmt(&ft.desc))]));
+        // one link per page: consecutive features from the same page share it
+        let next = c.features.get(i + 1).map_or("", |n| n.url.as_str());
+        if !ft.url.is_empty() && ft.url != next { v.push(Line::styled(format!("    More: {}", ft.url), tone(Tone::Dim))); }
+    }
     if !c.maneuvers.is_empty() {
         v.push(Line::default());
         v.push(head("MANEUVERS"));
@@ -511,6 +516,7 @@ fn draw_spells(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
             Line::default(),
             Line::from(sp.desc.clone()),
         ];
+        if !sp.url.is_empty() { lines.push(Line::styled(format!("More: {}", sp.url), tone(Tone::Dim))); }
         if let Some((n, s, k)) = &sp.dmg { lines.push(Line::default()); lines.push(Line::styled(format!("{} {}{n}d{s}{} {k}{}", if sp.healing { "Heals" } else { "Damage" }, if sp.count > 1 { format!("{} x ", sp.count) } else { String::new() }, if sp.flat > 0 { format!("+{}", sp.flat) } else { String::new() }, sp.upcast.map_or(String::new(), |u| format!(", +{}d{} per slot level", u.0, u.1))), tone(Tone::Dim))); }
         lines.push(Line::styled(format!("{}", lists_abbr(&sp.source)), tone(Tone::Dim)));
         f.render_widget(Paragraph::new(lines).wrap(Wrap { trim: false }), di);

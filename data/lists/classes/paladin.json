@@ -268,43 +268,43 @@
   {
    "name": "Blessed Warrior",
    "source": "",
-   "desc": "You learn two cantrips of your choice from the cleric spell list. They count as paladin spells for you, and Charisma is your...",
+   "desc": "Two cleric cantrips as paladin spells (CHA); swap one on level up.",
    "effect": null
   },
   {
    "name": "Blind Fighting",
    "source": "",
-   "desc": "You have blindsight with a range of 10 feet. Within that range, you can effectively see anything that isn't behind total cover...",
+   "desc": "Blindsight 10 ft: see through darkness and blindness, and invisible creatures that aren't hidden.",
    "effect": null
   },
   {
    "name": "Defense",
    "source": "",
-   "desc": "While you are wearing armor, you gain a +1 bonus to AC.",
+   "desc": "+1 AC while wearing armor.",
    "effect": "defense"
   },
   {
    "name": "Dueling",
    "source": "",
-   "desc": "When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon.",
+   "desc": "+2 damage with a one-handed melee weapon and no other weapon.",
    "effect": "dueling"
   },
   {
    "name": "Great Weapon Fighting",
    "source": "",
-   "desc": "When you roll a 1 or 2 on a damage die for an attack you make with a melee weapon that you are wielding with two hands, you can...",
+   "desc": "Reroll 1s and 2s on damage dice of two-handed or versatile melee weapons held in two hands (keep the reroll).",
    "effect": null
   },
   {
    "name": "Interception",
    "source": "",
-   "desc": "When a creature you can see hits a target, other than you, within 5 feet of you with an attack, you can use your reaction to...",
+   "desc": "Reaction with a shield or weapon: reduce a hit on an adjacent ally by 1d10 + prof.",
    "effect": null
   },
   {
    "name": "Protection",
    "source": "",
-   "desc": "When a creature you can see attacks a target other than you that is within 5 feet of you, you can use your reaction to impose...",
+   "desc": "Reaction with a shield: impose disadvantage on an attack against an adjacent ally.",
    "effect": null
   }
  ],
@@ -405,67 +405,79 @@
   "1": [
    {
     "name": "Divine Sense",
-    "desc": "The presence of strong evil registers on your senses like a noxious odor, and powerful good rings like heavenly music in your ears. As an action, you can open your awareness to detect such forces...."
+    "desc": "Action: until your next turn ends, sense celestials, fiends and undead within 60 ft and consecrated or desecrated places; 1 + CHA mod uses per long rest.",
+    "url": "http://dnd5e.wikidot.com/paladin"
    },
    {
     "name": "Lay on Hands",
-    "desc": "Your blessed touch can heal wounds. You have a pool of healing power that replenishes when you take a long rest. With that pool, you can restore a total number of hit points equal to your paladin..."
+    "desc": "Healing pool of 5 x paladin level HP per long rest: action, touch to heal from it, or spend 5 to cure a disease or poison; no effect on undead or constructs.",
+    "url": "http://dnd5e.wikidot.com/paladin"
    }
   ],
   "2": [
    {
     "name": "Fighting Style",
-    "desc": "Starting at 2nd level, you adopt a particular style of fighting as your specialty. Choose one of the following options. You can't take a Fighting Style option more than once, even if you later get to..."
+    "desc": "Pick one: Blessed Warrior, Blind Fighting, Defense, Dueling, Great Weapon Fighting, Interception or Protection.",
+    "url": "http://dnd5e.wikidot.com/paladin"
    },
    {
     "name": "Spellcasting",
-    "desc": "By 2nd level, you have learned to draw on divine magic through meditation and prayer to cast spells as a cleric does."
+    "desc": "CHA half-caster preparing CHA mod + half paladin level spells from the paladin list each long rest; holy symbol as focus.",
+    "url": "http://dnd5e.wikidot.com/paladin"
    },
    {
     "name": "Divine Smite",
-    "desc": "Starting at 2nd level, when you hit a creature with a melee weapon attack, you can expend one spell slot to deal radiant damage to the target, in addition to the weapon's damage. The extra damage is..."
+    "desc": "On a melee weapon hit, spend a slot: +2d8 radiant, +1d8 per slot level above 1st (max 5d8), +1d8 against undead or fiends.",
+    "url": "http://dnd5e.wikidot.com/paladin"
    }
   ],
   "3": [
    {
     "name": "Divine Health",
-    "desc": "By 3rd level, the divine magic flowing through you makes you immune to disease."
+    "desc": "Immune to disease.",
+    "url": "http://dnd5e.wikidot.com/paladin"
    }
   ],
   "5": [
    {
     "name": "Extra Attack",
-    "desc": "Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn."
+    "desc": "Attack twice when you take the Attack action.",
+    "url": "http://dnd5e.wikidot.com/paladin"
    }
   ],
   "6": [
    {
     "name": "Aura of Protection",
-    "desc": "Starting at 6th level, whenever you or a friendly creature within 10 feet of you must make a saving throw, the creature gains a bonus to the saving throw equal to your Charisma modifier (with a..."
+    "desc": "You and allies within 10 ft (30 ft at 18th) add your CHA mod (min +1) to saves while you are conscious.",
+    "url": "http://dnd5e.wikidot.com/paladin"
    }
   ],
   "10": [
    {
     "name": "Aura of Courage",
-    "desc": "Starting at 10th level, you and friendly creatures within 10 feet of you can't be frightened while you are conscious. At 18th level, the range of this aura increases to 30 feet."
+    "desc": "You and allies within 10 ft (30 ft at 18th) can't be frightened while you are conscious.",
+    "url": "http://dnd5e.wikidot.com/paladin"
    }
   ],
   "11": [
    {
     "name": "Improved Divine Smite",
-    "desc": "By 11th level, you are so suffused with righteous might that all your melee weapon strikes carry divine power with them. Whenever you hit a creature with a melee weapon, the creature takes an extra..."
+    "desc": "Every melee weapon hit deals +1d8 radiant.",
+    "url": "http://dnd5e.wikidot.com/paladin"
    }
   ],
   "14": [
    {
     "name": "Cleansing Touch",
-    "desc": "Beginning at 14th level, you can use your action to end one spell on yourself or on one willing creature that you touch. You can use this feature a number of times equal to your Charisma modifier (a..."
+    "desc": "Action: end one spell on yourself or a willing creature you touch; CHA mod uses per long rest.",
+    "url": "http://dnd5e.wikidot.com/paladin"
    }
   ],
   "18": [
    {
     "name": "Aura improvements",
-    "desc": "Aura improvements"
+    "desc": "Your auras reach 30 ft.",
+    "url": "http://dnd5e.wikidot.com/paladin"
    }
   ]
  },
@@ -484,25 +496,29 @@
     "3": [
      {
       "name": "Channel Divinity",
-      "desc": "When you take this oath at 3rd level, you gain the following two Channel Divinity options. Nature's Wrath. You can use your Channel..."
+      "desc": "Nature's Wrath: a creature within 10 ft STR or DEX save or restrained by vines. Turn the Faithless: fey and fiends within 30 ft WIS save or turned for 1 min.",
+      "url": "http://dnd5e.wikidot.com/paladin:ancients"
      }
     ],
     "7": [
      {
       "name": "Aura of Warding",
-      "desc": "Beginning at 7th level, ancient magic lies so heavily upon you that it forms an eldritch ward. You and friendly creatures within 10 feet of..."
+      "desc": "You and allies within 10 ft (30 ft at 18th) resist damage from spells.",
+      "url": "http://dnd5e.wikidot.com/paladin:ancients"
      }
     ],
     "15": [
      {
       "name": "Undying Sentinel",
-      "desc": "Starting at 15th level, when you are reduced to 0 hit points and are not killed outright, you can choose to drop to 1 hit point instead...."
+      "desc": "Once per long rest drop to 1 HP instead of 0; no aging.",
+      "url": "http://dnd5e.wikidot.com/paladin:ancients"
      }
     ],
     "20": [
      {
       "name": "Elder Champion",
-      "desc": "At 20th level, you can assume the form of an ancient force of nature, taking on an appearance you choose. For example, your skin might turn..."
+      "desc": "Action, 1 min: regain 10 HP each turn, 1-action paladin spells as bonus actions, enemies within 10 ft have disadvantage on saves vs your spells and Channel Divinity; once per long rest.",
+      "url": "http://dnd5e.wikidot.com/paladin:ancients"
      }
     ]
    },
@@ -543,25 +559,29 @@
     "3": [
      {
       "name": "Channel Divinity",
-      "desc": "When you take this oath at 3rd level, you gain the following two Channel Divinity options. Conquering Presence. You can use your Channel..."
+      "desc": "Conquering Presence: chosen creatures within 30 ft WIS save or frightened for 1 min. Guided Strike: +10 to an attack roll after seeing it.",
+      "url": "http://dnd5e.wikidot.com/paladin:conquest"
      }
     ],
     "7": [
      {
       "name": "Aura of Conquest",
-      "desc": "Starting at 7th level, you constantly emanate a menacing aura while you're not incapacitated. The aura extends 10 feet from you in every..."
+      "desc": "Creatures frightened of you within 10 ft (30 ft at 18th) have speed 0 and take half paladin level psychic at their turn start.",
+      "url": "http://dnd5e.wikidot.com/paladin:conquest"
      }
     ],
     "15": [
      {
       "name": "Scornful Rebuke",
-      "desc": "Starting at 15th level, those who dare to strike you are psychically punished for their audacity. Whenever a creature hits you with an..."
+      "desc": "Creatures that hit you take CHA mod psychic (min 1).",
+      "url": "http://dnd5e.wikidot.com/paladin:conquest"
      }
     ],
     "20": [
      {
       "name": "Invincible Conqueror",
-      "desc": "At 20th level, you gain the ability to harness extraordinary martial prowess. As an action, you can magically become an avatar of conquest..."
+      "desc": "Action, 1 min: resistance to all damage, one extra attack with the Attack action, melee crits on 19-20; once per long rest.",
+      "url": "http://dnd5e.wikidot.com/paladin:conquest"
      }
     ]
    },
@@ -602,25 +622,29 @@
     "3": [
      {
       "name": "Channel Divinity",
-      "desc": "When you take this oath at 3rd level, you gain the following two Channel Divinity options. Champion Challenge. As a bonus action, you issue..."
+      "desc": "Champion Challenge: bonus action, chosen creatures within 30 ft WIS save or can't move more than 30 ft from you. Turn the Tide: bonus action, creatures within 30 ft at half HP or less heal 1d6 + CHA.",
+      "url": "http://dnd5e.wikidot.com/paladin:crown"
      }
     ],
     "7": [
      {
       "name": "Divine Allegiance",
-      "desc": "Starting at 7th level, when a creature within 5 feet of you takes damage, you can use your reaction to magically substitute your own health..."
+      "desc": "Reaction: take the damage dealt to a creature within 5 ft instead of it.",
+      "url": "http://dnd5e.wikidot.com/paladin:crown"
      }
     ],
     "15": [
      {
       "name": "Unyielding Saint",
-      "desc": "Starting at 15th level, you have advantage on saving throws to avoid becoming paralyzed or stunned."
+      "desc": "Advantage on saves against paralysis and stun.",
+      "url": "http://dnd5e.wikidot.com/paladin:crown"
      }
     ],
     "20": [
      {
       "name": "Exalted Champion",
-      "desc": "At 20th level, your presence on the field of battle is an inspiration to those dedicated to your cause. You can use your action to gain the..."
+      "desc": "Action, 1 h: resistance to nonmagical weapon damage, allies within 30 ft have advantage on death saves, you and they have advantage on WIS saves; once per long rest.",
+      "url": "http://dnd5e.wikidot.com/paladin:crown"
      }
     ]
    },
@@ -661,25 +685,29 @@
     "3": [
      {
       "name": "Channel Divinity",
-      "desc": "When you take this oath at 3rd level, you gain the following two Channel Divinity options. Sacred Weapon. As an action, you can imbue one..."
+      "desc": "Sacred Weapon: for 1 min a held weapon adds CHA to hit, glows and is magical. Turn the Unholy: fiends and undead within 30 ft WIS save or turned for 1 min.",
+      "url": "http://dnd5e.wikidot.com/paladin:devotion"
      }
     ],
     "7": [
      {
       "name": "Aura of Devotion",
-      "desc": "Starting at 7th level, you and friendly creatures within 10 feet of you can't be charmed while you are conscious. At 18th level, the range..."
+      "desc": "You and allies within 10 ft (30 ft at 18th) can't be charmed while you are conscious.",
+      "url": "http://dnd5e.wikidot.com/paladin:devotion"
      }
     ],
     "15": [
      {
       "name": "Purity of Spirit",
-      "desc": "Beginning at 15th level, you are always under the effects of a Protection from Evil and Good spell."
+      "desc": "Always under Protection from Evil and Good.",
+      "url": "http://dnd5e.wikidot.com/paladin:devotion"
      }
     ],
     "20": [
      {
       "name": "Holy Nimbus",
-      "desc": "At 20th level, as an action, you can emanate an aura of sunlight. For 1 minute, bright light shines from you in a 30-foot radius, and dim..."
+      "desc": "Action, 1 min: 30 ft sunlight, enemies starting there take 10 radiant, advantage on saves vs fiend and undead spells; once per long rest.",
+      "url": "http://dnd5e.wikidot.com/paladin:devotion"
      }
     ]
    },
@@ -720,25 +748,29 @@
     "3": [
      {
       "name": "Channel Divinity",
-      "desc": "When you take this oath at 3rd level, you gain the following two Channel Divinity options. See the Sacred Oath class feature for how..."
+      "desc": "Peerless Athlete: bonus action, 10 min of advantage on Athletics and Acrobatics, double carry, +10 ft jumps. Inspiring Smite: after a smite, share 2d8 + paladin level temp HP among creatures within 30 ft.",
+      "url": "http://dnd5e.wikidot.com/paladin:glory"
      }
     ],
     "7": [
      {
       "name": "Aura of Alacrity",
-      "desc": "At 7th level, you emanate an aura that fills you and your companions with supernatural speed, allowing you to race across a battlefield in..."
+      "desc": "+10 ft walking speed; allies starting their turn within 5 ft (10 ft at 18th) gain +10 ft that turn.",
+      "url": "http://dnd5e.wikidot.com/paladin:glory"
      }
     ],
     "15": [
      {
       "name": "Glorious Defense",
-      "desc": "When you reach 15th level, you can turn defense into a sudden strike. When you or another creature you can see within 10 feet of you is hit..."
+      "desc": "Reaction when you or a creature within 10 ft is hit: +CHA to its AC, and if it misses you attack the attacker; CHA mod uses per long rest.",
+      "url": "http://dnd5e.wikidot.com/paladin:glory"
      }
     ],
     "20": [
      {
       "name": "Living Legend",
-      "desc": "At 20th level, you can empower yourself with the legends — whether true or exaggerated — of your great deeds. As a bonus action, you gain..."
+      "desc": "Bonus action, 1 min: advantage on CHA checks, once per turn a missed weapon attack hits, reaction to reroll a failed save; once per long rest or with a 5th-level slot.",
+      "url": "http://dnd5e.wikidot.com/paladin:glory"
      }
     ]
    },
@@ -779,25 +811,29 @@
     "3": [
      {
       "name": "Channel Divinity",
-      "desc": "When you take this oath at 3rd level, you gain the following two Channel Divinity options. Control Undead. As an action, you target one..."
+      "desc": "Control Undead: an undead within 30 ft WIS save or obeys you for 24 h (CR below your level). Dreadful Aspect: chosen creatures within 30 ft WIS save or frightened for 1 min.",
+      "url": "http://dnd5e.wikidot.com/paladin:oathbreaker"
      }
     ],
     "7": [
      {
       "name": "Aura of Hate",
-      "desc": "Starting at 7th level you, as well any fiends and undead within 10 feet of you, gain a bonus to melee weapon damage rolls equal to your..."
+      "desc": "You and fiends and undead within 10 ft (30 ft at 18th) add CHA mod to melee weapon damage.",
+      "url": "http://dnd5e.wikidot.com/paladin:oathbreaker"
      }
     ],
     "15": [
      {
       "name": "Supernatural Resistance",
-      "desc": "At 15th level, you gain resistance to bludgeoning, piercing, and slashing damage from nonmagical weapons."
+      "desc": "Resistance to nonmagical bludgeoning, piercing and slashing.",
+      "url": "http://dnd5e.wikidot.com/paladin:oathbreaker"
      }
     ],
     "20": [
      {
       "name": "Dread Lord",
-      "desc": "At 20th level, you can, as an action, surround yourself with an aura of gloom that lasts for 1 minute. The aura reduces any bright light in..."
+      "desc": "Action, 1 min: 30 ft gloom, frightened enemies take 4d10 psychic, shadows give attackers disadvantage on you and chosen allies, bonus action shadow attack 3d10 necrotic; once per long rest.",
+      "url": "http://dnd5e.wikidot.com/paladin:oathbreaker"
      }
     ]
    },
@@ -838,25 +874,29 @@
     "3": [
      {
       "name": "Channel Divinity",
-      "desc": "When you take this oath at 3rd level, you gain the following two Channel Divinity options. Emissary of Peace. You can use your Channel..."
+      "desc": "Emissary of Peace: bonus action, +5 Persuasion for 10 min. Rebuke the Violent: reaction, an attacker within 30 ft that hurt someone else WIS save or takes that damage as radiant (half on a success).",
+      "url": "http://dnd5e.wikidot.com/paladin:redemption"
      }
     ],
     "7": [
      {
       "name": "Aura of the Guardian",
-      "desc": "Starting at 7th level, you can shield your allies from harm at the cost of your own health. When a creature within 10 feet of you takes..."
+      "desc": "Reaction: take the damage dealt to a creature within 10 ft (30 ft at 18th) instead of it.",
+      "url": "http://dnd5e.wikidot.com/paladin:redemption"
      }
     ],
     "15": [
      {
       "name": "Protective Spirit",
-      "desc": "Starting at 15th level, a holy presence mends your wounds in combat. You regain hit points equal to 1d6 + half your paladin level if you..."
+      "desc": "Ending your turn in combat below half HP heals you 1d6 + half paladin level.",
+      "url": "http://dnd5e.wikidot.com/paladin:redemption"
      }
     ],
     "20": [
      {
       "name": "Emissary of Redemption",
-      "desc": "At 20th level, you become an avatar of peace, which gives you two benefits: You have resistance to all damage dealt by other creatures..."
+      "desc": "Resistance to damage from other creatures, and attackers take radiant equal to half the damage they deal you; lost against a creature you harm until a long rest.",
+      "url": "http://dnd5e.wikidot.com/paladin:redemption"
      }
     ]
    },
@@ -897,25 +937,29 @@
     "3": [
      {
       "name": "Channel Divinity",
-      "desc": "When you take this oath at 3rd level, you gain the following two Channel Divinity options. Abjure Enemy. As an action, you present your..."
+      "desc": "Abjure Enemy: a creature within 60 ft WIS save or frightened with speed 0 for 1 min (half speed on a success). Vow of Enmity: bonus action, advantage on attacks against a creature within 10 ft for 1 min.",
+      "url": "http://dnd5e.wikidot.com/paladin:vengeance"
      }
     ],
     "7": [
      {
       "name": "Relentless Avenger",
-      "desc": "By 7th level, your supernatural focus helps you close off a foe's retreat. When you hit a creature with an opportunity attack, you can move..."
+      "desc": "After an opportunity attack hit, move half your speed without provoking.",
+      "url": "http://dnd5e.wikidot.com/paladin:vengeance"
      }
     ],
     "15": [
      {
       "name": "Soul of Vengeance",
-      "desc": "Starting at 15th level, the authority with which you speak your Vow of Enmity gives you greater power over your foe. When a creature under..."
+      "desc": "Reaction melee attack when the target of your Vow of Enmity attacks.",
+      "url": "http://dnd5e.wikidot.com/paladin:vengeance"
      }
     ],
     "20": [
      {
       "name": "Avenging Angel",
-      "desc": "At 20th level, you can assume the form of an angelic avenger. Using your action, you undergo a transformation. For 1 hour, you gain the..."
+      "desc": "Action, 1 h: 60 ft flying speed and a 30 ft aura that frightens enemies (WIS save), attacks on frightened ones have advantage; once per long rest.",
+      "url": "http://dnd5e.wikidot.com/paladin:vengeance"
      }
     ]
    },
@@ -956,25 +1000,29 @@
     "3": [
      {
       "name": "Channel Divinity",
-      "desc": "When you take this oath at 3rd level, you gain the following two Channel Divinity options. See the Sacred Oath class feature for how..."
+      "desc": "Watcher's Will: you and CHA mod creatures within 30 ft have advantage on INT, WIS and CHA saves for 1 min. Abjure the Extraplanar: extraplanar creatures within 30 ft WIS save or turned for 1 min.",
+      "url": "http://dnd5e.wikidot.com/paladin:watchers"
      }
     ],
     "7": [
      {
       "name": "Aura of the Sentinel",
-      "desc": "At 7th level, you emit an aura of alertness while you aren't incapacitated. When you and any creatures of your choice within 10 feet of you..."
+      "desc": "You and chosen creatures within 10 ft (30 ft at 18th) add your prof bonus to initiative.",
+      "url": "http://dnd5e.wikidot.com/paladin:watchers"
      }
     ],
     "15": [
      {
       "name": "Vigilant Rebuke",
-      "desc": "At 15th level, you've learned how to chastise anyone who dares wield beguilements against you and your wards. Whenever you or a creature..."
+      "desc": "Reaction when you or a creature within 30 ft passes an INT, WIS or CHA save: 2d8 + CHA force to whoever forced it.",
+      "url": "http://dnd5e.wikidot.com/paladin:watchers"
      }
     ],
     "20": [
      {
       "name": "Mortal Bulwark",
-      "desc": "At 20th level, you manifest a spark of divine power in defense of the mortal realms. As a bonus action, you gain the following benefits for..."
+      "desc": "Bonus action, 1 min: truesight 120 ft, advantage on attacks vs aberrations, celestials, elementals, fey and fiends, hits can banish them (CHA save); once per long rest or with a 5th-level slot.",
+      "url": "http://dnd5e.wikidot.com/paladin:watchers"
      }
     ]
    },

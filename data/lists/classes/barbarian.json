@@ -1,6 +1,7 @@
 {
  "casting": null,
  "dice": {},
+ "options": {},
  "name": "Barbarian",
  "hit_die": 12,
  "saves": [
@@ -91,79 +92,93 @@
   "1": [
    {
     "name": "Rage",
-    "desc": "In battle, you fight with primal ferocity. On your turn, you can enter a rage as a bonus action. While raging, you gain the following benefits if you aren't wearing heavy armor: You have advantage on..."
+    "desc": "Bonus action, no heavy armor: advantage on STR checks and saves, rage bonus to STR melee damage, resistance to bludgeoning/piercing/slashing, no spells. 1 min; ends early if you neither attack nor take damage for a turn.",
+    "url": "http://dnd5e.wikidot.com/barbarian"
    },
    {
     "name": "Unarmored Defense",
-    "desc": "While you are not wearing any armor, your armor class equals 10 + your Dexterity modifier + your Constitution modifier. You can use a shield and still gain this benefit."
+    "desc": "No armor: AC 10 + DEX + CON, shield allowed.",
+    "url": "http://dnd5e.wikidot.com/barbarian"
    }
   ],
   "2": [
    {
     "name": "Reckless Attack",
-    "desc": "Starting at 2nd level, you can throw aside all concern for defense to attack with fierce desperation. When you make your first attack on your turn, you can decide to attack recklessly. Doing so gives..."
+    "desc": "On your first attack: advantage on STR melee attacks this turn, but attacks against you are made with advantage until your next turn.",
+    "url": "http://dnd5e.wikidot.com/barbarian"
    },
    {
     "name": "Danger Sense",
-    "desc": "At 2nd level, you gain an uncanny sense of when things nearby aren't as they should be, giving you an edge when you dodge away from danger. You have advantage on Dexterity saving throws against..."
+    "desc": "Advantage on DEX saves against effects you can see, unless blinded, deafened or incapacitated.",
+    "url": "http://dnd5e.wikidot.com/barbarian"
    }
   ],
   "5": [
    {
     "name": "Extra Attack",
-    "desc": "Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn."
+    "desc": "Attack twice when you take the Attack action.",
+    "url": "http://dnd5e.wikidot.com/barbarian"
    },
    {
     "name": "Fast Movement",
-    "desc": "Starting at 5th level, your speed increases by 10 feet while you aren't wearing heavy armor."
+    "desc": "+10 ft speed without heavy armor.",
+    "url": "http://dnd5e.wikidot.com/barbarian"
    }
   ],
   "7": [
    {
     "name": "Feral Instinct",
-    "desc": "By 7th level, your instincts are so honed that you have advantage on initiative rolls. Additionally, if you are surprised at the beginning of combat and aren't incapacitated, you can act normally on..."
+    "desc": "Advantage on initiative; if surprised you can still act on your first turn by raging first.",
+    "url": "http://dnd5e.wikidot.com/barbarian"
    }
   ],
   "9": [
    {
     "name": "Brutal Critical",
-    "desc": "Beginning at 9th level, you can roll one additional weapon damage die when determining the extra damage for a critical hit with a melee attack. This increases to two additional dice at 13th level and..."
+    "desc": "Melee crits roll extra weapon dice: 1 at 9th level, 2 at 13th, 3 at 17th.",
+    "url": "http://dnd5e.wikidot.com/barbarian"
    }
   ],
   "11": [
    {
     "name": "Relentless Rage",
-    "desc": "Starting at 11th level, your rage can keep you fighting despite grievous wounds. If you drop to 0 hit points while you're raging and don't die outright, you can make a DC 10 Constitution saving..."
+    "desc": "Dropping to 0 HP while raging: DC 10 CON save to stay at 1 HP; +5 DC per use, reset by a rest.",
+    "url": "http://dnd5e.wikidot.com/barbarian"
    }
   ],
   "13": [
    {
     "name": "Brutal Critical",
-    "desc": "Beginning at 9th level, you can roll one additional weapon damage die when determining the extra damage for a critical hit with a melee attack. This increases to two additional dice at 13th level and..."
+    "desc": "Melee crits roll extra weapon dice: 1 at 9th level, 2 at 13th, 3 at 17th.",
+    "url": "http://dnd5e.wikidot.com/barbarian"
    }
   ],
   "15": [
    {
     "name": "Persistent Rage",
-    "desc": "Beginning at 15th level, your rage is so fierce that it ends early only if you fall unconscious or if you choose to end it."
+    "desc": "Rage lasts the full minute unless you fall unconscious or end it yourself.",
+    "url": "http://dnd5e.wikidot.com/barbarian"
    }
   ],
   "17": [
    {
     "name": "Brutal Critical",
-    "desc": "Beginning at 9th level, you can roll one additional weapon damage die when determining the extra damage for a critical hit with a melee attack. This increases to two additional dice at 13th level and..."
+    "desc": "Melee crits roll extra weapon dice: 1 at 9th level, 2 at 13th, 3 at 17th.",
+    "url": "http://dnd5e.wikidot.com/barbarian"
    }
   ],
   "18": [
    {
     "name": "Indomitable Might",
-    "desc": "Beginning at 18th level, if your total for a Strength check is less than your Strength score, you can use that score in place of the total."
+    "desc": "A STR check total below your STR score uses the score instead.",
+    "url": "http://dnd5e.wikidot.com/barbarian"
    }
   ],
   "20": [
    {
     "name": "Primal Champion",
-    "desc": "At 20th level, you embody the power of the wilds. Your Strength and Constitution scores increase by 4. Your maximum for those scores is now 24. window['nitroAds'].createAd('wad-dnd5e-floating-video'..."
+    "desc": "+4 STR and CON, maximum 24.",
+    "url": "http://dnd5e.wikidot.com/barbarian"
    }
   ]
  },
@@ -182,25 +197,29 @@
     "3": [
      {
       "name": "Ancestral Protectors",
-      "desc": "Starting when you choose this path at 3rd level, spectral warriors appear when you enter your rage. While you're raging, the first creature..."
+      "desc": "While raging, the first creature you hit each turn has disadvantage on attacks against others, and those it hits resist the damage, until your next turn.",
+      "url": "http://dnd5e.wikidot.com/barbarian:ancestral-guardian"
      }
     ],
     "6": [
      {
       "name": "Spirit Shield",
-      "desc": "Beginning at 6th level, the guardian spirits that aid you can provide supernatural protection to those you defend. If you are raging and..."
+      "desc": "Reaction while raging: reduce damage to a creature within 30 ft by 2d6 (3d6 at 10th, 4d6 at 14th).",
+      "url": "http://dnd5e.wikidot.com/barbarian:ancestral-guardian"
      }
     ],
     "10": [
      {
       "name": "Consult the Spirits",
-      "desc": "At 10th level, you gain the ability to consult with your ancestral spirits. When you do so, you cast the Augury or Clairvoyance spell..."
+      "desc": "Augury or Clairvoyance (an ancestral spirit as the sensor) without slot or material, WIS; once per short rest.",
+      "url": "http://dnd5e.wikidot.com/barbarian:ancestral-guardian"
      }
     ],
     "14": [
      {
       "name": "Vengeful Ancestors",
-      "desc": "At 14th level, your ancestral spirits grow powerful enough to retaliate. When you use your Spirit Shield to reduce the damage of an attack..."
+      "desc": "Damage prevented by Spirit Shield is dealt to the attacker as force.",
+      "url": "http://dnd5e.wikidot.com/barbarian:ancestral-guardian"
      }
     ]
    }
@@ -219,25 +238,29 @@
     "3": [
      {
       "name": "Battlerager Armor",
-      "desc": "When you choose this path at 3rd level, you gain the ability to use spiked armor as a weapon. While you are wearing spiked armor and are..."
+      "desc": "Raging in spiked armor: bonus action spike attack (1d4 + STR piercing); a successful grapple deals 3 piercing.",
+      "url": "http://dnd5e.wikidot.com/barbarian:battlerager"
      }
     ],
     "6": [
      {
       "name": "Reckless Abandon",
-      "desc": "Beginning at 6th level, when you use Reckless Attack while raging, you also gain temporary hit points equal to your Constitution modifier..."
+      "desc": "Reckless Attack while raging grants temp HP equal to CON (min 1), lost when the rage ends.",
+      "url": "http://dnd5e.wikidot.com/barbarian:battlerager"
      }
     ],
     "10": [
      {
       "name": "Battlerager Charge",
-      "desc": "Beginning at 10th level, you can take the Dash action as a bonus action while you are raging."
+      "desc": "Dash as a bonus action while raging.",
+      "url": "http://dnd5e.wikidot.com/barbarian:battlerager"
      }
     ],
     "14": [
      {
       "name": "Spiked Retribution",
-      "desc": "Starting at 14th level, when a creature within 5 feet of you hits you with a melee attack, the attacker takes 3 piercing damage if you are..."
+      "desc": "Raging in spiked armor: creatures within 5 ft that hit you in melee take 3 piercing.",
+      "url": "http://dnd5e.wikidot.com/barbarian:battlerager"
      }
     ]
    }
@@ -256,25 +279,29 @@
     "3": [
      {
       "name": "Form of the Beast",
-      "desc": "Starting when you choose this path at 3rd level, when you enter your rage, you can transform, revealing the bestial power within you. Until..."
+      "desc": "While raging grow a natural weapon: bite 1d8 (heals prof bonus when below half HP), claws 1d6 (extra claw attack), or tail 1d8 with reach (reaction +1d8 AC).",
+      "url": "http://dnd5e.wikidot.com/barbarian:beast"
      }
     ],
     "6": [
      {
       "name": "Bestial Soul",
-      "desc": "Beginning at 6th level, the feral power within you increases, causing the natural weapons of your Form of the Beast to count as magical for..."
+      "desc": "Natural weapons are magical; after each rest choose swimming and water breathing, climbing (even ceilings), or jumping farther.",
+      "url": "http://dnd5e.wikidot.com/barbarian:beast"
      }
     ],
     "10": [
      {
       "name": "Infectious Fury",
-      "desc": "At 10th level, when you hit a creature with your natural weapons while you are raging, the beast within you can curse your target with..."
+      "desc": "Natural weapon hit while raging: WIS save or the target attacks a creature you choose with its reaction, or takes 2d12 psychic (prof bonus/long rest).",
+      "url": "http://dnd5e.wikidot.com/barbarian:beast"
      }
     ],
     "14": [
      {
       "name": "Call the Hunt",
-      "desc": "At 14th level, the beast within you grows so powerful that you can spread its ferocity to others and gain resilience from them joining your..."
+      "desc": "On raging, up to CON mod willing allies within 30 ft add 1d6 to one damage roll per turn; you gain 5 temp HP per ally (prof bonus/long rest).",
+      "url": "http://dnd5e.wikidot.com/barbarian:beast"
      }
     ]
    }
@@ -293,25 +320,29 @@
     "3": [
      {
       "name": "Frenzy",
-      "desc": "Starting when you choose this path at 3rd level, you can go into a frenzy when you rage. If you do so, for the duration of your rage you..."
+      "desc": "Rage in a frenzy: bonus action melee attack each later turn; one level of exhaustion when the rage ends.",
+      "url": "http://dnd5e.wikidot.com/barbarian:berserker"
      }
     ],
     "6": [
      {
       "name": "Mindless Rage",
-      "desc": "Beginning at 6th level, you can't be charmed or frightened while raging. If you are charmed or frightened when you enter your rage, the..."
+      "desc": "Can't be charmed or frightened while raging; existing effects are suspended.",
+      "url": "http://dnd5e.wikidot.com/barbarian:berserker"
      }
     ],
     "10": [
      {
       "name": "Intimidating Presence",
-      "desc": "Beginning at 10th level, you can use your action to frighten someone with your menacing presence. When you do so, choose one creature that..."
+      "desc": "Action: a creature within 30 ft WIS save or frightened until your next turn ends, extendable each turn with your action.",
+      "url": "http://dnd5e.wikidot.com/barbarian:berserker"
      }
     ],
     "14": [
      {
       "name": "Retaliation",
-      "desc": "Starting at 14th level, when you take damage from a creature that is within 5 feet of you, you can use your reaction to make a melee weapon..."
+      "desc": "Reaction melee weapon attack against a creature within 5 ft that damages you.",
+      "url": "http://dnd5e.wikidot.com/barbarian:berserker"
      }
     ]
    }
@@ -330,29 +361,34 @@
     "3": [
      {
       "name": "Giant’s Power",
-      "desc": "When you choose this path, you learn to speak, read, and write Giant or one other language of your choice if you already know Giant...."
+      "desc": "Learn Giant (or another language) and Druidcraft or Thaumaturgy (WIS).",
+      "url": "http://dnd5e.wikidot.com/barbarian:giant"
      },
      {
       "name": "Giant’s Havoc",
-      "desc": "Your rages pull strength from the primal might of giants, transforming you into a hulking force of destruction. While raging, you gain the..."
+      "desc": "While raging: +5 ft reach and Large size; rage damage also applies to STR thrown weapon hits.",
+      "url": "http://dnd5e.wikidot.com/barbarian:giant"
      }
     ],
     "6": [
      {
       "name": "Elemental Cleaver",
-      "desc": "Your bond with the elemental might of giants grows, and you learn to infuse weapons with primordial energy. When you enter your rage, you..."
+      "desc": "On raging, a held weapon deals acid, cold, fire, thunder or lightning, +1d6 of it, and gains thrown 20/60 returning to your hand.",
+      "url": "http://dnd5e.wikidot.com/barbarian:giant"
      }
     ],
     "10": [
      {
       "name": "Mighty Impel",
-      "desc": "Your connection to giant strength allows you to hurl both allies and enemies on the battlefield. As a bonus action while raging, you can..."
+      "desc": "Bonus action while raging: move a Medium or smaller creature in reach up to 30 ft (STR save if unwilling).",
+      "url": "http://dnd5e.wikidot.com/barbarian:giant"
      }
     ],
     "14": [
      {
       "name": "Demiurgic Colossus",
-      "desc": "The primordial power of your rage intensifies. When you rage, your reach increases by 10 feet, your size can increase to Large or Huge..."
+      "desc": "Raging: +10 ft reach, Large or Huge size, Mighty Impel works on Large creatures, Elemental Cleaver deals 2d6.",
+      "url": "http://dnd5e.wikidot.com/barbarian:giant"
      }
     ]
    }
@@ -371,25 +407,29 @@
     "3": [
      {
       "name": "Storm Aura",
-      "desc": "When you select this path at 3rd level, you emanate a stormy, magical aura while you rage. The aura extends 10 feet from you in every..."
+      "desc": "10 ft aura while raging, activated on rage and as a bonus action: desert deals fire to all, sea a lightning bolt (DEX save), tundra temp HP to allies; scales with level.",
+      "url": "http://dnd5e.wikidot.com/barbarian:storm-herald"
      }
     ],
     "6": [
      {
       "name": "Storm Soul",
-      "desc": "At 6th level, the storm grants you benefits even when your aura isn't active. The benefits are based on the environment you chose for your..."
+      "desc": "Desert: fire resistance, ignore heat, ignite objects. Sea: lightning resistance, water breathing, swim 30 ft. Tundra: cold resistance, ignore cold, freeze water.",
+      "url": "http://dnd5e.wikidot.com/barbarian:storm-herald"
      }
     ],
     "10": [
      {
       "name": "Shielding Storm",
-      "desc": "At 10th level, you learn to use your mastery of the storm to protect others. Each creature of your choice has the damage resistance you..."
+      "desc": "Chosen creatures in your aura share your Storm Soul resistance.",
+      "url": "http://dnd5e.wikidot.com/barbarian:storm-herald"
      }
     ],
     "14": [
      {
       "name": "Raging Storm",
-      "desc": "At 14th level, the power of the storm you channel grows mightier, lashing out at your foes. The effect is based on the environment you..."
+      "desc": "Desert: reaction fire (half barbarian level) on a creature hitting you, DEX save. Sea: reaction to knock prone a creature you hit, STR save. Tundra: aura activation drops a creature's speed to 0, STR save.",
+      "url": "http://dnd5e.wikidot.com/barbarian:storm-herald"
      }
     ]
    }
@@ -408,29 +448,34 @@
     "3": [
      {
       "name": "Spirit Seeker",
-      "desc": "Yours is a path that seeks attunement with the natural world, giving you a kinship with beasts. At 3rd level when you adopt this path, you..."
+      "desc": "Beast Sense and Speak with Animals as rituals.",
+      "url": "http://dnd5e.wikidot.com/barbarian:totem-warrior"
      },
      {
       "name": "Totem Spirit",
-      "desc": "At 3rd level, when you adopt this path, you choose a totem spirit and gain its feature. You must make or acquire a physical totem object –..."
+      "desc": "While raging: Bear resists all but psychic; Eagle makes opportunity attacks at disadvantage and Dashes as a bonus action; Wolf gives allies advantage on adjacent enemies; Elk +15 ft; Tiger longer jumps.",
+      "url": "http://dnd5e.wikidot.com/barbarian:totem-warrior"
      }
     ],
     "6": [
      {
       "name": "Aspect of the Beast",
-      "desc": "At 6th level, you gain a magical benefit based on the totem animal of your choice. You can choose the same animal you selected at 3rd level..."
+      "desc": "Bear: double carrying capacity. Eagle: sharp sight to a mile. Elk: double travel pace. Tiger: two extra skills. Wolf: track at fast pace, stealthy travel.",
+      "url": "http://dnd5e.wikidot.com/barbarian:totem-warrior"
      }
     ],
     "10": [
      {
       "name": "Spirit Walker",
-      "desc": "At 10th level, you can cast the Commune with Nature spell, but only as a ritual. When you do so, a spiritual version of one of the animals..."
+      "desc": "Commune with Nature as a ritual.",
+      "url": "http://dnd5e.wikidot.com/barbarian:totem-warrior"
      }
     ],
     "14": [
      {
       "name": "Totemic Attunement",
-      "desc": "At 14th level, you gain a magical benefit based on a totem animal of your choice. You can choose the same animal you selected previously or..."
+      "desc": "Bear: adjacent enemies have disadvantage attacking others. Eagle: fly while raging. Elk: bonus action trample. Tiger: bonus action attack after a charge. Wolf: knock prone on a hit.",
+      "url": "http://dnd5e.wikidot.com/barbarian:totem-warrior"
      }
     ]
    }
@@ -449,29 +494,34 @@
     "3": [
      {
       "name": "Magic Awareness",
-      "desc": "When you choose this path at 3rd level, as an action, you can open your awareness to the presence of concentrated magic. Until the end of..."
+      "desc": "Action: sense spells and magic items within 60 ft and their school until your next turn (prof bonus/long rest).",
+      "url": "http://dnd5e.wikidot.com/barbarian:wild-magic"
      },
      {
       "name": "Wild Surge",
-      "desc": "Also at 3rd level, the magical energy roiling inside you sometimes erupts from you. When you enter your rage, roll on the Wild Magic table..."
+      "desc": "Entering a rage rolls a random Wild Magic effect; save DC 8 + prof + CON.",
+      "url": "http://dnd5e.wikidot.com/barbarian:wild-magic"
      }
     ],
     "6": [
      {
       "name": "Bolstering Magic",
-      "desc": "Beginning at 6th level, you can harness your wild magic to bolster yourself or a companion. As an action, you can touch one creature (which..."
+      "desc": "Action, touch: +1d3 to attacks and checks for 10 min, or regain a slot of level 1d3 or lower (prof bonus/long rest).",
+      "url": "http://dnd5e.wikidot.com/barbarian:wild-magic"
      }
     ],
     "10": [
      {
       "name": "Unstable Backlash",
-      "desc": "At 10th level, when you are imperiled during your rage, the magic within you can lash out; immediately after you take damage or fail a..."
+      "desc": "Reaction after taking damage or failing a save while raging: roll a new Wild Magic effect.",
+      "url": "http://dnd5e.wikidot.com/barbarian:wild-magic"
      }
     ],
     "14": [
      {
       "name": "Controlled Surge",
-      "desc": "At 14th level, whenever you roll on the Wild Magic table, you can roll the die twice and choose which of the two effects to unleash. If you..."
+      "desc": "Roll Wild Magic twice and pick; doubles let you choose any effect.",
+      "url": "http://dnd5e.wikidot.com/barbarian:wild-magic"
      }
     ]
    }
@@ -490,29 +540,34 @@
     "3": [
      {
       "name": "Divine Fury",
-      "desc": "Starting when you choose this path at 3rd level, you can channel divine fury into your weapon strikes. While you're raging, the first..."
+      "desc": "While raging, the first creature you hit each turn takes 1d6 + half barbarian level necrotic or radiant.",
+      "url": "http://dnd5e.wikidot.com/barbarian:zealot"
      },
      {
       "name": "Warrior of the Gods",
-      "desc": "At 3rd level, your soul is marked for endless battle. If a spell, such as Raise Dead, has the sole effect of restoring you to life (but not..."
+      "desc": "Spells that only bring you back to life need no material components.",
+      "url": "http://dnd5e.wikidot.com/barbarian:zealot"
      }
     ],
     "6": [
      {
       "name": "Fanatical Focus",
-      "desc": "Starting at 6th level, the divine power that fuels your rage can protect you. If you fail a saving throw while raging, you can reroll it..."
+      "desc": "Once per rage, reroll a failed save.",
+      "url": "http://dnd5e.wikidot.com/barbarian:zealot"
      }
     ],
     "10": [
      {
       "name": "Zealous Presence",
-      "desc": "At 10th level, you learn to channel divine power to inspire zealotry in others. As a bonus action, you unleash a battle cry infused with..."
+      "desc": "Bonus action: up to ten allies within 60 ft have advantage on attacks and saves until your next turn; once per long rest.",
+      "url": "http://dnd5e.wikidot.com/barbarian:zealot"
      }
     ],
     "14": [
      {
       "name": "Rage Beyond Death",
-      "desc": "Beginning at 14th level, the divine power that fuels your rage allows you to shrug off fatal blows. While you're raging, having 0 hit..."
+      "desc": "While raging, 0 HP doesn't knock you out and death waits until the rage ends.",
+      "url": "http://dnd5e.wikidot.com/barbarian:zealot"
      }
     ]
    }

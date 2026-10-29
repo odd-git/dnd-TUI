@@ -1,6 +1,7 @@
 """Build data/lists/*.json from dnd5e.wikidot.com (run: python3 -I tools/fetch_lists.py).
 
-Keeps mechanics (numbers, proficiencies, names) and short trimmed descriptions only.
+Keeps mechanics (numbers, proficiencies, names) and a link to the page; descriptions are our own summaries
+(data/lists/summaries.json, see wikidot.summary), never the wiki's text.
 Unearthed Arcana and non-WotC sources are skipped (see DENY_SOURCES).
 """
 import json
@@ -47,8 +48,8 @@ def parse_asi(text: str) -> dict | None:
     return {"fixed": fixed, "choose": choose} if fixed or choose else None
 
 
-def section(traits: list[tuple[str, str]]) -> dict:
-    """Structured lineage section from its (name, text) traits."""
+def section(traits: list[tuple[str, str]], at: str = "", page: str = "") -> dict:
+    """Structured lineage section from its (name, text) traits; `at` prefixes the summary keys."""
     sec = {"asi": None, "size": None, "speed": None, "languages": [], "extra_languages": 0,
            "skills": [], "extra_skills": 0, "feats": 0, "traits": []}
     for name, text in traits:
@@ -76,8 +77,8 @@ def section(traits: list[tuple[str, str]]) -> dict:
                 sec["extra_skills"] += NUM[m[1].lower()]
             if re.search(r"\b(one|a) feat\b", text, re.I) and "choice" in text:
                 sec["feats"] += 1
-        if low not in ("size", "speed") and not low.startswith("language"):
-            sec["traits"].append({"name": name, "desc": clip(text)})
+        if text.strip() and low not in ("size", "speed") and not low.startswith("language"):
+            sec["traits"].append({"name": name, "desc": w.summary(w.key(at, name), text), "url": w.url(page)})
     return sec
 
 
@@ -120,10 +121,11 @@ def lineages() -> list[dict]:
         for source, base, subs in entries:
             if not official(source) or not base:
                 continue
-            opt = {"name": name, "source": source, "slug": slug.split(":")[1], **section(base), "subs": []}
+            at = w.key(slug, source)
+            opt = {"name": name, "source": source, "slug": slug.split(":")[1], "url": w.url(slug), **section(base, at, slug), "subs": []}
             for s in subs:
                 if s["_t"]:
-                    opt["subs"].append({"name": s["name"], "replaces": s["replaces"], **section(s["_t"])})
+                    opt["subs"].append({"name": s["name"], "replaces": s["replaces"], **section(s["_t"], w.key(at, s["name"]), slug)})
             out.append(opt)
     return out
 
@@ -152,6 +154,18 @@ def clean_source(text: str) -> str:
     if text == "Features" or text.endswith(" Features"):
         return "Plane Shift / Ravnica / Theros (misc.)"
     return next((b for b in BOOKS if text.startswith(b)), text[:60])
+
+
+def gear(text: str) -> str:
+    """Equipment as a terse item list ("holy symbol, prayer book, 5 sticks of incense, 15 gp"), without the book's prose."""
+    text = re.sub(r"\s*Value:\s*[0-9.,]+\s?(?:[gscep]p)?(?:\s*Weight:\s*[0-9/½¼.]+\s*(?:lbs?\.?)?)?|\s*Contents:[^,]*", "", text)
+    if m := re.match(r".*?\d+\s?[gsp]p\b", text):  # the coins close the list; anything after is the book's text
+        text = m[0]
+    text = re.sub(r"\s*\([^)]*\)?", "", text)
+    text = re.sub(r"\b(?:a|an|one) (?:set of |(?:belt )?pouch (?:containing|with) |purse containing )?", "", text, flags=re.I)
+    text = re.sub(r",? and ", ", ", text)
+    text = re.sub(r"\s*(?:worth|that)[^,]*", "", text)
+    return re.sub(r"\s+", " ", text).strip(" .,")
 
 
 def source_of(blocks) -> str | None:
@@ -186,13 +200,13 @@ def backgrounds() -> list[dict]:
             elif tag == "h2" and under_features:
                 last = t
         out.append({
-            "name": page_name(html, slug), "source": src,
+            "name": page_name(html, slug), "source": src, "url": w.url(slug),
             "skills": [x for x in SKILLS if re.search(r"\b" + x + r"\b", skills_t)],
             "extra_skills": (NUM.get(m[1].lower(), 0) if (m := re.search(r"\b(one|two|three)\b[^.]*?\bof your choice", skills_t, re.I)) else 0),
             "tools": field("Tool Proficiencies", labels),
             "languages": [] if re.search(r"choice|choose|your", langs_t, re.I) else [l for l in LANGS if re.search(r"\b" + l + r"\b", langs_t)],
             "extra_languages": (NUM[m[1].lower()] if (m := re.search(r"\b(one|two|three)\b", langs_t, re.I)) else 1) if re.search(r"choice|choose|your", langs_t, re.I) else 0,
-            "equipment": clip(re.split(r"\s+(?:Variants?|Features?|Suggested)\b", re.sub(r"\s*Value:[0-9.,]+\s?[gsce]p\s*Weight:[0-9/½¼.]+\s*(?:lbs?\.?)?", "", field("Equipment", labels)))[0], 400),
+            "equipment": w.summary(w.key(slug, "Equipment"), None) or gear(re.split(r"\s+(?:Variants?|Features?|Suggested)\b", re.sub(r"\s*Value:[0-9.,]+\s?[gsce]p\s*Weight:[0-9/½¼.]+\s*(?:lbs?\.?)?", "", field("Equipment", labels)))[0]),
             "feature": last,
         })
     return out
@@ -217,7 +231,7 @@ def feats() -> list[dict]:
             asi = {"options": opts or list(ABIL.values()), "amount": int(m[2])}
         req = {a: int(m[1]) for n, a in ABIL.items() if (m := re.search(n + r" (\d+) or higher", prereq or ""))}
         out.append({"name": page_name(html, slug), "source": src, "prereq": prereq, "min_ability": req,
-                    "asi": asi, "desc": clip(" ".join(body[:3]), 220)})
+                    "asi": asi, "desc": w.summary(slug, text), "url": w.url(slug)})
     return out
 
 
@@ -296,8 +310,8 @@ BATTLE_MASTER = {
 }
 
 
-def feature_list(pairs):
-    return [{"name": n, "desc": d} for n, d in pairs]
+def feature_list(pairs, slug="fighter"):
+    return [{"name": n, "desc": d, "url": w.url(slug)} for n, d in pairs]
 
 
 def fighter() -> dict:
@@ -307,7 +321,7 @@ def fighter() -> dict:
     styles = []
     for tag, raw, t in b:
         if tag == "li" and (m := re.match(r"([A-Za-z' -]+) \(([A-Z]+)\)\.\s*(.*)", t)) and m[2] != "UA":
-            styles.append({"name": m[1], "source": m[2], "desc": clip(m[3], 130), "effect": STYLE_EFFECTS.get(m[1])})
+            styles.append({"name": m[1], "source": m[2], "desc": w.summary(w.key("fighting-style", m[1]), m[3]), "effect": STYLE_EFFECTS.get(m[1])})
     equip, on = [], False
     for tag, _, t in b:
         if tag.startswith("h"):
@@ -326,7 +340,7 @@ def fighter() -> dict:
         by_level, name, para = {}, None, []
         def flush():
             if name and para and (m := re.search(r"(\d+)(?:st|nd|rd|th) level", para[0])):
-                by_level.setdefault(m[1], []).append({"name": name, "desc": clip(" ".join(para), 140)})
+                by_level.setdefault(m[1], []).append({"name": name, "desc": w.summary(w.key(slug, m[1], name), " ".join(para)), "url": w.url(slug)})
         for tag, _, t in sb:
             if tag in ("h2", "h3", "h4"):
                 flush()
@@ -338,7 +352,7 @@ def fighter() -> dict:
                "resources": [], "actions": [], "maneuver_pool": None, "tables": {}, "dice": {}, "maneuvers_known": {}, "features": by_level}
         if sub["name"] == "Battle Master":
             sub.update({k: v for k, v in BATTLE_MASTER.items() if k != "features"})
-            sub["features"] = {k: feature_list(v) for k, v in BATTLE_MASTER["features"].items()}
+            sub["features"] = {k: feature_list(v, slug) for k, v in BATTLE_MASTER["features"].items()}
         subs.append(sub)
     res = lambda i, n, rc, mx: {"id": i, "name": n, "recharge": rc, "max": mx, "pips": True}
     act = lambda n, d, u, **kw: {"name": n, "desc": d, "uses": u, **kw}
@@ -371,3 +385,4 @@ if __name__ == "__main__":
     print("fighting styles:", [x["name"] for x in f["styles"]])
     print("fighter subclasses:", [(x["name"], sorted(x["features"], key=int)) for x in f["subclasses"]])
     (cls / "fighter.json").write_text(json.dumps(f, indent=1, ensure_ascii=False) + "\n")
+    w.save_todo()

@@ -138,7 +138,7 @@ impl App {
             }
             Step::FeatList => {
                 let Some(f) = self.feat_choices().get(i).copied() else { return };
-                self.ch.features.push(Feature { name: format!("Feat: {}", f.name), desc: f.desc.clone() });
+                self.ch.features.push(Feature { name: format!("Feat: {}", f.name), desc: f.desc.clone(), url: f.url.clone() });
                 self.say(format!("Feat: {}.", f.name), Tone::Good);
                 match f.asi.as_ref().map(|a| a.options.len()) {
                     Some(1) => self.feat_bump(&f.name, 0),

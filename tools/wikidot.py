@@ -47,6 +47,43 @@ def content(html: str) -> str:
 
 
 import html as _html
+import json as _json
+
+SUMMARIES = Path(__file__).resolve().parent.parent / "data" / "lists" / "summaries.json"
+TODO = Path("/tmp/dnd-summaries-todo.json")
+_summaries, _todo = None, {}
+
+
+def url(slug: str) -> str:
+    return "http://dnd5e.wikidot.com/" + slug
+
+
+def key(*parts) -> str:
+    """Key of a description in summaries.json: page slug, then level and name where a page has several."""
+    return " | ".join(str(p) for p in parts if p not in (None, ""))
+
+
+def summary(k: str, source_text: str | None) -> str:
+    """Our own short description for key k (data/lists/summaries.json), never the wiki's text.
+    A missing one is "" and goes, with the wiki text to summarize, to TODO (see save_todo);
+    with source_text None it is optional: an override of what the caller builds itself."""
+    global _summaries
+    if _summaries is None:
+        _summaries = _json.loads(SUMMARIES.read_text()) if SUMMARIES.exists() else {}
+    if k not in _summaries and source_text is not None:
+        _todo[k] = re.sub(r"\s+", " ", source_text).strip()
+    return _summaries.get(k, "")
+
+
+def save_todo():
+    """Merge this run's missing summaries into TODO and say how many there are."""
+    old = _json.loads(TODO.read_text()) if TODO.exists() else {}
+    old.update(_todo)
+    done = _json.loads(SUMMARIES.read_text()) if SUMMARIES.exists() else {}
+    old = {k: v for k, v in old.items() if k not in done}
+    TODO.write_text(_json.dumps(old, indent=1, ensure_ascii=False) + "\n")
+    if _todo:
+        print(f"  {len(_todo)} descriptions without a summary (listed in {TODO})", file=sys.stderr)
 
 _BLOCK = re.compile(r"(<(?:h[1-6]|li|p|tr|td|th)\b[^>]*>)", re.I)
 

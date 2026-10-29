@@ -343,7 +343,7 @@
   },
   {
    "name": "Create Spell Slot",
-   "desc": "Bonus action: sorcery points into a slot (1st 2, 2nd 3, 3rd 5, 4th 6, 5th 7)",
+   "desc": "Bonus action: sorcery points into a slot, levels 1-5 cost 2/3/5/6/7",
    "special": "font_slot",
    "min_level": 2
   },
@@ -362,37 +362,43 @@
   "1": [
    {
     "name": "Spellcasting",
-    "desc": "An event in your past, or in the life of a parent or ancestor, left an indelible mark on you, infusing you with arcane magic. This font of magic, whatever its origin, fuels your spells."
+    "desc": "Full caster with innate magic, spells known, CHA.",
+    "url": "http://dnd5e.wikidot.com/sorcerer"
    }
   ],
   "2": [
    {
     "name": "Font of Magic",
-    "desc": "At 2nd level, you tap into a deep wellspring of magic within yourself. This wellspring is represented by sorcery points, which allow you to create a variety of magical effects. Sorcery Points. You..."
+    "desc": "Sorcery points (see table, long rest). Bonus action: spend points to create a slot up to 5th (2/3/5/6/7 points), lost at long rest, or expend a slot for points equal to its level.",
+    "url": "http://dnd5e.wikidot.com/sorcerer"
    }
   ],
   "3": [
    {
     "name": "Metamagic",
-    "desc": "At 3rd level, you gain the ability to twist your spells to suit your needs. You gain two of the following Metamagic options of your choice. You gain another one at 10th and 17th level. You can use..."
+    "desc": "Two Metamagic options (one more at 10th and 17th), usually one per spell: Careful, Distant, Empowered, Extended, Heightened, Quickened, Seeking, Subtle, Transmuted, Twinned.",
+    "url": "http://dnd5e.wikidot.com/sorcerer"
    }
   ],
   "10": [
    {
     "name": "Metamagic",
-    "desc": "At 3rd level, you gain the ability to twist your spells to suit your needs. You gain two of the following Metamagic options of your choice. You gain another one at 10th and 17th level. You can use..."
+    "desc": "Two Metamagic options (one more at 10th and 17th), usually one per spell: Careful, Distant, Empowered, Extended, Heightened, Quickened, Seeking, Subtle, Transmuted, Twinned.",
+    "url": "http://dnd5e.wikidot.com/sorcerer"
    }
   ],
   "17": [
    {
     "name": "Metamagic",
-    "desc": "At 3rd level, you gain the ability to twist your spells to suit your needs. You gain two of the following Metamagic options of your choice. You gain another one at 10th and 17th level. You can use..."
+    "desc": "Two Metamagic options (one more at 10th and 17th), usually one per spell: Careful, Distant, Empowered, Extended, Heightened, Quickened, Seeking, Subtle, Transmuted, Twinned.",
+    "url": "http://dnd5e.wikidot.com/sorcerer"
    }
   ],
   "20": [
    {
     "name": "Sorcerous Restoration",
-    "desc": "At 20th level, you regain 4 expended sorcery points whenever you finish a short rest. window['nitroAds'].createAd('wad-dnd5e-floating-video', { \"refreshTime\": 30, \"format\": \"floating\", \"mediaQuery\"..."
+    "desc": "Regain 4 sorcery points on a short rest.",
+    "url": "http://dnd5e.wikidot.com/sorcerer"
    }
   ]
  },
@@ -411,33 +417,39 @@
     "1": [
      {
       "name": "Psionic Spells",
-      "desc": "Starting at 1st level, you learn additional spells when you reach certain levels in this class, as shown on the Psionic Spells table. Each..."
+      "desc": "Bonus subclass spells at set levels, not counted as known; swap each for a divination or enchantment spell of the same level.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:aberrant-mind"
      },
      {
       "name": "Telepathic Speech",
-      "desc": "Starting at 1st level, you can form a telepathic connection between your mind and the mind of another. As a bonus action, choose one..."
+      "desc": "Bonus action: telepathy with a creature within 30 ft, range CHA mod miles, for sorcerer level minutes.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:aberrant-mind"
      }
     ],
     "6": [
      {
       "name": "Psionic Sorcery",
-      "desc": "Beginning at 6th level, when you cast any spell of 1st level or higher from your Psionic Spells feature, you can cast it by expending a..."
+      "desc": "Cast Psionic Spells with sorcery points equal to the level, without verbal, somatic or unconsumed material components.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:aberrant-mind"
      },
      {
       "name": "Psychic Defenses",
-      "desc": "At 6th level, you gain resistance to psychic damage, and you have advantage on saving throws against being charmed or frightened."
+      "desc": "Psychic resistance; advantage on saves against charm and fear.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:aberrant-mind"
      }
     ],
     "14": [
      {
       "name": "Revelation in Flesh",
-      "desc": "Beginning at 14th level, you can unleash the aberrant truth hidden within yourself. As a bonus action, you can spend 1 or more sorcery..."
+      "desc": "Bonus action, 10 min, 1 sorcery point per benefit: see invisible within 60 ft, fly and hover, swim at double speed and breathe water, or squeeze through 1 inch and slip bonds.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:aberrant-mind"
      }
     ],
     "18": [
      {
       "name": "Warping Implosion",
-      "desc": "At 18th level, you can unleash your aberrant power as a space-warping anomaly. As an action, you can teleport to an unoccupied space you..."
+      "desc": "Action: teleport 120 ft; creatures within 30 ft of where you were STR save, 3d10 force and pulled in (half, not pulled, on a success); once per long rest or 5 points.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:aberrant-mind"
      }
     ]
    },
@@ -479,25 +491,29 @@
     "1": [
      {
       "name": "Restore Balance",
-      "desc": "Starting at 1st level, your connection to the plane of absolute order allows you to equalize chaotic moments. When a creature you can see..."
+      "desc": "Reaction: cancel advantage or disadvantage on a d20 roll of a creature within 60 ft (prof bonus/long rest).",
+      "url": "http://dnd5e.wikidot.com/sorcerer:clockwork-soul"
      }
     ],
     "6": [
      {
       "name": "Bastion of Law",
-      "desc": "Starting at 6th level, you can tap into the grand equation of existence to imbue a creature with a shimmering shield of order. As an..."
+      "desc": "Action: 1-5 sorcery points become that many d8 on a creature within 30 ft, spent to reduce damage it takes; lasts until a long rest or a new ward.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:clockwork-soul"
      }
     ],
     "14": [
      {
       "name": "Trance of Order",
-      "desc": "Starting at 14th level, you gain the ability to align your consciousness to the endless calculations of Mechanus. As a bonus action, you..."
+      "desc": "Bonus action, 1 min: no advantage against you, and your d20s of 9 or less count as 10; once per long rest or 5 points.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:clockwork-soul"
      }
     ],
     "18": [
      {
       "name": "Clockwork Cavalcade",
-      "desc": "At 18th level, you summon spirits of order to expunge disorder around you. As an action, you summon the spirits in a 30-foot cube..."
+      "desc": "Action, 30 ft cube: heal up to 100 HP split among chosen creatures, repair objects, end spells of 6th level or lower; once per long rest or 7 points.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:clockwork-soul"
      }
     ]
    },
@@ -538,29 +554,34 @@
     "1": [
      {
       "name": "Divine Magic",
-      "desc": "Your link to the divine allows you to learn spells normally associated with the cleric class. When your Spellcasting feature lets you learn..."
+      "desc": "Learn spells from the cleric list too; an affinity (good, evil, law, chaos, neutrality) grants a bonus spell not counted as known.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:divine-soul"
      },
      {
       "name": "Favored by the Gods",
-      "desc": "Starting at 1st level, divine power guards your destiny. If you fail a saving throw or miss with an attack roll, you can roll 2d4 and add..."
+      "desc": "Add 2d4 to a failed save or missed attack; once per short rest.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:divine-soul"
      }
     ],
     "6": [
      {
       "name": "Empowered Healing",
-      "desc": "Starting at 6th level, the divine energy coursing through you can empower healing spells. Whenever you or an ally within 5 feet of you..."
+      "desc": "1 sorcery point: reroll healing dice of a spell from you or an ally within 5 ft; once per turn.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:divine-soul"
      }
     ],
     "14": [
      {
       "name": "Angelic Form",
-      "desc": "Starting at 14th level, you can use a bonus action to manifest a pair of spectral wings from your back. While the wings are present, you..."
+      "desc": "Bonus action spectral wings: 30 ft fly speed until dismissed.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:divine-soul"
      }
     ],
     "18": [
      {
       "name": "Unearthly Recovery",
-      "desc": "At 18th level, you gain the ability to overcome grievous injuries. As a bonus action when you have fewer than half of your hit points..."
+      "desc": "Bonus action below half HP: regain half your HP max; once per long rest.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:divine-soul"
      }
     ]
    }
@@ -579,29 +600,34 @@
     "1": [
      {
       "name": "Dragon Ancestor",
-      "desc": "At 1st level, you choose one type of dragon as your ancestor. The damage type associated with each dragon is used by features you gain..."
+      "desc": "Choose a dragon type (sets your element); Draconic language, double proficiency on CHA checks with dragons.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:draconic-bloodline"
      },
      {
       "name": "Draconic Resilience",
-      "desc": "As magic flows through your body, it causes physical traits of your dragon ancestors to emerge. At 1st level, your hit point maximum..."
+      "desc": "+1 HP per sorcerer level; AC 13 + DEX without armor.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:draconic-bloodline"
      }
     ],
     "6": [
      {
       "name": "Elemental Affinity",
-      "desc": "Starting at 6th level, when you cast a spell that deals damage of the type associated with your draconic ancestry, add your Charisma..."
+      "desc": "Add CHA to one damage roll of spells of your element; 1 point for resistance to it for 1 h.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:draconic-bloodline"
      }
     ],
     "14": [
      {
       "name": "Dragon Wings",
-      "desc": "At 14th level, you gain the ability to sprout a pair of dragon wings from your back, gaining a flying speed equal to your current speed...."
+      "desc": "Bonus action wings: fly speed equal to your speed, not in armor that doesn't fit them.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:draconic-bloodline"
      }
     ],
     "18": [
      {
       "name": "Draconic Presence",
-      "desc": "Beginning at 18th level, you can channel the dread presence of your dragon ancestor, causing those around you to become awestruck or..."
+      "desc": "Action, 5 points: 60 ft aura of awe or fear for 1 min (concentration); hostiles starting there WIS save or charmed or frightened.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:draconic-bloodline"
      }
     ]
    }
@@ -620,29 +646,34 @@
     "1": [
      {
       "name": "Moon Fire",
-      "desc": "Starting at 1st level, you can call down the radiant light of the moon on command. You learn the Sacred Flame spell, which doesn’t count..."
+      "desc": "Sacred Flame as a bonus cantrip, able to hit two creatures within 5 ft of each other.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:lunar-sorcery"
      }
     ],
     "6": [
      {
       "name": "Lunar Boons",
-      "desc": "Starting at 6th level, the current phase of your Lunar Embodiment can affect your Metamagic feature. Each Lunar Embodiment phase is..."
+      "desc": "Metamagic costs 1 less on schools of your phase (Full: abjuration, divination; New: enchantment, necromancy; Crescent: illusion, transmutation), prof bonus times per long rest.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:lunar-sorcery"
      },
      {
       "name": "Waxing and Waning",
-      "desc": "Starting at 6th level, you gain greater control over the phases of your lunar magic. As a bonus action, you can spend 1 sorcery point to..."
+      "desc": "Bonus action, 1 point: change phase; cast each phase's 1st-level spell once free per long rest while in that phase.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:lunar-sorcery"
      }
     ],
     "14": [
      {
       "name": "Lunar Empowerment",
-      "desc": "Starting at 14th level, the power of a lunar phase saturates your being. While you are in a Lunar Embodiment phase, you also gain the..."
+      "desc": "Full: bonus action light, you and chosen allies in it have advantage on Investigation and Perception. New: advantage on Stealth, attacks against you in darkness at disadvantage. Crescent: necrotic and radiant resistance.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:lunar-sorcery"
      }
     ],
     "18": [
      {
       "name": "Lunar Phenomenon",
-      "desc": "At 18th level, as a bonus action, you can tap into a special power of your current Lunar Embodiment phase. Alternatively, as part of the..."
+      "desc": "Bonus action by phase: Full, CON save or blinded within 30 ft and heal one creature 3d8; New, DEX save 3d10 necrotic and speed 0, you turn invisible; Crescent, teleport 60 ft with a companion and resist all damage. Each once per long rest or 5 points.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:lunar-sorcery"
      }
     ]
    }
@@ -661,25 +692,29 @@
     "1": [
      {
       "name": "Heart of Fire",
-      "desc": "At 1st level, whenever you start casting a spell of 1st level or higher that deals fire damage, fiery magic erupts from you. This eruption..."
+      "desc": "Casting a fire spell of 1st+ level: chosen creatures within 10 ft take fire equal to half your level (min 1).",
+      "url": "http://dnd5e.wikidot.com/sorcerer:pyromancy"
      }
     ],
     "6": [
      {
       "name": "Fire in the Veins",
-      "desc": "At 6th level, you gain resistance to fire damage. In addition, spells you cast ignore resistance to fire damage."
+      "desc": "Fire resistance; your spells ignore fire resistance.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:pyromancy"
      }
     ],
     "14": [
      {
       "name": "Pyromancer's Fury",
-      "desc": "Starting at 14th level, when you are hit by a melee attack, you can use your reaction to deal fire damage to the attacker. The damage..."
+      "desc": "Reaction when hit in melee: fire to the attacker equal to your level, ignoring resistance.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:pyromancy"
      }
     ],
     "18": [
      {
       "name": "Fiery Soul",
-      "desc": "At 18th level, you gain immunity to fire damage. In addition, any spell or effect you create ignores resistance to fire damage and treats..."
+      "desc": "Fire immunity; your fire ignores resistance and treats immunity as resistance.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:pyromancy"
      }
     ]
    }
@@ -698,29 +733,34 @@
     "1": [
      {
       "name": "Eyes of the Dark",
-      "desc": "From 1st level, you have darkvision with a range of 120 feet. When you reach 3rd level in this class, you learn the darkness spell, which..."
+      "desc": "Darkvision 120 ft; at 3rd learn Darkness, castable for 2 points to see through it.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:shadow-magic"
      },
      {
       "name": "Strength of the Grave",
-      "desc": "Starting at 1st level, your existence in a twilight state between life and death makes you difficult to defeat. When damage reduces you to..."
+      "desc": "At 0 HP (not from radiant or a crit): CHA save DC 5 + damage to stay at 1 HP; once per long rest.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:shadow-magic"
      }
     ],
     "6": [
      {
       "name": "Hound of Ill Omen",
-      "desc": "At 6th level, you gain the ability to call forth a howling creature of darkness to harass your foes. As a bonus action, you can spend 3..."
+      "desc": "Bonus action, 3 points: a shadow dire wolf hunts one creature within 120 ft for 5 min; while it is adjacent, the target has disadvantage on saves against your spells.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:shadow-magic"
      }
     ],
     "14": [
      {
       "name": "Shadow Walk",
-      "desc": "At 14th level, you gain the ability to step from one shadow into another. When you are in dim light or darkness, as a bonus action, you can..."
+      "desc": "Bonus action: teleport 120 ft from dim light or darkness to another such space.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:shadow-magic"
      }
     ],
     "18": [
      {
       "name": "Umbral Form",
-      "desc": "Starting at 18th level, you can spend 6 sorcery points as a bonus action to transform yourself into a shadowy form. In this form, you have..."
+      "desc": "Bonus action, 6 points, 1 min: resist all but force and radiant, move through creatures and objects (5 force if you end inside).",
+      "url": "http://dnd5e.wikidot.com/sorcerer:shadow-magic"
      }
     ]
    }
@@ -739,29 +779,34 @@
     "1": [
      {
       "name": "Tempestuous Magic",
-      "desc": "Starting at 1st level, you can use a bonus action on your turn to cause whirling gusts of elemental air to briefly surround you..."
+      "desc": "Bonus action before or after casting a 1st+ level spell: fly 10 ft without opportunity attacks.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:storm-sorcery"
      }
     ],
     "6": [
      {
       "name": "Heart of the Storm",
-      "desc": "At 6th level, you gain resistance to lightning and thunder damage. In addition, whenever you start casting a spell of 1st level or higher..."
+      "desc": "Lightning and thunder resistance; casting such a spell of 1st+ level deals half your level to chosen creatures within 10 ft.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:storm-sorcery"
      },
      {
       "name": "Storm Guide",
-      "desc": "At 6th level, you gain the ability to subtly control the weather around you. If it is raining, you can use an action to cause the rain to..."
+      "desc": "Stop rain in a 20 ft radius, or steer wind direction in 100 ft each round.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:storm-sorcery"
      }
     ],
     "14": [
      {
       "name": "Storm's Fury",
-      "desc": "Starting at 14th level, when you are hit by a melee attack, you can use your reaction to deal lightning damage to the attacker. The damage..."
+      "desc": "Reaction when hit in melee: lightning equal to your level and STR save or pushed 20 ft.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:storm-sorcery"
      }
     ],
     "18": [
      {
       "name": "Wind Soul",
-      "desc": "At 18th level, you gain immunity to lightning and thunder damage. You also gain a magical flying speed of 60 feet. As an action, you can..."
+      "desc": "Lightning and thunder immunity, 60 ft fly; action to give up to 3 + CHA creatures 30 ft fly for 1 h (yours drops to 30); once per short rest.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:storm-sorcery"
      }
     ]
    }
@@ -780,29 +825,34 @@
     "1": [
      {
       "name": "Wild Magic Surge",
-      "desc": "Starting when you choose this origin at 1st level, your spellcasting can unleash surges of untamed magic. Once per turn, the DM can have..."
+      "desc": "After a sorcerer spell of 1st+ level the DM may have you roll d20: a 1 means a roll on the surge table.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:wild-magic"
      },
      {
       "name": "Tides of Chaos",
-      "desc": "Starting at 1st level, you can manipulate the forces of chance and chaos to gain advantage on one attack roll, ability check, or saving..."
+      "desc": "Advantage on one attack, check or save; regained at long rest or when the DM calls a surge after a sorcerer spell.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:wild-magic"
      }
     ],
     "6": [
      {
       "name": "Bend Luck",
-      "desc": "Starting at 6th level, you have the ability to twist fate using your wild magic. When another creature you can see makes an attack roll, an..."
+      "desc": "Reaction, 2 points: add or subtract 1d4 to another creature's attack, check or save.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:wild-magic"
      }
     ],
     "14": [
      {
       "name": "Controlled Chaos",
-      "desc": "At 14th level, you gain a modicum of control over the surges of your wild magic. Whenever you roll on the Wild Magic Surge table, you can..."
+      "desc": "Roll twice on the surge table and choose.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:wild-magic"
      }
     ],
     "18": [
      {
       "name": "Spell Bombardment",
-      "desc": "Beginning at 18th level, the harmful energy of your spells intensifies. When you roll damage for a spell and roll the highest number..."
+      "desc": "Once per turn, a spell damage die showing its maximum is rolled again and added.",
+      "url": "http://dnd5e.wikidot.com/sorcerer:wild-magic"
      }
     ]
    }

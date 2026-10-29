@@ -1,6 +1,7 @@
 {
  "casting": null,
  "dice": {},
+ "options": {},
  "name": "Monk",
  "hit_die": 8,
  "saves": [
@@ -133,101 +134,119 @@
   "1": [
    {
     "name": "Unarmored Defense",
-    "desc": "Beginning at 1st level, while you are wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom modifier."
+    "desc": "No armor or shield: AC 10 + DEX + WIS.",
+    "url": "http://dnd5e.wikidot.com/monk"
    },
    {
     "name": "Martial Arts",
-    "desc": "At 1st level, your practice of martial arts gives you mastery of combat styles that use unarmed strikes and monk weapons, which are shortswords and any simple melee weapons that don't have the..."
+    "desc": "Unarmed or with monk weapons, no armor or shield: DEX for attacks and damage, the martial arts die (d4, growing) as damage, and a bonus action unarmed strike after the Attack action.",
+    "url": "http://dnd5e.wikidot.com/monk"
    }
   ],
   "2": [
    {
     "name": "Ki",
-    "desc": "Starting at 2nd level, your training allows you to harness the mystic energy of ki. Your access to this energy is represented by a number of ki points. Your monk level determines the number of points..."
+    "desc": "Ki points equal to monk level, back after a short rest (30 min meditation): Flurry of Blows, Patient Defense, Step of the Wind; save DC 8 + prof + WIS.",
+    "url": "http://dnd5e.wikidot.com/monk"
    },
    {
     "name": "Unarmored Movement",
-    "desc": "Starting at 2nd level, your speed increases by 10 feet while you are not wearing armor or wielding a shield. This bonus increases when you reach certain monk levels, as shown in the Monk table. At..."
+    "desc": "+10 ft speed without armor or shield, growing with level; from 9th level run on walls and water during your move.",
+    "url": "http://dnd5e.wikidot.com/monk"
    }
   ],
   "3": [
    {
     "name": "Deflect Missiles",
-    "desc": "Starting at 3rd level, you can use your reaction to deflect or catch the missile when you are hit by a ranged weapon attack. When you do so, the damage you take from the attack is reduced by 1d10 +..."
+    "desc": "Reaction when hit by a ranged weapon: reduce damage by 1d10 + DEX + monk level; at 0, catch it and spend 1 ki to throw it back (20/60).",
+    "url": "http://dnd5e.wikidot.com/monk"
    }
   ],
   "4": [
    {
     "name": "Slow Fall",
-    "desc": "Beginning at 4th level, you can use your reaction when you fall to reduce any falling damage you take by an amount equal to five times your monk level."
+    "desc": "Reaction: reduce falling damage by 5 x monk level.",
+    "url": "http://dnd5e.wikidot.com/monk"
    }
   ],
   "5": [
    {
     "name": "Extra Attack",
-    "desc": "Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn."
+    "desc": "Attack twice when you take the Attack action.",
+    "url": "http://dnd5e.wikidot.com/monk"
    },
    {
     "name": "Stunning Strike",
-    "desc": "Starting at 5th level, you can interfere with the flow of ki in an opponent's body. When you hit another creature with a melee weapon attack, you can spend 1 ki point to attempt a stunning strike...."
+    "desc": "On a melee weapon hit, 1 ki: CON save or stunned through your next turn.",
+    "url": "http://dnd5e.wikidot.com/monk"
    }
   ],
   "6": [
    {
     "name": "Ki-Empowered Strikes",
-    "desc": "Starting at 6th level, your unarmed strikes count as magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage."
+    "desc": "Unarmed strikes count as magical.",
+    "url": "http://dnd5e.wikidot.com/monk"
    }
   ],
   "7": [
    {
     "name": "Evasion",
-    "desc": "At 7th level, your instinctive agility lets you dodge out of the way of certain area effects, such as a blue dragon's lightning breath or a fireball spell. When you are subjected to an effect that..."
+    "desc": "DEX saves for half damage: none on a success, half on a failure.",
+    "url": "http://dnd5e.wikidot.com/monk"
    },
    {
     "name": "Stillness of Mind",
-    "desc": "Starting at 7th level, you can use your action to end one effect on yourself that is causing you to be charmed or frightened."
+    "desc": "Action: end a charmed or frightened effect on yourself.",
+    "url": "http://dnd5e.wikidot.com/monk"
    }
   ],
   "9": [
    {
     "name": "Unarmored Movement improvement",
-    "desc": "Unarmored Movement improvement"
+    "desc": "Move along vertical surfaces and across liquids during your turn.",
+    "url": "http://dnd5e.wikidot.com/monk"
    }
   ],
   "10": [
    {
     "name": "Purity of Body",
-    "desc": "At 10th level, your mastery of the ki flowing through you makes you immune to disease and poison."
+    "desc": "Immune to disease and poison.",
+    "url": "http://dnd5e.wikidot.com/monk"
    }
   ],
   "13": [
    {
     "name": "Tongue of the Sun and Moon",
-    "desc": "Starting at 13th level, you learn to touch the ki of other minds so that you understand all spoken languages. Moreover, any creature that can understand a language can understand what you say."
+    "desc": "Understand all spoken languages and be understood by anyone who speaks one.",
+    "url": "http://dnd5e.wikidot.com/monk"
    }
   ],
   "14": [
    {
     "name": "Diamond Soul",
-    "desc": "Beginning at 14th level, your mastery of ki grants you proficiency in all saving throws. Additionally, whenever you make a saving throw and fail, you can spend 1 ki point to reroll it and take the..."
+    "desc": "Proficiency in all saves; spend 1 ki to reroll a failed save.",
+    "url": "http://dnd5e.wikidot.com/monk"
    }
   ],
   "15": [
    {
     "name": "Timeless Body",
-    "desc": "At 15th level, your ki sustains you so that you suffer none of the frailty of old age, and you can't be aged magically. You can still die of old age, however. In addition, you no longer need food or..."
+    "desc": "No frailty of age, no magical aging, no need for food or water.",
+    "url": "http://dnd5e.wikidot.com/monk"
    }
   ],
   "18": [
    {
     "name": "Empty Body",
-    "desc": "Beginning at 18th level, you can use your action to spend 4 ki points to become invisible for 1 minute. During that time, you also have resistance to all damage but force damage. Additionally, you..."
+    "desc": "Action, 4 ki: invisible and resistant to all but force damage for 1 min. 8 ki: Astral Projection on yourself without material.",
+    "url": "http://dnd5e.wikidot.com/monk"
    }
   ],
   "20": [
    {
     "name": "Perfect Self",
-    "desc": "At 20th level, when you roll for initiative and have no ki points remaining, you regain 4 ki points. window['nitroAds'].createAd('wad-dnd5e-floating-video', { \"refreshTime\": 30, \"format\": \"floating\"..."
+    "desc": "Regain 4 ki when you roll initiative with none left.",
+    "url": "http://dnd5e.wikidot.com/monk"
    }
   ]
  },
@@ -246,29 +265,34 @@
     "3": [
      {
       "name": "Draconic Disciple",
-      "desc": "At 3rd level, you can channel draconic power to magnify your presence and imbue your unarmed strikes with the essence of a dragon’s breath...."
+      "desc": "Unarmed strikes can deal acid, cold, fire, lightning or poison; reaction reroll of a failed Intimidation or Persuasion (once per long rest when it works); learn Draconic.",
+      "url": "http://dnd5e.wikidot.com/monk:ascendant-dragon"
      },
      {
       "name": "Breath of the Dragon",
-      "desc": "At 3rd level you can channel destructive waves of energy, like those created by the dragons you emulate. When you take the Attack action on..."
+      "desc": "Replace one attack with a 20 ft cone or 30 ft line: DEX save, two martial arts dice of a chosen element (three at 11th); prof bonus uses per long rest, then 2 ki each.",
+      "url": "http://dnd5e.wikidot.com/monk:ascendant-dragon"
      }
     ],
     "6": [
      {
       "name": "Wings Unfurled",
-      "desc": "At 6th level when you use your Step of the Wind, you can unfurl spectral draconic wings from your back that vanish at the end of your turn...."
+      "desc": "With Step of the Wind, fly at your walking speed until your turn ends (prof bonus/long rest).",
+      "url": "http://dnd5e.wikidot.com/monk:ascendant-dragon"
      }
     ],
     "11": [
      {
       "name": "Aspect of the Wyrm",
-      "desc": "At 11th level the power of your draconic spirit now radiates from you, warding your allies or inspiring fear in your enemies. As a bonus..."
+      "desc": "Bonus action, 10 ft aura for 1 min: frighten a creature each turn (WIS save), or give allies resistance to one element; once per long rest or 3 ki.",
+      "url": "http://dnd5e.wikidot.com/monk:ascendant-dragon"
      }
     ],
     "17": [
      {
       "name": "Ascendant Aspect",
-      "desc": "At 17th level, your draconic spirit reaches its peak. You gain the following benefits: Augment Breath. When you use your Breath of the..."
+      "desc": "1 ki: Breath of the Dragon becomes a 60 ft cone or 90 ft line for four martial arts dice; blindsight 10 ft; Explosive Fury: when Aspect of the Wyrm starts, creatures within 10 ft DEX save or take four martial arts dice.",
+      "url": "http://dnd5e.wikidot.com/monk:ascendant-dragon"
      }
     ]
    }
@@ -287,25 +311,29 @@
     "3": [
      {
       "name": "Arms of the Astral Self",
-      "desc": "At 3rd level, your mastery of your ki allows you to summon a portion of your astral self. As a bonus action, you can spend 1 ki point to..."
+      "desc": "Bonus action, 1 ki: spectral arms for 10 min (creatures within 10 ft DEX save or two martial arts dice of force); WIS for STR checks, unarmed strikes with 10 ft reach using WIS, force damage.",
+      "url": "http://dnd5e.wikidot.com/monk:astral-self"
      }
     ],
     "6": [
      {
       "name": "Visage of the Astral Self",
-      "desc": "When you reach 6th level, you can summon the visage of your astral self. As a bonus action, or as part of the bonus action you take to..."
+      "desc": "1 ki, 10 min: see 120 ft in any darkness, advantage on Insight and Intimidation, speak to one creature only or boom to 600 ft.",
+      "url": "http://dnd5e.wikidot.com/monk:astral-self"
      }
     ],
     "11": [
      {
       "name": "Body of the Astral Self",
-      "desc": "Starting at 11th level, when you have both your astral arms and visage summoned, you can cause the body of your astral self to appear (no..."
+      "desc": "With arms and visage out: reaction to reduce elemental or force damage by 1d10 + WIS, and once per turn +1 martial arts die on an arms hit.",
+      "url": "http://dnd5e.wikidot.com/monk:astral-self"
      }
     ],
     "17": [
      {
       "name": "Awakened Astral Self",
-      "desc": "Starting at 17th level, your connection to your astral self is complete, allowing you to unleash its full potential. As a bonus action, you..."
+      "desc": "Bonus action, 5 ki: full astral self for 10 min, +2 AC and three attacks with Extra Attack if all use the arms.",
+      "url": "http://dnd5e.wikidot.com/monk:astral-self"
      }
     ]
    }
@@ -324,29 +352,34 @@
     "3": [
      {
       "name": "Bonus Proficiencies",
-      "desc": "When you choose this tradition at 3rd level, you gain proficiency in the Performance skill if you don't already have it. Your martial arts..."
+      "desc": "Performance and brewer's supplies.",
+      "url": "http://dnd5e.wikidot.com/monk:drunken-master"
      },
      {
       "name": "Drunken Technique",
-      "desc": "At 3rd level, you learn how to twist and turn quickly as part of your Flurry of Blows. Whenever you use Flurry of Blows, you gain the..."
+      "desc": "Flurry of Blows also grants Disengage and +10 ft speed this turn.",
+      "url": "http://dnd5e.wikidot.com/monk:drunken-master"
      }
     ],
     "6": [
      {
       "name": "Tipsy Sway",
-      "desc": "Starting at 6th level, you can move in sudden, swaying ways. You gain the following benefits. Leap to Your Feet. When you're prone, you can..."
+      "desc": "Stand from prone for 5 ft; reaction, 1 ki: a melee miss on you hits another creature within 5 ft of you.",
+      "url": "http://dnd5e.wikidot.com/monk:drunken-master"
      }
     ],
     "11": [
      {
       "name": "Drunkard's Luck",
-      "desc": "Starting at 11th level, you always seem to get a lucky bounce at the right moment. When you make an ability check, an attack roll, or a..."
+      "desc": "2 ki: cancel disadvantage on a check, attack or save.",
+      "url": "http://dnd5e.wikidot.com/monk:drunken-master"
      }
     ],
     "17": [
      {
       "name": "Intoxicated Frenzy",
-      "desc": "At 17th level, you gain the ability to make an overwhelming number of attacks against a group of enemies. When you use your Flurry of..."
+      "desc": "Flurry of Blows makes up to five attacks if each hits a different creature.",
+      "url": "http://dnd5e.wikidot.com/monk:drunken-master"
      }
     ]
    }
@@ -365,7 +398,8 @@
     "3": [
      {
       "name": "Disciple of the Elements",
-      "desc": "When you choose this tradition at 3rd level, you learn magical disciplines that harness the power of the four elements. A discipline..."
+      "desc": "Elemental Attunement plus one discipline (one more at 6th, 11th and 17th); disciplines spend ki for elemental effects or spells, with a ki cap per spell that grows with level.",
+      "url": "http://dnd5e.wikidot.com/monk:four-elements"
      }
     ]
    }
@@ -384,25 +418,29 @@
     "3": [
      {
       "name": "Path of the Kensei",
-      "desc": "When you choose this tradition at 3rd level, your special martial arts training leads you to master the use of certain weapons. This path..."
+      "desc": "Two kensei weapons (one melee, one ranged, no heavy or special) count as monk weapons; Agile Parry (+2 AC after an unarmed strike), Kensei's Shot (+1d4 ranged damage), calligraphy or painter's tools.",
+      "url": "http://dnd5e.wikidot.com/monk:kensei"
      }
     ],
     "6": [
      {
       "name": "One with the Blade",
-      "desc": "At 6th level, you extend your ki into your kensei weapons, granting you the following benefits. Magic Kensei Weapons. Your attacks with..."
+      "desc": "Kensei weapons are magical; once per turn, 1 ki for +martial arts die damage on a hit.",
+      "url": "http://dnd5e.wikidot.com/monk:kensei"
      }
     ],
     "11": [
      {
       "name": "Sharpen the Blade",
-      "desc": "At 11th level, you gain the ability to augment your weapons further with your ki. As a bonus action, you can expend up to 3 ki points to..."
+      "desc": "Bonus action, up to 3 ki: a kensei weapon gets that bonus to hit and damage for 1 min.",
+      "url": "http://dnd5e.wikidot.com/monk:kensei"
      }
     ],
     "17": [
      {
       "name": "Unerring Accuracy",
-      "desc": "At 17th level, your mastery of weapons grants you extraordinary accuracy. If you miss with an attack roll using a monk weapon on your turn..."
+      "desc": "Once per turn, reroll a missed monk weapon attack.",
+      "url": "http://dnd5e.wikidot.com/monk:kensei"
      }
     ]
    }
@@ -421,25 +459,29 @@
     "3": [
      {
       "name": "Touch of Death",
-      "desc": "Starting when you choose this tradition at 3rd level, your study of death allows you to extract vitality from another creature as it nears..."
+      "desc": "Dropping a creature within 5 ft to 0 HP gives you WIS + monk level temp HP.",
+      "url": "http://dnd5e.wikidot.com/monk:long-death"
      }
     ],
     "6": [
      {
       "name": "Hour of Reaping",
-      "desc": "At 6th level, you gain the ability to unsettle or terrify those around you as an action, for your soul has been touched by the shadow of..."
+      "desc": "Action: creatures within 30 ft that see you WIS save or frightened until your next turn ends.",
+      "url": "http://dnd5e.wikidot.com/monk:long-death"
      }
     ],
     "11": [
      {
       "name": "Mastery of Death",
-      "desc": "Beginning at 11th level, you use your familiarity with death to escape its grasp. When you are reduced to 0 hit points, you can expend 1 ki..."
+      "desc": "Dropped to 0 HP: spend 1 ki to stay at 1.",
+      "url": "http://dnd5e.wikidot.com/monk:long-death"
      }
     ],
     "17": [
      {
       "name": "Touch of the Long Death",
-      "desc": "Starting at 17th level, your touch can channel the energy of death into a creature. As an action, you touch one creature within 5 feet of..."
+      "desc": "Action, touch, 1-10 ki: CON save, 2d10 necrotic per ki (half on a success).",
+      "url": "http://dnd5e.wikidot.com/monk:long-death"
      }
     ]
    }
@@ -458,33 +500,39 @@
     "3": [
      {
       "name": "Implements of Mercy",
-      "desc": "When you choose this tradition at 3rd level, you gain proficiency in the Insight and Medicine skills, and you gain proficiency with the..."
+      "desc": "Insight, Medicine, herbalism kit and a mercy mask.",
+      "url": "http://dnd5e.wikidot.com/monk:mercy"
      },
      {
       "name": "Hands of Healing",
-      "desc": "At 3rd level, your mystical touch can mend wounds. As an action, you can spend 1 ki point to touch a creature and restore a number of hit..."
+      "desc": "Action, 1 ki: heal martial arts die + WIS; one Flurry strike can be a free heal instead.",
+      "url": "http://dnd5e.wikidot.com/monk:mercy"
      },
      {
       "name": "Hands of Harm",
-      "desc": "At 3rd level, you use your ki to inflict wounds. When you hit a creature with an unarmed strike, you can spend 1 ki point to deal extra..."
+      "desc": "Once per turn on an unarmed hit, 1 ki: + martial arts die + WIS necrotic.",
+      "url": "http://dnd5e.wikidot.com/monk:mercy"
      }
     ],
     "6": [
      {
       "name": "Physician's Touch",
-      "desc": "Starting at 6th level, you can administer even greater cures with a touch, and if you feel it's necessary, you can use your knowledge to..."
+      "desc": "Hands of Healing also ends a disease or blinded, deafened, paralyzed, poisoned or stunned; Hands of Harm can poison until your next turn ends.",
+      "url": "http://dnd5e.wikidot.com/monk:mercy"
      }
     ],
     "11": [
      {
       "name": "Flurry of Healing and Harm",
-      "desc": "Starting at 11th level, you can now mete out a flurry of comfort and hurt. When you use Flurry of Blows, you can now replace each of the..."
+      "desc": "Flurry of Blows strikes can be free Hands of Healing, and Hands of Harm costs no ki on them (still once per turn).",
+      "url": "http://dnd5e.wikidot.com/monk:mercy"
      }
     ],
     "17": [
      {
       "name": "Hand of Ultimate Mercy",
-      "desc": "By 17th level, your mastery of life energy opens the door to the ultimate mercy. As an action, you can touch the corpse of a creature that..."
+      "desc": "Action, 5 ki: revive a creature dead under 24 h with 4d10 + WIS HP, curing some conditions; once per long rest.",
+      "url": "http://dnd5e.wikidot.com/monk:mercy"
      }
     ]
    }
@@ -503,25 +551,29 @@
     "3": [
      {
       "name": "Open Hand Technique",
-      "desc": "Starting when you choose this tradition at 3rd level, you can manipulate your enemy's ki when you harness your own. Whenever you hit a..."
+      "desc": "Flurry of Blows hits can knock prone (DEX save), push 15 ft (STR save) or deny reactions until your next turn.",
+      "url": "http://dnd5e.wikidot.com/monk:open-hand"
      }
     ],
     "6": [
      {
       "name": "Wholeness of Body",
-      "desc": "At 6th level, you gain the ability to heal yourself. As an action, you can regain hit points equal to three times your monk level. You must..."
+      "desc": "Action: heal 3 x monk level, once per long rest.",
+      "url": "http://dnd5e.wikidot.com/monk:open-hand"
      }
     ],
     "11": [
      {
       "name": "Tranquility",
-      "desc": "Beginning at 11th level, you can enter a special meditation that surrounds you with an aura of peace. At the end of a long rest, you gain..."
+      "desc": "After a long rest you are under Sanctuary (DC 8 + prof + WIS) until the next.",
+      "url": "http://dnd5e.wikidot.com/monk:open-hand"
      }
     ],
     "17": [
      {
       "name": "Quivering Palm",
-      "desc": "At 17th level, you gain the ability to set up lethal vibrations in someone's body. When you hit a creature with an unarmed strike, you can..."
+      "desc": "3 ki on an unarmed hit: later an action triggers it, CON save or drop to 0 HP, 10d10 necrotic on a success.",
+      "url": "http://dnd5e.wikidot.com/monk:open-hand"
      }
     ]
    }
@@ -540,25 +592,29 @@
     "3": [
      {
       "name": "Shadow Arts",
-      "desc": "Starting when you choose this tradition at 3rd level, you can use your ki to duplicate the effects of certain spells. As an action, you can..."
+      "desc": "2 ki: Darkness, Darkvision, Pass without Trace or Silence, no material needed; Minor Illusion cantrip.",
+      "url": "http://dnd5e.wikidot.com/monk:shadow"
      }
     ],
     "6": [
      {
       "name": "Shadow Step",
-      "desc": "At 6th level, you gain the ability to step from one shadow into another. When you are in dim light or darkness, as a bonus action you can..."
+      "desc": "Bonus action from dim light or darkness: teleport 60 ft to another such spot, advantage on your next melee attack this turn.",
+      "url": "http://dnd5e.wikidot.com/monk:shadow"
      }
     ],
     "11": [
      {
       "name": "Cloak of Shadows",
-      "desc": "By 11th level, you have learned to become one with the shadows. When you are in an area of dim light or darkness, you can use your action..."
+      "desc": "Action in dim light or darkness: invisible until you attack, cast, or enter bright light.",
+      "url": "http://dnd5e.wikidot.com/monk:shadow"
      }
     ],
     "17": [
      {
       "name": "Opportunist",
-      "desc": "At 17th level, you can exploit a creature's momentary distraction when it is hit by an attack. Whenever a creature within 5 feet of you is..."
+      "desc": "Reaction: melee attack on a creature within 5 ft that someone else just hit.",
+      "url": "http://dnd5e.wikidot.com/monk:shadow"
      }
     ]
    }
@@ -577,25 +633,29 @@
     "3": [
      {
       "name": "Radiant Sun Bolt",
-      "desc": "Starting when you choose this tradition at 3rd level, you can hurl searing bolts of magical radiance. You gain a new attack option that you..."
+      "desc": "Ranged spell attack 30 ft with DEX, martial arts die radiant, usable in the Attack action; 1 ki for two more as a bonus action.",
+      "url": "http://dnd5e.wikidot.com/monk:sun-soul"
      }
     ],
     "6": [
      {
       "name": "Searing Arc Strike",
-      "desc": "At 6th level, you gain the ability to channel your ki into searing waves of energy. Immediately after you take the Attack action on your..."
+      "desc": "After the Attack action, 2 ki: Burning Hands as a bonus action, +1 level per extra ki (total up to half monk level).",
+      "url": "http://dnd5e.wikidot.com/monk:sun-soul"
      }
     ],
     "11": [
      {
       "name": "Searing Sunburst",
-      "desc": "At 11th level, you gain the ability to create an orb of light that erupts into a devastating explosion. As an action, you magically create..."
+      "desc": "Action: 20 ft sphere within 150 ft, CON save or 2d6 radiant, +2d6 per ki spent (max 3).",
+      "url": "http://dnd5e.wikidot.com/monk:sun-soul"
      }
     ],
     "17": [
      {
       "name": "Sun Shield",
-      "desc": "At 17th level, you become wreathed in a luminous, magical aura. You shed bright light in a 30-foot radius and dim light for an additional..."
+      "desc": "Shed light 30 ft; reaction to deal 5 + WIS radiant to a creature hitting you in melee.",
+      "url": "http://dnd5e.wikidot.com/monk:sun-soul"
      }
     ]
    }
