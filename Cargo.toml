@@ -10,4 +10,4 @@ serde_json = "1"
 rand = "0.9"
 
 [profile.release]
-strip = true
+debug = "line-tables-only" # file:line in crash.log backtraces

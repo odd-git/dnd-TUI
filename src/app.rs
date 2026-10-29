@@ -91,7 +91,7 @@ pub fn hit(query: &str, text: &str) -> bool { query.is_empty() || text.to_lowerc
 
 fn d(sides: u32) -> u32 { rand::random_range(1..=sides) }
 
-fn data_dir() -> PathBuf {
+pub(crate) fn data_dir() -> PathBuf {
     let base = std::env::var_os("XDG_DATA_HOME").map(PathBuf::from)
         .unwrap_or_else(|| PathBuf::from(std::env::var_os("HOME").unwrap_or_default()).join(".local/share"));
     base.join("dnd-tui")
