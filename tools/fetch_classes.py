@@ -379,6 +379,11 @@ SUB_MECH = {
                 {"name": "Hurl Through Hell", "desc": "On a hit: the target tours the lower planes until your next turn ends (non-fiends take the damage)", "uses": "hurl_through_hell", "dice": [10, 10], "dmg_type": "psychic"},
             ],
         },
+        "Great Old One": {
+            "tables": {"entropic_ward": {"6": 1}},
+            "resources": [res("entropic_ward", "Entropic Ward", "short", "table")],
+            "actions": [{"name": "Entropic Ward", "desc": "Reaction: an attack on you rolls with disadvantage; if it misses, your next attack on that creature has advantage", "uses": "entropic_ward"}],
+        },
     },
 }
 

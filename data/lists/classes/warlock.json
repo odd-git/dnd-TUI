@@ -539,10 +539,28 @@
    "name": "Great Old One",
    "source": "Player's Handbook",
    "needs_spells": false,
-   "resources": [],
-   "actions": [],
+   "resources": [
+    {
+     "id": "entropic_ward",
+     "name": "Entropic Ward",
+     "recharge": "short",
+     "max": "table",
+     "pips": true
+    }
+   ],
+   "actions": [
+    {
+     "name": "Entropic Ward",
+     "desc": "Reaction: an attack on you rolls with disadvantage; if it misses, your next attack on that creature has advantage",
+     "uses": "entropic_ward"
+    }
+   ],
    "maneuver_pool": null,
-   "tables": {},
+   "tables": {
+    "entropic_ward": {
+     "6": 1
+    }
+   },
    "dice": {},
    "maneuvers_known": {},
    "features": {

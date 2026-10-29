@@ -545,6 +545,7 @@ mod tests {
         let hell = c.actions.iter().find(|a| a.name == "Hurl Through Hell").unwrap();
         assert_eq!((c.dice(hell), hell.dmg_type.as_str()), (Some((10, 10)), "psychic"));
         assert_eq!(warlock("Fiend", 5).res_max("dark_ones_own_luck"), Some(0));
+        assert_eq!((warlock("Great Old One", 5).res_max("entropic_ward"), warlock("Great Old One", 6).res_max("entropic_ward")), (Some(0), Some(1)));
     }
 
     #[test]
