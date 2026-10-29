@@ -17,7 +17,7 @@ impl App {
             v
         };
         let rituals = self.ch.spells.iter().filter(|n| self.ch.ritual_ok(n)).cloned();
-        let all: Vec<String> = self.ch.cantrips.iter().cloned().chain(self.ch.castable()).chain(rituals).collect();
+        let all: Vec<String> = self.ch.cantrips.iter().cloned().chain(self.ch.castable()).chain(rituals).chain(self.ch.rituals()).collect();
         let mut rows = by(&all);
         rows.dedup_by_key(|s| &s.name);
         rows

@@ -491,6 +491,15 @@
       "url": "http://dnd5e.wikidot.com/barbarian:totem-warrior"
      }
     ]
+   },
+   "always": {
+    "3": [
+     "Beast Sense",
+     "Speak with Animals"
+    ],
+    "10": [
+     "Commune with Nature"
+    ]
    }
   },
   {

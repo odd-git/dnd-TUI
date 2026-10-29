@@ -153,6 +153,7 @@ SUB_MECH = {
             "toggles": [{"name": "Frenzy", "exhaust": True, "desc": "While raging: an extra melee swing each turn (bonus action); +1 exhaustion when you stop"}],
             "actions": [{"name": "Intimidating Presence", "desc": "Action: scare one creature within 30 ft, WIS save DC {dc:CHA} or frightened until your next turn ends", "min_level": 10}],
         },
+        "Totem Warrior": {"always": {"3": ["Beast Sense", "Speak with Animals"], "10": ["Commune with Nature"]}},
     },
 }
 

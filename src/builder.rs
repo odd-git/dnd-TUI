@@ -278,6 +278,18 @@ mod tests {
     }
 
     #[test]
+    fn totem_warrior_casts_its_rituals_only() {
+        let mut c = barbarian(3);
+        assert!(!c.has_spells());
+        c.progression = Some("Barbarian/Totem Warrior".into());
+        assert_eq!(c.rituals(), ["Beast Sense", "Speak with Animals"]);
+        assert!(c.has_spells() && c.ritual_ok("Speak with Animals") && !c.ritual_ok("Commune with Nature"));
+        c.level = 10;
+        assert!(c.ritual_ok("Commune with Nature"));
+        assert!(c.castable().is_empty());
+    }
+
+    #[test]
     fn berserker_frenzy_and_presence() {
         let c = barbarian(3);
         assert!(c.toggles.iter().any(|t| t.name == "Frenzy" && t.exhaust));

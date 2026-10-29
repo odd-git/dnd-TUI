@@ -494,7 +494,8 @@ fn slots_line(c: &Character) -> Option<Line<'static>> {
 fn draw_spells(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
     let c = &app.ch;
     let cols = Layout::horizontal([Constraint::Percentage(55), Constraint::Percentage(45)]).split(area);
-    let b = block(&format!("SPELLS | {}", c.spell_dcs()));
+    let dcs = c.spell_dcs();
+    let b = block(&if dcs.is_empty() { "SPELLS".to_string() } else { format!("SPELLS | {dcs}") });
     let inner = b.inner(cols[0]);
     f.render_widget(b, cols[0]);
     let rows = app.spell_rows();
@@ -528,7 +529,8 @@ fn draw_spells(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
             Line::styled(format!("{} ({})", sp.name, if sp.level == 0 { format!("{} cantrip", sp.school) } else { format!("level {} {}", sp.level, sp.school) }), Style::new().fg(GREEN).bold()),
             Line::from(format!("{} | {} | {}", sp.time, sp.range, sp.comp)),
             Line::from(format!("{}{}{}", sp.duration, if sp.conc { " (concentration)" } else { "" }, if sp.ritual { " (ritual)" } else { "" })),
-            { let a = c.ability_for(&sp.name); Line::styled(format!("Cast with {a}: DC {}, attack {:+}", c.dc(&a), c.prof() + c.md(&a)), tone(Tone::Dim)) },
+            if c.rituals().contains(&sp.name) && !c.casts() { Line::styled("Ritual only (subclass feature)", tone(Tone::Dim)) }
+            else { let a = c.ability_for(&sp.name); Line::styled(format!("Cast with {a}: DC {}, attack {:+}", c.dc(&a), c.prof() + c.md(&a)), tone(Tone::Dim)) },
             Line::default(),
             Line::from(sp.desc.clone()),
         ];

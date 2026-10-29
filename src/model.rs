@@ -213,7 +213,12 @@ impl Character {
     pub fn casts(&self) -> bool { self.cast_src().is_some() }
 
     /// Anything for the Spells tab: a casting class, or spells from a feat, race or pact on any sheet.
-    pub fn has_spells(&self) -> bool { self.casts() || !self.cantrips.is_empty() || !self.spells.is_empty() }
+    pub fn has_spells(&self) -> bool { self.casts() || !self.cantrips.is_empty() || !self.spells.is_empty() || !self.rituals().is_empty() }
+
+    /// Rituals a subclass that does not cast gives (Totem Warrior): no slots, only the ritual way.
+    pub fn rituals(&self) -> Vec<String> {
+        self.classes().iter().filter(|(p, _)| crate::lists::casting_of(p).is_none()).flat_map(|(p, l)| crate::lists::always_spells(p, *l)).collect()
+    }
 
     /// On the spell list of one of the classes (patron spells included). Spells from elsewhere (Magic Initiate,
     /// Pact of the Tome, a DM's gift) are always castable and never count against spells known.
@@ -250,12 +255,12 @@ impl Character {
     }
 
     /// Castable as a ritual (10 minutes longer, no slot): a wizard from the spellbook, a cleric or druid if prepared,
-    /// a bard if known, or any ritual the sheet has with Book of Ancient Secrets or the Ritual Caster feat.
+    /// a bard if known, any ritual the sheet has with Book of Ancient Secrets or the Ritual Caster feat, or a subclass's.
     pub fn ritual_ok(&self, name: &str) -> bool {
         let Some(sp) = crate::lists::spell(name).filter(|s| s.ritual && s.level > 0) else { return false };
         let (known, prepared) = (self.spells.contains(&sp.name), self.prepared.contains(&sp.name));
         let book = self.features.iter().any(|f| f.name == "Invocation: Book of Ancient Secrets" || f.name == "Feat: Ritual Caster");
-        (book && (known || prepared)) || self.casters().iter().any(|(c, ..)| sp.classes.contains(&c.list) && match c.list.as_str() {
+        (book && (known || prepared)) || self.rituals().contains(&sp.name) || self.casters().iter().any(|(c, ..)| sp.classes.contains(&c.list) && match c.list.as_str() {
             "Wizard" | "Bard" => known,
             "Cleric" | "Druid" => prepared,
             _ => false,
