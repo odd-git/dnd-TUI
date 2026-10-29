@@ -89,7 +89,7 @@ impl App {
             if let Some(old) = self.ch.concentration.replace(sp.name.clone()).filter(|o| *o != sp.name) { self.say(format!("Concentration on {old} ends."), Tone::Dim); }
         }
         self.say(format!("Cast {}{tag}{conc}", sp.name), Tone::Good);
-        if sp.school == "Abjuration" && sp.level > 0 { self.ward_cast(slot_level.max(sp.level)); }
+        if sp.level > 0 { self.school_cast(&sp.school, slot_level.max(sp.level)); }
         let mut crit = false;
         if sp.attack {
             let hit = self.ch.md(&ab) + self.ch.prof();

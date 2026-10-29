@@ -563,6 +563,7 @@ mod tests {
         assert_eq!(c.res_max("arcane_ward"), Some(2 * 6 + 3)); // INT 16
         assert_eq!(c.res["arcane_ward"], 0);
         assert_eq!(wizard("Evocation", 6).res_max("arcane_ward"), None);
+        assert_eq!((wizard("Conjuration", 5).res_max("benign_transportation"), wizard("Conjuration", 6).res_max("benign_transportation")), (Some(0), Some(1)));
     }
 
     #[test]

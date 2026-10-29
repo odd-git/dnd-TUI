@@ -387,6 +387,11 @@ SUB_MECH = {
     },
     "wizard": {
         "Abjuration": {"resources": [{"id": "arcane_ward", "name": "Arcane Ward", "recharge": "", "max": "arcane_ward", "pips": False, "start": 0}]},
+        "Conjuration": {
+            "tables": {"benign_transportation": {"6": 1}},
+            "resources": [res("benign_transportation", "Benign Transportation", "long", "table")],
+            "actions": [{"name": "Benign Transportation", "desc": "Action: teleport up to 30 ft, or swap places with a willing Small or Medium creature; back after a conjuration spell", "uses": "benign_transportation"}],
+        },
     },
 }
 

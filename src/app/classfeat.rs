@@ -409,8 +409,23 @@ impl App {
         n - t
     }
 
+    /// A spell of 1st level or higher was cast: what the wizard's school does with it.
+    pub(super) fn school_cast(&mut self, school: &str, level: u32) {
+        match school {
+            "Abjuration" => self.ward_cast(level),
+            // Benign Transportation comes back after a conjuration spell
+            "Conjuration" if self.ch.def("benign_transportation").is_some() => {
+                if let Some(max) = self.ch.res_max("benign_transportation").filter(|&m| self.have("benign_transportation") < m) {
+                    self.ch.res.insert("benign_transportation".into(), max);
+                    self.say("Benign Transportation is ready again.", Tone::Good);
+                }
+            }
+            _ => {}
+        }
+    }
+
     /// Casting an abjuration spell of 1st level or higher: makes the ward (once per long rest) or restores 2 HP per spell level.
-    pub(super) fn ward_cast(&mut self, level: u32) {
+    fn ward_cast(&mut self, level: u32) {
         let Some(max) = self.ch.res_max("arcane_ward").filter(|_| self.ch.def("arcane_ward").is_some()) else { return };
         let made = self.ch.res.insert("ward_made".into(), 1).is_some();
         let hp = if made { (self.have("arcane_ward") + 2 * level).min(max) } else { max };

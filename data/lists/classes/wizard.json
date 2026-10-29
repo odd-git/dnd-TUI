@@ -482,10 +482,28 @@
    "name": "Conjuration",
    "source": "Player's Handbook",
    "needs_spells": false,
-   "resources": [],
-   "actions": [],
+   "resources": [
+    {
+     "id": "benign_transportation",
+     "name": "Benign Transportation",
+     "recharge": "long",
+     "max": "table",
+     "pips": true
+    }
+   ],
+   "actions": [
+    {
+     "name": "Benign Transportation",
+     "desc": "Action: teleport up to 30 ft, or swap places with a willing Small or Medium creature; back after a conjuration spell",
+     "uses": "benign_transportation"
+    }
+   ],
    "maneuver_pool": null,
-   "tables": {},
+   "tables": {
+    "benign_transportation": {
+     "6": 1
+    }
+   },
    "dice": {},
    "maneuvers_known": {},
    "features": {
