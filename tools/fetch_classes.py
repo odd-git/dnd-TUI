@@ -150,6 +150,14 @@ def channel(name, desc, level=2):
     return {"name": name, "desc": desc, "uses": "channel_divinity", "min_level": level}
 
 
+def divine_strike(kind):
+    """Divine Strike of a cleric domain: extra weapon damage once per turn, 1d8 from 8th level, 2d8 from 14th."""
+    return {"name": "Divine Strike", "desc": "Once per turn, on a weapon hit", "dice": [1, 8], "dice_table": "divine_strike", "dmg_type": kind, "min_level": 8}
+
+
+DIVINE_STRIKE = {"divine_strike": {"8": 1, "14": 2}}
+
+
 # PHB subclass mechanics the page cannot say (like BATTLE_MASTER in fetch_lists.py), merged into the scraped subclass
 SUB_MECH = {
     "barbarian": {
@@ -171,6 +179,10 @@ SUB_MECH = {
         "Knowledge": {"actions": [
             channel("Knowledge of the Ages", "Proficient in one skill or tool of your choice for 10 minutes"),
             channel("Read Thoughts", "A creature within 60 ft, WIS save DC {dc:WIS}: on a fail, its surface thoughts are yours for 1 minute", 6),
+        ]},
+        "Life": {"tables": DIVINE_STRIKE, "actions": [
+            channel("Preserve Life", "Share out up to 5 HP per cleric level among creatures within 30 ft, none above half its max"),
+            divine_strike("radiant"),
         ]},
     },
 }

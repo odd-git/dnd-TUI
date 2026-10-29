@@ -110,9 +110,12 @@ impl App {
         if sp.level > 0 { dice += sp.upcast.map_or(0, |u| u.0) * above; }
         if sp.scales && !sp.beams { dice = n * tier; }
         if sp.healing {
-            let m = if sp.heal_mod { self.ch.md(&ab) } else { 0 };
-            let total = (0..dice).map(|_| d(*sides) as i32).sum::<i32>() + m;
-            return self.say(format!(" >> Heals {total} HP ({dice}d{sides}{m:+})"), Tone::Good);
+            let has = |n: &str| self.ch.features.iter().any(|f| f.name == n);
+            let mut m = if sp.heal_mod { self.ch.md(&ab) } else { 0 };
+            if has("Disciple of Life") && sp.level > 0 { m += 2 + slot_level as i32; }
+            let supreme = has("Supreme Healing"); // healing dice count as their maximum
+            let total = (0..dice).map(|_| if supreme { *sides } else { d(*sides) } as i32).sum::<i32>() + m;
+            return self.say(format!(" >> Heals {total} HP ({dice}d{sides}{m:+}{})", if supreme { ", maximum" } else { "" }), Tone::Good);
         }
         let hits = sp.count + if sp.count_up { above } else { 0 } + if sp.beams { tier - 1 } else { 0 };
         let rolls = if crit { 2 * dice } else { dice };

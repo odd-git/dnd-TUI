@@ -334,6 +334,14 @@ mod tests {
     }
 
     #[test]
+    fn divine_strike_grows_at_fourteen() {
+        let strike = |c: &Character| c.actions.iter().find(|a| a.name == "Divine Strike").map(|a| (c.dice(a), a.dmg_type.clone(), a.min_level));
+        assert_eq!(strike(&cleric("Life", 8)), Some((Some((1, 8)), "radiant".into(), 8)));
+        assert_eq!(strike(&cleric("Life", 14)).and_then(|s| s.0), Some((2, 8)));
+        assert!(cleric("Life", 2).actions.iter().any(|a| a.name == "Preserve Life"));
+    }
+
+    #[test]
     fn berserker_frenzy_and_presence() {
         let c = barbarian(3);
         assert!(c.toggles.iter().any(|t| t.name == "Frenzy" && t.exhaust));

@@ -841,9 +841,32 @@
    "source": "Player's Handbook",
    "needs_spells": false,
    "resources": [],
-   "actions": [],
+   "actions": [
+    {
+     "name": "Preserve Life",
+     "desc": "Share out up to 5 HP per cleric level among creatures within 30 ft, none above half its max",
+     "uses": "channel_divinity",
+     "min_level": 2
+    },
+    {
+     "name": "Divine Strike",
+     "desc": "Once per turn, on a weapon hit",
+     "dice": [
+      1,
+      8
+     ],
+     "dice_table": "divine_strike",
+     "dmg_type": "radiant",
+     "min_level": 8
+    }
+   ],
    "maneuver_pool": null,
-   "tables": {},
+   "tables": {
+    "divine_strike": {
+     "8": 1,
+     "14": 2
+    }
+   },
    "dice": {},
    "maneuvers_known": {},
    "features": {
