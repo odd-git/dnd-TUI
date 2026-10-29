@@ -10,7 +10,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 import wikidot as w
-from fetch_lists import ABIL, NUM, OUT, SKILLS, clip, official, page_name, source_of
+from fetch_lists import ABIL, NUM, OUT, SKILLS, STYLE_EFFECTS, clip, official, page_name, source_of
 
 SKIP_FEATURES = ("Ability Score Improvement", "feature", "Optional")
 
@@ -20,6 +20,31 @@ def res(i, n, rc, mx, **kw):
 
 
 CONFIG = {
+    "paladin": {
+        "strip": r"^Oath of (the )?",
+        "subclass_title": "Sacred Oath",
+        "columns": {},
+        "extra_tables": {"lay_on_hands": {str(l): 5 * l for l in range(1, 21)}, "channel_divinity": {"3": 1, "6": 2, "18": 3}},
+        "resources": [res("divine_sense", "Divine Sense", "long", "1+mod:CHA"),
+                      {"id": "lay_on_hands", "name": "Lay on Hands", "recharge": "long", "max": "table", "pips": False},
+                      res("channel_divinity", "Channel Divinity", "short", "table")],
+        "toggles": [],
+        "actions": [
+            {"name": "Divine Sense", "desc": "Know celestials, fiends, undead within 60 ft (and consecrated places)", "uses": "divine_sense"},
+            {"name": "Lay on Hands", "desc": "Spend points from the pool; 5 points cure a disease or poison", "pool": "lay_on_hands"},
+            {"name": "Channel Divinity", "desc": "Oath power, see your Sacred Oath", "uses": "channel_divinity", "min_level": 3},
+        ],
+        "unarmored": None, "style_level": 2,
+        "attacks": {"1": 1, "5": 2},
+    },
+    "ranger": {
+        "strip": r" Conclave$",
+        "subclass_title": "Ranger Conclave",
+        "columns": {},
+        "resources": [], "toggles": [], "actions": [],
+        "unarmored": None, "style_level": 2,
+        "attacks": {"1": 1, "5": 2},
+    },
     "monk": {
         "strip": r"^Way of (the )?",
         "subclass_title": "Monastic Tradition",
@@ -104,9 +129,11 @@ def level_table(b):
             cells.append(t)
         elif tag.startswith("h") and rows_started:
             break
-    heads = heads[1:]  # first th is the table caption
+    heads = heads[heads.index("Level"):]  # drop the caption and spell-slot banner
     n = len(heads)
-    rows = [cells[i:i + n] for i in range(0, len(cells) - n + 1, n)][:20]
+    # rows start at "Nth" followed by "+P"; empty cells can be missing, so pad each row
+    starts = [i for i in range(len(cells) - 1) if re.fullmatch(r"\d+(?:st|nd|rd|th)", cells[i]) and re.fullmatch(r"\+\d", cells[i + 1])]
+    rows = [(cells[a:b] + [""] * n)[:n] for a, b in zip(starts, starts[1:] + [len(cells)])]
     assert len(rows) == 20 and heads[0] == "Level", (heads, len(rows))
     return heads, rows
 
@@ -180,6 +207,20 @@ def subclass(slug, level, strip):
             "maneuver_pool": None, "tables": {}, "dice": {}, "maneuvers_known": {}, "features": by_level}
 
 
+def fighting_styles(b):
+    """Official styles from the Fighting Style section (stops at the first Unearthed Arcana one)."""
+    styles, on = [], False
+    for tag, raw, t in b:
+        if tag.startswith("h"):
+            on = t == "Fighting Style"
+        elif on and tag == "li":
+            if "(UA)" in t[:60]:
+                break
+            if m := re.match(r"([A-Z][A-Za-z' -]+?)(?: \(([A-Z]+)\))?\.\s*(.*)", t):
+                styles.append({"name": m[1], "source": m[2] or "", "desc": clip(m[3], 130), "effect": STYLE_EFFECTS.get(m[1])})
+    return styles
+
+
 def build(slug):
     cfg = CONFIG[slug]
     b = w.blocks(w.content(w.get(slug)))
@@ -208,9 +249,10 @@ def build(slug):
             elif name.endswith(" feature"):
                 continue
             else:
-                desc = clip(" ".join(sections.get(name, [name])), 200)
+                body = sections.get(name) or sections.get(name.replace(" Improvement", "")) or [name]
+                desc = clip(" ".join(body), 200)
                 features.setdefault(str(lvl), []).append({"name": name, "desc": desc})
-    tables = {}
+    tables = dict(cfg.get("extra_tables", {}))
     for c, spec in cfg["columns"].items():
         tid, die = (spec, False) if isinstance(spec, str) else spec
         vals = [int(re.fullmatch(r"\d+d(\d+)", v)[1]) if die else num(v) for v in col[c]]
@@ -225,9 +267,9 @@ def build(slug):
             subs.append(sub)
     return {
         "name": slug.capitalize(), "hit_die": hit_die, "saves": saves, "skills": skills, "armor": arm, "weapons": wp,
-        "tools": tl, "equipment": equip, "asi_levels": asi, "subclass_level": sub_level, "subclass_title": cfg["subclass_title"],
+        "tools": tl, "equipment": equip, "styles": fighting_styles(b), "asi_levels": asi, "subclass_level": sub_level, "subclass_title": cfg["subclass_title"],
         "attacks_per_action": cfg["attacks"], "resources": cfg["resources"], "tables": tables, "actions": cfg["actions"],
-        "toggles": cfg.get("toggles", []), "expertise": cfg.get("expertise", []), "unarmored": cfg.get("unarmored"), "features": features, "styles": [], "subclasses": subs,
+        "toggles": cfg.get("toggles", []), "style_level": cfg.get("style_level", 1), "expertise": cfg.get("expertise", []), "unarmored": cfg.get("unarmored"), "features": features, "subclasses": subs,
     }
 
 

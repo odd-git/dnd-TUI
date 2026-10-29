@@ -201,6 +201,7 @@ pub struct ClassData {
     #[serde(default)] pub actions: Vec<ActionDef>,
     #[serde(default)] pub toggles: Vec<Toggle>,
     pub unarmored: Option<Unarmored>,
+    #[serde(default = "one")] pub style_level: u32, // level that grants a fighting style
     #[serde(default)] pub expertise: Vec<u32>, // levels that grant two skills with double proficiency
     pub features: BTreeMap<u32, Vec<Feature>>,
     #[serde(default)] pub styles: Vec<Style>,
@@ -216,6 +217,8 @@ pub struct Progression {
     pub attacks_per_action: Table,
     pub features: BTreeMap<u32, Vec<Feature>>,
 }
+
+fn one() -> u32 { 1 }
 
 macro_rules! list {
     ($name:ident, $ty:ty, $file:literal) => {
@@ -237,7 +240,8 @@ pub fn classes() -> &'static Vec<ClassData> {
     C.get_or_init(|| {
         [include_str!("../data/lists/classes/fighter.json"), include_str!("../data/lists/classes/barbarian.json"),
          include_str!("../data/lists/classes/rogue.json"),
-         include_str!("../data/lists/classes/monk.json")]
+         include_str!("../data/lists/classes/monk.json"),
+         include_str!("../data/lists/classes/paladin.json"), include_str!("../data/lists/classes/ranger.json")]
             .iter().map(|j| serde_json::from_str(j).expect("class json")).collect()
     })
 }

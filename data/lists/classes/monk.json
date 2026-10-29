@@ -29,6 +29,7 @@
   "(a) a dungeoneer's pack or (b) an explorer's pack",
   "10 darts"
  ],
+ "styles": [],
  "asi_levels": [
   4,
   8,
@@ -120,6 +121,7 @@
   }
  ],
  "toggles": [],
+ "style_level": 1,
  "expertise": [],
  "unarmored": {
   "ability": "WIS",
@@ -227,7 +229,6 @@
    }
   ]
  },
- "styles": [],
  "subclasses": [
   {
    "name": "Ascendant Dragon",

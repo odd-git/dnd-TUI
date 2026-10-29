@@ -82,6 +82,7 @@ pub struct ActionDef {
     pub dice_table: Option<String>, // level table giving the number of dice (Sneak Attack)
     pub die_table: Option<String>,  // level table giving the die size (Martial Arts)
     pub min_level: u32,             // hidden below this level
+    pub pool: Option<String>,       // spend any number of points from this resource (Lay on Hands)
 }
 
 #[derive(Serialize, Deserialize, Clone, Default)]
@@ -175,6 +176,7 @@ impl Character {
         match self.def(id)?.max.as_ref()? {
             Max::N(n) => Some(*n),
             Max::Kw(k) if k == "level" => Some(self.level),
+            Max::Kw(k) if k.starts_with("1+mod:") => Some((1 + self.md(&k[6..])).max(1) as u32),
             Max::Kw(_) => Some(self.prog().and_then(|p| p.resources.get(id)).map(|t| at(t, self.level)).unwrap_or(0)),
         }
     }

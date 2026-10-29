@@ -184,7 +184,7 @@ impl App {
             }
             Wz::Style => {
                 let c = self.class();
-                if c.styles.is_empty() { return skip(self, Wz::Maneuvers); }
+                if c.styles.is_empty() || self.dr().level < c.style_level { return skip(self, Wz::Maneuvers); }
                 let items = c.styles.iter().map(|s| format!("{}: {}", s.name, s.desc)).collect();
                 self.wiz_list("Fighting style", items, w);
             }

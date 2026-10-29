@@ -1,0 +1,588 @@
+{
+ "name": "Paladin",
+ "hit_die": 10,
+ "saves": [
+  "WIS",
+  "CHA"
+ ],
+ "skills": {
+  "choose": 2,
+  "from": [
+   "Athletics",
+   "Insight",
+   "Intimidation",
+   "Medicine",
+   "Persuasion",
+   "Religion"
+  ]
+ },
+ "armor": [
+  "Light",
+  "Medium",
+  "Heavy",
+  "Shield"
+ ],
+ "weapons": [
+  "Simple",
+  "Martial"
+ ],
+ "tools": [],
+ "equipment": [
+  "(a) a martial weapon and a shield or (b) two martial weapons",
+  "(a) five javelins or (b) any simple melee weapon",
+  "(a) a priest's pack or (b) an explorer's pack",
+  "Chain mail and a holy symbol"
+ ],
+ "styles": [
+  {
+   "name": "Blessed Warrior",
+   "source": "",
+   "desc": "You learn two cantrips of your choice from the cleric spell list. They count as paladin spells for you, and Charisma is your...",
+   "effect": null
+  },
+  {
+   "name": "Blind Fighting",
+   "source": "",
+   "desc": "You have blindsight with a range of 10 feet. Within that range, you can effectively see anything that isn't behind total cover...",
+   "effect": null
+  },
+  {
+   "name": "Defense",
+   "source": "",
+   "desc": "While you are wearing armor, you gain a +1 bonus to AC.",
+   "effect": "defense"
+  },
+  {
+   "name": "Dueling",
+   "source": "",
+   "desc": "When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon.",
+   "effect": "dueling"
+  },
+  {
+   "name": "Great Weapon Fighting",
+   "source": "",
+   "desc": "When you roll a 1 or 2 on a damage die for an attack you make with a melee weapon that you are wielding with two hands, you can...",
+   "effect": null
+  },
+  {
+   "name": "Interception",
+   "source": "",
+   "desc": "When a creature you can see hits a target, other than you, within 5 feet of you with an attack, you can use your reaction to...",
+   "effect": null
+  },
+  {
+   "name": "Protection",
+   "source": "",
+   "desc": "When a creature you can see attacks a target other than you that is within 5 feet of you, you can use your reaction to impose...",
+   "effect": null
+  }
+ ],
+ "asi_levels": [
+  4,
+  8,
+  12,
+  16,
+  19
+ ],
+ "subclass_level": 3,
+ "subclass_title": "Sacred Oath",
+ "attacks_per_action": {
+  "1": 1,
+  "5": 2
+ },
+ "resources": [
+  {
+   "id": "divine_sense",
+   "name": "Divine Sense",
+   "recharge": "long",
+   "max": "1+mod:CHA",
+   "pips": true
+  },
+  {
+   "id": "lay_on_hands",
+   "name": "Lay on Hands",
+   "recharge": "long",
+   "max": "table",
+   "pips": false
+  },
+  {
+   "id": "channel_divinity",
+   "name": "Channel Divinity",
+   "recharge": "short",
+   "max": "table",
+   "pips": true
+  }
+ ],
+ "tables": {
+  "lay_on_hands": {
+   "1": 5,
+   "2": 10,
+   "3": 15,
+   "4": 20,
+   "5": 25,
+   "6": 30,
+   "7": 35,
+   "8": 40,
+   "9": 45,
+   "10": 50,
+   "11": 55,
+   "12": 60,
+   "13": 65,
+   "14": 70,
+   "15": 75,
+   "16": 80,
+   "17": 85,
+   "18": 90,
+   "19": 95,
+   "20": 100
+  },
+  "channel_divinity": {
+   "3": 1,
+   "6": 2,
+   "18": 3
+  }
+ },
+ "actions": [
+  {
+   "name": "Divine Sense",
+   "desc": "Know celestials, fiends, undead within 60 ft (and consecrated places)",
+   "uses": "divine_sense"
+  },
+  {
+   "name": "Lay on Hands",
+   "desc": "Spend points from the pool; 5 points cure a disease or poison",
+   "pool": "lay_on_hands"
+  },
+  {
+   "name": "Channel Divinity",
+   "desc": "Oath power, see your Sacred Oath",
+   "uses": "channel_divinity",
+   "min_level": 3
+  }
+ ],
+ "toggles": [],
+ "style_level": 2,
+ "expertise": [],
+ "unarmored": null,
+ "features": {
+  "1": [
+   {
+    "name": "Divine Sense",
+    "desc": "The presence of strong evil registers on your senses like a noxious odor, and powerful good rings like heavenly music in your ears. As an action, you can open your awareness to detect such forces...."
+   },
+   {
+    "name": "Lay on Hands",
+    "desc": "Your blessed touch can heal wounds. You have a pool of healing power that replenishes when you take a long rest. With that pool, you can restore a total number of hit points equal to your paladin..."
+   }
+  ],
+  "2": [
+   {
+    "name": "Fighting Style",
+    "desc": "Starting at 2nd level, you adopt a particular style of fighting as your specialty. Choose one of the following options. You can't take a Fighting Style option more than once, even if you later get to..."
+   },
+   {
+    "name": "Spellcasting",
+    "desc": "By 2nd level, you have learned to draw on divine magic through meditation and prayer to cast spells as a cleric does."
+   },
+   {
+    "name": "Divine Smite",
+    "desc": "Starting at 2nd level, when you hit a creature with a melee weapon attack, you can expend one spell slot to deal radiant damage to the target, in addition to the weapon's damage. The extra damage is..."
+   }
+  ],
+  "3": [
+   {
+    "name": "Divine Health",
+    "desc": "By 3rd level, the divine magic flowing through you makes you immune to disease."
+   }
+  ],
+  "5": [
+   {
+    "name": "Extra Attack",
+    "desc": "Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn."
+   }
+  ],
+  "6": [
+   {
+    "name": "Aura of Protection",
+    "desc": "Starting at 6th level, whenever you or a friendly creature within 10 feet of you must make a saving throw, the creature gains a bonus to the saving throw equal to your Charisma modifier (with a..."
+   }
+  ],
+  "9": [
+   {
+    "name": "4",
+    "desc": "4"
+   }
+  ],
+  "10": [
+   {
+    "name": "Aura of Courage",
+    "desc": "Starting at 10th level, you and friendly creatures within 10 feet of you can't be frightened while you are conscious. At 18th level, the range of this aura increases to 30 feet."
+   }
+  ],
+  "11": [
+   {
+    "name": "Improved Divine Smite",
+    "desc": "By 11th level, you are so suffused with righteous might that all your melee weapon strikes carry divine power with them. Whenever you hit a creature with a melee weapon, the creature takes an extra..."
+   }
+  ],
+  "13": [
+   {
+    "name": "4",
+    "desc": "4"
+   }
+  ],
+  "14": [
+   {
+    "name": "Cleansing Touch",
+    "desc": "Beginning at 14th level, you can use your action to end one spell on yourself or on one willing creature that you touch. You can use this feature a number of times equal to your Charisma modifier (a..."
+   }
+  ],
+  "17": [
+   {
+    "name": "4",
+    "desc": "4"
+   }
+  ],
+  "18": [
+   {
+    "name": "Aura improvements",
+    "desc": "Aura improvements"
+   }
+  ]
+ },
+ "subclasses": [
+  {
+   "name": "Ancients",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Channel Divinity",
+      "desc": "When you take this oath at 3rd level, you gain the following two Channel Divinity options. Nature's Wrath. You can use your Channel..."
+     }
+    ],
+    "7": [
+     {
+      "name": "Aura of Warding",
+      "desc": "Beginning at 7th level, ancient magic lies so heavily upon you that it forms an eldritch ward. You and friendly creatures within 10 feet of..."
+     }
+    ],
+    "15": [
+     {
+      "name": "Undying Sentinel",
+      "desc": "Starting at 15th level, when you are reduced to 0 hit points and are not killed outright, you can choose to drop to 1 hit point instead...."
+     }
+    ],
+    "20": [
+     {
+      "name": "Elder Champion",
+      "desc": "At 20th level, you can assume the form of an ancient force of nature, taking on an appearance you choose. For example, your skin might turn..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Conquest",
+   "source": "Xanathar's Guide to Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Channel Divinity",
+      "desc": "When you take this oath at 3rd level, you gain the following two Channel Divinity options. Conquering Presence. You can use your Channel..."
+     }
+    ],
+    "7": [
+     {
+      "name": "Aura of Conquest",
+      "desc": "Starting at 7th level, you constantly emanate a menacing aura while you're not incapacitated. The aura extends 10 feet from you in every..."
+     }
+    ],
+    "15": [
+     {
+      "name": "Scornful Rebuke",
+      "desc": "Starting at 15th level, those who dare to strike you are psychically punished for their audacity. Whenever a creature hits you with an..."
+     }
+    ],
+    "20": [
+     {
+      "name": "Invincible Conqueror",
+      "desc": "At 20th level, you gain the ability to harness extraordinary martial prowess. As an action, you can magically become an avatar of conquest..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Crown",
+   "source": "Sword Coast Adventurer's Guide",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Channel Divinity",
+      "desc": "When you take this oath at 3rd level, you gain the following two Channel Divinity options. Champion Challenge. As a bonus action, you issue..."
+     }
+    ],
+    "7": [
+     {
+      "name": "Divine Allegiance",
+      "desc": "Starting at 7th level, when a creature within 5 feet of you takes damage, you can use your reaction to magically substitute your own health..."
+     }
+    ],
+    "15": [
+     {
+      "name": "Unyielding Saint",
+      "desc": "Starting at 15th level, you have advantage on saving throws to avoid becoming paralyzed or stunned."
+     }
+    ],
+    "20": [
+     {
+      "name": "Exalted Champion",
+      "desc": "At 20th level, your presence on the field of battle is an inspiration to those dedicated to your cause. You can use your action to gain the..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Devotion",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Channel Divinity",
+      "desc": "When you take this oath at 3rd level, you gain the following two Channel Divinity options. Sacred Weapon. As an action, you can imbue one..."
+     }
+    ],
+    "7": [
+     {
+      "name": "Aura of Devotion",
+      "desc": "Starting at 7th level, you and friendly creatures within 10 feet of you can't be charmed while you are conscious. At 18th level, the range..."
+     }
+    ],
+    "15": [
+     {
+      "name": "Purity of Spirit",
+      "desc": "Beginning at 15th level, you are always under the effects of a Protection from Evil and Good spell."
+     }
+    ],
+    "20": [
+     {
+      "name": "Holy Nimbus",
+      "desc": "At 20th level, as an action, you can emanate an aura of sunlight. For 1 minute, bright light shines from you in a 30-foot radius, and dim..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Glory",
+   "source": "Mythic Odysseys of Theros",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Channel Divinity",
+      "desc": "When you take this oath at 3rd level, you gain the following two Channel Divinity options. See the Sacred Oath class feature for how..."
+     }
+    ],
+    "7": [
+     {
+      "name": "Aura of Alacrity",
+      "desc": "At 7th level, you emanate an aura that fills you and your companions with supernatural speed, allowing you to race across a battlefield in..."
+     }
+    ],
+    "15": [
+     {
+      "name": "Glorious Defense",
+      "desc": "When you reach 15th level, you can turn defense into a sudden strike. When you or another creature you can see within 10 feet of you is hit..."
+     }
+    ],
+    "20": [
+     {
+      "name": "Living Legend",
+      "desc": "At 20th level, you can empower yourself with the legends — whether true or exaggerated — of your great deeds. As a bonus action, you gain..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Oathbreaker",
+   "source": "Dungeon Master's Guide",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Channel Divinity",
+      "desc": "When you take this oath at 3rd level, you gain the following two Channel Divinity options. Control Undead. As an action, you target one..."
+     }
+    ],
+    "7": [
+     {
+      "name": "Aura of Hate",
+      "desc": "Starting at 7th level you, as well any fiends and undead within 10 feet of you, gain a bonus to melee weapon damage rolls equal to your..."
+     }
+    ],
+    "15": [
+     {
+      "name": "Supernatural Resistance",
+      "desc": "At 15th level, you gain resistance to bludgeoning, piercing, and slashing damage from nonmagical weapons."
+     }
+    ],
+    "20": [
+     {
+      "name": "Dread Lord",
+      "desc": "At 20th level, you can, as an action, surround yourself with an aura of gloom that lasts for 1 minute. The aura reduces any bright light in..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Redemption",
+   "source": "Xanathar's Guide to Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Channel Divinity",
+      "desc": "When you take this oath at 3rd level, you gain the following two Channel Divinity options. Emissary of Peace. You can use your Channel..."
+     }
+    ],
+    "7": [
+     {
+      "name": "Aura of the Guardian",
+      "desc": "Starting at 7th level, you can shield your allies from harm at the cost of your own health. When a creature within 10 feet of you takes..."
+     }
+    ],
+    "15": [
+     {
+      "name": "Protective Spirit",
+      "desc": "Starting at 15th level, a holy presence mends your wounds in combat. You regain hit points equal to 1d6 + half your paladin level if you..."
+     }
+    ],
+    "20": [
+     {
+      "name": "Emissary of Redemption",
+      "desc": "At 20th level, you become an avatar of peace, which gives you two benefits: You have resistance to all damage dealt by other creatures..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Vengeance",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Channel Divinity",
+      "desc": "When you take this oath at 3rd level, you gain the following two Channel Divinity options. Abjure Enemy. As an action, you present your..."
+     }
+    ],
+    "7": [
+     {
+      "name": "Relentless Avenger",
+      "desc": "By 7th level, your supernatural focus helps you close off a foe's retreat. When you hit a creature with an opportunity attack, you can move..."
+     }
+    ],
+    "15": [
+     {
+      "name": "Soul of Vengeance",
+      "desc": "Starting at 15th level, the authority with which you speak your Vow of Enmity gives you greater power over your foe. When a creature under..."
+     }
+    ],
+    "20": [
+     {
+      "name": "Avenging Angel",
+      "desc": "At 20th level, you can assume the form of an angelic avenger. Using your action, you undergo a transformation. For 1 hour, you gain the..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Watchers",
+   "source": "Tasha's Cauldron of Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Channel Divinity",
+      "desc": "When you take this oath at 3rd level, you gain the following two Channel Divinity options. See the Sacred Oath class feature for how..."
+     }
+    ],
+    "7": [
+     {
+      "name": "Aura of the Sentinel",
+      "desc": "At 7th level, you emit an aura of alertness while you aren't incapacitated. When you and any creatures of your choice within 10 feet of you..."
+     }
+    ],
+    "15": [
+     {
+      "name": "Vigilant Rebuke",
+      "desc": "At 15th level, you've learned how to chastise anyone who dares wield beguilements against you and your wards. Whenever you or a creature..."
+     }
+    ],
+    "20": [
+     {
+      "name": "Mortal Bulwark",
+      "desc": "At 20th level, you manifest a spark of divine power in defense of the mortal realms. As a bonus action, you gain the following benefits for..."
+     }
+    ]
+   }
+  }
+ ]
+}

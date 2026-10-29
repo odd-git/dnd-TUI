@@ -40,6 +40,7 @@
   "(a) a burglar's pack, (b) dungeoneer's pack, or (c) an explorer's pack",
   "Leather armor, two daggers, and thieves' tools"
  ],
+ "styles": [],
  "asi_levels": [
   4,
   8,
@@ -81,6 +82,7 @@
   }
  ],
  "toggles": [],
+ "style_level": 1,
  "expertise": [
   1,
   6
@@ -156,7 +158,6 @@
    }
   ]
  },
- "styles": [],
  "subclasses": [
   {
    "name": "Arcane Trickster",

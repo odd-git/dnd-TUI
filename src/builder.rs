@@ -107,15 +107,15 @@ pub fn build(d: &Draft) -> Character {
     let mut features: Vec<Feature> = vec![];
     for t in &eff.traits { put_feature(&mut features, t); }
     if let Some(f) = bg.and_then(|b| b.feature.as_ref()) { put_feature(&mut features, &Feature { name: f.clone(), desc: format!("{} background feature", d.background) }); }
-    if let Some(s) = d.style.as_ref().and_then(|s| class.styles.iter().find(|x| &x.name == s)) {
-        put_feature(&mut features, &Feature { name: "Fighting Style".into(), desc: format!("{}: {}", s.name, s.desc) });
-    }
     for f in &d.feats {
         let desc = lists::feats().iter().find(|x| &x.name == f).map(|x| x.desc.clone()).unwrap_or_default();
         put_feature(&mut features, &Feature { name: format!("Feat: {f}"), desc });
     }
     for (_, fs) in class.features.range(..=d.level) { for f in fs { put_feature(&mut features, f); } }
     if let Some(s) = sub { for (_, fs) in s.features.range(..=d.level) { for f in fs { put_feature(&mut features, f); } } }
+    if let Some(s) = d.style.as_ref().filter(|_| d.level >= class.style_level).and_then(|s| class.styles.iter().find(|x| &x.name == s)) {
+        put_feature(&mut features, &Feature { name: "Fighting Style".into(), desc: format!("{}: {}", s.name, s.desc) });
+    }
 
     let mut resources: Vec<ResourceDef> = class.resources.clone();
     if let Some(s) = sub { resources.extend(s.resources.clone()); }
@@ -333,6 +333,48 @@ mod tests {
         assert_eq!(monk(1).hp_max(), Some(8 + 2)); // CON 14
         assert!(monk(5).features.iter().any(|f| f.name == "Extra Attack"));
         assert!(monk(3).features.iter().any(|f| f.name == "Deflect Missiles"));
+    }
+
+    fn half(class: &str, sub: &str, level: u32) -> Character {
+        let s = |x: &str| x.to_string();
+        build(&Draft {
+            name: s("Sir"), lineage: s("Human"), class: s(class), subclass: Some(s(sub)).filter(|_| level >= 3), level, background: s("Soldier"),
+            base: [("STR", 15), ("DEX", 10), ("CON", 13), ("INT", 8), ("WIS", 12), ("CHA", 14)].iter().map(|(a, v)| (a.to_string(), *v)).collect(),
+            class_skills: vec![s("Athletics"), s("Insight"), s("Religion"), s("Persuasion")].into_iter().filter(|k| lists::class_data(class).unwrap().skills.from.contains(k)).collect(),
+            style: Some(s("Defense")), ..Default::default()
+        })
+    }
+
+    #[test]
+    fn paladin_matches_the_wikidot_table() {
+        let c = half("Paladin", "Devotion", 1);
+        assert_eq!(c.hp_max(), Some(10 + 2)); // CON 14
+        assert_eq!(c.res_max("divine_sense"), Some(1 + 2)); // CHA 15
+        assert_eq!(c.res_max("lay_on_hands"), Some(5));
+        assert!(!c.features.iter().any(|f| f.name == "Fighting Style")); // from level 2
+        for (lvl, prof, loh, cd) in [(3, 2, 15, 1), (6, 3, 30, 2), (11, 4, 55, 2), (18, 6, 90, 3), (20, 6, 100, 3)] {
+            let c = half("Paladin", "Devotion", lvl);
+            assert_eq!(c.prof(), prof, "prof at {lvl}");
+            assert_eq!(c.res_max("lay_on_hands"), Some(loh), "lay on hands at {lvl}");
+            assert_eq!(c.res_max("channel_divinity"), Some(cd), "channel divinity at {lvl}");
+        }
+        let c = half("Paladin", "Devotion", 5);
+        assert!(c.features.iter().any(|f| f.name == "Extra Attack"));
+        assert!(c.features.iter().any(|f| f.name == "Fighting Style" && f.desc.starts_with("Defense")));
+        assert_eq!(c.actions.iter().find(|a| a.name == "Lay on Hands").unwrap().pool.as_deref(), Some("lay_on_hands"));
+    }
+
+    #[test]
+    fn ranger_matches_the_wikidot_table() {
+        let c = half("Ranger", "Hunter", 1);
+        assert_eq!(c.hp_max(), Some(10 + 2));
+        assert!(c.features.iter().any(|f| f.name == "Favored Enemy"));
+        assert!(half("Ranger", "Hunter", 5).features.iter().any(|f| f.name == "Extra Attack"));
+        let c = half("Ranger", "Hunter", 11);
+        assert_eq!(c.prof(), 4);
+        assert!(c.features.iter().any(|f| f.name == "Hide in Plain Sight"));
+        assert!(half("Ranger", "Hunter", 14).features.iter().any(|f| f.name == "Vanish"));
+        assert!(half("Ranger", "Hunter", 3).features.iter().any(|f| f.name == "Hunter's Prey"));
     }
 
     #[test]

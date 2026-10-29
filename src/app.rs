@@ -36,7 +36,7 @@ pub enum Step {
     Damage, Heal, Check, Cond, Items, SetItem(String), Short,
     Asi, Ability { n: i32, optional: bool }, FeatList, FeatAsi(String),
     Maneuver { required: bool }, ReplaceAsk, Forget, Extras, Skill, NoteName, NoteDesc(String), JournalAdd,
-    Subclass, DeleteSheet(usize), Expertise,
+    Subclass, DeleteSheet(usize), Expertise, Style, Pool(String),
     // editor
     Ident, IdentSet(usize), Scores, ScoreSet(String), Unskill, ArmorPick, ShieldPick(Option<String>), WeaponPick,
     CustomName, CustomAb(String), CustomDice(String, Option<String>), CustomType(String, Option<String>, (u32, u32)),
@@ -482,6 +482,7 @@ impl App {
             Item::Action(a) => a,
         };
         let a = self.ch.actions[ai].clone();
+        if let Some(id) = &a.pool { return self.open(Step::Pool(id.clone())); }
         if let Some(u) = &a.uses {
             if self.have(u) == 0 { return self.say(format!("{}: none left!", a.name), Tone::Warn); }
         }
@@ -656,6 +657,15 @@ impl App {
                 let items = c.subclasses.iter().map(|s| format!("{} ({})", s.name, crate::lists::abbr(&s.source))).collect();
                 self.list(&c.subclass_title.clone(), items, step, false);
             }
+            Step::Pool(id) => {
+                let t = format!("{}: points to spend ({} left)", self.res_name(&id), self.have(&id));
+                self.input(t, step, true);
+            }
+            Step::Style => {
+                let Some(c) = self.class_data() else { return };
+                let items = c.styles.iter().map(|s| format!("{}: {}", s.name, s.desc)).collect();
+                self.list("Fighting style", items, step, false);
+            }
             Step::Expertise => {
                 self.query.clear();
                 let items = self.expertise_options();
@@ -698,6 +708,14 @@ impl App {
                 if hp == 0 && n > 0 { self.ch.death[1] = (self.ch.death[1] + 1).min(3); msg += " Death save failure."; }
                 else if hp > 0 && self.ch.hp == Some(0) { self.ch.death = [0, 0]; msg += " DOWN! Death saves."; }
                 self.say(msg, Tone::Warn);
+            }
+            Step::Pool(id) => {
+                let n = num.unwrap_or(0).clamp(0, self.have(&id) as i32);
+                if n == 0 { return; }
+                self.snap();
+                if let Some(v) = self.ch.res.get_mut(&id) { *v -= n as u32; }
+                let (name, left) = (self.res_name(&id), self.have(&id));
+                self.say(format!("{name}: spent {n}, {left} left."), Tone::Good);
             }
             Step::SetItem(id) => {
                 let Ok(n) = num else { return };
@@ -782,6 +800,14 @@ impl App {
                 }
             }
             Step::Subclass => { if let Some(c) = self.class_data() { self.choose_subclass(c, i); } }
+            Step::Style => {
+                if let Some(s) = self.class_data().and_then(|c| c.styles.get(i)) {
+                    self.snap_in_flow();
+                    let f = Feature { name: "Fighting Style".into(), desc: format!("{}: {}", s.name, s.desc) };
+                    match self.ch.features.iter_mut().find(|x| x.name == f.name) { Some(x) => *x = f, None => self.ch.features.push(f) }
+                    self.say(format!("Fighting style: {}.", s.name), Tone::Good);
+                }
+            }
             Step::Wiz(w) => self.wiz_pick(w, i),
             Step::DeleteSheet(n) => { if i == 1 { self.delete_sheet(n); } }
             Step::Extras => {
@@ -882,6 +908,7 @@ impl App {
         if self.class_data().is_some_and(|c| c.subclass_level == l) && !self.ch.progression.as_deref().unwrap_or("").contains('/') {
             self.queue.push_back(Step::Subclass);
         }
+        if self.class_data().is_some_and(|c| c.style_level == l && l > 1 && !c.styles.is_empty()) { self.queue.push_back(Step::Style); }
         if self.class_data().is_some_and(|c| c.expertise.contains(&l)) { self.queue.push_back(Step::Expertise); }
         if asi { self.queue.push_back(Step::Asi); }
         for _ in 0..new { self.queue.push_back(Step::Maneuver { required: true }); }
