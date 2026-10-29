@@ -521,6 +521,23 @@ mod tests {
         assert_eq!((bend.spend, w.dice(bend), w.res_max("tides_of_chaos")), (2, Some((1, 4)), Some(1)));
     }
 
+    fn warlock(sub: &str, level: u32) -> Character {
+        let s = |x: &str| x.to_string();
+        build(&Draft {
+            name: s("Hex"), lineage: s("Human"), class: s("Warlock"), subclass: Some(s(sub)), level, background: s("Charlatan"),
+            base: [("STR", 8), ("DEX", 14), ("CON", 13), ("INT", 10), ("WIS", 12), ("CHA", 15)].iter().map(|(a, v)| (a.to_string(), *v)).collect(),
+            class_skills: vec![s("Arcana"), s("Deception")], ..Default::default()
+        })
+    }
+
+    #[test]
+    fn archfey_short_rest_powers() {
+        let c = warlock("Archfey", 6);
+        assert_eq!((c.res_max("fey_presence"), c.res_max("misty_escape"), c.res_max("dark_delirium")), (Some(1), Some(1), Some(0)));
+        assert_eq!(c.def("misty_escape").map(|r| r.recharge.as_str()), Some("short"));
+        assert!(c.fmt(&c.actions.iter().find(|a| a.name == "Fey Presence").unwrap().desc).contains("DC 14")); // 8 + 3 + CHA 16
+    }
+
     #[test]
     fn berserker_frenzy_and_presence() {
         let c = barbarian(3);

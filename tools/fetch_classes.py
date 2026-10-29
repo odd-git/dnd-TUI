@@ -360,6 +360,17 @@ SUB_MECH = {
             ],
         },
     },
+    "warlock": {
+        "Archfey": {
+            "tables": {"misty_escape": {"6": 1}, "dark_delirium": {"14": 1}},
+            "resources": [res("fey_presence", "Fey Presence", "short", 1), res("misty_escape", "Misty Escape", "short", "table"), res("dark_delirium", "Dark Delirium", "short", "table")],
+            "actions": [
+                {"name": "Fey Presence", "desc": "Action: creatures in a 10 ft cube from you, WIS save DC {dc:CHA} or charmed or frightened (your pick) until your next turn ends", "uses": "fey_presence"},
+                {"name": "Misty Escape", "desc": "Reaction when you take damage: invisible and teleported up to 60 ft until your next turn or you attack or cast", "uses": "misty_escape"},
+                {"name": "Dark Delirium", "desc": "Action: a creature within 60 ft, WIS save DC {dc:CHA} or charmed or frightened in an illusion for 1 minute (concentration)", "uses": "dark_delirium"},
+            ],
+        },
+    },
 }
 
 def split_top(s):
