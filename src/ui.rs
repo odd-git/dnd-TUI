@@ -529,7 +529,7 @@ fn draw_spells(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
             Line::styled(format!("{} ({})", sp.name, if sp.level == 0 { format!("{} cantrip", sp.school) } else { format!("level {} {}", sp.level, sp.school) }), Style::new().fg(GREEN).bold()),
             Line::from(format!("{} | {} | {}", sp.time, sp.range, sp.comp)),
             Line::from(format!("{}{}{}", sp.duration, if sp.conc { " (concentration)" } else { "" }, if sp.ritual { " (ritual)" } else { "" })),
-            if c.rituals().contains(&sp.name) && !c.casts() { Line::styled("Ritual only (subclass feature)", tone(Tone::Dim)) }
+            if c.rituals().contains(&sp.name) && !c.casts() { Line::styled(if sp.level == 0 { "Subclass cantrip" } else { "Ritual only (subclass feature)" }, tone(Tone::Dim)) }
             else { let a = c.ability_for(&sp.name); Line::styled(format!("Cast with {a}: DC {}, attack {:+}", c.dc(&a), c.prof() + c.md(&a)), tone(Tone::Dim)) },
             Line::default(),
             Line::from(sp.desc.clone()),

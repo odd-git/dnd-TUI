@@ -420,6 +420,14 @@ mod tests {
     }
 
     #[test]
+    fn shadow_arts_costs_two_ki() {
+        let c = monk_sub("Shadow", 3);
+        assert_eq!(c.rituals(), ["Minor Illusion"]);
+        assert!(c.has_spells());
+        assert_eq!(c.actions.iter().find(|a| a.name == "Shadow Arts").map(|a| (a.uses.as_deref(), a.spend)), Some((Some("ki"), 2)));
+    }
+
+    #[test]
     fn berserker_frenzy_and_presence() {
         let c = barbarian(3);
         assert!(c.toggles.iter().any(|t| t.name == "Frenzy" && t.exhaust));

@@ -239,6 +239,10 @@ SUB_MECH = {
             "resources": [res("wholeness_of_body", "Wholeness of Body", "long", "table")],
             "actions": [{"name": "Wholeness of Body", "desc": "Action: heal three times your monk level", "uses": "wholeness_of_body", "heal": True, "level_x": 3}],
         },
+        "Shadow": {
+            "always": {"3": ["Minor Illusion"]},
+            "actions": [{"name": "Shadow Arts", "desc": "Darkness, Darkvision, Pass Without Trace or Silence, no components needed", "uses": "ki", "spend": 2}],
+        },
     },
 }
 

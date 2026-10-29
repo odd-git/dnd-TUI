@@ -603,7 +603,14 @@
    "source": "Player's Handbook",
    "needs_spells": false,
    "resources": [],
-   "actions": [],
+   "actions": [
+    {
+     "name": "Shadow Arts",
+     "desc": "Darkness, Darkvision, Pass Without Trace or Silence, no components needed",
+     "uses": "ki",
+     "spend": 2
+    }
+   ],
    "maneuver_pool": null,
    "tables": {},
    "dice": {},
@@ -636,6 +643,11 @@
       "desc": "Reaction: melee attack on a creature within 5 ft that someone else just hit.",
       "url": "http://dnd5e.wikidot.com/monk:shadow"
      }
+    ]
+   },
+   "always": {
+    "3": [
+     "Minor Illusion"
     ]
    }
   },
