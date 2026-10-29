@@ -498,6 +498,27 @@ mod tests {
     }
 
     #[test]
+    fn draconic_resilience_hp_and_ac() {
+        let s = |x: &str| x.to_string();
+        let sorc = |sub: &str, level| build(&Draft {
+            name: s("Ember"), lineage: s("Human"), class: s("Sorcerer"), subclass: Some(s(sub)), level, background: s("Sage"),
+            base: [("STR", 8), ("DEX", 14), ("CON", 13), ("INT", 10), ("WIS", 12), ("CHA", 15)].iter().map(|(a, v)| (a.to_string(), *v)).collect(),
+            class_skills: vec![s("Arcana"), s("Insight")], ..Default::default()
+        });
+        let (d, w) = (sorc("Draconic Bloodline", 5), sorc("Wild Magic", 5));
+        assert_eq!(d.hp_max().unwrap() - w.hp_max().unwrap(), 5);
+        assert_eq!((d.ac(), w.ac()), (Some(13 + 2), Some(10 + 2)));
+        let mut armored = d.clone();
+        armored.ac_armored = true;
+        (armored.ac_base, armored.ac_dex_max) = armor_class(Some("Leather"), false, false);
+        assert_eq!(armored.ac(), Some(11 + 2));
+        let mut shield = d.clone();
+        (shield.ac_shield, shield.ac_base) = (true, Some(12));
+        assert_eq!(shield.ac(), Some(13 + 2 + 2));
+        assert_eq!(lists::options("dragon_ancestor").iter().find(|o| o.name == "Red").map(|o| o.desc.as_str()), Some("Fire"));
+    }
+
+    #[test]
     fn berserker_frenzy_and_presence() {
         let c = barbarian(3);
         assert!(c.toggles.iter().any(|t| t.name == "Frenzy" && t.exhaust));

@@ -663,6 +663,78 @@
    }
   }
  ],
+ "dragon_ancestor": [
+  {
+   "name": "Black",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "Acid",
+   "url": "http://dnd5e.wikidot.com/sorcerer:draconic-bloodline"
+  },
+  {
+   "name": "Blue",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "Lightning",
+   "url": "http://dnd5e.wikidot.com/sorcerer:draconic-bloodline"
+  },
+  {
+   "name": "Brass",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "Fire",
+   "url": "http://dnd5e.wikidot.com/sorcerer:draconic-bloodline"
+  },
+  {
+   "name": "Bronze",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "Lightning",
+   "url": "http://dnd5e.wikidot.com/sorcerer:draconic-bloodline"
+  },
+  {
+   "name": "Copper",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "Acid",
+   "url": "http://dnd5e.wikidot.com/sorcerer:draconic-bloodline"
+  },
+  {
+   "name": "Gold",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "Fire",
+   "url": "http://dnd5e.wikidot.com/sorcerer:draconic-bloodline"
+  },
+  {
+   "name": "Green",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "Poison",
+   "url": "http://dnd5e.wikidot.com/sorcerer:draconic-bloodline"
+  },
+  {
+   "name": "Red",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "Fire",
+   "url": "http://dnd5e.wikidot.com/sorcerer:draconic-bloodline"
+  },
+  {
+   "name": "Silver",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "Cold",
+   "url": "http://dnd5e.wikidot.com/sorcerer:draconic-bloodline"
+  },
+  {
+   "name": "White",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "Cold",
+   "url": "http://dnd5e.wikidot.com/sorcerer:draconic-bloodline"
+  }
+ ],
  "hunters_prey": [
   {
    "name": "Colossus Slayer",

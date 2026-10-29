@@ -93,6 +93,15 @@ HUNTER = {"Hunter's Prey": "hunters_prey", "Defensive Tactics": "defensive_tacti
 HUNTER_ACTIONS = {"Colossus Slayer": {"dice": [1, 8], "dmg_type": "extra"}}
 
 
+# Draconic Bloodline: the dragon and its damage type (the PHB table), which Elemental Affinity boosts
+DRAGONS = [("Black", "Acid"), ("Blue", "Lightning"), ("Brass", "Fire"), ("Bronze", "Lightning"), ("Copper", "Acid"),
+           ("Gold", "Fire"), ("Green", "Poison"), ("Red", "Fire"), ("Silver", "Cold"), ("White", "Cold")]
+
+
+def dragon_ancestor():
+    return [{"name": n, "source": PHB, "prereq": None, "desc": t, "url": w.url("sorcerer:draconic-bloodline")} for n, t in DRAGONS]
+
+
 def hunter():
     slug = "ranger:hunter"
     b = w.blocks(w.content(w.get(slug)))
@@ -110,7 +119,7 @@ def hunter():
 
 
 if __name__ == "__main__":
-    data = {"metamagic": metamagic(), "invocations": invocations(), "pact_boons": pact_boons(), "disciplines": disciplines(), **hunter()}
+    data = {"metamagic": metamagic(), "invocations": invocations(), "pact_boons": pact_boons(), "disciplines": disciplines(), "dragon_ancestor": dragon_ancestor(), **hunter()}
     (OUT / "options.json").write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n")
     print({k: len(v) for k, v in data.items()})
     w.save_todo()

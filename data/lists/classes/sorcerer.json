@@ -591,7 +591,15 @@
    "source": "Player's Handbook",
    "needs_spells": false,
    "resources": [],
-   "actions": [],
+   "actions": [
+    {
+     "name": "Draconic Presence",
+     "desc": "Action, 5 points: 60 ft aura of awe or fear for 1 minute (concentration), WIS save DC {dc:CHA}",
+     "uses": "sorcery_points",
+     "spend": 5,
+     "min_level": 18
+    }
+   ],
    "maneuver_pool": null,
    "tables": {},
    "dice": {},
@@ -630,6 +638,13 @@
       "url": "http://dnd5e.wikidot.com/sorcerer:draconic-bloodline"
      }
     ]
+   },
+   "hp_per_level": 1,
+   "unarmored_ac": 13,
+   "options": {
+    "dragon_ancestor": {
+     "1": 1
+    }
    }
   },
   {

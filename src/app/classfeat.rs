@@ -7,7 +7,7 @@ use crate::lists::{self, OptionDef};
 /// Feature-name prefix of each option kind: a picked option is stored as the feature "Metamagic: Quickened Spell".
 fn label(kind: &str) -> &'static str {
     match kind { "metamagic" => "Metamagic", "invocations" => "Invocation", "pact_boons" => "Pact Boon", "disciplines" => "Discipline",
-        "hunters_prey" => "Hunter's Prey", "defensive_tactics" => "Defensive Tactics", "multiattack" => "Multiattack", "superior_defense" => "Superior Hunter's Defense",
+        "dragon_ancestor" => "Dragon Ancestor", "hunters_prey" => "Hunter's Prey", "defensive_tactics" => "Defensive Tactics", "multiattack" => "Multiattack", "superior_defense" => "Superior Hunter's Defense",
         _ => "Option" }
 }
 
@@ -116,7 +116,7 @@ impl App {
     }
 
     pub(super) fn opt_items(&self, kind: &str) -> Vec<&'static OptionDef> {
-        let lvl = self.level_of(match kind { "metamagic" => "Sorcerer", "disciplines" => "Monk", "invocations" | "pact_boons" => "Warlock", _ => "Ranger" });
+        let lvl = self.level_of(match kind { "metamagic" | "dragon_ancestor" => "Sorcerer", "disciplines" => "Monk", "invocations" | "pact_boons" => "Warlock", _ => "Ranger" });
         let have = |n: &str| self.ch.features.iter().any(|f| f.name == format!("{}: {n}", label(kind)));
         lists::options(kind).iter().filter(|o| !have(&o.name) && self.prereq_ok(o, lvl)).collect()
     }

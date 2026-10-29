@@ -122,8 +122,15 @@ impl App {
         // Potent Spellcasting (Knowledge, Light): WIS to the damage of cleric cantrips
         let potent = sp.level == 0 && sp.classes.iter().any(|c| c == "Cleric") && self.ch.features.iter().any(|f| f.name == "Potent Spellcasting");
         let add = sp.flat as i32 + if potent { self.ch.md("WIS") } else { 0 };
-        let per: Vec<u32> = (0..hits).map(|_| ((0..rolls).map(|_| d(*sides)).sum::<u32>() as i32 + add).max(0) as u32).collect();
-        let flat = if add != 0 { format!("{add:+}") } else { String::new() };
+        let mut per: Vec<u32> = (0..hits).map(|_| ((0..rolls).map(|_| d(*sides)).sum::<u32>() as i32 + add).max(0) as u32).collect();
+        let mut flat = if add != 0 { format!("{add:+}") } else { String::new() };
+        // Elemental Affinity (Draconic Bloodline): CHA to one damage roll of a spell of the ancestor's element
+        let element = self.ch.features.iter().find(|f| f.name.starts_with("Dragon Ancestor: ")).map(|f| f.desc.to_lowercase());
+        if self.ch.features.iter().any(|f| f.name == "Elemental Affinity") && element.as_deref() == Some(kind.to_lowercase().as_str()) {
+            let cha = self.ch.md("CHA");
+            per[0] = (per[0] as i32 + cha).max(0) as u32;
+            flat += &format!(" {cha:+} affinity{}", if hits > 1 { " on the first" } else { "" });
+        }
         if hits == 1 {
             self.say(format!(" >> Damage: {} {kind} ({rolls}d{sides}{flat})", per[0]), Tone::Good);
         } else {

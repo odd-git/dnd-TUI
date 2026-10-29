@@ -285,6 +285,8 @@ pub struct Subclass {
     #[serde(default)] pub skills: usize, // skill proficiencies of your choice (Lore)
     #[serde(default)] pub attacks_per_action: Table, // Extra Attack of a subclass (Valor), replaces the class's
     #[serde(default)] pub options: BTreeMap<String, Table>, // options known by level, like the class's (Elemental Disciplines)
+    #[serde(default)] pub hp_per_level: i32,     // extra HP per level in the class (Draconic Resilience)
+    #[serde(default)] pub unarmored_ac: Option<i32>, // base AC without armor (Draconic Resilience: 13 + DEX)
     pub maneuver_pool: Option<String>,
     #[serde(default)] pub tables: BTreeMap<String, Table>,
     #[serde(default)] pub dice: BTreeMap<String, Table>,
@@ -409,7 +411,7 @@ pub fn casting_of(prog: &str) -> Option<&'static Casting> {
     sub.and_then(|s| cd.subclasses.iter().find(|x| x.name == s)).and_then(|s| s.casting.as_ref()).or(cd.casting.as_ref())
 }
 
-fn sub_of(prog: &str) -> Option<&'static Subclass> {
+pub fn sub_of(prog: &str) -> Option<&'static Subclass> {
     let (class, sub) = split_prog(prog);
     class_data(class)?.subclasses.iter().find(|x| Some(x.name.as_str()) == sub)
 }

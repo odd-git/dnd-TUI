@@ -290,6 +290,12 @@ SUB_MECH = {
             "actions": [{"name": "Spell Thief", "desc": "Reaction to a spell aimed at you: its caster makes a save with its casting ability, DC {dc:INT}; on a fail the spell misses you and you can cast it for 8 hours", "uses": "spell_thief"}],
         },
     },
+    "sorcerer": {
+        "Draconic Bloodline": {
+            "hp_per_level": 1, "unarmored_ac": 13, "options": {"dragon_ancestor": {"1": 1}},
+            "actions": [{"name": "Draconic Presence", "desc": "Action, 5 points: 60 ft aura of awe or fear for 1 minute (concentration), WIS save DC {dc:CHA}", "uses": "sorcery_points", "spend": 5, "min_level": 18}],
+        },
+    },
 }
 
 def split_top(s):

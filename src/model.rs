@@ -367,7 +367,10 @@ impl Character {
             Some(ab) if !self.ac_armored && (self.ac_extra_shield || !self.ac_shield) => self.md(ab),
             _ => 0,
         };
-        Some(self.ac_base? + self.ac_dex_max.map_or(dex, |m| dex.min(m)) + extra)
+        // Draconic Resilience: a better unarmored base (a shield still adds 2)
+        let sub = self.classes().iter().filter_map(|(p, _)| crate::lists::sub_of(p)?.unarmored_ac).max().filter(|_| !self.ac_armored);
+        let base = self.ac_base?.max(sub.map_or(0, |b| b + if self.ac_shield { 2 } else { 0 }));
+        Some(base + self.ac_dex_max.map_or(dex, |m| dex.min(m)) + extra)
     }
 
     /// To-hit of an action: a beast's fixed bonus, or ability + proficiency + active toggles (Sacred Weapon).
@@ -417,7 +420,8 @@ impl Character {
             let hd = crate::lists::class_data(e.prog.split('/').next().unwrap_or("")).map_or(8, |c| c.hit_die) as i32;
             e.level as i32 * (hd / 2 + 1 + cm)
         }).sum();
-        let max = d + cm + (self.class_level() as i32 - 1) * (d / 2 + 1 + cm) + others;
+        let subs: i32 = self.classes().iter().filter_map(|(p, l)| Some(crate::lists::sub_of(p)?.hp_per_level * *l as i32)).sum();
+        let max = d + cm + (self.class_level() as i32 - 1) * (d / 2 + 1 + cm) + others + subs;
         Some(if self.exhaustion >= 4 { max / 2 } else { max })
     }
 
