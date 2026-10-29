@@ -272,6 +272,7 @@ pub struct Subclass {
     #[serde(default)] pub actions: Vec<ActionDef>,
     #[serde(default)] pub toggles: Vec<Toggle>,
     #[serde(default)] pub skills: usize, // skill proficiencies of your choice (Lore)
+    #[serde(default)] pub attacks_per_action: Table, // Extra Attack of a subclass (Valor), replaces the class's
     pub maneuver_pool: Option<String>,
     #[serde(default)] pub tables: BTreeMap<String, Table>,
     #[serde(default)] pub dice: BTreeMap<String, Table>,
@@ -377,6 +378,7 @@ pub fn progression(class: &str, sub: Option<&str>) -> Option<&'static Progressio
         p.resources.extend(sd.tables.clone());
         p.dice.extend(sd.dice.clone());
         p.maneuvers_known = sd.maneuvers_known.clone();
+        if !sd.attacks_per_action.is_empty() { p.attacks_per_action = sd.attacks_per_action.clone(); }
         for (lvl, fs) in &sd.features { p.features.entry(*lvl).or_default().extend(fs.iter().cloned()); }
     }
     let leaked: &'static Progression = Box::leak(Box::new(p));

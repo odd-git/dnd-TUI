@@ -309,6 +309,13 @@ mod tests {
     }
 
     #[test]
+    fn valor_gets_extra_attack_at_six() {
+        assert_eq!(bard("Valor", 5).attacks(), 1);
+        assert_eq!(bard("Valor", 6).attacks(), 2);
+        assert_eq!(bard("Lore", 6).attacks(), 1);
+    }
+
+    #[test]
     fn berserker_frenzy_and_presence() {
         let c = barbarian(3);
         assert!(c.toggles.iter().any(|t| t.name == "Frenzy" && t.exhaust));

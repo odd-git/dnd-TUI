@@ -161,6 +161,7 @@ SUB_MECH = {
             "actions": [{"name": "Cutting Words", "desc": "Reaction: a creature within 60 ft loses the roll from its attack, check or damage", "uses": "bardic_inspiration", "dice": [1, 6], "die_table": "inspiration"},
                         {"name": "Peerless Skill", "desc": "Add the roll to one of your own ability checks", "uses": "bardic_inspiration", "dice": [1, 6], "die_table": "inspiration", "min_level": 14}],
         },
+        "Valor": {"attacks_per_action": {"1": 1, "6": 2}},
     },
 }
 
