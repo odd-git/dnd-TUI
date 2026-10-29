@@ -279,6 +279,12 @@ SUB_MECH = {
         "Hunter": {"options": {"hunters_prey": {"3": 1}, "defensive_tactics": {"7": 1}, "multiattack": {"11": 1}, "superior_defense": {"15": 1}}},
         "Beast Master": {"actions": [{"name": "Ranger's Companion", "desc": "Choose or replace your beast companion (SRD beasts, CR 1/4 or less)", "special": "companion"}]},
     },
+    "rogue": {
+        "Assassin": {
+            "toggles": [{"name": "Assassinate", "crit_min": 1, "desc": "On while the target is surprised: every hit is a critical; advantage on creatures that have not acted yet"}],
+            "actions": [{"name": "Death Strike", "desc": "Hit on a surprised creature: CON save DC {dc:DEX} or the damage is doubled", "min_level": 17}],
+        },
+    },
 }
 
 def split_top(s):

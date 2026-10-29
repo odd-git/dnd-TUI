@@ -448,7 +448,13 @@
    "source": "Player's Handbook",
    "needs_spells": false,
    "resources": [],
-   "actions": [],
+   "actions": [
+    {
+     "name": "Death Strike",
+     "desc": "Hit on a surprised creature: CON save DC {dc:DEX} or the damage is doubled",
+     "min_level": 17
+    }
+   ],
    "maneuver_pool": null,
    "tables": {},
    "dice": {},
@@ -487,7 +493,14 @@
       "url": "http://dnd5e.wikidot.com/rogue:assassin"
      }
     ]
-   }
+   },
+   "toggles": [
+    {
+     "name": "Assassinate",
+     "crit_min": 1,
+     "desc": "On while the target is surprised: every hit is a critical; advantage on creatures that have not acted yet"
+    }
+   ]
   },
   {
    "name": "Inquisitive",
