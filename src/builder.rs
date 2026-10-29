@@ -435,6 +435,17 @@ mod tests {
     }
 
     #[test]
+    fn four_elements_disciplines() {
+        let d = lists::options("disciplines");
+        assert_eq!(d.len(), 16);
+        let fire = d.iter().find(|o| o.name == "Flames of the Phoenix").unwrap();
+        assert_eq!((fire.ki, fire.prereq.as_deref()), (4, Some("11th level")));
+        assert!(d.iter().all(|o| o.ki > 0 && !o.desc.is_empty()));
+        let sub = lists::class_data("Monk").unwrap().subclasses.iter().find(|s| s.name == "Four Elements").unwrap();
+        assert_eq!(crate::model::at(&sub.options["disciplines"], 11), 3);
+    }
+
+    #[test]
     fn berserker_frenzy_and_presence() {
         let c = barbarian(3);
         assert!(c.toggles.iter().any(|t| t.name == "Frenzy" && t.exhaust));

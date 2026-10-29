@@ -243,6 +243,7 @@ SUB_MECH = {
             "always": {"3": ["Minor Illusion"]},
             "actions": [{"name": "Shadow Arts", "desc": "Darkness, Darkvision, Pass Without Trace or Silence, no components needed", "uses": "ki", "spend": 2}],
         },
+        "Four Elements": {"options": {"disciplines": {"3": 1, "6": 2, "11": 3, "17": 4}}},
     },
 }
 

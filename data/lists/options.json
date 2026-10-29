@@ -452,5 +452,135 @@
    "desc": "An amulet: the wearer adds 1d4 to a failed ability check (prof bonus/long rest).",
    "url": "http://dnd5e.wikidot.com/warlock"
   }
+ ],
+ "disciplines": [
+  {
+   "name": "Breath of Winter",
+   "source": "Player's Handbook",
+   "prereq": "17th level",
+   "desc": "6 ki: Cone of Cold.",
+   "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
+   "ki": 6
+  },
+  {
+   "name": "Clench of the North Wind",
+   "source": "Player's Handbook",
+   "prereq": "6th level",
+   "desc": "3 ki: Hold Person.",
+   "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
+   "ki": 3
+  },
+  {
+   "name": "Eternal Mountain Defense",
+   "source": "Player's Handbook",
+   "prereq": "17th level",
+   "desc": "5 ki: Stoneskin on yourself.",
+   "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
+   "ki": 5
+  },
+  {
+   "name": "Fangs of the Fire Snake",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "1 ki with the Attack action: unarmed reach +10 ft this turn, fire damage; 1 more ki on a hit adds 1d10 fire.",
+   "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
+   "ki": 1
+  },
+  {
+   "name": "Fist of Four Thunders",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "2 ki: Thunderwave.",
+   "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
+   "ki": 2
+  },
+  {
+   "name": "Fist of Unbroken Air",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "Action, 2 ki: a creature within 30 ft makes a STR save; 3d10 bludgeoning (+1d10 per extra ki), pushed 20 ft and prone on a fail, half and no push on a success.",
+   "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
+   "ki": 2
+  },
+  {
+   "name": "Flames of the Phoenix",
+   "source": "Player's Handbook",
+   "prereq": "11th level",
+   "desc": "4 ki: Fireball.",
+   "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
+   "ki": 4
+  },
+  {
+   "name": "Gong of the Summit",
+   "source": "Player's Handbook",
+   "prereq": "6th level",
+   "desc": "3 ki: Shatter.",
+   "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
+   "ki": 3
+  },
+  {
+   "name": "Mist Stance",
+   "source": "Player's Handbook",
+   "prereq": "11th level",
+   "desc": "4 ki: Gaseous Form on yourself.",
+   "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
+   "ki": 4
+  },
+  {
+   "name": "Ride the Wind",
+   "source": "Player's Handbook",
+   "prereq": "11th level",
+   "desc": "4 ki: Fly on yourself.",
+   "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
+   "ki": 4
+  },
+  {
+   "name": "River of Hungry Flame",
+   "source": "Player's Handbook",
+   "prereq": "17th level",
+   "desc": "5 ki: Wall of Fire.",
+   "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
+   "ki": 5
+  },
+  {
+   "name": "Rush of the Gale Spirits",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "2 ki: Gust of Wind.",
+   "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
+   "ki": 2
+  },
+  {
+   "name": "Shape the Flowing River",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "Action, 1 ki: within 120 ft turn water to ice or back and reshape a 30 ft area of it (no harm to creatures in it).",
+   "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
+   "ki": 1
+  },
+  {
+   "name": "Sweeping Cinder Strike",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "2 ki: Burning Hands.",
+   "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
+   "ki": 2
+  },
+  {
+   "name": "Water Whip",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "Action, 2 ki: a creature within 30 ft makes a DEX save; 3d10 bludgeoning (+1d10 per extra ki) and pulled 25 ft or knocked prone on a fail, half on a success.",
+   "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
+   "ki": 2
+  },
+  {
+   "name": "Wave of Rolling Earth",
+   "source": "Player's Handbook",
+   "prereq": "17th level",
+   "desc": "6 ki: Wall of Stone.",
+   "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
+   "ki": 6
+  }
  ]
 }

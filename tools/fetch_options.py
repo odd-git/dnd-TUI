@@ -1,4 +1,4 @@
-"""Class option lists (Metamagic, Eldritch Invocations, Pact Boons) from dnd5e.wikidot.com -> data/lists/options.json.
+"""Class option lists (Metamagic, Eldritch Invocations, Pact Boons, Elemental Disciplines) from dnd5e.wikidot.com -> data/lists/options.json.
 
 Official content only: Unearthed Arcana entries are skipped.
 """
@@ -74,8 +74,21 @@ def pact_boons():
     return out
 
 
+def disciplines():
+    """Way of the Four Elements disciplines (PHB); Elemental Attunement is known for free and stays a feature."""
+    out, slug = [], "monk:four-elements:disciplines"
+    b = w.blocks(w.content(w.get(slug)))
+    for name in [t for tag, _, t in b if tag == "h3" and t != "Elemental Attunement"]:
+        text = " ".join(section(b, name))
+        prereq = re.match(r"Prerequisite: (\d+th) Level", text)
+        ki = re.search(r"spend (\d+) ki point", text)
+        out.append({"name": name, "source": PHB, "prereq": prereq and f"{prereq[1]} level", "desc": w.summary(w.key(slug, name), text),
+                    "url": w.url(slug), "ki": int(ki[1]) if ki else 0})
+    return out
+
+
 if __name__ == "__main__":
-    data = {"metamagic": metamagic(), "invocations": invocations(), "pact_boons": pact_boons()}
+    data = {"metamagic": metamagic(), "invocations": invocations(), "pact_boons": pact_boons(), "disciplines": disciplines()}
     (OUT / "options.json").write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n")
     print({k: len(v) for k, v in data.items()})
     w.save_todo()

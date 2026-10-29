@@ -6,7 +6,7 @@ use crate::lists::{self, OptionDef};
 
 /// Feature-name prefix of each option kind: a picked option is stored as the feature "Metamagic: Quickened Spell".
 fn label(kind: &str) -> &'static str {
-    match kind { "metamagic" => "Metamagic", "invocations" => "Invocation", "pact_boons" => "Pact Boon", _ => "Option" }
+    match kind { "metamagic" => "Metamagic", "invocations" => "Invocation", "pact_boons" => "Pact Boon", "disciplines" => "Discipline", _ => "Option" }
 }
 
 /// Sorcery points to create a slot of level 1..=5.
@@ -44,8 +44,10 @@ impl App {
     pub(super) fn owed(&self) -> Vec<Step> {
         let mut v = vec![];
         for (prog, lvl) in self.ch.classes() {
-            let Some(cd) = lists::class_data(prog.split('/').next().unwrap_or("")) else { continue };
-            for (kind, table) in &cd.options {
+            let (cls, sub) = prog.split_once('/').map_or((prog.as_str(), None), |(c, s)| (c, Some(s)));
+            let Some(cd) = lists::class_data(cls) else { continue };
+            let sd = sub.and_then(|s| cd.subclasses.iter().find(|x| x.name == s));
+            for (kind, table) in cd.options.iter().chain(sd.iter().flat_map(|s| s.options.iter())) {
                 let have = self.has_feature(&format!("{}: ", label(kind)));
                 for _ in have..at(table, lvl) as usize { v.push(Step::Opt(kind.clone())); }
             }
@@ -109,7 +111,7 @@ impl App {
     }
 
     pub(super) fn opt_items(&self, kind: &str) -> Vec<&'static OptionDef> {
-        let lvl = self.level_of(if kind == "metamagic" { "Sorcerer" } else { "Warlock" });
+        let lvl = self.level_of(match kind { "metamagic" => "Sorcerer", "disciplines" => "Monk", _ => "Warlock" });
         let have = |n: &str| self.ch.features.iter().any(|f| f.name == format!("{}: {n}", label(kind)));
         lists::options(kind).iter().filter(|o| !have(&o.name) && self.prereq_ok(o, lvl)).collect()
     }
@@ -127,6 +129,8 @@ impl App {
         match o.name.as_str() {
             "Pact of the Tome" => for _ in 0..3 { self.queue.push_front(Step::AnyCantrip); },
             "Pact of the Chain" => self.grant_spell("Find Familiar", "Pact of the Chain"),
+            // a discipline with a ki cost goes on the action list
+            _ if o.ki > 0 => self.ch.actions.push(ActionDef { name: o.name.clone(), desc: o.desc.clone(), uses: Some("ki".into()), spend: o.ki, ..Default::default() }),
             _ => {}
         }
     }

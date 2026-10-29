@@ -402,6 +402,14 @@
       "url": "http://dnd5e.wikidot.com/monk:four-elements"
      }
     ]
+   },
+   "options": {
+    "disciplines": {
+     "3": 1,
+     "6": 2,
+     "11": 3,
+     "17": 4
+    }
    }
   },
   {

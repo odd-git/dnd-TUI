@@ -148,6 +148,7 @@ pub struct OptionDef {
     pub prereq: Option<String>,
     pub desc: String,
     #[serde(default)] pub url: String,
+    #[serde(default)] pub ki: u32, // ki spent each use (Elemental Disciplines)
 }
 
 #[derive(Deserialize)]
@@ -155,12 +156,13 @@ pub struct Options {
     pub metamagic: Vec<OptionDef>,
     pub invocations: Vec<OptionDef>,
     pub pact_boons: Vec<OptionDef>,
+    #[serde(default)] pub disciplines: Vec<OptionDef>,
 }
 
 pub fn options(kind: &str) -> &'static [OptionDef] {
     static C: OnceLock<Options> = OnceLock::new();
     let o = C.get_or_init(|| serde_json::from_str(include_str!("../data/lists/options.json")).expect("options.json"));
-    match kind { "metamagic" => &o.metamagic, "invocations" => &o.invocations, "pact_boons" => &o.pact_boons, _ => &[] }
+    match kind { "metamagic" => &o.metamagic, "invocations" => &o.invocations, "pact_boons" => &o.pact_boons, "disciplines" => &o.disciplines, _ => &[] }
 }
 
 #[derive(Deserialize)]
@@ -289,6 +291,7 @@ pub struct Subclass {
     #[serde(default)] pub toggles: Vec<Toggle>,
     #[serde(default)] pub skills: usize, // skill proficiencies of your choice (Lore)
     #[serde(default)] pub attacks_per_action: Table, // Extra Attack of a subclass (Valor), replaces the class's
+    #[serde(default)] pub options: BTreeMap<String, Table>, // options known by level, like the class's (Elemental Disciplines)
     pub maneuver_pool: Option<String>,
     #[serde(default)] pub tables: BTreeMap<String, Table>,
     #[serde(default)] pub dice: BTreeMap<String, Table>,
