@@ -97,7 +97,7 @@ fn footer(app: &App) -> Vec<(String, String, Cmd)> {
             if app.ch.concentration.is_some() { v.push(s("O", "End concentration", Cmd::EndConc)); }
             if app.ch.maneuver_pool.is_some() { v.push(s("M", "Maneuver die", Cmd::Maneuver)); }
             let adv = match app.adv { Adv::Normal => "Roll: normal", Adv::Adv => "Roll: ADVANTAGE", Adv::Dis => "Roll: DISADVANTAGE" };
-            v.extend([s("T", "Check", Cmd::CheckMenu), s("V", adv, Cmd::Adv), s("C", "Conditions", Cmd::Cond), s("X", "Death save", Cmd::Death)]);
+            v.extend([s("T", "Check", Cmd::CheckMenu), s("V", adv, Cmd::Adv), s("C", "Conditions", Cmd::Cond), s("F", "Exhaustion", Cmd::Exhaustion), s("X", "Death save", Cmd::Death)]);
             if app.ch.resources.iter().any(|r| r.max.is_none()) { v.push(s("P", "Items", Cmd::Items)); }
             v.extend([s("S", "Short rest", Cmd::Short), s("L", "Long rest", Cmd::Long), s("U", "Level up", Cmd::Level),
                       s("E", "Edit", Cmd::Edit), s("Z", "Undo", Cmd::Undo), s("Q", "Sheets", Cmd::Back)]);
@@ -194,6 +194,7 @@ fn status_lines(app: &App) -> Vec<Line<'static>> {
 
     let mut st = vec![];
     if !c.conditions.is_empty() { st.push(Span::styled(format!("Conditions: {}", c.conditions.join(", ")), Style::new().fg(Color::Yellow))); }
+    if c.exhaustion > 0 { if !st.is_empty() { st.push(Span::raw("  ")); } st.push(Span::styled(format!("Exhaustion {}: {}", c.exhaustion, c.exhaustion_text()), Style::new().fg(Color::Yellow))); }
     if !c.active.is_empty() { if !st.is_empty() { st.push(Span::raw("  ")); } st.push(Span::styled(format!("Active: {}", c.active.join(", ")), Style::new().fg(GREEN))); }
     if !st.is_empty() { v.push(Line::from(st)); }
     v

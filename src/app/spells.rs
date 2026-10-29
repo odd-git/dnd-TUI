@@ -80,7 +80,7 @@ impl App {
         let mut crit = false;
         if sp.attack {
             let hit = self.ch.md(&ab) + self.ch.prof();
-            let (r, note) = self.d20();
+            let (r, note) = self.d20(Roll::Attack);
             crit = r == 20;
             self.say(format!("Spell attack: {r}{hit:+}={}{note}{}", r as i32 + hit, if crit { " CRIT!" } else { "" }), Tone::Norm);
         }

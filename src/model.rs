@@ -17,6 +17,9 @@ pub const CONDITIONS: [&str; 14] = [
     "Paralyzed", "Petrified", "Poisoned", "Prone", "Restrained", "Stunned", "Unconscious",
 ];
 
+/// What each exhaustion level adds (PHB appendix A); level 6 is death.
+pub const EXHAUSTION: [&str; 6] = ["checks at disadvantage", "speed halved", "attacks and saves at disadvantage", "HP max halved", "speed 0", "dead"];
+
 pub fn mod_of(score: i32) -> i32 { (score - 10).div_euclid(2) }
 
 /// Value of a level table ({level: value}) holding until the next key; 0 before the first.
@@ -150,6 +153,7 @@ pub struct Character {
     #[serde(default)] pub concentration: Option<String>, // spell being concentrated on
     #[serde(default)] pub death: [u8; 2], // successes, failures
     #[serde(default)] pub conditions: Vec<String>,
+    #[serde(default)] pub exhaustion: u8, // 0-6
     #[serde(default)] pub active: Vec<String>,
     #[serde(default)] pub res: BTreeMap<String, u32>,
 }
@@ -333,8 +337,12 @@ impl Character {
             let hd = crate::lists::class_data(e.prog.split('/').next().unwrap_or("")).map_or(8, |c| c.hit_die) as i32;
             e.level as i32 * (hd / 2 + 1 + cm)
         }).sum();
-        Some(d + cm + (self.class_level() as i32 - 1) * (d / 2 + 1 + cm) + others)
+        let max = d + cm + (self.class_level() as i32 - 1) * (d / 2 + 1 + cm) + others;
+        Some(if self.exhaustion >= 4 { max / 2 } else { max })
     }
+
+    /// Exhaustion effects so far, e.g. "checks at disadvantage, speed halved".
+    pub fn exhaustion_text(&self) -> String { EXHAUSTION[..self.exhaustion.min(6) as usize].join(", ") }
 
     pub fn def(&self, id: &str) -> Option<&ResourceDef> { self.resources.iter().find(|r| r.id == id) }
 

@@ -340,7 +340,7 @@ impl App {
         }
         let dc = (damage / 2).max(10);
         let m = self.ch.check_mod("CON save");
-        let (r, note) = self.d20();
+        let (r, note) = self.d20(Roll::Save);
         let ok = r as i32 + m >= dc;
         self.say(format!("Concentration ({sp}): CON save {r}{m:+}={}{note} vs DC {dc}: {}", r as i32 + m, if ok { "held" } else { "LOST" }), if ok { Tone::Good } else { Tone::Warn });
         if !ok { self.ch.concentration = None; }

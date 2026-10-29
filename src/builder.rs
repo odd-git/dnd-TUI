@@ -166,7 +166,7 @@ pub fn build(d: &Draft) -> Character {
         journal: vec![],
         hp: None,
         death: [0; 2],
-        conditions: vec![],
+        conditions: vec![], exhaustion: 0,
         active: vec![],
         res: BTreeMap::new(),
     };
@@ -435,6 +435,16 @@ mod tests {
         assert_eq!(c.ability_for("Eldritch Blast"), "CHA");
         let cast = c.castable();
         assert!(["Magic Missile", "Shield", "Mage Armor", "Wrathful Smite", "Alarm"].iter().all(|s| cast.contains(&s.to_string())));
+    }
+
+    #[test]
+    fn exhaustion_stacks_and_halves_hp_at_four() {
+        let mut c = rogue(1);
+        let full = c.hp_max().unwrap();
+        c.exhaustion = 3;
+        assert_eq!((c.hp_max(), c.exhaustion_text().as_str()), (Some(full), "checks at disadvantage, speed halved, attacks and saves at disadvantage"));
+        c.exhaustion = 4;
+        assert_eq!(c.hp_max(), Some(full / 2));
     }
 
     #[test]

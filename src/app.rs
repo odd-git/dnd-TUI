@@ -19,6 +19,10 @@ pub const TABS: [(Tab, &str); 4] = [(Tab::Combat, "Combat"), (Tab::Spells, "Spel
 #[allow(clippy::enum_variant_names)] // Adv::Adv reads as the rule's own word
 pub enum Adv { Normal, Adv, Dis }
 
+/// Kind of d20 roll, for the disadvantage exhaustion imposes.
+#[derive(Clone, Copy, PartialEq)]
+pub enum Roll { Check, Attack, Save }
+
 #[derive(Clone, Copy)]
 pub enum Tone { Norm, Good, Warn, Dim }
 
@@ -29,14 +33,14 @@ pub enum Item { Action(usize), Toggle(usize) }
 #[derive(Clone, PartialEq)]
 pub enum Cmd {
     Tab(Tab), Pick(usize), Select(usize), Click(usize), Enter, Up, Down, PageUp, PageDown,
-    Damage, Heal, Temp, EndConc, Init, Maneuver, Roll(String), CheckMenu, Adv, Cond, Death, Items, Short, Long,
+    Damage, Heal, Temp, EndConc, Init, Maneuver, Roll(String), CheckMenu, Adv, Cond, Exhaustion, Death, Items, Short, Long,
     Level, Edit, Undo, Back, New, Delete, Cast, Prepare, SpellClick(usize), JournalAdd, JournalDel, JournalSel(usize), ModalPick(usize),
 }
 
 /// What a modal is asking; the answer is handled in `resolve_*`.
 #[derive(Clone)]
 pub enum Step {
-    Damage, Heal, Check, Cond, Items, SetItem(String), Short,
+    Damage, Heal, Check, Cond, Exhaustion, Items, SetItem(String), Short,
     Asi, Ability { n: i32, optional: bool }, FeatList, FeatAsi(String),
     Maneuver { required: bool }, ReplaceAsk, Forget, Extras, Skill, NoteName, NoteDesc(String), JournalAdd,
     Subclass, DeleteSheet(usize), Expertise, Style, Pool(String),
@@ -172,9 +176,11 @@ impl App {
         v
     }
 
-    fn d20(&mut self) -> (u32, String) {
+    fn d20(&mut self, kind: Roll) -> (u32, String) {
         let (a, b) = (d(20), d(20));
-        let out = match self.adv {
+        let tired = self.ch.exhaustion >= if kind == Roll::Check { 1 } else { 3 };
+        let adv = match (self.adv, tired) { (Adv::Adv, true) => Adv::Normal, (_, true) => Adv::Dis, (a, false) => a };
+        let out = match adv {
             Adv::Normal => (a, String::new()),
             Adv::Adv => (a.max(b), format!(" adv({a},{b})")),
             Adv::Dis => (a.min(b), format!(" dis({a},{b})")),
@@ -242,7 +248,7 @@ impl App {
                 (_, 'q') => Cmd::Back, (_, 'z') => Cmd::Undo, (_, 'k') => Cmd::Up, (_, 'j') => Cmd::Down,
                 (Tab::Combat, 'd') => Cmd::Damage, (Tab::Combat, 'h') => Cmd::Heal, (Tab::Combat, 'g') => Cmd::Temp, (_, 'o') if self.ch.concentration.is_some() => Cmd::EndConc, (Tab::Combat, 'i') => Cmd::Init,
                 (Tab::Combat, 'm') => Cmd::Maneuver, (Tab::Combat, 't') => Cmd::CheckMenu, (Tab::Combat, 'v') => Cmd::Adv,
-                (Tab::Combat, 'c') => Cmd::Cond, (Tab::Combat, 'x') => Cmd::Death, (Tab::Combat, 'p') => Cmd::Items,
+                (Tab::Combat, 'c') => Cmd::Cond, (Tab::Combat, 'f') => Cmd::Exhaustion, (Tab::Combat, 'x') => Cmd::Death, (Tab::Combat, 'p') => Cmd::Items,
                 (Tab::Combat, 's') => Cmd::Short, (Tab::Combat, 'l') => Cmd::Long, (Tab::Combat, 'u') => Cmd::Level,
                 (Tab::Combat, 'e') => Cmd::Edit, (Tab::Combat, '1'..='9') => Cmd::Select(c as usize - '1' as usize),
                 (Tab::Journal, 'a') => Cmd::JournalAdd,
@@ -433,7 +439,7 @@ impl App {
             Cmd::Temp => self.open(Step::TempHp),
             Cmd::EndConc => { if let Some(s) = self.ch.concentration.clone() { self.snap(); self.ch.concentration = None; self.say(format!("Concentration on {s} ends."), Tone::Dim); } }
             Cmd::Init => {
-                let (r, note) = self.d20();
+                let (r, note) = self.d20(Roll::Check);
                 let m = self.ch.md("DEX");
                 self.say(format!("Initiative: {r}{m:+}={}{note}", r as i32 + m), Tone::Good);
             }
@@ -441,6 +447,7 @@ impl App {
             Cmd::CheckMenu => self.open(Step::Check),
             Cmd::Roll(n) => self.roll_check(&n),
             Cmd::Cond => self.open(Step::Cond),
+            Cmd::Exhaustion => self.open(Step::Exhaustion),
             Cmd::Death => self.death_save(),
             Cmd::Items => self.items(),
             Cmd::Short => self.open(Step::Short),
@@ -542,7 +549,7 @@ impl App {
         let mut crit = false;
         if let Some(hit) = a.hit.or_else(|| a.ability.as_ref().map(|ab| self.ch.md(ab) + prof)) {
             let crit_min = self.ch.toggles.iter().filter(|t| self.ch.active.contains(&t.name)).filter_map(|t| t.crit_min).min().unwrap_or(20);
-            let (r, note) = self.d20();
+            let (r, note) = self.d20(Roll::Attack);
             crit = r >= crit_min;
             let tag = if crit { " CRIT!" } else if r == 1 { " miss (nat 1)" } else { "" };
             self.say(format!("{}: {r}{hit:+}={}{note}{tag}", a.name, r as i32 + hit), if crit { Tone::Good } else { Tone::Norm });
@@ -574,7 +581,7 @@ impl App {
 
     fn roll_check(&mut self, name: &str) {
         let m = self.ch.check_mod(name);
-        let (r, note) = self.d20();
+        let (r, note) = self.d20(if name.ends_with(" save") { Roll::Save } else { Roll::Check });
         self.say(format!("{name}: {r}{m:+}={}{note}", r as i32 + m), Tone::Good);
     }
 
@@ -617,6 +624,7 @@ impl App {
 
     fn long_rest(&mut self) {
         self.snap();
+        if (1..6).contains(&self.ch.exhaustion) { self.ch.exhaustion -= 1; self.say(format!("Exhaustion drops to {}.", self.ch.exhaustion), Tone::Good); }
         self.reset(true);
         self.ch.hp = self.ch.hp_max().or(self.ch.hp);
         self.ch.death = [0, 0];
@@ -660,6 +668,11 @@ impl App {
                 self.list("Roll a check", items, step, true);
             }
             Step::Cond => self.open_cond(0),
+            Step::Exhaustion => {
+                let items = (0..=6).map(|n| format!("{n}: {}", if n == 0 { "none".into() } else { EXHAUSTION[..n].join(", ") })).collect();
+                self.list("Exhaustion level", items, step, true);
+                if let Some(Modal::List { sel, .. }) = &mut self.modal { *sel = self.ch.exhaustion as usize; }
+            }
             Step::Items => {
                 let items = self.ch.resources.iter().filter(|r| r.max.is_none()).map(|r| format!("{}: {}", r.name, self.have(&r.id))).collect();
                 self.list("Which item?", items, step, true);
@@ -870,6 +883,13 @@ impl App {
                     None => self.ch.conditions.push(c),
                 }
                 self.open_cond(i);
+            }
+            Step::Exhaustion => {
+                self.snap();
+                self.ch.exhaustion = i.min(6) as u8;
+                if let (Some(hp), Some(max)) = (self.ch.hp, self.ch.hp_max()) { self.ch.hp = Some(hp.min(max)); }
+                if i == 6 { self.ch.hp = Some(0); self.ch.death = [0, 3]; }
+                self.say(format!("Exhaustion {i}{}", if i == 0 { String::new() } else { format!(": {}", self.ch.exhaustion_text()) }), if i == 0 { Tone::Good } else { Tone::Warn });
             }
             Step::Items => {
                 let ids: Vec<String> = self.ch.resources.iter().filter(|r| r.max.is_none()).map(|r| r.id.clone()).collect();
