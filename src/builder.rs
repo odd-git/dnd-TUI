@@ -166,7 +166,7 @@ pub fn build(d: &Draft) -> Character {
         journal: vec![],
         hp: None,
         death: [0; 2],
-        conditions: vec![], exhaustion: 0,
+        conditions: vec![], exhaustion: 0, inspiration: false,
         active: vec![],
         res: BTreeMap::new(),
     };

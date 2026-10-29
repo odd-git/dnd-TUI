@@ -33,7 +33,7 @@ pub enum Item { Action(usize), Toggle(usize) }
 #[derive(Clone, PartialEq)]
 pub enum Cmd {
     Tab(Tab), Pick(usize), Select(usize), Click(usize), Enter, Up, Down, PageUp, PageDown,
-    Damage, Heal, Temp, EndConc, Init, Maneuver, Roll(String), CheckMenu, Adv, Cond, Exhaustion, Death, Items, Short, Long,
+    Damage, Heal, Temp, EndConc, Init, Maneuver, Roll(String), CheckMenu, Adv, Inspire, Cond, Exhaustion, Death, Items, Short, Long,
     Level, Edit, Undo, Back, New, Delete, Cast, Prepare, SpellClick(usize), JournalAdd, JournalDel, JournalSel(usize), ModalPick(usize),
 }
 
@@ -248,7 +248,7 @@ impl App {
                 (_, 'q') => Cmd::Back, (_, 'z') => Cmd::Undo, (_, 'k') => Cmd::Up, (_, 'j') => Cmd::Down,
                 (Tab::Combat, 'd') => Cmd::Damage, (Tab::Combat, 'h') => Cmd::Heal, (Tab::Combat, 'g') => Cmd::Temp, (_, 'o') if self.ch.concentration.is_some() => Cmd::EndConc, (Tab::Combat, 'i') => Cmd::Init,
                 (Tab::Combat, 'm') => Cmd::Maneuver, (Tab::Combat, 't') => Cmd::CheckMenu, (Tab::Combat, 'v') => Cmd::Adv,
-                (Tab::Combat, 'c') => Cmd::Cond, (Tab::Combat, 'f') => Cmd::Exhaustion, (Tab::Combat, 'x') => Cmd::Death, (Tab::Combat, 'p') => Cmd::Items,
+                (Tab::Combat, 'c') => Cmd::Cond, (Tab::Combat, 'f') => Cmd::Exhaustion, (Tab::Combat, 'n') => Cmd::Inspire, (Tab::Combat, 'x') => Cmd::Death, (Tab::Combat, 'p') => Cmd::Items,
                 (Tab::Combat, 's') => Cmd::Short, (Tab::Combat, 'l') => Cmd::Long, (Tab::Combat, 'u') => Cmd::Level,
                 (Tab::Combat, 'e') => Cmd::Edit, (Tab::Combat, '1'..='9') => Cmd::Select(c as usize - '1' as usize),
                 (Tab::Journal, 'a') => Cmd::JournalAdd,
@@ -448,6 +448,12 @@ impl App {
             Cmd::Roll(n) => self.roll_check(&n),
             Cmd::Cond => self.open(Step::Cond),
             Cmd::Exhaustion => self.open(Step::Exhaustion),
+            Cmd::Inspire => {
+                self.snap();
+                self.ch.inspiration = !self.ch.inspiration;
+                if self.ch.inspiration { self.say("Inspiration gained.", Tone::Good); }
+                else { self.adv = Adv::Adv; self.say("Inspiration spent: the next roll has advantage.", Tone::Good); }
+            }
             Cmd::Death => self.death_save(),
             Cmd::Items => self.items(),
             Cmd::Short => self.open(Step::Short),

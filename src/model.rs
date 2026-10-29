@@ -154,6 +154,7 @@ pub struct Character {
     #[serde(default)] pub death: [u8; 2], // successes, failures
     #[serde(default)] pub conditions: Vec<String>,
     #[serde(default)] pub exhaustion: u8, // 0-6
+    #[serde(default)] pub inspiration: bool,
     #[serde(default)] pub active: Vec<String>,
     #[serde(default)] pub res: BTreeMap<String, u32>,
 }
