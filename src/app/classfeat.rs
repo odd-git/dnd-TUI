@@ -205,6 +205,14 @@ impl App {
                 self.open(Step::Smite);
             }
             "companion" => self.open(Step::Companion),
+            "grim" => {
+                // Grim Harvest: the last spell killed something; heal 2 x its level, 3 x for necromancy
+                let Some((l, necro)) = self.last_cast else { return self.say("Grim Harvest: cast a spell of 1st level or higher first.", Tone::Warn) };
+                let n = l as i32 * if necro { 3 } else { 2 };
+                self.snap();
+                self.heal(n);
+                self.say(format!("Grim Harvest: healed {n} (level {l}{} spell).", if necro { " necromancy" } else { "" }), Tone::Good);
+            }
             "portent" if self.ch.portent.is_empty() => self.say("Portent: no rolls left until the next long rest.", Tone::Warn),
             "portent" => self.open(Step::Portent),
             "dark_one" => {

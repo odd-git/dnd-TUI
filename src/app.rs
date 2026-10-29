@@ -87,6 +87,7 @@ pub struct App {
     flow: Option<Flow>,
     lv: usize, // class being leveled: 0 the main one, n the n-th of `multi`
     wiz: Option<wizard::Wiz>,
+    last_cast: Option<(u32, bool)>, // level and necromancy-ness of the last spell of 1st level or higher (Grim Harvest)
     pub query: String,
     pub searching: bool,
 }
@@ -131,7 +132,7 @@ impl App {
         App {
             picking: true, sheets, psel: 0, path: PathBuf::new(), ch, tab: Tab::Combat, sel: 0, jsel: 0, ssel: 0,
             scroll: 0, log_off: 0, adv: Adv::Normal, log: vec![Entry("System start.".into(), Tone::Dim)],
-            modal: None, hot: vec![], quit: false, undo: vec![], queue: VecDeque::new(), flow: None, lv: 0, wiz: None, query: String::new(), searching: false,
+            modal: None, hot: vec![], quit: false, undo: vec![], queue: VecDeque::new(), flow: None, lv: 0, wiz: None, last_cast: None, query: String::new(), searching: false,
         }
     }
 

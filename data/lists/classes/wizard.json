@@ -818,7 +818,13 @@
    "source": "Player's Handbook",
    "needs_spells": false,
    "resources": [],
-   "actions": [],
+   "actions": [
+    {
+     "name": "Grim Harvest",
+     "desc": "Your last spell (1st level+) killed a creature that is not a construct or undead: heal, once per turn",
+     "special": "grim"
+    }
+   ],
    "maneuver_pool": null,
    "tables": {},
    "dice": {},
