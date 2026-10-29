@@ -425,6 +425,19 @@ mod tests {
     }
 
     #[test]
+    fn sorlock_is_a_sorcerer_warlock_multiclass() {
+        let mut c: Character = serde_json::from_str(crate::model::BUNDLED[1].1).unwrap();
+        c.sync_spell_resources();
+        assert_eq!(c.title(), "Sorcerer 1 / Warlock 1");
+        assert_eq!((c.class_level(), c.prof(), c.hp_max()), (1, 2, Some(6 + 5))); // d6 max + d8 average, CON 10
+        // sorcerer slots and the warlock's pact slot stay separate pools
+        assert_eq!((c.res_max("slot1"), c.res_max("slot2"), c.res_max("pact")), (Some(2), Some(0), Some(1)));
+        assert_eq!(c.ability_for("Eldritch Blast"), "CHA");
+        let cast = c.castable();
+        assert!(["Magic Missile", "Shield", "Mage Armor", "Wrathful Smite", "Alarm"].iter().all(|s| cast.contains(&s.to_string())));
+    }
+
+    #[test]
     fn spells_from_outside_the_class_list() {
         let mut c = half("Ranger", "Hunter", 1); // no spells yet at ranger level 1
         assert!(!c.has_spells());

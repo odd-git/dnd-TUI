@@ -2,23 +2,19 @@
   "name": "Sorlock",
   "race": "",
   "background": "",
-  "class_title": "Sorcerer 1 / Warlock 1",
+  "class_title": "Sorcerer {level}",
   "level": 2,
+  "hit_die": 6,
   "abilities": { "CHA": 18 },
+  "save_profs": ["CON", "CHA"],
   "spell_ability": "CHA",
+  "progression": "Sorcerer",
+  "multi": [{ "prog": "Warlock", "level": 1 }],
+  "cantrips": ["Fire Bolt", "Shocking Grasp", "Eldritch Blast"],
+  "spells": ["Magic Missile", "Shield", "Mage Armor", "Wrathful Smite", "Alarm"],
   "resources": [
-    { "id": "sorc_slots", "name": "Sorc slots", "recharge": "long", "max": 2, "pips": true },
-    { "id": "pact_slots", "name": "Pact slots", "recharge": "short", "max": 1, "pips": true }
+    { "id": "hit_dice", "name": "Hit Dice", "max": "level" }
   ],
   "toggles": [{ "name": "Hex", "crit_min": 19, "dmg_bonus_prof": true }],
-  "actions": [
-    { "name": "Eldritch Blast", "desc": "Crackling beam", "ability": "CHA", "dice": [1, 10], "dmg_type": "Force" },
-    { "name": "Fire Bolt", "desc": "Fire dart", "ability": "CHA", "dice": [1, 10], "dmg_type": "Fire" },
-    { "name": "Shocking Grasp", "desc": "Adv vs Metal", "ability": "CHA", "dice": [1, 8], "dmg_type": "Lightning" },
-    { "name": "Magic Missile", "desc": "3 unerring darts", "dice": [3, 4], "bonus": 3, "dmg_type": "Force", "cost": ["pact_slots", "sorc_slots"] },
-    { "name": "Wrathful Smite", "desc": "Wis Save or Frightened", "dice": [1, 6], "dmg_type": "Psychic", "cost": ["pact_slots", "sorc_slots"] },
-    { "name": "Shield", "desc": "+5 AC (Reaction)", "cost": ["pact_slots", "sorc_slots"] },
-    { "name": "Mage Armor", "desc": "AC 13 + Dex (8h)", "cost": ["pact_slots", "sorc_slots"] },
-    { "name": "Alarm", "desc": "Wards 20ft area", "cost": ["pact_slots", "sorc_slots"] }
-  ]
+  "info": ["Multiclass Warlock: Light armor, simple weapons"]
 }
