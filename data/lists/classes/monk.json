@@ -1,0 +1,564 @@
+{
+ "name": "Monk",
+ "hit_die": 8,
+ "saves": [
+  "STR",
+  "DEX"
+ ],
+ "skills": {
+  "choose": 2,
+  "from": [
+   "Acrobatics",
+   "Athletics",
+   "History",
+   "Insight",
+   "Religion",
+   "Stealth"
+  ]
+ },
+ "armor": [],
+ "weapons": [
+  "Simple",
+  "Shortswords"
+ ],
+ "tools": [
+  "Choose one type of artisan's tools or one musical instrument"
+ ],
+ "equipment": [
+  "(a) a shortsword or (b) any simple weapon",
+  "(a) a dungeoneer's pack or (b) an explorer's pack",
+  "10 darts"
+ ],
+ "asi_levels": [
+  4,
+  8,
+  12,
+  16,
+  19
+ ],
+ "subclass_level": 3,
+ "subclass_title": "Monastic Tradition",
+ "attacks_per_action": {
+  "1": 1,
+  "5": 2
+ },
+ "resources": [
+  {
+   "id": "ki",
+   "name": "Ki",
+   "recharge": "short",
+   "max": "table",
+   "pips": true
+  }
+ ],
+ "tables": {
+  "martial_arts": {
+   "1": 4,
+   "5": 6,
+   "11": 8,
+   "17": 10
+  },
+  "ki": {
+   "1": 0,
+   "2": 2,
+   "3": 3,
+   "4": 4,
+   "5": 5,
+   "6": 6,
+   "7": 7,
+   "8": 8,
+   "9": 9,
+   "10": 10,
+   "11": 11,
+   "12": 12,
+   "13": 13,
+   "14": 14,
+   "15": 15,
+   "16": 16,
+   "17": 17,
+   "18": 18,
+   "19": 19,
+   "20": 20
+  }
+ },
+ "actions": [
+  {
+   "name": "Unarmed Strike",
+   "desc": "Martial Arts: bonus action strike after the Attack action",
+   "ability": "FINESSE",
+   "dice": [
+    1,
+    4
+   ],
+   "die_table": "martial_arts",
+   "dmg_ability": true,
+   "dmg_type": "bludgeoning"
+  },
+  {
+   "name": "Flurry of Blows",
+   "desc": "1 ki, bonus action after Attack: two unarmed strikes",
+   "uses": "ki",
+   "min_level": 2
+  },
+  {
+   "name": "Patient Defense",
+   "desc": "1 ki, bonus action: Dodge",
+   "uses": "ki",
+   "min_level": 2
+  },
+  {
+   "name": "Step of the Wind",
+   "desc": "1 ki, bonus action: Disengage or Dash, jump distance doubled",
+   "uses": "ki",
+   "min_level": 2
+  },
+  {
+   "name": "Stunning Strike",
+   "desc": "1 ki on a hit: CON save DC {dc:WIS} or stunned until your next turn",
+   "uses": "ki",
+   "min_level": 5
+  }
+ ],
+ "toggles": [],
+ "expertise": [],
+ "unarmored": {
+  "ability": "WIS",
+  "shield": false
+ },
+ "features": {
+  "1": [
+   {
+    "name": "Unarmored Defense",
+    "desc": "Beginning at 1st level, while you are wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom modifier."
+   },
+   {
+    "name": "Martial Arts",
+    "desc": "At 1st level, your practice of martial arts gives you mastery of combat styles that use unarmed strikes and monk weapons, which are shortswords and any simple melee weapons that don't have the..."
+   }
+  ],
+  "2": [
+   {
+    "name": "Ki",
+    "desc": "Starting at 2nd level, your training allows you to harness the mystic energy of ki. Your access to this energy is represented by a number of ki points. Your monk level determines the number of points..."
+   },
+   {
+    "name": "Unarmored Movement",
+    "desc": "Starting at 2nd level, your speed increases by 10 feet while you are not wearing armor or wielding a shield. This bonus increases when you reach certain monk levels, as shown in the Monk table. At..."
+   }
+  ],
+  "3": [
+   {
+    "name": "Deflect Missiles",
+    "desc": "Starting at 3rd level, you can use your reaction to deflect or catch the missile when you are hit by a ranged weapon attack. When you do so, the damage you take from the attack is reduced by 1d10 +..."
+   }
+  ],
+  "4": [
+   {
+    "name": "Slow Fall",
+    "desc": "Beginning at 4th level, you can use your reaction when you fall to reduce any falling damage you take by an amount equal to five times your monk level."
+   }
+  ],
+  "5": [
+   {
+    "name": "Extra Attack",
+    "desc": "Beginning at 5th level, you can attack twice, instead of once, whenever you take the Attack action on your turn."
+   },
+   {
+    "name": "Stunning Strike",
+    "desc": "Starting at 5th level, you can interfere with the flow of ki in an opponent's body. When you hit another creature with a melee weapon attack, you can spend 1 ki point to attempt a stunning strike...."
+   }
+  ],
+  "6": [
+   {
+    "name": "Ki-Empowered Strikes",
+    "desc": "Starting at 6th level, your unarmed strikes count as magical for the purpose of overcoming resistance and immunity to nonmagical attacks and damage."
+   }
+  ],
+  "7": [
+   {
+    "name": "Evasion",
+    "desc": "At 7th level, your instinctive agility lets you dodge out of the way of certain area effects, such as a blue dragon's lightning breath or a fireball spell. When you are subjected to an effect that..."
+   },
+   {
+    "name": "Stillness of Mind",
+    "desc": "Starting at 7th level, you can use your action to end one effect on yourself that is causing you to be charmed or frightened."
+   }
+  ],
+  "9": [
+   {
+    "name": "Unarmored Movement improvement",
+    "desc": "Unarmored Movement improvement"
+   }
+  ],
+  "10": [
+   {
+    "name": "Purity of Body",
+    "desc": "At 10th level, your mastery of the ki flowing through you makes you immune to disease and poison."
+   }
+  ],
+  "13": [
+   {
+    "name": "Tongue of the Sun and Moon",
+    "desc": "Starting at 13th level, you learn to touch the ki of other minds so that you understand all spoken languages. Moreover, any creature that can understand a language can understand what you say."
+   }
+  ],
+  "14": [
+   {
+    "name": "Diamond Soul",
+    "desc": "Beginning at 14th level, your mastery of ki grants you proficiency in all saving throws. Additionally, whenever you make a saving throw and fail, you can spend 1 ki point to reroll it and take the..."
+   }
+  ],
+  "15": [
+   {
+    "name": "Timeless Body",
+    "desc": "At 15th level, your ki sustains you so that you suffer none of the frailty of old age, and you can't be aged magically. You can still die of old age, however. In addition, you no longer need food or..."
+   }
+  ],
+  "18": [
+   {
+    "name": "Empty Body",
+    "desc": "Beginning at 18th level, you can use your action to spend 4 ki points to become invisible for 1 minute. During that time, you also have resistance to all damage but force damage. Additionally, you..."
+   }
+  ],
+  "20": [
+   {
+    "name": "Perfect Self",
+    "desc": "At 20th level, when you roll for initiative and have no ki points remaining, you regain 4 ki points. window['nitroAds'].createAd('wad-dnd5e-floating-video', { \"refreshTime\": 30, \"format\": \"floating\"..."
+   }
+  ]
+ },
+ "styles": [],
+ "subclasses": [
+  {
+   "name": "Ascendant Dragon",
+   "source": "Fizban's Treasury of Dragons",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Draconic Disciple",
+      "desc": "At 3rd level, you can channel draconic power to magnify your presence and imbue your unarmed strikes with the essence of a dragon’s breath...."
+     },
+     {
+      "name": "Breath of the Dragon",
+      "desc": "At 3rd level you can channel destructive waves of energy, like those created by the dragons you emulate. When you take the Attack action on..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Wings Unfurled",
+      "desc": "At 6th level when you use your Step of the Wind, you can unfurl spectral draconic wings from your back that vanish at the end of your turn...."
+     }
+    ],
+    "11": [
+     {
+      "name": "Aspect of the Wyrm",
+      "desc": "At 11th level the power of your draconic spirit now radiates from you, warding your allies or inspiring fear in your enemies. As a bonus..."
+     }
+    ],
+    "17": [
+     {
+      "name": "Ascendant Aspect",
+      "desc": "At 17th level, your draconic spirit reaches its peak. You gain the following benefits: Augment Breath. When you use your Breath of the..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Astral Self",
+   "source": "Tasha's Cauldron of Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Arms of the Astral Self",
+      "desc": "At 3rd level, your mastery of your ki allows you to summon a portion of your astral self. As a bonus action, you can spend 1 ki point to..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Visage of the Astral Self",
+      "desc": "When you reach 6th level, you can summon the visage of your astral self. As a bonus action, or as part of the bonus action you take to..."
+     }
+    ],
+    "11": [
+     {
+      "name": "Body of the Astral Self",
+      "desc": "Starting at 11th level, when you have both your astral arms and visage summoned, you can cause the body of your astral self to appear (no..."
+     }
+    ],
+    "17": [
+     {
+      "name": "Awakened Astral Self",
+      "desc": "Starting at 17th level, your connection to your astral self is complete, allowing you to unleash its full potential. As a bonus action, you..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Drunken Master",
+   "source": "Xanathar's Guide to Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Bonus Proficiencies",
+      "desc": "When you choose this tradition at 3rd level, you gain proficiency in the Performance skill if you don't already have it. Your martial arts..."
+     },
+     {
+      "name": "Drunken Technique",
+      "desc": "At 3rd level, you learn how to twist and turn quickly as part of your Flurry of Blows. Whenever you use Flurry of Blows, you gain the..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Tipsy Sway",
+      "desc": "Starting at 6th level, you can move in sudden, swaying ways. You gain the following benefits. Leap to Your Feet. When you're prone, you can..."
+     }
+    ],
+    "11": [
+     {
+      "name": "Drunkard's Luck",
+      "desc": "Starting at 11th level, you always seem to get a lucky bounce at the right moment. When you make an ability check, an attack roll, or a..."
+     }
+    ],
+    "17": [
+     {
+      "name": "Intoxicated Frenzy",
+      "desc": "At 17th level, you gain the ability to make an overwhelming number of attacks against a group of enemies. When you use your Flurry of..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Four Elements",
+   "source": "Player's Handbook",
+   "needs_spells": true,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Disciple of the Elements",
+      "desc": "When you choose this tradition at 3rd level, you learn magical disciplines that harness the power of the four elements. A discipline..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Kensei",
+   "source": "Xanathar's Guide to Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Path of the Kensei",
+      "desc": "When you choose this tradition at 3rd level, your special martial arts training leads you to master the use of certain weapons. This path..."
+     }
+    ],
+    "6": [
+     {
+      "name": "One with the Blade",
+      "desc": "At 6th level, you extend your ki into your kensei weapons, granting you the following benefits. Magic Kensei Weapons. Your attacks with..."
+     }
+    ],
+    "11": [
+     {
+      "name": "Sharpen the Blade",
+      "desc": "At 11th level, you gain the ability to augment your weapons further with your ki. As a bonus action, you can expend up to 3 ki points to..."
+     }
+    ],
+    "17": [
+     {
+      "name": "Unerring Accuracy",
+      "desc": "At 17th level, your mastery of weapons grants you extraordinary accuracy. If you miss with an attack roll using a monk weapon on your turn..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Long Death",
+   "source": "Sword Coast Adventurer's Guide",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Touch of Death",
+      "desc": "Starting when you choose this tradition at 3rd level, your study of death allows you to extract vitality from another creature as it nears..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Hour of Reaping",
+      "desc": "At 6th level, you gain the ability to unsettle or terrify those around you as an action, for your soul has been touched by the shadow of..."
+     }
+    ],
+    "11": [
+     {
+      "name": "Mastery of Death",
+      "desc": "Beginning at 11th level, you use your familiarity with death to escape its grasp. When you are reduced to 0 hit points, you can expend 1 ki..."
+     }
+    ],
+    "17": [
+     {
+      "name": "Touch of the Long Death",
+      "desc": "Starting at 17th level, your touch can channel the energy of death into a creature. As an action, you touch one creature within 5 feet of..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Mercy",
+   "source": "Tasha's Cauldron of Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Implements of Mercy",
+      "desc": "When you choose this tradition at 3rd level, you gain proficiency in the Insight and Medicine skills, and you gain proficiency with the..."
+     },
+     {
+      "name": "Hands of Healing",
+      "desc": "At 3rd level, your mystical touch can mend wounds. As an action, you can spend 1 ki point to touch a creature and restore a number of hit..."
+     },
+     {
+      "name": "Hands of Harm",
+      "desc": "At 3rd level, you use your ki to inflict wounds. When you hit a creature with an unarmed strike, you can spend 1 ki point to deal extra..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Physician's Touch",
+      "desc": "Starting at 6th level, you can administer even greater cures with a touch, and if you feel it's necessary, you can use your knowledge to..."
+     }
+    ],
+    "11": [
+     {
+      "name": "Flurry of Healing and Harm",
+      "desc": "Starting at 11th level, you can now mete out a flurry of comfort and hurt. When you use Flurry of Blows, you can now replace each of the..."
+     }
+    ],
+    "17": [
+     {
+      "name": "Hand of Ultimate Mercy",
+      "desc": "By 17th level, your mastery of life energy opens the door to the ultimate mercy. As an action, you can touch the corpse of a creature that..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Open Hand",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Open Hand Technique",
+      "desc": "Starting when you choose this tradition at 3rd level, you can manipulate your enemy's ki when you harness your own. Whenever you hit a..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Wholeness of Body",
+      "desc": "At 6th level, you gain the ability to heal yourself. As an action, you can regain hit points equal to three times your monk level. You must..."
+     }
+    ],
+    "11": [
+     {
+      "name": "Tranquility",
+      "desc": "Beginning at 11th level, you can enter a special meditation that surrounds you with an aura of peace. At the end of a long rest, you gain..."
+     }
+    ],
+    "17": [
+     {
+      "name": "Quivering Palm",
+      "desc": "At 17th level, you gain the ability to set up lethal vibrations in someone's body. When you hit a creature with an unarmed strike, you can..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Shadow",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Shadow Arts",
+      "desc": "Starting when you choose this tradition at 3rd level, you can use your ki to duplicate the effects of certain spells. As an action, you can..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Shadow Step",
+      "desc": "At 6th level, you gain the ability to step from one shadow into another. When you are in dim light or darkness, as a bonus action you can..."
+     }
+    ],
+    "11": [
+     {
+      "name": "Cloak of Shadows",
+      "desc": "By 11th level, you have learned to become one with the shadows. When you are in an area of dim light or darkness, you can use your action..."
+     }
+    ],
+    "17": [
+     {
+      "name": "Opportunist",
+      "desc": "At 17th level, you can exploit a creature's momentary distraction when it is hit by an attack. Whenever a creature within 5 feet of you is..."
+     }
+    ]
+   }
+  }
+ ]
+}

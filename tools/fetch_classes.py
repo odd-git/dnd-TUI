@@ -20,6 +20,23 @@ def res(i, n, rc, mx, **kw):
 
 
 CONFIG = {
+    "monk": {
+        "strip": r"^Way of (the )?",
+        "subclass_title": "Monastic Tradition",
+        "columns": {"Martial Arts": ["martial_arts", "die"], "Ki Points": "ki"},
+        "resources": [res("ki", "Ki", "short", "table")],
+        "toggles": [],
+        "actions": [
+            {"name": "Unarmed Strike", "desc": "Martial Arts: bonus action strike after the Attack action", "ability": "FINESSE",
+             "dice": [1, 4], "die_table": "martial_arts", "dmg_ability": True, "dmg_type": "bludgeoning"},
+            {"name": "Flurry of Blows", "desc": "1 ki, bonus action after Attack: two unarmed strikes", "uses": "ki", "min_level": 2},
+            {"name": "Patient Defense", "desc": "1 ki, bonus action: Dodge", "uses": "ki", "min_level": 2},
+            {"name": "Step of the Wind", "desc": "1 ki, bonus action: Disengage or Dash, jump distance doubled", "uses": "ki", "min_level": 2},
+            {"name": "Stunning Strike", "desc": "1 ki on a hit: CON save DC {dc:WIS} or stunned until your next turn", "uses": "ki", "min_level": 5},
+        ],
+        "unarmored": {"ability": "WIS", "shield": False},
+        "attacks": {"1": 1, "5": 2},
+    },
     "rogue": {
         "strip": r"^$",
         "subclass_title": "Roguish Archetype",
@@ -157,6 +174,8 @@ def subclass(slug, level, strip):
             para.append(t)
     flush()
     title = re.sub(r"^[A-Za-z]+:\s*", "", page_name(sh, slug))
+    if "(HB)" in title:  # homebrew pages hosted on the wiki
+        return None
     return {"name": re.sub(strip, "", title, flags=re.I), "source": src, "needs_spells": False, "resources": [], "actions": [],
             "maneuver_pool": None, "tables": {}, "dice": {}, "maneuvers_known": {}, "features": by_level}
 
@@ -191,14 +210,18 @@ def build(slug):
             else:
                 desc = clip(" ".join(sections.get(name, [name])), 200)
                 features.setdefault(str(lvl), []).append({"name": name, "desc": desc})
-    tables = {tid: steps([num(v) for v in col[c]]) for c, tid in cfg["columns"].items()}
+    tables = {}
+    for c, spec in cfg["columns"].items():
+        tid, die = (spec, False) if isinstance(spec, str) else spec
+        vals = [int(re.fullmatch(r"\d+d(\d+)", v)[1]) if die else num(v) for v in col[c]]
+        tables[tid] = steps(vals)
     subs = []
     for s in w.slugs(slug + ":"):
         if s.endswith("-ua") or s.count(":") != 1:
             continue
         sub = subclass(s, sub_level, cfg["strip"])
         if sub:
-            sub["needs_spells"] = s.endswith("arcane-trickster")
+            sub["needs_spells"] = s.endswith(("arcane-trickster", "four-elements"))
             subs.append(sub)
     return {
         "name": slug.capitalize(), "hit_die": hit_die, "saves": saves, "skills": skills, "armor": arm, "weapons": wp,

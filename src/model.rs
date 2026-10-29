@@ -80,6 +80,8 @@ pub struct ActionDef {
     pub uses: Option<String>,      // resource spent
     pub cost: Vec<String>,         // first resource with something left is spent (spell slots)
     pub dice_table: Option<String>, // level table giving the number of dice (Sneak Attack)
+    pub die_table: Option<String>,  // level table giving the die size (Martial Arts)
+    pub min_level: u32,             // hidden below this level
 }
 
 #[derive(Serialize, Deserialize, Clone, Default)]
@@ -154,10 +156,9 @@ impl Character {
     }
     /// Dice of an action, the count coming from a level table when it has one.
     pub fn dice(&self, a: &ActionDef) -> Option<(u32, u32)> {
-        match &a.dice_table {
-            Some(t) => Some((self.prog().and_then(|p| p.resources.get(t)).map_or(1, |t| at(t, self.level)), a.dice.map_or(6, |d| d.1))),
-            None => a.dice,
-        }
+        let (n, sides) = a.dice?;
+        let table = |t: &Option<String>| t.as_ref().and_then(|t| self.prog()?.resources.get(t)).map(|t| at(t, self.level));
+        Some((table(&a.dice_table).unwrap_or(n), table(&a.die_table).unwrap_or(sides)))
     }
     pub fn dc(&self, ab: &str) -> i32 { 8 + self.prof() + self.md(ab) }
     pub fn title(&self) -> String { self.class_title.replace("{level}", &self.level.to_string()) }

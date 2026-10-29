@@ -3,7 +3,7 @@
 use std::collections::BTreeMap;
 
 use crate::lists::{self, Weapon};
-use crate::model::{ActionDef, Character, Feature, ResourceDef, ABILITIES};
+use crate::model::{mod_of, ActionDef, Character, Feature, ResourceDef, ABILITIES};
 
 #[derive(Default, Clone)]
 pub struct Draft {
@@ -121,6 +121,9 @@ pub fn build(d: &Draft) -> Character {
     if let Some(s) = sub { resources.extend(s.resources.clone()); }
     resources.push(ResourceDef { id: "hit_dice".into(), name: "Hit Dice".into(), recharge: String::new(), max: Some(crate::model::Max::Kw("level".into())), start: None, pips: false, die: None });
     let mut actions: Vec<ActionDef> = class.actions.clone();
+    // "FINESSE": whichever of STR/DEX is higher (Martial Arts)
+    let best = if mod_of(abilities["DEX"]) >= mod_of(abilities["STR"]) { "DEX" } else { "STR" };
+    for a in &mut actions { if a.ability.as_deref() == Some("FINESSE") { a.ability = Some(best.into()); } }
     if let Some(s) = sub { actions.extend(s.actions.clone()); }
 
     let title = match sub { Some(s) => format!("{} {{level}} ({})", class.name, s.name), None => format!("{} {{level}}", class.name) };
@@ -304,6 +307,32 @@ mod tests {
         assert_eq!(c.check_mod("Stealth"), 3 + 4);
         assert_eq!(c.check_mod("Insight"), 0 + 2);
         assert_eq!(c.check_mod("Arcana"), 1);
+    }
+
+    fn monk(level: u32) -> Character {
+        let s = |x: &str| x.to_string();
+        build(&Draft {
+            name: s("Lin"), lineage: s("Human"), class: s("Monk"), subclass: Some(s("Open Hand")), level, background: s("Hermit"),
+            base: [("STR", 10), ("DEX", 15), ("CON", 13), ("INT", 8), ("WIS", 14), ("CHA", 8)].iter().map(|(a, v)| (a.to_string(), *v)).collect(),
+            class_skills: vec![s("Acrobatics"), s("Athletics")], ..Default::default()
+        })
+    }
+
+    #[test]
+    fn monk_matches_the_wikidot_table() {
+        // (level, proficiency, ki, martial arts die)
+        for (lvl, prof, ki, die) in [(1, 2, 0, 4), (5, 3, 5, 6), (11, 4, 11, 8), (17, 6, 17, 10), (20, 6, 20, 10)] {
+            let c = monk(lvl);
+            assert_eq!(c.prof(), prof, "prof at {lvl}");
+            assert_eq!(c.res_max("ki"), Some(ki), "ki at {lvl}");
+            let strike = c.actions.iter().find(|a| a.name == "Unarmed Strike").unwrap();
+            assert_eq!(c.dice(strike), Some((1, die)), "martial arts at {lvl}");
+            assert_eq!(strike.ability.as_deref(), Some("DEX"));
+        }
+        assert_eq!(monk(1).ac(), Some(10 + 3 + 2)); // DEX 16, WIS 15
+        assert_eq!(monk(1).hp_max(), Some(8 + 2)); // CON 14
+        assert!(monk(5).features.iter().any(|f| f.name == "Extra Attack"));
+        assert!(monk(3).features.iter().any(|f| f.name == "Deflect Missiles"));
     }
 
     #[test]

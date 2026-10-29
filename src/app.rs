@@ -152,7 +152,7 @@ impl App {
     /// Actions and toggles shown in the list (an action whose resource has no uses at this level is hidden).
     pub fn visible(&self) -> Vec<Item> {
         let mut v: Vec<Item> = (0..self.ch.actions.len())
-            .filter(|&i| self.ch.actions[i].uses.as_ref().map_or(true, |u| self.ch.res_max(u) != Some(0)))
+            .filter(|&i| self.ch.actions[i].uses.as_ref().map_or(true, |u| self.ch.res_max(u) != Some(0)) && self.ch.level >= self.ch.actions[i].min_level)
             .map(Item::Action).collect();
         v.extend((0..self.ch.toggles.len()).map(Item::Toggle));
         v

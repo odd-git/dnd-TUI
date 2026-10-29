@@ -236,7 +236,8 @@ pub fn classes() -> &'static Vec<ClassData> {
     static C: OnceLock<Vec<ClassData>> = OnceLock::new();
     C.get_or_init(|| {
         [include_str!("../data/lists/classes/fighter.json"), include_str!("../data/lists/classes/barbarian.json"),
-         include_str!("../data/lists/classes/rogue.json")]
+         include_str!("../data/lists/classes/rogue.json"),
+         include_str!("../data/lists/classes/monk.json")]
             .iter().map(|j| serde_json::from_str(j).expect("class json")).collect()
     })
 }
