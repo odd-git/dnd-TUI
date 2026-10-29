@@ -205,6 +205,24 @@ impl App {
                 self.open(Step::Smite);
             }
             "companion" => self.open(Step::Companion),
+            "tides" => {
+                if self.have("tides_of_chaos") == 0 { return self.say("Tides of Chaos: used, back after a long rest or a surge.", Tone::Warn); }
+                self.snap();
+                *self.ch.res.entry("tides_of_chaos".into()).or_insert(1) -= 1;
+                self.adv = Adv::Adv;
+                self.say("Tides of Chaos: advantage on the next roll.", Tone::Good);
+            }
+            "surge" => {
+                let Some(table) = self.ch.classes().iter().find_map(|(p, _)| lists::sub_of(p).filter(|s| !s.surge_table.is_empty())).map(|s| &s.surge_table) else { return };
+                self.snap();
+                // Controlled Chaos (14th level): roll twice and choose
+                let rolls = if self.has_feature("Controlled Chaos") > 0 { 2 } else { 1 };
+                for _ in 0..rolls {
+                    let r = d(100);
+                    self.say(format!("Wild Magic Surge {r:02}: {}", table[(r as usize - 1) / 2]), Tone::Warn);
+                }
+                if let Some(max) = self.ch.res_max("tides_of_chaos") { self.ch.res.insert("tides_of_chaos".into(), max); }
+            }
             "moon_heal" => {
                 if self.ch.beast.is_none() { return self.say("Only in beast form.", Tone::Warn); }
                 if self.slot_options(1).is_empty() { return self.say("No slots left!", Tone::Warn); }

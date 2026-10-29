@@ -287,6 +287,7 @@ pub struct Subclass {
     #[serde(default)] pub options: BTreeMap<String, Table>, // options known by level, like the class's (Elemental Disciplines)
     #[serde(default)] pub hp_per_level: i32,     // extra HP per level in the class (Draconic Resilience)
     #[serde(default)] pub unarmored_ac: Option<i32>, // base AC without armor (Draconic Resilience: 13 + DEX)
+    #[serde(default)] pub surge_table: Vec<String>,  // d100 table, two rolls per entry (Wild Magic Surge)
     pub maneuver_pool: Option<String>,
     #[serde(default)] pub tables: BTreeMap<String, Table>,
     #[serde(default)] pub dice: BTreeMap<String, Table>,

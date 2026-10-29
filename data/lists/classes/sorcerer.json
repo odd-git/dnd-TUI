@@ -830,8 +830,39 @@
    "name": "Wild Magic",
    "source": "Player's Handbook",
    "needs_spells": false,
-   "resources": [],
-   "actions": [],
+   "resources": [
+    {
+     "id": "tides_of_chaos",
+     "name": "Tides of Chaos",
+     "recharge": "long",
+     "max": 1,
+     "pips": true
+    }
+   ],
+   "actions": [
+    {
+     "name": "Tides of Chaos",
+     "desc": "Advantage on your next attack, check or save; back after a long rest or a surge",
+     "uses": "tides_of_chaos",
+     "special": "tides"
+    },
+    {
+     "name": "Wild Magic Surge",
+     "desc": "Roll on the surge table (the DM calls it, or a 1 on the d20 after a sorcerer spell)",
+     "special": "surge"
+    },
+    {
+     "name": "Bend Luck",
+     "desc": "Reaction, 2 points: add or take the roll from another creature's attack, check or save",
+     "uses": "sorcery_points",
+     "spend": 2,
+     "dice": [
+      1,
+      4
+     ],
+     "min_level": 6
+    }
+   ],
    "maneuver_pool": null,
    "tables": {},
    "dice": {},
@@ -870,7 +901,59 @@
       "url": "http://dnd5e.wikidot.com/sorcerer:wild-magic"
      }
     ]
-   }
+   },
+   "surge_table": [
+    "Roll on this table at the start of each turn for 1 minute (ignore this result again)",
+    "See invisible creatures in line of sight for 1 minute",
+    "A modron run by the DM appears next to you for 1 minute",
+    "Fireball (3rd level) centered on you",
+    "Magic Missile at 5th level",
+    "Roll d10: your height changes that many inches, odd shrinks, even grows",
+    "Confusion centered on you",
+    "Regain 5 HP at the start of each turn for 1 minute",
+    "A feather beard until you sneeze, then it bursts off",
+    "Grease centered on you",
+    "Your next save-based spell within 1 minute: its targets save at disadvantage",
+    "Skin turns bright blue until Remove Curse",
+    "A third eye for 1 minute: advantage on sight-based Perception",
+    "For 1 minute, 1-action spells take a bonus action",
+    "Teleport up to 60 ft to a spot you can see",
+    "Sent to the Astral Plane until the end of your next turn, then back",
+    "Your next damaging spell within 1 minute deals maximum damage",
+    "Roll d10: your age changes that many years, odd younger (min 1), even older",
+    "1d6 frightened flumphs (the DM's) appear within 60 ft for 1 minute",
+    "Regain 2d10 HP",
+    "A potted plant until your next turn starts: incapacitated, vulnerable to all damage; 0 HP breaks the pot",
+    "Bonus-action teleport of 20 ft each turn for 1 minute",
+    "Levitate on yourself",
+    "A unicorn run by the DM appears beside you for 1 minute",
+    "Mute for 1 minute: pink bubbles instead of words",
+    "Spectral shield for 1 minute: +2 AC, immune to Magic Missile",
+    "Alcohol can't make you drunk for 5d6 days",
+    "Bald for up to 24 hours",
+    "For 1 minute, unattended flammable things you touch catch fire",
+    "Regain your lowest expended spell slot",
+    "For 1 minute you can only shout",
+    "Fog Cloud centered on you",
+    "Up to three chosen creatures within 30 ft take 4d10 lightning",
+    "Frightened of the nearest creature until your next turn ends",
+    "All creatures within 30 ft turn invisible for 1 minute, until each attacks or casts",
+    "Resistance to all damage for 1 minute",
+    "A random creature within 60 ft is poisoned for 1d4 hours",
+    "1 minute of 30 ft bright light; anyone ending a turn within 5 ft is blinded to its next turn's end",
+    "Polymorph on yourself: fail the save and you are a sheep",
+    "Illusory butterflies and petals around you for 1 minute",
+    "One extra action right now",
+    "Everything within 30 ft takes 1d10 necrotic; you heal the total",
+    "Mirror Image",
+    "Fly on a random creature within 60 ft",
+    "Invisible and silent for 1 minute, until you attack or cast",
+    "Die within 1 minute and you come back as by Reincarnate",
+    "One size larger for 1 minute",
+    "You and all within 30 ft are vulnerable to piercing for 1 minute",
+    "Faint ghostly music around you for 1 minute",
+    "Regain all sorcery points"
+   ]
   }
  ]
 }

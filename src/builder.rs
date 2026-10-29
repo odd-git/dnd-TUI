@@ -516,6 +516,9 @@ mod tests {
         (shield.ac_shield, shield.ac_base) = (true, Some(12));
         assert_eq!(shield.ac(), Some(13 + 2 + 2));
         assert_eq!(lists::options("dragon_ancestor").iter().find(|o| o.name == "Red").map(|o| o.desc.as_str()), Some("Fire"));
+        assert_eq!(lists::sub_of("Sorcerer/Wild Magic").map(|s| s.surge_table.len()), Some(50));
+        let bend = w.actions.iter().find(|a| a.name == "Bend Luck").unwrap();
+        assert_eq!((bend.spend, w.dice(bend), w.res_max("tides_of_chaos")), (2, Some((1, 4)), Some(1)));
     }
 
     #[test]
