@@ -104,6 +104,7 @@ pub struct Toggle {
     pub uses: Option<String>,        // resource spent when switched on (Rage)
     pub dmg_table: Option<String>,   // level table of a flat damage bonus
     pub dmg_ability: Option<String>, // ...applied to attacks made with this ability
+    pub exhaust: bool,               // one exhaustion level when switched off (Frenzy)
 }
 
 /// Something carried: weight is per item, in pounds.

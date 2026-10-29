@@ -270,6 +270,7 @@ pub struct Subclass {
     pub source: String,
     #[serde(default)] pub resources: Vec<ResourceDef>,
     #[serde(default)] pub actions: Vec<ActionDef>,
+    #[serde(default)] pub toggles: Vec<Toggle>,
     pub maneuver_pool: Option<String>,
     #[serde(default)] pub tables: BTreeMap<String, Table>,
     #[serde(default)] pub dice: BTreeMap<String, Table>,

@@ -311,7 +311,13 @@
    "source": "Player's Handbook",
    "needs_spells": false,
    "resources": [],
-   "actions": [],
+   "actions": [
+    {
+     "name": "Intimidating Presence",
+     "desc": "Action: scare one creature within 30 ft, WIS save DC {dc:CHA} or frightened until your next turn ends",
+     "min_level": 10
+    }
+   ],
    "maneuver_pool": null,
    "tables": {},
    "dice": {},
@@ -345,7 +351,14 @@
       "url": "http://dnd5e.wikidot.com/barbarian:berserker"
      }
     ]
-   }
+   },
+   "toggles": [
+    {
+     "name": "Frenzy",
+     "exhaust": true,
+     "desc": "While raging: an extra melee swing each turn (bonus action); +1 exhaustion when you stop"
+    }
+   ]
   },
   {
    "name": "Giant",

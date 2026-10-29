@@ -75,6 +75,9 @@ impl App {
         for a in cd.actions.iter().chain(sd.iter().flat_map(|s| s.actions.iter())) {
             if !self.ch.actions.iter().any(|x| x.name == a.name) { self.ch.actions.push(a.clone()); }
         }
+        for t in cd.toggles.iter().chain(sd.iter().flat_map(|s| s.toggles.iter())) {
+            if !self.ch.toggles.iter().any(|x| x.name == t.name) { self.ch.toggles.push(t.clone()); }
+        }
         let extra: Vec<String> = self.ch.multi.iter().map(|e| e.prog.split('/').next().unwrap_or("").to_string()).collect();
         for c in extra { self.hit_dice_pool(&c); }
         self.ch.sync_spell_resources();

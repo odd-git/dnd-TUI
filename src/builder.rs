@@ -160,7 +160,7 @@ pub fn build(d: &Draft) -> Character {
         maneuvers: d.maneuvers.clone(),
         resources,
         actions: vec![],
-        toggles: class.toggles.clone(),
+        toggles: class.toggles.iter().chain(sub.iter().flat_map(|s| s.toggles.iter())).cloned().collect(),
         features,
         info: vec![],
         journal: vec![],
@@ -275,6 +275,16 @@ mod tests {
         assert!(barbarian(11).features.iter().any(|f| f.name == "Relentless Rage"));
         assert!(!barbarian(5).features.iter().any(|f| f.name == "Relentless Rage"));
         assert!(barbarian(3).features.iter().any(|f| f.name == "Frenzy"));
+    }
+
+    #[test]
+    fn berserker_frenzy_and_presence() {
+        let c = barbarian(3);
+        assert!(c.toggles.iter().any(|t| t.name == "Frenzy" && t.exhaust));
+        assert!(c.toggles.iter().any(|t| t.name == "Rage"));
+        let presence = c.actions.iter().find(|a| a.name == "Intimidating Presence").expect("presence");
+        assert_eq!(presence.min_level, 10);
+        assert!(c.fmt(&presence.desc).contains("DC 9")); // 8 + prof 2 + CHA -1 (9 after the Human bonus)
     }
 
     #[test]

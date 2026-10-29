@@ -146,6 +146,16 @@ CONFIG = {
 }
 
 
+# PHB subclass mechanics the page cannot say (like BATTLE_MASTER in fetch_lists.py), merged into the scraped subclass
+SUB_MECH = {
+    "barbarian": {
+        "Berserker": {
+            "toggles": [{"name": "Frenzy", "exhaust": True, "desc": "While raging: an extra melee swing each turn (bonus action); +1 exhaustion when you stop"}],
+            "actions": [{"name": "Intimidating Presence", "desc": "Action: scare one creature within 30 ft, WIS save DC {dc:CHA} or frightened until your next turn ends", "min_level": 10}],
+        },
+    },
+}
+
 def split_top(s):
     """Split on commas outside parentheses."""
     out, depth, cur = [], 0, ""
@@ -387,6 +397,7 @@ def build(slug):
             continue
         sub = subclass(s, sub_level, cfg["strip"], cfg.get("spell_table"))
         if sub:
+            sub.update(SUB_MECH.get(slug, {}).get(sub["name"], {}))
             sub["needs_spells"] = s.endswith("four-elements")
             if s.endswith("arcane-trickster"):
                 sub["casting"] = third_caster(s, "Rogue", {"ability": "INT", "kind": "third", "mode": "known", "list": "Wizard"})

@@ -519,6 +519,7 @@ impl App {
                 if let Some(p) = self.ch.active.iter().position(|x| *x == n) {
                     self.ch.active.remove(p);
                     self.say(format!("{n}: OFF"), Tone::Dim);
+                    if self.ch.toggles[t].exhaust { self.set_exhaustion((self.ch.exhaustion + 1).min(6)); }
                 } else {
                     if let Some(u) = self.ch.toggles[t].uses.clone() {
                         if self.have(&u) == 0 { return self.say(format!("{n}: none left!"), Tone::Warn); }
@@ -575,6 +576,14 @@ impl App {
         } else {
             self.say(format!(" >> Damage: {} {} ({base}{bonus:+})", base + bonus, a.dmg_type), Tone::Good);
         }
+    }
+
+    /// Exhaustion level `n`: HP clamped to the (maybe halved) maximum, death at 6.
+    fn set_exhaustion(&mut self, n: u8) {
+        self.ch.exhaustion = n;
+        if let (Some(hp), Some(max)) = (self.ch.hp, self.ch.hp_max()) { self.ch.hp = Some(hp.min(max)); }
+        if n == 6 { self.ch.hp = Some(0); self.ch.death = [0, 3]; }
+        self.say(format!("Exhaustion {n}{}", if n == 0 { String::new() } else { format!(": {}", self.ch.exhaustion_text()) }), if n == 0 { Tone::Good } else { Tone::Warn });
     }
 
     fn maneuver_die(&mut self) {
@@ -895,10 +904,7 @@ impl App {
             }
             Step::Exhaustion => {
                 self.snap();
-                self.ch.exhaustion = i.min(6) as u8;
-                if let (Some(hp), Some(max)) = (self.ch.hp, self.ch.hp_max()) { self.ch.hp = Some(hp.min(max)); }
-                if i == 6 { self.ch.hp = Some(0); self.ch.death = [0, 3]; }
-                self.say(format!("Exhaustion {i}{}", if i == 0 { String::new() } else { format!(": {}", self.ch.exhaustion_text()) }), if i == 0 { Tone::Good } else { Tone::Warn });
+                self.set_exhaustion(i.min(6) as u8);
             }
             Step::Items => {
                 let ids: Vec<String> = self.ch.resources.iter().filter(|r| r.max.is_none()).map(|r| r.id.clone()).collect();
@@ -1040,6 +1046,7 @@ impl App {
         self.ch.maneuver_pool = sub.maneuver_pool.clone();
         for r in &sub.resources { if self.ch.def(&r.id).is_none() { self.ch.resources.push(r.clone()); } }
         for a in &sub.actions { if !self.ch.actions.iter().any(|x| x.name == a.name) { self.ch.actions.push(a.clone()); } }
+        for t in &sub.toggles { if !self.ch.toggles.iter().any(|x| x.name == t.name) { self.ch.toggles.push(t.clone()); } }
         for (_, fs) in sub.features.range(..=level) {
             for f in fs {
                 self.ch.features.push(f.clone());
@@ -1076,7 +1083,7 @@ impl App {
         for a in cd.actions.iter().chain(sd.iter().flat_map(|s| s.actions.iter())) {
             if a.min_level <= level && !self.ch.actions.iter().any(|x| x.name == a.name) { self.ch.actions.push(ActionDef { min_level: 0, ..a.clone() }); }
         }
-        for t in &cd.toggles { if !self.ch.toggles.iter().any(|x| x.name == t.name) { self.ch.toggles.push(t.clone()); } }
+        for t in cd.toggles.iter().chain(sd.iter().flat_map(|s| s.toggles.iter())) { if !self.ch.toggles.iter().any(|x| x.name == t.name) { self.ch.toggles.push(t.clone()); } }
         for (_, fs) in sd.iter().flat_map(|s| s.features.range(..=level)) {
             for f in fs { if !self.ch.features.iter().any(|x| x.name == f.name) { self.ch.features.push(f.clone()); } }
         }
