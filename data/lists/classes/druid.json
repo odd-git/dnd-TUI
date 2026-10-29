@@ -293,11 +293,16 @@
    "id": "wild_shape",
    "name": "Wild Shape",
    "recharge": "short",
-   "max": 2,
+   "max": "table",
    "pips": true
   }
  ],
- "tables": {},
+ "tables": {
+  "wild_shape": {
+   "2": 2,
+   "20": 99
+  }
+ },
  "actions": [
   {
    "name": "Wild Shape",

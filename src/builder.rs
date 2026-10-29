@@ -370,6 +370,7 @@ mod tests {
         assert!(["Blur", "Silence", "Create Food and Water", "Protection from Energy"].iter().all(|n| c.castable().contains(&n.to_string())));
         assert!(!c.castable().contains(&"Blight".to_string()));
         assert_eq!(c.res_max("natural_recovery"), Some(1));
+        assert_eq!([1, 2, 19, 20].map(|l| druid("Moon", l).res_max("wild_shape")), [Some(0), Some(2), Some(2), Some(99)]); // Archdruid
         assert!(cleric("Trickery", 3).castable().contains(&"Pass Without Trace".to_string()));
     }
 
