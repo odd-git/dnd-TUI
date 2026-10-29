@@ -41,7 +41,7 @@ fn rows_needed(lines: &[Line], width: u16) -> u16 {
 }
 
 fn bar(cur: i32, max: i32) -> String {
-    let n = if max > 0 { (20 * cur.max(0) / max) as usize } else { 0 };
+    let n = if max > 0 { (20 * cur.clamp(0, max) / max) as usize } else { 0 };
     format!("{}{}", "█".repeat(n), "░".repeat(20 - n))
 }
 
