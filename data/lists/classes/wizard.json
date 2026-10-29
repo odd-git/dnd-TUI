@@ -748,10 +748,28 @@
    "name": "Illusion",
    "source": "Player's Handbook",
    "needs_spells": false,
-   "resources": [],
-   "actions": [],
+   "resources": [
+    {
+     "id": "illusory_self",
+     "name": "Illusory Self",
+     "recharge": "short",
+     "max": "table",
+     "pips": true
+    }
+   ],
+   "actions": [
+    {
+     "name": "Illusory Self",
+     "desc": "Reaction: an attack roll against you automatically misses",
+     "uses": "illusory_self"
+    }
+   ],
    "maneuver_pool": null,
-   "tables": {},
+   "tables": {
+    "illusory_self": {
+     "10": 1
+    }
+   },
    "dice": {},
    "maneuvers_known": {},
    "features": {
@@ -787,6 +805,11 @@
       "desc": "Bonus action: one harmless nonmagical object in your illusion becomes real for 1 min.",
       "url": "http://dnd5e.wikidot.com/wizard:illusion"
      }
+    ]
+   },
+   "always": {
+    "2": [
+     "Minor Illusion"
     ]
    }
   },

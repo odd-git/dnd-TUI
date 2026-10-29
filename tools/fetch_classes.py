@@ -398,6 +398,12 @@ SUB_MECH = {
             {"name": "Instinctive Charm", "desc": "Reaction to an attack from within 30 ft: WIS save DC {dc:INT} or it must attack the creature nearest to it instead", "min_level": 6},
         ]},
         "Evocation": {"toggles": [{"name": "Overchannel", "min_level": 14, "desc": "Your next 1st-5th level wizard spell deals maximum damage; after the first use per long rest it hurts you"}]},
+        "Illusion": {
+            "always": {"2": ["Minor Illusion"]},
+            "tables": {"illusory_self": {"10": 1}},
+            "resources": [res("illusory_self", "Illusory Self", "short", "table")],
+            "actions": [{"name": "Illusory Self", "desc": "Reaction: an attack roll against you automatically misses", "uses": "illusory_self"}],
+        },
     },
 }
 

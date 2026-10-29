@@ -564,6 +564,13 @@ mod tests {
     }
 
     #[test]
+    fn illusionist_minor_illusion_and_self() {
+        let c = wizard("Illusion", 10);
+        assert!(c.castable().contains(&"Minor Illusion".to_string()));
+        assert_eq!((c.res_max("illusory_self"), wizard("Illusion", 9).res_max("illusory_self")), (Some(1), Some(0)));
+    }
+
+    #[test]
     fn arcane_ward_starts_empty() {
         let c = wizard("Abjuration", 6);
         assert_eq!(c.res_max("arcane_ward"), Some(2 * 6 + 3)); // INT 16
