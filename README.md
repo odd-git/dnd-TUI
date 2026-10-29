@@ -15,6 +15,14 @@ In combat `G` adds temporary HP (the higher value stays, a long rest clears them
 ## Python version
 The original Python scripts (`main.py`, `builder.py`, `combat_engine.py`, `sorlock.py`, `rowan.py`) are still here until the Rust version replaces them.
 
+## License
+
+The code is licensed under the GNU General Public License v3.0 or later (see `LICENSE`).
+
+The lists in `data/lists/` keep the licenses of their sources: the Creative Commons Attribution-ShareAlike 3.0 License for the data derived from dnd5e.wikidot.com and the Creative Commons Attribution 4.0 International License for the SRD 5.1 data (`beasts.json`), as detailed in Credits below.
+
+This is an unofficial fan project, not affiliated with or endorsed by Wizards of the Coast. Dungeons & Dragons is a trademark of Wizards of the Coast LLC.
+
 ## Credits
 
 Races, classes, subclasses, backgrounds, feats, weapons, armor, spells and class options (`data/lists/`, built by the scripts in `tools/`) are derived from the pages of the D&D 5th Edition wiki at https://dnd5e.wikidot.com, licensed under the Creative Commons Attribution-ShareAlike 3.0 License (https://creativecommons.org/licenses/by-sa/3.0/); these derived lists are shared under the same license. Each entry keeps the name of the official sourcebook it comes from.

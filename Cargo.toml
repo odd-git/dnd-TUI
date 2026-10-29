@@ -2,6 +2,9 @@
 name = "dnd-tui"
 version = "0.1.9"
 edition = "2021"
+description = "Terminal character sheets for D&D 5e (2014 rules) sessions"
+license = "GPL-3.0-or-later"
+repository = "https://github.com/odd-git/dnd-TUI"
 
 [dependencies]
 ratatui = "0.29"
