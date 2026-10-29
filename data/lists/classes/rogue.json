@@ -178,10 +178,28 @@
    "name": "Arcane Trickster",
    "source": "Player's Handbook",
    "needs_spells": false,
-   "resources": [],
-   "actions": [],
+   "resources": [
+    {
+     "id": "spell_thief",
+     "name": "Spell Thief",
+     "recharge": "long",
+     "max": "table",
+     "pips": true
+    }
+   ],
+   "actions": [
+    {
+     "name": "Spell Thief",
+     "desc": "Reaction to a spell aimed at you: its caster makes a save with its casting ability, DC {dc:INT}; on a fail the spell misses you and you can cast it for 8 hours",
+     "uses": "spell_thief"
+    }
+   ],
    "maneuver_pool": null,
-   "tables": {},
+   "tables": {
+    "spell_thief": {
+     "17": 1
+    }
+   },
    "dice": {},
    "maneuvers_known": {},
    "features": {
@@ -224,6 +242,16 @@
     "kind": "third",
     "mode": "known",
     "list": "Wizard",
+    "schools": [
+     "Enchantment",
+     "Illusion"
+    ],
+    "free_at": [
+     3,
+     8,
+     14,
+     20
+    ],
     "cantrips": {
      "3": 3,
      "10": 4

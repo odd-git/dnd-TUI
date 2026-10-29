@@ -284,6 +284,11 @@ SUB_MECH = {
             "toggles": [{"name": "Assassinate", "crit_min": 1, "desc": "On while the target is surprised: every hit is a critical; advantage on creatures that have not acted yet"}],
             "actions": [{"name": "Death Strike", "desc": "Hit on a surprised creature: CON save DC {dc:DEX} or the damage is doubled", "min_level": 17}],
         },
+        "Arcane Trickster": {
+            "tables": {"spell_thief": {"17": 1}},
+            "resources": [res("spell_thief", "Spell Thief", "long", "table")],
+            "actions": [{"name": "Spell Thief", "desc": "Reaction to a spell aimed at you: its caster makes a save with its casting ability, DC {dc:INT}; on a fail the spell misses you and you can cast it for 8 hours", "uses": "spell_thief"}],
+        },
     },
 }
 
@@ -560,7 +565,8 @@ def build(slug):
             sub.update({k: v for k, v in mech.items() if k != "always"})
             sub["needs_spells"] = s.endswith("four-elements")
             if s.endswith("arcane-trickster"):
-                sub["casting"] = third_caster(s, "Rogue", {"ability": "INT", "kind": "third", "mode": "known", "list": "Wizard"})
+                sub["casting"] = third_caster(s, "Rogue", {"ability": "INT", "kind": "third", "mode": "known", "list": "Wizard",
+                                                           "schools": ["Enchantment", "Illusion"], "free_at": [3, 8, 14, 20]})
             if s == "druid:land":  # the circle spells depend on the land: one entry per terrain
                 subs.extend({**sub, "name": f"Land: {terrain}", "always": spells} for terrain, spells in land_circles(s).items())
                 continue

@@ -396,6 +396,8 @@ mod tests {
         assert!(ek.schools_ok(8, &v(&["Shield", "Sleep", "Find Familiar"])));
         assert_eq!(ek.schools_hint(8), " (abjuration or evocation; 2 of any school)");
         assert!(lists::casting_of("Wizard").unwrap().schools_ok(1, &v(&["Sleep", "Find Familiar"])));
+        let at = lists::casting_of("Rogue/Arcane Trickster").unwrap();
+        assert!(at.schools_ok(3, &v(&["Sleep", "Charm Person", "Shield"])) && !at.schools_ok(3, &v(&["Sleep", "Shield", "Magic Missile"])));
     }
 
     fn monk_sub(sub: &str, level: u32) -> Character {
