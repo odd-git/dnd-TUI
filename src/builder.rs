@@ -703,6 +703,91 @@ mod tests {
         assert!(half("Ranger", "Hunter", 3).features.iter().any(|f| f.name == "Hunter's Prey"));
     }
 
+    /// Any class with every score 15 (+2) after the Human bonus, subclass from its level on.
+    fn plain(class: &str, sub: &str, level: u32) -> Character {
+        let s = |x: &str| x.to_string();
+        let data = lists::class_data(class).unwrap();
+        build(&Draft {
+            name: s("Pat"), lineage: s("Human"), class: s(class), subclass: (level >= data.subclass_level).then(|| s(sub)), level, background: s("Sage"),
+            base: ["STR", "DEX", "CON", "INT", "WIS", "CHA"].iter().map(|a| (a.to_string(), 14)).collect(),
+            class_skills: data.skills.from.iter().filter(|k| !["Arcana", "History"].contains(&k.as_str())).take(data.skills.choose).cloned().collect(),
+            ..Default::default()
+        })
+    }
+
+    #[test]
+    fn every_class_matches_the_wikidot_tables() {
+        const LEVELS: [u32; 4] = [1, 5, 11, 20];
+        let subs = [("Barbarian", "Berserker"), ("Bard", "Lore"), ("Cleric", "Life"), ("Druid", "Moon"), ("Fighter", "Champion"), ("Monk", "Open Hand"),
+            ("Paladin", "Devotion"), ("Ranger", "Hunter"), ("Rogue", "Thief"), ("Sorcerer", "Wild Magic"), ("Warlock", "Fiend"), ("Wizard", "Evocation")];
+        let full = [vec![2], vec![4, 3, 2], vec![4, 3, 3, 3, 2, 1], vec![4, 3, 3, 3, 3, 2, 2, 1, 1]];
+        let half = [vec![], vec![4, 2], vec![4, 3, 3], vec![4, 3, 3, 3, 2]];
+        let slots = |c: &Character| (1..=9).map(|l| c.res_max(&format!("slot{l}")).unwrap_or(0)).filter(|&n| n > 0).collect::<Vec<_>>();
+        for (class, sub) in subs {
+            let hd = lists::class_data(class).unwrap().hit_die as i32;
+            for (i, lvl) in LEVELS.into_iter().enumerate() {
+                let c = plain(class, sub, lvl);
+                let at = format!("{class} {lvl}");
+                assert_eq!(c.prof(), [2, 3, 4, 6][i], "prof, {at}");
+                assert_eq!(c.hp_max(), Some(hd + 2 + (lvl as i32 - 1) * (hd / 2 + 1 + 2)), "hp, {at}");
+                let want = match class {
+                    "Bard" | "Cleric" | "Druid" | "Sorcerer" | "Wizard" => full[i].clone(),
+                    "Paladin" | "Ranger" => half[i].clone(),
+                    _ => vec![],
+                };
+                assert_eq!(slots(&c), want, "slots, {at}");
+                let cantrips = match class {
+                    "Bard" | "Druid" | "Warlock" => [2, 3, 4, 4][i],
+                    "Cleric" | "Wizard" => [3, 4, 5, 5][i],
+                    "Sorcerer" => [4, 5, 6, 6][i],
+                    _ => 0,
+                };
+                assert_eq!(c.cantrips_max(), cantrips, "cantrips, {at}");
+                let known = match class {
+                    "Bard" => [4, 8, 15, 22][i],
+                    "Sorcerer" => [2, 6, 12, 15][i],
+                    "Warlock" => [2, 6, 11, 15][i],
+                    "Ranger" => [0, 4, 7, 11][i],
+                    "Wizard" => 6 + 2 * (lvl as usize - 1),
+                    _ => 0,
+                };
+                assert_eq!(c.known_max(), known, "known, {at}");
+                let prepared = match class {
+                    "Cleric" | "Druid" | "Wizard" => 2 + lvl as usize,
+                    "Paladin" if lvl > 1 => 2 + lvl as usize / 2,
+                    _ => 0,
+                };
+                if prepared > 0 { assert_eq!(c.prepared_max(), prepared, "prepared, {at}"); }
+                let res = |id: &str| c.res_max(id).unwrap_or(0);
+                match class {
+                    "Barbarian" => assert_eq!(res("rage"), [2, 3, 4, 99][i], "rage, {at}"),
+                    "Bard" => assert_eq!((res("bardic_inspiration"), c.res_die("bardic_inspiration")), (2, Some([6, 8, 10, 12][i])), "inspiration, {at}"),
+                    "Cleric" => assert_eq!(res("channel_divinity"), [0, 1, 2, 3][i], "channel divinity, {at}"),
+                    "Druid" => assert_eq!(res("wild_shape"), [0, 2, 2, 99][i], "wild shape, {at}"),
+                    "Fighter" => assert_eq!((res("action_surge"), res("indomitable")), ([0, 1, 1, 2][i], [0, 0, 1, 3][i]), "{at}"),
+                    "Monk" => assert_eq!(res("ki"), [0, 5, 11, 20][i], "ki, {at}"),
+                    "Paladin" => assert_eq!((res("lay_on_hands"), res("divine_sense")), (5 * lvl, 3), "{at}"),
+                    "Sorcerer" => assert_eq!(res("sorcery_points"), [0, 5, 11, 20][i], "sorcery points, {at}"),
+                    "Warlock" => {
+                        assert_eq!((res("pact"), c.casting().unwrap().top_level(lvl)), ([1, 2, 3, 4][i], [1, 3, 5, 5][i]), "pact slots, {at}");
+                        assert_eq!(c.table("invocations").unwrap_or(0), [0, 3, 5, 8][i], "invocations, {at}");
+                    }
+                    _ => {}
+                }
+            }
+        }
+        // multiclass slots pool by caster level: Wizard 5 + Cleric 6 = 11, Paladin 5 + Sorcerer 3 = 2 + 3 = 5
+        use crate::model::Extra;
+        let mut c = plain("Wizard", "Evocation", 11);
+        c.multi.push(Extra { prog: "Cleric/Life".into(), level: 6 });
+        c.sync_spell_resources();
+        assert_eq!(slots(&c), full[2]);
+        let mut c = plain("Paladin", "Devotion", 8);
+        c.multi.push(Extra { prog: "Sorcerer/Wild Magic".into(), level: 3 });
+        c.sync_spell_resources();
+        assert_eq!(slots(&c), full[1]);
+    }
+
     #[test]
     fn multiclass_splits_levels_and_pools_slots() {
         use crate::model::Extra;
