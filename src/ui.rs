@@ -210,9 +210,9 @@ fn action_row(c: &Character, it: Item) -> (String, bool) {
         Item::Action(i) => {
             let a = &c.actions[i];
             let dice = c.dice(a);
-            let hit = match (a.hit.map(|h| format!("{h:+}")).or_else(|| a.ability.as_ref().map(|ab| format!("{:+}", c.md(ab) + c.prof()))), dice) { (Some(h), Some(_)) => h, (None, Some(_)) => if a.heal { "heal".into() } else { "auto".into() }, _ => String::new() };
+            let hit = match (c.hit_bonus(a).map(|h| format!("{h:+}")), dice) { (Some(h), Some(_)) => h, (None, Some(_)) => if a.heal { "heal".into() } else { "auto".into() }, _ => String::new() };
             let dmg = dice.map(|(n, s)| {
-                let mut b = a.bonus + if a.level_bonus { c.level as i32 } else { 0 };
+                let mut b = a.bonus + if a.level_bonus { c.level as i32 } else { 0 } + a.level_x as i32 * c.level as i32;
                 if a.dmg_ability { b += a.ability.as_deref().map_or(0, |x| c.md(x)); }
                 b += c.toggle_bonus(a.ability.as_deref());
                 if n == 0 { return b.to_string(); } // fixed damage (a cat's claws)

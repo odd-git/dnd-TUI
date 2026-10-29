@@ -245,6 +245,17 @@ SUB_MECH = {
         },
         "Four Elements": {"options": {"disciplines": {"3": 1, "6": 2, "11": 3, "17": 4}}},
     },
+    "paladin": {
+        "Devotion": {
+            "tables": {"holy_nimbus": {"20": 1}},
+            "resources": [res("holy_nimbus", "Holy Nimbus", "long", "table")],
+            "toggles": [{"name": "Sacred Weapon", "uses": "channel_divinity", "hit_ability": "CHA", "desc": "1 minute: CHA added to attack rolls with the weapon, which sheds light and counts as magical"}],
+            "actions": [
+                channel("Turn the Unholy", "Fiends and undead within 30 ft that hear you make a WIS save DC {dc:CHA} or are turned for 1 minute", 3),
+                {"name": "Holy Nimbus", "desc": "Action, 1 minute: bright light 30 ft, enemies starting a turn in it take 10 radiant; advantage on saves against fiend and undead spells", "uses": "holy_nimbus"},
+            ],
+        },
+    },
 }
 
 def split_top(s):

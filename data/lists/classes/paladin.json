@@ -675,10 +675,34 @@
    "name": "Devotion",
    "source": "Player's Handbook",
    "needs_spells": false,
-   "resources": [],
-   "actions": [],
+   "resources": [
+    {
+     "id": "holy_nimbus",
+     "name": "Holy Nimbus",
+     "recharge": "long",
+     "max": "table",
+     "pips": true
+    }
+   ],
+   "actions": [
+    {
+     "name": "Turn the Unholy",
+     "desc": "Fiends and undead within 30 ft that hear you make a WIS save DC {dc:CHA} or are turned for 1 minute",
+     "uses": "channel_divinity",
+     "min_level": 3
+    },
+    {
+     "name": "Holy Nimbus",
+     "desc": "Action, 1 minute: bright light 30 ft, enemies starting a turn in it take 10 radiant; advantage on saves against fiend and undead spells",
+     "uses": "holy_nimbus"
+    }
+   ],
    "maneuver_pool": null,
-   "tables": {},
+   "tables": {
+    "holy_nimbus": {
+     "20": 1
+    }
+   },
    "dice": {},
    "maneuvers_known": {},
    "features": {
@@ -732,7 +756,15 @@
      "Commune",
      "Flame Strike"
     ]
-   }
+   },
+   "toggles": [
+    {
+     "name": "Sacred Weapon",
+     "uses": "channel_divinity",
+     "hit_ability": "CHA",
+     "desc": "1 minute: CHA added to attack rolls with the weapon, which sheds light and counts as magical"
+    }
+   ]
   },
   {
    "name": "Glory",

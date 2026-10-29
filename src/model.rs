@@ -107,6 +107,7 @@ pub struct Toggle {
     pub dmg_table: Option<String>,   // level table of a flat damage bonus
     pub dmg_ability: Option<String>, // ...applied to attacks made with this ability
     pub exhaust: bool,               // one exhaustion level when switched off (Frenzy)
+    pub hit_ability: Option<String>, // this ability's modifier added to weapon attack rolls (Sacred Weapon)
 }
 
 /// Something carried: weight is per item, in pounds.
@@ -367,6 +368,14 @@ impl Character {
             _ => 0,
         };
         Some(self.ac_base? + self.ac_dex_max.map_or(dex, |m| dex.min(m)) + extra)
+    }
+
+    /// To-hit of an action: a beast's fixed bonus, or ability + proficiency + active toggles (Sacred Weapon).
+    pub fn hit_bonus(&self, a: &ActionDef) -> Option<i32> {
+        if a.hit.is_some() { return a.hit; }
+        let on = self.toggles.iter().filter(|t| self.active.contains(&t.name));
+        let extra: i32 = on.filter_map(|t| t.hit_ability.as_deref()).map(|ab| self.md(ab)).sum();
+        a.ability.as_ref().map(|ab| self.md(ab) + self.prof() + extra)
     }
 
     /// Flat damage from active toggles (Rage) for an attack made with `ability`.

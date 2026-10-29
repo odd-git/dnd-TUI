@@ -445,6 +445,28 @@ mod tests {
         assert_eq!(crate::model::at(&sub.options["disciplines"], 11), 3);
     }
 
+    fn paladin(sub: &str, level: u32) -> Character {
+        let s = |x: &str| x.to_string();
+        build(&Draft {
+            name: s("Vow"), lineage: s("Human"), class: s("Paladin"), subclass: Some(s(sub)), level, background: s("Soldier"),
+            base: [("STR", 15), ("DEX", 10), ("CON", 13), ("INT", 8), ("WIS", 12), ("CHA", 14)].iter().map(|(a, v)| (a.to_string(), *v)).collect(),
+            class_skills: vec![s("Athletics"), s("Persuasion")], weapons: vec![s("Longsword")], ..Default::default()
+        })
+    }
+
+    #[test]
+    fn sacred_weapon_adds_charisma_to_hit() {
+        let mut c = paladin("Devotion", 3);
+        let sword = c.actions.iter().find(|a| a.name.starts_with("Longsword")).cloned().expect("longsword");
+        assert_eq!(c.hit_bonus(&sword), Some(3 + 2)); // STR 16, prof 2
+        let t = c.toggles.iter().find(|t| t.name == "Sacred Weapon").expect("toggle");
+        assert_eq!(t.uses.as_deref(), Some("channel_divinity"));
+        c.active.push("Sacred Weapon".into());
+        assert_eq!(c.hit_bonus(&sword), Some(3 + 2 + 2)); // + CHA 15
+        assert_eq!(c.res_max("holy_nimbus"), Some(0));
+        assert_eq!(paladin("Devotion", 20).res_max("holy_nimbus"), Some(1));
+    }
+
     #[test]
     fn berserker_frenzy_and_presence() {
         let c = barbarian(3);

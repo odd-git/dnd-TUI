@@ -569,7 +569,7 @@ impl App {
         };
         let prof = self.ch.prof();
         let mut crit = false;
-        if let Some(hit) = a.hit.or_else(|| a.ability.as_ref().map(|ab| self.ch.md(ab) + prof)) {
+        if let Some(hit) = self.ch.hit_bonus(&a) {
             // active toggles (Hex on the bundled sheet) or a subclass's crit range (Champion)
             let crit_min = self.ch.toggles.iter().filter(|t| self.ch.active.contains(&t.name)).filter_map(|t| t.crit_min)
                 .chain(self.ch.table("crit_range").filter(|&c| c > 0)).min().unwrap_or(20);
