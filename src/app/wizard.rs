@@ -167,7 +167,7 @@ impl App {
             Wz::Asi(k) => {
                 let total: u32 = self.eff().choose.iter().map(|c| c.n).sum();
                 if k as u32 >= total { return skip(self, Wz::ClassSkills); }
-                let amt = self.eff().choose.iter().flat_map(|c| std::iter::repeat(c.amount).take(c.n as usize)).nth(k).unwrap_or(1);
+                let amt = self.eff().choose.iter().flat_map(|c| std::iter::repeat_n(c.amount, c.n as usize)).nth(k).unwrap_or(1);
                 let items = self.asi_options().iter().map(|a| a.to_string()).collect();
                 self.wiz_list(&format!("{} ({}/{total}): +{amt} to", self.lineage().name, k + 1), items, w);
             }

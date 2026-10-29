@@ -70,7 +70,7 @@ impl Lineage {
         let base = &self.sec;
         let sub = sub.map(|i| &self.subs[i]);
         let mut e = Effective::default();
-        let mut add = |asi: &Option<Asi>, e: &mut Effective| {
+        let add = |asi: &Option<Asi>, e: &mut Effective| {
             if let Some(a) = asi {
                 e.has_asi = true;
                 for (k, v) in &a.fixed { *e.fixed.entry(k.clone()).or_insert(0) += v; }
@@ -109,9 +109,7 @@ pub struct Background {
     #[serde(default)] pub skills: Vec<String>,
     #[serde(default)] pub extra_skills: u32,
     #[serde(default)] pub tools: String,
-    #[serde(default)] pub languages: Vec<String>,
     #[serde(default)] pub extra_languages: u32,
-    #[serde(default)] pub equipment: String,
     pub feature: Option<String>,
     #[serde(default)] pub url: String,
 }
@@ -179,16 +177,13 @@ pub struct FeatDef {
 #[derive(Deserialize)]
 pub struct Weapon {
     pub name: String,
-    pub category: String, // "Simple Melee", "Martial Ranged", ...
     pub dice: (u32, u32),
     #[serde(rename = "type")] pub dmg_type: String,
     pub props: String,
     pub ranged: bool,
     pub finesse: bool,
-    pub light: bool,
     pub two_handed: bool,
     pub thrown: Option<String>,
-    pub ammunition: bool,
 }
 
 #[derive(Deserialize)]
@@ -265,7 +260,6 @@ pub struct SkillChoice { pub choose: usize, pub from: Vec<String> }
 #[derive(Deserialize)]
 pub struct Style {
     pub name: String,
-    pub source: String,
     pub desc: String,
     pub effect: Option<String>,
 }
@@ -274,7 +268,6 @@ pub struct Style {
 pub struct Subclass {
     pub name: String,
     pub source: String,
-    #[serde(default)] pub needs_spells: bool,
     #[serde(default)] pub resources: Vec<ResourceDef>,
     #[serde(default)] pub actions: Vec<ActionDef>,
     pub maneuver_pool: Option<String>,
@@ -300,7 +293,6 @@ pub struct ClassData {
     pub armor: Vec<String>,
     pub weapons: Vec<String>,
     #[serde(default)] pub tools: Vec<String>,
-    #[serde(default)] pub equipment: Vec<String>,
     pub asi_levels: Vec<u32>,
     pub subclass_level: u32,
     pub subclass_title: String,
@@ -422,7 +414,7 @@ pub fn spell_choices(c: &Casting, prog: &str, level: u32, cantrips: bool) -> Vec
     let extra = expanded_spells(prog, top);
     spells().iter()
         .filter(|s| if cantrips { s.level == 0 } else { s.level >= 1 && s.level <= top })
-        .filter(|s| s.classes.iter().any(|x| *x == c.list) || extra.contains(&s.name))
+        .filter(|s| s.classes.contains(&c.list) || extra.contains(&s.name))
         .collect()
 }
 
@@ -436,5 +428,5 @@ pub fn abbr(source: &str) -> String {
         ("Mythic Odysseys of Theros", "MOoT"), ("Fizban's Treasury of Dragons", "FToD"), ("Van Richten's Guide to Ravenloft", "VRGtR"),
         ("Elemental Evil Player's Companion", "EEPC"), ("Eberron - Rising from the Last War", "ERLW"),
     ];
-    SHORT.iter().find(|(l, _)| *l == source).map_or_else(|| source.chars().take(28).collect::<String>().trim_end_matches(|c: char| c == '/' || c == ' ').to_string(), |(_, s)| s.to_string())
+    SHORT.iter().find(|(l, _)| *l == source).map_or_else(|| source.chars().take(28).collect::<String>().trim_end_matches(['/', ' ']).to_string(), |(_, s)| s.to_string())
 }

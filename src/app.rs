@@ -16,6 +16,7 @@ pub enum Tab { Combat, Spells, Character, Journal }
 pub const TABS: [(Tab, &str); 4] = [(Tab::Combat, "Combat"), (Tab::Spells, "Spells"), (Tab::Character, "Character"), (Tab::Journal, "Journal")];
 
 #[derive(Clone, Copy, PartialEq)]
+#[allow(clippy::enum_variant_names)] // Adv::Adv reads as the rule's own word
 pub enum Adv { Normal, Adv, Dis }
 
 #[derive(Clone, Copy)]
@@ -163,7 +164,7 @@ impl App {
     /// Actions and toggles shown in the list (an action whose resource has no uses at this level is hidden).
     pub fn visible(&self) -> Vec<Item> {
         let mut v: Vec<Item> = (0..self.ch.actions.len())
-            .filter(|&i| self.ch.actions[i].uses.as_ref().map_or(true, |u| self.ch.res_max(u) != Some(0)) && self.ch.class_level() >= self.ch.actions[i].min_level)
+            .filter(|&i| self.ch.actions[i].uses.as_ref().is_none_or(|u| self.ch.res_max(u) != Some(0)) && self.ch.class_level() >= self.ch.actions[i].min_level)
             // in beast form the druid's own weapons give way to the beast's attacks
             .filter(|&i| self.ch.beast.is_none() || self.ch.actions[i].ability.is_none() || self.ch.actions[i].hit.is_some())
             .map(Item::Action).collect();
@@ -635,9 +636,7 @@ impl App {
         if self.ch.maneuver_pool.is_some() { v.push(("learn", "Learn maneuver")); v.push(("replace", "Replace maneuver")); }
         v.push(("spelladd", "Add spell"));
         if self.ch.has_spells() { v.push(("spelldel", "Remove spell")); }
-        if self.ch.casts() {
-            if self.ch.casting().is_some_and(|c| c.mode != "known") { v.push(("prepare", "Prepare spells")); }
-        }
+        if self.ch.casts() && self.ch.casting().is_some_and(|c| c.mode != "known") { v.push(("prepare", "Prepare spells")); }
         v.extend([("feat", "Add feat"), ("resource", "Add resource"), ("rmres", "Remove resource"), ("note", "Add feature / note"), ("rmfeat", "Remove feature"), ("done", "Done")]);
         v
     }

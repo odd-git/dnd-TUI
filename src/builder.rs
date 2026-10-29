@@ -94,7 +94,7 @@ pub fn build(d: &Draft) -> Character {
     // ability scores: base + lineage fixed + lineage picks + feat picks
     let mut abilities: BTreeMap<String, i32> = ABILITIES.iter().map(|a| (a.to_string(), d.base.get(*a).copied().unwrap_or(10))).collect();
     for (a, v) in &eff.fixed { *abilities.entry(a.clone()).or_insert(10) += v; }
-    let amounts = eff.choose.iter().flat_map(|c| std::iter::repeat(c.amount).take(c.n as usize));
+    let amounts = eff.choose.iter().flat_map(|c| std::iter::repeat_n(c.amount, c.n as usize));
     for (a, amt) in d.asi_picks.iter().zip(amounts) { *abilities.entry(a.clone()).or_insert(10) += amt; }
     for (feat, pick) in d.feats.iter().zip(d.feat_picks.iter().map(Some).chain(std::iter::repeat(None))) {
         let amt = lists::feats().iter().find(|f| &f.name == feat).and_then(|f| f.asi.as_ref()).map_or(0, |a| a.amount);
@@ -316,7 +316,7 @@ mod tests {
         let c = rogue(1);
         // DEX 16: Stealth and Acrobatics expert (+3 +4), Insight plain (+0 +2), Arcana untrained
         assert_eq!(c.check_mod("Stealth"), 3 + 4);
-        assert_eq!(c.check_mod("Insight"), 0 + 2);
+        assert_eq!(c.check_mod("Insight"), 2);
         assert_eq!(c.check_mod("Arcana"), 1);
     }
 
@@ -349,7 +349,7 @@ mod tests {
     fn half(class: &str, sub: &str, level: u32) -> Character {
         let s = |x: &str| x.to_string();
         build(&Draft {
-            name: s("Sir"), lineage: s("Human"), class: s(class), subclass: Some(s(sub)).filter(|_| level >= 3), level, background: s("Soldier"),
+            name: s("Sir"), lineage: s("Human"), class: s(class), subclass: (level >= 3).then(|| s(sub)), level, background: s("Soldier"),
             base: [("STR", 15), ("DEX", 10), ("CON", 13), ("INT", 8), ("WIS", 12), ("CHA", 14)].iter().map(|(a, v)| (a.to_string(), *v)).collect(),
             class_skills: vec![s("Athletics"), s("Insight"), s("Religion"), s("Persuasion")].into_iter().filter(|k| lists::class_data(class).unwrap().skills.from.contains(k)).collect(),
             style: Some(s("Defense")), ..Default::default()

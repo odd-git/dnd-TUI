@@ -157,7 +157,7 @@ impl App {
             Step::RmRes => {
                 if i < self.ch.resources.len() { let r = self.ch.resources.remove(i); self.ch.res.remove(&r.id); }
             }
-            Step::RmFeat => { if i < self.ch.features.len() { self.ch.features.remove(i); } }
+            Step::RmFeat if i < self.ch.features.len() => { self.ch.features.remove(i); }
             _ => {}
         }
     }

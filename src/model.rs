@@ -209,7 +209,7 @@ impl Character {
         let pact = self.features.iter().any(|f| f.name == format!("Bonus spell: {name}") && f.desc.starts_with("From Pact"));
         let mut best: Option<String> = None;
         for (c, l, p) in self.casters() {
-            let ok = sp.is_some_and(|s| s.classes.iter().any(|x| *x == c.list))
+            let ok = sp.is_some_and(|s| s.classes.contains(&c.list))
                 || crate::lists::always_spells(&p, l).iter().chain(&crate::lists::expanded_spells(&p, 9)).any(|x| x == name)
                 || (pact && c.kind == "pact");
             if ok && best.as_ref().is_none_or(|b| self.md(&c.ability) > self.md(b)) { best = Some(c.ability.clone()); }
@@ -231,7 +231,7 @@ impl Character {
 
     pub fn on_list(&self, name: &str) -> bool {
         let Some(sp) = crate::lists::spell(name) else { return false };
-        self.casters().iter().any(|(c, _, p)| sp.classes.iter().any(|x| *x == c.list) || crate::lists::expanded_spells(p, 9).contains(&sp.name))
+        self.casters().iter().any(|(c, _, p)| sp.classes.contains(&c.list) || crate::lists::expanded_spells(p, 9).contains(&sp.name))
     }
 
     pub fn cantrips_max(&self) -> usize { self.cast_src().map_or(0, |(c, l, _)| at(&c.cantrips, l) as usize) }

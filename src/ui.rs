@@ -374,7 +374,7 @@ fn draw_character(f: &mut Frame, app: &App, area: Rect) {
         // keep each section's heading only when something under it matches
         let mut out: Vec<Line> = vec![];
         let mut group: Vec<Line> = vec![];
-        let mut flush = |group: &mut Vec<Line<'static>>, out: &mut Vec<Line<'static>>| {
+        let flush = |group: &mut Vec<Line<'static>>, out: &mut Vec<Line<'static>>| {
             if group.len() > 1 {
                 if !out.is_empty() { out.push(Line::default()); }
                 out.append(group);
@@ -441,6 +441,7 @@ fn draw_modal(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
 
 fn search_text(app: &App) -> String { format!("/ {}{}", app.query, if app.searching { "▏" } else { "" }) }
 
+#[allow(clippy::too_many_arguments)]
 fn list_box(f: &mut Frame, area: Rect, hot: &mut Hot, title: &str, items: &[String], sel: usize, hint: &str, app: &App, keep_last: bool) {
     let n = items.len();
     let shown: Vec<usize> = (0..n).filter(|&i| hit(&app.query, &items[i]) || (keep_last && i == n - 1)).collect();
@@ -518,7 +519,7 @@ fn draw_spells(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
         ];
         if !sp.url.is_empty() { lines.push(Line::styled(format!("More: {}", sp.url), tone(Tone::Dim))); }
         if let Some((n, s, k)) = &sp.dmg { lines.push(Line::default()); lines.push(Line::styled(format!("{} {}{n}d{s}{} {k}{}", if sp.healing { "Heals" } else { "Damage" }, if sp.count > 1 { format!("{} x ", sp.count) } else { String::new() }, if sp.flat > 0 { format!("+{}", sp.flat) } else { String::new() }, sp.upcast.map_or(String::new(), |u| format!(", +{}d{} per slot level", u.0, u.1))), tone(Tone::Dim))); }
-        lines.push(Line::styled(format!("{}", lists_abbr(&sp.source)), tone(Tone::Dim)));
+        lines.push(Line::styled(lists_abbr(&sp.source).to_string(), tone(Tone::Dim)));
         f.render_widget(Paragraph::new(lines).wrap(Wrap { trim: false }), di);
     } else {
         f.render_widget(Paragraph::new("No spells yet. E opens the editor to add some.").style(tone(Tone::Dim)), di);
