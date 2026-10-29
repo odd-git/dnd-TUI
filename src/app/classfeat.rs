@@ -197,10 +197,12 @@ impl App {
                 self.open(Step::Smite);
             }
             "recover" => {
-                if self.have("arcane_recovery") == 0 { return self.say(format!("{}: none left!", a.name), Tone::Warn); }
+                // Arcane Recovery (wizard) or Natural Recovery (Circle of the Land): half the class level in slot levels
+                let id = a.uses.clone().unwrap_or_else(|| "arcane_recovery".into());
+                if self.have(&id) == 0 { return self.say(format!("{}: none left!", a.name), Tone::Warn); }
                 self.snap();
-                *self.ch.res.entry("arcane_recovery".into()).or_insert(1) -= 1;
-                self.open(Step::Recover(self.level_of("Wizard").div_ceil(2)));
+                *self.ch.res.entry(id.clone()).or_insert(1) -= 1;
+                self.open(Step::Recover(self.level_of(if id == "natural_recovery" { "Druid" } else { "Wizard" }).div_ceil(2)));
             }
             "font_slot" => self.open(Step::FontSlot),
             "font_points" => self.open(Step::FontPoints),
@@ -284,7 +286,7 @@ impl App {
         self.say(format!("Divine Smite (level {l}): {total} radiant ({n}d8, double the dice on a crit)"), Tone::Good);
     }
 
-    /// Arcane Recovery: slot levels that still fit the budget and are not full.
+    /// Arcane or Natural Recovery: slot levels that still fit the budget and are not full.
     pub(super) fn recover_items(&self, budget: u32) -> Vec<u32> {
         (1..=budget.min(5)).filter(|l| {
             let id = format!("slot{l}");
@@ -295,7 +297,7 @@ impl App {
     pub(super) fn recover_pick(&mut self, budget: u32, i: usize) {
         let Some(&l) = self.recover_items(budget).get(i) else { return };
         *self.ch.res.entry(format!("slot{l}")).or_insert(0) += 1;
-        self.say(format!("Arcane Recovery: level {l} slot back."), Tone::Good);
+        self.say(format!("Level {l} slot recovered."), Tone::Good);
         if !self.recover_items(budget - l).is_empty() { self.open(Step::Recover(budget - l)); }
     }
 

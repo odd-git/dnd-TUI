@@ -739,7 +739,7 @@ impl App {
             Step::Smite => { let items = self.smite_items(); self.list("Divine Smite: which slot?", items, step, true) }
             Step::Recover(b) => {
                 let items = self.recover_items(b).iter().map(|l| format!("Level {l} slot ({}/{})", self.have(&format!("slot{l}")), self.ch.res_max(&format!("slot{l}")).unwrap_or(0))).collect();
-                self.list(&format!("Arcane Recovery: {b} slot levels left"), items, step, true);
+                self.list(&format!("Recover slots: {b} slot levels left"), items, step, true);
             }
             Step::FontSlot => {
                 let items: Vec<String> = self.font_slot_items().iter().map(|l| format!("Level {l} slot for {} points", [2, 3, 5, 6, 7][*l as usize - 1])).collect();

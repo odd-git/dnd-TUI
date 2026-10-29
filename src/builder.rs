@@ -362,6 +362,21 @@ mod tests {
     }
 
     #[test]
+    fn circle_of_the_land_by_terrain() {
+        let s = |x: &str| x.to_string();
+        let druid = |sub: &str, level| build(&Draft {
+            name: s("Moss"), lineage: s("Human"), class: s("Druid"), subclass: Some(s(sub)), level, background: s("Hermit"),
+            base: [("STR", 10), ("DEX", 14), ("CON", 13), ("INT", 12), ("WIS", 15), ("CHA", 8)].iter().map(|(a, v)| (a.to_string(), *v)).collect(),
+            class_skills: vec![s("Nature"), s("Survival")], ..Default::default()
+        });
+        let c = druid("Land: Desert", 5);
+        assert!(["Blur", "Silence", "Create Food and Water", "Protection from Energy"].iter().all(|n| c.castable().contains(&n.to_string())));
+        assert!(!c.castable().contains(&"Blight".to_string()));
+        assert_eq!(c.res_max("natural_recovery"), Some(1));
+        assert!(cleric("Trickery", 3).castable().contains(&"Pass Without Trace".to_string()));
+    }
+
+    #[test]
     fn berserker_frenzy_and_presence() {
         let c = barbarian(3);
         assert!(c.toggles.iter().any(|t| t.name == "Frenzy" && t.exhaust));

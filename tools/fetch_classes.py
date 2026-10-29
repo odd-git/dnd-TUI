@@ -223,6 +223,12 @@ SUB_MECH = {
             ],
         },
     },
+    "druid": {
+        "Land": {
+            "resources": [res("natural_recovery", "Natural Recovery", "long", 1)],
+            "actions": [{"name": "Natural Recovery", "desc": "After a short rest: recover slots totalling up to half your druid level (rounded up), none 6th or higher", "uses": "natural_recovery", "special": "recover"}],
+        },
+    },
 }
 
 def split_top(s):
@@ -309,16 +315,41 @@ def casting_tables(heads, rows, first_level=1):
     return out
 
 
+# spell names with " and " in them, kept whole when a cell lists "a, b and c"
+AND_SPELLS = ("Detect Evil and Good", "Detect Poison and Disease", "Protection from Evil and Good", "Purify Food and Drink",
+              "Wither and Bloom", "Create Food and Water", "Dispel Evil and Good", "Guards and Wards")
+
+
+# the spell list's own capitalization ("Pass Without Trace"): the sheet compares names exactly
+SPELL_CASE = {x["name"].lower(): x["name"] for x in json.loads(p.read_text())} if (p := OUT / "spells.json").exists() else {}
+
+
+def spell_rows(b, k):
+    """{level: [spells]} from the "<N>th | spell, spell" cells starting at block k."""
+    out = {}
+    while k + 1 < len(b) and b[k][0] == "td" and re.match(r"\d+(?:st|nd|rd|th)$", b[k][2]):
+        cell = b[k + 1][2]
+        for i, n in enumerate(AND_SPELLS):
+            cell = cell.replace(n, f"@{i}@")
+        names = [re.sub(r"\s*\(.*\)", "", n).strip() for n in re.split(r",| and ", cell) if n.strip()]
+        names = [re.sub(r"@(\d+)@", lambda m: AND_SPELLS[int(m[1])], n) for n in names]
+        out[str(ordinal(b[k][2]))] = [SPELL_CASE.get(n.lower(), n) for n in names]
+        k += 2
+    return out
+
+
 def spell_table(b):
     """{level: [spells]} from a "<X> Spells | <Y> Level | Spells" table of a subclass page, or None."""
     for i, (t, _, x) in enumerate(b):
         if t == "th" and x.endswith("Spells") and i + 2 < len(b) and b[i + 1][0] == "th" and b[i + 1][2].endswith("Level"):
-            out, k = {}, i + 3
-            while k + 1 < len(b) and b[k][0] == "td" and re.match(r"\d+(?:st|nd|rd|th)$", b[k][2]):
-                out[str(ordinal(b[k][2]))] = [re.sub(r"\s*\(.*\)", "", n).strip().replace("Evil&Good", "Evil and Good") for n in re.split(r",| and ", b[k + 1][2].replace("Evil and Good", "Evil&Good")) if n.strip()]
-                k += 2
-            return out or None
+            return spell_rows(b, i + 3) or None
     return None
+
+
+def land_circles(slug):
+    """Circle of the Land spells, one "<terrain> | Druid Level | Circle Spells" table per terrain."""
+    b = w.blocks(w.content(w.get(slug)))
+    return {x: spell_rows(b, i + 3) for i, (t, _, x) in enumerate(b) if t == "th" and i + 1 < len(b) and b[i + 1][2] == "Druid Level"}
 
 
 def level_table(b):
@@ -378,7 +409,8 @@ def subclass(slug, level, strip, spell_table_kind=None):
         return None
     by_level, name, para = {}, None, []
 
-    LEVEL = re.compile(r"(\d+)(?:st|nd|rd|th)[- ]level", re.I)
+    # "At 3rd, 5th, 7th, and 9th level": the first of the list
+    LEVEL = re.compile(r"(\d+)(?:st|nd|rd|th)(?:,? (?:and )?\d+(?:st|nd|rd|th))*[- ]level", re.I)
 
     def flush():
         if name and para and (m := LEVEL.search(para[0])):
@@ -473,6 +505,9 @@ def build(slug):
             sub["needs_spells"] = s.endswith("four-elements")
             if s.endswith("arcane-trickster"):
                 sub["casting"] = third_caster(s, "Rogue", {"ability": "INT", "kind": "third", "mode": "known", "list": "Wizard"})
+            if s == "druid:land":  # the circle spells depend on the land: one entry per terrain
+                subs.extend({**sub, "name": f"Land: {terrain}", "always": spells} for terrain, spells in land_circles(s).items())
+                continue
             subs.append(sub)
     casting = {**cfg["casting"], **casting_tables(heads, rows)} if cfg.get("casting") else None
     return {

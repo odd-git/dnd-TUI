@@ -408,11 +408,26 @@
    }
   },
   {
-   "name": "Land",
+   "name": "Land: Arctic",
    "source": "Player's Handbook",
    "needs_spells": false,
-   "resources": [],
-   "actions": [],
+   "resources": [
+    {
+     "id": "natural_recovery",
+     "name": "Natural Recovery",
+     "recharge": "long",
+     "max": 1,
+     "pips": true
+    }
+   ],
+   "actions": [
+    {
+     "name": "Natural Recovery",
+     "desc": "After a short rest: recover slots totalling up to half your druid level (rounded up), none 6th or higher",
+     "uses": "natural_recovery",
+     "special": "recover"
+    }
+   ],
    "maneuver_pool": null,
    "tables": {},
    "dice": {},
@@ -430,10 +445,10 @@
       "url": "http://dnd5e.wikidot.com/druid:land"
      }
     ],
-    "9": [
+    "3": [
      {
       "name": "Circle Spells",
-      "desc": "Always prepared spells tied to the land you chose (arctic, coast, desert, forest, grassland, mountain, swamp, Underdark), gained at 3rd, 5th, 7th and 9th level.",
+      "desc": "",
       "url": "http://dnd5e.wikidot.com/druid:land"
      }
     ],
@@ -457,6 +472,626 @@
       "desc": "Beasts and plants attacking you WIS save or must pick another target.",
       "url": "http://dnd5e.wikidot.com/druid:land"
      }
+    ]
+   },
+   "always": {
+    "3": [
+     "Hold Person",
+     "Spike Growth"
+    ],
+    "5": [
+     "Sleet Storm",
+     "Slow"
+    ],
+    "7": [
+     "Freedom of Movement",
+     "Ice Storm"
+    ],
+    "9": [
+     "Commune with Nature",
+     "Cone of Cold"
+    ]
+   }
+  },
+  {
+   "name": "Land: Coast",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [
+    {
+     "id": "natural_recovery",
+     "name": "Natural Recovery",
+     "recharge": "long",
+     "max": 1,
+     "pips": true
+    }
+   ],
+   "actions": [
+    {
+     "name": "Natural Recovery",
+     "desc": "After a short rest: recover slots totalling up to half your druid level (rounded up), none 6th or higher",
+     "uses": "natural_recovery",
+     "special": "recover"
+    }
+   ],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "2": [
+     {
+      "name": "Bonus Cantrip",
+      "desc": "One extra druid cantrip.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     },
+     {
+      "name": "Natural Recovery",
+      "desc": "Once per long rest, on a short rest recover slots totalling half your druid level (rounded up), none 6th or higher.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "3": [
+     {
+      "name": "Circle Spells",
+      "desc": "",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "6": [
+     {
+      "name": "Land's Stride",
+      "desc": "Nonmagical difficult terrain and plants don't slow or hurt you; advantage on saves vs magical plants like Entangle.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "10": [
+     {
+      "name": "Nature's Ward",
+      "desc": "Immune to poison and disease; elementals and fey can't charm or frighten you.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "14": [
+     {
+      "name": "Nature's Sanctuary",
+      "desc": "Beasts and plants attacking you WIS save or must pick another target.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ]
+   },
+   "always": {
+    "3": [
+     "Mirror Image",
+     "Misty Step"
+    ],
+    "5": [
+     "Water Breathing",
+     "Water Walk"
+    ],
+    "7": [
+     "Control Water",
+     "Freedom of Movement"
+    ],
+    "9": [
+     "Conjure Elemental",
+     "Scrying"
+    ]
+   }
+  },
+  {
+   "name": "Land: Desert",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [
+    {
+     "id": "natural_recovery",
+     "name": "Natural Recovery",
+     "recharge": "long",
+     "max": 1,
+     "pips": true
+    }
+   ],
+   "actions": [
+    {
+     "name": "Natural Recovery",
+     "desc": "After a short rest: recover slots totalling up to half your druid level (rounded up), none 6th or higher",
+     "uses": "natural_recovery",
+     "special": "recover"
+    }
+   ],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "2": [
+     {
+      "name": "Bonus Cantrip",
+      "desc": "One extra druid cantrip.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     },
+     {
+      "name": "Natural Recovery",
+      "desc": "Once per long rest, on a short rest recover slots totalling half your druid level (rounded up), none 6th or higher.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "3": [
+     {
+      "name": "Circle Spells",
+      "desc": "",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "6": [
+     {
+      "name": "Land's Stride",
+      "desc": "Nonmagical difficult terrain and plants don't slow or hurt you; advantage on saves vs magical plants like Entangle.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "10": [
+     {
+      "name": "Nature's Ward",
+      "desc": "Immune to poison and disease; elementals and fey can't charm or frighten you.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "14": [
+     {
+      "name": "Nature's Sanctuary",
+      "desc": "Beasts and plants attacking you WIS save or must pick another target.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ]
+   },
+   "always": {
+    "3": [
+     "Blur",
+     "Silence"
+    ],
+    "5": [
+     "Create Food and Water",
+     "Protection from Energy"
+    ],
+    "7": [
+     "Blight",
+     "Hallucinatory Terrain"
+    ],
+    "9": [
+     "Insect Plague",
+     "Wall of Stone"
+    ]
+   }
+  },
+  {
+   "name": "Land: Forest",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [
+    {
+     "id": "natural_recovery",
+     "name": "Natural Recovery",
+     "recharge": "long",
+     "max": 1,
+     "pips": true
+    }
+   ],
+   "actions": [
+    {
+     "name": "Natural Recovery",
+     "desc": "After a short rest: recover slots totalling up to half your druid level (rounded up), none 6th or higher",
+     "uses": "natural_recovery",
+     "special": "recover"
+    }
+   ],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "2": [
+     {
+      "name": "Bonus Cantrip",
+      "desc": "One extra druid cantrip.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     },
+     {
+      "name": "Natural Recovery",
+      "desc": "Once per long rest, on a short rest recover slots totalling half your druid level (rounded up), none 6th or higher.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "3": [
+     {
+      "name": "Circle Spells",
+      "desc": "",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "6": [
+     {
+      "name": "Land's Stride",
+      "desc": "Nonmagical difficult terrain and plants don't slow or hurt you; advantage on saves vs magical plants like Entangle.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "10": [
+     {
+      "name": "Nature's Ward",
+      "desc": "Immune to poison and disease; elementals and fey can't charm or frighten you.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "14": [
+     {
+      "name": "Nature's Sanctuary",
+      "desc": "Beasts and plants attacking you WIS save or must pick another target.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ]
+   },
+   "always": {
+    "3": [
+     "Barkskin",
+     "Spider Climb"
+    ],
+    "5": [
+     "Call Lightning",
+     "Plant Growth"
+    ],
+    "7": [
+     "Divination",
+     "Freedom of Movement"
+    ],
+    "9": [
+     "Commune with Nature",
+     "Tree Stride"
+    ]
+   }
+  },
+  {
+   "name": "Land: Grassland",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [
+    {
+     "id": "natural_recovery",
+     "name": "Natural Recovery",
+     "recharge": "long",
+     "max": 1,
+     "pips": true
+    }
+   ],
+   "actions": [
+    {
+     "name": "Natural Recovery",
+     "desc": "After a short rest: recover slots totalling up to half your druid level (rounded up), none 6th or higher",
+     "uses": "natural_recovery",
+     "special": "recover"
+    }
+   ],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "2": [
+     {
+      "name": "Bonus Cantrip",
+      "desc": "One extra druid cantrip.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     },
+     {
+      "name": "Natural Recovery",
+      "desc": "Once per long rest, on a short rest recover slots totalling half your druid level (rounded up), none 6th or higher.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "3": [
+     {
+      "name": "Circle Spells",
+      "desc": "",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "6": [
+     {
+      "name": "Land's Stride",
+      "desc": "Nonmagical difficult terrain and plants don't slow or hurt you; advantage on saves vs magical plants like Entangle.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "10": [
+     {
+      "name": "Nature's Ward",
+      "desc": "Immune to poison and disease; elementals and fey can't charm or frighten you.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "14": [
+     {
+      "name": "Nature's Sanctuary",
+      "desc": "Beasts and plants attacking you WIS save or must pick another target.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ]
+   },
+   "always": {
+    "3": [
+     "Invisibility",
+     "Pass Without Trace"
+    ],
+    "5": [
+     "Daylight",
+     "Haste"
+    ],
+    "7": [
+     "Divination",
+     "Freedom of Movement"
+    ],
+    "9": [
+     "Dream",
+     "Insect Plague"
+    ]
+   }
+  },
+  {
+   "name": "Land: Mountain",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [
+    {
+     "id": "natural_recovery",
+     "name": "Natural Recovery",
+     "recharge": "long",
+     "max": 1,
+     "pips": true
+    }
+   ],
+   "actions": [
+    {
+     "name": "Natural Recovery",
+     "desc": "After a short rest: recover slots totalling up to half your druid level (rounded up), none 6th or higher",
+     "uses": "natural_recovery",
+     "special": "recover"
+    }
+   ],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "2": [
+     {
+      "name": "Bonus Cantrip",
+      "desc": "One extra druid cantrip.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     },
+     {
+      "name": "Natural Recovery",
+      "desc": "Once per long rest, on a short rest recover slots totalling half your druid level (rounded up), none 6th or higher.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "3": [
+     {
+      "name": "Circle Spells",
+      "desc": "",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "6": [
+     {
+      "name": "Land's Stride",
+      "desc": "Nonmagical difficult terrain and plants don't slow or hurt you; advantage on saves vs magical plants like Entangle.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "10": [
+     {
+      "name": "Nature's Ward",
+      "desc": "Immune to poison and disease; elementals and fey can't charm or frighten you.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "14": [
+     {
+      "name": "Nature's Sanctuary",
+      "desc": "Beasts and plants attacking you WIS save or must pick another target.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ]
+   },
+   "always": {
+    "3": [
+     "Spider Climb",
+     "Spike Growth"
+    ],
+    "5": [
+     "Lightning Bolt",
+     "Meld into Stone"
+    ],
+    "7": [
+     "Stone Shape",
+     "Stoneskin"
+    ],
+    "9": [
+     "Passwall",
+     "Wall of Stone"
+    ]
+   }
+  },
+  {
+   "name": "Land: Swamp",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [
+    {
+     "id": "natural_recovery",
+     "name": "Natural Recovery",
+     "recharge": "long",
+     "max": 1,
+     "pips": true
+    }
+   ],
+   "actions": [
+    {
+     "name": "Natural Recovery",
+     "desc": "After a short rest: recover slots totalling up to half your druid level (rounded up), none 6th or higher",
+     "uses": "natural_recovery",
+     "special": "recover"
+    }
+   ],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "2": [
+     {
+      "name": "Bonus Cantrip",
+      "desc": "One extra druid cantrip.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     },
+     {
+      "name": "Natural Recovery",
+      "desc": "Once per long rest, on a short rest recover slots totalling half your druid level (rounded up), none 6th or higher.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "3": [
+     {
+      "name": "Circle Spells",
+      "desc": "",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "6": [
+     {
+      "name": "Land's Stride",
+      "desc": "Nonmagical difficult terrain and plants don't slow or hurt you; advantage on saves vs magical plants like Entangle.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "10": [
+     {
+      "name": "Nature's Ward",
+      "desc": "Immune to poison and disease; elementals and fey can't charm or frighten you.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "14": [
+     {
+      "name": "Nature's Sanctuary",
+      "desc": "Beasts and plants attacking you WIS save or must pick another target.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ]
+   },
+   "always": {
+    "3": [
+     "Darkness",
+     "Melf's Acid Arrow"
+    ],
+    "5": [
+     "Water Walk",
+     "Stinking Cloud"
+    ],
+    "7": [
+     "Freedom of Movement",
+     "Locate Creature"
+    ],
+    "9": [
+     "Insect Plague",
+     "Scrying"
+    ]
+   }
+  },
+  {
+   "name": "Land: Underdark",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [
+    {
+     "id": "natural_recovery",
+     "name": "Natural Recovery",
+     "recharge": "long",
+     "max": 1,
+     "pips": true
+    }
+   ],
+   "actions": [
+    {
+     "name": "Natural Recovery",
+     "desc": "After a short rest: recover slots totalling up to half your druid level (rounded up), none 6th or higher",
+     "uses": "natural_recovery",
+     "special": "recover"
+    }
+   ],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "2": [
+     {
+      "name": "Bonus Cantrip",
+      "desc": "One extra druid cantrip.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     },
+     {
+      "name": "Natural Recovery",
+      "desc": "Once per long rest, on a short rest recover slots totalling half your druid level (rounded up), none 6th or higher.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "3": [
+     {
+      "name": "Circle Spells",
+      "desc": "",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "6": [
+     {
+      "name": "Land's Stride",
+      "desc": "Nonmagical difficult terrain and plants don't slow or hurt you; advantage on saves vs magical plants like Entangle.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "10": [
+     {
+      "name": "Nature's Ward",
+      "desc": "Immune to poison and disease; elementals and fey can't charm or frighten you.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ],
+    "14": [
+     {
+      "name": "Nature's Sanctuary",
+      "desc": "Beasts and plants attacking you WIS save or must pick another target.",
+      "url": "http://dnd5e.wikidot.com/druid:land"
+     }
+    ]
+   },
+   "always": {
+    "3": [
+     "Spider Climb",
+     "Web"
+    ],
+    "5": [
+     "Gaseous Form",
+     "Stinking Cloud"
+    ],
+    "7": [
+     "Greater Invisibility",
+     "Stone Shape"
+    ],
+    "9": [
+     "Cloudkill",
+     "Insect Plague"
     ]
    }
   },
