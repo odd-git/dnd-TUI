@@ -36,7 +36,7 @@ def attack(a):
 def beast(m, elemental=False):
     multi = next((a["desc"] for a in m.get("actions") or [] if a["name"] == "Multiattack"), None)
     return {
-        "name": m["name"], "cr": m["cr"], "challenge": m["challenge_rating"], "ac": m["armor_class"], "hp": m["hit_points"],
+        "name": m["name"], "size": m["size"], "cr": m["cr"], "challenge": m["challenge_rating"], "ac": m["armor_class"], "hp": m["hit_points"],
         "speed": {k: v for k, v in (m.get("speed") or {}).items() if k in ("walk", "fly", "swim", "climb", "burrow") and isinstance(v, int)},
         "attacks": [x for x in map(attack, m.get("actions") or []) if x],
         "multiattack": multi, "elemental": elemental,

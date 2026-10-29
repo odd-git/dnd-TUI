@@ -45,7 +45,7 @@ pub enum Step {
     Maneuver { required: bool }, ReplaceAsk, Forget, Extras, Skill, NoteName, NoteDesc(String), JournalAdd,
     Subclass, DeleteSheet(usize), Expertise, Style, Pool(String),
     Learn(bool), Prepare, CastSlot(String), SpellAdd, SpellDel, LevelClass,
-    Opt(String), Arcanum(u32), Secret, Smite, MoonHeal, Recover(u32), FontSlot, FontPoints, BeastPick, BeastName, BeastHp(String), BeastAc(String, i32), BeastAtk, Hd(usize), AnyCantrip, TempHp,
+    Opt(String), Arcanum(u32), Secret, Smite, MoonHeal, Companion, Recover(u32), FontSlot, FontPoints, BeastPick, BeastName, BeastHp(String), BeastAc(String, i32), BeastAtk, Hd(usize), AnyCantrip, TempHp,
     // editor
     Ident, IdentSet(usize), Scores, ScoreSet(String), Unskill, ArmorPick, ShieldPick(Option<String>), WeaponPick,
     CustomName, CustomAb(String), CustomDice(String, Option<String>), CustomType(String, Option<String>, (u32, u32)),
@@ -754,6 +754,10 @@ impl App {
                 self.list("Magical Secrets: a spell from any class", items, step, false);
             }
             Step::Smite => { let items = self.smite_items(); self.list("Divine Smite: which slot?", items, step, true) }
+            Step::Companion => {
+                let items = self.companion_options().iter().map(|b| format!("{} (CR {}, {}) AC {} HP {}, {}", b.name, b.challenge, b.size, b.ac, b.hp, classfeat::speed_text(b))).collect();
+                self.list("Ranger's Companion: which beast?", items, step, true)
+            }
             Step::MoonHeal => {
                 let items = self.slot_options(1).iter().map(|(_, l, left)| format!("Level {l} slot ({left} left): {l}d8")).collect();
                 self.list("Combat Wild Shape: heal with which slot?", items, step, true)
@@ -979,6 +983,7 @@ impl App {
             Step::AnyCantrip => { if let Some(n) = self.any_cantrips().get(i).cloned() { self.grant_spell(&n, "Pact of the Tome"); } }
             Step::Smite => self.smite_pick(i),
             Step::MoonHeal => self.moon_heal_pick(i),
+            Step::Companion => self.companion_pick(i),
             Step::Recover(b) => self.recover_pick(b, i),
             Step::FontSlot => self.font_slot_pick(i),
             Step::FontPoints => self.font_points_pick(i),

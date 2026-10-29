@@ -121,6 +121,7 @@ pub struct FeatAsi { pub options: Vec<String>, pub amount: i32 }
 #[derive(Deserialize)]
 pub struct BeastDef {
     pub name: String,
+    #[serde(default)] pub size: String,
     pub cr: f64,
     pub challenge: String,
     pub ac: i32,

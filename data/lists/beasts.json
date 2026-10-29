@@ -1,6 +1,7 @@
 [
  {
   "name": "Baboon",
+  "size": "Small",
   "cr": 0.0,
   "challenge": "0",
   "ac": 12,
@@ -26,6 +27,7 @@
  },
  {
   "name": "Badger",
+  "size": "Tiny",
   "cr": 0.0,
   "challenge": "0",
   "ac": 10,
@@ -48,6 +50,7 @@
  },
  {
   "name": "Bat",
+  "size": "Tiny",
   "cr": 0.0,
   "challenge": "0",
   "ac": 12,
@@ -70,6 +73,7 @@
  },
  {
   "name": "Cat",
+  "size": "Tiny",
   "cr": 0.0,
   "challenge": "0",
   "ac": 12,
@@ -92,6 +96,7 @@
  },
  {
   "name": "Crab",
+  "size": "Tiny",
   "cr": 0.0,
   "challenge": "0",
   "ac": 11,
@@ -114,6 +119,7 @@
  },
  {
   "name": "Deer",
+  "size": "Medium",
   "cr": 0.0,
   "challenge": "0",
   "ac": 13,
@@ -138,6 +144,7 @@
  },
  {
   "name": "Eagle",
+  "size": "Small",
   "cr": 0.0,
   "challenge": "0",
   "ac": 12,
@@ -163,6 +170,7 @@
  },
  {
   "name": "Frog",
+  "size": "Tiny",
   "cr": 0.0,
   "challenge": "0",
   "ac": 11,
@@ -177,6 +185,7 @@
  },
  {
   "name": "Giant Fire Beetle",
+  "size": "Small",
   "cr": 0.0,
   "challenge": "0",
   "ac": 13,
@@ -201,6 +210,7 @@
  },
  {
   "name": "Goat",
+  "size": "Medium",
   "cr": 0.0,
   "challenge": "0",
   "ac": 10,
@@ -225,6 +235,7 @@
  },
  {
   "name": "Hawk",
+  "size": "Tiny",
   "cr": 0.0,
   "challenge": "0",
   "ac": 13,
@@ -247,6 +258,7 @@
  },
  {
   "name": "Hyena",
+  "size": "Medium",
   "cr": 0.0,
   "challenge": "0",
   "ac": 11,
@@ -271,6 +283,7 @@
  },
  {
   "name": "Jackal",
+  "size": "Small",
   "cr": 0.0,
   "challenge": "0",
   "ac": 12,
@@ -295,6 +308,7 @@
  },
  {
   "name": "Lizard",
+  "size": "Tiny",
   "cr": 0.0,
   "challenge": "0",
   "ac": 10,
@@ -317,6 +331,7 @@
  },
  {
   "name": "Octopus",
+  "size": "Small",
   "cr": 0.0,
   "challenge": "0",
   "ac": 12,
@@ -339,6 +354,7 @@
  },
  {
   "name": "Owl",
+  "size": "Tiny",
   "cr": 0.0,
   "challenge": "0",
   "ac": 11,
@@ -361,6 +377,7 @@
  },
  {
   "name": "Quipper",
+  "size": "Tiny",
   "cr": 0.0,
   "challenge": "0",
   "ac": 13,
@@ -382,6 +399,7 @@
  },
  {
   "name": "Rat",
+  "size": "Tiny",
   "cr": 0.0,
   "challenge": "0",
   "ac": 10,
@@ -403,6 +421,7 @@
  },
  {
   "name": "Raven",
+  "size": "Tiny",
   "cr": 0.0,
   "challenge": "0",
   "ac": 12,
@@ -425,6 +444,7 @@
  },
  {
   "name": "Scorpion",
+  "size": "Tiny",
   "cr": 0.0,
   "challenge": "0",
   "ac": 11,
@@ -446,6 +466,7 @@
  },
  {
   "name": "Sea Horse",
+  "size": "Tiny",
   "cr": 0.0,
   "challenge": "0",
   "ac": 11,
@@ -459,6 +480,7 @@
  },
  {
   "name": "Spider",
+  "size": "Tiny",
   "cr": 0.0,
   "challenge": "0",
   "ac": 12,
@@ -481,6 +503,7 @@
  },
  {
   "name": "Vulture",
+  "size": "Medium",
   "cr": 0.0,
   "challenge": "0",
   "ac": 10,
@@ -506,6 +529,7 @@
  },
  {
   "name": "Weasel",
+  "size": "Tiny",
   "cr": 0.0,
   "challenge": "0",
   "ac": 13,
@@ -527,6 +551,7 @@
  },
  {
   "name": "Blood Hawk",
+  "size": "Small",
   "cr": 0.125,
   "challenge": "1/8",
   "ac": 12,
@@ -552,6 +577,7 @@
  },
  {
   "name": "Camel",
+  "size": "Large",
   "cr": 0.125,
   "challenge": "1/8",
   "ac": 9,
@@ -576,6 +602,7 @@
  },
  {
   "name": "Flying Snake",
+  "size": "Tiny",
   "cr": 0.125,
   "challenge": "1/8",
   "ac": 14,
@@ -599,6 +626,7 @@
  },
  {
   "name": "Giant Crab",
+  "size": "Medium",
   "cr": 0.125,
   "challenge": "1/8",
   "ac": 15,
@@ -624,6 +652,7 @@
  },
  {
   "name": "Giant Rat",
+  "size": "Small",
   "cr": 0.125,
   "challenge": "1/8",
   "ac": 12,
@@ -648,6 +677,7 @@
  },
  {
   "name": "Giant Rat (Diseased)",
+  "size": "Small",
   "cr": 0.125,
   "challenge": "1/8",
   "ac": 12,
@@ -672,6 +702,7 @@
  },
  {
   "name": "Giant Weasel",
+  "size": "Medium",
   "cr": 0.125,
   "challenge": "1/8",
   "ac": 13,
@@ -696,6 +727,7 @@
  },
  {
   "name": "Mastiff",
+  "size": "Medium",
   "cr": 0.125,
   "challenge": "1/8",
   "ac": 12,
@@ -720,6 +752,7 @@
  },
  {
   "name": "Mule",
+  "size": "Medium",
   "cr": 0.125,
   "challenge": "1/8",
   "ac": 10,
@@ -744,6 +777,7 @@
  },
  {
   "name": "Poisonous Snake",
+  "size": "Tiny",
   "cr": 0.125,
   "challenge": "1/8",
   "ac": 13,
@@ -766,6 +800,7 @@
  },
  {
   "name": "Pony",
+  "size": "Medium",
   "cr": 0.125,
   "challenge": "1/8",
   "ac": 10,
@@ -790,6 +825,7 @@
  },
  {
   "name": "Stirge",
+  "size": "Tiny",
   "cr": 0.125,
   "challenge": "1/8",
   "ac": 14,
@@ -815,6 +851,7 @@
  },
  {
   "name": "Axe Beak",
+  "size": "Large",
   "cr": 0.25,
   "challenge": "1/4",
   "ac": 11,
@@ -839,6 +876,7 @@
  },
  {
   "name": "Boar",
+  "size": "Medium",
   "cr": 0.25,
   "challenge": "1/4",
   "ac": 11,
@@ -863,6 +901,7 @@
  },
  {
   "name": "Constrictor Snake",
+  "size": "Large",
   "cr": 0.25,
   "challenge": "1/4",
   "ac": 12,
@@ -898,6 +937,7 @@
  },
  {
   "name": "Draft Horse",
+  "size": "Large",
   "cr": 0.25,
   "challenge": "1/4",
   "ac": 10,
@@ -922,6 +962,7 @@
  },
  {
   "name": "Elk",
+  "size": "Large",
   "cr": 0.25,
   "challenge": "1/4",
   "ac": 10,
@@ -956,6 +997,7 @@
  },
  {
   "name": "Giant Badger",
+  "size": "Medium",
   "cr": 0.25,
   "challenge": "1/4",
   "ac": 10,
@@ -991,6 +1033,7 @@
  },
  {
   "name": "Giant Bat",
+  "size": "Large",
   "cr": 0.25,
   "challenge": "1/4",
   "ac": 13,
@@ -1016,6 +1059,7 @@
  },
  {
   "name": "Giant Centipede",
+  "size": "Small",
   "cr": 0.25,
   "challenge": "1/4",
   "ac": 13,
@@ -1041,6 +1085,7 @@
  },
  {
   "name": "Giant Frog",
+  "size": "Medium",
   "cr": 0.25,
   "challenge": "1/4",
   "ac": 11,
@@ -1066,6 +1111,7 @@
  },
  {
   "name": "Giant Lizard",
+  "size": "Large",
   "cr": 0.25,
   "challenge": "1/4",
   "ac": 12,
@@ -1091,6 +1137,7 @@
  },
  {
   "name": "Giant Owl",
+  "size": "Large",
   "cr": 0.25,
   "challenge": "1/4",
   "ac": 12,
@@ -1116,6 +1163,7 @@
  },
  {
   "name": "Giant Poisonous Snake",
+  "size": "Medium",
   "cr": 0.25,
   "challenge": "1/4",
   "ac": 14,
@@ -1141,6 +1189,7 @@
  },
  {
   "name": "Giant Wolf Spider",
+  "size": "Medium",
   "cr": 0.25,
   "challenge": "1/4",
   "ac": 13,
@@ -1166,6 +1215,7 @@
  },
  {
   "name": "Panther",
+  "size": "Medium",
   "cr": 0.25,
   "challenge": "1/4",
   "ac": 12,
@@ -1201,6 +1251,7 @@
  },
  {
   "name": "Riding Horse",
+  "size": "Large",
   "cr": 0.25,
   "challenge": "1/4",
   "ac": 10,
@@ -1225,6 +1276,7 @@
  },
  {
   "name": "Swarm of Bats",
+  "size": "Medium",
   "cr": 0.25,
   "challenge": "1/4",
   "ac": 12,
@@ -1250,6 +1302,7 @@
  },
  {
   "name": "Swarm of Rats",
+  "size": "Medium",
   "cr": 0.25,
   "challenge": "1/4",
   "ac": 10,
@@ -1274,6 +1327,7 @@
  },
  {
   "name": "Swarm of Ravens",
+  "size": "Medium",
   "cr": 0.25,
   "challenge": "1/4",
   "ac": 12,
@@ -1299,6 +1353,7 @@
  },
  {
   "name": "Wolf",
+  "size": "Medium",
   "cr": 0.25,
   "challenge": "1/4",
   "ac": 13,
@@ -1323,6 +1378,7 @@
  },
  {
   "name": "Ape",
+  "size": "Medium",
   "cr": 0.5,
   "challenge": "1/2",
   "ac": 12,
@@ -1358,6 +1414,7 @@
  },
  {
   "name": "Black Bear",
+  "size": "Medium",
   "cr": 0.5,
   "challenge": "1/2",
   "ac": 11,
@@ -1393,6 +1450,7 @@
  },
  {
   "name": "Crocodile",
+  "size": "Large",
   "cr": 0.5,
   "challenge": "1/2",
   "ac": 12,
@@ -1418,6 +1476,7 @@
  },
  {
   "name": "Giant Goat",
+  "size": "Large",
   "cr": 0.5,
   "challenge": "1/2",
   "ac": 11,
@@ -1442,6 +1501,7 @@
  },
  {
   "name": "Giant Sea Horse",
+  "size": "Large",
   "cr": 0.5,
   "challenge": "1/2",
   "ac": 13,
@@ -1467,6 +1527,7 @@
  },
  {
   "name": "Giant Wasp",
+  "size": "Medium",
   "cr": 0.5,
   "challenge": "1/2",
   "ac": 12,
@@ -1492,6 +1553,7 @@
  },
  {
   "name": "Reef Shark",
+  "size": "Medium",
   "cr": 0.5,
   "challenge": "1/2",
   "ac": 12,
@@ -1516,6 +1578,7 @@
  },
  {
   "name": "Swarm of Beetles",
+  "size": "Medium",
   "cr": 0.5,
   "challenge": "1/2",
   "ac": 12,
@@ -1542,6 +1605,7 @@
  },
  {
   "name": "Swarm of Centipedes",
+  "size": "Medium",
   "cr": 0.5,
   "challenge": "1/2",
   "ac": 12,
@@ -1567,6 +1631,7 @@
  },
  {
   "name": "Swarm of Insects",
+  "size": "Medium",
   "cr": 0.5,
   "challenge": "1/2",
   "ac": 12,
@@ -1592,6 +1657,7 @@
  },
  {
   "name": "Swarm of Spiders",
+  "size": "Medium",
   "cr": 0.5,
   "challenge": "1/2",
   "ac": 12,
@@ -1617,6 +1683,7 @@
  },
  {
   "name": "Swarm of Wasps",
+  "size": "Medium",
   "cr": 0.5,
   "challenge": "1/2",
   "ac": 12,
@@ -1642,6 +1709,7 @@
  },
  {
   "name": "Warhorse",
+  "size": "Large",
   "cr": 0.5,
   "challenge": "1/2",
   "ac": 11,
@@ -1666,6 +1734,7 @@
  },
  {
   "name": "Brown Bear",
+  "size": "Large",
   "cr": 1.0,
   "challenge": "1",
   "ac": 11,
@@ -1701,6 +1770,7 @@
  },
  {
   "name": "Dire Wolf",
+  "size": "Large",
   "cr": 1.0,
   "challenge": "1",
   "ac": 14,
@@ -1725,6 +1795,7 @@
  },
  {
   "name": "Giant Eagle",
+  "size": "Large",
   "cr": 1.0,
   "challenge": "1",
   "ac": 13,
@@ -1760,6 +1831,7 @@
  },
  {
   "name": "Giant Hyena",
+  "size": "Large",
   "cr": 1.0,
   "challenge": "1",
   "ac": 12,
@@ -1784,6 +1856,7 @@
  },
  {
   "name": "Giant Octopus",
+  "size": "Large",
   "cr": 1.0,
   "challenge": "1",
   "ac": 11,
@@ -1809,6 +1882,7 @@
  },
  {
   "name": "Giant Spider",
+  "size": "Large",
   "cr": 1.0,
   "challenge": "1",
   "ac": 14,
@@ -1834,6 +1908,7 @@
  },
  {
   "name": "Giant Toad",
+  "size": "Large",
   "cr": 1.0,
   "challenge": "1",
   "ac": 11,
@@ -1859,6 +1934,7 @@
  },
  {
   "name": "Giant Vulture",
+  "size": "Large",
   "cr": 1.0,
   "challenge": "1",
   "ac": 10,
@@ -1894,6 +1970,7 @@
  },
  {
   "name": "Lion",
+  "size": "Large",
   "cr": 1.0,
   "challenge": "1",
   "ac": 12,
@@ -1928,6 +2005,7 @@
  },
  {
   "name": "Swarm of Quippers",
+  "size": "Medium",
   "cr": 1.0,
   "challenge": "1",
   "ac": 13,
@@ -1953,6 +2031,7 @@
  },
  {
   "name": "Tiger",
+  "size": "Large",
   "cr": 1.0,
   "challenge": "1",
   "ac": 12,
@@ -1987,6 +2066,7 @@
  },
  {
   "name": "Giant Boar",
+  "size": "Large",
   "cr": 2.0,
   "challenge": "2",
   "ac": 12,
@@ -2011,6 +2091,7 @@
  },
  {
   "name": "Giant Constrictor Snake",
+  "size": "Huge",
   "cr": 2.0,
   "challenge": "2",
   "ac": 12,
@@ -2046,6 +2127,7 @@
  },
  {
   "name": "Giant Elk",
+  "size": "Huge",
   "cr": 2.0,
   "challenge": "2",
   "ac": 15,
@@ -2080,6 +2162,7 @@
  },
  {
   "name": "Hunter Shark",
+  "size": "Large",
   "cr": 2.0,
   "challenge": "2",
   "ac": 12,
@@ -2104,6 +2187,7 @@
  },
  {
   "name": "Plesiosaurus",
+  "size": "Large",
   "cr": 2.0,
   "challenge": "2",
   "ac": 13,
@@ -2129,6 +2213,7 @@
  },
  {
   "name": "Polar Bear",
+  "size": "Large",
   "cr": 2.0,
   "challenge": "2",
   "ac": 12,
@@ -2164,6 +2249,7 @@
  },
  {
   "name": "Rhinoceros",
+  "size": "Large",
   "cr": 2.0,
   "challenge": "2",
   "ac": 11,
@@ -2188,6 +2274,7 @@
  },
  {
   "name": "Saber-Toothed Tiger",
+  "size": "Large",
   "cr": 2.0,
   "challenge": "2",
   "ac": 12,
@@ -2222,6 +2309,7 @@
  },
  {
   "name": "Swarm of Poisonous Snakes",
+  "size": "Medium",
   "cr": 2.0,
   "challenge": "2",
   "ac": 14,
@@ -2247,6 +2335,7 @@
  },
  {
   "name": "Giant Scorpion",
+  "size": "Large",
   "cr": 3.0,
   "challenge": "3",
   "ac": 15,
@@ -2281,6 +2370,7 @@
  },
  {
   "name": "Killer Whale",
+  "size": "Huge",
   "cr": 3.0,
   "challenge": "3",
   "ac": 12,
@@ -2305,6 +2395,7 @@
  },
  {
   "name": "Elephant",
+  "size": "Huge",
   "cr": 4.0,
   "challenge": "4",
   "ac": 12,
@@ -2339,6 +2430,7 @@
  },
  {
   "name": "Air Elemental",
+  "size": "Large",
   "cr": 5.0,
   "challenge": "5",
   "ac": 15,
@@ -2364,6 +2456,7 @@
  },
  {
   "name": "Earth Elemental",
+  "size": "Large",
   "cr": 5.0,
   "challenge": "5",
   "ac": 17,
@@ -2389,6 +2482,7 @@
  },
  {
   "name": "Fire Elemental",
+  "size": "Large",
   "cr": 5.0,
   "challenge": "5",
   "ac": 13,
@@ -2413,6 +2507,7 @@
  },
  {
   "name": "Giant Crocodile",
+  "size": "Huge",
   "cr": 5.0,
   "challenge": "5",
   "ac": 14,
@@ -2448,6 +2543,7 @@
  },
  {
   "name": "Giant Shark",
+  "size": "Huge",
   "cr": 5.0,
   "challenge": "5",
   "ac": 13,
@@ -2472,6 +2568,7 @@
  },
  {
   "name": "Triceratops",
+  "size": "Huge",
   "cr": 5.0,
   "challenge": "5",
   "ac": 13,
@@ -2506,6 +2603,7 @@
  },
  {
   "name": "Water Elemental",
+  "size": "Large",
   "cr": 5.0,
   "challenge": "5",
   "ac": 14,
@@ -2531,6 +2629,7 @@
  },
  {
   "name": "Mammoth",
+  "size": "Huge",
   "cr": 6.0,
   "challenge": "6",
   "ac": 13,
@@ -2565,6 +2664,7 @@
  },
  {
   "name": "Giant Ape",
+  "size": "Huge",
   "cr": 7.0,
   "challenge": "7",
   "ac": 12,
@@ -2600,6 +2700,7 @@
  },
  {
   "name": "Tyrannosaurus Rex",
+  "size": "Huge",
   "cr": 8.0,
   "challenge": "8",
   "ac": 13,

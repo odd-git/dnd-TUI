@@ -277,6 +277,7 @@ SUB_MECH = {
     },
     "ranger": {
         "Hunter": {"options": {"hunters_prey": {"3": 1}, "defensive_tactics": {"7": 1}, "multiattack": {"11": 1}, "superior_defense": {"15": 1}}},
+        "Beast Master": {"actions": [{"name": "Ranger's Companion", "desc": "Choose or replace your beast companion (SRD beasts, CR 1/4 or less)", "special": "companion"}]},
     },
 }
 

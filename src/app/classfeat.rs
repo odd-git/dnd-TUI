@@ -204,6 +204,7 @@ impl App {
                 if self.slot_options(1).is_empty() { return self.say("Divine Smite: no slots left!", Tone::Warn); }
                 self.open(Step::Smite);
             }
+            "companion" => self.open(Step::Companion),
             "moon_heal" => {
                 if self.ch.beast.is_none() { return self.say("Only in beast form.", Tone::Warn); }
                 if self.slot_options(1).is_empty() { return self.say("No slots left!", Tone::Warn); }
@@ -288,6 +289,30 @@ impl App {
             let n = (1 + l).min(5);
             [format!("Level {l} slot ({left} left): {n}d8"), format!("Level {l} slot vs undead/fiend: {}d8", n + 1)]
         }).collect()
+    }
+
+    /// Beast Master: SRD beasts of CR 1/4 or less, Medium or smaller.
+    pub(super) fn companion_options(&self) -> Vec<&'static lists::BeastDef> {
+        lists::beasts().iter().filter(|b| !b.elemental && b.cr <= 0.25 && matches!(b.size.as_str(), "Tiny" | "Small" | "Medium") && !b.name.starts_with("Swarm")).collect()
+    }
+
+    /// The companion adds your proficiency bonus to AC and to its attack and damage rolls; HP at least 4 x ranger level.
+    pub(super) fn companion_pick(&mut self, i: usize) {
+        let Some(b) = self.companion_options().get(i).copied() else { return };
+        self.snap();
+        let prof = self.ch.prof();
+        let hp = b.hp.max(4 * self.level_of("Ranger") as i32);
+        self.ch.actions.retain(|a| !a.name.starts_with("Companion: "));
+        self.ch.info.retain(|l| !l.starts_with("Companion: "));
+        let line = format!("Companion: {}, AC {}, HP {hp}, {}", b.name, b.ac + prof, speed_text(b));
+        self.say(line.clone(), Tone::Good);
+        self.ch.info.push(line);
+        for a in &b.attacks {
+            self.ch.actions.push(ActionDef {
+                name: format!("Companion: {}", a.name), hit: Some(a.hit + prof), dice: Some(a.dice.unwrap_or((0, 1))), bonus: a.bonus + prof, dmg_type: a.kind.clone(),
+                ..Default::default()
+            });
+        }
     }
 
     /// Combat Wild Shape: a slot spent in beast form heals 1d8 per slot level.

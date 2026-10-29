@@ -444,7 +444,13 @@
    "source": "Player's Handbook",
    "needs_spells": false,
    "resources": [],
-   "actions": [],
+   "actions": [
+    {
+     "name": "Ranger's Companion",
+     "desc": "Choose or replace your beast companion (SRD beasts, CR 1/4 or less)",
+     "special": "companion"
+    }
+   ],
    "maneuver_pool": null,
    "tables": {},
    "dice": {},
