@@ -6,7 +6,7 @@ use crate::lists::{self, Spell};
 impl App {
     /// Tabs on offer: Spells only once there is something to cast.
     pub fn tabs(&self) -> Vec<(Tab, &'static str)> {
-        TABS.iter().copied().filter(|(t, _)| *t != Tab::Spells || self.ch.casts()).collect()
+        TABS.iter().copied().filter(|(t, _)| *t != Tab::Spells || self.ch.has_spells()).collect()
     }
 
     /// Rows of the Spells tab: cantrips, then castable spells by level.
@@ -123,7 +123,7 @@ impl App {
             .map(|s| s.name.clone()).filter(|n| !have.contains(n)).collect();
         // Mystic Arcanum spells (above the slot levels) do not count against spells known
         let top = c.top_level(cl);
-        let counted = have.iter().filter(|n| lists::spell(n).is_none_or(|s| s.level <= top)).count();
+        let counted = have.iter().filter(|n| self.ch.on_list(n) && !self.ch.bonus_spell(n) && lists::spell(n).is_none_or(|s| s.level <= top)).count();
         (want.saturating_sub(counted).min(names.len()), names)
     }
 
@@ -181,13 +181,10 @@ impl App {
 
     /// Editor: any spell of the class list (all levels, cantrips included) not yet known.
     pub(super) fn spell_add_items(&self) -> Vec<&'static Spell> {
-        let mut v: Vec<&'static Spell> = vec![];
-        for (c, cl, prog) in self.ch.casters() {
-            for cantrips in [true, false] { v.extend(lists::spell_choices(c, &prog, cl, cantrips)); }
-        }
-        v.sort_by(|a, b| (a.level, &a.name).cmp(&(b.level, &b.name)));
-        v.dedup_by_key(|s| &s.name);
-        v.retain(|s| !self.ch.cantrips.contains(&s.name) && !self.ch.spells.contains(&s.name));
+        // the class lists first, then every other official spell (feats, races, pacts, DM gifts)
+        let mut v: Vec<&'static Spell> = lists::spells().iter()
+            .filter(|s| !self.ch.cantrips.contains(&s.name) && !self.ch.spells.contains(&s.name)).collect();
+        v.sort_by_key(|s| (!self.ch.on_list(&s.name), s.level, s.name.clone()));
         v
     }
 

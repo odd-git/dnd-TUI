@@ -115,6 +115,23 @@ impl App {
         self.snap_in_flow();
         self.ch.features.push(Feature { name: format!("{}: {}", label(kind), o.name), desc: o.desc.clone() });
         self.say(format!("{}: {}.", label(kind), o.name), Tone::Good);
+        match o.name.as_str() {
+            "Pact of the Tome" => for _ in 0..3 { self.queue.push_front(Step::AnyCantrip); },
+            "Pact of the Chain" => self.grant_spell("Find Familiar", "Pact of the Chain"),
+            _ => {}
+        }
+    }
+
+    pub(super) fn any_cantrips(&self) -> Vec<String> {
+        lists::spells().iter().filter(|s| s.level == 0 && !self.ch.cantrips.contains(&s.name)).map(|s| s.name.clone()).collect()
+    }
+
+    /// A spell given by a feature, outside the class picks: known, castable, not counted against spells known.
+    pub(super) fn grant_spell(&mut self, name: &str, from: &str) {
+        let Some(sp) = lists::spell(name) else { return };
+        if sp.level == 0 { self.ch.cantrips.push(sp.name.clone()) } else { self.ch.spells.push(sp.name.clone()) }
+        self.ch.features.push(Feature { name: format!("Bonus spell: {}", sp.name), desc: format!("From {from}") });
+        self.say(format!("{from}: {}.", sp.name), Tone::Good);
     }
 
     pub(super) fn arcanum_items(&self, level: u32) -> Vec<String> {

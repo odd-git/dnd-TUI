@@ -185,6 +185,19 @@ impl Character {
     /// True once there is anything to cast (a half caster has nothing at level 1).
     pub fn casts(&self) -> bool { self.cast_src().is_some() }
 
+    /// Anything for the Spells tab: a casting class, or spells from a feat, race or pact on any sheet.
+    pub fn has_spells(&self) -> bool { self.casts() || !self.cantrips.is_empty() || !self.spells.is_empty() }
+
+    /// On the spell list of one of the classes (patron spells included). Spells from elsewhere (Magic Initiate,
+    /// Pact of the Tome, a DM's gift) are always castable and never count against spells known.
+    /// Granted on top of the class picks (Pact of the Tome cantrips, Pact of the Chain's familiar).
+    pub fn bonus_spell(&self, name: &str) -> bool { self.features.iter().any(|f| f.name == format!("Bonus spell: {name}")) }
+
+    pub fn on_list(&self, name: &str) -> bool {
+        let Some(sp) = crate::lists::spell(name) else { return false };
+        self.casters().iter().any(|(c, _, p)| sp.classes.iter().any(|x| *x == c.list) || crate::lists::expanded_spells(p, 9).contains(&sp.name))
+    }
+
     pub fn cantrips_max(&self) -> usize { self.cast_src().map_or(0, |(c, l, _)| at(&c.cantrips, l) as usize) }
 
     /// Spells to know: the class table, or for a wizard 6 in the book plus 2 per level after the first.
@@ -205,9 +218,12 @@ impl Character {
 
     /// Everything castable that is not a cantrip: known spells, or prepared ones plus domain / oath spells.
     pub fn castable(&self) -> Vec<String> {
-        let Some((c, l, prog)) = self.cast_src() else { return vec![] };
+        let off_list = self.spells.iter().filter(|s| !self.on_list(s)).cloned();
+        let Some((c, l, prog)) = self.cast_src() else { return off_list.collect() };
         let mut v = crate::lists::always_spells(&prog, l);
         v.extend(if c.mode == "known" { self.spells.iter() } else { self.prepared.iter() }.cloned());
+        v.extend(off_list);
+        v.sort();
         v.dedup();
         v
     }

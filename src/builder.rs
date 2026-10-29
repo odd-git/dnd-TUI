@@ -422,6 +422,20 @@ mod tests {
     }
 
     #[test]
+    fn spells_from_outside_the_class_list() {
+        let mut c = half("Ranger", "Hunter", 1); // no spells yet at ranger level 1
+        assert!(!c.has_spells());
+        c.spells.push("Find Familiar".into());
+        assert!(c.has_spells() && c.castable() == vec!["Find Familiar".to_string()]);
+        let mut p = half("Paladin", "Devotion", 5);
+        p.spells.push("Fire Bolt".into());
+        p.prepared.push("Bless".into());
+        assert!(!p.on_list("Fire Bolt") && p.on_list("Bless"));
+        let cast = p.castable();
+        assert!(cast.contains(&"Fire Bolt".to_string()) && cast.contains(&"Bless".to_string()));
+    }
+
+    #[test]
     fn casters_match_the_wikidot_tables() {
         use crate::model::at;
         let w = lists::casting_of("Wizard/School of Evocation").unwrap();

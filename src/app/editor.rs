@@ -61,7 +61,8 @@ impl App {
             Step::CustomType(..) => self.input("Damage type", step, false),
             Step::RmAction => { let items = c.actions.iter().map(|a| a.name.clone()).collect(); self.list("Remove which action?", items, step, true) }
             Step::SpellAdd => {
-                let items = self.spell_add_items().iter().map(|s| format!("{} {}", if s.level == 0 { "C".to_string() } else { s.level.to_string() }, s.name)).collect();
+                let items = self.spell_add_items().iter().map(|s| format!("{} {}{}", if s.level == 0 { "C".to_string() } else { s.level.to_string() }, s.name,
+                    if self.ch.on_list(&s.name) { String::new() } else { format!("  [{}]", s.classes.join("/")) })).collect();
                 self.list("Add spell", items, step, true);
             }
             Step::SpellDel => { let items = self.spell_known_names(); self.list("Remove spell", items, step, true) }

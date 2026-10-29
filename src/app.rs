@@ -40,7 +40,7 @@ pub enum Step {
     Maneuver { required: bool }, ReplaceAsk, Forget, Extras, Skill, NoteName, NoteDesc(String), JournalAdd,
     Subclass, DeleteSheet(usize), Expertise, Style, Pool(String),
     Learn(bool), Prepare, CastSlot(String), SpellAdd, SpellDel, LevelClass,
-    Opt(String), Arcanum(u32), Secret, Smite, Recover(u32), FontSlot, FontPoints, BeastHp, Hd(usize),
+    Opt(String), Arcanum(u32), Secret, Smite, Recover(u32), FontSlot, FontPoints, BeastHp, Hd(usize), AnyCantrip,
     // editor
     Ident, IdentSet(usize), Scores, ScoreSet(String), Unskill, ArmorPick, ShieldPick(Option<String>), WeaponPick,
     CustomName, CustomAb(String), CustomDice(String, Option<String>), CustomType(String, Option<String>, (u32, u32)),
@@ -629,8 +629,9 @@ impl App {
         let mut v = vec![("ident", "Name / race / background"), ("scores", "Ability scores"), ("skill", "Add skill proficiency"), ("unskill", "Remove skill proficiency"),
                          ("armor", "Armor and shield"), ("weapon", "Add weapon attack"), ("custom", "Add custom attack"), ("rmaction", "Remove attack or action")];
         if self.ch.maneuver_pool.is_some() { v.push(("learn", "Learn maneuver")); v.push(("replace", "Replace maneuver")); }
+        v.push(("spelladd", "Add spell"));
+        if self.ch.has_spells() { v.push(("spelldel", "Remove spell")); }
         if self.ch.casts() {
-            v.extend([("spelladd", "Add spell"), ("spelldel", "Remove spell")]);
             if self.ch.casting().is_some_and(|c| c.mode != "known") { v.push(("prepare", "Prepare spells")); }
         }
         v.extend([("feat", "Add feat"), ("resource", "Add resource"), ("rmres", "Remove resource"), ("note", "Add feature / note"), ("rmfeat", "Remove feature"), ("done", "Done")]);
@@ -713,6 +714,7 @@ impl App {
                 if items.is_empty() { return self.say("No slots to convert.", Tone::Warn); }
                 self.list("Slot into sorcery points", items, step, true);
             }
+            Step::AnyCantrip => { let items = self.any_cantrips(); self.list("Book of Shadows: a cantrip from any class", items, step, false) }
             Step::BeastHp => { let t = format!("Beast HP (max CR {})", self.wild_cr()); self.input(t, step, true) }
             Step::Hd(i) => {
                 let Some(id) = self.hd_pools().get(i).cloned() else { return };
@@ -880,6 +882,7 @@ impl App {
             Step::Opt(kind) => self.opt_pick(&kind, i),
             Step::Arcanum(l) => self.arcanum_pick(l, i),
             Step::Secret => self.secret_pick(i),
+            Step::AnyCantrip => { if let Some(n) = self.any_cantrips().get(i).cloned() { self.grant_spell(&n, "Pact of the Tome"); } }
             Step::Smite => self.smite_pick(i),
             Step::Recover(b) => self.recover_pick(b, i),
             Step::FontSlot => self.font_slot_pick(i),
@@ -1095,7 +1098,7 @@ impl App {
 pub(crate) fn prepare_options(c: &Character) -> Vec<String> {
     let Some((cast, cl, prog)) = c.cast_src() else { return vec![] };
     let always = crate::lists::always_spells(&prog, cl);
-    if cast.mode == "spellbook" { return c.spells.iter().filter(|s| !always.contains(s)).cloned().collect(); }
+    if cast.mode == "spellbook" { return c.spells.iter().filter(|s| !always.contains(s) && c.on_list(s)).cloned().collect(); }
     crate::lists::spell_choices(cast, &prog, cl, false).iter()
         .map(|s| s.name.clone()).filter(|n| !always.contains(n)).collect()
 }
