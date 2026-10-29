@@ -541,8 +541,12 @@ impl App {
         let a = self.ch.actions[ai].clone();
         if let Some(id) = &a.pool { return self.open(Step::Pool(id.clone())); }
         if let Some(s) = &a.special { return self.special(s, &a); }
+        let spend = a.spend.max(1);
         if let Some(u) = &a.uses {
-            if self.have(u) == 0 { return self.say(format!("{}: none left!", a.name), Tone::Warn); }
+            if self.have(u) < spend {
+                let why = if spend > 1 { format!("needs {spend} {}", self.res_name(u)) } else { "none left!".into() };
+                return self.say(format!("{}: {why}", a.name), Tone::Warn);
+            }
         }
         let mut slot = None;
         if !a.cost.is_empty() {
@@ -552,10 +556,14 @@ impl App {
             }
         }
         self.snap();
-        for r in a.uses.iter().chain(slot.iter()) {
-            if let Some(v) = self.ch.res.get_mut(r) { *v -= 1; }
-        }
+        if let Some(v) = a.uses.as_ref().and_then(|u| self.ch.res.get_mut(u)) { *v -= spend; }
+        if let Some(v) = slot.as_ref().and_then(|s| self.ch.res.get_mut(s)) { *v -= 1; }
         let Some((n, sides)) = self.ch.dice(&a) else {
+            if a.heal {
+                let amount = a.bonus + a.level_x as i32 * self.ch.level as i32;
+                self.heal(amount);
+                return self.say(format!("{}: healed {amount}", a.name), Tone::Good);
+            }
             let from = slot.map(|s| format!(" [{}]", self.res_name(&s))).unwrap_or_default();
             return self.say(format!("{}{from}: {}", a.name, self.ch.fmt(&a.desc)), Tone::Norm);
         };
@@ -576,6 +584,7 @@ impl App {
         let mut bonus = a.bonus;
         if a.dmg_ability { bonus += a.ability.as_deref().map_or(0, |ab| self.ch.md(ab)); }
         if a.level_bonus { bonus += self.ch.level as i32; }
+        bonus += a.level_x as i32 * self.ch.level as i32;
         if !a.heal { bonus += self.ch.toggle_bonus(a.ability.as_deref()); }
         if !a.heal && self.ch.toggles.iter().any(|t| t.dmg_bonus_prof && self.ch.active.contains(&t.name)) { bonus += prof; }
         if a.dmg_type.is_empty() && !a.heal {

@@ -401,6 +401,24 @@ mod tests {
         assert!(lists::casting_of("Wizard").unwrap().schools_ok(1, &v(&["Sleep", "Find Familiar"])));
     }
 
+    fn monk_sub(sub: &str, level: u32) -> Character {
+        let s = |x: &str| x.to_string();
+        build(&Draft {
+            name: s("Reed"), lineage: s("Human"), class: s("Monk"), subclass: Some(s(sub)), level, background: s("Hermit"),
+            base: [("STR", 10), ("DEX", 15), ("CON", 13), ("INT", 8), ("WIS", 14), ("CHA", 10)].iter().map(|(a, v)| (a.to_string(), *v)).collect(),
+            class_skills: vec![s("Acrobatics"), s("Insight")], ..Default::default()
+        })
+    }
+
+    #[test]
+    fn open_hand_wholeness_from_sixth_level() {
+        assert_eq!(monk_sub("Open Hand", 5).res_max("wholeness_of_body"), Some(0));
+        let c = monk_sub("Open Hand", 6);
+        assert_eq!(c.res_max("wholeness_of_body"), Some(1));
+        let w = c.actions.iter().find(|a| a.name == "Wholeness of Body").unwrap();
+        assert!(w.heal && w.level_x == 3 && c.dice(w).is_none());
+    }
+
     #[test]
     fn berserker_frenzy_and_presence() {
         let c = barbarian(3);

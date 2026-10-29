@@ -83,8 +83,10 @@ pub struct ActionDef {
     pub bonus: i32,
     pub dmg_type: String,
     pub level_bonus: bool,         // add character level (Second Wind)
+    pub level_x: u32,              // add this many times the character level (Wholeness of Body: 3)
     pub heal: bool,
     pub uses: Option<String>,      // resource spent
+    pub spend: u32,                // ...this many of it each time (0 means 1: Shadow Arts costs 2 ki)
     pub cost: Vec<String>,         // first resource with something left is spent (spell slots)
     pub dice_table: Option<String>, // level table giving the number of dice (Sneak Attack)
     pub die_table: Option<String>,  // level table giving the die size (Martial Arts)
@@ -215,7 +217,7 @@ impl Character {
     /// Anything for the Spells tab: a casting class, or spells from a feat, race or pact on any sheet.
     pub fn has_spells(&self) -> bool { self.casts() || !self.cantrips.is_empty() || !self.spells.is_empty() || !self.rituals().is_empty() }
 
-    /// Rituals a subclass that does not cast gives (Totem Warrior): no slots, only the ritual way.
+    /// Spells a subclass that does not cast gives: rituals (Totem Warrior) or cantrips (Shadow); never with slots.
     pub fn rituals(&self) -> Vec<String> {
         self.classes().iter().filter(|(p, _)| crate::lists::casting_of(p).is_none()).flat_map(|(p, l)| crate::lists::always_spells(p, *l)).collect()
     }

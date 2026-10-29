@@ -233,6 +233,13 @@ SUB_MECH = {
     "fighter": {
         "Champion": {"tables": {"crit_range": {"3": 19, "15": 18}}},
     },
+    "monk": {
+        "Open Hand": {
+            "tables": {"wholeness_of_body": {"6": 1}},
+            "resources": [res("wholeness_of_body", "Wholeness of Body", "long", "table")],
+            "actions": [{"name": "Wholeness of Body", "desc": "Action: heal three times your monk level", "uses": "wholeness_of_body", "heal": True, "level_x": 3}],
+        },
+    },
 }
 
 def split_top(s):

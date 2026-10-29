@@ -541,10 +541,30 @@
    "name": "Open Hand",
    "source": "Player's Handbook",
    "needs_spells": false,
-   "resources": [],
-   "actions": [],
+   "resources": [
+    {
+     "id": "wholeness_of_body",
+     "name": "Wholeness of Body",
+     "recharge": "long",
+     "max": "table",
+     "pips": true
+    }
+   ],
+   "actions": [
+    {
+     "name": "Wholeness of Body",
+     "desc": "Action: heal three times your monk level",
+     "uses": "wholeness_of_body",
+     "heal": true,
+     "level_x": 3
+    }
+   ],
    "maneuver_pool": null,
-   "tables": {},
+   "tables": {
+    "wholeness_of_body": {
+     "6": 1
+    }
+   },
    "dice": {},
    "maneuvers_known": {},
    "features": {
