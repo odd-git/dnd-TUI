@@ -1,0 +1,1277 @@
+[
+ {
+  "name": "Acolyte",
+  "source": "Player's Handbook",
+  "skills": [
+   "Insight",
+   "Religion"
+  ],
+  "extra_skills": 0,
+  "tools": "None",
+  "languages": [],
+  "extra_languages": 2,
+  "equipment": "A holy symbol (a gift to you when you entered the priesthood), a prayer book or prayer wheel, 5 sticks of incense, vestments Value:0 Weight:0, a set of common clothes, and a pouch containing 15gp",
+  "feature": "Shelter of the Faithful"
+ },
+ {
+  "name": "Anthropologist",
+  "source": "Tomb of Annihilation",
+  "skills": [
+   "Insight",
+   "Religion"
+  ],
+  "extra_skills": 0,
+  "tools": "None",
+  "languages": [],
+  "extra_languages": 2,
+  "equipment": "A leather-bound diary, a bottle of ink, an ink pen, a set of traveler's clothes, one trinket of special significance, and a pouch containing 10gp",
+  "feature": "Adept Linguist"
+ },
+ {
+  "name": "Archaeologist",
+  "source": "Tomb of Annihilation",
+  "skills": [
+   "History",
+   "Survival"
+  ],
+  "extra_skills": 0,
+  "tools": "Cartographer's tools or navigator's tools",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A wooden case containing a map to a ruin or dungeon, a bullseye lantern, a miner's pick, a set of traveler's clothes, a shovel, a two-person tent, a trinket recovered from a dig site, and a pouch containing 25gp",
+  "feature": "Historical Knowledge"
+ },
+ {
+  "name": "Astral Drifter",
+  "source": "Spelljamer: Adventures in Space - Astral Adventurer's Guide",
+  "skills": [
+   "Insight",
+   "Religion"
+  ],
+  "extra_skills": 0,
+  "tools": "",
+  "languages": [],
+  "extra_languages": 2,
+  "equipment": "A set of traveler's clothes Value: 2gp Weight: 4lbs, a diary, an ink pen Value: 2cp Weight: 0, a bottle of ink Value: 10gp Weight: 0, and a pouch containing 10gp",
+  "feature": "Divine Contact"
+ },
+ {
+  "name": "Athlete",
+  "source": "Mythic Odysseys of Theros",
+  "skills": [
+   "Acrobatics",
+   "Athletics"
+  ],
+  "extra_skills": 0,
+  "tools": "Vehicles (Land)",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A bronze discus or leather ball, a lucky charm or past trophy, a set of traveler's clothes, and a pouch containing 10 gp Favored Event While many athletes practice various games and events, most excel at a single form of competition. Roll or choose from the options in the Favored Events table to determine the athletic event in which you excel. d8 Favored Event 1 Marathon 2 Long-distance running 3...",
+  "feature": null
+ },
+ {
+  "name": "Azorius Functionary",
+  "source": "Guildmaster's Guide to Ravnica",
+  "skills": [
+   "Insight",
+   "Intimidation"
+  ],
+  "extra_skills": 0,
+  "tools": "",
+  "languages": [],
+  "extra_languages": 2,
+  "equipment": "An Azorius insignia, a scroll containing the text of a law important to you, a bottle of blue ink, an ink pen, a set of fine clothes, and a pouch containing 10gp (Azorius-minted 1-zino coins)",
+  "feature": "Azorius Guild Spells"
+ },
+ {
+  "name": "Black Fist Double Agent",
+  "source": "Curse of Strahd: Optional Backgrounds",
+  "skills": [
+   "Deception",
+   "Insight"
+  ],
+  "extra_skills": 0,
+  "tools": "Disguise Kit, and one type of artisan’s tools or gaming set",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "Disguise Kit, common clothes, a Tears of Virulence emblem, a writ of free agency signed by the Lord Regent, a set of artisan’s tools or gaming set you are proficient with, and a pouch with 15gp (payment for services rendered).",
+  "feature": null
+ },
+ {
+  "name": "Boros Legionnaire",
+  "source": "Guildmaster's Guide to Ravnica",
+  "skills": [
+   "Athletics",
+   "Intimidation"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of gaming set",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A Boros insignia, a feather from an angel's wing, a tattered piece of a Boros banner (a souvenir from a famous battle), a set of common clothes, and a pouch containing 2gp (Boros-minted 1-zino coins)",
+  "feature": "Boros Guild Spells"
+ },
+ {
+  "name": "Caravan Specialist",
+  "source": "Mulmaster Bonds and Backgrounds",
+  "skills": [
+   "Animal Handling",
+   "Survival"
+  ],
+  "extra_skills": 0,
+  "tools": "Land Vehicles",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A whip, a tent, a regional map, a set of traveler's clothes, and a pouch containing 10gp",
+  "feature": null
+ },
+ {
+  "name": "Celebrity Adventurer's Scion",
+  "source": "Acquisitions Incorporated",
+  "skills": [
+   "Perception",
+   "Performance"
+  ],
+  "extra_skills": 0,
+  "tools": "Disguise kit",
+  "languages": [],
+  "extra_languages": 2,
+  "equipment": "A disguise kit, a set of fine clothes, and a belt pouch containing 30 gp.",
+  "feature": null
+ },
+ {
+  "name": "Charlatan",
+  "source": "Player's Handbook",
+  "skills": [
+   "Deception",
+   "Sleight of Hand"
+  ],
+  "extra_skills": 0,
+  "tools": "Disguise kit, forgery kit",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A set of fine clothes, a disguise kit, tools of the con of your choice (ten stoppered bottles (individually) filled with colored liquid, a set of weighted dice, a deck of marked cards, or a signet ringof an imaginary duke), and a pouch containing 15gp",
+  "feature": "False Identity"
+ },
+ {
+  "name": "City Watch",
+  "source": "Sword Coast Adventurer's Guide",
+  "skills": [
+   "Athletics",
+   "Insight"
+  ],
+  "extra_skills": 0,
+  "tools": "None",
+  "languages": [],
+  "extra_languages": 2,
+  "equipment": "A uniform in the style of your unit and indicative of your rank, a horn with which to summon help, a set of manacles, and a pouch containing 10gp",
+  "feature": "Watcher's Eye"
+ },
+ {
+  "name": "Clan Crafter",
+  "source": "Sword Coast Adventurer's Guide",
+  "skills": [
+   "History",
+   "Insight"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of artisan's tools",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A set of artisan's tools with which you are proficient, a maker's mark chisel used to mark your handiwork with the symbol of the clan of crafters you learned your skill from, a set of traveler's clothes, and a pouch containing 5gp and a gem worth 10gp",
+  "feature": "Respect of the Stout Folk"
+ },
+ {
+  "name": "Cloistered Scholar",
+  "source": "Sword Coast Adventurer's Guide",
+  "skills": [
+   "Arcana",
+   "History",
+   "Nature",
+   "Religion"
+  ],
+  "extra_skills": 0,
+  "tools": "None",
+  "languages": [],
+  "extra_languages": 2,
+  "equipment": "The scholar's robes of your cloister, a writing kit (small pouch with a quill, a bottle of ink, folded parchment, and a small penknife Value:0 Weight:0 ), a borrowed book on the subject of your current study, and a pouch containing 10gp",
+  "feature": "Library Access"
+ },
+ {
+  "name": "Cormanthor Refugee",
+  "source": "State of Hillsfar",
+  "skills": [
+   "Nature",
+   "Survival"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of artisan's tools",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A two-person tent, artisan's tools, a holy symbol, a set of traveler's clothes, and a pouch containing 5gp",
+  "feature": null
+ },
+ {
+  "name": "Courtier",
+  "source": "Sword Coast Adventurer's Guide",
+  "skills": [
+   "Insight",
+   "Persuasion"
+  ],
+  "extra_skills": 0,
+  "tools": "None",
+  "languages": [],
+  "extra_languages": 2,
+  "equipment": "A set of fine clothes and a pouch containing 5gp",
+  "feature": "Court Functionary"
+ },
+ {
+  "name": "Criminal",
+  "source": "Player's Handbook",
+  "skills": [
+   "Deception",
+   "Stealth"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of gaming set, thieves' tools",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A crowbar, a set of dark common clothes including a hood, and a pouch containing 15gp",
+  "feature": "Criminal Contact"
+ },
+ {
+  "name": "Dimir Operative",
+  "source": "Guildmaster's Guide to Ravnica",
+  "skills": [
+   "Deception",
+   "Stealth"
+  ],
+  "extra_skills": 0,
+  "tools": "Disguise kit",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A Dimir insignia, three small knives Value:0 Weight:0 (individually), a set of dark-colored common clothes, and the starting equipment of the background described in this chapter for your secondary guild",
+  "feature": "Dimir Guild Spells"
+ },
+ {
+  "name": "Dissenter",
+  "source": "Plane Shift - Amonkhet",
+  "skills": [],
+  "extra_skills": 0,
+  "tools": "",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "",
+  "feature": null
+ },
+ {
+  "name": "Dragon Casualty",
+  "source": "Curse of Strahd: Optional Backgrounds",
+  "skills": [
+   "Intimidation",
+   "Survival"
+  ],
+  "extra_skills": 0,
+  "tools": "Special (see origin below)",
+  "languages": [
+   "Draconic"
+  ],
+  "extra_languages": 0,
+  "equipment": "A dagger, tattered rags, a loaf of moldy bread, a small cast-off scale belonging to Vorgansharax – the Maimed Virulence, and a pouch with 5gp of various coins (salvaged during your escape from Phlan). Origin Prior to the coordinated attack by the Maimed Virulence and his rebel Black Fist supporters, you were once a citizen or visitor to Phlan. While the trauma of your recent ordeal has greatly...",
+  "feature": null
+ },
+ {
+  "name": "Earthspur Miner",
+  "source": "Mulmaster Bonds and Backgrounds",
+  "skills": [
+   "Athletics",
+   "Survival"
+  ],
+  "extra_skills": 0,
+  "tools": "",
+  "languages": [
+   "Undercommon"
+  ],
+  "extra_languages": 0,
+  "equipment": "A shovel or a miner's pick, a block and tackle, a climber's kit Contents: Special Pitons Boot Tips Gloves Harness, a set of common clothes, and a pouch containing 5gp",
+  "feature": null
+ },
+ {
+  "name": "Entertainer",
+  "source": "Player's Handbook",
+  "skills": [
+   "Acrobatics",
+   "Performance"
+  ],
+  "extra_skills": 0,
+  "tools": "Disguise kit, one type of musical instrument",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A musical instrument (one of your choice), the favor of an admirer (love letter, lock of hair, or trinket), a costume, and a pouch containing 15gp",
+  "feature": "By Popular Demand"
+ },
+ {
+  "name": "Faceless",
+  "source": "Baldur's Gate - Descent into Avernus",
+  "skills": [
+   "Deception",
+   "Intimidation"
+  ],
+  "extra_skills": 0,
+  "tools": "Disguise kit",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A disguise kit, a costume, and a pouch containing 10gp",
+  "feature": "Dual Personalities"
+ },
+ {
+  "name": "Faction Agent",
+  "source": "Sword Coast Adventurer's Guide",
+  "skills": [
+   "Insight"
+  ],
+  "extra_skills": 1,
+  "tools": "None",
+  "languages": [],
+  "extra_languages": 2,
+  "equipment": "The badge or emblemof your faction, a copy of a seminal faction text (or a code-book for a covert faction), a set of common clothes, and a pouch containing 15gp",
+  "feature": "Safe Haven"
+ },
+ {
+  "name": "Failed Merchant",
+  "source": "Acquisitions Incorporated",
+  "skills": [
+   "Investigation",
+   "Persuasion"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of artisan's tools",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "One set of artisan's tools, merchant's scale, a set of fine clothes, and a belt pouch containing 10 gp.",
+  "feature": null
+ },
+ {
+  "name": "Far Traveler",
+  "source": "Sword Coast Adventurer's Guide",
+  "skills": [
+   "Insight",
+   "Perception"
+  ],
+  "extra_skills": 0,
+  "tools": "Any one musical instrument or gaming set of your choice, likely something native to your homeland",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "One set of traveler's clothes, any one musical instrument or gaming set you are proficient with, poorly wrought maps from your homeland that depict where you are in Faerûn, a small piece of jewelry worth 10gp in the style of your homeland's craftsmanship, and a pouch containing 5gp",
+  "feature": "All Eyes on You"
+ },
+ {
+  "name": "Feylost",
+  "source": "The Wild Beyond the Witchlight",
+  "skills": [
+   "Deception",
+   "Survival"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of musical instrument",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A musical instrument (one of your choice), a set of traveler's clothes, three trinkets (each determind by rolling on the Feywild Trinkets table), and a pouch containing 8gp",
+  "feature": "Feywild Connection"
+ },
+ {
+  "name": "Fisher",
+  "source": "Ghosts of Saltmarsh",
+  "skills": [
+   "History",
+   "Survival"
+  ],
+  "extra_skills": 0,
+  "tools": "",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "Fishing tackle, a net, a favorite fishing lure or oiled leather wading boots, a set of traveler's clothes, and a belt pouch containing 10 gp Harvest the Water You gain advantage on ability checks made using fishing tackle. If you have access to a body of water that sustains marine life, you can maintain a moderate lifestyle while working as a fisher, and you can catch enough food to feed yourself...",
+  "feature": null
+ },
+ {
+  "name": "Folk Hero",
+  "source": "Player's Handbook",
+  "skills": [
+   "Animal Handling",
+   "Survival"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of artisan's tools, vehicles (land)",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A set of artisan's tools (one of your choice), a shovel, an iron pot, a set of common clothes, and a pouch containing 10gp",
+  "feature": "Rustic Hospitality"
+ },
+ {
+  "name": "Gambler",
+  "source": "Acquisitions Incorporated",
+  "skills": [
+   "Deception",
+   "Insight"
+  ],
+  "extra_skills": 0,
+  "tools": "One gaming set",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "One gaming set, a lucky charm, a set of fine clothes, and a belt pouch containing 15 gp.",
+  "feature": null
+ },
+ {
+  "name": "Gate Urchin",
+  "source": "State of Hillsfar",
+  "skills": [
+   "Deception",
+   "Sleight of Hand"
+  ],
+  "extra_skills": 0,
+  "tools": "Thieves' tools, one type of musical instrument",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A battered alms box, a musical instrument, a cast-off military jacket, cap, or scarf, a set of common clothes, and a pouch containing 10gp",
+  "feature": null
+ },
+ {
+  "name": "Gate Warden",
+  "source": "Planescape - Adventures in the Multiverse",
+  "skills": [
+   "Persuasion",
+   "Survival"
+  ],
+  "extra_skills": 0,
+  "tools": "",
+  "languages": [],
+  "extra_languages": 2,
+  "equipment": "A ring of keys to unknown locks, a blank book Value: 25gp Weight: 5lbs, an ink pen or quill Value: 2cp Weight: 0, a bottle of black ink Value: 10gp Weight: 0, a set of traveler’s clothes Value: 2gp Weight: 4lbs, and a pouch Value: 5sp Weight: 1lb containing 10 gp.",
+  "feature": "Planar Infusion"
+ },
+ {
+  "name": "Giant Foundling",
+  "source": "Bigby Presents - Glory of the Giants",
+  "skills": [
+   "Intimidation",
+   "Survival"
+  ],
+  "extra_skills": 0,
+  "tools": "",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A backpack Value: 2gp Weight: 5lbs, a set of traveler’s clothes Value: 2gp Weight: 4lbs, a small stone or sprig that reminds you of home, and a pouch Value: 5sp Weight: 1lb containing 10 gp. Origin Stories How you came to live among colossal creatures is up to you to determine, but the Foundling Origin table suggests a variety of possibilities. Foundling Origin d6 Origin 1 You were found as a...",
+  "feature": "Strike of the Giants"
+ },
+ {
+  "name": "Golgari Agent",
+  "source": "Guildmaster's Guide to Ravnica",
+  "skills": [
+   "Nature",
+   "Survival"
+  ],
+  "extra_skills": 0,
+  "tools": "Poisoner's Kit",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A Golgari insignia, a poisoner's kit, a pet beetle or spider, a set of common clothes, and a pouch containing 10gp worth of mixed coins.",
+  "feature": "Golgari Guild Spells"
+ },
+ {
+  "name": "Grinner",
+  "source": "Explorer's Guide to Wildemount",
+  "skills": [
+   "Deception",
+   "Performance"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of musical instrument, thieves' tools",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A set of fine clothes, a disguise kit, a musical instrument of your choice, a gold-plated ring depicting a smiling face, and a pouch containing 15gp.",
+  "feature": "Ballad of the Grinning Fool"
+ },
+ {
+  "name": "Gruul Anarch",
+  "source": "Guildmaster's Guide to Ravnica",
+  "skills": [
+   "Animal Handling",
+   "Athletics"
+  ],
+  "extra_skills": 0,
+  "tools": "Herbalism Kit",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A Gruul insignia, a hunting trap, an herbalism kit, the skull of a boar, a beast-hide cloak, a set of traveler's clothes, and a pouch containing 10gp (Azorius 1-zino coins)",
+  "feature": "Gruul Guild Spells"
+ },
+ {
+  "name": "Guild Artisan",
+  "source": "Player's Handbook",
+  "skills": [
+   "Insight",
+   "Persuasion"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of artisan's tools",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A set of artisan's tools (one of your choice), a letter of introduction from your guild, a set of traveler's clothes, and a pouch containing 15gp",
+  "feature": null
+ },
+ {
+  "name": "Harborfolk",
+  "source": "Mulmaster Bonds and Backgrounds",
+  "skills": [
+   "Athletics",
+   "Sleight of Hand"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of gaming set, vehicles (water)",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "Fishing tackle, a dice set, playing card set, or Three Dragon Ante set, a set of common clothes, a rowboat, and a pouch containing 5gp",
+  "feature": null
+ },
+ {
+  "name": "Haunted One",
+  "source": "Curse of Strahd",
+  "skills": [
+   "Arcana",
+   "Investigation",
+   "Religion",
+   "Survival"
+  ],
+  "extra_skills": 0,
+  "tools": "None",
+  "languages": [],
+  "extra_languages": 2,
+  "equipment": "A monster hunter’s pack Contents: 1 Chest - 1 Crowbar - 1 Hammer - 3 Wooden Stakes - Value:0 Weight:0 1 Holy Symbol - Value:0 Weight:0 1 Flask of Holy Water - 1 Set of Manacles - 1 Steel Mirror - 1 Flask of Oil - 1 Tinderbox - 3 Torches - (individually), and one trinket of special significance (choose one or roll on the Gothic Trinkets table). Also gain a set of common clothes and 1sp.",
+  "feature": "Heart of Darkness"
+ },
+ {
+  "name": "Hermit",
+  "source": "Player's Handbook",
+  "skills": [
+   "Medicine",
+   "Religion"
+  ],
+  "extra_skills": 0,
+  "tools": "Herbalism kit",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A scroll case stuffed full of notes from your studies or prayers, a winter blanket, a set of common clothes, an herbalism kit, and 5gp",
+  "feature": "Discovery"
+ },
+ {
+  "name": "Hillsfar Smuggler",
+  "source": "State of Hillsfar",
+  "skills": [
+   "Perception",
+   "Stealth"
+  ],
+  "extra_skills": 0,
+  "tools": "Forgery kit",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A forgery kit, a set of common clothes, and a pouch containing 5gp",
+  "feature": null
+ },
+ {
+  "name": "House Agent",
+  "source": "Eberron - Rising from the Last War",
+  "skills": [
+   "Investigation",
+   "Persuasion"
+  ],
+  "extra_skills": 0,
+  "tools": "Two proficiencies from the House",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A set of fine clothes, the signet ringof your house, identification papers, and a purse containing 20gp Your House House",
+  "feature": "House Connection"
+ },
+ {
+  "name": "Inheritor",
+  "source": "Sword Coast Adventurer's Guide",
+  "skills": [
+   "Arcana",
+   "History",
+   "Religion",
+   "Survival"
+  ],
+  "extra_skills": 0,
+  "tools": "Your choice of a gaming set or a musical instrument",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "Your inheritance, a set of traveler's clothes, the tool you choose for this background’s tool proficiency, and a pouch containing 15gp",
+  "feature": "Inheritance"
+ },
+ {
+  "name": "Initiate",
+  "source": "Plane Shift - Amonkhet",
+  "skills": [
+   "Athletics",
+   "Intimidation"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of gaming set, vehicles (land)",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A simple puzzle box, a scroll containing the basic teachings of the five gods, a gaming set, a set of common clothes, and a pouchcontaining 15gp. If you have completed any trials before the start of the campaign, you also have any cartouches you have earned.",
+  "feature": "Trial of the Five Gods"
+ },
+ {
+  "name": "Inquisitor",
+  "source": "Plane Shift - Innistrad",
+  "skills": [
+   "Investigation",
+   "Religion"
+  ],
+  "extra_skills": 0,
+  "tools": "Thieves' tools, one set of artisan's tools of your choice",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A holy symbol, a set of traveler's clothes, and a pouch containing 15gp",
+  "feature": "Legal Authority"
+ },
+ {
+  "name": "Investigator",
+  "source": "Van Richten's Guide to Ravenloft",
+  "skills": [
+   "Insight",
+   "Investigation",
+   "Perception"
+  ],
+  "extra_skills": 0,
+  "tools": "Disguise kit, thieves' tools",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A magnifying glass Value:100gp, evidence from a past case (choose one or roll for a trinket from the Horror Trinkets table ) a set of common clothes, and 10gp. Path to Mystery Your first case influenced the types of mysteries you're interested in. Why was this case so impactful, personal, or traumatic? Whom did it affect besides you? Why and how did you get involved? Was it solved? How did it set...",
+  "feature": "Official Inquiry"
+ },
+ {
+  "name": "Iron Route Bandit",
+  "source": "Curse of Strahd: Optional Backgrounds",
+  "skills": [
+   "Animal Handling",
+   "Stealth"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of gaming set, vehicles (land)",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A set of dark common clothes, pack saddle, burglar’s pack Contents: 1 Backpack - 1 Bag of 1,000 Ball Bearings - 1 10ft of String 1 Bell -5 Candles -(individually) 1 Crowbar - 1 Hammer - 10 Pitons - (individually) 1 Hooded Lantern - 2 Flasks of Oil - (individually) 5 Days' Rations - (individually) 1 Tinderbox - 1 Waterskin - 1 50ft Hempen Rope - and a pouch containing 5gp.",
+  "feature": null
+ },
+ {
+  "name": "Izzet Engineer",
+  "source": "Guildmaster's Guide to Ravnica",
+  "skills": [
+   "Arcana",
+   "Investigation"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of artisan's tools",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "An Izzet insignia, one set of artisan's tools, the charred and twisted remains of a failed experiment, a hammer, a block and tackle, a set of common clothes, and a pouch containing 5gp (Azorius 1-zino coins)",
+  "feature": "Izzet Guild Spells"
+ },
+ {
+  "name": "Knight of Solamnia",
+  "source": "Dragonlance: Shadow of the Dragon Queen",
+  "skills": [
+   "Athletics",
+   "Survival"
+  ],
+  "extra_skills": 0,
+  "tools": "",
+  "languages": [],
+  "extra_languages": 2,
+  "equipment": "An insignia of rank, a deck of cards Value: 5sp Weight: 0, a set of common clothes Value: 5sp Weight: 3lbs, and a pouch Value: 5sp Weight: 1lb containing 10 gp.",
+  "feature": "Squire of Solamnia"
+ },
+ {
+  "name": "Knight Of The Order",
+  "source": "Sword Coast Adventurer's Guide",
+  "skills": [
+   "Arcana",
+   "History",
+   "Nature",
+   "Persuasion",
+   "Religion"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of gaming set or musical instrument",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A set of traveler's clothes, a signet, banner, or seal representing your place or rank in the order, and a pouch containing 10gp",
+  "feature": "Knightly Regard"
+ },
+ {
+  "name": "Lorehold Student",
+  "source": "Strixhaven: A Curriculum of Chaos",
+  "skills": [
+   "History",
+   "Religion"
+  ],
+  "extra_skills": 0,
+  "tools": "",
+  "languages": [],
+  "extra_languages": 2,
+  "equipment": "A bottle of black ink Value: 10gp Weight: 0, an ink pen Value: 2cp Weight: 0, a hammer Value: 1gp Weight: 3lbs, a hooded lantern Value: 5gp Weight: 2lb, a tinderbox Value: 5cp Weight: 1lb, a tome of history, a school uniform, and a pouch Value: 5sp Weight: 1lb containing 15 gp.",
+  "feature": "Lorehold Initiate"
+ },
+ {
+  "name": "Mage of High Sorcery",
+  "source": "Dragonlance: Shadow of the Dragon Queen",
+  "skills": [
+   "Arcana",
+   "History"
+  ],
+  "extra_skills": 0,
+  "tools": "",
+  "languages": [],
+  "extra_languages": 2,
+  "equipment": "A bottle of colored ink Value: 10gp Weight: 0, an ink pen Value: 2cp Weight: 0, a set of common clothes Value: 5sp Weight: 3lbs, and a pouch Value: 5sp Weight: 1lb containing 10 gp.",
+  "feature": "Initiate of High Sorcery"
+ },
+ {
+  "name": "Mercenary Veteran",
+  "source": "Sword Coast Adventurer's Guide",
+  "skills": [
+   "Athletics",
+   "Persuasion"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of gaming set, vehicles (land)",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A uniform of your company ( traveler's clothes in quality), an insignia of your rank, a gaming set of your choice, and a pouch containing the remainder of your last wages (10gp)",
+  "feature": "Mercenary Life"
+ },
+ {
+  "name": "Mulmaster Aristocrat",
+  "source": "Mulmaster Bonds and Backgrounds",
+  "skills": [
+   "Deception",
+   "Performance"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of artistic artisan's tools and one musical instrument",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "One set of artisan's tools or musical instrument, a set of fine clothes, and a purse containing 10gp",
+  "feature": null
+ },
+ {
+  "name": "Noble",
+  "source": "Player's Handbook",
+  "skills": [
+   "History",
+   "Persuasion"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of gaming set",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A set of fine clothes, a signet ring, a scroll of pedigree, and a purse containing 25gp",
+  "feature": "Position of Privilege"
+ },
+ {
+  "name": "Orzhov Representative",
+  "source": "Guildmaster's Guide to Ravnica",
+  "skills": [
+   "Intimidation",
+   "Religion"
+  ],
+  "extra_skills": 0,
+  "tools": "",
+  "languages": [],
+  "extra_languages": 2,
+  "equipment": "An Orzhov insignia, a foot-long chain made of ten gold coins, vestments Value:0 Weight:0, a set of fine clothes, and a pouch containing 1pp (an Orzhov-minted 10-zino coin)",
+  "feature": "Orzhov Guild Spells"
+ },
+ {
+  "name": "Outlander",
+  "source": "Player's Handbook",
+  "skills": [
+   "Athletics",
+   "Survival"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of musical instrument",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A staff, a hunting trap, a trophy from an animal you killed, a set of traveler's clothes, and a pouch containing 10gp",
+  "feature": "Wanderer"
+ },
+ {
+  "name": "Phlan Insurgent",
+  "source": "Curse of Strahd: Optional Backgrounds",
+  "skills": [
+   "Stealth",
+   "Survival"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of artisan's tools, vehicles (land)",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A bag of 20 caltrops, a small trinket that connects you to the life you once had before the occupation of Phlan, a healer's kit, a set of dark common clothes that includes a cloak and hood, and a pouch containing 5gp Origin Removed from your life as a townsperson, you’ve adapted to rough life in the wilds surrounding Phlan. The trade you practiced still influences your outlook, the manner in...",
+  "feature": null
+ },
+ {
+  "name": "Phlan Refugee",
+  "source": "Mulmaster Bonds and Backgrounds",
+  "skills": [
+   "Athletics",
+   "Insight"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of artisan's tools",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A set of artisan’s tools (one of your choice), a token of the life you once knew, a set of traveler’s clothes, and a pouch containing 15gp",
+  "feature": null
+ },
+ {
+  "name": "Plaintiff",
+  "source": "Acquisitions Incorporated",
+  "skills": [
+   "Medicine",
+   "Persuasion"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of artisan's tools",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "One set of artisan's tools, a set of fine clothes, and 20 gp.",
+  "feature": null
+ },
+ {
+  "name": "Planar Philospher",
+  "source": "Planescape - Adventures in the Multiverse",
+  "skills": [
+   "Arcana"
+  ],
+  "extra_skills": 1,
+  "tools": "",
+  "languages": [],
+  "extra_languages": 2,
+  "equipment": "A portal key (such as a bag of golden tea leaves or the tooth of a planar beast), a manifesto of your guiding philosophy, a set of common clothes Value: 5sp Weight: 3lbs in your faction's style, and a pouch Value: 5sp Weight: 1lb containing 10 gp worth of coins from different worlds and planes. Sigil Faction Affinities Faction Skill Athar Religion Bleak Cabal Insight Doomguard Nature Fated...",
+  "feature": "Conviction"
+ },
+ {
+  "name": "Prismari Student",
+  "source": "Strixhaven: A Curriculum of Chaos",
+  "skills": [
+   "Acrobatics",
+   "Performance"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of musical instrument or artisan's tools",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A bottle of black ink Value: 10gp Weight: 0, an ink pen Value: 2cp Weight: 0, a set of artisan's tools or a musical instrument (one of your choice), a school uniform, and a pouch Value: 5sp Weight: 1lb containing 10 gp.",
+  "feature": "Prismari Initiate"
+ },
+ {
+  "name": "Quandrix Student",
+  "source": "Strixhaven: A Curriculum of Chaos",
+  "skills": [
+   "Arcana",
+   "Nature"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of artisan's tools",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A bottle of black ink Value: 10gp Weight: 0, an ink pen Value: 2cp Weight: 0, an abacus Value: 2gp Weight: 2lb, a book of arcane theory, a school uniform, and a pouch Value: 5sp Weight: 1lb containing 15 gp.",
+  "feature": "Quandrix Initiate"
+ },
+ {
+  "name": "Rakdos Cultist",
+  "source": "Guildmaster's Guide to Ravnica",
+  "skills": [
+   "Acrobatics",
+   "Performance"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of musical instrument",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A Rakdos insignia, a musical instrument (one of your choice), a costume, a hooded lantern made of wrought iron, a 10-foot length of chain with sharply spiked links, a tinderbox, 10 torches (individually), a set of common clothes, a pouch containing 10gp (a mix of Azorius and Boros 1-zino coins), and a bottle of sweet, red juice",
+  "feature": "Rakdos Guild Spells"
+ },
+ {
+  "name": "Rewarded",
+  "source": "The Book of Many Things",
+  "skills": [
+   "Insight",
+   "Persuasion"
+  ],
+  "extra_skills": 0,
+  "tools": "One gaming set of your choice (such as playing cards or three-dragon ante cards)",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A bottle of black ink Value: 10gp Weight: 0, an ink pen Value: 2cp Weight: 0, five sheets of paper, a gaming set (matching your chosen proficiency), a signet ring, a set of fine clothes, and a pouch Value: 5sp Weight: 1lb containing 18 gp.",
+  "feature": "Fortune’s Favor"
+ },
+ {
+  "name": "Rival Intern",
+  "source": "Acquisitions Incorporated",
+  "skills": [
+   "History",
+   "Investigation"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of artisan's tools",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "One set of artisan's tools, a ledger from your previous employer containing a small piece of useful information, a set of fine clothes, and a belt pouch containing 10 gp.",
+  "feature": null
+ },
+ {
+  "name": "Ruined",
+  "source": "The Book of Many Things",
+  "skills": [
+   "Stealth",
+   "Survival"
+  ],
+  "extra_skills": 0,
+  "tools": "One gaming set of your choice (such as playing cards or three-dragon ante cards)",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A cracked hourglass, a set of rusty manacles, a half-empty bottle, a hunting trap, a gaming set (matching your chosen proficiency), a set of traveler’s clothes, and a pouch containing 13 gp",
+  "feature": "Still Standing"
+ },
+ {
+  "name": "Rune Carver",
+  "source": "Bigby Presents - Glory of the Giants",
+  "skills": [
+   "History",
+   "Perception"
+  ],
+  "extra_skills": 0,
+  "tools": "One set of artisan's tools",
+  "languages": [
+   "Giant"
+  ],
+  "extra_languages": 0,
+  "equipment": "A set of artisan’s tools (one of your choice), a small knife, a whetstone Value: 1cp Weight: 1lb, a set of common clothes Value: 5sp Weight: 3lbs, and a pouch Value: 5sp Weight: 1lb containing 10 gp. Rune Styles Each rune carver has a unique style and preferred medium. To determine how you make your runes, you can roll on the Rune Style table.. Rune Style d6 Style 1 You inscribe runes in wax or...",
+  "feature": "Rune Shaper"
+ },
+ {
+  "name": "Sage",
+  "source": "Player's Handbook",
+  "skills": [
+   "Arcana",
+   "History"
+  ],
+  "extra_skills": 0,
+  "tools": "None",
+  "languages": [],
+  "extra_languages": 2,
+  "equipment": "A bottle of ink, a quill, a small knife Value:0 Weight:0, a letter from a dead colleague posing a question you have not yet been able to answer, a set of common clothes, and a pouch containing 10gp",
+  "feature": "Researcher"
+ },
+ {
+  "name": "Sailor",
+  "source": "Player's Handbook",
+  "skills": [
+   "Athletics",
+   "Perception"
+  ],
+  "extra_skills": 0,
+  "tools": "Navigator's tools, vehicles (water)",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A belaying pin ( club ), 50 feet of silk rope, a lucky charm such as a rabbit foot or a small stone with a hole in the center (or you may roll for a random trinket on the Trinkets table in chapter 5), a set of common clothes, and a pouch containing 10gp",
+  "feature": "Alternative: Bad Reputation"
+ },
+ {
+  "name": "Secret Identity",
+  "source": "State of Hillsfar",
+  "skills": [
+   "Deception",
+   "Stealth"
+  ],
+  "extra_skills": 0,
+  "tools": "Disguise kit, forgery kit",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A disguise kit, a forgery kit, a set of common clothes, a belt pouch, 5gp. Lifestyle: Modest",
+  "feature": null
+ },
+ {
+  "name": "Selesnya Initiate",
+  "source": "Guildmaster's Guide to Ravnica",
+  "skills": [
+   "Nature",
+   "Persuasion"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of artisan's tools or one musical instrument",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A Selesnya insignia, a healer's kit, robes, a set of common clothes, and a pouch containing 5gp (Azorius 1-zino coins)",
+  "feature": "Selesnya Guild Spells"
+ },
+ {
+  "name": "Shade Fanatic",
+  "source": "State of Hillsfar",
+  "skills": [
+   "Deception",
+   "Intimidation"
+  ],
+  "extra_skills": 0,
+  "tools": "Forgery kit",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A forgery kit, a transparent cylinder of shadow that has no opening, a signet ring Value:5gp, a set of fine clothes, and 15gp. Lifestyle: Modest",
+  "feature": null
+ },
+ {
+  "name": "Shipwright",
+  "source": "Ghosts of Saltmarsh",
+  "skills": [
+   "History",
+   "Perception"
+  ],
+  "extra_skills": 0,
+  "tools": "Carpenter's tools, Vehicles (water)",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A set of well-loved carpenter's tools, a blank book, 1 ounce of ink, an ink pen, a set of traveler's clothes, and a leather pouch with 10 gp",
+  "feature": null
+ },
+ {
+  "name": "Silverquill Student",
+  "source": "Strixhaven: A Curriculum of Chaos",
+  "skills": [
+   "Intimidation",
+   "Persuasion"
+  ],
+  "extra_skills": 0,
+  "tools": "",
+  "languages": [],
+  "extra_languages": 2,
+  "equipment": "A bottle of black ink Value: 10gp Weight: 0, an ink pen Value: 2cp Weight: 0, a book of poetry, a school uniform, and a pouch Value: 5sp Weight: 1lb containing 15 gp.",
+  "feature": "Silverquill Initiate"
+ },
+ {
+  "name": "Simic Scientist",
+  "source": "Guildmaster's Guide to Ravnica",
+  "skills": [
+   "Arcana",
+   "Medicine"
+  ],
+  "extra_skills": 0,
+  "tools": "",
+  "languages": [],
+  "extra_languages": 2,
+  "equipment": "A Simic insignia, a set of commoner's clothes, a book of research notes, an ink pen, a bottle of squid ink, a flask of oil (made from blubber), a vial of acid (derived from digestive juices), a vial of fish scales, a vial of seaweed, a vial of jellyfish stingers, a glass bottle of unidentified slime, and a pouch containing 10gp (Azorius 1-zino coins)",
+  "feature": "Simic Guild Spells"
+ },
+ {
+  "name": "Smuggler",
+  "source": "Ghosts of Saltmarsh",
+  "skills": [
+   "Athletics",
+   "Deception"
+  ],
+  "extra_skills": 0,
+  "tools": "Vehicles (water)",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A fancy leather vest or a pair of leather boots, a set of common clothes, and a leather pouch with 15 gp",
+  "feature": null
+ },
+ {
+  "name": "Soldier",
+  "source": "Player's Handbook",
+  "skills": [
+   "Athletics",
+   "Intimidation"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of gaming set, vehicles (land)",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "An insignia of rank, a trophy taken from a fallen enemy (a dagger, broken blade, or piece of a banner), a set of bone diceor a deck of cards, a set of common clothes, and a pouch containing 10gp",
+  "feature": "Military Rank"
+ },
+ {
+  "name": "Stojanow Prisoner",
+  "source": "Curse of Strahd: Optional Backgrounds",
+  "skills": [
+   "Deception",
+   "Perception"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of gaming set, thieves' tools",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A small knife, a set of common clothes, a trinket from the life you stayed behind to defend, and a pouch with 10gp",
+  "feature": null
+ },
+ {
+  "name": "Ticklebelly Nomad",
+  "source": "Curse of Strahd: Optional Backgrounds",
+  "skills": [
+   "Animal Handling",
+   "Nature"
+  ],
+  "extra_skills": 0,
+  "tools": "Herbalism kit",
+  "languages": [
+   "Giant"
+  ],
+  "extra_languages": 0,
+  "equipment": "Herbalism kit, a small article of jewelry that is distinct to your tribe, a hunting trap, a set of common clothes, and a pouch containing 5gp",
+  "feature": null
+ },
+ {
+  "name": "Trade Sheriff",
+  "source": "State of Hillsfar",
+  "skills": [
+   "Investigation",
+   "Persuasion"
+  ],
+  "extra_skills": 0,
+  "tools": "Thieves' tools",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "Thieves' tools, a gray cloak, Sheriff's insignia (badge), a set of fine clothes, and 17gp. Lifestyle: Moderate",
+  "feature": null
+ },
+ {
+  "name": "Urban Bounty Hunter",
+  "source": "Sword Coast Adventurer's Guide",
+  "skills": [
+   "Deception",
+   "Insight",
+   "Persuasion",
+   "Stealth"
+  ],
+  "extra_skills": 0,
+  "tools": "Choose two from among one type of gaming set, one musical instrument, and thieves' tools",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A set of clothes appropriate to your duties and a pouch containing 20gp",
+  "feature": "Ear to the Ground"
+ },
+ {
+  "name": "Urchin",
+  "source": "Player's Handbook",
+  "skills": [
+   "Sleight of Hand",
+   "Stealth"
+  ],
+  "extra_skills": 0,
+  "tools": "Disguise kit, thieves' tools",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A small knife Value:0 Weight:0, a map of the city you grew up in, a pet mouse, a token to remember your parents by, a set of common clothes, and a pouch containing 10gp",
+  "feature": "City Secrets"
+ },
+ {
+  "name": "Uthgardt Tribe Member",
+  "source": "Sword Coast Adventurer's Guide",
+  "skills": [
+   "Athletics",
+   "Survival"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of musical instrument or artisan's tools",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A hunting trap, a totemic token or set of tattoos marking your loyalty to Uthgar and your tribal totem, a set of traveler's clothes, and a pouch containing 10gp",
+  "feature": "Uthgardt Heritage"
+ },
+ {
+  "name": "Vizier",
+  "source": "Plane Shift - Amonkhet",
+  "skills": [
+   "History",
+   "Religion"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of artisan's tools, one type of musical instrument",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A set of artisan’s tools or a musical instrument (one of your choice), a scroll of your god’s teachings, a vizier’s cartouche, a set of fine clothes, and a pouchcontaining 25gp",
+  "feature": "Voice of Authority"
+ },
+ {
+  "name": "Volstrucker Agent",
+  "source": "Explorer's Guide to Wildemount",
+  "skills": [
+   "Deception",
+   "Stealth"
+  ],
+  "extra_skills": 0,
+  "tools": "Poisoner's Kit",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A set of common clothes, a black cloak with a hood, a poisoner's kit, and a pouch containing 10gp",
+  "feature": "Shadow Network"
+ },
+ {
+  "name": "Waterdhavian Noble",
+  "source": "Sword Coast Adventurer's Guide",
+  "skills": [
+   "History",
+   "Persuasion"
+  ],
+  "extra_skills": 0,
+  "tools": "One type of gaming set or one musical instrument",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A set of fine clothes, a signet ringor brooch, a scroll of pedigree, a skin (for the empty skin itself) of fine zzar or wine, and a purse containing 20gp",
+  "feature": "Kept in Style"
+ },
+ {
+  "name": "Wildspacer",
+  "source": "Spelljamer: Adventures in Space - Astral Adventurer's Guide",
+  "skills": [
+   "Athletics",
+   "Survival"
+  ],
+  "extra_skills": 0,
+  "tools": "Navigator's tools, vehicles (space)",
+  "languages": [],
+  "extra_languages": 0,
+  "equipment": "A belaying pin (club) Value: 1sp Weight: 2lbs, a set of traveler's clothes Value: 2gp Weight: 4lbs, a grappling hook Value: 2gp Weight: 4lbs, 50 feet of hempen rope Value: 1gp Weight: 10lbs, and a pouch containing 10gp",
+  "feature": "Wildspace Adaptation"
+ },
+ {
+  "name": "Witchlight Hand",
+  "source": "The Wild Beyond the Witchlight",
+  "skills": [
+   "Performance",
+   "Sleight of Hand"
+  ],
+  "extra_skills": 0,
+  "tools": "Disguise kit or one type of musical instrument",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A disguise kit Value: 25gp Weight: 3lbs or a musical instrument of your choice, a deck of cards Value: 5sp Weight: 0, a carnival uniform or costume Value: 5gp Weight: 4lbs, one trinket (determind by rolling on the Feywild Trinkets table), and a pouch containing 8gp",
+  "feature": "Carnival Fixture"
+ },
+ {
+  "name": "Witherbloom Student",
+  "source": "Strixhaven: A Curriculum of Chaos",
+  "skills": [
+   "Nature",
+   "Survival"
+  ],
+  "extra_skills": 0,
+  "tools": "Herbalism Kit",
+  "languages": [],
+  "extra_languages": 1,
+  "equipment": "A bottle of black ink Value: 10gp Weight: 0, an ink pen Value: 2cp Weight: 0, a book about plant identification, an iron pot Value: 2gp Weight: 10lbs, a herbalism kit Value: 5gp Weight: 3lbs, a school uniform, and a pouch Value: 5sp Weight: 1lb containing 15 gp.",
+  "feature": "Witherbloom Initiate"
+ }
+]

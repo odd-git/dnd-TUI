@@ -1,0 +1,712 @@
+{
+ "name": "Fighter",
+ "hit_die": 10,
+ "saves": [
+  "STR",
+  "CON"
+ ],
+ "skills": {
+  "choose": 2,
+  "from": [
+   "Acrobatics",
+   "Animal Handling",
+   "Athletics",
+   "History",
+   "Insight",
+   "Intimidation",
+   "Perception",
+   "Survival"
+  ]
+ },
+ "armor": [
+  "Light",
+  "Medium",
+  "Heavy",
+  "Shield"
+ ],
+ "weapons": [
+  "Simple",
+  "Martial"
+ ],
+ "tools": [],
+ "equipment": [
+  "(a) chain mail or (b) leather, longbow, and 20 arrows",
+  "(a) a martial weapon and a shield or (b) two martial weapons",
+  "(a) a light crossbow and 20 bolts or (b) two handaxes",
+  "(a) a dungeoneer's pack or (b) an explorer's pack"
+ ],
+ "asi_levels": [
+  4,
+  6,
+  8,
+  12,
+  14,
+  16,
+  19
+ ],
+ "subclass_level": 3,
+ "subclass_title": "Martial Archetype",
+ "attacks_per_action": {
+  "1": 1,
+  "5": 2,
+  "11": 3,
+  "20": 4
+ },
+ "resources": [
+  {
+   "id": "second_wind",
+   "name": "Second Wind",
+   "recharge": "short",
+   "max": 1,
+   "pips": true
+  },
+  {
+   "id": "action_surge",
+   "name": "Action Surge",
+   "recharge": "short",
+   "max": "table",
+   "pips": true
+  },
+  {
+   "id": "indomitable",
+   "name": "Indomitable",
+   "recharge": "long",
+   "max": "table",
+   "pips": true
+  }
+ ],
+ "tables": {
+  "action_surge": {
+   "2": 1,
+   "17": 2
+  },
+  "indomitable": {
+   "9": 1,
+   "13": 2,
+   "17": 3
+  }
+ },
+ "actions": [
+  {
+   "name": "Second Wind",
+   "desc": "Bonus action, heal d10+level",
+   "uses": "second_wind",
+   "dice": [
+    1,
+    10
+   ],
+   "level_bonus": true,
+   "heal": true
+  },
+  {
+   "name": "Action Surge",
+   "desc": "One extra action this turn",
+   "uses": "action_surge"
+  },
+  {
+   "name": "Indomitable",
+   "desc": "Reroll a failed save",
+   "uses": "indomitable"
+  }
+ ],
+ "features": {
+  "1": [
+   {
+    "name": "Fighting Style",
+    "desc": "Choose a fighting style (see the sheet)"
+   },
+   {
+    "name": "Second Wind",
+    "desc": "Bonus action, heal d10 + level, 1/short rest"
+   }
+  ],
+  "2": [
+   {
+    "name": "Action Surge",
+    "desc": "One extra action, per short rest"
+   }
+  ],
+  "5": [
+   {
+    "name": "Extra Attack",
+    "desc": "2 attacks per Attack action"
+   }
+  ],
+  "9": [
+   {
+    "name": "Indomitable",
+    "desc": "Reroll a failed save, 1/long rest"
+   }
+  ],
+  "11": [
+   {
+    "name": "Extra Attack",
+    "desc": "3 attacks per Attack action"
+   }
+  ],
+  "13": [
+   {
+    "name": "Indomitable",
+    "desc": "Reroll a failed save, 2/long rest"
+   }
+  ],
+  "17": [
+   {
+    "name": "Action Surge",
+    "desc": "One extra action, 2 per short rest"
+   },
+   {
+    "name": "Indomitable",
+    "desc": "Reroll a failed save, 3/long rest"
+   }
+  ],
+  "20": [
+   {
+    "name": "Extra Attack",
+    "desc": "4 attacks per Attack action"
+   }
+  ]
+ },
+ "styles": [
+  {
+   "name": "Archery",
+   "source": "PHB",
+   "desc": "You gain a +2 bonus to attack rolls you make with ranged weapons.",
+   "effect": "archery"
+  },
+  {
+   "name": "Blind Fighting",
+   "source": "TCE",
+   "desc": "You have blindsight with a range of 10 feet. Within that range, you can effectively see anything that isn't behind total cover...",
+   "effect": null
+  },
+  {
+   "name": "Defense",
+   "source": "PHB",
+   "desc": "While you are wearing armor, you gain a +1 bonus to AC.",
+   "effect": "defense"
+  },
+  {
+   "name": "Dueling",
+   "source": "PHB",
+   "desc": "When you are wielding a melee weapon in one hand and no other weapons, you gain a +2 bonus to damage rolls with that weapon.",
+   "effect": "dueling"
+  },
+  {
+   "name": "Great Weapon Fighting",
+   "source": "PHB",
+   "desc": "When you roll a 1 or 2 on a damage die for an attack you make with a melee weapon that you are wielding with two hands, you can...",
+   "effect": null
+  },
+  {
+   "name": "Interception",
+   "source": "TCE",
+   "desc": "When a creature you can see hits a target, other than you, within 5 feet of you with an attack, you can use your reaction to...",
+   "effect": null
+  },
+  {
+   "name": "Protection",
+   "source": "PHB",
+   "desc": "When a creature you can see attacks a target other than you that is within 5 feet of you, you can use your reaction to impose...",
+   "effect": null
+  },
+  {
+   "name": "Superior Technique",
+   "source": "TCE",
+   "desc": "You learn one maneuver of your choice from among those available to the Battle Master archetype. If a maneuver you use requires...",
+   "effect": null
+  },
+  {
+   "name": "Thrown Weapon Fighting",
+   "source": "TCE",
+   "desc": "You can draw a weapon that has the thrown property as part of the attack you make with the weapon.",
+   "effect": "thrown"
+  },
+  {
+   "name": "Two-Weapon Fighting",
+   "source": "PHB",
+   "desc": "When you engage in two-weapon fighting, you can add your ability modifier to the damage of the second attack.",
+   "effect": "two_weapon"
+  },
+  {
+   "name": "Unarmed Fighting",
+   "source": "TCE",
+   "desc": "Your unarmed strikes can deal bludgeoning damage equal to 1d6 + your Strength modifier on a hit. If you aren't wielding any...",
+   "effect": null
+  }
+ ],
+ "subclasses": [
+  {
+   "name": "Arcane Archer",
+   "source": "Xanathar's Guide to Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Arcane Archer Lore",
+      "desc": "At 3rd level, you learn magical theory or some of the secrets of nature – typical for practitioners of of this elven martial tradition. You..."
+     },
+     {
+      "name": "Arcane Shot",
+      "desc": "At 3rd level, you learn to unleash special magical effects with some of your shots. When you gain this feature, you learn two Arcane Shot..."
+     }
+    ],
+    "7": [
+     {
+      "name": "Magic Arrow",
+      "desc": "At 7th level, you gain the ability to infuse arrows with magic. Whenever you fire a nonmagical arrow from a shortbow or longbow, you can..."
+     },
+     {
+      "name": "Curving Shot",
+      "desc": "At 7th level, you learn how to direct an errant arrow toward a new target. When you make an attack roll with a magic arrow and miss, you..."
+     }
+    ],
+    "15": [
+     {
+      "name": "Ever-Ready Shot",
+      "desc": "Starting at 15th level, your magical archery is available whenever battle starts. If you roll initiative and have no uses of Arcane Shot..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Banneret",
+   "source": "Sword Coast Adventurer's Guide",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Rallying Cry",
+      "desc": "When you choose this archetype at 3rd level, you learn how to inspire your allies to fight on past their injuries. When you use your Second..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Inspiring Surge",
+      "desc": "Starting at 10th level, when you use your Action Surge feature, you can choose one creature within 60 feet of you that is allied with you...."
+     }
+    ],
+    "15": [
+     {
+      "name": "Bulwark",
+      "desc": "Beginning at 15th level, you can extend the benefit of your Indomitable feature to an ally. When you decide to use Indomitable to reroll an..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Battle Master",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [
+    {
+     "id": "superiority",
+     "name": "Superiority",
+     "recharge": "short",
+     "max": "table",
+     "pips": true,
+     "die": "superiority"
+    }
+   ],
+   "actions": [],
+   "maneuver_pool": "superiority",
+   "tables": {
+    "superiority": {
+     "3": 4,
+     "7": 5,
+     "15": 6
+    }
+   },
+   "dice": {
+    "superiority": {
+     "3": 8,
+     "10": 10,
+     "18": 12
+    }
+   },
+   "maneuvers_known": {
+    "3": 3,
+    "7": 5,
+    "10": 7,
+    "15": 9
+   },
+   "features": {
+    "3": [
+     {
+      "name": "Combat Superiority",
+      "desc": "Maneuvers fueled by superiority dice, short rest"
+     },
+     {
+      "name": "Student of War",
+      "desc": "One artisan's tools proficiency"
+     }
+    ],
+    "7": [
+     {
+      "name": "Know Your Enemy",
+      "desc": "1 min outside combat: DM says if a creature is equal/superior/inferior in 2 traits"
+     }
+    ],
+    "10": [
+     {
+      "name": "Improved Combat Superiority",
+      "desc": "Superiority dice become d10"
+     }
+    ],
+    "15": [
+     {
+      "name": "Relentless",
+      "desc": "Roll initiative with no superiority dice: regain 1"
+     }
+    ],
+    "18": [
+     {
+      "name": "Improved Combat Superiority",
+      "desc": "Superiority dice become d12"
+     }
+    ]
+   }
+  },
+  {
+   "name": "Cavalier",
+   "source": "Xanathar's Guide to Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Bonus Proficiency",
+      "desc": "When you choose this archetype at 3rd level, you gain proficiency in one of the following skills of your choice: Animal Handling, History..."
+     },
+     {
+      "name": "Born to the Saddle",
+      "desc": "Starting at 3rd level, your mastery as a rider becomes apparent. You have advantage on saving throws made to avoid falling off your mount...."
+     },
+     {
+      "name": "Unwavering Mark",
+      "desc": "Starting at 3rd level, you can menace your foes, foiling their attacks and punishing them for harming others. When you hit a creature with..."
+     }
+    ],
+    "7": [
+     {
+      "name": "Warding Maneuver",
+      "desc": "At 7th level, you learn to fend off strikes directed at you, your mount, or other creatures nearby. If you or a creature you can see within..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Hold the Line",
+      "desc": "At 10th level, you become a master of locking down your enemies. Creatures provoke an opportunity attack from you when they move 5 feet or..."
+     }
+    ],
+    "15": [
+     {
+      "name": "Ferocious Charger",
+      "desc": "Starting at 15th level, you can run down your foes, whether you're mounted or not. If you move at least 10 feet in a straight line right..."
+     }
+    ],
+    "18": [
+     {
+      "name": "Vigilant Defender",
+      "desc": "Starting at 18th level, you respond to danger with extraordinary vigilance. In combat, you get a special reaction that you can take once on..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Champion",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Improved Critical",
+      "desc": "Beginning when you choose this archetype at 3rd level, your weapon attacks score a critical hit on a roll of 19 or 20."
+     }
+    ],
+    "7": [
+     {
+      "name": "Remarkable Athlete",
+      "desc": "Starting at 7th level, you can add half your proficiency bonus (rounded up) to any Strength, Dexterity, or Constitution check you make that..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Additional Fighting Style",
+      "desc": "At 10th level, you can choose a second option from the Fighting Style class feature."
+     }
+    ],
+    "15": [
+     {
+      "name": "Superior Critical",
+      "desc": "Starting at 15th level, your weapon attacks score a critical hit on a roll of 18-20."
+     }
+    ],
+    "18": [
+     {
+      "name": "Survivor",
+      "desc": "At 18th level, you attain the pinnacle of resilience in battle. At the start of each of your turns, you regain hit points equal to 5 + your..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Echo Knight",
+   "source": "Explorer's Guide to Wildemount",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Manifest Echo",
+      "desc": "At 3rd level, you can use a bonus action to magically manifest an echo of yourself in an unoccupied space you can see within 15 feet of..."
+     },
+     {
+      "name": "Unleash Incarnation",
+      "desc": "At 3rd level, you can heighten your echo's fury. Whenever you take the Attack action, you can make one additional melee attack from the..."
+     }
+    ],
+    "7": [
+     {
+      "name": "Echo Avatar",
+      "desc": "Starting at 7th level, you can temporarily transfer your consciousness to your echo. As an action, you can see through your echo's eyes and..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Shadow Martyr",
+      "desc": "Starting at 10th level, you can make your echo throw itself in front of an attack directed at another creature that you can see. Before the..."
+     }
+    ],
+    "15": [
+     {
+      "name": "Reclaim Potential",
+      "desc": "By 15th level, you've learned to absorb the fleeting magic of your echo. When an echo of yours is destroyed by taking damage, you can gain..."
+     }
+    ],
+    "18": [
+     {
+      "name": "Legion of One",
+      "desc": "At 18th level, you can use a bonus action to create two echos with your Manifest Echo feature, and these echoes can co-exist. If you try to..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Eldritch Knight",
+   "source": "Player's Handbook",
+   "needs_spells": true,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Spellcasting",
+      "desc": "When you reach 3rd level, you augment your martial prowess with the ability to cast spells. You learn two cantrips of your choice from the..."
+     },
+     {
+      "name": "Weapon Bond",
+      "desc": "At 3rd level, you learn a ritual that creates a magical bond between yourself and one weapon. You perform the ritual over the course of 1..."
+     }
+    ],
+    "7": [
+     {
+      "name": "War Magic",
+      "desc": "Beginning at 7th level, when you use your action to cast a cantrip, you can make one weapon attack as a bonus action."
+     }
+    ],
+    "10": [
+     {
+      "name": "Eldritch Strike",
+      "desc": "At 10th level, you learn how to make your weapon strikes undercut a creature's resistance to your spells. When you hit a creature with a..."
+     }
+    ],
+    "15": [
+     {
+      "name": "Arcane Charge",
+      "desc": "At 15th level, you gain the ability to teleport up to 30 feet to an unoccupied space you can see when you use your Action Surge. You can..."
+     }
+    ],
+    "18": [
+     {
+      "name": "Improved War Magic",
+      "desc": "Starting at 18th level, when you use your action to cast a spell, you can make one weapon attack as a bonus action...."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Psi Warrior",
+   "source": "Tasha's Cauldron of Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Psionic Power",
+      "desc": "At 3rd level, you harbor a wellspring of psionic energy within yourself. This energy is represented by your Psionic Energy dice, which are..."
+     }
+    ],
+    "7": [
+     {
+      "name": "Telekinetic Adept",
+      "desc": "By the 7th level, You have mastered new ways to use your telekinetic abilities, detailed below. Psi-Powered Leap. As a bonus action, you..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Guarded Mind",
+      "desc": "Starting at 10th level, the psionic energy flowing through you has bolstered your mind. You have resistance to psychic damage. Moreover, if..."
+     }
+    ],
+    "15": [
+     {
+      "name": "Bulwark of Force",
+      "desc": "At 15th level, you can shield yourself and others with telekinetic force. As a bonus action, you can choose creatures, which can include..."
+     }
+    ],
+    "18": [
+     {
+      "name": "Telekinetic Master",
+      "desc": "By 18th level, your ability to move creatures and objects with your mind is matched by few. You can cast the Telekinesis spell, requiring..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Rune Knight",
+   "source": "Tasha's Cauldron of Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Bonus Proficiencies",
+      "desc": "When you choose this archetype at 3rd level, you gain proficiency with smith’s tools, and you learn to speak, read, and write Giant."
+     },
+     {
+      "name": "Rune Carver",
+      "desc": "Starting at 3rd level, you can use magic runes to enhance your gear. You learn two runes of your choice, from among the runes described..."
+     },
+     {
+      "name": "Giant's Might",
+      "desc": "At 3rd level, you have learned how to imbue yourself with the might of giants. As a bonus action, you magically gain the following..."
+     }
+    ],
+    "7": [
+     {
+      "name": "Runic Shield",
+      "desc": "At 7th level, you learn to invoke your rune magic to protect your allies. When another creature you can see within 60 feet of you is hit by..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Great Stature",
+      "desc": "By 10th level, the magic of your runes permanently alters you. When you gain this feature, roll 3d4. You grow a number of inches in height..."
+     }
+    ],
+    "15": [
+     {
+      "name": "Master of Runes",
+      "desc": "At 15th level, you can invoke each rune you know from your Rune Carver feature twice, rather than once, and you regain all expended uses..."
+     }
+    ],
+    "18": [
+     {
+      "name": "Runic Juggernaut",
+      "desc": "At 18th level, you learn how to amplify your rune-powered transformation. As a result, the extra damage you deal with the Giant's Might..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Samurai",
+   "source": "Xanathar's Guide to Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Bonus Proficiency",
+      "desc": "When you choose this archetype at 3rd level, you gain proficiency in one of the following skills of your choice: History, Insight..."
+     },
+     {
+      "name": "Fighting Spirit",
+      "desc": "Starting at 3rd level, your intensity in battle can shield you and help you strike true. As a bonus action on your turn, you can give..."
+     }
+    ],
+    "7": [
+     {
+      "name": "Elegant Courtier",
+      "desc": "Starting at 7th level, your discipline and attention to detail allow you to excel in social situations. Whenever you make a Charisma..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Tireless Spirit",
+      "desc": "Starting at 10th level, when you roll initiative and have no uses of Fighting Spirit remaining, you regain one use."
+     }
+    ],
+    "15": [
+     {
+      "name": "Rapid Strike",
+      "desc": "Starting at 15th level, you learn to trade accuracy for swift strikes. If you take the Attack action on your turn and have advantage on an..."
+     }
+    ],
+    "18": [
+     {
+      "name": "Strength Before Death",
+      "desc": "Starting at 18th level, your fighting spirit can delay the grasp of death. If you take damage that reduces you to 0 hit points, you can use..."
+     }
+    ]
+   }
+  }
+ ]
+}

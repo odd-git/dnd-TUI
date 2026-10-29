@@ -1,0 +1,743 @@
+[
+ {
+  "name": "Club",
+  "category": "Simple Melee",
+  "cost": "1 sp",
+  "dice": [
+   1,
+   4
+  ],
+  "type": "bludgeoning",
+  "weight": "2 lb.",
+  "props": "light",
+  "ranged": false,
+  "finesse": false,
+  "light": true,
+  "two_handed": false,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": false
+ },
+ {
+  "name": "Dagger",
+  "category": "Simple Melee",
+  "cost": "2 gp",
+  "dice": [
+   1,
+   4
+  ],
+  "type": "piercing",
+  "weight": "1 lb.",
+  "props": "finesse, light, thrown (20/60)",
+  "ranged": false,
+  "finesse": true,
+  "light": true,
+  "two_handed": false,
+  "thrown": "20/60",
+  "versatile": null,
+  "ammunition": false
+ },
+ {
+  "name": "Greatclub",
+  "category": "Simple Melee",
+  "cost": "2 sp",
+  "dice": [
+   1,
+   8
+  ],
+  "type": "bludgeoning",
+  "weight": "10 lb.",
+  "props": "two-handed",
+  "ranged": false,
+  "finesse": false,
+  "light": false,
+  "two_handed": true,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": false
+ },
+ {
+  "name": "Handaxe",
+  "category": "Simple Melee",
+  "cost": "5 gp",
+  "dice": [
+   1,
+   6
+  ],
+  "type": "slashing",
+  "weight": "2 lb.",
+  "props": "light, thrown (20/60)",
+  "ranged": false,
+  "finesse": false,
+  "light": true,
+  "two_handed": false,
+  "thrown": "20/60",
+  "versatile": null,
+  "ammunition": false
+ },
+ {
+  "name": "Javelin",
+  "category": "Simple Melee",
+  "cost": "5 sp",
+  "dice": [
+   1,
+   6
+  ],
+  "type": "piercing",
+  "weight": "2 lb.",
+  "props": "thrown (30/120)",
+  "ranged": false,
+  "finesse": false,
+  "light": false,
+  "two_handed": false,
+  "thrown": "30/120",
+  "versatile": null,
+  "ammunition": false
+ },
+ {
+  "name": "Light hammer",
+  "category": "Simple Melee",
+  "cost": "2 gp",
+  "dice": [
+   1,
+   4
+  ],
+  "type": "bludgeoning",
+  "weight": "2 lb.",
+  "props": "light, thrown (20/60)",
+  "ranged": false,
+  "finesse": false,
+  "light": true,
+  "two_handed": false,
+  "thrown": "20/60",
+  "versatile": null,
+  "ammunition": false
+ },
+ {
+  "name": "Mace",
+  "category": "Simple Melee",
+  "cost": "5 gp",
+  "dice": [
+   1,
+   6
+  ],
+  "type": "bludgeoning",
+  "weight": "4 lb.",
+  "props": "",
+  "ranged": false,
+  "finesse": false,
+  "light": false,
+  "two_handed": false,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": false
+ },
+ {
+  "name": "Quarterstaff",
+  "category": "Simple Melee",
+  "cost": "2 sp",
+  "dice": [
+   1,
+   6
+  ],
+  "type": "bludgeoning",
+  "weight": "4 lb.",
+  "props": "versatile (1d8)",
+  "ranged": false,
+  "finesse": false,
+  "light": false,
+  "two_handed": false,
+  "thrown": null,
+  "versatile": "1d8",
+  "ammunition": false
+ },
+ {
+  "name": "Sickle",
+  "category": "Simple Melee",
+  "cost": "1 gp",
+  "dice": [
+   1,
+   4
+  ],
+  "type": "slashing",
+  "weight": "2 lb.",
+  "props": "light",
+  "ranged": false,
+  "finesse": false,
+  "light": true,
+  "two_handed": false,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": false
+ },
+ {
+  "name": "Spear",
+  "category": "Simple Melee",
+  "cost": "1 gp",
+  "dice": [
+   1,
+   6
+  ],
+  "type": "piercing",
+  "weight": "3 lb.",
+  "props": "thrown (20/60), versatile (1d8)",
+  "ranged": false,
+  "finesse": false,
+  "light": false,
+  "two_handed": false,
+  "thrown": "20/60",
+  "versatile": "1d8",
+  "ammunition": false
+ },
+ {
+  "name": "Crossbow, light",
+  "category": "Simple Ranged",
+  "cost": "25 gp",
+  "dice": [
+   1,
+   8
+  ],
+  "type": "piercing",
+  "weight": "5 lb.",
+  "props": "ammunition, range (80/320), loading, two-handed",
+  "ranged": true,
+  "finesse": false,
+  "light": false,
+  "two_handed": true,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": true
+ },
+ {
+  "name": "Dart",
+  "category": "Simple Ranged",
+  "cost": "5 cp",
+  "dice": [
+   1,
+   4
+  ],
+  "type": "piercing",
+  "weight": "1/4 lb.",
+  "props": "finesse, thrown (20/60)",
+  "ranged": true,
+  "finesse": true,
+  "light": false,
+  "two_handed": false,
+  "thrown": "20/60",
+  "versatile": null,
+  "ammunition": false
+ },
+ {
+  "name": "Shortbow",
+  "category": "Simple Ranged",
+  "cost": "25 gp",
+  "dice": [
+   1,
+   6
+  ],
+  "type": "piercing",
+  "weight": "2 lb.",
+  "props": "ammunition, range (80/320), two-handed",
+  "ranged": true,
+  "finesse": false,
+  "light": false,
+  "two_handed": true,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": true
+ },
+ {
+  "name": "Sling",
+  "category": "Simple Ranged",
+  "cost": "1 sp",
+  "dice": [
+   1,
+   4
+  ],
+  "type": "bludgeoning",
+  "weight": "—",
+  "props": "ammunition, range (30/120)",
+  "ranged": true,
+  "finesse": false,
+  "light": false,
+  "two_handed": false,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": true
+ },
+ {
+  "name": "Battleaxe",
+  "category": "Martial Melee",
+  "cost": "10 gp",
+  "dice": [
+   1,
+   8
+  ],
+  "type": "slashing",
+  "weight": "4 lb.",
+  "props": "versatile (1d10)",
+  "ranged": false,
+  "finesse": false,
+  "light": false,
+  "two_handed": false,
+  "thrown": null,
+  "versatile": "1d10",
+  "ammunition": false
+ },
+ {
+  "name": "Flail",
+  "category": "Martial Melee",
+  "cost": "10 gp",
+  "dice": [
+   1,
+   8
+  ],
+  "type": "bludgeoning",
+  "weight": "2 lb.",
+  "props": "",
+  "ranged": false,
+  "finesse": false,
+  "light": false,
+  "two_handed": false,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": false
+ },
+ {
+  "name": "Glaive",
+  "category": "Martial Melee",
+  "cost": "20 gp",
+  "dice": [
+   1,
+   10
+  ],
+  "type": "slashing",
+  "weight": "6 lb.",
+  "props": "heavy, reach, two-handed",
+  "ranged": false,
+  "finesse": false,
+  "light": false,
+  "two_handed": true,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": false
+ },
+ {
+  "name": "Greataxe",
+  "category": "Martial Melee",
+  "cost": "30 gp",
+  "dice": [
+   1,
+   12
+  ],
+  "type": "slashing",
+  "weight": "7 lb.",
+  "props": "heavy, two-handed",
+  "ranged": false,
+  "finesse": false,
+  "light": false,
+  "two_handed": true,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": false
+ },
+ {
+  "name": "Greatsword",
+  "category": "Martial Melee",
+  "cost": "50 gp",
+  "dice": [
+   2,
+   6
+  ],
+  "type": "slashing",
+  "weight": "6 lb.",
+  "props": "heavy, two-handed",
+  "ranged": false,
+  "finesse": false,
+  "light": false,
+  "two_handed": true,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": false
+ },
+ {
+  "name": "Halberd",
+  "category": "Martial Melee",
+  "cost": "20 gp",
+  "dice": [
+   1,
+   10
+  ],
+  "type": "slashing",
+  "weight": "6 lb.",
+  "props": "heavy, reach, two-handed",
+  "ranged": false,
+  "finesse": false,
+  "light": false,
+  "two_handed": true,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": false
+ },
+ {
+  "name": "Lance",
+  "category": "Martial Melee",
+  "cost": "10 gp",
+  "dice": [
+   1,
+   12
+  ],
+  "type": "piercing",
+  "weight": "6 lb.",
+  "props": "reach, special",
+  "ranged": false,
+  "finesse": false,
+  "light": false,
+  "two_handed": false,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": false
+ },
+ {
+  "name": "Longsword",
+  "category": "Martial Melee",
+  "cost": "15 gp",
+  "dice": [
+   1,
+   8
+  ],
+  "type": "slashing",
+  "weight": "3 lb.",
+  "props": "versatile (1d10)",
+  "ranged": false,
+  "finesse": false,
+  "light": false,
+  "two_handed": false,
+  "thrown": null,
+  "versatile": "1d10",
+  "ammunition": false
+ },
+ {
+  "name": "Maul",
+  "category": "Martial Melee",
+  "cost": "10 gp",
+  "dice": [
+   2,
+   6
+  ],
+  "type": "bludgeoning",
+  "weight": "10 lb.",
+  "props": "heavy, two-handed",
+  "ranged": false,
+  "finesse": false,
+  "light": false,
+  "two_handed": true,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": false
+ },
+ {
+  "name": "Morningstar",
+  "category": "Martial Melee",
+  "cost": "15 gp",
+  "dice": [
+   1,
+   8
+  ],
+  "type": "piercing",
+  "weight": "4 lb.",
+  "props": "",
+  "ranged": false,
+  "finesse": false,
+  "light": false,
+  "two_handed": false,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": false
+ },
+ {
+  "name": "Pike",
+  "category": "Martial Melee",
+  "cost": "5 gp",
+  "dice": [
+   1,
+   10
+  ],
+  "type": "piercing",
+  "weight": "18 lb.",
+  "props": "heavy, reach, two-handed",
+  "ranged": false,
+  "finesse": false,
+  "light": false,
+  "two_handed": true,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": false
+ },
+ {
+  "name": "Rapier",
+  "category": "Martial Melee",
+  "cost": "25 gp",
+  "dice": [
+   1,
+   8
+  ],
+  "type": "piercing",
+  "weight": "2 lb.",
+  "props": "finesse",
+  "ranged": false,
+  "finesse": true,
+  "light": false,
+  "two_handed": false,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": false
+ },
+ {
+  "name": "Scimitar",
+  "category": "Martial Melee",
+  "cost": "25 gp",
+  "dice": [
+   1,
+   6
+  ],
+  "type": "slashing",
+  "weight": "3 lb.",
+  "props": "finesse, light",
+  "ranged": false,
+  "finesse": true,
+  "light": true,
+  "two_handed": false,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": false
+ },
+ {
+  "name": "Shortsword",
+  "category": "Martial Melee",
+  "cost": "10 gp",
+  "dice": [
+   1,
+   6
+  ],
+  "type": "piercing",
+  "weight": "2 lb.",
+  "props": "finesse, light",
+  "ranged": false,
+  "finesse": true,
+  "light": true,
+  "two_handed": false,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": false
+ },
+ {
+  "name": "Trident",
+  "category": "Martial Melee",
+  "cost": "5 gp",
+  "dice": [
+   1,
+   6
+  ],
+  "type": "piercing",
+  "weight": "4 lb.",
+  "props": "thrown (20/60), versatile (1d8)",
+  "ranged": false,
+  "finesse": false,
+  "light": false,
+  "two_handed": false,
+  "thrown": "20/60",
+  "versatile": "1d8",
+  "ammunition": false
+ },
+ {
+  "name": "War pick",
+  "category": "Martial Melee",
+  "cost": "5 gp",
+  "dice": [
+   1,
+   8
+  ],
+  "type": "piercing",
+  "weight": "2 lb.",
+  "props": "",
+  "ranged": false,
+  "finesse": false,
+  "light": false,
+  "two_handed": false,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": false
+ },
+ {
+  "name": "Warhammer",
+  "category": "Martial Melee",
+  "cost": "15 gp",
+  "dice": [
+   1,
+   8
+  ],
+  "type": "bludgeoning",
+  "weight": "2 lb.",
+  "props": "versatile (1d10)",
+  "ranged": false,
+  "finesse": false,
+  "light": false,
+  "two_handed": false,
+  "thrown": null,
+  "versatile": "1d10",
+  "ammunition": false
+ },
+ {
+  "name": "Whip",
+  "category": "Martial Melee",
+  "cost": "2 gp",
+  "dice": [
+   1,
+   4
+  ],
+  "type": "slashing",
+  "weight": "3 lb.",
+  "props": "finesse, reach",
+  "ranged": false,
+  "finesse": true,
+  "light": false,
+  "two_handed": false,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": false
+ },
+ {
+  "name": "Blowgun",
+  "category": "Martial Ranged",
+  "cost": "10 gp",
+  "dice": [
+   0,
+   1
+  ],
+  "type": "piercing",
+  "weight": "1 lb.",
+  "props": "ammunition, range (25/100), loading",
+  "ranged": true,
+  "finesse": false,
+  "light": false,
+  "two_handed": false,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": true
+ },
+ {
+  "name": "Crossbow, hand",
+  "category": "Martial Ranged",
+  "cost": "75 gp",
+  "dice": [
+   1,
+   6
+  ],
+  "type": "piercing",
+  "weight": "3 lb.",
+  "props": "ammunition, range (30/120), light, loading",
+  "ranged": true,
+  "finesse": false,
+  "light": true,
+  "two_handed": false,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": true
+ },
+ {
+  "name": "Crossbow, heavy",
+  "category": "Martial Ranged",
+  "cost": "50 gp",
+  "dice": [
+   1,
+   10
+  ],
+  "type": "piercing",
+  "weight": "18 lb.",
+  "props": "ammunition, range (100/400), heavy, loading, two-handed",
+  "ranged": true,
+  "finesse": false,
+  "light": false,
+  "two_handed": true,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": true
+ },
+ {
+  "name": "Longbow",
+  "category": "Martial Ranged",
+  "cost": "50 gp",
+  "dice": [
+   1,
+   8
+  ],
+  "type": "piercing",
+  "weight": "2 lb.",
+  "props": "ammunition, range (150/600), heavy, two-handed",
+  "ranged": true,
+  "finesse": false,
+  "light": false,
+  "two_handed": true,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": true
+ },
+ {
+  "name": "Yklwa",
+  "category": "Simple Melee",
+  "cost": "1 gp",
+  "dice": [
+   1,
+   8
+  ],
+  "type": "piercing",
+  "weight": "3 lb.",
+  "props": "thrown (10/30)",
+  "ranged": false,
+  "finesse": false,
+  "light": false,
+  "two_handed": false,
+  "thrown": "10/30",
+  "versatile": null,
+  "ammunition": false
+ },
+ {
+  "name": "Hoopak",
+  "category": "Martial Melee",
+  "cost": "1 gp",
+  "dice": [
+   1,
+   6
+  ],
+  "type": "piercing",
+  "weight": "2 lb.",
+  "props": "ammunition (range 40/160), finesse, special, two-handed",
+  "ranged": false,
+  "finesse": true,
+  "light": false,
+  "two_handed": true,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": true
+ },
+ {
+  "name": "Double-Bladed Scimitar",
+  "category": "Martial Melee",
+  "cost": "100 gp",
+  "dice": [
+   2,
+   4
+  ],
+  "type": "slashing",
+  "weight": "6 lb.",
+  "props": "special, two-handed",
+  "ranged": false,
+  "finesse": false,
+  "light": false,
+  "two_handed": true,
+  "thrown": null,
+  "versatile": null,
+  "ammunition": false
+ }
+]

@@ -6,6 +6,8 @@ use ratatui::layout::Rect;
 
 use crate::model::*;
 
+mod wizard;
+
 #[derive(Clone, Copy, PartialEq)]
 pub enum Tab { Combat, Character, Journal }
 pub const TABS: [(Tab, &str); 3] = [(Tab::Combat, "Combat"), (Tab::Character, "Character"), (Tab::Journal, "Journal")];
@@ -24,7 +26,7 @@ pub enum Item { Action(usize), Toggle(usize) }
 pub enum Cmd {
     Tab(Tab), Pick(usize), Select(usize), Click(usize), Enter, Up, Down, PageUp, PageDown,
     Damage, Heal, Init, Maneuver, Roll(String), CheckMenu, Adv, Cond, Death, Items, Short, Long,
-    Level, Edit, Undo, Back, JournalAdd, JournalDel, JournalSel(usize), ModalPick(usize),
+    Level, Edit, Undo, Back, New, JournalAdd, JournalDel, JournalSel(usize), ModalPick(usize),
 }
 
 /// What a modal is asking; the answer is handled in `resolve_*`.
@@ -33,11 +35,15 @@ pub enum Step {
     Damage, Heal, Check, Cond, Items, SetItem(String), Short,
     Asi, Ability { n: i32, optional: bool }, FeatName, FeatDesc(String),
     Maneuver { required: bool }, ReplaceAsk, Forget, Extras, Skill, NoteName, NoteDesc(String), JournalAdd,
+    Subclass,
+    Wiz(wizard::Wz),
 }
 
 pub enum Modal {
     List { title: String, items: Vec<String>, sel: usize, step: Step, cancel: bool },
     Input { title: String, buf: String, step: Step, numeric: bool },
+    /// Pick several: Enter toggles; confirms at `limit` picks, or on the last item ("Done") when limit is 0.
+    Multi { title: String, items: Vec<String>, sel: usize, on: Vec<bool>, limit: usize, step: Step },
 }
 
 /// Snapshot taken when a multi-step flow (level up, edit) starts, to adjust current values at its end.
@@ -64,7 +70,13 @@ pub struct App {
     undo: Vec<Character>,
     queue: VecDeque<Step>,
     flow: Option<Flow>,
+    wiz: Option<wizard::Wiz>,
+    pub query: String,
+    pub searching: bool,
 }
+
+/// Case-insensitive match used by every search box; an empty query matches everything.
+pub fn hit(query: &str, text: &str) -> bool { query.is_empty() || text.to_lowercase().contains(&query.to_lowercase()) }
 
 fn d(sides: u32) -> u32 { rand::random_range(1..=sides) }
 
@@ -98,7 +110,7 @@ impl App {
         App {
             picking: true, sheets, psel: 0, path: PathBuf::new(), ch, tab: Tab::Combat, sel: 0, jsel: 0,
             scroll: 0, log_off: 0, adv: Adv::Normal, log: vec![Entry("System start.".into(), Tone::Dim)],
-            modal: None, hot: vec![], quit: false, undo: vec![], queue: VecDeque::new(), flow: None,
+            modal: None, hot: vec![], quit: false, undo: vec![], queue: VecDeque::new(), flow: None, wiz: None, query: String::new(), searching: false,
         }
     }
 
@@ -158,12 +170,19 @@ impl App {
 
     pub fn on_key(&mut self, key: KeyEvent) {
         if key.modifiers.contains(KeyModifiers::CONTROL) && key.code == KeyCode::Char('c') { self.quit = true; return; }
+        if self.searching { return self.search_key(key); }
+        let searchable = match &self.modal {
+            Some(Modal::Input { .. }) => false,
+            Some(_) => true,
+            None => !self.picking && matches!(self.tab, Tab::Character | Tab::Journal),
+        };
+        if key.code == KeyCode::Char('/') && searchable { self.searching = true; self.query.clear(); return; }
         if let Some(Modal::Input { buf, numeric, .. }) = &mut self.modal {
             match key.code {
                 KeyCode::Char(c) if !*numeric || c.is_ascii_digit() || (c == '-' && buf.is_empty()) => buf.push(c),
                 KeyCode::Backspace => { buf.pop(); }
                 KeyCode::Enter => self.modal_confirm(None),
-                KeyCode::Esc => { self.modal = None; self.advance(); }
+                KeyCode::Esc => self.close_modal(),
                 _ => {}
             }
             return;
@@ -174,7 +193,7 @@ impl App {
                 KeyCode::Down | KeyCode::Char('j') => self.exec(Cmd::Down),
                 KeyCode::Enter => self.modal_confirm(None),
                 KeyCode::Esc => {
-                    if let Some(Modal::List { cancel: true, .. }) = self.modal { self.modal = None; self.advance(); }
+                    if matches!(self.modal, Some(Modal::List { cancel: true, .. }) | Some(Modal::Multi { .. })) { self.close_modal(); }
                 }
                 _ => {}
             }
@@ -189,6 +208,7 @@ impl App {
             KeyCode::F(1) => Cmd::Tab(Tab::Combat), KeyCode::F(2) => Cmd::Tab(Tab::Character), KeyCode::F(3) => Cmd::Tab(Tab::Journal),
             KeyCode::Delete | KeyCode::Backspace if self.tab == Tab::Journal => Cmd::JournalDel,
             _ => match (self.tab, c) {
+                (_, 'n') if self.picking => Cmd::New,
                 (_, 'q') => Cmd::Back, (_, 'z') => Cmd::Undo, (_, 'k') => Cmd::Up, (_, 'j') => Cmd::Down,
                 (Tab::Combat, 'd') => Cmd::Damage, (Tab::Combat, 'h') => Cmd::Heal, (Tab::Combat, 'i') => Cmd::Init,
                 (Tab::Combat, 'm') => Cmd::Maneuver, (Tab::Combat, 't') => Cmd::CheckMenu, (Tab::Combat, 'v') => Cmd::Adv,
@@ -215,21 +235,93 @@ impl App {
         }
     }
 
+    fn search_key(&mut self, key: KeyEvent) {
+        match key.code {
+            KeyCode::Char(c) => self.query.push(c),
+            KeyCode::Backspace => { self.query.pop(); }
+            KeyCode::Enter => { self.searching = false; return; }
+            KeyCode::Esc => { self.searching = false; self.query.clear(); }
+            _ => return,
+        }
+        self.refit();
+    }
+
+    /// After the query changes, move the selection to the first thing that still matches.
+    fn refit(&mut self) {
+        let q = self.query.clone();
+        match &mut self.modal {
+            Some(Modal::List { items, sel, .. }) => {
+                if !hit(&q, &items[*sel]) { if let Some(i) = items.iter().position(|x| hit(&q, x)) { *sel = i; } }
+            }
+            Some(Modal::Multi { items, sel, limit, .. }) => {
+                let n = items.len();
+                let ok = |i: usize, x: &String| hit(&q, x) || (*limit == 0 && i == n - 1);
+                if !ok(*sel, &items[*sel]) { if let Some(i) = items.iter().enumerate().position(|(i, x)| ok(i, x)) { *sel = i; } }
+            }
+            Some(Modal::Input { .. }) => {}
+            None => match self.tab {
+                Tab::Journal => { if let Some(i) = self.ch.journal.iter().position(|x| hit(&q, x)) { self.jsel = i; } }
+                _ => self.scroll = 0,
+            },
+        }
+    }
+
+    /// Esc: cancel the wizard, or just skip the step.
+    fn close_modal(&mut self) {
+        self.query.clear();
+        if self.wiz.is_some() { return self.wiz_abort(); }
+        self.modal = None;
+        self.advance();
+    }
+
+    fn multi_toggle(&mut self, pick: Option<usize>) {
+        let Some(Modal::Multi { items, sel, on, limit, .. }) = &mut self.modal else { return };
+        let i = pick.unwrap_or(*sel).min(items.len() - 1);
+        *sel = i;
+        let done_row = *limit == 0 && i == items.len() - 1;
+        if !done_row { on[i] = !on[i]; }
+        let n = on.iter().take(if *limit == 0 { items.len() - 1 } else { items.len() }).filter(|x| **x).count();
+        if done_row || (*limit > 0 && n == *limit) {
+            let Some(Modal::Multi { on, step, items, limit, .. }) = self.modal.take() else { return };
+            let last = if limit == 0 { items.len() - 1 } else { items.len() };
+            self.query.clear();
+            let picked = (0..last).filter(|&i| on[i]).collect();
+            if let Step::Wiz(w) = step { self.wiz_multi_done(w, picked); }
+            self.advance();
+        }
+    }
+
     fn modal_confirm(&mut self, pick: Option<usize>) {
+        // never act on a row the search has hidden
+        let hidden = match &self.modal {
+            Some(Modal::List { items, sel, .. }) => !hit(&self.query, &items[pick.unwrap_or(*sel).min(items.len() - 1)]),
+            Some(Modal::Multi { items, sel, limit, .. }) => {
+                let i = pick.unwrap_or(*sel).min(items.len() - 1);
+                !hit(&self.query, &items[i]) && !(*limit == 0 && i == items.len() - 1)
+            }
+            _ => false,
+        };
+        if hidden { return; }
+        if matches!(self.modal, Some(Modal::Multi { .. })) { return self.multi_toggle(pick); }
+        self.query.clear();
         match self.modal.take() {
             Some(Modal::List { items, sel, step, .. }) => { self.resolve_list(step, pick.unwrap_or(sel).min(items.len().saturating_sub(1))); }
             Some(Modal::Input { buf, step, .. }) => self.resolve_input(step, buf.trim().to_string()),
-            None => {}
+            Some(Modal::Multi { .. }) | None => {}
         }
         self.advance();
     }
 
     pub fn exec(&mut self, cmd: Cmd) {
         if let Cmd::ModalPick(i) = cmd { return self.modal_confirm(Some(i)); }
-        if let Some(Modal::List { sel, items, .. }) = &mut self.modal {
+        if matches!(self.modal, Some(Modal::List { .. } | Modal::Multi { .. })) {
+            let keep_last = matches!(self.modal, Some(Modal::Multi { limit: 0, .. }));
+            let Some(Modal::List { sel, items, .. } | Modal::Multi { sel, items, .. }) = &mut self.modal else { return };
+            let n = items.len();
+            let ok = |i: usize| hit(&self.query, &items[i]) || (keep_last && i == n - 1);
             match cmd {
-                Cmd::Up => *sel = sel.saturating_sub(1),
-                Cmd::Down => *sel = (*sel + 1).min(items.len().saturating_sub(1)),
+                Cmd::Up => { if let Some(j) = (0..*sel).rev().find(|&j| ok(j)) { *sel = j; } }
+                Cmd::Down => { if let Some(j) = (*sel + 1..n).find(|&j| ok(j)) { *sel = j; } }
                 _ => {}
             }
             return;
@@ -238,16 +330,18 @@ impl App {
         if self.picking {
             match cmd {
                 Cmd::Up => self.psel = self.psel.saturating_sub(1),
-                Cmd::Down => self.psel = (self.psel + 1).min(self.sheets.len() - 1),
-                Cmd::Enter => self.open_sheet(self.psel),
-                Cmd::Pick(i) => self.open_sheet(i),
+                Cmd::Down => self.psel = (self.psel + 1).min(self.sheets.len()),
+                Cmd::Enter => self.pick_sheet(self.psel),
+                Cmd::Pick(i) => self.pick_sheet(i),
+                Cmd::New => self.wiz_start(),
                 Cmd::Back => self.quit = true,
                 _ => {}
             }
             return;
         }
         match cmd {
-            Cmd::Tab(t) => { self.tab = t; self.scroll = 0; }
+            Cmd::Tab(t) => { self.tab = t; self.scroll = 0; self.query.clear(); }
+            Cmd::Back if !self.query.is_empty() => { self.query.clear(); }
             Cmd::Back => {
                 self.save();
                 if let Some(s) = self.sheets.iter_mut().find(|s| s.0 == self.path) { s.1 = self.ch.clone(); }
@@ -266,8 +360,10 @@ impl App {
                     }
                     Tab::Character => self.scroll = if down { self.scroll + 1 } else { self.scroll.saturating_sub(1) },
                     Tab::Journal => {
-                        let n = self.ch.journal.len();
-                        self.jsel = if down { (self.jsel + 1).min(n.saturating_sub(1)) } else { self.jsel.saturating_sub(1) };
+                        let j = &self.ch.journal;
+                        let ok = |i: usize| hit(&self.query, &j[i]);
+                        let next = if down { (self.jsel + 1..j.len()).find(|&i| ok(i)) } else { (0..self.jsel).rev().find(|&i| ok(i)) };
+                        if let Some(i) = next { self.jsel = i; }
                     }
                 }
             }
@@ -311,10 +407,15 @@ impl App {
                 }
             }
             Cmd::JournalSel(i) => self.jsel = i,
-            Cmd::Pick(_) | Cmd::ModalPick(_) => {}
+            Cmd::Pick(_) | Cmd::ModalPick(_) | Cmd::New => {}
         }
         let n = self.visible().len();
         self.sel = self.sel.min(n.saturating_sub(1));
+    }
+
+    /// The last row of the picker is "+ New character".
+    fn pick_sheet(&mut self, i: usize) {
+        if i >= self.sheets.len() { self.wiz_start() } else { self.open_sheet(i) }
     }
 
     fn open_sheet(&mut self, i: usize) {
@@ -467,6 +568,7 @@ impl App {
     }
 
     fn list(&mut self, title: &str, items: Vec<String>, step: Step, cancel: bool) {
+        self.query.clear();
         self.modal = Some(Modal::List { title: title.into(), items, sel: 0, step, cancel });
     }
 
@@ -518,6 +620,12 @@ impl App {
             Step::NoteName => self.input("Feature / note name", step, false),
             Step::NoteDesc(_) => self.input("Description", step, false),
             Step::JournalAdd => self.input("Journal note", step, false),
+            Step::Subclass => {
+                let Some(c) = self.class_data() else { return };
+                let items = c.subclasses.iter().map(|s| format!("{} ({})", s.name, crate::lists::abbr(&s.source))).collect();
+                self.list(&c.subclass_title.clone(), items, step, false);
+            }
+            Step::Wiz(w) => self.wiz_open(w),
         }
     }
 
@@ -579,6 +687,7 @@ impl App {
             Step::JournalAdd => {
                 if !text.is_empty() { self.snap(); self.ch.journal.push(format!("- {text}")); self.jsel = self.ch.journal.len() - 1; }
             }
+            Step::Wiz(w) => self.wiz_input(w, text),
             _ => {}
         }
     }
@@ -637,6 +746,8 @@ impl App {
                     self.say(format!("Proficient in {n}."), Tone::Good);
                 }
             }
+            Step::Subclass => { if let Some(c) = self.class_data() { self.choose_subclass(c, i); } }
+            Step::Wiz(w) => self.wiz_pick(w, i),
             Step::Extras => {
                 let key = self.extras_options()[i].0;
                 if key == "done" { return; }
@@ -683,6 +794,33 @@ impl App {
         }
     }
 
+    /// Class data of a sheet that has a class progression.
+    fn class_data(&self) -> Option<&'static crate::lists::ClassData> {
+        let name = self.ch.progression.as_deref()?.split('/').next()?;
+        crate::lists::class_data(name)
+    }
+
+    /// Give a character the subclass `i` of its class: tables, resources, actions, features so far.
+    fn choose_subclass(&mut self, c: &'static crate::lists::ClassData, i: usize) {
+        let sub = &c.subclasses[i];
+        self.snap_in_flow();
+        let level = self.ch.level;
+        self.ch.progression = Some(format!("{}/{}", c.name, sub.name));
+        self.ch.class_title = format!("{} {{level}} ({})", c.name, sub.name);
+        self.ch.maneuver_pool = sub.maneuver_pool.clone();
+        for r in &sub.resources { if self.ch.def(&r.id).is_none() { self.ch.resources.push(r.clone()); } }
+        for a in &sub.actions { if !self.ch.actions.iter().any(|x| x.name == a.name) { self.ch.actions.push(a.clone()); } }
+        for (_, fs) in sub.features.range(..=level) {
+            for f in fs {
+                self.ch.features.push(f.clone());
+                self.say(format!("New: {}: {}", f.name, f.desc), Tone::Good);
+            }
+        }
+        let want = self.ch.prog().map_or(0, |p| at(&p.maneuvers_known, level));
+        for _ in self.ch.maneuvers.len() as u32..want { self.queue.push_front(Step::Maneuver { required: true }); }
+        self.ch.init();
+    }
+
     fn level_up(&mut self) {
         let Some(p) = self.ch.prog() else { return self.say("No level table for this sheet.", Tone::Warn) };
         if self.ch.level >= 20 { return self.say("Already level 20.", Tone::Dim); }
@@ -699,6 +837,9 @@ impl App {
         }
         let asi = p.asi_levels.contains(&l);
         let new = at(&p.maneuvers_known, l).saturating_sub(old_known);
+        if self.class_data().is_some_and(|c| c.subclass_level == l) && !self.ch.progression.as_deref().unwrap_or("").contains('/') {
+            self.queue.push_back(Step::Subclass);
+        }
         if asi { self.queue.push_back(Step::Asi); }
         for _ in 0..new { self.queue.push_back(Step::Maneuver { required: true }); }
         if new > 0 || (asi && self.ch.maneuver_pool.is_some()) { self.queue.push_back(Step::ReplaceAsk); }

@@ -1,0 +1,142 @@
+[
+ {
+  "name": "Padded",
+  "category": "Light",
+  "ac": 11,
+  "dex": "full",
+  "str": 0,
+  "stealth_disadvantage": true,
+  "weight": "8 lb.",
+  "cost": "5 gp"
+ },
+ {
+  "name": "Leather",
+  "category": "Light",
+  "ac": 11,
+  "dex": "full",
+  "str": 0,
+  "stealth_disadvantage": false,
+  "weight": "10 lb.",
+  "cost": "10 gp"
+ },
+ {
+  "name": "Studded Leather",
+  "category": "Light",
+  "ac": 12,
+  "dex": "full",
+  "str": 0,
+  "stealth_disadvantage": false,
+  "weight": "13 lb.",
+  "cost": "45 gp"
+ },
+ {
+  "name": "Hide",
+  "category": "Medium",
+  "ac": 12,
+  "dex": "max2",
+  "str": 0,
+  "stealth_disadvantage": false,
+  "weight": "12 lb.",
+  "cost": "10 gp"
+ },
+ {
+  "name": "Chain Shirt",
+  "category": "Medium",
+  "ac": 13,
+  "dex": "max2",
+  "str": 0,
+  "stealth_disadvantage": false,
+  "weight": "20 lb.",
+  "cost": "50 gp"
+ },
+ {
+  "name": "Scale Mail",
+  "category": "Medium",
+  "ac": 14,
+  "dex": "max2",
+  "str": 0,
+  "stealth_disadvantage": true,
+  "weight": "45 lb.",
+  "cost": "50 gp"
+ },
+ {
+  "name": "Spiked Armor",
+  "category": "Medium",
+  "ac": 14,
+  "dex": "max2",
+  "str": 0,
+  "stealth_disadvantage": true,
+  "weight": "45 lb.",
+  "cost": "75 gp"
+ },
+ {
+  "name": "Breastplate",
+  "category": "Medium",
+  "ac": 14,
+  "dex": "max2",
+  "str": 0,
+  "stealth_disadvantage": false,
+  "weight": "20 lb.",
+  "cost": "400 gp"
+ },
+ {
+  "name": "Halfplate",
+  "category": "Medium",
+  "ac": 15,
+  "dex": "max2",
+  "str": 0,
+  "stealth_disadvantage": true,
+  "weight": "40 lb.",
+  "cost": "750 gp"
+ },
+ {
+  "name": "Ring Mail",
+  "category": "Heavy",
+  "ac": 14,
+  "dex": "none",
+  "str": 0,
+  "stealth_disadvantage": true,
+  "weight": "40 lb.",
+  "cost": "30 gp"
+ },
+ {
+  "name": "Chain Mail",
+  "category": "Heavy",
+  "ac": 16,
+  "dex": "none",
+  "str": 13,
+  "stealth_disadvantage": true,
+  "weight": "55 lb.",
+  "cost": "75 gp"
+ },
+ {
+  "name": "Splint",
+  "category": "Heavy",
+  "ac": 17,
+  "dex": "none",
+  "str": 15,
+  "stealth_disadvantage": true,
+  "weight": "60 lb.",
+  "cost": "200 gp"
+ },
+ {
+  "name": "Plate",
+  "category": "Heavy",
+  "ac": 18,
+  "dex": "none",
+  "str": 15,
+  "stealth_disadvantage": true,
+  "weight": "65 lb.",
+  "cost": "1,500 gp"
+ },
+ {
+  "name": "Shield",
+  "category": "Shield",
+  "ac": 2,
+  "dex": "none",
+  "str": 0,
+  "stealth_disadvantage": false,
+  "weight": "6 lb.",
+  "cost": "10 gp"
+ }
+]

@@ -10,7 +10,7 @@
   "skills": ["Insight", "Perception", "History", "Persuasion", "Investigation"],
   "ac_base": 11,
   "spell_ability": "INT",
-  "progression": "fighter-battle-master",
+  "progression": "Fighter/Battle Master",
   "maneuver_pool": "superiority",
   "maneuvers": ["Maneuvering Attack", "Commander's Strike", "Distracting Strike"],
   "resources": [

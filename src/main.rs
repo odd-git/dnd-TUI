@@ -1,4 +1,6 @@
 mod app;
+mod builder;
+mod lists;
 mod model;
 mod ui;
 

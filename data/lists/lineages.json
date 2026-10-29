@@ -1,0 +1,4809 @@
+[
+ {
+  "name": "Aarakocra",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "aarakocra",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid."
+   },
+   {
+    "name": "Flight",
+    "desc": "Because of your wings, you have a flying speed equal to your walking speed. You can’t use this flying speed if you’re wearing medium or heavy armor."
+   },
+   {
+    "name": "Talons",
+    "desc": "You have talons that you can use to make unarmed strikes. When you hit with them, the strike deals 1d6 + your Strength modifier slashing damage..."
+   },
+   {
+    "name": "Wind Caller",
+    "desc": "Starting at 3rd level, you can cast the Gust of Wind spell with this trait, without requiring a material component. Once you cast the spell with this..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Aarakocra",
+  "source": "Elemental Evil Player's Companion",
+  "slug": "aarakocra",
+  "asi": {
+   "fixed": {
+    "DEX": 2,
+    "WIS": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 25,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Flight",
+    "desc": "You have a flying speed of 50 feet. To use this speed, you can’t be wearing medium or heavy armor."
+   },
+   {
+    "name": "Talons",
+    "desc": "You are proficient with your unarmed strikes, which deal 1d4 slashing damage on a hit."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Aasimar",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "aasimar",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid."
+   },
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that..."
+   },
+   {
+    "name": "Celestial Resistance",
+    "desc": "You have resistance to necrotic damage and radiant damage."
+   },
+   {
+    "name": "Healing Hands",
+    "desc": "As an action, you can touch a creature and roll a number of d4s equal to your proficiency bonus. The creature regains a number of hit points equal to..."
+   },
+   {
+    "name": "Light Bearer",
+    "desc": "You know the Light cantrip. Charisma is your spellcasting ability for it."
+   },
+   {
+    "name": "Celestial Revelation",
+    "desc": "When you reach 3rd level, choose one of the revelation options below. Thereafter, you can use a bonus action to unleash the celestial energy within..."
+   },
+   {
+    "name": "Necrotic Shroud",
+    "desc": "Your eyes briefly become pools of darkness, and ghostly, flightless wings sprout from your back temporarily. Creatures other than your allies within..."
+   },
+   {
+    "name": "Radiant Consumption",
+    "desc": "Searing light temporarily radiates from your eyes and mouth. For the duration, you shed bright light in a 10-foot radius and dim light for an..."
+   },
+   {
+    "name": "Radiant Soul",
+    "desc": "Two luminous, spectral wings sprout from your back temporarily. Until the transformation ends, you have a flying speed equal to your walking speed..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Aasimar",
+  "source": "Volo's Guide to Monsters",
+  "slug": "aasimar",
+  "asi": {
+   "fixed": {
+    "CHA": 2
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Celestial"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "Blessed with a radiant soul, your vision can easily cut through darkness. You can see in dim light within 60 feet of you as if it were bright light..."
+   },
+   {
+    "name": "Celestial Resistance",
+    "desc": "You have resistance to necrotic damage and radiant damage."
+   },
+   {
+    "name": "Healing Hands",
+    "desc": "As an action, you can touch a creature and cause it to regain a number of hit points equal to your level. Once you use this trait, you can't use it..."
+   },
+   {
+    "name": "Light Bearer",
+    "desc": "You know the Light cantrip. Charisma is your spellcasting ability for it."
+   },
+   {
+    "name": "Subrace",
+    "desc": "Three subraces of aasimar exist: protector aasimar, scourge aasimar, and fallen aasimar. Choose one of them for your character."
+   }
+  ],
+  "subs": [
+   {
+    "name": "Protector",
+    "replaces": false,
+    "asi": {
+     "fixed": {
+      "WIS": 1
+     },
+     "choose": []
+    },
+    "size": null,
+    "speed": null,
+    "languages": [],
+    "extra_languages": 0,
+    "skills": [],
+    "extra_skills": 0,
+    "feats": 0,
+    "traits": [
+     {
+      "name": "Radiant Soul",
+      "desc": "Starting at 3rd level, you can use your action to unleash the divine energy within yourself, causing your eyes to glimmer and two luminous..."
+     }
+    ]
+   },
+   {
+    "name": "Scourge",
+    "replaces": false,
+    "asi": {
+     "fixed": {
+      "CON": 1
+     },
+     "choose": []
+    },
+    "size": null,
+    "speed": null,
+    "languages": [],
+    "extra_languages": 0,
+    "skills": [],
+    "extra_skills": 0,
+    "feats": 0,
+    "traits": [
+     {
+      "name": "Radiant Consumption",
+      "desc": "Starting at 3rd level, you can use your action to unleash the divine energy within yourself, causing a searing light to radiate from you, pour out of..."
+     }
+    ]
+   },
+   {
+    "name": "Fallen",
+    "replaces": false,
+    "asi": {
+     "fixed": {
+      "STR": 1
+     },
+     "choose": []
+    },
+    "size": null,
+    "speed": null,
+    "languages": [],
+    "extra_languages": 0,
+    "skills": [],
+    "extra_skills": 0,
+    "feats": 0,
+    "traits": [
+     {
+      "name": "Necrotic Shroud",
+      "desc": "Starting at 3rd level, you can use your action to unleash the divine energy within yourself, causing your eyes to turn into pools of darkness and two..."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "Aetherborn",
+  "source": "Plane Shift / Ravnica / Theros (misc.)",
+  "slug": "aetherborn",
+  "asi": {
+   "fixed": {
+    "CHA": 2
+   },
+   "choose": [
+    {
+     "n": 2,
+     "amount": 1
+    }
+   ]
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 2,
+  "skills": [
+   "Intimidation"
+  ],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "Accustomed to the night, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright..."
+   },
+   {
+    "name": "Born of Aether",
+    "desc": "You have resistance to necrotic damage."
+   },
+   {
+    "name": "Menacing",
+    "desc": "You gain proficiency in the Intimidation skill."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Aven",
+  "source": "Plane Shift / Ravnica / Theros (misc.)",
+  "slug": "aven",
+  "asi": {
+   "fixed": {
+    "DEX": 2
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 25,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [],
+  "subs": []
+ },
+ {
+  "name": "Bugbear",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "bugbear",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid. You are also considered a goblinoid for any prerequisite or effect that requires you to be a goblinoid."
+   },
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that..."
+   },
+   {
+    "name": "Fey Ancestry",
+    "desc": "You have advantage on saving throws you make to avoid or end the charmed condition on yourself."
+   },
+   {
+    "name": "Long-Limbed",
+    "desc": "When you make a melee attack on your turn, your reach for it is 5 feet greater than normal."
+   },
+   {
+    "name": "Powerful Build",
+    "desc": "You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift."
+   },
+   {
+    "name": "Sneaky",
+    "desc": "You are proficient in the Stealth skill. In addition, without squeezing, you can move through and stop in a space large enough for a Small creature."
+   },
+   {
+    "name": "Surprise Attack",
+    "desc": "If you hit a creature with an attack roll, the creature takes an extra 2d6 damage if it hasn’t taken a turn yet in the current combat."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Bugbear",
+  "source": "Volo's Guide to Monsters",
+  "slug": "bugbear",
+  "asi": {
+   "fixed": {
+    "STR": 2,
+    "DEX": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Goblin"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in..."
+   },
+   {
+    "name": "Long-Limbed",
+    "desc": "When you make a melee attack on your turn, your reach for it is 5 feet greater than normal."
+   },
+   {
+    "name": "Powerful Build",
+    "desc": "You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift."
+   },
+   {
+    "name": "Sneaky",
+    "desc": "You are proficient in the Stealth skill."
+   },
+   {
+    "name": "Surprise Attack",
+    "desc": "If you surprise a creature and hit it with an attack on your first turn in combat, the attack deals an extra 2d6 damage to it. You can use this trait..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Centaur",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "centaur",
+  "asi": null,
+  "size": "Medium",
+  "speed": 40,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Fey."
+   },
+   {
+    "name": "Charge",
+    "desc": "If you move at least 30 feet straight toward a target and then hit it with a melee weapon attack on the same turn, you can immediately follow that..."
+   },
+   {
+    "name": "Equine Build",
+    "desc": "You count as one size larger when determining your carrying capacity and the weight you can push or drag."
+   },
+   {
+    "name": "Hooves",
+    "desc": "You have hooves that you can use to make unarmed strikes. When you hit with them, the strike deals 1d6 + your Strength modifier bludgeoning damage..."
+   },
+   {
+    "name": "Natural Affinity",
+    "desc": "Your fey connection to nature gives you an intuitive connection to the natural world and the animals within it. You therefore have proficiency in one..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Centaur",
+  "source": "Guildmaster's Guide to Ravnica",
+  "slug": "centaur",
+  "asi": {
+   "fixed": {
+    "STR": 2,
+    "WIS": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 40,
+  "languages": [
+   "Common",
+   "Sylvan"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Fey",
+    "desc": "Your creature type is fey, rather than humanoid."
+   },
+   {
+    "name": "Charge",
+    "desc": "If you move at least 30 feet straight toward a target and then hit it with a melee weapon attack on the same turn, you can immediately follow that..."
+   },
+   {
+    "name": "Hooves",
+    "desc": "Your hooves are natural melee weapons, which you can use to make unarmed strikes. If you hit with them, you deal bludgeoning damage equal to 1d4 +..."
+   },
+   {
+    "name": "Equine Build",
+    "desc": "You count as one size larger when determining your carrying capacity and the weight you can push or drag. In addition, any climb that requires hands..."
+   },
+   {
+    "name": "Survivor",
+    "desc": "You have proficiency in one of the following skills: Animal Handling, Medicine, Nature, or Survival."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Centaur",
+  "source": "Mythic Odysseys of Theros",
+  "slug": "centaur",
+  "asi": {
+   "fixed": {
+    "STR": 2,
+    "WIS": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 40,
+  "languages": [
+   "Common",
+   "Sylvan"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Fey",
+    "desc": "Your creature type is fey, rather than humanoid."
+   },
+   {
+    "name": "Charge",
+    "desc": "If you move at least 30 feet straight toward a target and then hit it with a melee weapon attack on the same turn, you can immediately follow that..."
+   },
+   {
+    "name": "Hooves",
+    "desc": "Your hooves are natural melee weapons, which you can use to make unarmed strikes. If you hit with them, you deal bludgeoning damage equal to 1d4 +..."
+   },
+   {
+    "name": "Equine Build",
+    "desc": "You count as one size larger when determining your carrying capacity and the weight you can push or drag. In addition, any climb that requires hands..."
+   },
+   {
+    "name": "Survivor",
+    "desc": "You have proficiency in one of the following skills: Animal Handling, Medicine, Nature, or Survival."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Changeling",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "changeling",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Fey."
+   },
+   {
+    "name": "Changeling Instincts",
+    "desc": "Thanks to your connection to the fey realm, you gain proficiency with two of the following skills of your choice: Deception, Insight, Intimidation..."
+   },
+   {
+    "name": "Shapechanger",
+    "desc": "As an action, you can change your appearance and your voice. You determine the specifics of the changes, including your coloration, hair length, and..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Changeling",
+  "source": "Eberron - Rising from the Last War",
+  "slug": "changeling",
+  "asi": {
+   "fixed": {
+    "CHA": 2
+   },
+   "choose": [
+    {
+     "n": 1,
+     "amount": 1
+    }
+   ]
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 2,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Shapechanger",
+    "desc": "As an action, you can change your appearance and your voice. You determine the specifics of the changes, including your coloration, hair length, and..."
+   },
+   {
+    "name": "Changeling Instincts",
+    "desc": "You gain proficiency with two of the following skills of your choice: Deception, Insight, Intimidation, and Persuasion."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Deep Gnome",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "deep-gnome",
+  "asi": null,
+  "size": "Small",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid. You are also considered a gnome for any prerequisite or effect that requires you to be a gnome."
+   },
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 120 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that..."
+   },
+   {
+    "name": "Gift of the Svirfneblin",
+    "desc": "Starting at 3rd level, you can cast the Disguise Self spell with this trait. Starting at 5th level, you can also cast the Nondetection spell with it..."
+   },
+   {
+    "name": "Gnomish Magic Resistance",
+    "desc": "You have advantage on Intelligence, Wisdom, and Charisma saving throws against spells."
+   },
+   {
+    "name": "Svirfneblin Camouflage",
+    "desc": "When you make a Dexterity (Stealth) check, you can make the check with advantage. You can use this trait a number of times equal to your proficiency..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Deep Gnome",
+  "source": "Elemental Evil Player's Companion",
+  "slug": "deep-gnome",
+  "asi": {
+   "fixed": {
+    "INT": 2,
+    "DEX": 1
+   },
+   "choose": []
+  },
+  "size": "Small",
+  "speed": 25,
+  "languages": [
+   "Common",
+   "Gnomish"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Superior Darkvision",
+    "desc": "Your darkvision has a radius of 120 feet."
+   },
+   {
+    "name": "Gnome Cunning",
+    "desc": "You have advantage on all Intelligence, Wisdom, and Charisma saves against magic."
+   },
+   {
+    "name": "Stone Camouflage",
+    "desc": "You have advantage on Dexterity (stealth) checks to hide in rocky terrain."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Dragonborn",
+  "source": "Player's Handbook",
+  "slug": "dragonborn",
+  "asi": {
+   "fixed": {
+    "STR": 2,
+    "CHA": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Draconic"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Draconic Ancestry",
+    "desc": "You are distantly related to a particular kind of dragon. Choose a type of dragon from the below list; this determines the damage and area of your..."
+   },
+   {
+    "name": "Breath Weapon",
+    "desc": "You can use your action to exhale destructive energy. It deals damage in an area according to your ancestry. When you use your breath weapon, all..."
+   },
+   {
+    "name": "Damage Resistance",
+    "desc": "You have resistance to the damage type associated with your ancestry."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Duergar",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "duergar",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid. You are also considered a dwarf for any prerequisite or effect that requires you to be a dwarf."
+   },
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 120 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that..."
+   },
+   {
+    "name": "Duergar Magic",
+    "desc": "Starting at 3rd level, you can cast the Enlarge/Reduce spell on yourself with this trait, without requiring a material component. Starting at 5th..."
+   },
+   {
+    "name": "Dwarven Resilience",
+    "desc": "You have advantage on saving throws you make to avoid or end the poisoned condition on yourself. You also have resistance to poison damage."
+   },
+   {
+    "name": "Psionic Fortitude",
+    "desc": "You have advantage on saving throws you make to avoid or end the charmed or stunned condition on yourself."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Duergar",
+  "source": "Sword Coast Adventurer's Guide",
+  "slug": "duergar",
+  "asi": {
+   "fixed": {
+    "CON": 2,
+    "STR": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 25,
+  "languages": [
+   "Common",
+   "Dwarvish"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Superior Darkvision",
+    "desc": "You can see in dim light within 120 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in..."
+   },
+   {
+    "name": "Dwarven Resilience",
+    "desc": "You have advantage on saving throws against poison, and you have resistance against poison damage."
+   },
+   {
+    "name": "Duergar Resilience",
+    "desc": "You have advantage on saving throws against illusions and against being charmed or paralyzed."
+   },
+   {
+    "name": "Dwarven Combat Training",
+    "desc": "You have proficiency with the battleaxe, handaxe, light hammer, and warhammer."
+   },
+   {
+    "name": "Tool Proficiency",
+    "desc": "You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools."
+   },
+   {
+    "name": "Stonecunning",
+    "desc": "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add..."
+   },
+   {
+    "name": "Duergar Magic",
+    "desc": "When you reach 3rd level, you can cast the Enlarge/Reduce spell on yourself once with this trait, using only the spell's enlarge option. When you..."
+   },
+   {
+    "name": "Sunlight Sensitivity",
+    "desc": "You have disadvantage on Attack rolls and Wisdom (Perception) checks that rely on sight when you, the target of your attack, or whatever you are..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Dwarf",
+  "source": "Player's Handbook",
+  "slug": "dwarf",
+  "asi": {
+   "fixed": {
+    "CON": 2
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 25,
+  "languages": [
+   "Common",
+   "Dwarvish"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were..."
+   },
+   {
+    "name": "Dwarven Resilience",
+    "desc": "You have advantage on saving throws against poison, and you have resistance against poison damage."
+   },
+   {
+    "name": "Dwarven Combat Training",
+    "desc": "You have proficiency with the battleaxe, handaxe, light hammer, and warhammer."
+   },
+   {
+    "name": "Tool Proficiency",
+    "desc": "You gain proficiency with the artisan's tools of your choice: smith's tools, brewer's supplies, or mason's tools."
+   },
+   {
+    "name": "Stonecunning",
+    "desc": "Whenever you make an Intelligence (History) check related to the origin of stonework, you are considered proficient in the History skill and add..."
+   }
+  ],
+  "subs": [
+   {
+    "name": "Hill Dwarf",
+    "replaces": false,
+    "asi": {
+     "fixed": {
+      "WIS": 1
+     },
+     "choose": []
+    },
+    "size": null,
+    "speed": null,
+    "languages": [],
+    "extra_languages": 0,
+    "skills": [],
+    "extra_skills": 0,
+    "feats": 0,
+    "traits": [
+     {
+      "name": "Dwarven Toughness",
+      "desc": "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level."
+     }
+    ]
+   },
+   {
+    "name": "Mountain Dwarf",
+    "replaces": false,
+    "asi": {
+     "fixed": {
+      "STR": 2
+     },
+     "choose": []
+    },
+    "size": null,
+    "speed": null,
+    "languages": [],
+    "extra_languages": 0,
+    "skills": [],
+    "extra_skills": 0,
+    "feats": 0,
+    "traits": [
+     {
+      "name": "Dwarven Armor Training",
+      "desc": "You have proficiency with light and medium armor."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "Dwarf",
+  "source": "Plane Shift - Kaladesh",
+  "slug": "dwarf",
+  "asi": {
+   "fixed": {
+    "CON": 2,
+    "WIS": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 25,
+  "languages": [
+   "Common",
+   "Dwarvish"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "Accustomed to life underground in your race’s ancient past, you have superior vision in dark and dim conditions. You can see in dim light within 60..."
+   },
+   {
+    "name": "Dwarven Resilience",
+    "desc": "You have advantage on saving throws against poison, and you have resistance against poison damage."
+   },
+   {
+    "name": "Dwarven Toughness",
+    "desc": "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level."
+   },
+   {
+    "name": "Artisan's Expertise",
+    "desc": "You gain proficiency with two kinds of artisan’s tools of your choice. Your proficiency bonus is doubled for any ability check you make that uses..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Eladrin",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "eladrin",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [
+   "Perception"
+  ],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid. You are also considered an elf for any prerequisite or effect that requires you to be an elf."
+   },
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that..."
+   },
+   {
+    "name": "Fey Ancestry",
+    "desc": "You have advantage on saving throws you make to avoid or end the charmed condition on yourself."
+   },
+   {
+    "name": "Fey Step",
+    "desc": "As a bonus action, you can magically teleport up to 30 feet to an unoccupied space you can see. You can use this trait a number of times equal to..."
+   },
+   {
+    "name": "Autumn",
+    "desc": "Immediately after you use your Fey Step, up to two creatures of your choice that you can see within 10 feet of you must succeed on a Wisdom saving..."
+   },
+   {
+    "name": "Winter",
+    "desc": "When you use your Fey Step, one creature of your choice that you can see within 5 feet of you before you teleport must succeed on a Wisdom saving..."
+   },
+   {
+    "name": "Spring",
+    "desc": "When you use your Fey Step, you can touch one willing creature within 5 feet of you. That creature then teleports instead of you, appearing in an..."
+   },
+   {
+    "name": "Summer",
+    "desc": "Immediately after you use your Fey Step, each creature of your choice that you can see within 5 feet of you takes fire damage equal to your..."
+   },
+   {
+    "name": "Keen Senses",
+    "desc": "You have proficiency in the Perception skill."
+   },
+   {
+    "name": "Trance",
+    "desc": "You don’t need to sleep, and magic can’t put you to sleep. You can finish a long rest in 4 hours if you spend those hours in a trancelike meditation..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Eladrin",
+  "source": "Mordenkainen's Tome of Foes",
+  "slug": "eladrin",
+  "asi": {
+   "fixed": {
+    "DEX": 2,
+    "CHA": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Elvish"
+  ],
+  "extra_languages": 0,
+  "skills": [
+   "Perception"
+  ],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Autumn",
+    "desc": "is the season of peace and goodwill, when summer's harvest is shared with all."
+   },
+   {
+    "name": "Winter",
+    "desc": "is the season of contemplation and dolor, when the vibrant energy of the world slumbers."
+   },
+   {
+    "name": "Spring",
+    "desc": "is the season of cheerfulness and celebration, marked by merriment as winter's sorrow passes."
+   },
+   {
+    "name": "Summer",
+    "desc": "is the season of boldness and aggression, a time of unfettered energy."
+   },
+   {
+    "name": "Darkvision",
+    "desc": "Accustomed to twilit forests and the night sky, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you..."
+   },
+   {
+    "name": "Fey Ancestry",
+    "desc": "You have advantage on saving throws against being charmed, and magic can't put you to sleep."
+   },
+   {
+    "name": "Trance",
+    "desc": "Elves do not sleep. Instead they meditate deeply, remaining semi-conscious, for 4 hours a day. The Common word for this meditation is \"trance.\" While..."
+   },
+   {
+    "name": "Keen Senses",
+    "desc": "You have proficiency in the Perception skill."
+   },
+   {
+    "name": "Fey Step",
+    "desc": "As a bonus action, you can magically teleport up to 30 feet to an unoccupied space you can see. Once you use this trait, you can't do so again until..."
+   },
+   {
+    "name": "Autumn",
+    "desc": "Immediately after you use your Fey Step, up to two creatures of your choice that you can see within 10 feet of you must succeed on a Wisdom saving..."
+   },
+   {
+    "name": "Winter",
+    "desc": "When you use your Fey Step, one creature of your choice that you can see within 5 feet of you before you teleport must succeed on a Wisdom saving..."
+   },
+   {
+    "name": "Spring",
+    "desc": "When you use your Fey Step, you can touch one willing creature within 5 feet of you. That creature then teleports instead of you, appearing in an..."
+   },
+   {
+    "name": "Summer",
+    "desc": "Immediately after you use your Fey Step, each creature of your choice that you can see within 5 feet of you takes fire damage equal to your Charisma..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Elf",
+  "source": "Player's Handbook",
+  "slug": "elf",
+  "asi": {
+   "fixed": {
+    "DEX": 2
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Elvish"
+  ],
+  "extra_languages": 0,
+  "skills": [
+   "Perception"
+  ],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "Accustomed to twilit forests and the night sky, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you..."
+   },
+   {
+    "name": "Fey Ancestry",
+    "desc": "You have advantage on saving throws against being charmed, and magic can't put you to sleep."
+   },
+   {
+    "name": "Trance",
+    "desc": "Elves do not sleep. Instead they meditate deeply, remaining semi-conscious, for 4 hours a day. The Common word for this meditation is \"trance.\" While..."
+   },
+   {
+    "name": "Keen Senses",
+    "desc": "You have proficiency in the Perception skill."
+   }
+  ],
+  "subs": [
+   {
+    "name": "Dark Elf",
+    "replaces": false,
+    "asi": {
+     "fixed": {
+      "CHA": 1
+     },
+     "choose": []
+    },
+    "size": null,
+    "speed": null,
+    "languages": [],
+    "extra_languages": 0,
+    "skills": [],
+    "extra_skills": 0,
+    "feats": 0,
+    "traits": [
+     {
+      "name": "Superior Darkvision",
+      "desc": "Your darkvision has a range of 120 feet, instead of 60."
+     },
+     {
+      "name": "Sunlight Sensitivity",
+      "desc": "You have disadvantage on attack rolls and Wisdom (Perception) checks that rely on sight when you, the target of the attack, or whatever you are..."
+     },
+     {
+      "name": "Drow Magic",
+      "desc": "You know the Dancing Lights cantrip. When you reach 3rd level, you can cast the Faerie Fire spell once with this trait and regain the ability to do..."
+     },
+     {
+      "name": "Drow Weapon Training",
+      "desc": "You have proficiency with rapiers, shortswords, and hand crossbows."
+     }
+    ]
+   },
+   {
+    "name": "High Elf",
+    "replaces": false,
+    "asi": {
+     "fixed": {
+      "INT": 1
+     },
+     "choose": []
+    },
+    "size": null,
+    "speed": null,
+    "languages": [],
+    "extra_languages": 0,
+    "skills": [],
+    "extra_skills": 0,
+    "feats": 0,
+    "traits": [
+     {
+      "name": "Cantrip",
+      "desc": "You know one cantrip of your choice from the Wizard spell list. Intelligence is your spellcasting ability for it."
+     },
+     {
+      "name": "Elf Weapon Training",
+      "desc": "You have proficiency with the longsword, shortsword, shortbow, and longbow."
+     },
+     {
+      "name": "Extra Language",
+      "desc": "You can read, speak, and write one additional language of your choice."
+     }
+    ]
+   },
+   {
+    "name": "Wood Elf",
+    "replaces": false,
+    "asi": {
+     "fixed": {
+      "WIS": 1
+     },
+     "choose": []
+    },
+    "size": null,
+    "speed": null,
+    "languages": [],
+    "extra_languages": 0,
+    "skills": [],
+    "extra_skills": 0,
+    "feats": 0,
+    "traits": [
+     {
+      "name": "Elf Weapon Training",
+      "desc": "You have proficiency with the longsword, shortsword, shortbow, and longbow."
+     },
+     {
+      "name": "Fleet of Foot",
+      "desc": "Your base walking speed increases to 35 feet."
+     },
+     {
+      "name": "Mask of the Wild",
+      "desc": "You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "Fairy",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "fairy",
+  "asi": null,
+  "size": "Small",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Fey."
+   },
+   {
+    "name": "Fairy Magic",
+    "desc": "You know the Druidcraft cantrip."
+   },
+   {
+    "name": "Flight",
+    "desc": "Because of your wings, you have a flying speed equal to your walking speed. You can’t use this flying speed if you’re wearing medium or heavy armor."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Fairy",
+  "source": "The Wild Beyond the Witchlight",
+  "slug": "fairy",
+  "asi": null,
+  "size": "Small",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Fey."
+   },
+   {
+    "name": "Life Span",
+    "desc": "Fairies have a life span of about a century."
+   },
+   {
+    "name": "Fairy Magic",
+    "desc": "You know the Druidcraft cantrip. Starting at 3rd level, you can cast the Faerie Fire spell with this trait. Starting at 5th level, you can also cast..."
+   },
+   {
+    "name": "Flight",
+    "desc": "Because of your wings, you have a flying speed equal to your walking speed. You can't use this flying speed if you're wearing medium or heavy armor."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Firbolg",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "firbolg",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid."
+   },
+   {
+    "name": "Firbolg Magic",
+    "desc": "You can cast the Detect Magic and Disguise Self spells with this trait. When you use this version of Disguise Self, you can seem up to 3 feet shorter..."
+   },
+   {
+    "name": "Hidden Step",
+    "desc": "As a bonus action, you can magically turn invisible until the start of your next turn or until you attack, make a damage roll, or force someone to..."
+   },
+   {
+    "name": "Powerful Build",
+    "desc": "You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift."
+   },
+   {
+    "name": "Speech of Beast and Leaf",
+    "desc": "You have the ability to communicate in a limited manner with Beasts, Plants, and vegetation. They can understand the meaning of your words, though..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Firbolg",
+  "source": "Volo's Guide to Monsters",
+  "slug": "firbolg",
+  "asi": {
+   "fixed": {
+    "WIS": 2,
+    "STR": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Elvish",
+   "Giant"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Firbolg Magic",
+    "desc": "You can cast Detect Magic and Disguise Self with this trait, using Wisdom as your spellcasting ability for them. Once you cast either spell, you..."
+   },
+   {
+    "name": "Hidden Step",
+    "desc": "As a bonus action, you can magically turn invisible until the start of your next turn or until you attack, make a damage roll, or force someone to..."
+   },
+   {
+    "name": "Powerful Build",
+    "desc": "You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift."
+   },
+   {
+    "name": "Speech of Beast and Leaf",
+    "desc": "You have the ability to communicate in a limited manner with beasts and plants. They can understand the meaning of your words, though you have no..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Air Genasi",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "genasi-air",
+  "asi": null,
+  "size": "Medium",
+  "speed": 35,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid."
+   },
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that..."
+   },
+   {
+    "name": "Unending Breath",
+    "desc": "You can hold your breath indefinitely while you’re not incapacitated."
+   },
+   {
+    "name": "Lightning Resistance",
+    "desc": "You have resistance to lightning damage."
+   },
+   {
+    "name": "Mingle with the Wind",
+    "desc": "You know the Shocking Grasp cantrip. Starting at 3rd level, you can cast the Feather Fall spell with this trait, without requiring a material..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Air Genasi",
+  "source": "Elemental Evil Player's Companion",
+  "slug": "genasi-air",
+  "asi": {
+   "fixed": {
+    "CON": 2,
+    "DEX": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Primordial"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Unending Breath",
+    "desc": "You can hold your breath indefinitely while you’re not incapacitated."
+   },
+   {
+    "name": "Mingle with the Wind",
+    "desc": "You can cast the Levitate spell once with this trait, requiring no material components, and you regain the ability to cast it this way when you..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Earth Genasi",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "genasi-earth",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid."
+   },
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that..."
+   },
+   {
+    "name": "Earth Walk",
+    "desc": "You can move across difficult terrain without expending extra movement if you are using your walking speed on the ground or a floor."
+   },
+   {
+    "name": "Merge with Stone",
+    "desc": "You know the Blade Ward cantrip. You can cast it as normal, and you can also cast it as a bonus action a number of times equal to your proficiency..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Earth Genasi",
+  "source": "Elemental Evil Player's Companion",
+  "slug": "genasi-earth",
+  "asi": {
+   "fixed": {
+    "CON": 2,
+    "STR": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Primordial"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Earth Walk",
+    "desc": "You can move across difficult terrain made of earth or stone without expending extra movement."
+   },
+   {
+    "name": "Merge with Stone",
+    "desc": "You can cast the Pass without Trace spell once with this trait, requiring no material components, and you regain the ability to cast it this way when..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Fire Genasi",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "genasi-fire",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid."
+   },
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that..."
+   },
+   {
+    "name": "Fire Resistance",
+    "desc": "You have resistance to fire damage."
+   },
+   {
+    "name": "Reach to the Blaze",
+    "desc": "You know the Produce Flame cantrip. Starting at 3rd level, you can cast the Burning Hands spell with this trait. Starting at 5th level, you can also..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Fire Genasi",
+  "source": "Elemental Evil Player's Companion",
+  "slug": "genasi-fire",
+  "asi": {
+   "fixed": {
+    "CON": 2,
+    "INT": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Primordial"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. Your ties to the Elemental Plane..."
+   },
+   {
+    "name": "Fire Resistance",
+    "desc": "You have resistance to fire damage."
+   },
+   {
+    "name": "Reach to the Blaze",
+    "desc": "You know the Produce Flame cantrip. Once you reach 3rd level, you can cast the Burning Hands spell once with this trait as a 1st-level spell, and you..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Water Genasi",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "genasi-water",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid."
+   },
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that..."
+   },
+   {
+    "name": "Acid Resistance",
+    "desc": "You have resistance to acid damage."
+   },
+   {
+    "name": "Amphibious",
+    "desc": "You can breathe air and water."
+   },
+   {
+    "name": "Call to the Wave",
+    "desc": "You know the Acid Splash cantrip. Starting at 3rd level, you can cast the Create or Destroy Water spell with this trait. Starting at 5th level, you..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Water Genasi",
+  "source": "Elemental Evil Player's Companion",
+  "slug": "genasi-water",
+  "asi": {
+   "fixed": {
+    "CON": 2,
+    "WIS": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Primordial"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Swim",
+    "desc": "You have a swimming speed of 30 feet."
+   },
+   {
+    "name": "Acid Resistance",
+    "desc": "You have resistance to acid damage."
+   },
+   {
+    "name": "Amphibious",
+    "desc": "You can breathe air and water."
+   },
+   {
+    "name": "Call to the Wave",
+    "desc": "You know the Shape Water cantrip. When you reach 3rd level, you can cast the Create or Destroy Water spell as a 2nd-level spell once with this trait..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Githyanki",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "githyanki",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 1,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid."
+   },
+   {
+    "name": "Astral Knowledge",
+    "desc": "You can mystically access a reservoir of experiences of entities connected to the Astral Plane. Whenever you finish a long rest, you gain proficiency..."
+   },
+   {
+    "name": "Githyanki Psionics",
+    "desc": "You know the Mage Hand cantrip, and the hand is invisible when you cast the cantrip with this trait."
+   },
+   {
+    "name": "Psychic Resilience",
+    "desc": "You have resistance to psychic damage."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Githyanki",
+  "source": "Mordenkainen's Tome of Foes",
+  "slug": "githyanki",
+  "asi": {
+   "fixed": {
+    "STR": 2,
+    "INT": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Decadent Mastery",
+    "desc": "You learn one language of your choice, and you are proficient with one skill or tool of your choice. In the timeless city of Tu'narath, githyanki..."
+   },
+   {
+    "name": "Martial Prodigy",
+    "desc": "You are proficient with light and medium armor and with shortswords, longswords, and greatswords."
+   },
+   {
+    "name": "Githyanki Psionics",
+    "desc": "You know the Mage Hand cantrip, and the hand is invisible when you cast the cantrip with this trait."
+   },
+   {
+    "name": "Gith Tables",
+    "desc": "This section provides tables for players and DMs who want to create githyanki characters"
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Githzerai",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "githzerai",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid."
+   },
+   {
+    "name": "Githzerai Psionics",
+    "desc": "You know the Mage Hand cantrip, and the hand is invisible when you cast the cantrip with this trait."
+   },
+   {
+    "name": "Mental Discipline",
+    "desc": "Your innate psychic defenses grant you advantage on saving throws you make to avoid or end the charmed and frightened conditions on yourself."
+   },
+   {
+    "name": "Psychic Resilience",
+    "desc": "You have resistance to psychic damage."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Githzerai",
+  "source": "Mordenkainen's Tome of Foes",
+  "slug": "githzerai",
+  "asi": {
+   "fixed": {
+    "WIS": 2,
+    "INT": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Mental Discipline",
+    "desc": "You have advantage on saving throws against the charmed and frightened conditions. Under the tutelage of monastic masters, githzerai learn to govern..."
+   },
+   {
+    "name": "Githzerai Psionics",
+    "desc": "You know the Mage Hand cantrip, and the hand is invisible when you cast the cantrip with this trait."
+   },
+   {
+    "name": "Gith Tables",
+    "desc": "This section provides tables for players and DMs who want to create githzerai characters."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Gnome",
+  "source": "Player's Handbook",
+  "slug": "gnome",
+  "asi": {
+   "fixed": {
+    "INT": 2
+   },
+   "choose": []
+  },
+  "size": "Small",
+  "speed": 25,
+  "languages": [
+   "Common",
+   "Gnomish"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were..."
+   },
+   {
+    "name": "Gnome Cunning",
+    "desc": "You have advantage on all Intelligence, Wisdom, and Charisma saves against magic."
+   }
+  ],
+  "subs": [
+   {
+    "name": "Forest",
+    "replaces": false,
+    "asi": {
+     "fixed": {
+      "DEX": 1
+     },
+     "choose": []
+    },
+    "size": null,
+    "speed": null,
+    "languages": [],
+    "extra_languages": 0,
+    "skills": [],
+    "extra_skills": 0,
+    "feats": 0,
+    "traits": [
+     {
+      "name": "Natural Illusionist",
+      "desc": "You know the Minor Illusion cantrip. Intelligence is your spellcasting modifier for it."
+     },
+     {
+      "name": "Speak with Small Beasts",
+      "desc": "Through sound and gestures, you may communicate simple ideas with Small or smaller beasts."
+     }
+    ]
+   },
+   {
+    "name": "Rock",
+    "replaces": false,
+    "asi": {
+     "fixed": {
+      "CON": 1
+     },
+     "choose": []
+    },
+    "size": null,
+    "speed": null,
+    "languages": [],
+    "extra_languages": 0,
+    "skills": [],
+    "extra_skills": 0,
+    "feats": 0,
+    "traits": [
+     {
+      "name": "Artificer's Lore",
+      "desc": "Whenever you make an Intelligence (History) check related to magical, alchemical, or technological items, you can add twice your proficiency bonus..."
+     },
+     {
+      "name": "Tinker",
+      "desc": "You have proficiency with artisan tools (tinker's tools). Using those tools, you can spend 1 hour and 10 gp worth of materials to construct a Tiny..."
+     },
+     {
+      "name": "Clockwork Toy",
+      "desc": "This toy is a clockwork animal, monster, or person, such as a frog, mouse, bird, dragon, or soldier. When placed on the ground, the toy moves 5 feet..."
+     },
+     {
+      "name": "Fire Starter",
+      "desc": "The device produces a miniature flame, which you can use to light a candle, torch, or campfire. Using the device requires your action."
+     },
+     {
+      "name": "Music Box",
+      "desc": "When opened, this music box plays a single song at a moderate volume. The box stops playing when it reaches the song's end or when it is closed."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "Goblin",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "goblin",
+  "asi": null,
+  "size": "Small",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid. You are also considered a goblinoid for any prerequisite or effect that requires you to be a goblinoid."
+   },
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that..."
+   },
+   {
+    "name": "Fey Ancestry",
+    "desc": "You have advantage on saving throws you make to avoid or end the charmed condition on yourself."
+   },
+   {
+    "name": "Fury of the Small",
+    "desc": "When you damage a creature with an attack or a spell and the creature’s size is larger than yours, you can cause the attack or spell to deal extra..."
+   },
+   {
+    "name": "Nimble Escape",
+    "desc": "You can take the Disengage or Hide action as a bonus action on each of your turns."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Goblin",
+  "source": "Volo's Guide to Monsters",
+  "slug": "goblin",
+  "asi": {
+   "fixed": {
+    "DEX": 2,
+    "CON": 1
+   },
+   "choose": []
+  },
+  "size": "Small",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Goblin"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in..."
+   },
+   {
+    "name": "Fury of the Small",
+    "desc": "When you damage a creature with an attack or a spell and the creature's size is larger than yours, you can cause the attack or spell to deal extra..."
+   },
+   {
+    "name": "Nimble Escape",
+    "desc": "You can take the Disengage or Hide action as a bonus action on each of your turns."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Goblin",
+  "source": "Adventures with Muk: Dankwood",
+  "slug": "goblin",
+  "asi": {
+   "fixed": {
+    "DEX": 2,
+    "WIS": 1
+   },
+   "choose": []
+  },
+  "size": "Small",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Goblin"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in..."
+   },
+   {
+    "name": "Speak with Small Beasts",
+    "desc": "Through sounds nad gestures you can communicate simple ideas with Small of smaller beasts. Dankwood goblins love animals and often keep squirrels..."
+   },
+   {
+    "name": "Nimble Escape",
+    "desc": "You can take the Disengage or Hide action as a bonus action on each of your turns."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Goblin",
+  "source": "Plane Shift - Ixalan",
+  "slug": "goblin",
+  "asi": {
+   "fixed": {
+    "DEX": 2
+   },
+   "choose": []
+  },
+  "size": "Small",
+  "speed": 25,
+  "languages": [
+   "Common",
+   "Goblin"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Agile Climber",
+    "desc": "You have a climbing speed of 25 feet. You can't use your climbing speed while you wear medium or heavy armor. (If your campaign uses the variant rule..."
+   },
+   {
+    "name": "Darkvision",
+    "desc": "Accustomed to life in the jungle night, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Goblin",
+  "source": "Plane Shift - Zendikar",
+  "slug": "goblin",
+  "asi": {
+   "fixed": {
+    "CON": 2
+   },
+   "choose": []
+  },
+  "size": "Small",
+  "speed": 25,
+  "languages": [
+   "Common",
+   "Goblin"
+  ],
+  "extra_languages": 0,
+  "skills": [
+   "Animal Handling"
+  ],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were..."
+   },
+   {
+    "name": "Grit",
+    "desc": "You have resistance to fire damage and psychic damage. In addition, when you are wearing no armor, your AC is equal to 11 + your Dexterity modifier."
+   },
+   {
+    "name": "Tribe",
+    "desc": "Most goblins on Zendikar belong to one of three tribes: the Grotag, the Lavastep, and the Tuktuk. Choose one of these tribes."
+   },
+   {
+    "name": "Grotag Tamer",
+    "desc": "You have proficiency in the Animal Handling skill."
+   },
+   {
+    "name": "Lavastep Grit",
+    "desc": "You have advantage on Dexterity (Stealth) checks made to hide in rocky or subterranean environments."
+   },
+   {
+    "name": "Tuktuk Cunning",
+    "desc": "You have proficiency with thieves' tools. window['nitroAds'].createAd('wad-dnd5e-floating-video', { \"refreshTime\": 30, \"format\": \"floating\"..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Goliath",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "goliath",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [
+   "Athletics"
+  ],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid."
+   },
+   {
+    "name": "Little Giant",
+    "desc": "You have proficiency in the Athletics skill, and you count as one size larger when determining your carrying capacity and the weight you can push..."
+   },
+   {
+    "name": "Mountain Born",
+    "desc": "You have resistance to cold damage. You also naturally acclimate to high altitudes, even if you’ve never been to one. This includes elevations above..."
+   },
+   {
+    "name": "Stone's Endurance",
+    "desc": "You can supernaturally draw on unyielding stone to shrug off harm. When you take damage, you can use your reaction to roll a d12. Add your..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Goliath",
+  "source": "Elemental Evil Player's Companion",
+  "slug": "goliath",
+  "asi": {
+   "fixed": {
+    "STR": 2,
+    "CON": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Giant"
+  ],
+  "extra_languages": 0,
+  "skills": [
+   "Athletics"
+  ],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Natural Athlete",
+    "desc": "You have proficiency in the Athletics skill."
+   },
+   {
+    "name": "Stone's Endurance",
+    "desc": "You can focus yourself to occasionally shrug off injury. When you take damage, you can use your reaction to roll a d12. Add your Constitution..."
+   },
+   {
+    "name": "Powerful Build",
+    "desc": "You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift."
+   },
+   {
+    "name": "Mountain Born",
+    "desc": "You have resistance to cold damage. You’re also acclimated to high altitude, including elevations above 20,000 feet."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Half Elf",
+  "source": "Player's Handbook",
+  "slug": "half-elf",
+  "asi": {
+   "fixed": {
+    "CHA": 2
+   },
+   "choose": [
+    {
+     "n": 2,
+     "amount": 1
+    }
+   ]
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Elvish"
+  ],
+  "extra_languages": 1,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "Thanks to your elven heritage, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were..."
+   },
+   {
+    "name": "Fey Ancestry",
+    "desc": "You have advantage on saving throws against being charmed, and magic can't put you to sleep."
+   },
+   {
+    "name": "Half-Elf Versatility",
+    "desc": "Choose one of the following traits:"
+   },
+   {
+    "name": "Skill Versatility (General)",
+    "desc": "You gain proficiency in two skills of your choice."
+   },
+   {
+    "name": "Elf Weapon Training (High or Wood Elf Heritage)",
+    "desc": "You have proficiency with the longsword, shortsword, shortbow, and longbow."
+   },
+   {
+    "name": "Cantrip (High Elf Heritage)",
+    "desc": "You know one cantrip of your choice from the wizard spell list. Intelligence is your spellcasting ability for it."
+   },
+   {
+    "name": "Fleet of Foot (Wood Elf Heritage)",
+    "desc": "Your base walking speed increases to 35 feet."
+   },
+   {
+    "name": "Mask of the Wild (Wood Elf Heritage)",
+    "desc": "You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena."
+   },
+   {
+    "name": "Drow Magic (Dark Elf Heritage)",
+    "desc": "You know the Dancing Lights cantrip. When you reach 3rd level, you can cast Faerie Fire once, and it recharges after a long rest. When you reach 5th..."
+   },
+   {
+    "name": "Swim Speed (Aquatic Elf Heritage)",
+    "desc": "You have a swimming speed of 30 feet."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Half Orc",
+  "source": "Player's Handbook",
+  "slug": "half-orc",
+  "asi": {
+   "fixed": {
+    "STR": 2,
+    "CON": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Orc"
+  ],
+  "extra_languages": 0,
+  "skills": [
+   "Intimidation"
+  ],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "Thanks to your orc blood, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright..."
+   },
+   {
+    "name": "Menacing",
+    "desc": "You gain proficiency in the Intimidation skill."
+   },
+   {
+    "name": "Relentless Endurance",
+    "desc": "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can't use this feature again until you finish..."
+   },
+   {
+    "name": "Savage Attacks",
+    "desc": "When you score a critical hit with a melee weapon attack, you can roll one of the weapon's damage dice one additional time and add it to the extra..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Halfling",
+  "source": "Player's Handbook",
+  "slug": "halfling",
+  "asi": {
+   "fixed": {
+    "DEX": 2
+   },
+   "choose": []
+  },
+  "size": null,
+  "speed": 25,
+  "languages": [
+   "Common",
+   "Halfling"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Lucky",
+    "desc": "When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die. You must use the new result, even if it is a 1."
+   },
+   {
+    "name": "Brave",
+    "desc": "You have advantage on saving throws against being frightened."
+   },
+   {
+    "name": "Nimble",
+    "desc": "You can move through the space of any creature that is of a size larger than yours."
+   }
+  ],
+  "subs": [
+   {
+    "name": "Lightfoot",
+    "replaces": false,
+    "asi": {
+     "fixed": {
+      "CHA": 1
+     },
+     "choose": []
+    },
+    "size": null,
+    "speed": null,
+    "languages": [],
+    "extra_languages": 0,
+    "skills": [],
+    "extra_skills": 0,
+    "feats": 0,
+    "traits": [
+     {
+      "name": "Naturally Stealthy",
+      "desc": "You can attempt to hide even when you are only obscured by a creature that is at least one size larger than you."
+     }
+    ]
+   },
+   {
+    "name": "Stout",
+    "replaces": false,
+    "asi": {
+     "fixed": {
+      "CON": 1
+     },
+     "choose": []
+    },
+    "size": null,
+    "speed": null,
+    "languages": [],
+    "extra_languages": 0,
+    "skills": [],
+    "extra_skills": 0,
+    "feats": 0,
+    "traits": [
+     {
+      "name": "Stout Resilience",
+      "desc": "You have advantage on saving throws against poison, and you have resistance to poison damage."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "Harengon",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "harengon",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [
+   "Perception"
+  ],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid."
+   },
+   {
+    "name": "Hare-Trigger",
+    "desc": "You can add your proficiency bonus to your initiative rolls."
+   },
+   {
+    "name": "Leporine Senses",
+    "desc": "You have proficiency in the Perception skill."
+   },
+   {
+    "name": "Lucky Footwork",
+    "desc": "When you fail a Dexterity saving throw, you can use your reaction to roll a d4 and add it to the save, potentially turning the failure into a..."
+   },
+   {
+    "name": "Rabbit Hop",
+    "desc": "As a bonus action, you can jump a number of feet equal to five times your proficiency bonus, without provoking opportunity attacks. You can use this..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Harengon",
+  "source": "The Wild Beyond the Witchlight",
+  "slug": "harengon",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [
+   "Perception"
+  ],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid."
+   },
+   {
+    "name": "Life Span",
+    "desc": "Harengons have a life span of about a century."
+   },
+   {
+    "name": "Hare-Trigger",
+    "desc": "You can add your proficiency bonus to your initiative rolls."
+   },
+   {
+    "name": "Leporine Senses",
+    "desc": "You have proficiency in the Perception skill."
+   },
+   {
+    "name": "Lucky Footwork",
+    "desc": "When you fail a Dexterity saving throw, you can use your reaction to roll a d4 and add it to the save, potentially turning the failure into a..."
+   },
+   {
+    "name": "Rabbit Hop",
+    "desc": "As a bonus action, you can jump a number of feet equal to five times your proficiency bonus, without provoking opportunity attacks. You can use this..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Hobgoblin",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "hobgoblin",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid. You are also considered a goblinoid for any prerequisite or effect that requires you to be a goblinoid."
+   },
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that..."
+   },
+   {
+    "name": "Fey Ancestry",
+    "desc": "You have advantage on saving throws you make to avoid or end the charmed condition on yourself."
+   },
+   {
+    "name": "Fey Gift",
+    "desc": "You can use this trait to take the Help action as a bonus action, and you can do so a number of times equal to your proficiency bonus. You regain all..."
+   },
+   {
+    "name": "Hospitality",
+    "desc": "You and the creature you help each gain a number of temporary hit points equal to 1d6 plus your proficiency bonus."
+   },
+   {
+    "name": "Passage",
+    "desc": "You and the creature you help each increase your walking speeds by 10 feet until the start of your next turn."
+   },
+   {
+    "name": "Spite",
+    "desc": "Until the start of your next turn, the first time the creature you help hits a target with an attack roll, that target has disadvantage on the next..."
+   },
+   {
+    "name": "Fortune from the Many",
+    "desc": "If you miss with an attack roll or fail an ability check or a saving throw, you can draw on your bonds of reciprocity to gain a bonus to the roll..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Hobgoblin",
+  "source": "Volo's Guide to Monsters",
+  "slug": "hobgoblin",
+  "asi": {
+   "fixed": {
+    "CON": 2,
+    "INT": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Goblin"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in..."
+   },
+   {
+    "name": "Martial Training",
+    "desc": "You are proficient with two martial weapons of your choice and with light armor."
+   },
+   {
+    "name": "Saving Face",
+    "desc": "Hobgoblins are careful not to show weakness in front of their allies, for fear of losing status. If you miss with an attack roll or fail an ability..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Human",
+  "source": "Player's Handbook",
+  "slug": "human",
+  "asi": {
+   "fixed": {
+    "STR": 1,
+    "DEX": 1,
+    "CON": 1,
+    "INT": 1,
+    "WIS": 1,
+    "CHA": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 1,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [],
+  "subs": [
+   {
+    "name": "Variant",
+    "replaces": true,
+    "asi": {
+     "fixed": {},
+     "choose": [
+      {
+       "n": 2,
+       "amount": 1
+      }
+     ]
+    },
+    "size": null,
+    "speed": null,
+    "languages": [],
+    "extra_languages": 0,
+    "skills": [],
+    "extra_skills": 1,
+    "feats": 1,
+    "traits": [
+     {
+      "name": "Skills",
+      "desc": "You gain proficiency in one skill of your choice."
+     },
+     {
+      "name": "Feat",
+      "desc": "You gain one Feat of your choice."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "Human",
+  "source": "Plane Shift - Innistrad",
+  "slug": "human",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 1,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Provincial Origin",
+    "desc": "Choose one of the four provinces of Innistrad as the place of origin for your character: Gavony, Kessig, Nephalia, or Stensia."
+   }
+  ],
+  "subs": [
+   {
+    "name": "Gavony",
+    "replaces": false,
+    "asi": {
+     "fixed": {
+      "STR": 1,
+      "DEX": 1,
+      "CON": 1,
+      "INT": 1,
+      "WIS": 1,
+      "CHA": 1
+     },
+     "choose": []
+    },
+    "size": null,
+    "speed": null,
+    "languages": [],
+    "extra_languages": 0,
+    "skills": [],
+    "extra_skills": 0,
+    "feats": 0,
+    "traits": []
+   },
+   {
+    "name": "Kessig",
+    "replaces": false,
+    "asi": null,
+    "size": null,
+    "speed": null,
+    "languages": [],
+    "extra_languages": 0,
+    "skills": [
+     "Survival"
+    ],
+    "extra_skills": 0,
+    "feats": 0,
+    "traits": [
+     {
+      "name": "Forest Folk",
+      "desc": "You have proficiency in the Survival skill."
+     },
+     {
+      "name": "Fleet of Foot",
+      "desc": "Your base walking speed is 40 feet."
+     },
+     {
+      "name": "Sure-Footed",
+      "desc": "When you use the Dash action, difficult terrain doesn’t cost you extra movement on that turn."
+     },
+     {
+      "name": "Spring Attack",
+      "desc": "When you make a melee attack against a creature, you don’t provoke opportunity attacks from that creature for the rest of your turn, whether you hit..."
+     }
+    ]
+   },
+   {
+    "name": "Nephalia",
+    "replaces": false,
+    "asi": null,
+    "size": null,
+    "speed": null,
+    "languages": [],
+    "extra_languages": 0,
+    "skills": [],
+    "extra_skills": 0,
+    "feats": 0,
+    "traits": [
+     {
+      "name": "Breadth of Knowledge",
+      "desc": "You gain proficiency in any combination of four skills or with four tools of your choice."
+     }
+    ]
+   },
+   {
+    "name": "Stensia",
+    "replaces": false,
+    "asi": null,
+    "size": null,
+    "speed": null,
+    "languages": [],
+    "extra_languages": 0,
+    "skills": [
+     "Intimidation"
+    ],
+    "extra_skills": 0,
+    "feats": 0,
+    "traits": [
+     {
+      "name": "Daunting",
+      "desc": "You have proficiency in the Intimidation skill."
+     },
+     {
+      "name": "Tough",
+      "desc": "Your hit point maximum increases by 2, and it increases by 2 every time you gain a level. window['nitroAds'].createAd('wad-dnd5e-floating-video', {..."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "Kalashtar",
+  "source": "Eberron - Rising from the Last War",
+  "slug": "kalashtar",
+  "asi": {
+   "fixed": {
+    "WIS": 2,
+    "CHA": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 1,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Dual Mind",
+    "desc": "You have advantage on all Wisdom saving throws."
+   },
+   {
+    "name": "Mental Discipline",
+    "desc": "You have resistance to psychic damage."
+   },
+   {
+    "name": "Mind Link",
+    "desc": "You can speak telepathically to any creature you can see, provided the creature is within a number of feet of you equal to 10 times your level. You..."
+   },
+   {
+    "name": "Severed from Dreams",
+    "desc": "Kalashtar sleep, but they don’t connect to the plane of dreams as other creatures do. Instead, their minds draw from the memories of their..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Kenku",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "kenku",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 2,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid."
+   },
+   {
+    "name": "Expert Duplication",
+    "desc": "When you copy writing or craftwork produced by yourself or someone else, you have advantage on any ability checks you make to produce an exact..."
+   },
+   {
+    "name": "Kenku Recall",
+    "desc": "Thanks to your supernaturally good memory, you have proficiency in two skills of your choice."
+   },
+   {
+    "name": "Mimicry",
+    "desc": "You can accurately mimic sounds you have heard, including voices. A creature that hears the sounds you make can tell they are imitations only with a..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Kenku",
+  "source": "Volo's Guide to Monsters",
+  "slug": "kenku",
+  "asi": {
+   "fixed": {
+    "DEX": 2,
+    "WIS": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Expert Forgery",
+    "desc": "You can duplicate other creatures' handwriting and craftwork. You have advantage on all checks made to produce forgeries or duplicates of existing..."
+   },
+   {
+    "name": "Kenku Training",
+    "desc": "You are proficient in your choice of two of the following skills: Acrobatics, Deception, Stealth, and Sleight of Hand."
+   },
+   {
+    "name": "Mimicry",
+    "desc": "You can mimic sounds you have heard, including voices. A creature that hears the sounds you make can tell they are imitations with a successful..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Khenra",
+  "source": "Plane Shift / Ravnica / Theros (misc.)",
+  "slug": "khenra",
+  "asi": {
+   "fixed": {
+    "DEX": 2,
+    "STR": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 35,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Khenra Weapon Training",
+    "desc": "You have proficiency with the khopesh, spear, and javelin."
+   },
+   {
+    "name": "Khenra Twins",
+    "desc": "If your twin is alive and you can see your twin, whenever you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Kobold",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "kobold",
+  "asi": null,
+  "size": "Small",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid."
+   },
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You discern colors in that..."
+   },
+   {
+    "name": "Draconic Cry",
+    "desc": "As a bonus action, you let out a cry at your enemies within 10 feet of you. Until the start of your next turn, you and your allies have advantage on..."
+   },
+   {
+    "name": "Kobold Legacy",
+    "desc": "Kobolds’ connection to dragons can manifest in unpredictable ways in an individual kobold. Choose one of the following legacy options for your kobold:"
+   },
+   {
+    "name": "Craftiness",
+    "desc": "You have proficiency in one of the following skills of your choice: Arcana, Investigation, Medicine, Sleight of Hand, or Survival."
+   },
+   {
+    "name": "Defiance",
+    "desc": "You have advantage on saving throws to avoid or end the frightened condition on yourself."
+   },
+   {
+    "name": "Draconic Sorcery",
+    "desc": "You know one cantrip of your choice from the sorcerer spell list. Intelligence, Wisdom, or Charisma is your spellcasting ability for that cantrip..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Kobold",
+  "source": "Volo's Guide to Monsters",
+  "slug": "kobold",
+  "asi": {
+   "fixed": {
+    "DEX": 2
+   },
+   "choose": []
+  },
+  "size": "Small",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Draconic"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in..."
+   },
+   {
+    "name": "Grovel, Cower, and Beg",
+    "desc": "As an action on your turn, you can cower pathetically to distract nearby foes. Until the end of your next turn, your allies gain advantage on attack..."
+   },
+   {
+    "name": "Pack Tactics",
+    "desc": "You have advantage on an attack roll against a creature if at least one of your allies is within 5 feet of the creature and the ally isn't..."
+   },
+   {
+    "name": "Sunlight Sensitivity",
+    "desc": "You have disadvantage on attack rolls and on Wisdom (Perception) checks that rely on sight when you, the target of your attack, or whatever you are..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Kor",
+  "source": "Plane Shift / Ravnica / Theros (misc.)",
+  "slug": "kor",
+  "asi": {
+   "fixed": {
+    "DEX": 2,
+    "WIS": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Kor Climbing",
+    "desc": "You have proficiency in the Athletics and Acrobatics skills."
+   },
+   {
+    "name": "Lucky",
+    "desc": "When you roll a 1 on the d20 for an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll."
+   },
+   {
+    "name": "Brave",
+    "desc": "You have advantage on saving throws against being frightened."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Leonin",
+  "source": "Plane Shift / Ravnica / Theros (misc.)",
+  "slug": "leonin",
+  "asi": {
+   "fixed": {
+    "CON": 2,
+    "STR": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 35,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You can’t discern color in..."
+   },
+   {
+    "name": "Claws",
+    "desc": "Your claws are natural weapons, which you can use to make unarmed strikes. If you hit with them, you can deal slashing damage equal to 1d4 + your..."
+   },
+   {
+    "name": "Hunter's Instincts",
+    "desc": "You have proficiency in one of the following skills of your choice: Athletics, Intimidation, Perception, or Survival."
+   },
+   {
+    "name": "Daunting Roar",
+    "desc": "As a bonus action, you can let out an especially menacing roar. Creatures of your choice within 10 feet of you that can hear you must succeed on a..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Lizardfolk",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "lizardfolk",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid."
+   },
+   {
+    "name": "Bite",
+    "desc": "You have a fanged maw that you can use to make unarmed strikes. When you hit with it, the strike deals 1d6 + your Strength modifier slashing damage..."
+   },
+   {
+    "name": "Hold Breath",
+    "desc": "You can hold your breath for up to 15 minutes at a time."
+   },
+   {
+    "name": "Hungry Jaws",
+    "desc": "You can throw yourself into a feeding frenzy. As a bonus action, you can make a special attack with your Bite. If the attack hits, it deals its..."
+   },
+   {
+    "name": "Natural Armor",
+    "desc": "You have tough, scaly skin. When you aren’t wearing armor, your base AC is 13 + your Dexterity modifier. You can use your natural armor to determine..."
+   },
+   {
+    "name": "Nature's Intuition",
+    "desc": "Thanks to your mystical connection to nature, you gain proficiency with two of the following skills of your choice: Animal Handling, Medicine..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Lizardfolk",
+  "source": "Volo's Guide to Monsters",
+  "slug": "lizardfolk",
+  "asi": {
+   "fixed": {
+    "CON": 2,
+    "WIS": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Draconic"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Bite",
+    "desc": "Your fanged maw is a natural weapon, which you can use to make unarmed strikes. If you hit with it, you deal piercing damage equal to 1d6 + your..."
+   },
+   {
+    "name": "Cunning Artisan",
+    "desc": "As part of a short rest, you can harvest bone and hide from a slain beast, construct, dragon, monstrosity, or plant creature of size Small or larger..."
+   },
+   {
+    "name": "Hold Breath",
+    "desc": "You can hold your breath for up to 15 minutes at a time."
+   },
+   {
+    "name": "Hunter's Lore",
+    "desc": "You gain proficiency with two of the following skills of your choice: Animal Handling, Nature, Perception, Stealth, and Survival."
+   },
+   {
+    "name": "Natural Armor",
+    "desc": "You have tough, scaly skin. When you aren't wearing armor, your AC is 13 + your Dexterity modifier. You can use your natural armor to determine your..."
+   },
+   {
+    "name": "Hungry Jaws",
+    "desc": "In battle, you can throw yourself into a vicious feeding frenzy. As a bonus action, you can make a special attack with your bite. If the attack hits..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Loxodon",
+  "source": "Plane Shift / Ravnica / Theros (misc.)",
+  "slug": "loxodon",
+  "asi": {
+   "fixed": {
+    "CON": 2,
+    "WIS": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Powerful Build",
+    "desc": "You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift."
+   },
+   {
+    "name": "Loxodon Serenity",
+    "desc": "You have advantage against being charmed or frightened."
+   },
+   {
+    "name": "Natural Armour",
+    "desc": "You have thick, leathery skin. When you aren't wearing armor, your AC is 12 + your Constitution modifier. You can use your natural armor to determine..."
+   },
+   {
+    "name": "Trunk",
+    "desc": "You can grasp things with your trunk, and you can use it as a snorkel. It has a reach of 5 feet, and it can lift a number of pounds equal to five..."
+   },
+   {
+    "name": "Keen Smell",
+    "desc": "Thanks to your sensitive trunk, you have advantage on Wisdom (Perception), Wisdom (Survival), and Intelligence (Investigation) checks that involve..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Merfolk",
+  "source": "Plane Shift - Ixalan",
+  "slug": "merfolk",
+  "asi": {
+   "fixed": {
+    "INT": 2
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 1,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Amphibious",
+    "desc": "You can breathe air and water."
+   },
+   {
+    "name": "Subrace",
+    "desc": "Merfolk are actually two separate subspecies. The green merfolk favor the land, walking among the trees and savoring the sunlight that filters..."
+   },
+   {
+    "name": "Mask of the Wild",
+    "desc": "You can attempt to hide even when you are only lightly obscured by foliage, heavy rain, falling snow, mist, and other natural phenomena."
+   },
+   {
+    "name": "Cantrip",
+    "desc": "You know one cantrip of your choice from the Druid spell list. Wisdom is your spellcasting ability for it."
+   },
+   {
+    "name": "Lore of the Waters",
+    "desc": "You gain proficiency in History and Nature."
+   },
+   {
+    "name": "Cantrip",
+    "desc": "You know one cantrip of your choice from the Wizard spell list. Intelligence is your spellcasting ability for it."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Merfolk",
+  "source": "Plane Shift - Zendikar",
+  "slug": "merfolk",
+  "asi": {
+   "fixed": {
+    "INT": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 1,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Amphibious",
+    "desc": "You can breathe air and water."
+   },
+   {
+    "name": "Creeds",
+    "desc": "The merfolk race is divided into three creeds, founded on the principles of Emeria (wind), Ula (water), and Cosi (the trickster). A merfolk isn’t..."
+   },
+   {
+    "name": "Wind Creed Manipulation",
+    "desc": "You have proficiency in the Deception and Persuasion skills."
+   },
+   {
+    "name": "Cantrip",
+    "desc": "You know one cantrip of your choice from the Druid spell list. Wisdom is your spellcasting ability for it."
+   },
+   {
+    "name": "Water Creed Navigation",
+    "desc": "You have proficiency with navigator’s tools and in the Survival skill."
+   },
+   {
+    "name": "Cantrip",
+    "desc": "You know one cantrip of your choice from the Wizard spell list. Intelligence is your spellcasting ability for it."
+   },
+   {
+    "name": "Creed of the Trickster",
+    "desc": "You have proficiency in the Sleight of Hand and Stealth skills."
+   },
+   {
+    "name": "Cantrip",
+    "desc": "You know one cantrip of your choice from the Bard spell list. Charisma is your spellcasting ability for it...."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Minotaur",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "minotaur",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid."
+   },
+   {
+    "name": "Horns",
+    "desc": "You have horns that you can use to make unarmed strikes. When you hit with them, the strike deals 1d6 + your Strength modifier piercing damage..."
+   },
+   {
+    "name": "Goring Rush",
+    "desc": "Immediately after you take the Dash action on your turn and move at least 20 feet, you can make one melee attack with your Horns as a bonus action."
+   },
+   {
+    "name": "Hammering Horns",
+    "desc": "Immediately after you hit a creature with a melee attack as part of the Attack action on your turn, you can use a bonus action to attempt to push..."
+   },
+   {
+    "name": "Labyrinthine Recall",
+    "desc": "You always know which direction is north, and you have advantage on any Wisdom (Survival) check you make to navigate or track."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Minotaur",
+  "source": "Guildmaster's Guide to Ravnica",
+  "slug": "minotaur",
+  "asi": {
+   "fixed": {
+    "STR": 2,
+    "CON": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Horns",
+    "desc": "Your horns are natural melee weapons, which you can use to make unarmed strikes. If you hit with them, you deal piercing damage equal to 1d6 + your..."
+   },
+   {
+    "name": "Goring Rush",
+    "desc": "Immediately after you use the Dash action on your turn and move at least 20 feet, you can make one melee attack with your horns as a bonus action."
+   },
+   {
+    "name": "Hammering Horns",
+    "desc": "Immediately after you hit a creature with a melee attack as a part of the Attack action on your turn, you can use a bonus action to attempt to shove..."
+   },
+   {
+    "name": "Imposing Presence",
+    "desc": "You have proficiency in one of the following skills of your choice: Intimidation or Persuasion."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Minotaur",
+  "source": "Mythic Odysseys of Theros",
+  "slug": "minotaur",
+  "asi": {
+   "fixed": {
+    "STR": 2,
+    "CON": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Horns",
+    "desc": "Your horns are natural melee weapons, which you can use to make unarmed strikes. If you hit with them, you deal piercing damage equal to 1d6 + your..."
+   },
+   {
+    "name": "Goring Rush",
+    "desc": "Immediately after you use the Dash action on your turn and move at least 20 feet, you can make one melee attack with your horns as a bonus action."
+   },
+   {
+    "name": "Hammering Horns",
+    "desc": "Immediately after you hit a creature with a melee attack as a part of the Attack action on your turn, you can use a bonus action to attempt to shove..."
+   },
+   {
+    "name": "Imposing Presence",
+    "desc": "You have proficiency in one of the following skills of your choice: Intimidation or Persuasion."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Minotaur",
+  "source": "Plane Shift - Amonkhet",
+  "slug": "minotaur",
+  "asi": {
+   "fixed": {
+    "STR": 2,
+    "CON": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [
+   "Intimidation"
+  ],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Natural Weapon",
+    "desc": "You can use your horns as a natural weapon to make unarmed strikes. If you hit with your horns, you deal bludgeoning damage equal to 1d6 + your..."
+   },
+   {
+    "name": "Menacing",
+    "desc": "You gain proficiency in the Intimidation skill."
+   },
+   {
+    "name": "Relentless Endurance",
+    "desc": "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can’t use this feature again until you finish..."
+   },
+   {
+    "name": "Savage Attacks",
+    "desc": "When you score a critical hit with a melee weapon attack, you can roll one of the weapon’s damage dice one additional time and add it to the extra..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Naga",
+  "source": "Plane Shift / Ravnica / Theros (misc.)",
+  "slug": "naga",
+  "asi": {
+   "fixed": {
+    "CON": 2,
+    "INT": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Speed Burst",
+    "desc": "By lowering your body to the ground and propelling yourself with your arms, you can move more quickly for a time. As a bonus action on your turn, if..."
+   },
+   {
+    "name": "Natural Weapons",
+    "desc": "Your fanged maw and constricting serpentine body are natural weapons, which you can use to make unarmed strikes. If you hit with your bite, you deal..."
+   },
+   {
+    "name": "Poison Immunity",
+    "desc": "You are immune to poison damage and can’t be poisoned."
+   },
+   {
+    "name": "Poison Affinity",
+    "desc": "You gain proficiency with the poisoner’s kit."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Orc",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "orc",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid."
+   },
+   {
+    "name": "Adrenaline Rush",
+    "desc": "You can take the Dash action as a bonus action. You can use this trait a number of times equal to your proficiency bonus, and you regain all expended..."
+   },
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You discern colors in that..."
+   },
+   {
+    "name": "Powerful Build",
+    "desc": "You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift."
+   },
+   {
+    "name": "Relentless Endurance",
+    "desc": "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. Once you use this trait, you can’t do so again..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Orc",
+  "source": "Volo's Guide to Monsters",
+  "slug": "orc",
+  "asi": {
+   "fixed": {
+    "STR": 2,
+    "CON": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Orc"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in..."
+   },
+   {
+    "name": "Aggressive",
+    "desc": "As a bonus action, you can move up to your speed toward an enemy of your choice that you can see or hear. You must end this move closer to the enemy..."
+   },
+   {
+    "name": "Primal Intuition",
+    "desc": "You have proficiency in two of the following skills of your choice: Animal Handling, Insight, Intimidation, Medicine, Nature, Perception, and..."
+   },
+   {
+    "name": "Powerful Build",
+    "desc": "You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Orc",
+  "source": "Eberron - Rising from the Last War",
+  "slug": "orc",
+  "asi": {
+   "fixed": {
+    "STR": 2,
+    "CON": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Orc"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in..."
+   },
+   {
+    "name": "Aggressive",
+    "desc": "As a bonus action, you can move up to your speed toward an enemy of your choice that you can see or hear. You must end this move closer to the enemy..."
+   },
+   {
+    "name": "Powerful Build",
+    "desc": "You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift."
+   },
+   {
+    "name": "Primal Intuition",
+    "desc": "You have proficiency in two of the following skills of your choice: Animal Handling, Insight, Intimidation, Medicine, Nature, Perception, and..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Orc",
+  "source": "Explorer's Guide to Wildemount",
+  "slug": "orc",
+  "asi": {
+   "fixed": {
+    "STR": 2,
+    "CON": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Orc"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in..."
+   },
+   {
+    "name": "Aggressive",
+    "desc": "As a bonus action, you can move up to your speed toward an enemy of your choice that you can see or hear. You must end this move closer to the enemy..."
+   },
+   {
+    "name": "Powerful Build",
+    "desc": "You count as one size larger when determining your carrying capacity and the weight you can push, drag, or lift."
+   },
+   {
+    "name": "Primal Intuition",
+    "desc": "You have proficiency in two of the following skills of your choice: Animal Handling, Insight, Intimidation, Medicine, Nature, Perception, and..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Orc",
+  "source": "Plane Shift - Ixalan",
+  "slug": "orc",
+  "asi": {
+   "fixed": {
+    "STR": 2,
+    "CON": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Orc"
+  ],
+  "extra_languages": 0,
+  "skills": [
+   "Intimidation"
+  ],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if..."
+   },
+   {
+    "name": "Menacing",
+    "desc": "You gain proficiency in the Intimidation skill."
+   },
+   {
+    "name": "Relentless Endurance",
+    "desc": "When you are reduced to 0 hit points but not killed outright, you can drop to 1 hit point instead. You can’t use this feature again until you finish..."
+   },
+   {
+    "name": "Savage Attacks",
+    "desc": "When you score a critical hit with a melee weapon attack, you can roll one of the weapon’s damage dice one additional time and add it to the extra..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Satyr",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "satyr",
+  "asi": null,
+  "size": "Medium",
+  "speed": 35,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Fey."
+   },
+   {
+    "name": "Ram",
+    "desc": "You can use your head and horns to make unarmed strikes. When you hit with them, the strike deals 1d6 + your Strength modifier bludgeoning damage..."
+   },
+   {
+    "name": "Magic Resistance",
+    "desc": "You have advantage on saving throws against spells."
+   },
+   {
+    "name": "Mirthful Leaps",
+    "desc": "Whenever you make a long jump or a high jump, you can roll a d8 and add the number rolled to the number of feet you cover, even when making a..."
+   },
+   {
+    "name": "Reveler",
+    "desc": "As an embodiment of revelry, you have proficiency in the Performance and Persuasion skills, and you have proficiency with one musical instrument of..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Satyr",
+  "source": "Mythic Odysseys of Theros",
+  "slug": "satyr",
+  "asi": {
+   "fixed": {
+    "CHA": 2,
+    "DEX": 1
+   },
+   "choose": []
+  },
+  "size": null,
+  "speed": 35,
+  "languages": [
+   "Common",
+   "Sylvan"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Fey",
+    "desc": "Your creature type is fey, rather than humanoid."
+   },
+   {
+    "name": "Ram",
+    "desc": "You can use your head and horns to make unarmed strikes. If you hit with them, you deal bludgeoning damage equal to 1d4 + your Strength modifier."
+   },
+   {
+    "name": "Magic Resistance",
+    "desc": "You have advantage on saving throws against spells and other magical effects."
+   },
+   {
+    "name": "Mirthful Leaps",
+    "desc": "Whenever you make a long or high jump, you can roll a d8 and add the number to the number of feet you cover, even when making a standing jump. This..."
+   },
+   {
+    "name": "Reveler",
+    "desc": "You have proficiency in the Performance and Persuasion skills, and you have proficiency with one musical instrument of your choice."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Sea Elf",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "sea-elf",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [
+   "Perception"
+  ],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid. You are also considered an elf for any prerequisite or effect that requires you to be an elf."
+   },
+   {
+    "name": "Child of the Sea",
+    "desc": "You can breathe air and water, and you have resistance to cold damage."
+   },
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You discern colors in that..."
+   },
+   {
+    "name": "Fey Ancestry",
+    "desc": "You have advantage on saving throws you make to avoid or end the charmed condition on yourself."
+   },
+   {
+    "name": "Friend of the Sea",
+    "desc": "Aquatic animals have an extraordinary affinity with your people. You can communicate simple ideas to any Beast that has a swimming speed. It can..."
+   },
+   {
+    "name": "Keen Senses",
+    "desc": "You have proficiency in the Perception skill."
+   },
+   {
+    "name": "Trance",
+    "desc": "You don’t need to sleep, and magic can’t put you to sleep. You can finish a long rest in 4 hours if you spend those hours in a trancelike meditation..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Sea Elf",
+  "source": "Mordenkainen's Tome of Foes",
+  "slug": "sea-elf",
+  "asi": {
+   "fixed": {
+    "DEX": 2,
+    "CON": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Elvish"
+  ],
+  "extra_languages": 0,
+  "skills": [
+   "Perception"
+  ],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "Accustomed to twilit forests and the night sky, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you..."
+   },
+   {
+    "name": "Fey Ancestry",
+    "desc": "You have advantage on saving throws against being charmed, and magic can't put you to sleep."
+   },
+   {
+    "name": "Trance",
+    "desc": "Elves do not sleep. Instead they meditate deeply, remaining semi-conscious, for 4 hours a day. The Common word for this meditation is \"trance.\" While..."
+   },
+   {
+    "name": "Keen Senses",
+    "desc": "You have proficiency in the Perception skill."
+   },
+   {
+    "name": "Sea Elf Training",
+    "desc": "You have proficiency with the spear, trident, light crossbow, and net."
+   },
+   {
+    "name": "Child of the Sea",
+    "desc": "You have a swimming speed of 30 feet, and you can breathe air and water."
+   },
+   {
+    "name": "Friend of the Sea",
+    "desc": "Using gestures and sounds, you can communicate simple ideas with any beast that has an innate swimming speed."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Shadar-Kai",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "shadar-kai",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [
+   "Perception"
+  ],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid. You are also considered an elf for any prerequisite or effect that requires you to be an elf."
+   },
+   {
+    "name": "Blessing of the Raven Queen",
+    "desc": "As a bonus action, you can magically teleport up to 30 feet to an unoccupied space you can see. You can use this trait a number of times equal to..."
+   },
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You discern colors in that..."
+   },
+   {
+    "name": "Fey Ancestry",
+    "desc": "You have advantage on saving throws you make to avoid or end the charmed condition on yourself."
+   },
+   {
+    "name": "Keen Senses",
+    "desc": "You have proficiency in the Perception skill."
+   },
+   {
+    "name": "Necrotic Resistance",
+    "desc": "You have resistance to necrotic damage."
+   },
+   {
+    "name": "Trance",
+    "desc": "You don’t need to sleep, and magic can’t put you to sleep. You can finish a long rest in 4 hours if you spend those hours in a trancelike meditation..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Shadar-Kai",
+  "source": "Mordenkainen's Tome of Foes",
+  "slug": "shadar-kai",
+  "asi": {
+   "fixed": {
+    "DEX": 2,
+    "CON": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Elvish"
+  ],
+  "extra_languages": 0,
+  "skills": [
+   "Perception"
+  ],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "Accustomed to twilit forests and the night sky, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you..."
+   },
+   {
+    "name": "Fey Ancestry",
+    "desc": "You have advantage on saving throws against being charmed, and magic can't put you to sleep."
+   },
+   {
+    "name": "Trance",
+    "desc": "Elves do not sleep. Instead they meditate deeply, remaining semi-conscious, for 4 hours a day. The Common word for this meditation is \"trance.\" While..."
+   },
+   {
+    "name": "Keen Senses",
+    "desc": "You have proficiency in the Perception skill."
+   },
+   {
+    "name": "Necrotic Resistance",
+    "desc": "You have resistance to necrotic damage."
+   },
+   {
+    "name": "Blessing of the Raven Queen",
+    "desc": "As a bonus action, you can magically teleport up to 30 feet to an unoccupied space you can see. Once you use this trait, you can't do so again until..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Shifter",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "shifter",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid."
+   },
+   {
+    "name": "Bestial Instincts",
+    "desc": "Channeling the beast within, you have proficiency in one of the following skills of your choice: Acrobatics, Athletics, Intimidation, or Survival."
+   },
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You discern colors in that..."
+   },
+   {
+    "name": "Shifting",
+    "desc": "As a bonus action, you can assume a more bestial appearance. This transformation lasts for 1 minute, until you die, or until you revert to your..."
+   },
+   {
+    "name": "Beasthide",
+    "desc": "You gain 1d6 additional temporary hit points. While shifted, you have a +1 bonus to your Armor Class."
+   },
+   {
+    "name": "Longtooth",
+    "desc": "When you shift and as a bonus action on your other turns while shifted, you can use your elongated fangs to make an unarmed strike. If you hit with..."
+   },
+   {
+    "name": "Swiftstride",
+    "desc": "While shifted, your walking speed increases by 10 feet. Additionally, you can move up to 10 feet as a reaction when a creature ends its turn within 5..."
+   },
+   {
+    "name": "Wildhunt",
+    "desc": "While shifted, you have advantage on Wisdom checks, and no creature within 30 feet of you can make an attack roll with advantage against you unless..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Shifter",
+  "source": "Eberron - Rising from the Last War",
+  "slug": "shifter",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [
+   "Perception"
+  ],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Beasthide often signifies the bear or boar: stoic, stubborn and thick-skinned",
+    "desc": ""
+   },
+   {
+    "name": "Longtooth shifters typically have lupine traits and prefer to run with a pack",
+    "desc": ""
+   },
+   {
+    "name": "Swiftstride are often predatory and feline, but a swiftstride could also be a cunning rat who darts through the shadows",
+    "desc": ""
+   },
+   {
+    "name": "Wildhunt shifters are born from any creature that tracks its prey",
+    "desc": ""
+   },
+   {
+    "name": "Darkvision",
+    "desc": "You have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if..."
+   },
+   {
+    "name": "Keen Senses",
+    "desc": "You have proficiency in the Perception skill."
+   },
+   {
+    "name": "Shifting",
+    "desc": "As a bonus action, you can assume a more bestial appearance. This transformation lasts for 1 minute, until you die, or until you revert to your..."
+   },
+   {
+    "name": "Subrace",
+    "desc": "The beast within shapes each shifter physically and mentally. The four major subraces of shifter include beasthide, longtooth, switftstride, and..."
+   }
+  ],
+  "subs": [
+   {
+    "name": "Beasthide",
+    "replaces": false,
+    "asi": {
+     "fixed": {
+      "CON": 2,
+      "STR": 1
+     },
+     "choose": []
+    },
+    "size": null,
+    "speed": null,
+    "languages": [],
+    "extra_languages": 0,
+    "skills": [
+     "Athletics"
+    ],
+    "extra_skills": 0,
+    "feats": 0,
+    "traits": [
+     {
+      "name": "Natural Athlete",
+      "desc": "You have proficiency in the Athletics skill."
+     },
+     {
+      "name": "Shifting Feature",
+      "desc": "Whenever you shift, you gain 1d6 additional temporary hit points, and while shifted, you have a +1 bonus to your Armor Class."
+     }
+    ]
+   },
+   {
+    "name": "Longtooth",
+    "replaces": true,
+    "asi": {
+     "fixed": {
+      "STR": 2,
+      "DEX": 1
+     },
+     "choose": []
+    },
+    "size": null,
+    "speed": null,
+    "languages": [],
+    "extra_languages": 0,
+    "skills": [
+     "Intimidation"
+    ],
+    "extra_skills": 0,
+    "feats": 0,
+    "traits": [
+     {
+      "name": "Fierce",
+      "desc": "You have proficiency in the Intimidation skill."
+     },
+     {
+      "name": "Shifting Feature",
+      "desc": "While shifted, you can use your elongated fangs to make an unarmed strike as a bonus action. If you hit with your fangs, you can deal piercing damage..."
+     }
+    ]
+   },
+   {
+    "name": "Swiftstride",
+    "replaces": false,
+    "asi": {
+     "fixed": {
+      "DEX": 2,
+      "CHA": 1
+     },
+     "choose": []
+    },
+    "size": null,
+    "speed": null,
+    "languages": [],
+    "extra_languages": 0,
+    "skills": [
+     "Acrobatics"
+    ],
+    "extra_skills": 0,
+    "feats": 0,
+    "traits": [
+     {
+      "name": "Graceful",
+      "desc": "You have proficiency in the Acrobatics skill."
+     },
+     {
+      "name": "Shifting Feature",
+      "desc": "While shifted, your walking speed increases by 10 feet. Additionally, you can move up to 10 feet as a reaction when an enemy ends its turn within 5..."
+     }
+    ]
+   },
+   {
+    "name": "Wildhunt",
+    "replaces": false,
+    "asi": {
+     "fixed": {
+      "WIS": 2
+     },
+     "choose": []
+    },
+    "size": null,
+    "speed": null,
+    "languages": [],
+    "extra_languages": 0,
+    "skills": [
+     "Survival"
+    ],
+    "extra_skills": 0,
+    "feats": 0,
+    "traits": [
+     {
+      "name": "Natural Tracker",
+      "desc": "You have proficiency in the Survival skill."
+     },
+     {
+      "name": "Mark the Scent",
+      "desc": "As a bonus action, you can mark one creature you can see within 10 feet of you. Until the end of your next long rest, your proficiency bonus is..."
+     },
+     {
+      "name": "Shifting Feature",
+      "desc": "While shifted, you have advantage on Wisdom checks."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "Simic Hybrid",
+  "source": "Plane Shift / Ravnica / Theros (misc.)",
+  "slug": "simic-hybrid",
+  "asi": {
+   "fixed": {
+    "CON": 2
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Elvish"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in..."
+   },
+   {
+    "name": "Animal Enhancements",
+    "desc": "Your body has been altered with animal characteristics. You choose one animal enhancement now and one at 5th level."
+   },
+   {
+    "name": "Manta Glide (1st level)",
+    "desc": "You have ray-like fins that you use as wings to slow your fall or allow you to glide. When you fall and are not incapacitated, you can subtract up to..."
+   },
+   {
+    "name": "Nimble Climber (1st level)",
+    "desc": "You have a climb speed equal to your walk speed."
+   },
+   {
+    "name": "Underwater Adaptation (1st level)",
+    "desc": "You can breathe air and water, and you gain a swim speed equal to your walking speed."
+   },
+   {
+    "name": "Grappling Appendages (5th level)",
+    "desc": "You have two special appendages growing alongside with your arms. Choose whether they're both claws or tentacles. As an action, you can use one of..."
+   },
+   {
+    "name": "Carapace (5th level)",
+    "desc": "Your skin in places is covered by a thick shell. You gain a +1 to your AC when not wearing heavy armour."
+   },
+   {
+    "name": "Acid Spit (5th level)",
+    "desc": "As an action, you can spray acid from glands in your mouth, targeting one creature or object you can see within 30 feet of you. The target must make..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Siren",
+  "source": "Plane Shift / Ravnica / Theros (misc.)",
+  "slug": "siren",
+  "asi": {
+   "fixed": {
+    "CHA": 2
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 25,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Flight",
+    "desc": "You have a flying speed of 30 feet. You can’t use your flying speed while you wear medium or heavy armor. (If your campaign uses the variant rule for..."
+   },
+   {
+    "name": "Siren’s Song",
+    "desc": "You know the Friends cantrip and can cast it without material components."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Tabaxi",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "tabaxi",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid."
+   },
+   {
+    "name": "Cat's Claws",
+    "desc": "You can use your claws to make unarmed strikes. When you hit with them, the strike deals 1d6 + your Strength modifier slashing damage, instead of the..."
+   },
+   {
+    "name": "Cat's Talent",
+    "desc": "You have proficiency in the Perception and Stealth skills."
+   },
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You discern colors in that..."
+   },
+   {
+    "name": "Feline Agility",
+    "desc": "Your reflexes and agility allow you to move with a burst of speed. When you move on your turn in combat, you can double your speed until the end of..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Tabaxi",
+  "source": "Volo's Guide to Monsters",
+  "slug": "tabaxi",
+  "asi": {
+   "fixed": {
+    "DEX": 2,
+    "CHA": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 1,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "You have a cat's keen senses, especially in the dark. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as..."
+   },
+   {
+    "name": "Feline Agility",
+    "desc": "Your reflexes and agility allow you to move with a burst of speed. When you move on your tum in combat, you can double your speed until the end of..."
+   },
+   {
+    "name": "Cat's Claws",
+    "desc": "Because of your claws, you have a climbing speed of 20 feet. In addition, your claws are natural weapons, which you can use to make unarmed strikes...."
+   },
+   {
+    "name": "Cat's Talent",
+    "desc": "You have proficiency in the Perception and Stealth skills."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Tiefling",
+  "source": "Player's Handbook",
+  "slug": "tiefling",
+  "asi": {
+   "fixed": {
+    "CHA": 2
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Infernal"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "Thanks to your infernal heritage, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were..."
+   },
+   {
+    "name": "Hellish Resistance",
+    "desc": "You have resistance to fire damage."
+   }
+  ],
+  "subs": [
+   {
+    "name": "Bloodline of Asmodeus",
+    "replaces": false,
+    "asi": {
+     "fixed": {
+      "INT": 1
+     },
+     "choose": []
+    },
+    "size": null,
+    "speed": null,
+    "languages": [],
+    "extra_languages": 0,
+    "skills": [],
+    "extra_skills": 0,
+    "feats": 0,
+    "traits": [
+     {
+      "name": "Infernal Legacy",
+      "desc": "You know the Thaumaturgy cantrip. Once you reach 3rd level, you can cast the Hellish Rebuke spell once as a 2nd-level spell. Once you reach 5th..."
+     }
+    ]
+   }
+  ]
+ },
+ {
+  "name": "Tortle",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "tortle",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid."
+   },
+   {
+    "name": "Claws",
+    "desc": "You have claws that you can use to make unarmed strikes. When you hit with them, the strike deals 1d6 + your Strength modifier slashing damage..."
+   },
+   {
+    "name": "Hold Breath",
+    "desc": "You can hold your breath for up to 1 hour."
+   },
+   {
+    "name": "Natural Armor",
+    "desc": "Your shell provides you a base AC of 17 (your Dexterity modifier doesn’t affect this number). You can’t wear light, medium, or heavy armor, but if..."
+   },
+   {
+    "name": "Nature's Intuition",
+    "desc": "Thanks to your mystical connection to nature, you gain proficiency with one of the following skills of your choice: Animal Handling, Medicine..."
+   },
+   {
+    "name": "Shell Defense",
+    "desc": "You can withdraw into your shell as an action. Until you emerge, you gain a +4 bonus to your AC, and you have advantage on Strength and Constitution..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Tortle",
+  "source": "The Tortle Package",
+  "slug": "tortle",
+  "asi": {
+   "fixed": {
+    "STR": 2,
+    "WIS": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [
+   "Survival"
+  ],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Claws",
+    "desc": "Your claws are natural weapons, which you can use to make unarmed strikes. If you hit with them, you deal slashing damage equal to 1d4 + your..."
+   },
+   {
+    "name": "Hold Breath",
+    "desc": "You can hold your breath for up to 1 hour at a time. Tortles aren't natural swimmers, but they can remain underwater for some time before needing to..."
+   },
+   {
+    "name": "Natural Armor",
+    "desc": "Due to your shell and the shape of your body, you are ill-suited to wearing armor. Your shell provides ample protection, however; it gives you a base..."
+   },
+   {
+    "name": "Shell Defense",
+    "desc": "You can withdraw into your shell as an action. Until you emerge, you gain a +4 bonus to AC, and you have advantage on Strength and Constitution..."
+   },
+   {
+    "name": "Survival Instinct",
+    "desc": "You gain proficiency in the Survival skill. Tortles have finely honed survival instincts."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Triton",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "triton",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid."
+   },
+   {
+    "name": "Amphibious",
+    "desc": "You can breathe air and water."
+   },
+   {
+    "name": "Control Air and Water",
+    "desc": "You can cast Fog Cloud with this trait. Starting at 3rd level, you can cast the Gust of Wind spell with this trait. Starting at 5th level, you can..."
+   },
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that..."
+   },
+   {
+    "name": "Emissary of the Sea",
+    "desc": "You can communicate simple ideas to any Beast, Elemental, or Monstrosity that has a swimming speed. It can understand your words, though you have no..."
+   },
+   {
+    "name": "Guardian of the Depths",
+    "desc": "Adapted to the frigid ocean depths, you have resistance to cold damage."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Triton",
+  "source": "Volo's Guide to Monsters",
+  "slug": "triton",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Primordial"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Amphibious",
+    "desc": "You can breathe air and water."
+   },
+   {
+    "name": "Control Air and Water",
+    "desc": "A child of the sea, you can call on the magic of elemental air and water. You can cast Fog Cloud with this trait. Starting at 3rd level, you can cast..."
+   },
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You can’t discern color in..."
+   },
+   {
+    "name": "Emissary of the Sea",
+    "desc": "Aquatic beasts have an extraordinary affinity with your people. You can communicate simple ideas with beasts that can breathe water. They can..."
+   },
+   {
+    "name": "Guardians of the Depths",
+    "desc": "Adapted to even the most extreme ocean depths, you have resistance to cold damage."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Vampire",
+  "source": "Plane Shift - Ixalan",
+  "slug": "vampire",
+  "asi": {
+   "fixed": {
+    "CHA": 2,
+    "INT": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "Thanks to your heritage, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright..."
+   },
+   {
+    "name": "Vampiric Resistance",
+    "desc": "You have resistance to necrotic damage."
+   },
+   {
+    "name": "Bloodthirst",
+    "desc": "You can drain blood and life energy from a willing creature, or one that is grappled by you, incapacitated, or restrained. Make a melee attack..."
+   },
+   {
+    "name": "Feast of Blood",
+    "desc": "When you drain blood with your Bloodthirst ability, you experience a surge of vitality. Your speed increases by 10 feet, and you gain advantage on..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Vampire",
+  "source": "Plane Shift - Zendikar",
+  "slug": "vampire",
+  "asi": {
+   "fixed": {
+    "INT": 1,
+    "CHA": 2
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "Thanks to your heritage, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright..."
+   },
+   {
+    "name": "Vampiric Resistance",
+    "desc": "You have resistance to necrotic damage."
+   },
+   {
+    "name": "Blood Thirst",
+    "desc": "You can drain blood and life energy from a willing creature, or one that is grappled by you, incapacitated, or restrained. Make a melee attack..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Vedalken",
+  "source": "Guildmaster's Guide to Ravnica",
+  "slug": "vedalken",
+  "asi": {
+   "fixed": {
+    "INT": 2,
+    "WIS": 1
+   },
+   "choose": []
+  },
+  "size": null,
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 1,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Vedalken Dispassion",
+    "desc": "You have advantage on all Intelligence, Wisdom, and Charisma Saving Throws."
+   },
+   {
+    "name": "Tireless Precision",
+    "desc": "You are proficient in one of the following skills of your choice: Arcana, History, Investigation, Medicine, Performance, or Sleight of Hand. You are..."
+   },
+   {
+    "name": "Partially Amphibious",
+    "desc": "By absorbing oxygen through your skin, you can breathe underwater for up to 1 hour. Once you've reached that limit, you can't use this trait again..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Vedalken",
+  "source": "Plane Shift - Kaladesh",
+  "slug": "vedalken",
+  "asi": {
+   "fixed": {
+    "INT": 2,
+    "WIS": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Vedalken Cunning",
+    "desc": "You have advantage on all Intelligence, Wisdom, and Charisma saving throws against magic."
+   },
+   {
+    "name": "Aether Lore",
+    "desc": "Whenever you make an Intelligence (History) check related to magic items or aether-powered technological devices, you can add twice your proficiency..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Warforged",
+  "source": "Eberron - Rising from the Last War",
+  "slug": "warforged",
+  "asi": {
+   "fixed": {
+    "CON": 2
+   },
+   "choose": [
+    {
+     "n": 1,
+     "amount": 1
+    }
+   ]
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 1,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Constructed Resilience",
+    "desc": "You were created to have remarkable fortitude, represented by the following benefits:"
+   },
+   {
+    "name": "Sentry's Rest",
+    "desc": "When you take a long rest, you must spend at least six hours in an inactive, motionless state, rather than sleeping. In this state, you appear inert..."
+   },
+   {
+    "name": "Integrated Protection",
+    "desc": "Your body has built-in defensive layers, which can be enhanced with armor."
+   },
+   {
+    "name": "Specialized Design",
+    "desc": "You gain one skill proficiency and one tool proficiency of your choice."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Yuan Ti",
+  "source": "Mordenkainen Presents: Monsters of the Multiverse",
+  "slug": "yuan-ti",
+  "asi": null,
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Creature Type",
+    "desc": "You are a Humanoid."
+   },
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light and in darkness as if it were dim light. You discern colors in that..."
+   },
+   {
+    "name": "Magic Resistance",
+    "desc": "You have advantage on saving throws against spells."
+   },
+   {
+    "name": "Poison Resilience",
+    "desc": "You have advantage on saving throws you make to avoid or end the poisoned condition on yourself. You also have resistance to poison damage."
+   },
+   {
+    "name": "Serpentine Spellcasting",
+    "desc": "You know the Poison Spray cantrip. You can cast Animal Friendship an unlimited number of times with this trait, but you can target only snakes with..."
+   }
+  ],
+  "subs": []
+ },
+ {
+  "name": "Yuan Ti",
+  "source": "Volo's Guide to Monsters",
+  "slug": "yuan-ti",
+  "asi": {
+   "fixed": {
+    "CHA": 2,
+    "INT": 1
+   },
+   "choose": []
+  },
+  "size": "Medium",
+  "speed": 30,
+  "languages": [
+   "Common",
+   "Abyssal",
+   "Draconic"
+  ],
+  "extra_languages": 0,
+  "skills": [],
+  "extra_skills": 0,
+  "feats": 0,
+  "traits": [
+   {
+    "name": "Darkvision",
+    "desc": "You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can't discern color in..."
+   },
+   {
+    "name": "Innate Spellcasting",
+    "desc": "You know the Poison Spray cantrip. You can cast Animal Friendship an unlimited number of times with this trait, but you can target only snakes with..."
+   },
+   {
+    "name": "Magic Resistance",
+    "desc": "You have advantage on saving throws against spells and other magical effects."
+   },
+   {
+    "name": "Poison Immunity",
+    "desc": "You are immune to poison damage and the poisoned condition."
+   }
+  ],
+  "subs": []
+ }
+]

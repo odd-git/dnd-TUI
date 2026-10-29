@@ -26,25 +26,12 @@ pub fn at(table: &BTreeMap<u32, u32>, level: u32) -> u32 {
 
 // --- Rules data shipped inside the binary -----------------------------------
 
-#[derive(Deserialize)]
-pub struct Progression {
-    #[serde(default)] pub asi_levels: Vec<u32>,
-    #[serde(default)] pub resources: BTreeMap<String, BTreeMap<u32, u32>>,
-    #[serde(default)] pub dice: BTreeMap<String, BTreeMap<u32, u32>>,
-    #[serde(default)] pub maneuvers_known: BTreeMap<u32, u32>,
-    #[serde(default)] pub attacks_per_action: BTreeMap<u32, u32>,
-    #[serde(default)] pub features: BTreeMap<u32, Vec<Feature>>,
-}
+pub use crate::lists::Progression;
 
+/// "Class/Subclass" (e.g. "Fighter/Battle Master") -> merged level tables.
 pub fn progression(name: &str) -> Option<&'static Progression> {
-    static FIGHTER: OnceLock<Progression> = OnceLock::new();
-    match name {
-        "fighter-battle-master" => Some(FIGHTER.get_or_init(|| {
-            serde_json::from_str(include_str!("../data/progressions/fighter_battle_master.json"))
-                .expect("fighter progression")
-        })),
-        _ => None,
-    }
+    let (class, sub) = name.split_once('/').map_or((name, None), |(c, s)| (c, Some(s)));
+    crate::lists::progression(class, sub)
 }
 
 pub fn maneuvers() -> &'static BTreeMap<String, String> {
@@ -113,7 +100,8 @@ pub struct Character {
     pub abilities: BTreeMap<String, i32>,
     #[serde(default)] pub save_profs: Vec<String>,
     #[serde(default)] pub skills: Vec<String>,
-    pub ac_base: Option<i32>, // armor base + DEX
+    pub ac_base: Option<i32>, // armor base (+ shield, style bonus) before DEX
+    #[serde(default)] pub ac_dex_max: Option<i32>, // medium armor 2, heavy 0; None = full DEX
     pub spell_ability: Option<String>,
     pub progression: Option<String>,
     pub maneuver_pool: Option<String>,
@@ -138,6 +126,10 @@ impl Character {
     }
     pub fn prof(&self) -> i32 { (self.level as i32 - 1) / 4 + 2 }
     pub fn md(&self, ab: &str) -> i32 { mod_of(self.abilities.get(ab).copied().unwrap_or(10)) }
+    pub fn ac(&self) -> Option<i32> {
+        let dex = self.md("DEX");
+        Some(self.ac_base? + self.ac_dex_max.map_or(dex, |m| dex.min(m)))
+    }
     pub fn dc(&self, ab: &str) -> i32 { 8 + self.prof() + self.md(ab) }
     pub fn title(&self) -> String { self.class_title.replace("{level}", &self.level.to_string()) }
 

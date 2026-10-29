@@ -1,0 +1,1107 @@
+[
+ {
+  "name": "Aberrant Dragonmark",
+  "source": "Eberron - Rising from the Last War",
+  "prereq": "No other dragonmark",
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "CON"
+   ],
+   "amount": 1
+  },
+  "desc": "You have manifested an aberrant dragonmark. Determine its appearance and the flaw associated with it. You gain the following benefits: Increase your Constitution score by 1, to a maximum of 20. You learn a cantrip of..."
+ },
+ {
+  "name": "Actor",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "CHA"
+   ],
+   "amount": 1
+  },
+  "desc": "Skilled at mimicry and dramatics, you gain the following benefits: Increase your Charisma score by 1, to a maximum of 20. You have an advantage on Charisma (Deception) and Charisma (Performance) checks when trying to..."
+ },
+ {
+  "name": "Adept of the Black Robes",
+  "source": "Dragonlance: Shadow of the Dragon Queen",
+  "prereq": "4th Level, Initiate of High Sorcery (Nuitari) Feat",
+  "min_ability": {},
+  "asi": null,
+  "desc": "You chose the moon Nuitari to influence your magic, and your ambition and loyalty to the Order of the Black Robes has been recognized, granting you these benefits: Ambitious Magic. You learn one 2nd-level spell of your..."
+ },
+ {
+  "name": "Adept of the Red Robes",
+  "source": "Dragonlance: Shadow of the Dragon Queen",
+  "prereq": "4th Level, Initiate of High Sorcery (Lunitari) Feat",
+  "min_ability": {},
+  "asi": null,
+  "desc": "You chose the moon Lunitari to influence your magic, and your dedication to maintaining the balance between all things has been recognized by the Order of the Red Robes, granting you these benefits: Insightful Magic...."
+ },
+ {
+  "name": "Adept of the White Robes",
+  "source": "Dragonlance: Shadow of the Dragon Queen",
+  "prereq": "4th Level, Initiate of High Sorcery Feat",
+  "min_ability": {},
+  "asi": null,
+  "desc": "You chose the moon Solinari to influence your magic, and your oath to use magic to make the world a better place has been recognized by the Order of the White Robes, granting you these benefits: Protective Magic. You..."
+ },
+ {
+  "name": "Agent of Order",
+  "source": "Planescape - Adventures in the Multiverse",
+  "prereq": "4th Level, Scion of the Outer Planes (Lawful Outer Plane) Feat",
+  "min_ability": {},
+  "asi": null,
+  "desc": "You can channel cosmic forces of order to gain these benefits: Ability Score Increase. Increase an ability score of your choice by 1, to a maximum of 20. Stasis Strike. Once per turn when you damage a creature you can..."
+ },
+ {
+  "name": "Alert",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "Always on the lookout for danger, you gain the following benefits: You can't be surprised while you are conscious. You gain a +5 bonus to initiative."
+ },
+ {
+  "name": "Artificer Initiate",
+  "source": "Tasha's Cauldron of Everything",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "You’ve learned some of an artificer’s inventiveness: You learn one cantrip of your choice from the Artificer spell list, and you learn one 1st-level spell of your choice from that list. Intelligence is your spellcasting..."
+ },
+ {
+  "name": "Athlete",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "STR",
+    "DEX"
+   ],
+   "amount": 1
+  },
+  "desc": "You have undergone extensive physical training to gain the following benefits: Increase your Strength or Dexterity score by 1, to a maximum of 20. When you are prone, standing up uses only 5 feet of your movement."
+ },
+ {
+  "name": "Baleful Scion",
+  "source": "Planescape - Adventures in the Multiverse",
+  "prereq": "4th Level, Scion of the Outer Planes (Evil Outer Plane) Feat.",
+  "min_ability": {},
+  "asi": null,
+  "desc": "You can channel cosmic forces of evil to gain these benefits: Ability Score Increase. Increase an ability score of your choice by 1, to a maximum of 20. Grasp of Avarice. Once per turn, when you damage a creature you..."
+ },
+ {
+  "name": "Bountiful Luck",
+  "source": "Xanathar's Guide to Everything",
+  "prereq": "Halfling",
+  "min_ability": {},
+  "asi": null,
+  "desc": "Your people have extraordinary luck, which you have learned to mystically lend to your companions whenever you see them falter. You're not sure how you do it, you just wish it, and it happens. Surely a sign of fortune's..."
+ },
+ {
+  "name": "Cartomancer",
+  "source": "The Book of Many Things",
+  "prereq": "4th Level, Spellcasting Feature",
+  "min_ability": {},
+  "asi": null,
+  "desc": "You have learned to channel your magic through a deck of cards. You can use a card deck as your spellcasting focus, and you gain the following benefits: Card Tricks. You learn the Prestidigitation cantrip and can use it..."
+ },
+ {
+  "name": "Charger",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "When you use your action to Dash, you can use a bonus action to make one melee weapon attack or to shove a creature. If you move at least 10 feet in a straight line immediately before taking this bonus action, you..."
+ },
+ {
+  "name": "Chef",
+  "source": "Tasha's Cauldron of Everything",
+  "prereq": null,
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "CON",
+    "WIS"
+   ],
+   "amount": 1
+  },
+  "desc": "Time and effort spent mastering the culinary arts has paid off. You gain the following benefits: Increase your Constitution or Wisdom score by 1, to a maximum of 20. You gain proficiency with cook’s utensils if you..."
+ },
+ {
+  "name": "Cohort of Chaos",
+  "source": "Planescape - Adventures in the Multiverse",
+  "prereq": "4th Level, Scion of the Outer Planes (Chaotic Outer Plane) Feat.",
+  "min_ability": {},
+  "asi": null,
+  "desc": "You can channel cosmic forces of chaos to gain these benefits: Ability Score Increase. Increase an ability score of your choice by 1, to a maximum of 20. Chaotic Flare. When you roll a 1 or a 20 on an attack roll or a..."
+ },
+ {
+  "name": "Crossbow Expert",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "Thanks to extensive practice with the crossbow, you gain the following benefits: You ignore the loading quality of crossbows with which you are proficient. Being within 5 feet of a hostile creature doesn’t impose..."
+ },
+ {
+  "name": "Crusher",
+  "source": "Tasha's Cauldron of Everything",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "You are practiced in the art of crushing your enemies, granting you the following benefits: Increase your Strength or Constitution by 1, to a maximum of 20. Once per turn, when you hit a creature with an attack that..."
+ },
+ {
+  "name": "Defensive Duelist",
+  "source": "Player's Handbook",
+  "prereq": "Dexterity 13 or higher",
+  "min_ability": {
+   "DEX": 13
+  },
+  "asi": null,
+  "desc": "When you are wielding a finesse weapon with which you are proficient and another creature hits you with a melee attack, you can use your reaction to add your proficiency bonus to your AC for that attack, potentially..."
+ },
+ {
+  "name": "Divinely Favored",
+  "source": "Dragonlance: Shadow of the Dragon Queen",
+  "prereq": "4th Level, Dragonlance Campaign",
+  "min_ability": {},
+  "asi": null,
+  "desc": "A god chose you to carry a spark of their power. You learn one cantrip of your choice from the Cleric spell list and one 1st-level spell based on the alignment of your character, as specified in the Alignment Spells..."
+ },
+ {
+  "name": "Dragon Fear",
+  "source": "Xanathar's Guide to Everything",
+  "prereq": "Dragonborn",
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "STR",
+    "CON",
+    "CHA"
+   ],
+   "amount": 1
+  },
+  "desc": "When angered, you radiate menace. You gain the following benefits: Increase your Strength, Constitution, or Charisma score by 1, to a maximum of 20. Instead of exhaling destructive energy, you can expend a use of your..."
+ },
+ {
+  "name": "Dragon Hide",
+  "source": "Xanathar's Guide to Everything",
+  "prereq": "Dragonborn",
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "STR",
+    "CON",
+    "CHA"
+   ],
+   "amount": 1
+  },
+  "desc": "You manifest scales and claws reminiscent of your draconic ancestors. You gain the following benefits: Increase your Strength, Constitution, or Charisma score by 1, up to a maximum of 20. Your scales harden. While you..."
+ },
+ {
+  "name": "Drow High Magic",
+  "source": "Xanathar's Guide to Everything",
+  "prereq": "Elf (drow)",
+  "min_ability": {},
+  "asi": null,
+  "desc": "You learn more of the magic typical of dark elves. You learn the Detect Magic spell and can cast it at will, without expending a spell slot. You also learn Levitate and Dispel Magic, each of which you can cast once..."
+ },
+ {
+  "name": "Dual Wielder",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "You master fighting with two weapons, gaining the following benefits: You gain a +1 bonus to AC while you are wielding a separate melee weapon in each hand. You can use two-weapon fighting even when the one-handed melee..."
+ },
+ {
+  "name": "Dungeon Delver",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "Alert to the hidden traps and secret doors found in many dungeons, you gain the following benefits: You have advantage on Wisdom (Perception) and Intelligence (Investigation) checks made to detect the presence of secret..."
+ },
+ {
+  "name": "Durable",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "CON"
+   ],
+   "amount": 1
+  },
+  "desc": "Hardy and resilient, you gain the following benefits: Increase your Constitution score by 1, to a maximum of 20. When you roll a Hit Die to regain hit points, the minimum number of hit points you regain from the roll..."
+ },
+ {
+  "name": "Dwarven Fortitude",
+  "source": "Xanathar's Guide to Everything",
+  "prereq": "Dwarf",
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "CON"
+   ],
+   "amount": 1
+  },
+  "desc": "You have the blood of dwarf heroes flowing through your veins. You gain the following benefits: Increase your Constitution score by 1, to a maximum of 20. Whenever you take the Dodge action in combat, you can spend one..."
+ },
+ {
+  "name": "Eldritch Adept",
+  "source": "Tasha's Cauldron of Everything",
+  "prereq": "Spellcasting or Pact Magic feature",
+  "min_ability": {},
+  "asi": null,
+  "desc": "Studying occult lore, you learn one Eldritch Invocation option of your choice from the warlock class. Your spellcasting ability for the invocation is Intelligence, Wisdom, or Charisma (choose when you select this feat)...."
+ },
+ {
+  "name": "Elemental Adept",
+  "source": "Player's Handbook",
+  "prereq": "The ability to cast at least one spell",
+  "min_ability": {},
+  "asi": null,
+  "desc": "When you gain this feat, choose one of the following damage types: acid, cold, fire, lightning, or thunder. Spells you cast ignore resistance to damage of the chosen type. In addition, when you roll damage for a spell..."
+ },
+ {
+  "name": "Ember of the Fire Giant",
+  "source": "Bigby Presents - Glory of the Giants",
+  "prereq": "4th Level, Strike of the Giants (Fire Strike) Feat",
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "STR",
+    "CON",
+    "WIS"
+   ],
+   "amount": 1
+  },
+  "desc": "You’ve manifested the fiery combat emblematic of fire giants, granting you the following benefits: Ability Score Increase. Increase your Strength, Constitution, or Wisdom score by 1, to a maximum of 20. Born of Flame...."
+ },
+ {
+  "name": "Fey Touched",
+  "source": "Tasha's Cauldron of Everything",
+  "prereq": null,
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "INT",
+    "WIS",
+    "CHA"
+   ],
+   "amount": 1
+  },
+  "desc": "Your exposure to the Feywild's magic has changed you, granting you the following benefits: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20. You learn the Misty Step spell and one 1st-level..."
+ },
+ {
+  "name": "Fighting Initiate",
+  "source": "Tasha's Cauldron of Everything",
+  "prereq": "Proficiency with a martial weapon",
+  "min_ability": {},
+  "asi": null,
+  "desc": "Your martial training has helped you develop a particular style of fighting. As a result, you learn one Fighting Style option of your choice from the fighter class. If you already have a style, the one you choose must..."
+ },
+ {
+  "name": "Flames Of Phlegethos",
+  "source": "Xanathar's Guide to Everything",
+  "prereq": "Tiefling",
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "INT",
+    "CHA"
+   ],
+   "amount": 1
+  },
+  "desc": "You learn to call on hellfire to serve your commands. You gain the following benefits: Increase your Intelligence or Charisma score by 1, to a maximum of 20. When you roll fire damage for a spell you cast, you can..."
+ },
+ {
+  "name": "Fury of the Frost Giant",
+  "source": "Bigby Presents - Glory of the Giants",
+  "prereq": "4th Level, Strike of the Giants (Frost Strike) Feat",
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "STR",
+    "CON",
+    "WIS"
+   ],
+   "amount": 1
+  },
+  "desc": "You’ve manifested the icy might emblematic of frost giants, granting you the following benefits: Ability Score Increase. Increase your Strength, Constitution, or Wisdom score by 1, to a maximum of 20. Born of Ice. You..."
+ },
+ {
+  "name": "Gift of the Chromatic Dragon",
+  "source": "Fizban's Treasury of Dragons",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "You’ve manifested some of the power of chromatic dragons, granting you the following benefits: Chromatic Infusion. As a bonus action, you can touch a simple or martial weapon and infuse it with one of the following..."
+ },
+ {
+  "name": "Gift of the Gem Dragon",
+  "source": "Fizban's Treasury of Dragons",
+  "prereq": null,
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "INT",
+    "WIS",
+    "CHA"
+   ],
+   "amount": 1
+  },
+  "desc": "You’ve manifested some of the power of gem dragons, granting you the following benefits: Ability Score Increase. Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20. Telekinetic Reprisal. When..."
+ },
+ {
+  "name": "Gift of the Metallic Dragon",
+  "source": "Fizban's Treasury of Dragons",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "You’ve manifested some of the power of metallic dragons, granting you the following benefits: Draconic Healing. You learn the Cure Wounds spell. You can cast this spell without expending a spell slot. Once you cast this..."
+ },
+ {
+  "name": "Grappler",
+  "source": "Player's Handbook",
+  "prereq": "Strength 13 or higher",
+  "min_ability": {
+   "STR": 13
+  },
+  "asi": null,
+  "desc": "You've developed the skills necessary to hold your own in close-quarters grappling. You gain the following benefits: You have advantage on attack rolls against a creature you are grappling. You can use your action to..."
+ },
+ {
+  "name": "Great Weapon Master",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "You've learned to put the weight of a weapon to your advantage, letting its momentum empower your strikes. You gain the following benefits: On your turn, when you score a critical hit with a melee weapon or reduce a..."
+ },
+ {
+  "name": "Greater Dragonmark (UA)",
+  "source": "Wayfinder's Guide to Eberron",
+  "prereq": "8th level, character must possess a dragonmark",
+  "min_ability": {},
+  "asi": null,
+  "desc": "Your dragonmark has grown in size and power. This enhances your existing dragonmark, and the benefits are based on the mark that you already possess. A greater dragonmark provides the following benefits: The die type of..."
+ },
+ {
+  "name": "Guile of the Cloud Giant",
+  "source": "Bigby Presents - Glory of the Giants",
+  "prereq": "4th Level, Strike of the Giants (Cloud Strike) Feat",
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "STR",
+    "CON",
+    "CHA"
+   ],
+   "amount": 1
+  },
+  "desc": "You’ve manifested the confounding magic emblematic of cloud giants, granting you the following benefits: Ability Score Increase. Increase your Strength, Constitution, or Charisma score by 1, to a maximum of 20. Cloudy..."
+ },
+ {
+  "name": "Gunner",
+  "source": "Tasha's Cauldron of Everything",
+  "prereq": null,
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "DEX"
+   ],
+   "amount": 1
+  },
+  "desc": "You have a quick hand and keen eye when employing firearms, granting you the following benefits: Increase your Dexterity score by 1, to a maximum of 20. You gain proficiency with firearms (see “Firearms” in the Dungeon..."
+ },
+ {
+  "name": "Healer",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "You are an able physician, allowing you to mend wounds quickly and get your allies back in the fight. You gain the following benefits: When you use a healer's kit to stabilize a dying creature, that creature also..."
+ },
+ {
+  "name": "Heavily Armored",
+  "source": "Player's Handbook",
+  "prereq": "Proficiency with medium armor",
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "STR"
+   ],
+   "amount": 1
+  },
+  "desc": "You have trained to master the use of heavy armor, gaining the following benefits: Increase your Strength score by 1, to a maximum of 20. You gain proficiency with heavy armor...."
+ },
+ {
+  "name": "Heavy Armor Master",
+  "source": "Player's Handbook",
+  "prereq": "Proficiency with heavy armor",
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "STR"
+   ],
+   "amount": 1
+  },
+  "desc": "You can use your armor to deflect strikes that would kill others. You gain the following benefits: Increase your Strength score by 1, to a maximum of 20. While you are wearing heavy armor, bludgeoning, piercing, and..."
+ },
+ {
+  "name": "Infernal Constitution",
+  "source": "Xanathar's Guide to Everything",
+  "prereq": "Tiefling",
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "CON"
+   ],
+   "amount": 1
+  },
+  "desc": "Fiendish blood runs strong in you, unlocking a resilience akin to that possessed by some fiends. You gain the following benefits: Increase your Constitution score by 1, up to a maximum of 20. You have resistance to cold..."
+ },
+ {
+  "name": "Initiate of High Sorcery",
+  "source": "Dragonlance: Shadow of the Dragon Queen",
+  "prereq": "Dragonlance Campaign, Sorcerer or Wizard Class or Mage of High Sorcery Background",
+  "min_ability": {},
+  "asi": null,
+  "desc": "You've received training from magic-users affiliated with the Mages of High Sorcery. Choose one of the three moons of Krynn to influence your magic: the black moon, Nuitari; the red moon, Lunitari; or the white moon..."
+ },
+ {
+  "name": "Inspiring Leader",
+  "source": "Player's Handbook",
+  "prereq": "Charisma 13 or higher",
+  "min_ability": {
+   "CHA": 13
+  },
+  "asi": null,
+  "desc": "You can spend 10 minutes inspiring your companions, shoring up their resolve to fight. When you do so, choose up to six friendly creatures (which can include yourself) within 30 feet of you who can see or hear you and..."
+ },
+ {
+  "name": "Keen Mind",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "INT"
+   ],
+   "amount": 1
+  },
+  "desc": "You have a mind that can track time, direction, and detail with uncanny precision. You gain the following benefits. Increase your Intelligence score by 1, to a maximum of 20. You always know which way is north."
+ },
+ {
+  "name": "Keenness of the Stone Giant",
+  "source": "Bigby Presents - Glory of the Giants",
+  "prereq": "4th Level, Strike of the Giants (Stone Strike) Feat",
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "STR",
+    "CON",
+    "WIS"
+   ],
+   "amount": 1
+  },
+  "desc": "You’ve manifested the physical talents emblematic of stone giants, granting you the following benefits: Ability Score Increase. Increase your Strength, Constitution, or Wisdom score by 1, to a maximum of 20. Cavernous..."
+ },
+ {
+  "name": "Knight of the Crown",
+  "source": "Dragonlance: Shadow of the Dragon Queen",
+  "prereq": "4th Level, Squire of Solamnia Feat",
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "STR",
+    "DEX",
+    "CON"
+   ],
+   "amount": 1
+  },
+  "desc": "You are a Knight of Solamnia aligned with the Order of the Crown, a group that extols the virtues of cooperation, loyalty, and obedience. You excel in group combat and gain these benefits: Ability Score Increase...."
+ },
+ {
+  "name": "Knight of the Rose",
+  "source": "Dragonlance: Shadow of the Dragon Queen",
+  "prereq": "4th Level, Squire of Solamnia Feat",
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "CON",
+    "WIS",
+    "CHA"
+   ],
+   "amount": 1
+  },
+  "desc": "You are a Knight of Solamnia aligned with the Order of the Rose, a group known for leadership, justice, and wisdom. Your resolve grants you these benefits: Ability Score Increase. Increase your Constitution, Wisdom, or..."
+ },
+ {
+  "name": "Knight of the Sword",
+  "source": "Dragonlance: Shadow of the Dragon Queen",
+  "prereq": "4th Level, Squire of Solamnia Feat",
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "INT",
+    "WIS",
+    "CHA"
+   ],
+   "amount": 1
+  },
+  "desc": "You are a Knight of Solamnia aligned with the Order of the Sword, a group devoted to heroism and courage. Bravery steels your spirit, granting you these benefits: Ability Score Increase Increase your Intelligence..."
+ },
+ {
+  "name": "Lightly Armored",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "STR",
+    "DEX"
+   ],
+   "amount": 1
+  },
+  "desc": "You have trained to master the use of light armor, gaining the following benefits. Increase your Strength or Dexterity score by 1, to a maximum of 20. You gain proficiency with light armor...."
+ },
+ {
+  "name": "Linguist",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "INT"
+   ],
+   "amount": 1
+  },
+  "desc": "You have studied languages and codes, gaining the following benefits: Increase your Intelligence score by 1, to a maximum of 20. You learn three languages of your choice."
+ },
+ {
+  "name": "Lucky",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "You have inexplicable luck that seems to kick in at just the right moment. You have 3 luck points. Whenever you make an attack roll, an ability check, or a saving throw, you can spend one luck point to roll an..."
+ },
+ {
+  "name": "Mage Slayer",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "You have practiced techniques in melee combat against spellcasters, gaining the following benefits. When a creature within 5 feet of you casts a spell, you can use your reaction to make a melee weapon attack against..."
+ },
+ {
+  "name": "Magic Initiate",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "Choose a class: bard, cleric, druid, sorcerer, warlock, or wizard. You learn two cantrips of your choice from that class's spell list. In addition, choose one 1st-level spell to learn from that same list. Using this..."
+ },
+ {
+  "name": "Martial Adept",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "You have martial training that allows you to perform special combat maneuvers. You gain the following benefits. You learn two maneuvers of your choice from among those available to the Battle Master archetype in the..."
+ },
+ {
+  "name": "Medium Armor Master",
+  "source": "Player's Handbook",
+  "prereq": "Proficiency with medium armor",
+  "min_ability": {},
+  "asi": null,
+  "desc": "You have practiced moving in medium armor to gain the following benefits: Wearing medium armor doesn't impose disadvantage on your Dexterity (Stealth) checks. When you wear medium armor, you can add 3, rather than 2, to..."
+ },
+ {
+  "name": "Metamagic Adept",
+  "source": "Tasha's Cauldron of Everything",
+  "prereq": "Spellcasting or Pact Magic feature",
+  "min_ability": {},
+  "asi": null,
+  "desc": "You've learned how to exert your will on your spells to alter how they function: You learn two Metamagic options of your choice from the sorcerer class. You can use only one Metamagic option on a spell when you cast it..."
+ },
+ {
+  "name": "Mobile",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "You are exceptionally speedy and agile. You gain the following benefits: Your speed increases by 10 feet. When you use the Dash action, difficult terrain doesn't cost you extra movement on that turn."
+ },
+ {
+  "name": "Moderately Armored",
+  "source": "Player's Handbook",
+  "prereq": "Proficiency with light armor",
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "STR",
+    "DEX"
+   ],
+   "amount": 1
+  },
+  "desc": "You have trained to master the use of medium armor and shields, gaining the following benefits: Increase your Strength or Dexterity score by 1, to a maximum of 20. You gain proficiency with medium armor and shields...."
+ },
+ {
+  "name": "Mounted Combatant",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "You are a dangerous foe to face while mounted. While you are mounted and aren't incapacitated, you gain the following benefits: You have advantage on melee attack rolls against any unmounted creature that is smaller..."
+ },
+ {
+  "name": "Observant",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "INT",
+    "WIS"
+   ],
+   "amount": 1
+  },
+  "desc": "Quick to notice details of your environment, you gain the following benefits: Increase your Intelligence or Wisdom score by 1, to a maximum of 20. If you can see a creature's mouth while it is speaking a language you..."
+ },
+ {
+  "name": "Orcish Fury",
+  "source": "Xanathar's Guide to Everything",
+  "prereq": "Half-orc",
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "STR",
+    "CON"
+   ],
+   "amount": 1
+  },
+  "desc": "Your fury burns tirelessly. You gain the following benefits: Increase your Strength or Constitution score by 1, up to a maximum of 20. When you hit with an attack made with a simple or martial weapon, you can roll one..."
+ },
+ {
+  "name": "Outlands Envoy",
+  "source": "Planescape - Adventures in the Multiverse",
+  "prereq": "4th Level, Scion of the Outer Planes (The Outlands) Feat.",
+  "min_ability": {},
+  "asi": null,
+  "desc": "You have spent significant time in Sigil or the Outlands, the crossroads of the multiverse. Being steeped in converging planar energies grants you these benefits: Ability Score Increase. Increase an ability score of..."
+ },
+ {
+  "name": "Piercer",
+  "source": "Tasha's Cauldron of Everything",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "You have achieved a penetrating precision in combat, granting you the following benefits: Increase your Strength or Dexterity by 1, to a maximum of 20. Once per turn, when you hit a creature with an attack that deals..."
+ },
+ {
+  "name": "Planar Wanderer",
+  "source": "Planescape - Adventures in the Multiverse",
+  "prereq": "4th Level, Scion of the Outer Planes Feat",
+  "min_ability": {},
+  "asi": null,
+  "desc": "You can draw upon the forces of the multiverse to survive cosmic extremes and to traverse its infinite realms, granting you these benefits: Planar Adaption. When you finish a long rest, you gain resistance to either..."
+ },
+ {
+  "name": "Poisoner",
+  "source": "Tasha's Cauldron of Everything",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "You can prepare and deliver deadly poisons, gaining the following benefits: When you make a damage roll, you ignore resistance to poison damage. You can coat a weapon in poison as a bonus action, instead of an action."
+ },
+ {
+  "name": "Polearm Master",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "You gain the following benefits: When you take the Attack action and attack with only a glaive, halberd, quarterstaff, or spear, you can use a bonus action to make a melee attack with the opposite end of the weapon...."
+ },
+ {
+  "name": "Prodigy",
+  "source": "Xanathar's Guide to Everything",
+  "prereq": "Half-Elf, Half-Orc or Human",
+  "min_ability": {},
+  "asi": null,
+  "desc": "You have a knack for learning new things. You gain the following benefits: You gain one skill proficiency of your choice, one tool proficiency of your choice, and fluency in one language of your choice. Choose one skill..."
+ },
+ {
+  "name": "Quicksmithing",
+  "source": "Plane Shift - Kaladesh",
+  "prereq": "Intelligence 13 or higher",
+  "min_ability": {
+   "INT": 13
+  },
+  "asi": null,
+  "desc": "You have mastered the art of on-the-fly invention, improvement, and jury-rigging. You can use your talents to create immediate, short-term magical effects similar to spells, given time and an adequate supply of aether...."
+ },
+ {
+  "name": "Resilient",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "STR",
+    "DEX",
+    "CON",
+    "INT",
+    "WIS",
+    "CHA"
+   ],
+   "amount": 1
+  },
+  "desc": "Choose one ability score. You gain the following benefits: Increase the chosen ability score by 1, to a maximum of 20. You gain proficiency in saving throws using the chosen ability...."
+ },
+ {
+  "name": "Revenant Blade",
+  "source": "Eberron - Rising from the Last War",
+  "prereq": "Elf",
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "STR",
+    "DEX"
+   ],
+   "amount": 1
+  },
+  "desc": "You are descended from a master of the double-bladed scimitar, and some of that mastery has passed on to you. You gain the following benefits: Increase your Dexterity or Strength score by 1, to a maximum of 20. While..."
+ },
+ {
+  "name": "Righteous Heritor",
+  "source": "Planescape - Adventures in the Multiverse",
+  "prereq": "4th Level, Scion of the Outer Planes (Good Outer Plane) Feat.",
+  "min_ability": {},
+  "asi": null,
+  "desc": "You can channel cosmic forces of good to gain these benefits: Ability Score Increase. Increase an ability score of your choice by 1, to a maximum of 20. Soothe Pain. When you or a creature within 30 feet of you takes..."
+ },
+ {
+  "name": "Ritual Caster",
+  "source": "Player's Handbook",
+  "prereq": "Intelligence or Wisdom of 13 or higher",
+  "min_ability": {},
+  "asi": null,
+  "desc": "You have learned a number of spells that you can cast as rituals. These spells are written in a ritual book, which you must have in hand while casting one of them. When you choose this feat, you acquire a ritual book..."
+ },
+ {
+  "name": "Rune Shaper",
+  "source": "Bigby Presents - Glory of the Giants",
+  "prereq": "Spellcasting Feature or Rune Carver Background",
+  "min_ability": {},
+  "asi": null,
+  "desc": "You’ve studied the magic of Giant runes, granting you the following benefits: Comprehend Languages. You learn the Comprehend Languages spell. You can cast this spell without expending a spell slot, and you must finish a..."
+ },
+ {
+  "name": "Savage Attacker",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "Once per turn when you roll damage for a melee weapon attack, you can reroll the weapon's damage dice and use either total. window['nitroAds'].createAd('wad-dnd5e-floating-video', { \"refreshTime\": 30, \"format\"..."
+ },
+ {
+  "name": "Scion of the Outer Planes",
+  "source": "Planescape - Adventures in the Multiverse",
+  "prereq": "Planescape Campaign.",
+  "min_ability": {},
+  "asi": null,
+  "desc": "Your connection to an Outer Plane infuses you with the energy there. Choose a type of plane listed in the Planar Infusion Table. Your choice gives you a resistance to a damage type and the ability to cast a cantrip, as..."
+ },
+ {
+  "name": "Second Chance",
+  "source": "Xanathar's Guide to Everything",
+  "prereq": "Halfling",
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "DEX",
+    "CON",
+    "CHA"
+   ],
+   "amount": 1
+  },
+  "desc": "Fortune favors you when someone tries to strike you. You gain the following benefits: Increase your Dexterity, Constitution, or Charisma score by 1, to a maximum of 20. When a creature you can see hits you with an..."
+ },
+ {
+  "name": "Sentinel",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "You have mastered techniques to take advantage of every drop in any enemy's guard, gaining the following benefits. When you hit a creature with an opportunity attack, the creature's speed becomes 0 for the rest of the..."
+ },
+ {
+  "name": "Servo Crafting",
+  "source": "Plane Shift - Kaladesh",
+  "prereq": "Intelligence 13 or higher",
+  "min_ability": {
+   "INT": 13
+  },
+  "asi": null,
+  "desc": "You are skilled in the creation of servos—tiny constructs that function as personal assistants. You can cast the Find Familiar spell as a ritual, creating a servo to serve as your familiar instead of an animal. It uses..."
+ },
+ {
+  "name": "Shadow Touched",
+  "source": "Tasha's Cauldron of Everything",
+  "prereq": null,
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "INT",
+    "WIS",
+    "CHA"
+   ],
+   "amount": 1
+  },
+  "desc": "Your exposure to the Shadowfell's magic has changed you, granting you the following benefits: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20. You learn the Invisibility spell and one..."
+ },
+ {
+  "name": "Sharpshooter",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "You have mastered ranged weapons and can make shots that others find impossible. You gain the following benefits: Attacking at long range doesn't impose disadvantage on your ranged weapon attack rolls. Your ranged..."
+ },
+ {
+  "name": "Shield Master",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "You use shields not just for protection but also for offense. You gain the following benefits while you are wielding a shield: If you take the Attack action on your turn, you can use a bonus action to try to shove a..."
+ },
+ {
+  "name": "Skill Expert",
+  "source": "Tasha's Cauldron of Everything",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "You have honed your proficiency with particular skills, granting you the following benefits: Increase one ability score of your choice by 1, to a maximum of 20. You gain proficiency in one skill of your choice."
+ },
+ {
+  "name": "Skilled",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "You gain proficiency in any combination of three skills or tools of your choice. window['nitroAds'].createAd('wad-dnd5e-floating-video', { \"refreshTime\": 30, \"format\": \"floating\", \"mediaQuery\": \"(min-width: 1025px)\" })..."
+ },
+ {
+  "name": "Skulker",
+  "source": "Player's Handbook",
+  "prereq": "Dexterity 13 or higher",
+  "min_ability": {
+   "DEX": 13
+  },
+  "asi": null,
+  "desc": "You are an expert at slinking through shadows. You gain the following benefits: You can try to hide when you are lightly obscured from the creature from which you are hiding. When you are hidden from a creature and miss..."
+ },
+ {
+  "name": "Slasher",
+  "source": "Tasha's Cauldron of Everything",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "You've learned where to cut to have the greatest results, granting you the following benefits: Increase your Strength or Dexterity by 1, to a maximum of 20. Once per turn when you hit a creature with an attack that..."
+ },
+ {
+  "name": "Soul of the Storm Giant",
+  "source": "Bigby Presents - Glory of the Giants",
+  "prereq": "4th Level, Strike of the Giants (Storm Strike) Feat",
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "STR",
+    "WIS",
+    "CHA"
+   ],
+   "amount": 1
+  },
+  "desc": "You’ve manifested the tempest magic emblematic of storm giants, granting you the following benefits: Ability Score Increase. Increase your Strength, Wisdom, or Charisma score by 1, to a maximum of 20. Maelstrom Aura. As..."
+ },
+ {
+  "name": "Spell Sniper",
+  "source": "Player's Handbook",
+  "prereq": "The ability to cast at least one spell",
+  "min_ability": {},
+  "asi": null,
+  "desc": "You have learned techniques to enhance your attacks with certain kinds of spells, gaining the following benefits: When you cast a spell that requires you to make an attack roll, the spell's range is doubled. Your ranged..."
+ },
+ {
+  "name": "Squat Nimbleness",
+  "source": "Xanathar's Guide to Everything",
+  "prereq": "Dwarf or a Small race",
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "STR",
+    "DEX"
+   ],
+   "amount": 1
+  },
+  "desc": "You are uncommonly nimble for your race. You gain the following benefits: Increase your Strength or Dexterity score by 1, to a maximum of 20. Increase your walking speed by 5 feet."
+ },
+ {
+  "name": "Squire of Solamnia",
+  "source": "Dragonlance: Shadow of the Dragon Queen",
+  "prereq": "Dragonlance Campaign, Fighter or Paladin Class or Knight of Solamnia Background",
+  "min_ability": {},
+  "asi": null,
+  "desc": "Your training in the ways of the Knights of Solamnia grants you these benefits: Mount Up. Mounting or dismounting costs you only 5 feet of movement. Precise Strike. Once per turn, when you make a weapon attack roll..."
+ },
+ {
+  "name": "Strike of the Giants",
+  "source": "Bigby Presents - Glory of the Giants",
+  "prereq": "Martial Weapon Proficiency or Giant Foundling Background",
+  "min_ability": {},
+  "asi": null,
+  "desc": "You have absorbed primeval magic that gives you an echo of the might of giants. When you take this feat, choose one of the benefits listed below. Once per turn, when you hit a target with a melee weapon attack or a..."
+ },
+ {
+  "name": "Strixhaven Initiate",
+  "source": "Strixhaven: A Curriculum of Chaos",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "You have studied some magical theory and have learned a few spells associated with Strixhaven University. Choose one of Strixhaven's colleges: Lorehold, Prismari. Quandrix, Silverquill, or Witherbloom. You learn two..."
+ },
+ {
+  "name": "Strixhaven Mascot",
+  "source": "Strixhaven: A Curriculum of Chaos",
+  "prereq": "4th Level, Strixhaven Initiate Feat",
+  "min_ability": {},
+  "asi": null,
+  "desc": "You have learned how to summon a Strixhaven mascot to assist you, granting you these benefits: You can cast the Find Familiar spell as a ritual. Your familiar can take the form of the mascot associated with the college..."
+ },
+ {
+  "name": "Svirfneblin Magic",
+  "source": "Mordenkainen's Tome of Foes",
+  "prereq": "Gnome (Deep Gnome)",
+  "min_ability": {},
+  "asi": null,
+  "desc": "You have inherited the innate spellcasting ability of your ancestors. This ability allows you to cast Nondetection on yourself at will, without needing a material component. You can also cast each of the following..."
+ },
+ {
+  "name": "Tavern Brawler",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "STR",
+    "CON"
+   ],
+   "amount": 1
+  },
+  "desc": "Accustomed to the rough-and-tumble fighting using whatever weapons happen to be at hand, you gain the following benefits: Increase your Strength or Constitution score by 1, to a maximum of 20. You are proficient with..."
+ },
+ {
+  "name": "Telekinetic",
+  "source": "Tasha's Cauldron of Everything",
+  "prereq": null,
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "INT",
+    "WIS",
+    "CHA"
+   ],
+   "amount": 1
+  },
+  "desc": "You learn to move things with your mind, granting you the following benefits: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20. You learn the mage hand cantrip. You can cast it without..."
+ },
+ {
+  "name": "Telepathic",
+  "source": "Tasha's Cauldron of Everything",
+  "prereq": null,
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "INT",
+    "WIS",
+    "CHA"
+   ],
+   "amount": 1
+  },
+  "desc": "You awaken the ability to mentally connect with others, granting you the following benefits: Increase your Intelligence, Wisdom, or Charisma score by 1, to a maximum of 20. You can speak telepathically to any creature..."
+ },
+ {
+  "name": "Tough",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": null,
+  "desc": "Your hit point maximum increases by an amount equal to twice your level when you gain this feat. Whenever you gain a level thereafter, your hit point maximum increases by an additional 2 hit points...."
+ },
+ {
+  "name": "Vampiric Exultation",
+  "source": "Plane Shift - Ixalan",
+  "prereq": "Vampire (Ixalan)",
+  "min_ability": {},
+  "asi": null,
+  "desc": "As an action, you can transform the lower half of your body into an inky black vapor, allowing you to float through the air. While transformed, you have a flying speed of 30 feet. You can maintain this form for up to 10..."
+ },
+ {
+  "name": "Vigor of the Hill Giant",
+  "source": "Bigby Presents - Glory of the Giants",
+  "prereq": "4th Level, Strike of the Giants (Hill Strike) Feat",
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "STR",
+    "CON",
+    "WIS"
+   ],
+   "amount": 1
+  },
+  "desc": "You’ve manifested the resilience emblematic of hill giants, granting you the following benefits: Ability Score Increase. Increase your Strength, Constitution, or Wisdom score by 1, to a maximum of 20. Bulwark. When you..."
+ },
+ {
+  "name": "War Caster",
+  "source": "Player's Handbook",
+  "prereq": "The ability to cast at least one spell",
+  "min_ability": {},
+  "asi": null,
+  "desc": "You have practiced casting spells in the midst of combat, learning techniques that grant you the following benefits: You have advantage on Constitution saving throws that you make to maintain your concentration on a..."
+ },
+ {
+  "name": "Weapon Master",
+  "source": "Player's Handbook",
+  "prereq": null,
+  "min_ability": {},
+  "asi": {
+   "options": [
+    "STR",
+    "DEX"
+   ],
+   "amount": 1
+  },
+  "desc": "You have practiced extensively with a variety of weapons, gaining the following benefits: Increase your Strength or Dexterity score by 1, to a maximum of 20. You gain proficiency with four weapons of your choice. Each..."
+ },
+ {
+  "name": "Wood Elf Magic",
+  "source": "Xanathar's Guide to Everything",
+  "prereq": "Elf (Wood)",
+  "min_ability": {},
+  "asi": null,
+  "desc": "You learn the magic of the primeval woods, which are revered and protected by your people. You learn one Druid cantrip of your choice. You also learn the Longstrider and Pass Without Trace spells, each of which you can..."
+ }
+]

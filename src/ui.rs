@@ -65,7 +65,7 @@ pub fn draw(f: &mut Frame, app: &App) -> Hot {
             hot.push((r, Cmd::Tab(tab)));
             x += w + 1;
         }
-        let who = format!("{}  (Tab/F1-F3 switch)", app.ch.name);
+        let who = if app.searching || !app.query.is_empty() { search_text(app) } else { format!("{}  (Tab/F1-F3 switch, / search)", app.ch.name) };
         f.render_widget(Paragraph::new(who).style(tone(Tone::Dim)).alignment(Alignment::Right), parts[0]);
 
         match app.tab {
@@ -101,13 +101,13 @@ fn footer(app: &App) -> Vec<(String, String, Cmd)> {
                       s("E", "Edit", Cmd::Edit), s("Z", "Undo", Cmd::Undo), s("Q", "Sheets", Cmd::Back)]);
             v
         }
-        Tab::Character => vec![s("↑↓", "Scroll", Cmd::Down), s("Z", "Undo", Cmd::Undo), s("Q", "Sheets", Cmd::Back)],
-        Tab::Journal => vec![s("A", "Add note", Cmd::JournalAdd), s("Del", "Delete note", Cmd::JournalDel), s("Z", "Undo", Cmd::Undo), s("Q", "Sheets", Cmd::Back)],
+        Tab::Character => vec![s("↑↓", "Scroll", Cmd::Down), s("/", "Search", Cmd::Down), s("Z", "Undo", Cmd::Undo), s("Q", "Sheets", Cmd::Back)],
+        Tab::Journal => vec![s("A", "Add note", Cmd::JournalAdd), s("/", "Search", Cmd::Down), s("Del", "Delete note", Cmd::JournalDel), s("Z", "Undo", Cmd::Undo), s("Q", "Sheets", Cmd::Back)],
     }
 }
 
 fn draw_picker(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
-    let h = (app.sheets.len() as u16 + 4).min(area.height);
+    let h = (app.sheets.len() as u16 + 5).min(area.height);
     let r = Rect::new(area.x + area.width.saturating_sub(60) / 2, area.y + area.height.saturating_sub(h) / 2, area.width.min(60), h);
     let b = block("DND TUI: which sheet?");
     let inner = b.inner(r);
@@ -119,8 +119,13 @@ fn draw_picker(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
         f.render_widget(Paragraph::new(format!(" {}  -  {}", c.name, c.title())).style(style), row);
         hot.push((row, Cmd::Pick(i)));
     }
+    let new = Rect::new(inner.x, inner.y + app.sheets.len() as u16, inner.width, 1);
+    if new.y < inner.y + inner.height {
+        f.render_widget(Paragraph::new(" + New character").style(if app.psel == app.sheets.len() { selected() } else { Style::new() }), new);
+        hot.push((new, Cmd::New));
+    }
     let hint = Rect::new(inner.x, inner.y + inner.height.saturating_sub(1), inner.width, 1);
-    f.render_widget(Paragraph::new(" ↑↓ select, Enter open, Q quit").style(tone(Tone::Dim)), hint);
+    f.render_widget(Paragraph::new(" ↑↓ select, Enter open, N new, Q quit").style(tone(Tone::Dim)), hint);
 }
 
 fn status_lines(app: &App) -> Vec<Line<'static>> {
@@ -136,7 +141,7 @@ fn status_lines(app: &App) -> Vec<Line<'static>> {
         l2.push(Span::styled(bar(hp, max), Style::new().fg(col)));
         l2.push(Span::raw(" | "));
     }
-    if let Some(ac) = c.ac_base { l2.push(Span::raw(format!("AC {} | ", ac + c.md("DEX")))); }
+    if let Some(ac) = c.ac() { l2.push(Span::raw(format!("AC {ac} | "))); }
     l2.push(Span::raw(format!("Init {:+} | Prof +{}", c.md("DEX"), c.prof())));
     v.push(Line::from(l2));
 
@@ -341,6 +346,26 @@ fn draw_character(f: &mut Frame, app: &App, area: Rect) {
         v.push(head("PROFICIENCIES AND EQUIPMENT"));
         v.extend(c.info.iter().map(|s| Line::from(format!("  {s}"))));
     }
+    if !app.query.is_empty() {
+        // keep each section's heading only when something under it matches
+        let mut out: Vec<Line> = vec![];
+        let mut group: Vec<Line> = vec![];
+        let mut flush = |group: &mut Vec<Line<'static>>, out: &mut Vec<Line<'static>>| {
+            if group.len() > 1 {
+                if !out.is_empty() { out.push(Line::default()); }
+                out.append(group);
+            }
+            group.clear();
+        };
+        for l in v {
+            let text = l.to_string();
+            if text.trim().is_empty() { flush(&mut group, &mut out); }
+            else if group.is_empty() || hit(&app.query, &text) { group.push(l); }
+        }
+        flush(&mut group, &mut out);
+        if out.is_empty() { out.push(Line::styled("Nothing matches.", tone(Tone::Dim))); }
+        v = out;
+    }
     let max = (rows_needed(&v, area.width.saturating_sub(2)) + 2).saturating_sub(area.height);
     f.render_widget(Paragraph::new(v).wrap(Wrap { trim: false }).scroll((app.scroll.min(max), 0)).block(block(&format!("{} | {}", c.name, c.title()))), area);
 }
@@ -353,10 +378,13 @@ fn draw_journal(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
         return f.render_widget(Paragraph::new("Journal is empty. Press A to add a note.").style(tone(Tone::Dim)), inner);
     }
     let h = inner.height as usize;
-    let start = app.jsel.saturating_sub(h.saturating_sub(1));
-    for (i, note) in app.ch.journal.iter().enumerate().skip(start).take(h) {
-        let row = Rect::new(inner.x, inner.y + (i - start) as u16, inner.width, 1);
-        f.render_widget(Paragraph::new(note.clone()).style(if i == app.jsel { selected() } else { Style::new() }), row);
+    let shown: Vec<(usize, &String)> = app.ch.journal.iter().enumerate().filter(|(_, n)| hit(&app.query, n)).collect();
+    let pos = shown.iter().position(|(i, _)| *i == app.jsel).unwrap_or(0);
+    let start = pos.saturating_sub(h.saturating_sub(1));
+    for (k, (i, note)) in shown.iter().enumerate().skip(start).take(h) {
+        let i = *i;
+        let row = Rect::new(inner.x, inner.y + (k - start) as u16, inner.width, 1);
+        f.render_widget(Paragraph::new((*note).clone()).style(if i == app.jsel { selected() } else { Style::new() }), row);
         hot.push((row, Cmd::JournalSel(i)));
     }
 }
@@ -364,22 +392,15 @@ fn draw_journal(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
 fn draw_modal(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
     match app.modal.as_ref().unwrap() {
         Modal::List { title, items, sel, cancel, .. } => {
-            let w = (items.iter().map(|s| s.chars().count()).max().unwrap_or(10).max(title.chars().count()) as u16 + 6).clamp(30, area.width.saturating_sub(4));
-            let h = (items.len() as u16 + 3).min(area.height.saturating_sub(2));
-            let r = Rect::new(area.x + (area.width - w) / 2, area.y + (area.height - h) / 2, w, h);
-            f.render_widget(Clear, r);
-            let b = block(title);
-            let inner = b.inner(r);
-            f.render_widget(b, r);
-            let rows = inner.height.saturating_sub(1) as usize; // last row is the hint
-            let start = sel.saturating_sub(rows.saturating_sub(1));
-            for (i, it) in items.iter().enumerate().skip(start).take(rows) {
-                let row = Rect::new(inner.x, inner.y + (i - start) as u16, inner.width, 1);
-                f.render_widget(Paragraph::new(format!(" {it}")).style(if i == *sel { selected() } else { Style::new() }), row);
-                hot.push((row, Cmd::ModalPick(i)));
-            }
             let hint = if *cancel { "↑↓ Enter, click, Esc cancels" } else { "↑↓ Enter or click (required)" };
-            f.render_widget(Paragraph::new(format!(" {hint}")).style(tone(Tone::Dim)), Rect::new(inner.x, inner.y + inner.height.saturating_sub(1), inner.width, 1));
+            list_box(f, area, hot, title, items, *sel, hint, app, false);
+        }
+        Modal::Multi { title, items, sel, on, limit, .. } => {
+            let rows: Vec<String> = items.iter().zip(on).enumerate()
+                .map(|(i, (it, x))| if *limit == 0 && i == items.len() - 1 { format!("--- {it} ---") } else { format!("[{}] {it}", if *x { "x" } else { " " }) })
+                .collect();
+            let hint = if *limit > 0 { format!("Enter toggles, confirms at {limit}, Esc cancels") } else { "Enter toggles, Done confirms, Esc cancels".into() };
+            list_box(f, area, hot, title, &rows, *sel, &hint, app, *limit == 0);
         }
         Modal::Input { title, buf, .. } => {
             let w = 56.min(area.width.saturating_sub(2));
@@ -392,4 +413,28 @@ fn draw_modal(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
             f.render_widget(Paragraph::new(" Enter confirms, Esc cancels").style(tone(Tone::Dim)), Rect::new(inner.x, inner.y + 1.min(inner.height.saturating_sub(1)) + 1, inner.width, 1));
         }
     }
+}
+
+fn search_text(app: &App) -> String { format!("/ {}{}", app.query, if app.searching { "▏" } else { "" }) }
+
+fn list_box(f: &mut Frame, area: Rect, hot: &mut Hot, title: &str, items: &[String], sel: usize, hint: &str, app: &App, keep_last: bool) {
+    let n = items.len();
+    let shown: Vec<usize> = (0..n).filter(|&i| hit(&app.query, &items[i]) || (keep_last && i == n - 1)).collect();
+    let w = (items.iter().map(|s| s.chars().count()).max().unwrap_or(10).max(title.chars().count()) as u16 + 6).clamp(30, area.width.saturating_sub(4));
+    let h = (shown.len() as u16 + 3).min(area.height.saturating_sub(2));
+    let r = Rect::new(area.x + (area.width - w) / 2, area.y + (area.height - h) / 2, w, h);
+    f.render_widget(Clear, r);
+    let b = block(title);
+    let inner = b.inner(r);
+    f.render_widget(b, r);
+    let rows = inner.height.saturating_sub(1) as usize; // last row is the hint
+    let pos = shown.iter().position(|&i| i == sel).unwrap_or(0);
+    let start = pos.saturating_sub(rows.saturating_sub(1));
+    for (k, &i) in shown.iter().enumerate().skip(start).take(rows) {
+        let row = Rect::new(inner.x, inner.y + (k - start) as u16, inner.width, 1);
+        f.render_widget(Paragraph::new(format!(" {}", items[i])).style(if i == sel { selected() } else { Style::new() }), row);
+        hot.push((row, Cmd::ModalPick(i)));
+    }
+    let hint = if app.searching || !app.query.is_empty() { format!("{}  (Enter keeps, Esc clears)", search_text(app)) } else { format!("{hint}, / searches") };
+    f.render_widget(Paragraph::new(format!(" {hint}")).style(tone(Tone::Dim)), Rect::new(inner.x, inner.y + inner.height.saturating_sub(1), inner.width, 1));
 }
