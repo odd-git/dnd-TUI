@@ -1555,9 +1555,38 @@
    "source": "Player's Handbook",
    "needs_spells": false,
    "resources": [],
-   "actions": [],
+   "actions": [
+    {
+     "name": "Invoke Duplicity",
+     "desc": "An illusory double within 30 ft for 1 minute (concentration); advantage on attacks against a creature next to both of you",
+     "uses": "channel_divinity",
+     "min_level": 2
+    },
+    {
+     "name": "Cloak of Shadows",
+     "desc": "Turn invisible through your next turn; attacking or casting breaks it",
+     "uses": "channel_divinity",
+     "min_level": 6
+    },
+    {
+     "name": "Divine Strike",
+     "desc": "Once per turn, on a weapon hit",
+     "dice": [
+      1,
+      8
+     ],
+     "dice_table": "divine_strike",
+     "dmg_type": "poison",
+     "min_level": 8
+    }
+   ],
    "maneuver_pool": null,
-   "tables": {},
+   "tables": {
+    "divine_strike": {
+     "8": 1,
+     "14": 2
+    }
+   },
    "dice": {},
    "maneuvers_known": {},
    "features": {

@@ -207,6 +207,11 @@ SUB_MECH = {
                 divine_strike("thunder"),
             ],
         },
+        "Trickery": {"tables": DIVINE_STRIKE, "actions": [
+            channel("Invoke Duplicity", "An illusory double within 30 ft for 1 minute (concentration); advantage on attacks against a creature next to both of you"),
+            channel("Cloak of Shadows", "Turn invisible through your next turn; attacking or casting breaks it", 6),
+            divine_strike("poison"),
+        ]},
     },
 }
 
