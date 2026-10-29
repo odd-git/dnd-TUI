@@ -477,6 +477,14 @@ mod tests {
     }
 
     #[test]
+    fn vengeance_vow_and_abjure() {
+        let c = paladin("Vengeance", 3);
+        assert!(c.toggles.iter().any(|t| t.name == "Vow of Enmity" && t.uses.as_deref() == Some("channel_divinity")));
+        let abjure = c.actions.iter().find(|a| a.name == "Abjure Enemy").unwrap();
+        assert!(c.fmt(&abjure.desc).contains("DC 12")); // 8 + 2 + CHA 15
+    }
+
+    #[test]
     fn berserker_frenzy_and_presence() {
         let c = barbarian(3);
         assert!(c.toggles.iter().any(|t| t.name == "Frenzy" && t.exhaust));

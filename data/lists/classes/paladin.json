@@ -1006,10 +1006,34 @@
    "name": "Vengeance",
    "source": "Player's Handbook",
    "needs_spells": false,
-   "resources": [],
-   "actions": [],
+   "resources": [
+    {
+     "id": "avenging_angel",
+     "name": "Avenging Angel",
+     "recharge": "long",
+     "max": "table",
+     "pips": true
+    }
+   ],
+   "actions": [
+    {
+     "name": "Abjure Enemy",
+     "desc": "A creature within 60 ft makes a WIS save DC {dc:CHA} (fiends and undead at disadvantage): frightened, speed 0, for 1 minute; on a success half speed",
+     "uses": "channel_divinity",
+     "min_level": 3
+    },
+    {
+     "name": "Avenging Angel",
+     "desc": "Action, 1 hour: wings with 60 ft flight; enemies starting near you make a WIS save DC {dc:CHA} or are frightened, attacks on them with advantage",
+     "uses": "avenging_angel"
+    }
+   ],
    "maneuver_pool": null,
-   "tables": {},
+   "tables": {
+    "avenging_angel": {
+     "20": 1
+    }
+   },
    "dice": {},
    "maneuvers_known": {},
    "features": {
@@ -1063,7 +1087,14 @@
      "Hold Monster",
      "Scrying"
     ]
-   }
+   },
+   "toggles": [
+    {
+     "name": "Vow of Enmity",
+     "uses": "channel_divinity",
+     "desc": "Bonus action, 1 minute: advantage on attack rolls against one creature within 10 ft"
+    }
+   ]
   },
   {
    "name": "Watchers",

@@ -265,6 +265,15 @@ SUB_MECH = {
                 {"name": "Elder Champion", "desc": "Action, 1 minute: regain 10 HP each turn, 1-action paladin spells as bonus actions, enemies within 10 ft save against them at disadvantage", "uses": "elder_champion"},
             ],
         },
+        "Vengeance": {
+            "tables": {"avenging_angel": {"20": 1}},
+            "resources": [res("avenging_angel", "Avenging Angel", "long", "table")],
+            "toggles": [{"name": "Vow of Enmity", "uses": "channel_divinity", "desc": "Bonus action, 1 minute: advantage on attack rolls against one creature within 10 ft"}],
+            "actions": [
+                channel("Abjure Enemy", "A creature within 60 ft makes a WIS save DC {dc:CHA} (fiends and undead at disadvantage): frightened, speed 0, for 1 minute; on a success half speed", 3),
+                {"name": "Avenging Angel", "desc": "Action, 1 hour: wings with 60 ft flight; enemies starting near you make a WIS save DC {dc:CHA} or are frightened, attacks on them with advantage", "uses": "avenging_angel"},
+            ],
+        },
     },
 }
 
