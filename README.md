@@ -17,4 +17,6 @@ The original Python scripts (`main.py`, `builder.py`, `combat_engine.py`, `sorlo
 
 ## Credits
 
+Races, classes, subclasses, backgrounds, feats, weapons, armor, spells and class options (`data/lists/`, built by the scripts in `tools/`) are derived from the pages of the D&D 5th Edition wiki at https://dnd5e.wikidot.com, licensed under the Creative Commons Attribution-ShareAlike 3.0 License (https://creativecommons.org/licenses/by-sa/3.0/); these derived lists are shared under the same license. Each entry keeps the name of the official sourcebook it comes from.
+
 Beast and elemental statistics (`data/lists/beasts.json`, built by `tools/fetch_beasts.py` from the Open5e API) come from the System Reference Document 5.1 by Wizards of the Coast LLC, available at https://dnd.wizards.com/resources/systems-reference-document and licensed under the Creative Commons Attribution 4.0 International License (https://creativecommons.org/licenses/by/4.0/legalcode).
