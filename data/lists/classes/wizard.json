@@ -599,7 +599,17 @@
    "source": "Player's Handbook",
    "needs_spells": false,
    "resources": [],
-   "actions": [],
+   "actions": [
+    {
+     "name": "Hypnotic Gaze",
+     "desc": "Action: a creature within 5 ft that sees or hears you, WIS save DC {dc:INT} or charmed, incapacitated and speed 0 until your next turn ends (renew it each turn)"
+    },
+    {
+     "name": "Instinctive Charm",
+     "desc": "Reaction to an attack from within 30 ft: WIS save DC {dc:INT} or it must attack the creature nearest to it instead",
+     "min_level": 6
+    }
+   ],
    "maneuver_pool": null,
    "tables": {},
    "dice": {},

@@ -558,6 +558,12 @@ mod tests {
     }
 
     #[test]
+    fn enchanter_gaze_dc() {
+        let c = wizard("Enchantment", 2);
+        assert!(c.fmt(&c.actions.iter().find(|a| a.name == "Hypnotic Gaze").unwrap().desc).contains("DC 13")); // 8 + 2 + INT 16
+    }
+
+    #[test]
     fn arcane_ward_starts_empty() {
         let c = wizard("Abjuration", 6);
         assert_eq!(c.res_max("arcane_ward"), Some(2 * 6 + 3)); // INT 16

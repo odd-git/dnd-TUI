@@ -393,6 +393,10 @@ SUB_MECH = {
             "actions": [{"name": "Benign Transportation", "desc": "Action: teleport up to 30 ft, or swap places with a willing Small or Medium creature; back after a conjuration spell", "uses": "benign_transportation"}],
         },
         "Divination": {"actions": [{"name": "Portent", "desc": "Replace an attack, check or save you can see (yours or another's) with one of the rolls", "special": "portent"}]},
+        "Enchantment": {"actions": [
+            {"name": "Hypnotic Gaze", "desc": "Action: a creature within 5 ft that sees or hears you, WIS save DC {dc:INT} or charmed, incapacitated and speed 0 until your next turn ends (renew it each turn)"},
+            {"name": "Instinctive Charm", "desc": "Reaction to an attack from within 30 ft: WIS save DC {dc:INT} or it must attack the creature nearest to it instead", "min_level": 6},
+        ]},
     },
 }
 
