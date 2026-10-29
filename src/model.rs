@@ -353,7 +353,12 @@ impl Character {
     }
 
     pub fn prof(&self) -> i32 { (self.level as i32 - 1) / 4 + 2 }
-    pub fn md(&self, ab: &str) -> i32 { mod_of(self.abilities.get(ab).copied().unwrap_or(10)) }
+    /// "FINESSE" (Martial Arts) is the better of STR and DEX; any other ability is itself.
+    pub fn ability<'a>(&self, ab: &'a str) -> &'a str {
+        if ab != "FINESSE" { return ab; }
+        if self.md("DEX") >= self.md("STR") { "DEX" } else { "STR" }
+    }
+    pub fn md(&self, ab: &str) -> i32 { mod_of(self.abilities.get(self.ability(ab)).copied().unwrap_or(10)) }
     pub fn ac(&self) -> Option<i32> {
         if let Some(b) = &self.beast { return Some(b.ac); }
         let dex = self.md("DEX");
@@ -367,7 +372,7 @@ impl Character {
     /// Flat damage from active toggles (Rage) for an attack made with `ability`.
     pub fn toggle_bonus(&self, ability: Option<&str>) -> i32 {
         self.toggles.iter().filter(|t| self.active.contains(&t.name))
-            .filter(|t| t.dmg_ability.is_some() && t.dmg_ability.as_deref() == ability)
+            .filter(|t| t.dmg_ability.is_some() && t.dmg_ability.as_deref() == ability.map(|a| self.ability(a)))
             .filter_map(|t| Some(self.table(t.dmg_table.as_ref()?)? as i32))
             .sum()
     }

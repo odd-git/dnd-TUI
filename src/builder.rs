@@ -3,7 +3,7 @@
 use std::collections::BTreeMap;
 
 use crate::lists::{self, Weapon};
-use crate::model::{mod_of, ActionDef, Character, Feature, ResourceDef, ABILITIES};
+use crate::model::{ActionDef, Character, Feature, ResourceDef, ABILITIES};
 
 #[derive(Default, Clone)]
 pub struct Draft {
@@ -124,9 +124,6 @@ pub fn build(d: &Draft) -> Character {
     if let Some(s) = sub { resources.extend(s.resources.clone()); }
     resources.push(ResourceDef { id: "hit_dice".into(), name: "Hit Dice".into(), recharge: String::new(), max: Some(crate::model::Max::Kw("level".into())), start: None, pips: false, die: None });
     let mut actions: Vec<ActionDef> = class.actions.clone();
-    // "FINESSE": whichever of STR/DEX is higher (Martial Arts)
-    let best = if mod_of(abilities["DEX"]) >= mod_of(abilities["STR"]) { "DEX" } else { "STR" };
-    for a in &mut actions { if a.ability.as_deref() == Some("FINESSE") { a.ability = Some(best.into()); } }
     if let Some(s) = sub { actions.extend(s.actions.clone()); }
 
     let title = match sub { Some(s) => format!("{} {{level}} ({})", class.name, s.name), None => format!("{} {{level}}", class.name) };
@@ -428,6 +425,16 @@ mod tests {
     }
 
     #[test]
+    fn finesse_follows_the_better_ability() {
+        let mut c = barbarian(3); // STR 16, DEX 14
+        c.active.push("Rage".into());
+        assert_eq!((c.ability("FINESSE"), c.md("FINESSE")), ("STR", 3));
+        assert_eq!(c.toggle_bonus(Some("FINESSE")), 2); // a raging monk strikes with STR
+        c.abilities.insert("DEX".into(), 18);
+        assert_eq!((c.md("FINESSE"), c.toggle_bonus(Some("FINESSE"))), (4, 0));
+    }
+
+    #[test]
     fn berserker_frenzy_and_presence() {
         let c = barbarian(3);
         assert!(c.toggles.iter().any(|t| t.name == "Frenzy" && t.exhaust));
@@ -499,7 +506,7 @@ mod tests {
             assert_eq!(c.res_max("ki"), Some(ki), "ki at {lvl}");
             let strike = c.actions.iter().find(|a| a.name == "Unarmed Strike").unwrap();
             assert_eq!(c.dice(strike), Some((1, die)), "martial arts at {lvl}");
-            assert_eq!(strike.ability.as_deref(), Some("DEX"));
+            assert_eq!(c.md(strike.ability.as_deref().unwrap()), 3); // DEX over STR
         }
         assert_eq!(monk(1).ac(), Some(10 + 3 + 2)); // DEX 16, WIS 15
         assert_eq!(monk(1).hp_max(), Some(8 + 2)); // CON 14
