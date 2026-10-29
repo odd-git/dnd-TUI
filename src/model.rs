@@ -190,6 +190,30 @@ impl Character {
 
     /// On the spell list of one of the classes (patron spells included). Spells from elsewhere (Magic Initiate,
     /// Pact of the Tome, a DM's gift) are always castable and never count against spells known.
+    /// Spellcasting ability for a spell: the class whose list has it (the better one when two do), the warlock's
+    /// for pact gifts, otherwise the sheet's.
+    pub fn ability_for(&self, name: &str) -> String {
+        let sp = crate::lists::spell(name);
+        let pact = self.features.iter().any(|f| f.name == format!("Bonus spell: {name}") && f.desc.starts_with("From Pact"));
+        let mut best: Option<String> = None;
+        for (c, l, p) in self.casters() {
+            let ok = sp.is_some_and(|s| s.classes.iter().any(|x| *x == c.list))
+                || crate::lists::always_spells(&p, l).iter().chain(&crate::lists::expanded_spells(&p, 9)).any(|x| x == name)
+                || (pact && c.kind == "pact");
+            if ok && best.as_ref().is_none_or(|b| self.md(&c.ability) > self.md(b)) { best = Some(c.ability.clone()); }
+        }
+        best.or_else(|| self.spell_ability.clone()).unwrap_or_else(|| "INT".into())
+    }
+
+    /// "CHA DC 13 atk +5", one per casting ability the sheet uses.
+    pub fn spell_dcs(&self) -> String {
+        let mut abs: Vec<String> = self.casters().iter().map(|c| c.0.ability.clone()).collect();
+        if abs.is_empty() { abs.extend(self.spell_ability.clone()); }
+        abs.sort();
+        abs.dedup();
+        abs.iter().map(|a| format!("{a} DC {} atk {:+}", self.dc(a), self.prof() + self.md(a))).collect::<Vec<_>>().join(" | ")
+    }
+
     /// Granted on top of the class picks (Pact of the Tome cantrips, Pact of the Chain's familiar).
     pub fn bonus_spell(&self, name: &str) -> bool { self.features.iter().any(|f| f.name == format!("Bonus spell: {name}")) }
 

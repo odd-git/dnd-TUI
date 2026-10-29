@@ -70,7 +70,7 @@ impl App {
     }
 
     fn cast_effect(&mut self, sp: &'static Spell, slot_level: u32) {
-        let ab = self.ch.casting().map(|c| c.ability.clone()).unwrap_or_else(|| "INT".into());
+        let ab = self.ch.ability_for(&sp.name);
         let tag = if slot_level > sp.level { format!(" at level {slot_level}") } else { String::new() };
         let conc = if sp.conc { " [concentration]" } else { "" };
         self.say(format!("Cast {}{tag}{conc}", sp.name), Tone::Good);

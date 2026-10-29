@@ -436,6 +436,18 @@ mod tests {
     }
 
     #[test]
+    fn multiclass_casters_use_their_own_ability() {
+        use crate::model::Extra;
+        let mut c = half("Paladin", "Devotion", 3); // CHA 14+1, WIS 12+1
+        c.level = 5;
+        c.multi.push(Extra { prog: "Cleric/Life".into(), level: 2 });
+        assert_eq!(c.ability_for("Bless"), "CHA");          // on both lists: the better modifier
+        assert_eq!(c.ability_for("Sacred Flame"), "WIS");   // cleric only
+        assert_eq!(c.ability_for("Find Steed"), "CHA");     // paladin only
+        assert!(c.spell_dcs().contains("CHA DC") && c.spell_dcs().contains("WIS DC"));
+    }
+
+    #[test]
     fn casters_match_the_wikidot_tables() {
         use crate::model::at;
         let w = lists::casting_of("Wizard/School of Evocation").unwrap();
