@@ -694,7 +694,14 @@
       "url": "http://dnd5e.wikidot.com/wizard:evocation"
      }
     ]
-   }
+   },
+   "toggles": [
+    {
+     "name": "Overchannel",
+     "min_level": 14,
+     "desc": "Your next 1st-5th level wizard spell deals maximum damage; after the first use per long rest it hurts you"
+    }
+   ]
   },
   {
    "name": "Graviturgy Magic",

@@ -172,7 +172,7 @@ impl App {
             // in beast form the druid's own weapons give way to the beast's attacks
             .filter(|&i| self.ch.beast.is_none() || self.ch.actions[i].ability.is_none() || self.ch.actions[i].hit.is_some())
             .map(Item::Action).collect();
-        v.extend((0..self.ch.toggles.len()).map(Item::Toggle));
+        v.extend((0..self.ch.toggles.len()).filter(|&t| self.ch.class_level() >= self.ch.toggles[t].min_level).map(Item::Toggle));
         v
     }
 
@@ -666,6 +666,7 @@ impl App {
         self.reset(true);
         // the Arcane Ward fades: the next abjuration spell makes a new one
         if self.ch.def("arcane_ward").is_some() { self.ch.res.insert("arcane_ward".into(), 0); self.ch.res.remove("ward_made"); }
+        self.ch.res.remove("overchannel_used");
         self.ch.hp = self.ch.hp_max().or(self.ch.hp);
         self.ch.death = [0, 0];
         self.ch.temp_hp = 0;

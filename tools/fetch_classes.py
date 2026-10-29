@@ -397,6 +397,7 @@ SUB_MECH = {
             {"name": "Hypnotic Gaze", "desc": "Action: a creature within 5 ft that sees or hears you, WIS save DC {dc:INT} or charmed, incapacitated and speed 0 until your next turn ends (renew it each turn)"},
             {"name": "Instinctive Charm", "desc": "Reaction to an attack from within 30 ft: WIS save DC {dc:INT} or it must attack the creature nearest to it instead", "min_level": 6},
         ]},
+        "Evocation": {"toggles": [{"name": "Overchannel", "min_level": 14, "desc": "Your next 1st-5th level wizard spell deals maximum damage; after the first use per long rest it hurts you"}]},
     },
 }
 

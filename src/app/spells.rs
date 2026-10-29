@@ -123,15 +123,21 @@ impl App {
         // Potent Spellcasting (Knowledge, Light): WIS to the damage of cleric cantrips
         let potent = sp.level == 0 && sp.classes.iter().any(|c| c == "Cleric") && self.ch.features.iter().any(|f| f.name == "Potent Spellcasting");
         let add = sp.flat as i32 + if potent { self.ch.md("WIS") } else { 0 };
-        let mut per: Vec<u32> = (0..hits).map(|_| ((0..rolls).map(|_| d(*sides)).sum::<u32>() as i32 + add).max(0) as u32).collect();
+        // Overchannel (Evocation, 14th level): a 1st-5th level spell deals its maximum damage
+        let overchannel = (1..=5).contains(&sp.level) && sp.classes.iter().any(|c| c == "Wizard") && self.ch.active.iter().any(|t| t == "Overchannel");
+        let mut per: Vec<u32> = (0..hits).map(|_| ((0..rolls).map(|_| if overchannel { *sides } else { d(*sides) }).sum::<u32>() as i32 + add).max(0) as u32).collect();
         let mut flat = if add != 0 { format!("{add:+}") } else { String::new() };
-        // Elemental Affinity (Draconic Bloodline): CHA to one damage roll of a spell of the ancestor's element
+        // bonuses to one damage roll of the spell
+        let has = |n: &str| self.ch.features.iter().any(|f| f.name == n);
         let element = self.ch.features.iter().find(|f| f.name.starts_with("Dragon Ancestor: ")).map(|f| f.desc.to_lowercase());
-        if self.ch.features.iter().any(|f| f.name == "Elemental Affinity") && element.as_deref() == Some(kind.to_lowercase().as_str()) {
-            let cha = self.ch.md("CHA");
-            per[0] = (per[0] as i32 + cha).max(0) as u32;
-            flat += &format!(" {cha:+} affinity{}", if hits > 1 { " on the first" } else { "" });
+        let mut first = vec![];
+        if has("Elemental Affinity") && element.as_deref() == Some(kind.to_lowercase().as_str()) { first.push((self.ch.md("CHA"), "affinity")); }
+        if has("Empowered Evocation") && sp.school == "Evocation" && sp.classes.iter().any(|c| c == "Wizard") { first.push((self.ch.md("INT").max(1), "empowered")); }
+        for (b, label) in first {
+            per[0] = (per[0] as i32 + b).max(0) as u32;
+            flat += &format!(" {b:+} {label}{}", if hits > 1 { " on the first" } else { "" });
         }
+        if overchannel { flat += ", maximum"; }
         if hits == 1 {
             self.say(format!(" >> Damage: {} {kind} ({rolls}d{sides}{flat})", per[0]), Tone::Good);
         } else {
@@ -139,6 +145,18 @@ impl App {
             let roll_each = if sp.attack { ", attack roll for each" } else { "" };
             self.say(format!(" >> {hits} x {rolls}d{sides}{flat} {kind}: {each} (total {}{roll_each})", per.iter().sum::<u32>()), Tone::Good);
         }
+        if overchannel { self.overchannel_cost(sp.level); }
+    }
+
+    /// Overchannel switches off; after the first use since a long rest it costs 2d12 necrotic per spell level, one d12 more each time.
+    fn overchannel_cost(&mut self, level: u32) {
+        self.ch.active.retain(|t| t != "Overchannel");
+        let used = self.have("overchannel_used");
+        self.ch.res.insert("overchannel_used".into(), used + 1);
+        if used == 0 { return; }
+        let n = (used + 1) * level;
+        let total: u32 = (0..n).map(|_| d(12)).sum();
+        self.say(format!("Overchannel: you take {total} necrotic ({n}d12, ignores resistance and immunity)"), Tone::Warn);
     }
 
     // --- learning and preparing ---------------------------------------------------

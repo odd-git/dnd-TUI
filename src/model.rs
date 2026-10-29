@@ -108,6 +108,7 @@ pub struct Toggle {
     pub dmg_ability: Option<String>, // ...applied to attacks made with this ability
     pub exhaust: bool,               // one exhaustion level when switched off (Frenzy)
     pub hit_ability: Option<String>, // this ability's modifier added to weapon attack rolls (Sacred Weapon)
+    pub min_level: u32,              // hidden below this class level (Overchannel)
 }
 
 /// Something carried: weight is per item, in pounds.
