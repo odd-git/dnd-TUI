@@ -237,7 +237,8 @@ impl App {
                 let (n, names) = self.spell_pick(false);
                 if n == 0 { return skip(self, Wz::Prepare); }
                 let title = if self.casting_mode() == "spellbook" { "Spellbook" } else { "Spells known" };
-                self.wiz_multi(&format!("{title}: choose {n}"), names, n, w);
+                let hint = lists::casting_of(&self.prog()).map_or(String::new(), |c| c.schools_hint(self.dr().level));
+                self.wiz_multi(&format!("{title}: choose {n}{hint}"), names, n, w);
             }
             Wz::Prepare => {
                 let (n, names) = self.prepare_pick();
@@ -405,7 +406,12 @@ impl App {
             }
             Wz::Spells => {
                 let (_, names) = self.spell_pick(false);
-                self.d().spells = picked.iter().map(|&i| names[i].clone()).collect();
+                let spells: Vec<String> = picked.iter().map(|&i| names[i].clone()).collect();
+                if lists::casting_of(&self.prog()).is_some_and(|c| !c.schools_ok(self.dr().level, &spells)) {
+                    self.say("Too many spells outside the schools, pick again.", Tone::Warn);
+                    return self.wiz_open(Wz::Spells);
+                }
+                self.d().spells = spells;
                 self.wiz_open(Wz::Prepare);
             }
             Wz::Prepare => {

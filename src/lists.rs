@@ -239,12 +239,28 @@ pub struct Casting {
     #[serde(default)] pub slots: BTreeMap<u32, Vec<u32>>, // class level -> slots of level 1..9
     #[serde(default)] pub pact_slots: Table,
     #[serde(default)] pub pact_level: Table,
+    #[serde(default)] pub schools: Vec<String>, // Eldritch Knight, Arcane Trickster: leveled spells from these schools...
+    #[serde(default)] pub free_at: Vec<u32>,    // ...except one of any school gained at each of these class levels
 }
 
 impl Casting {
     pub fn slots_at(&self, class_level: u32, slot_level: usize) -> u32 {
         self.slots.get(&class_level).and_then(|v| v.get(slot_level - 1)).copied().unwrap_or(0)
     }
+    /// The class-list spells among `names` keep to the schools, but for the free ones gained by `class_level`.
+    pub fn schools_ok(&self, class_level: u32, names: &[String]) -> bool {
+        if self.schools.is_empty() { return true; }
+        let free = self.free_at.iter().filter(|&&l| l <= class_level).count();
+        names.iter().filter_map(|n| spell(n)).filter(|s| s.level > 0 && s.classes.contains(&self.list) && !self.schools.contains(&s.school)).count() <= free
+    }
+
+    /// "abjuration or evocation, 1 of any school": the rule for a spell menu title, empty without one.
+    pub fn schools_hint(&self, class_level: u32) -> String {
+        if self.schools.is_empty() { return String::new(); }
+        let free = self.free_at.iter().filter(|&&l| l <= class_level).count();
+        format!(" ({}; {free} of any school)", self.schools.join(" or ").to_lowercase())
+    }
+
     /// Highest spell level castable at this class level.
     pub fn top_level(&self, class_level: u32) -> u32 {
         if self.kind == "pact" { return at(&self.pact_level, class_level); }

@@ -157,7 +157,8 @@ impl App {
         let (n, names) = self.learn_options(cantrips);
         if n == 0 { return self.advance(); }
         let items = names.iter().map(|n| self.spell_line(n)).collect();
-        self.multi(&format!("Learn {n} {}", if cantrips { "cantrips" } else { "spells" }), items, n, step);
+        let hint = self.ch.cast_src().filter(|_| !cantrips).map_or(String::new(), |(c, cl, _)| c.schools_hint(cl));
+        self.multi(&format!("Learn {n} {}{hint}", if cantrips { "cantrips" } else { "spells" }), items, n, step);
     }
 
     pub(super) fn open_prepare(&mut self, step: Step) {
@@ -183,6 +184,12 @@ impl App {
         match step {
             Step::Learn(cantrips) => {
                 let (_, names) = self.learn_options(cantrips);
+                let mut all = self.ch.spells.clone();
+                all.extend(picked.iter().map(|&i| names[i].clone()));
+                if let Some((c, cl, _)) = self.ch.cast_src().filter(|(c, cl, _)| !cantrips && !c.schools_ok(*cl, &all)) {
+                    self.say(format!("Too many spells outside the schools{}", c.schools_hint(cl)), Tone::Warn);
+                    return self.open(step);
+                }
                 self.snap_in_flow();
                 for i in picked {
                     let n = names[i].clone();

@@ -532,7 +532,8 @@ if __name__ == "__main__":
         for sub in data["subclasses"]:
             sub.update(SUB_MECH["fighter"].get(sub["name"], {}))
             if sub["name"] == "Eldritch Knight":
-                sub["casting"] = third_caster("fighter:eldritch-knight", "Fighter", {"ability": "INT", "kind": "third", "mode": "known", "list": "Wizard"})
+                sub["casting"] = third_caster("fighter:eldritch-knight", "Fighter", {"ability": "INT", "kind": "third", "mode": "known", "list": "Wizard",
+                                                                                     "schools": ["Abjuration", "Evocation"], "free_at": [3, 8, 14, 20]})
         path.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n")
         sys.argv.remove("fighter-ek")
     for slug in sys.argv[1:] or CONFIG:

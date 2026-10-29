@@ -391,6 +391,17 @@ mod tests {
     }
 
     #[test]
+    fn eldritch_knight_keeps_to_its_schools() {
+        let ek = lists::casting_of("Fighter/Eldritch Knight").unwrap();
+        let v = |names: &[&str]| names.iter().map(|n| n.to_string()).collect::<Vec<_>>();
+        assert!(ek.schools_ok(3, &v(&["Shield", "Magic Missile", "Find Familiar"])));
+        assert!(!ek.schools_ok(3, &v(&["Shield", "Sleep", "Find Familiar"])));
+        assert!(ek.schools_ok(8, &v(&["Shield", "Sleep", "Find Familiar"])));
+        assert_eq!(ek.schools_hint(8), " (abjuration or evocation; 2 of any school)");
+        assert!(lists::casting_of("Wizard").unwrap().schools_ok(1, &v(&["Sleep", "Find Familiar"])));
+    }
+
+    #[test]
     fn berserker_frenzy_and_presence() {
         let c = barbarian(3);
         assert!(c.toggles.iter().any(|t| t.name == "Frenzy" && t.exhaust));
