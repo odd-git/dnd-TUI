@@ -405,6 +405,11 @@ SUB_MECH = {
             "actions": [{"name": "Illusory Self", "desc": "Reaction: an attack roll against you automatically misses", "uses": "illusory_self"}],
         },
         "Necromancy": {"actions": [{"name": "Grim Harvest", "desc": "Your last spell (1st level+) killed a creature that is not a construct or undead: heal, once per turn", "special": "grim"}]},
+        "Transmutation": {
+            "tables": {"shapechanger": {"10": 1}},
+            "resources": [res("shapechanger", "Shapechanger", "short", "table")],
+            "actions": [{"name": "Shapechanger", "desc": "Polymorph on yourself into a beast of CR 1 or lower, no slot needed", "uses": "shapechanger"}],
+        },
     },
 }
 

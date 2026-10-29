@@ -568,6 +568,7 @@ mod tests {
         let c = wizard("Illusion", 10);
         assert!(c.castable().contains(&"Minor Illusion".to_string()));
         assert_eq!((c.res_max("illusory_self"), wizard("Illusion", 9).res_max("illusory_self")), (Some(1), Some(0)));
+        assert_eq!(wizard("Transmutation", 10).def("shapechanger").map(|r| (r.recharge.as_str(), wizard("Transmutation", 10).res_max("shapechanger"))), Some(("short", Some(1))));
     }
 
     #[test]

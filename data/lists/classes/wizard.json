@@ -910,10 +910,28 @@
    "name": "Transmutation",
    "source": "Player's Handbook",
    "needs_spells": false,
-   "resources": [],
-   "actions": [],
+   "resources": [
+    {
+     "id": "shapechanger",
+     "name": "Shapechanger",
+     "recharge": "short",
+     "max": "table",
+     "pips": true
+    }
+   ],
+   "actions": [
+    {
+     "name": "Shapechanger",
+     "desc": "Polymorph on yourself into a beast of CR 1 or lower, no slot needed",
+     "uses": "shapechanger"
+    }
+   ],
    "maneuver_pool": null,
-   "tables": {},
+   "tables": {
+    "shapechanger": {
+     "10": 1
+    }
+   },
    "dice": {},
    "maneuvers_known": {},
    "features": {
