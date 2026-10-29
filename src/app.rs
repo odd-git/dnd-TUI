@@ -448,7 +448,10 @@ impl App {
             Cmd::Init => {
                 let (r, note) = self.d20(Roll::Check);
                 let m = self.ch.md("DEX");
-                self.say(format!("Initiative: {r}{m:+}={}{note}", r as i32 + m), Tone::Good);
+                let total = r as i32 + m;
+                // Thief's Reflexes: a second turn in the first round, ten lower
+                let second = if self.ch.features.iter().any(|f| f.name == "Thief's Reflexes") { format!(", second turn at {}", total - 10) } else { String::new() };
+                self.say(format!("Initiative: {r}{m:+}={total}{note}{second}"), Tone::Good);
             }
             Cmd::Maneuver => self.maneuver_die(),
             Cmd::CheckMenu => self.open(Step::Check),
