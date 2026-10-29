@@ -460,7 +460,12 @@
    "prereq": "17th level",
    "desc": "6 ki: Cone of Cold.",
    "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
-   "ki": 6
+   "action": {
+    "name": "Breath of Winter",
+    "desc": "6 ki: Cone of Cold.",
+    "uses": "ki",
+    "spend": 6
+   }
   },
   {
    "name": "Clench of the North Wind",
@@ -468,7 +473,12 @@
    "prereq": "6th level",
    "desc": "3 ki: Hold Person.",
    "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
-   "ki": 3
+   "action": {
+    "name": "Clench of the North Wind",
+    "desc": "3 ki: Hold Person.",
+    "uses": "ki",
+    "spend": 3
+   }
   },
   {
    "name": "Eternal Mountain Defense",
@@ -476,7 +486,12 @@
    "prereq": "17th level",
    "desc": "5 ki: Stoneskin on yourself.",
    "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
-   "ki": 5
+   "action": {
+    "name": "Eternal Mountain Defense",
+    "desc": "5 ki: Stoneskin on yourself.",
+    "uses": "ki",
+    "spend": 5
+   }
   },
   {
    "name": "Fangs of the Fire Snake",
@@ -484,7 +499,12 @@
    "prereq": null,
    "desc": "1 ki with the Attack action: unarmed reach +10 ft this turn, fire damage; 1 more ki on a hit adds 1d10 fire.",
    "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
-   "ki": 1
+   "action": {
+    "name": "Fangs of the Fire Snake",
+    "desc": "1 ki with the Attack action: unarmed reach +10 ft this turn, fire damage; 1 more ki on a hit adds 1d10 fire.",
+    "uses": "ki",
+    "spend": 1
+   }
   },
   {
    "name": "Fist of Four Thunders",
@@ -492,7 +512,12 @@
    "prereq": null,
    "desc": "2 ki: Thunderwave.",
    "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
-   "ki": 2
+   "action": {
+    "name": "Fist of Four Thunders",
+    "desc": "2 ki: Thunderwave.",
+    "uses": "ki",
+    "spend": 2
+   }
   },
   {
    "name": "Fist of Unbroken Air",
@@ -500,7 +525,12 @@
    "prereq": null,
    "desc": "Action, 2 ki: a creature within 30 ft makes a STR save; 3d10 bludgeoning (+1d10 per extra ki), pushed 20 ft and prone on a fail, half and no push on a success.",
    "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
-   "ki": 2
+   "action": {
+    "name": "Fist of Unbroken Air",
+    "desc": "Action, 2 ki: a creature within 30 ft makes a STR save; 3d10 bludgeoning (+1d10 per extra ki), pushed 20 ft and prone on a fail, half and no push on a success.",
+    "uses": "ki",
+    "spend": 2
+   }
   },
   {
    "name": "Flames of the Phoenix",
@@ -508,7 +538,12 @@
    "prereq": "11th level",
    "desc": "4 ki: Fireball.",
    "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
-   "ki": 4
+   "action": {
+    "name": "Flames of the Phoenix",
+    "desc": "4 ki: Fireball.",
+    "uses": "ki",
+    "spend": 4
+   }
   },
   {
    "name": "Gong of the Summit",
@@ -516,7 +551,12 @@
    "prereq": "6th level",
    "desc": "3 ki: Shatter.",
    "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
-   "ki": 3
+   "action": {
+    "name": "Gong of the Summit",
+    "desc": "3 ki: Shatter.",
+    "uses": "ki",
+    "spend": 3
+   }
   },
   {
    "name": "Mist Stance",
@@ -524,7 +564,12 @@
    "prereq": "11th level",
    "desc": "4 ki: Gaseous Form on yourself.",
    "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
-   "ki": 4
+   "action": {
+    "name": "Mist Stance",
+    "desc": "4 ki: Gaseous Form on yourself.",
+    "uses": "ki",
+    "spend": 4
+   }
   },
   {
    "name": "Ride the Wind",
@@ -532,7 +577,12 @@
    "prereq": "11th level",
    "desc": "4 ki: Fly on yourself.",
    "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
-   "ki": 4
+   "action": {
+    "name": "Ride the Wind",
+    "desc": "4 ki: Fly on yourself.",
+    "uses": "ki",
+    "spend": 4
+   }
   },
   {
    "name": "River of Hungry Flame",
@@ -540,7 +590,12 @@
    "prereq": "17th level",
    "desc": "5 ki: Wall of Fire.",
    "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
-   "ki": 5
+   "action": {
+    "name": "River of Hungry Flame",
+    "desc": "5 ki: Wall of Fire.",
+    "uses": "ki",
+    "spend": 5
+   }
   },
   {
    "name": "Rush of the Gale Spirits",
@@ -548,7 +603,12 @@
    "prereq": null,
    "desc": "2 ki: Gust of Wind.",
    "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
-   "ki": 2
+   "action": {
+    "name": "Rush of the Gale Spirits",
+    "desc": "2 ki: Gust of Wind.",
+    "uses": "ki",
+    "spend": 2
+   }
   },
   {
    "name": "Shape the Flowing River",
@@ -556,7 +616,12 @@
    "prereq": null,
    "desc": "Action, 1 ki: within 120 ft turn water to ice or back and reshape a 30 ft area of it (no harm to creatures in it).",
    "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
-   "ki": 1
+   "action": {
+    "name": "Shape the Flowing River",
+    "desc": "Action, 1 ki: within 120 ft turn water to ice or back and reshape a 30 ft area of it (no harm to creatures in it).",
+    "uses": "ki",
+    "spend": 1
+   }
   },
   {
    "name": "Sweeping Cinder Strike",
@@ -564,7 +629,12 @@
    "prereq": null,
    "desc": "2 ki: Burning Hands.",
    "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
-   "ki": 2
+   "action": {
+    "name": "Sweeping Cinder Strike",
+    "desc": "2 ki: Burning Hands.",
+    "uses": "ki",
+    "spend": 2
+   }
   },
   {
    "name": "Water Whip",
@@ -572,7 +642,12 @@
    "prereq": null,
    "desc": "Action, 2 ki: a creature within 30 ft makes a DEX save; 3d10 bludgeoning (+1d10 per extra ki) and pulled 25 ft or knocked prone on a fail, half on a success.",
    "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
-   "ki": 2
+   "action": {
+    "name": "Water Whip",
+    "desc": "Action, 2 ki: a creature within 30 ft makes a DEX save; 3d10 bludgeoning (+1d10 per extra ki) and pulled 25 ft or knocked prone on a fail, half on a success.",
+    "uses": "ki",
+    "spend": 2
+   }
   },
   {
    "name": "Wave of Rolling Earth",
@@ -580,7 +655,106 @@
    "prereq": "17th level",
    "desc": "6 ki: Wall of Stone.",
    "url": "http://dnd5e.wikidot.com/monk:four-elements:disciplines",
-   "ki": 6
+   "action": {
+    "name": "Wave of Rolling Earth",
+    "desc": "6 ki: Wall of Stone.",
+    "uses": "ki",
+    "spend": 6
+   }
+  }
+ ],
+ "hunters_prey": [
+  {
+   "name": "Colossus Slayer",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "Once per turn: +1d8 to a weapon hit on a creature that is already hurt.",
+   "url": "http://dnd5e.wikidot.com/ranger:hunter",
+   "action": {
+    "name": "Colossus Slayer",
+    "desc": "Once per turn: +1d8 to a weapon hit on a creature that is already hurt.",
+    "dice": [
+     1,
+     8
+    ],
+    "dmg_type": "extra"
+   }
+  },
+  {
+   "name": "Giant Killer",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "Reaction when a Large or bigger creature within 5 ft attacks you: attack it back.",
+   "url": "http://dnd5e.wikidot.com/ranger:hunter"
+  },
+  {
+   "name": "Horde Breaker",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "Once per turn: a second weapon attack on another creature within 5 ft of the first target.",
+   "url": "http://dnd5e.wikidot.com/ranger:hunter"
+  }
+ ],
+ "defensive_tactics": [
+  {
+   "name": "Escape the Horde",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "Opportunity attacks against you roll with disadvantage.",
+   "url": "http://dnd5e.wikidot.com/ranger:hunter"
+  },
+  {
+   "name": "Multiattack Defense",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "After a creature hits you, +4 AC against its other attacks this turn.",
+   "url": "http://dnd5e.wikidot.com/ranger:hunter"
+  },
+  {
+   "name": "Steel Will",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "Advantage on saves against the frightened condition.",
+   "url": "http://dnd5e.wikidot.com/ranger:hunter"
+  }
+ ],
+ "multiattack": [
+  {
+   "name": "Volley",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "Action: a ranged attack on each creature within 10 ft of a point in range (ammunition for each).",
+   "url": "http://dnd5e.wikidot.com/ranger:hunter"
+  },
+  {
+   "name": "Whirlwind Attack",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "Action: a melee attack on each creature within 5 ft, rolled one by one.",
+   "url": "http://dnd5e.wikidot.com/ranger:hunter"
+  }
+ ],
+ "superior_defense": [
+  {
+   "name": "Evasion",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "DEX saves for half damage: nothing on a success, half on a failure.",
+   "url": "http://dnd5e.wikidot.com/ranger:hunter"
+  },
+  {
+   "name": "Stand Against the Tide",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "Reaction when a melee attack misses you: the attacker repeats it on a creature you choose.",
+   "url": "http://dnd5e.wikidot.com/ranger:hunter"
+  },
+  {
+   "name": "Uncanny Dodge",
+   "source": "Player's Handbook",
+   "prereq": null,
+   "desc": "Reaction: halve the damage of a hit from an attacker you can see.",
+   "url": "http://dnd5e.wikidot.com/ranger:hunter"
   }
  ]
 }

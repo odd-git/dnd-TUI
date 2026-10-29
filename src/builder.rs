@@ -439,8 +439,8 @@ mod tests {
         let d = lists::options("disciplines");
         assert_eq!(d.len(), 16);
         let fire = d.iter().find(|o| o.name == "Flames of the Phoenix").unwrap();
-        assert_eq!((fire.ki, fire.prereq.as_deref()), (4, Some("11th level")));
-        assert!(d.iter().all(|o| o.ki > 0 && !o.desc.is_empty()));
+        assert_eq!((fire.action.as_ref().map(|a| (a.spend, a.uses.as_deref())), fire.prereq.as_deref()), (Some((4, Some("ki"))), Some("11th level")));
+        assert!(d.iter().all(|o| o.action.as_ref().is_some_and(|a| a.spend > 0) && !o.desc.is_empty()));
         let sub = lists::class_data("Monk").unwrap().subclasses.iter().find(|s| s.name == "Four Elements").unwrap();
         assert_eq!(crate::model::at(&sub.options["disciplines"], 11), 3);
     }
@@ -482,6 +482,17 @@ mod tests {
         assert!(c.toggles.iter().any(|t| t.name == "Vow of Enmity" && t.uses.as_deref() == Some("channel_divinity")));
         let abjure = c.actions.iter().find(|a| a.name == "Abjure Enemy").unwrap();
         assert!(c.fmt(&abjure.desc).contains("DC 12")); // 8 + 2 + CHA 15
+    }
+
+    #[test]
+    fn hunter_choices_by_level() {
+        let sub = lists::class_data("Ranger").unwrap().subclasses.iter().find(|s| s.name == "Hunter").unwrap();
+        for (kind, level, n) in [("hunters_prey", 3, 3), ("defensive_tactics", 7, 3), ("multiattack", 11, 2), ("superior_defense", 15, 3)] {
+            assert_eq!(crate::model::at(&sub.options[kind], level), 1, "{kind}");
+            assert_eq!(lists::options(kind).len(), n, "{kind}");
+        }
+        let slayer = lists::options("hunters_prey").iter().find(|o| o.name == "Colossus Slayer").and_then(|o| o.action.as_ref()).unwrap();
+        assert_eq!(slayer.dice, Some((1, 8)));
     }
 
     #[test]

@@ -148,21 +148,13 @@ pub struct OptionDef {
     pub prereq: Option<String>,
     pub desc: String,
     #[serde(default)] pub url: String,
-    #[serde(default)] pub ki: u32, // ki spent each use (Elemental Disciplines)
-}
-
-#[derive(Deserialize)]
-pub struct Options {
-    pub metamagic: Vec<OptionDef>,
-    pub invocations: Vec<OptionDef>,
-    pub pact_boons: Vec<OptionDef>,
-    #[serde(default)] pub disciplines: Vec<OptionDef>,
+    pub action: Option<ActionDef>, // added to the action list when picked (an Elemental Discipline, Colossus Slayer)
 }
 
 pub fn options(kind: &str) -> &'static [OptionDef] {
-    static C: OnceLock<Options> = OnceLock::new();
+    static C: OnceLock<BTreeMap<String, Vec<OptionDef>>> = OnceLock::new();
     let o = C.get_or_init(|| serde_json::from_str(include_str!("../data/lists/options.json")).expect("options.json"));
-    match kind { "metamagic" => &o.metamagic, "invocations" => &o.invocations, "pact_boons" => &o.pact_boons, "disciplines" => &o.disciplines, _ => &[] }
+    o.get(kind).map_or(&[], |v| v.as_slice())
 }
 
 #[derive(Deserialize)]

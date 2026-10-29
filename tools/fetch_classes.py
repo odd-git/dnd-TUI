@@ -275,6 +275,9 @@ SUB_MECH = {
             ],
         },
     },
+    "ranger": {
+        "Hunter": {"options": {"hunters_prey": {"3": 1}, "defensive_tactics": {"7": 1}, "multiattack": {"11": 1}, "superior_defense": {"15": 1}}},
+    },
 }
 
 def split_top(s):

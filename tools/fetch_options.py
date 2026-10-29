@@ -1,4 +1,4 @@
-"""Class option lists (Metamagic, Eldritch Invocations, Pact Boons, Elemental Disciplines) from dnd5e.wikidot.com -> data/lists/options.json.
+"""Class option lists (Metamagic, Eldritch Invocations, Pact Boons, Elemental Disciplines, Hunter options) from dnd5e.wikidot.com -> data/lists/options.json.
 
 Official content only: Unearthed Arcana entries are skipped.
 """
@@ -82,13 +82,35 @@ def disciplines():
         text = " ".join(section(b, name))
         prereq = re.match(r"Prerequisite: (\d+th) Level", text)
         ki = re.search(r"spend (\d+) ki point", text)
-        out.append({"name": name, "source": PHB, "prereq": prereq and f"{prereq[1]} level", "desc": w.summary(w.key(slug, name), text),
-                    "url": w.url(slug), "ki": int(ki[1]) if ki else 0})
+        desc = w.summary(w.key(slug, name), text)
+        out.append({"name": name, "source": PHB, "prereq": prereq and f"{prereq[1]} level", "desc": desc, "url": w.url(slug),
+                    "action": {"name": name, "desc": desc, "uses": "ki", "spend": int(ki[1])}})
+    return out
+
+
+# Hunter conclave: the feature of each level and its options; Colossus Slayer rolls its extra die
+HUNTER = {"Hunter's Prey": "hunters_prey", "Defensive Tactics": "defensive_tactics", "Multiattack": "multiattack", "Superior Hunter's Defense": "superior_defense"}
+HUNTER_ACTIONS = {"Colossus Slayer": {"dice": [1, 8], "dmg_type": "extra"}}
+
+
+def hunter():
+    slug = "ranger:hunter"
+    b = w.blocks(w.content(w.get(slug)))
+    out = {}
+    for title, kind in HUNTER.items():
+        out[kind] = []
+        for t in section(b, title):
+            if m := re.match(r"([A-Z][A-Za-z' ]+)\. (.*)", t):
+                desc = w.summary(w.key(slug, title, m[1]), m[2])
+                o = {"name": m[1], "source": PHB, "prereq": None, "desc": desc, "url": w.url(slug)}
+                if m[1] in HUNTER_ACTIONS:
+                    o["action"] = {"name": m[1], "desc": desc, **HUNTER_ACTIONS[m[1]]}
+                out[kind].append(o)
     return out
 
 
 if __name__ == "__main__":
-    data = {"metamagic": metamagic(), "invocations": invocations(), "pact_boons": pact_boons(), "disciplines": disciplines()}
+    data = {"metamagic": metamagic(), "invocations": invocations(), "pact_boons": pact_boons(), "disciplines": disciplines(), **hunter()}
     (OUT / "options.json").write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n")
     print({k: len(v) for k, v in data.items()})
     w.save_todo()
