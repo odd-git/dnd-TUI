@@ -155,6 +155,13 @@ SUB_MECH = {
         },
         "Totem Warrior": {"always": {"3": ["Beast Sense", "Speak with Animals"], "10": ["Commune with Nature"]}},
     },
+    "bard": {
+        "Lore": {
+            "skills": 3,
+            "actions": [{"name": "Cutting Words", "desc": "Reaction: a creature within 60 ft loses the roll from its attack, check or damage", "uses": "bardic_inspiration", "dice": [1, 6], "die_table": "inspiration"},
+                        {"name": "Peerless Skill", "desc": "Add the roll to one of your own ability checks", "uses": "bardic_inspiration", "dice": [1, 6], "die_table": "inspiration", "min_level": 14}],
+        },
+    },
 }
 
 def split_top(s):

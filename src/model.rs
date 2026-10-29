@@ -372,7 +372,7 @@ impl Character {
     /// Dice of an action, the count coming from a level table when it has one.
     pub fn dice(&self, a: &ActionDef) -> Option<(u32, u32)> {
         let (n, sides) = a.dice?;
-        let table = |t: &Option<String>| t.as_ref().and_then(|t| self.table(t));
+        let table = |t: &Option<String>| t.as_ref().and_then(|t| self.table(t).or_else(|| self.die_table(t)));
         Some((table(&a.dice_table).unwrap_or(n), table(&a.die_table).unwrap_or(sides)))
     }
     pub fn dc(&self, ab: &str) -> i32 { 8 + self.prof() + self.md(ab) }
@@ -427,8 +427,12 @@ impl Character {
     pub fn res_die(&self, id: &str) -> Option<u32> {
         if id == "hit_dice" { return self.hit_die; }
         if let Some(class) = id.strip_prefix("hd_") { return crate::lists::class_data(class).map(|c| c.hit_die); }
-        let table = self.def(id)?.die.as_ref()?;
-        self.classes().iter().find_map(|(p, l)| Some(at(progression(p)?.dice.get(table)?, *l)))
+        self.die_table(self.def(id)?.die.as_ref()?)
+    }
+
+    /// A die size table of any of the classes (Bardic Inspiration), at the levels in that class.
+    pub fn die_table(&self, id: &str) -> Option<u32> {
+        self.classes().iter().find_map(|(p, l)| Some(at(progression(p)?.dice.get(id)?, *l)))
     }
 
     /// Fill in state missing from a fresh sheet (first run, or a resource added later).

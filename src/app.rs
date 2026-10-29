@@ -570,7 +570,9 @@ impl App {
         if a.level_bonus { bonus += self.ch.level as i32; }
         if !a.heal { bonus += self.ch.toggle_bonus(a.ability.as_deref()); }
         if !a.heal && self.ch.toggles.iter().any(|t| t.dmg_bonus_prof && self.ch.active.contains(&t.name)) { bonus += prof; }
-        if a.heal {
+        if a.dmg_type.is_empty() && !a.heal {
+            self.say(format!("{}: rolled {} ({rolls}d{sides}{bonus:+})", a.name, base + bonus), Tone::Good);
+        } else if a.heal {
             self.heal(base + bonus);
             self.say(format!("{}: healed {} ({base}{bonus:+})", a.name, base + bonus), Tone::Good);
         } else {
@@ -1053,6 +1055,7 @@ impl App {
                 self.say(format!("New: {}: {}", f.name, f.desc), Tone::Good);
             }
         }
+        for _ in 0..sub.skills { self.queue.push_front(Step::Skill); }
         let want = self.ch.prog().map_or(0, |p| at(&p.maneuvers_known, level));
         for _ in self.ch.maneuvers.len() as u32..want { self.queue.push_front(Step::Maneuver { required: true }); }
         self.finish_class();

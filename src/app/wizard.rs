@@ -84,7 +84,10 @@ impl App {
 
     fn expertise_count(&self) -> usize { 2 * self.class().expertise.iter().filter(|&&l| l <= self.dr().level).count() }
 
-    fn free_skill_count(&self) -> usize { (self.eff().extra_skills + self.bg().map_or(0, |b| b.extra_skills)) as usize }
+    fn free_skill_count(&self) -> usize {
+        let sub = self.class().subclasses.iter().find(|s| Some(&s.name) == self.dr().subclass.as_ref()).map_or(0, |s| s.skills);
+        (self.eff().extra_skills + self.bg().map_or(0, |b| b.extra_skills)) as usize + sub
+    }
     fn language_count(&self) -> usize { (self.eff().extra_languages + self.bg().map_or(0, |b| b.extra_languages)) as usize }
 
     fn maneuver_count(&self) -> usize {

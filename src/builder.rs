@@ -289,6 +289,25 @@ mod tests {
         assert!(c.castable().is_empty());
     }
 
+    fn bard(sub: &str, level: u32) -> Character {
+        let s = |x: &str| x.to_string();
+        build(&Draft {
+            name: s("Lute"), lineage: s("Human"), class: s("Bard"), subclass: Some(s(sub)), level, background: s("Entertainer"),
+            base: [("STR", 8), ("DEX", 14), ("CON", 12), ("INT", 10), ("WIS", 10), ("CHA", 15)].iter().map(|(a, v)| (a.to_string(), *v)).collect(),
+            class_skills: vec![s("Insight"), s("Persuasion"), s("History")], ..Default::default()
+        })
+    }
+
+    #[test]
+    fn lore_rolls_the_inspiration_die() {
+        let words = |c: &Character| c.actions.iter().find(|a| a.name == "Cutting Words").and_then(|a| c.dice(a));
+        assert_eq!(words(&bard("Lore", 3)), Some((1, 6)));
+        assert_eq!(words(&bard("Lore", 10)), Some((1, 10)));
+        assert_eq!(words(&bard("Valor", 3)), None);
+        let c = lists::class_data("Bard").unwrap();
+        assert_eq!(c.subclasses.iter().find(|s| s.name == "Lore").map(|s| s.skills), Some(3));
+    }
+
     #[test]
     fn berserker_frenzy_and_presence() {
         let c = barbarian(3);

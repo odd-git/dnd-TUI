@@ -271,6 +271,7 @@ pub struct Subclass {
     #[serde(default)] pub resources: Vec<ResourceDef>,
     #[serde(default)] pub actions: Vec<ActionDef>,
     #[serde(default)] pub toggles: Vec<Toggle>,
+    #[serde(default)] pub skills: usize, // skill proficiencies of your choice (Lore)
     pub maneuver_pool: Option<String>,
     #[serde(default)] pub tables: BTreeMap<String, Table>,
     #[serde(default)] pub dice: BTreeMap<String, Table>,
