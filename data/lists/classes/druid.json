@@ -1100,7 +1100,13 @@
    "source": "Player's Handbook",
    "needs_spells": false,
    "resources": [],
-   "actions": [],
+   "actions": [
+    {
+     "name": "Combat Wild Shape",
+     "desc": "Bonus action in beast form: spend a slot, heal 1d8 per slot level",
+     "special": "moon_heal"
+    }
+   ],
    "maneuver_pool": null,
    "tables": {},
    "dice": {},

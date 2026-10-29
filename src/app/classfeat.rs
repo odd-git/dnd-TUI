@@ -196,6 +196,11 @@ impl App {
                 if self.slot_options(1).is_empty() { return self.say("Divine Smite: no slots left!", Tone::Warn); }
                 self.open(Step::Smite);
             }
+            "moon_heal" => {
+                if self.ch.beast.is_none() { return self.say("Only in beast form.", Tone::Warn); }
+                if self.slot_options(1).is_empty() { return self.say("No slots left!", Tone::Warn); }
+                self.open(Step::MoonHeal);
+            }
             "recover" => {
                 // Arcane Recovery (wizard) or Natural Recovery (Circle of the Land): half the class level in slot levels
                 let id = a.uses.clone().unwrap_or_else(|| "arcane_recovery".into());
@@ -277,6 +282,16 @@ impl App {
         }).collect()
     }
 
+    /// Combat Wild Shape: a slot spent in beast form heals 1d8 per slot level.
+    pub(super) fn moon_heal_pick(&mut self, i: usize) {
+        let Some((id, l, _)) = self.slot_options(1).get(i).cloned() else { return };
+        self.snap();
+        if let Some(v) = self.ch.res.get_mut(&id) { *v -= 1; }
+        let total = (0..l).map(|_| d(8) as i32).sum();
+        self.heal(total);
+        self.say(format!("Combat Wild Shape (level {l} slot): healed {total} ({l}d8)"), Tone::Good);
+    }
+
     pub(super) fn smite_pick(&mut self, i: usize) {
         let Some((id, l, _)) = self.slot_options(1).get(i / 2).cloned() else { return };
         self.snap();
@@ -356,7 +371,7 @@ impl App {
         self.ch.active.push("Wild Shape".into());
         self.say(format!("Wild Shape: {name}, {} HP, AC {ac}.", hp.max(1)), Tone::Good);
         if !info.is_empty() { self.say(info.clone(), Tone::Dim); }
-        self.ch.beast = Some(Beast { name, ac, info });
+        self.ch.beast = Some(Beast { name, ac, info, hp: hp.max(1) });
     }
 
     fn end_beast(&mut self) {

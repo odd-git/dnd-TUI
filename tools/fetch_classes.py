@@ -228,6 +228,7 @@ SUB_MECH = {
             "resources": [res("natural_recovery", "Natural Recovery", "long", 1)],
             "actions": [{"name": "Natural Recovery", "desc": "After a short rest: recover slots totalling up to half your druid level (rounded up), none 6th or higher", "uses": "natural_recovery", "special": "recover"}],
         },
+        "Moon": {"actions": [{"name": "Combat Wild Shape", "desc": "Bonus action in beast form: spend a slot, heal 1d8 per slot level", "special": "moon_heal"}]},
     },
 }
 

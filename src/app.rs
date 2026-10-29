@@ -45,7 +45,7 @@ pub enum Step {
     Maneuver { required: bool }, ReplaceAsk, Forget, Extras, Skill, NoteName, NoteDesc(String), JournalAdd,
     Subclass, DeleteSheet(usize), Expertise, Style, Pool(String),
     Learn(bool), Prepare, CastSlot(String), SpellAdd, SpellDel, LevelClass,
-    Opt(String), Arcanum(u32), Secret, Smite, Recover(u32), FontSlot, FontPoints, BeastPick, BeastName, BeastHp(String), BeastAc(String, i32), BeastAtk, Hd(usize), AnyCantrip, TempHp,
+    Opt(String), Arcanum(u32), Secret, Smite, MoonHeal, Recover(u32), FontSlot, FontPoints, BeastPick, BeastName, BeastHp(String), BeastAc(String, i32), BeastAtk, Hd(usize), AnyCantrip, TempHp,
     // editor
     Ident, IdentSet(usize), Scores, ScoreSet(String), Unskill, ArmorPick, ShieldPick(Option<String>), WeaponPick,
     CustomName, CustomAb(String), CustomDice(String, Option<String>), CustomType(String, Option<String>, (u32, u32)),
@@ -190,6 +190,12 @@ impl App {
     }
 
     fn heal(&mut self, n: i32) {
+        // in beast form the beast's hit points heal (a form saved before its maximum was kept heals uncapped)
+        if let Some(b) = &self.ch.beast {
+            let cur = self.have("beast_hp") as i32 + n;
+            self.ch.res.insert("beast_hp".into(), (if b.hp > 0 { cur.min(b.hp) } else { cur }).max(0) as u32);
+            return;
+        }
         let Some(max) = self.ch.hp_max() else { return };
         let hp = self.ch.hp.unwrap_or(0);
         self.ch.hp = Some((hp + n).min(max));
@@ -737,6 +743,10 @@ impl App {
                 self.list("Magical Secrets: a spell from any class", items, step, false);
             }
             Step::Smite => { let items = self.smite_items(); self.list("Divine Smite: which slot?", items, step, true) }
+            Step::MoonHeal => {
+                let items = self.slot_options(1).iter().map(|(_, l, left)| format!("Level {l} slot ({left} left): {l}d8")).collect();
+                self.list("Combat Wild Shape: heal with which slot?", items, step, true)
+            }
             Step::Recover(b) => {
                 let items = self.recover_items(b).iter().map(|l| format!("Level {l} slot ({}/{})", self.have(&format!("slot{l}")), self.ch.res_max(&format!("slot{l}")).unwrap_or(0))).collect();
                 self.list(&format!("Recover slots: {b} slot levels left"), items, step, true);
@@ -957,6 +967,7 @@ impl App {
             Step::Secret => self.secret_pick(i),
             Step::AnyCantrip => { if let Some(n) = self.any_cantrips().get(i).cloned() { self.grant_spell(&n, "Pact of the Tome"); } }
             Step::Smite => self.smite_pick(i),
+            Step::MoonHeal => self.moon_heal_pick(i),
             Step::Recover(b) => self.recover_pick(b, i),
             Step::FontSlot => self.font_slot_pick(i),
             Step::FontPoints => self.font_points_pick(i),
