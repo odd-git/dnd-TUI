@@ -97,6 +97,10 @@ pub struct Toggle {
     pub dmg_ability: Option<String>, // ...applied to attacks made with this ability
 }
 
+/// A class taken besides the main one (multiclassing): its "Class/Subclass" progression and levels in it.
+#[derive(Serialize, Deserialize, Clone)]
+pub struct Extra { pub prog: String, pub level: u32 }
+
 #[derive(Serialize, Deserialize, Clone)]
 pub struct Character {
     pub name: String,
@@ -120,6 +124,7 @@ pub struct Character {
     #[serde(default)] pub ac_shield: bool,
     pub spell_ability: Option<String>,
     pub progression: Option<String>,
+    #[serde(default)] pub multi: Vec<Extra>,
     pub maneuver_pool: Option<String>,
     #[serde(default)] pub maneuvers: Vec<String>,
     #[serde(default)] pub resources: Vec<ResourceDef>,
@@ -140,37 +145,67 @@ impl Character {
     pub fn prog(&self) -> Option<&'static Progression> {
         self.progression.as_deref().and_then(progression)
     }
-    pub fn casting(&self) -> Option<&'static crate::lists::Casting> {
-        crate::lists::casting_of(self.progression.as_deref()?)
+
+    /// Levels in the main class; the tables of its progression are indexed by this, not by the character level.
+    pub fn class_level(&self) -> u32 { self.level - self.multi.iter().map(|e| e.level).sum::<u32>() }
+
+    /// Every class as ("Class/Subclass", levels in it), the main one first.
+    pub fn classes(&self) -> Vec<(String, u32)> {
+        self.progression.iter().map(|p| (p.clone(), self.class_level()))
+            .chain(self.multi.iter().map(|e| (e.prog.clone(), e.level))).collect()
+    }
+
+    /// Classes that cast, with their casting rules.
+    pub fn casters(&self) -> Vec<(&'static crate::lists::Casting, u32, String)> {
+        self.classes().into_iter().filter(|(_, l)| *l > 0)
+            .filter_map(|(p, l)| Some((crate::lists::casting_of(&p)?, l, p))).collect()
+    }
+
+    /// The class whose spell lists the sheet manages: the first that casts, as (rules, its levels, progression).
+    // ponytail: a second caster class gets slots and the combined table but no known / prepared limits, add spells by hand in the editor
+    pub fn cast_src(&self) -> Option<(&'static crate::lists::Casting, u32, String)> {
+        self.casters().into_iter().find(|(c, l, _)| c.top_level(*l) > 0 || at(&c.cantrips, *l) > 0)
+    }
+    pub fn casting(&self) -> Option<&'static crate::lists::Casting> { self.cast_src().map(|x| x.0) }
+
+    /// Spell slots of a level: multiclass casters pool their levels (full + half/2 + third/3) on the wizard table.
+    fn slots(&self, l: usize) -> u32 {
+        let cs: Vec<_> = self.casters().into_iter().filter(|(c, ..)| c.kind != "pact").collect();
+        match cs.as_slice() {
+            [] => 0,
+            [(c, lv, _)] => c.slots_at(*lv, l),
+            _ => {
+                let cl: u32 = cs.iter().map(|(c, lv, _)| match c.kind.as_str() { "half" => lv / 2, "third" => lv / 3, _ => *lv }).sum();
+                crate::lists::class_data("Wizard").and_then(|w| w.casting.as_ref()).map_or(0, |w| w.slots_at(cl, l))
+            }
+        }
     }
 
     /// True once there is anything to cast (a half caster has nothing at level 1).
-    pub fn casts(&self) -> bool {
-        self.casting().is_some_and(|c| c.top_level(self.level) > 0 || at(&c.cantrips, self.level) > 0)
-    }
+    pub fn casts(&self) -> bool { self.cast_src().is_some() }
 
-    pub fn cantrips_max(&self) -> usize { self.casting().map_or(0, |c| at(&c.cantrips, self.level) as usize) }
+    pub fn cantrips_max(&self) -> usize { self.cast_src().map_or(0, |(c, l, _)| at(&c.cantrips, l) as usize) }
 
     /// Spells to know: the class table, or for a wizard 6 in the book plus 2 per level after the first.
     pub fn known_max(&self) -> usize {
-        match self.casting() {
-            Some(c) if c.mode == "spellbook" => 6 + 2 * (self.level as usize - 1),
-            Some(c) => at(&c.known, self.level) as usize,
+        match self.cast_src() {
+            Some((c, l, _)) if c.mode == "spellbook" => 6 + 2 * (l as usize - 1),
+            Some((c, l, _)) => at(&c.known, l) as usize,
             None => 0,
         }
     }
 
     /// Spells a prepared / spellbook caster can have prepared (ability modifier + level, or half level).
     pub fn prepared_max(&self) -> usize {
-        let Some(c) = self.casting() else { return 0 };
-        let lvl = if c.prepared.as_deref() == Some("mod+half") { self.level as i32 / 2 } else { self.level as i32 };
+        let Some((c, l, _)) = self.cast_src() else { return 0 };
+        let lvl = if c.prepared.as_deref() == Some("mod+half") { l as i32 / 2 } else { l as i32 };
         (self.md(&c.ability) + lvl).max(1) as usize
     }
 
     /// Everything castable that is not a cantrip: known spells, or prepared ones plus domain / oath spells.
     pub fn castable(&self) -> Vec<String> {
-        let Some(c) = self.casting() else { return vec![] };
-        let mut v = crate::lists::always_spells(self.progression.as_deref().unwrap_or(""), self.level);
+        let Some((c, l, prog)) = self.cast_src() else { return vec![] };
+        let mut v = crate::lists::always_spells(&prog, l);
         v.extend(if c.mode == "known" { self.spells.iter() } else { self.prepared.iter() }.cloned());
         v.dedup();
         v
@@ -178,12 +213,14 @@ impl Character {
 
     /// Make sure the spell slot resources of the casting rules exist (new caster, or a subclass that casts).
     pub fn sync_spell_resources(&mut self) {
-        let Some(c) = self.casting() else { return };
-        self.spell_ability = Some(c.ability.clone());
+        let cs = self.casters();
+        let Some((first, ..)) = cs.first() else { return };
+        self.spell_ability = Some(first.ability.clone());
         let mut want: Vec<ResourceDef> = vec![];
-        if c.kind == "pact" {
+        if cs.iter().any(|(c, ..)| c.kind == "pact") {
             want.push(ResourceDef { id: "pact".into(), name: "Pact slots".into(), recharge: "short".into(), max: Some(Max::Kw("pact".into())), start: None, pips: true, die: None });
-        } else {
+        }
+        if cs.iter().any(|(c, ..)| c.kind != "pact") {
             for l in 1..=9 {
                 want.push(ResourceDef { id: format!("slot{l}"), name: format!("Level {l} slots"), recharge: "long".into(), max: Some(Max::Kw(format!("slot:{l}"))), start: None, pips: true, die: None });
             }
@@ -207,22 +244,37 @@ impl Character {
     pub fn toggle_bonus(&self, ability: Option<&str>) -> i32 {
         self.toggles.iter().filter(|t| self.active.contains(&t.name))
             .filter(|t| t.dmg_ability.is_some() && t.dmg_ability.as_deref() == ability)
-            .filter_map(|t| Some(at(self.prog()?.resources.get(t.dmg_table.as_ref()?)?, self.level) as i32))
+            .filter_map(|t| Some(at(self.prog()?.resources.get(t.dmg_table.as_ref()?)?, self.class_level()) as i32))
             .sum()
     }
     /// Dice of an action, the count coming from a level table when it has one.
     pub fn dice(&self, a: &ActionDef) -> Option<(u32, u32)> {
         let (n, sides) = a.dice?;
-        let table = |t: &Option<String>| t.as_ref().and_then(|t| self.prog()?.resources.get(t)).map(|t| at(t, self.level));
+        let table = |t: &Option<String>| t.as_ref().and_then(|t| self.prog()?.resources.get(t)).map(|t| at(t, self.class_level()));
         Some((table(&a.dice_table).unwrap_or(n), table(&a.die_table).unwrap_or(sides)))
     }
     pub fn dc(&self, ab: &str) -> i32 { 8 + self.prof() + self.md(ab) }
-    pub fn title(&self) -> String { self.class_title.replace("{level}", &self.level.to_string()) }
+    /// Attacks per action: the best of the classes, Extra Attack does not stack.
+    pub fn attacks(&self) -> u32 {
+        self.classes().iter().filter_map(|(p, l)| Some(at(&progression(p)?.attacks_per_action, *l))).max().unwrap_or(1)
+    }
+    pub fn title(&self) -> String {
+        let mut t = self.class_title.replace("{level}", &self.class_level().to_string());
+        for e in &self.multi {
+            let (c, s) = e.prog.split_once('/').unwrap_or((&e.prog, ""));
+            t += &format!(" / {c} {}{}", e.level, if s.is_empty() { String::new() } else { format!(" ({s})") });
+        }
+        t
+    }
 
     pub fn hp_max(&self) -> Option<i32> {
         let d = self.hit_die? as i32;
         let cm = self.md("CON");
-        Some(d + cm + (self.level as i32 - 1) * (d / 2 + 1 + cm))
+        let others: i32 = self.multi.iter().map(|e| {
+            let hd = crate::lists::class_data(e.prog.split('/').next().unwrap_or("")).map_or(8, |c| c.hit_die) as i32;
+            e.level as i32 * (hd / 2 + 1 + cm)
+        }).sum();
+        Some(d + cm + (self.class_level() as i32 - 1) * (d / 2 + 1 + cm) + others)
     }
 
     pub fn def(&self, id: &str) -> Option<&ResourceDef> { self.resources.iter().find(|r| r.id == id) }
@@ -231,18 +283,18 @@ impl Character {
         match self.def(id)?.max.as_ref()? {
             Max::N(n) => Some(*n),
             Max::Kw(k) if k == "level" => Some(self.level),
-            Max::Kw(k) if k == "pact" => Some(self.casting().map_or(0, |c| at(&c.pact_slots, self.level))),
-            Max::Kw(k) if k.starts_with("slot:") => Some(self.casting().map_or(0, |c| c.slots_at(self.level, k[5..].parse().unwrap_or(1)))),
+            Max::Kw(k) if k == "pact" => Some(self.casters().iter().find(|(c, ..)| c.kind == "pact").map_or(0, |(c, l, _)| at(&c.pact_slots, *l))),
+            Max::Kw(k) if k.starts_with("slot:") => Some(self.slots(k[5..].parse().unwrap_or(1))),
             Max::Kw(k) if k.starts_with("mod:") => Some(self.md(&k[4..]).max(1) as u32),
             Max::Kw(k) if k.starts_with("1+mod:") => Some((1 + self.md(&k[6..])).max(1) as u32),
-            Max::Kw(_) => Some(self.prog().and_then(|p| p.resources.get(id)).map(|t| at(t, self.level)).unwrap_or(0)),
+            Max::Kw(_) => Some(self.prog().and_then(|p| p.resources.get(id)).map(|t| at(t, self.class_level())).unwrap_or(0)),
         }
     }
 
     pub fn res_die(&self, id: &str) -> Option<u32> {
         if id == "hit_dice" { return self.hit_die; }
         let table = self.def(id)?.die.as_ref()?;
-        self.prog()?.dice.get(table).map(|t| at(t, self.level))
+        self.prog()?.dice.get(table).map(|t| at(t, self.class_level()))
     }
 
     /// Fill in state missing from a fresh sheet (first run, or a resource added later).

@@ -24,10 +24,9 @@ impl App {
 
     /// Slots a spell of `level` can be cast with: (resource id, slot level, left).
     fn slot_options(&self, level: u32) -> Vec<(String, u32, u32)> {
-        let Some(c) = self.ch.casting() else { return vec![] };
         let mut v = vec![];
-        if c.kind == "pact" {
-            let pl = at(&c.pact_level, self.ch.level);
+        if let Some((c, cl, _)) = self.ch.casters().into_iter().find(|(c, ..)| c.kind == "pact") {
+            let pl = at(&c.pact_level, cl);
             if pl >= level && self.have("pact") > 0 { v.push(("pact".to_string(), pl, self.have("pact"))); }
         } else {
             for l in level.max(1)..=9 {
@@ -101,10 +100,10 @@ impl App {
 
     /// Spells of the class list still to learn, how many to pick.
     pub(super) fn learn_options(&self, cantrips: bool) -> (usize, Vec<String>) {
-        let (Some(c), Some(prog)) = (self.ch.casting(), self.ch.progression.as_deref()) else { return (0, vec![]) };
+        let Some((c, cl, prog)) = self.ch.cast_src() else { return (0, vec![]) };
         let have = if cantrips { &self.ch.cantrips } else { &self.ch.spells };
         let want = if cantrips { self.ch.cantrips_max() } else if c.mode == "prepared" { 0 } else { self.ch.known_max() };
-        let names: Vec<String> = lists::spell_choices(c, prog, self.ch.level, cantrips).iter()
+        let names: Vec<String> = lists::spell_choices(c, &prog, cl, cantrips).iter()
             .map(|s| s.name.clone()).filter(|n| !have.contains(n)).collect();
         (want.saturating_sub(have.len()).min(names.len()), names)
     }
@@ -163,9 +162,12 @@ impl App {
 
     /// Editor: any spell of the class list (all levels, cantrips included) not yet known.
     pub(super) fn spell_add_items(&self) -> Vec<&'static Spell> {
-        let (Some(c), Some(prog)) = (self.ch.casting(), self.ch.progression.as_deref()) else { return vec![] };
-        let mut v = lists::spell_choices(c, prog, self.ch.level, true);
-        v.extend(lists::spell_choices(c, prog, self.ch.level, false));
+        let mut v: Vec<&'static Spell> = vec![];
+        for (c, cl, prog) in self.ch.casters() {
+            for cantrips in [true, false] { v.extend(lists::spell_choices(c, &prog, cl, cantrips)); }
+        }
+        v.sort_by(|a, b| (a.level, &a.name).cmp(&(b.level, &b.name)));
+        v.dedup_by_key(|s| &s.name);
         v.retain(|s| !self.ch.cantrips.contains(&s.name) && !self.ch.spells.contains(&s.name));
         v
     }

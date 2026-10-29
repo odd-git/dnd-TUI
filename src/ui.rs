@@ -159,7 +159,7 @@ fn status_lines(app: &App) -> Vec<Line<'static>> {
     v.push(Line::from(ABILITIES.iter().filter(|a| c.abilities.contains_key(**a)).map(|a| format!("{a} {}({:+})", c.abilities[*a], c.md(a))).collect::<Vec<_>>().join(" | ")));
 
     let mut d = vec![];
-    if let Some(p) = c.prog() { if !p.attacks_per_action.is_empty() { d.push(format!("Attacks/action: {}", at(&p.attacks_per_action, c.level))); } }
+    if c.prog().is_some_and(|p| !p.attacks_per_action.is_empty()) { d.push(format!("Attacks/action: {}", c.attacks())); }
     if c.maneuver_pool.is_some() { d.push(format!("Maneuver DC {}", 8 + c.prof() + c.md("STR").max(c.md("DEX")))); }
     if let Some(sa) = &c.spell_ability { d.push(format!("Spell DC {} (atk {:+})", c.dc(sa), c.prof() + c.md(sa))); }
     if c.abilities.contains_key("WIS") {
@@ -455,7 +455,7 @@ fn slots_line(c: &Character) -> Option<Line<'static>> {
     for def in c.resources.iter().filter(|d| d.id.starts_with("slot") || d.id == "pact") {
         let (cur, max) = (c.res.get(&def.id).copied().unwrap_or(0), c.res_max(&def.id).unwrap_or(0));
         if max == 0 { continue; }
-        let label = if def.id == "pact" { format!("Pact L{}", c.casting().map_or(0, |k| at(&k.pact_level, c.level))) } else { format!("L{}", &def.id[4..]) };
+        let label = if def.id == "pact" { format!("Pact L{}", c.casters().iter().find(|(k, ..)| k.kind == "pact").map_or(0, |(k, l, _)| at(&k.pact_level, *l))) } else { format!("L{}", &def.id[4..]) };
         parts.push(format!("{label} {}{}", "●".repeat(cur.min(max) as usize), "○".repeat((max - cur.min(max)) as usize)));
     }
     (!parts.is_empty()).then(|| Line::from(format!("Slots {}", parts.join("  "))))

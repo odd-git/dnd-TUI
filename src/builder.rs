@@ -135,6 +135,7 @@ pub fn build(d: &Draft) -> Character {
         race: match &d.sub { Some(s) => format!("{s} {}", d.lineage), None => d.lineage.clone() },
         background: d.background.clone(),
         class_title: title,
+        multi: vec![],
         level: d.level,
         hit_die: Some(class.hit_die),
         abilities,
@@ -382,6 +383,23 @@ mod tests {
         assert!(c.features.iter().any(|f| f.name == "Hide in Plain Sight"));
         assert!(half("Ranger", "Hunter", 14).features.iter().any(|f| f.name == "Vanish"));
         assert!(half("Ranger", "Hunter", 3).features.iter().any(|f| f.name == "Hunter's Prey"));
+    }
+
+    #[test]
+    fn multiclass_splits_levels_and_pools_slots() {
+        use crate::model::Extra;
+        let mut c = half("Paladin", "Devotion", 3); // Con 13+1 = +2, d10
+        let solo = c.hp_max().unwrap();
+        c.level = 5;
+        c.multi.push(Extra { prog: "Wizard/School of Evocation".into(), level: 2 });
+        c.sync_spell_resources();
+        assert_eq!(c.class_level(), 3);
+        // wizard d6 levels add 4 + 2 each
+        assert_eq!(c.hp_max().unwrap(), solo + 2 * (6 / 2 + 1 + c.md("CON")));
+        assert!(c.title().contains("Paladin 3") && c.title().contains("Wizard 2"));
+        // paladin 3 -> 1 caster level, wizard 2 -> 2: pooled level 3 gives 4 first-level and 2 second-level slots
+        assert_eq!((c.res_max("slot1"), c.res_max("slot2"), c.res_max("slot3")), (Some(4), Some(2), Some(0)));
+        assert_eq!(c.prof(), 3);
     }
 
     #[test]

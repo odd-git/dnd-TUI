@@ -38,7 +38,7 @@ pub enum Step {
     Asi, Ability { n: i32, optional: bool }, FeatList, FeatAsi(String),
     Maneuver { required: bool }, ReplaceAsk, Forget, Extras, Skill, NoteName, NoteDesc(String), JournalAdd,
     Subclass, DeleteSheet(usize), Expertise, Style, Pool(String),
-    Learn(bool), Prepare, CastSlot(String), SpellAdd, SpellDel,
+    Learn(bool), Prepare, CastSlot(String), SpellAdd, SpellDel, LevelClass,
     // editor
     Ident, IdentSet(usize), Scores, ScoreSet(String), Unskill, ArmorPick, ShieldPick(Option<String>), WeaponPick,
     CustomName, CustomAb(String), CustomDice(String, Option<String>), CustomType(String, Option<String>, (u32, u32)),
@@ -78,6 +78,7 @@ pub struct App {
     undo: Vec<Character>,
     queue: VecDeque<Step>,
     flow: Option<Flow>,
+    lv: usize, // class being leveled: 0 the main one, n the n-th of `multi`
     wiz: Option<wizard::Wiz>,
     pub query: String,
     pub searching: bool,
@@ -123,7 +124,7 @@ impl App {
         App {
             picking: true, sheets, psel: 0, path: PathBuf::new(), ch, tab: Tab::Combat, sel: 0, jsel: 0, ssel: 0,
             scroll: 0, log_off: 0, adv: Adv::Normal, log: vec![Entry("System start.".into(), Tone::Dim)],
-            modal: None, hot: vec![], quit: false, undo: vec![], queue: VecDeque::new(), flow: None, wiz: None, query: String::new(), searching: false,
+            modal: None, hot: vec![], quit: false, undo: vec![], queue: VecDeque::new(), flow: None, lv: 0, wiz: None, query: String::new(), searching: false,
         }
     }
 
@@ -155,7 +156,7 @@ impl App {
     /// Actions and toggles shown in the list (an action whose resource has no uses at this level is hidden).
     pub fn visible(&self) -> Vec<Item> {
         let mut v: Vec<Item> = (0..self.ch.actions.len())
-            .filter(|&i| self.ch.actions[i].uses.as_ref().map_or(true, |u| self.ch.res_max(u) != Some(0)) && self.ch.level >= self.ch.actions[i].min_level)
+            .filter(|&i| self.ch.actions[i].uses.as_ref().map_or(true, |u| self.ch.res_max(u) != Some(0)) && self.ch.class_level() >= self.ch.actions[i].min_level)
             .map(Item::Action).collect();
         v.extend((0..self.ch.toggles.len()).map(Item::Toggle));
         v
@@ -683,6 +684,7 @@ impl App {
                 let items = c.subclasses.iter().map(|s| format!("{} ({})", s.name, crate::lists::abbr(&s.source))).collect();
                 self.list(&c.subclass_title.clone(), items, step, false);
             }
+            Step::LevelClass => { let items = self.level_options().into_iter().map(|o| o.0).collect(); self.list("Level up in which class?", items, step, true) }
             Step::Learn(c) => self.open_learn(c, step),
             Step::Prepare => self.open_prepare(step),
             Step::CastSlot(ref name) => { let items = self.cast_slot_items(name); self.list("Cast with which slot?", items, step, true); }
@@ -829,6 +831,7 @@ impl App {
                 }
             }
             Step::Subclass => { if let Some(c) = self.class_data() { self.choose_subclass(c, i); } }
+            Step::LevelClass => { if let Some((_, t, new)) = self.level_options().into_iter().nth(i) { self.level_in(t, new); } }
             Step::CastSlot(name) => self.cast_slot_pick(&name, i),
             Step::Style => {
                 if let Some(s) = self.class_data().and_then(|c| c.styles.get(i)) {
@@ -865,12 +868,14 @@ impl App {
 
     fn flow_begin(&mut self) {
         self.snap();
+        self.lv = 0;
         let res = self.ch.resources.iter().filter_map(|r| Some((r.id.clone(), self.ch.res_max(&r.id)?))).collect();
         self.flow = Some(Flow { level: self.ch.level, hp_max: self.ch.hp_max(), res });
     }
 
     fn flow_end(&mut self) {
         let Some(f) = self.flow.take() else { return };
+        self.lv = 0;
         let mut gain = 0;
         if let (Some(old), Some(new)) = (f.hp_max, self.ch.hp_max()) {
             gain = new - old;
@@ -890,7 +895,8 @@ impl App {
 
     /// Class data of a sheet that has a class progression.
     fn class_data(&self) -> Option<&'static crate::lists::ClassData> {
-        let name = self.ch.progression.as_deref()?.split('/').next()?;
+        let prog = if self.lv > 0 { &self.ch.multi.get(self.lv - 1)?.prog } else { self.ch.progression.as_ref()? };
+        let name = prog.split('/').next()?;
         crate::lists::class_data(name)
     }
 
@@ -898,8 +904,16 @@ impl App {
     fn choose_subclass(&mut self, c: &'static crate::lists::ClassData, i: usize) {
         let sub = &c.subclasses[i];
         self.snap_in_flow();
-        let level = self.ch.level;
-        self.ch.progression = Some(format!("{}/{}", c.name, sub.name));
+        let prog = format!("{}/{}", c.name, sub.name);
+        if self.lv > 0 {
+            let e = &mut self.ch.multi[self.lv - 1];
+            e.prog = prog;
+            let level = e.level;
+            self.take_class(self.lv, level);
+            return self.finish_class();
+        }
+        let level = self.ch.class_level();
+        self.ch.progression = Some(prog);
         self.ch.class_title = format!("{} {{level}} ({})", c.name, sub.name);
         self.ch.maneuver_pool = sub.maneuver_pool.clone();
         for r in &sub.resources { if self.ch.def(&r.id).is_none() { self.ch.resources.push(r.clone()); } }
@@ -912,8 +926,64 @@ impl App {
         }
         let want = self.ch.prog().map_or(0, |p| at(&p.maneuvers_known, level));
         for _ in self.ch.maneuvers.len() as u32..want { self.queue.push_front(Step::Maneuver { required: true }); }
+        self.finish_class();
+    }
+
+    fn finish_class(&mut self) {
         self.ch.sync_spell_resources();
         self.ch.init();
+    }
+
+    /// Bring the resources and actions of a secondary class up to its `level`; their level tables are frozen into numbers.
+    // ponytail: toggles (Rage), actions with dice tables and starting proficiencies of a second class are not taken, add them in the editor
+    fn take_class(&mut self, target: usize, level: u32) {
+        let prog = self.ch.multi[target - 1].prog.clone();
+        let (cls, sub) = prog.split_once('/').map_or((prog.as_str(), None), |(c, s)| (c, Some(s)));
+        let (Some(cd), Some(p)) = (crate::lists::class_data(cls), crate::lists::progression(cls, sub)) else { return };
+        let sd = sub.and_then(|s| cd.subclasses.iter().find(|x| x.name == s));
+        let defs = cd.resources.iter().chain(sd.iter().flat_map(|s| s.resources.iter()));
+        for r in defs {
+            let max = match &r.max {
+                Some(Max::Kw(k)) if k == "level" => Some(Max::N(level)),
+                Some(Max::Kw(k)) if k == "table" => Some(Max::N(p.resources.get(&r.id).map_or(0, |t| at(t, level)))),
+                m => m.clone(),
+            };
+            match self.ch.resources.iter_mut().find(|x| x.id == r.id) {
+                Some(x) => x.max = max,
+                None => self.ch.resources.push(ResourceDef { max, ..r.clone() }),
+            }
+        }
+        for a in cd.actions.iter().chain(sd.iter().flat_map(|s| s.actions.iter())) {
+            if a.dice_table.is_none() && a.die_table.is_none() && !self.ch.actions.iter().any(|x| x.name == a.name) { self.ch.actions.push(a.clone()); }
+        }
+        for (_, fs) in sd.iter().flat_map(|s| s.features.range(..=level)) {
+            for f in fs { if !self.ch.features.iter().any(|x| x.name == f.name) { self.ch.features.push(f.clone()); } }
+        }
+    }
+
+    /// Ability scores a class asks for before you can multiclass into it (any of the groups, all within a group).
+    fn can_enter(&self, class: &str) -> bool {
+        let need: &[&str] = match class {
+            "Barbarian" => &["STR"], "Bard" | "Sorcerer" | "Warlock" => &["CHA"], "Cleric" | "Druid" => &["WIS"], "Monk" | "Ranger" => &["DEX", "WIS"],
+            "Paladin" => &["STR", "CHA"], "Rogue" => &["DEX"], "Wizard" => &["INT"], "Fighter" => &[],
+            _ => &[],
+        };
+        let ok = |a: &str| self.ch.abilities.get(a).copied().unwrap_or(0) >= 13;
+        need.iter().all(|a| ok(a)) && (class != "Fighter" || ok("STR") || ok("DEX"))
+    }
+
+    /// Menu of the level up: each class the character has, then the classes it could start (label, class index, new class).
+    fn level_options(&self) -> Vec<(String, usize, Option<&'static str>)> {
+        let mut v: Vec<(String, usize, Option<&'static str>)> = self.ch.classes().iter().enumerate()
+            .map(|(i, (p, l))| (format!("{} {l} -> {}", p.replace('/', " / "), l + 1), i, None)).collect();
+        let have: Vec<String> = self.ch.classes().iter().map(|(p, _)| p.split('/').next().unwrap_or("").to_string()).collect();
+        let leaving_ok = self.ch.classes().iter().all(|(p, _)| self.can_enter(p.split('/').next().unwrap_or("")));
+        if leaving_ok {
+            for c in crate::lists::classes().iter().filter(|c| !have.contains(&c.name) && self.can_enter(&c.name)) {
+                v.push((format!("New class: {}", c.name), self.ch.multi.len() + 1, Some(c.name.as_str())));
+            }
+        }
+        v
     }
 
     fn expertise_options(&self) -> Vec<String> {
@@ -921,12 +991,25 @@ impl App {
     }
 
     fn level_up(&mut self) {
-        let Some(p) = self.ch.prog() else { return self.say("No level table for this sheet.", Tone::Warn) };
+        if self.ch.prog().is_none() { return self.say("No level table for this sheet.", Tone::Warn) }
         if self.ch.level >= 20 { return self.say("Already level 20.", Tone::Dim); }
         self.flow_begin();
-        let old_known = at(&p.maneuvers_known, self.ch.level);
+        self.queue.push_back(Step::LevelClass);
+        self.advance();
+    }
+
+    /// Level up in class `target` (0 the main one, n the n-th of `multi`), starting `new` first when given.
+    fn level_in(&mut self, target: usize, new: Option<&str>) {
+        if let Some(n) = new { self.ch.multi.push(Extra { prog: n.to_string(), level: 0 }); }
+        let (prog, old) = self.ch.classes()[target].clone();
+        let (cls, sub) = prog.split_once('/').map_or((prog.as_str(), None), |(c, s)| (c, Some(s)));
+        let Some(p) = crate::lists::progression(cls, sub) else { return };
+        let old_known = at(&p.maneuvers_known, old);
         self.ch.level += 1;
-        let l = self.ch.level;
+        if target > 0 { self.ch.multi[target - 1].level += 1; }
+        let l = old + 1;
+        self.lv = target;
+        if new.is_some() { self.say(format!("Multiclass: {cls}."), Tone::Good); }
         for f in p.features.get(&l).into_iter().flatten() {
             match self.ch.features.iter_mut().find(|x| x.name == f.name) {
                 Some(x) => x.desc = f.desc.clone(),
@@ -934,19 +1017,22 @@ impl App {
             }
             self.say(format!("New: {}: {}", f.name, f.desc), Tone::Good);
         }
+        if target > 0 { self.take_class(target, l); }
+        self.ch.sync_spell_resources();
         let asi = p.asi_levels.contains(&l);
-        let new = at(&p.maneuvers_known, l).saturating_sub(old_known);
-        if self.class_data().is_some_and(|c| c.subclass_level == l) && !self.ch.progression.as_deref().unwrap_or("").contains('/') {
-            self.queue.push_back(Step::Subclass);
-        }
+        let new_m = if target == 0 { at(&p.maneuvers_known, l).saturating_sub(old_known) } else { 0 };
+        let cd = crate::lists::class_data(cls);
+        if cd.is_some_and(|c| c.subclass_level == l) && sub.is_none() { self.queue.push_back(Step::Subclass); }
         self.queue.push_back(Step::Learn(true));
         self.queue.push_back(Step::Learn(false));
         self.queue.push_back(Step::Prepare);
-        if self.class_data().is_some_and(|c| c.style_level == l && l > 1 && !c.styles.is_empty()) { self.queue.push_back(Step::Style); }
-        if self.class_data().is_some_and(|c| c.expertise.contains(&l)) { self.queue.push_back(Step::Expertise); }
+        if target == 0 {
+            if cd.is_some_and(|c| c.style_level == l && l > 1 && !c.styles.is_empty()) { self.queue.push_back(Step::Style); }
+            if cd.is_some_and(|c| c.expertise.contains(&l)) { self.queue.push_back(Step::Expertise); }
+        }
         if asi { self.queue.push_back(Step::Asi); }
-        for _ in 0..new { self.queue.push_back(Step::Maneuver { required: true }); }
-        if new > 0 || (asi && self.ch.maneuver_pool.is_some()) { self.queue.push_back(Step::ReplaceAsk); }
+        for _ in 0..new_m { self.queue.push_back(Step::Maneuver { required: true }); }
+        if new_m > 0 || (asi && target == 0 && self.ch.maneuver_pool.is_some()) { self.queue.push_back(Step::ReplaceAsk); }
         self.queue.push_back(Step::Extras);
         self.advance();
     }
@@ -954,9 +1040,9 @@ impl App {
 
 /// What a prepared / spellbook caster can pick to prepare: the spellbook, or the class list (minus always-prepared spells).
 pub(crate) fn prepare_options(c: &Character) -> Vec<String> {
-    let Some(cast) = c.casting() else { return vec![] };
-    let always = crate::lists::always_spells(c.progression.as_deref().unwrap_or(""), c.level);
+    let Some((cast, cl, prog)) = c.cast_src() else { return vec![] };
+    let always = crate::lists::always_spells(&prog, cl);
     if cast.mode == "spellbook" { return c.spells.iter().filter(|s| !always.contains(s)).cloned().collect(); }
-    crate::lists::spell_choices(cast, c.progression.as_deref().unwrap_or(""), c.level, false).iter()
+    crate::lists::spell_choices(cast, &prog, cl, false).iter()
         .map(|s| s.name.clone()).filter(|n| !always.contains(n)).collect()
 }
