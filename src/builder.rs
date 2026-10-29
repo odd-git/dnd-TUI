@@ -468,6 +468,15 @@ mod tests {
     }
 
     #[test]
+    fn ancients_sentinel_and_champion() {
+        let c = paladin("Ancients", 15);
+        assert_eq!((c.res_max("undying_sentinel"), c.res_max("elder_champion")), (Some(1), Some(0)));
+        let s = c.actions.iter().find(|a| a.name == "Undying Sentinel").unwrap();
+        assert!(s.heal && s.bonus == 1 && c.dice(s).is_none());
+        assert!(c.actions.iter().any(|a| a.name == "Nature's Wrath" && a.uses.as_deref() == Some("channel_divinity")));
+    }
+
+    #[test]
     fn berserker_frenzy_and_presence() {
         let c = barbarian(3);
         assert!(c.toggles.iter().any(|t| t.name == "Frenzy" && t.exhaust));

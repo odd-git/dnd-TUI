@@ -255,6 +255,16 @@ SUB_MECH = {
                 {"name": "Holy Nimbus", "desc": "Action, 1 minute: bright light 30 ft, enemies starting a turn in it take 10 radiant; advantage on saves against fiend and undead spells", "uses": "holy_nimbus"},
             ],
         },
+        "Ancients": {
+            "tables": {"undying_sentinel": {"15": 1}, "elder_champion": {"20": 1}},
+            "resources": [res("undying_sentinel", "Undying Sentinel", "long", "table"), res("elder_champion", "Elder Champion", "long", "table")],
+            "actions": [
+                channel("Nature's Wrath", "Vines hold a creature within 10 ft: STR or DEX save DC {dc:CHA} (its pick) or restrained, a new save each turn", 3),
+                channel("Turn the Faithless", "Fey and fiends within 30 ft that hear you make a WIS save DC {dc:CHA} or are turned for 1 minute", 3),
+                {"name": "Undying Sentinel", "desc": "Use when dropped to 0 HP (not killed outright): back to 1 HP", "uses": "undying_sentinel", "heal": True, "bonus": 1},
+                {"name": "Elder Champion", "desc": "Action, 1 minute: regain 10 HP each turn, 1-action paladin spells as bonus actions, enemies within 10 ft save against them at disadvantage", "uses": "elder_champion"},
+            ],
+        },
     },
 }
 

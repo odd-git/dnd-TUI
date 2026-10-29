@@ -486,10 +486,57 @@
    "name": "Ancients",
    "source": "Player's Handbook",
    "needs_spells": false,
-   "resources": [],
-   "actions": [],
+   "resources": [
+    {
+     "id": "undying_sentinel",
+     "name": "Undying Sentinel",
+     "recharge": "long",
+     "max": "table",
+     "pips": true
+    },
+    {
+     "id": "elder_champion",
+     "name": "Elder Champion",
+     "recharge": "long",
+     "max": "table",
+     "pips": true
+    }
+   ],
+   "actions": [
+    {
+     "name": "Nature's Wrath",
+     "desc": "Vines hold a creature within 10 ft: STR or DEX save DC {dc:CHA} (its pick) or restrained, a new save each turn",
+     "uses": "channel_divinity",
+     "min_level": 3
+    },
+    {
+     "name": "Turn the Faithless",
+     "desc": "Fey and fiends within 30 ft that hear you make a WIS save DC {dc:CHA} or are turned for 1 minute",
+     "uses": "channel_divinity",
+     "min_level": 3
+    },
+    {
+     "name": "Undying Sentinel",
+     "desc": "Use when dropped to 0 HP (not killed outright): back to 1 HP",
+     "uses": "undying_sentinel",
+     "heal": true,
+     "bonus": 1
+    },
+    {
+     "name": "Elder Champion",
+     "desc": "Action, 1 minute: regain 10 HP each turn, 1-action paladin spells as bonus actions, enemies within 10 ft save against them at disadvantage",
+     "uses": "elder_champion"
+    }
+   ],
    "maneuver_pool": null,
-   "tables": {},
+   "tables": {
+    "undying_sentinel": {
+     "15": 1
+    },
+    "elder_champion": {
+     "20": 1
+    }
+   },
    "dice": {},
    "maneuvers_known": {},
    "features": {
