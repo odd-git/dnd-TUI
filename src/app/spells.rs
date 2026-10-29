@@ -73,6 +73,9 @@ impl App {
         let ab = self.ch.ability_for(&sp.name);
         let tag = if slot_level > sp.level { format!(" at level {slot_level}") } else { String::new() };
         let conc = if sp.conc { " [concentration]" } else { "" };
+        if sp.conc {
+            if let Some(old) = self.ch.concentration.replace(sp.name.clone()).filter(|o| *o != sp.name) { self.say(format!("Concentration on {old} ends."), Tone::Dim); }
+        }
         self.say(format!("Cast {}{tag}{conc}", sp.name), Tone::Good);
         let mut crit = false;
         if sp.attack {

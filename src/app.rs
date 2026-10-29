@@ -28,7 +28,7 @@ pub enum Item { Action(usize), Toggle(usize) }
 #[derive(Clone, PartialEq)]
 pub enum Cmd {
     Tab(Tab), Pick(usize), Select(usize), Click(usize), Enter, Up, Down, PageUp, PageDown,
-    Damage, Heal, Init, Maneuver, Roll(String), CheckMenu, Adv, Cond, Death, Items, Short, Long,
+    Damage, Heal, Temp, EndConc, Init, Maneuver, Roll(String), CheckMenu, Adv, Cond, Death, Items, Short, Long,
     Level, Edit, Undo, Back, New, Delete, Cast, Prepare, SpellClick(usize), JournalAdd, JournalDel, JournalSel(usize), ModalPick(usize),
 }
 
@@ -40,7 +40,7 @@ pub enum Step {
     Maneuver { required: bool }, ReplaceAsk, Forget, Extras, Skill, NoteName, NoteDesc(String), JournalAdd,
     Subclass, DeleteSheet(usize), Expertise, Style, Pool(String),
     Learn(bool), Prepare, CastSlot(String), SpellAdd, SpellDel, LevelClass,
-    Opt(String), Arcanum(u32), Secret, Smite, Recover(u32), FontSlot, FontPoints, BeastHp, Hd(usize), AnyCantrip,
+    Opt(String), Arcanum(u32), Secret, Smite, Recover(u32), FontSlot, FontPoints, BeastHp, Hd(usize), AnyCantrip, TempHp,
     // editor
     Ident, IdentSet(usize), Scores, ScoreSet(String), Unskill, ArmorPick, ShieldPick(Option<String>), WeaponPick,
     CustomName, CustomAb(String), CustomDice(String, Option<String>), CustomType(String, Option<String>, (u32, u32)),
@@ -195,7 +195,7 @@ impl App {
         let searchable = match &self.modal {
             Some(Modal::Input { .. }) => false,
             Some(_) => true,
-            None => !self.picking && matches!(self.tab, Tab::Character | Tab::Journal),
+            None => !self.picking && matches!(self.tab, Tab::Character | Tab::Journal | Tab::Spells),
         };
         if key.code == KeyCode::Char('/') && searchable { self.searching = true; self.query.clear(); return; }
         if let Some(Modal::Input { buf, numeric, .. }) = &mut self.modal {
@@ -237,7 +237,7 @@ impl App {
                 (_, 'n') if self.picking => Cmd::New,
                 (_, 'd') if self.picking => Cmd::Delete,
                 (_, 'q') => Cmd::Back, (_, 'z') => Cmd::Undo, (_, 'k') => Cmd::Up, (_, 'j') => Cmd::Down,
-                (Tab::Combat, 'd') => Cmd::Damage, (Tab::Combat, 'h') => Cmd::Heal, (Tab::Combat, 'i') => Cmd::Init,
+                (Tab::Combat, 'd') => Cmd::Damage, (Tab::Combat, 'h') => Cmd::Heal, (Tab::Combat, 'g') => Cmd::Temp, (_, 'o') if self.ch.concentration.is_some() => Cmd::EndConc, (Tab::Combat, 'i') => Cmd::Init,
                 (Tab::Combat, 'm') => Cmd::Maneuver, (Tab::Combat, 't') => Cmd::CheckMenu, (Tab::Combat, 'v') => Cmd::Adv,
                 (Tab::Combat, 'c') => Cmd::Cond, (Tab::Combat, 'x') => Cmd::Death, (Tab::Combat, 'p') => Cmd::Items,
                 (Tab::Combat, 's') => Cmd::Short, (Tab::Combat, 'l') => Cmd::Long, (Tab::Combat, 'u') => Cmd::Level,
@@ -427,6 +427,8 @@ impl App {
             Cmd::Damage | Cmd::Heal if self.ch.hp_max().is_none() => self.say("HP are not tracked on this sheet.", Tone::Warn),
             Cmd::Damage => self.open(Step::Damage),
             Cmd::Heal => self.open(Step::Heal),
+            Cmd::Temp => self.open(Step::TempHp),
+            Cmd::EndConc => { if let Some(s) = self.ch.concentration.clone() { self.snap(); self.ch.concentration = None; self.say(format!("Concentration on {s} ends."), Tone::Dim); } }
             Cmd::Init => {
                 let (r, note) = self.d20();
                 let m = self.ch.md("DEX");
@@ -616,6 +618,7 @@ impl App {
         self.reset(true);
         self.ch.hp = self.ch.hp_max().or(self.ch.hp);
         self.ch.death = [0, 0];
+        self.ch.temp_hp = 0;
         self.say("Long Rest completed.", Tone::Good);
     }
 
@@ -651,6 +654,7 @@ impl App {
         match step.clone() {
             Step::Damage => self.input("Damage taken", step, true),
             Step::Heal => self.input("HP healed", step, true),
+            Step::TempHp => self.input(format!("Temporary HP (now {}, the higher one stays)", self.ch.temp_hp), step, true),
             Step::Check => {
                 let items = self.ch.checks().iter().map(|(n, m)| format!("{n} {m:+}")).collect();
                 self.list("Roll a check", items, step, true);
@@ -769,14 +773,18 @@ impl App {
                     self.heal(n);
                     return self.say(format!("Healed {n} HP."), Tone::Good);
                 }
+                let taken = n;
                 let n = self.beast_soak(n);
-                if n == 0 { return; }
-                let hp = self.ch.hp.unwrap_or(0);
-                self.ch.hp = Some((hp - n).max(0));
-                let mut msg = format!("Took {n} damage.");
-                if hp == 0 && n > 0 { self.ch.death[1] = (self.ch.death[1] + 1).min(3); msg += " Death save failure."; }
-                else if hp > 0 && self.ch.hp == Some(0) { self.ch.death = [0, 0]; msg += " DOWN! Death saves."; }
-                self.say(msg, Tone::Warn);
+                let n = self.temp_soak(n);
+                if n > 0 {
+                    let hp = self.ch.hp.unwrap_or(0);
+                    self.ch.hp = Some((hp - n).max(0));
+                    let mut msg = format!("Took {n} damage.");
+                    if hp == 0 { self.ch.death[1] = (self.ch.death[1] + 1).min(3); msg += " Death save failure."; }
+                    else if self.ch.hp == Some(0) { self.ch.death = [0, 0]; msg += " DOWN! Death saves."; }
+                    self.say(msg, Tone::Warn);
+                }
+                self.concentration_check(taken);
             }
             Step::Pool(id) => {
                 let n = num.unwrap_or(0).clamp(0, self.have(&id) as i32);
@@ -814,6 +822,12 @@ impl App {
                 self.say("Short Rest: short-rest resources back.", Tone::Good);
             }
             Step::BeastHp => { if let Ok(n) = num { self.beast_form(n); } }
+            Step::TempHp => {
+                let Ok(n) = num else { return };
+                self.snap();
+                self.ch.temp_hp = self.ch.temp_hp.max(n.max(0));
+                self.say(format!("Temporary HP: {}.", self.ch.temp_hp), Tone::Good);
+            }
             Step::NoteName => { if !text.is_empty() { self.open(Step::NoteDesc(text)); } }
             Step::NoteDesc(name) => { self.snap_in_flow(); self.ch.features.push(Feature { name, desc: text }); }
             Step::JournalAdd => {

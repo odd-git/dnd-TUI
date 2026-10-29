@@ -136,6 +136,8 @@ pub fn build(d: &Draft) -> Character {
         background: d.background.clone(),
         class_title: title,
         multi: vec![],
+        temp_hp: 0,
+        concentration: None,
         level: d.level,
         hit_die: Some(class.hit_die),
         abilities,

@@ -279,6 +279,31 @@ impl App {
         self.say(format!("Level {l} slot into sorcery points ({} now).", self.have("sorcery_points")), Tone::Good);
     }
 
+    /// Temporary HP go first; returns the damage left for real HP.
+    pub(super) fn temp_soak(&mut self, n: i32) -> i32 {
+        let t = self.ch.temp_hp.min(n);
+        if t == 0 { return n; }
+        self.ch.temp_hp -= t;
+        self.say(format!("Temporary HP absorb {t} ({} left).", self.ch.temp_hp), Tone::Warn);
+        n - t
+    }
+
+    /// Damage while concentrating: CON save, DC 10 or half the damage; dropping to 0 HP ends it outright.
+    pub(super) fn concentration_check(&mut self, damage: i32) {
+        let Some(sp) = self.ch.concentration.clone() else { return };
+        if damage <= 0 { return; }
+        if self.ch.hp == Some(0) {
+            self.ch.concentration = None;
+            return self.say(format!("Concentration on {sp} ends (down)."), Tone::Warn);
+        }
+        let dc = (damage / 2).max(10);
+        let m = self.ch.check_mod("CON save");
+        let (r, note) = self.d20();
+        let ok = r as i32 + m >= dc;
+        self.say(format!("Concentration ({sp}): CON save {r}{m:+}={}{note} vs DC {dc}: {}", r as i32 + m, if ok { "held" } else { "LOST" }), if ok { Tone::Good } else { Tone::Warn });
+        if !ok { self.ch.concentration = None; }
+    }
+
     pub(super) fn beast_form(&mut self, hp: i32) {
         self.ch.res.insert("beast_hp".into(), hp.max(1) as u32);
         self.ch.active.push("Wild Shape".into());

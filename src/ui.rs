@@ -93,7 +93,8 @@ fn footer(app: &App) -> Vec<(String, String, Cmd)> {
     let s = |k: &str, l: &str, c: Cmd| (k.to_string(), l.to_string(), c);
     match app.tab {
         Tab::Combat => {
-            let mut v = vec![s("Enter", "Run", Cmd::Enter), s("D", "Damage", Cmd::Damage), s("H", "Heal", Cmd::Heal), s("I", "Init", Cmd::Init)];
+            let mut v = vec![s("Enter", "Run", Cmd::Enter), s("D", "Damage", Cmd::Damage), s("H", "Heal", Cmd::Heal), s("G", "Temp HP", Cmd::Temp), s("I", "Init", Cmd::Init)];
+            if app.ch.concentration.is_some() { v.push(s("O", "End concentration", Cmd::EndConc)); }
             if app.ch.maneuver_pool.is_some() { v.push(s("M", "Maneuver die", Cmd::Maneuver)); }
             let adv = match app.adv { Adv::Normal => "Roll: normal", Adv::Adv => "Roll: ADVANTAGE", Adv::Dis => "Roll: DISADVANTAGE" };
             v.extend([s("T", "Check", Cmd::CheckMenu), s("V", adv, Cmd::Adv), s("C", "Conditions", Cmd::Cond), s("X", "Death save", Cmd::Death)]);
@@ -146,12 +147,14 @@ fn status_lines(app: &App) -> Vec<Line<'static>> {
         let col = if hp * 4 <= max { Color::Red } else if hp * 2 <= max { Color::Yellow } else { GREEN };
         l2.push(Span::raw(format!("HP {hp}/{max} ")));
         l2.push(Span::styled(bar(hp, max), Style::new().fg(col)));
+        if c.temp_hp > 0 { l2.push(Span::styled(format!(" +{} temp", c.temp_hp), Style::new().fg(Color::Cyan))); }
         l2.push(Span::raw(" | "));
     }
     if let Some(ac) = c.ac() { l2.push(Span::raw(format!("AC {ac} | "))); }
     l2.push(Span::raw(format!("Init {:+} | Prof +{}", c.md("DEX"), c.prof())));
     v.push(Line::from(l2));
 
+    if let Some(sp) = &c.concentration { v.push(Line::styled(format!("Concentrating: {sp} (O ends)"), Style::new().fg(Color::Magenta))); }
     if c.hp == Some(0) {
         let mark = |n: u8, on: &str| format!("{}{}", on.repeat(n as usize), "○".repeat(3 - n as usize));
         v.push(Line::from(Span::styled(format!("DOWN: death saves  {}  {}", mark(c.death[0], "✔"), mark(c.death[1], "✘")), Style::new().fg(Color::Red).bold())));

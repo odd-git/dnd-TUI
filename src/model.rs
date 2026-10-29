@@ -136,6 +136,8 @@ pub struct Character {
     #[serde(default)] pub journal: Vec<String>,
     // live state
     pub hp: Option<i32>,
+    #[serde(default)] pub temp_hp: i32,
+    #[serde(default)] pub concentration: Option<String>, // spell being concentrated on
     #[serde(default)] pub death: [u8; 2], // successes, failures
     #[serde(default)] pub conditions: Vec<String>,
     #[serde(default)] pub active: Vec<String>,
