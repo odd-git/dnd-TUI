@@ -193,6 +193,10 @@ SUB_MECH = {
                  "dice": [2, 10], "level_bonus": True, "dmg_type": "radiant"},
             ],
         },
+        "Nature": {"tables": DIVINE_STRIKE, "actions": [
+            channel("Charm Animals and Plants", "Beasts and plants within 30 ft that see you make a WIS save DC {dc:WIS} or are charmed for 1 minute or until harmed"),
+            divine_strike("cold, fire or lightning"),
+        ]},
     },
 }
 

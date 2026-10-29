@@ -1041,9 +1041,32 @@
    "source": "Player's Handbook",
    "needs_spells": false,
    "resources": [],
-   "actions": [],
+   "actions": [
+    {
+     "name": "Charm Animals and Plants",
+     "desc": "Beasts and plants within 30 ft that see you make a WIS save DC {dc:WIS} or are charmed for 1 minute or until harmed",
+     "uses": "channel_divinity",
+     "min_level": 2
+    },
+    {
+     "name": "Divine Strike",
+     "desc": "Once per turn, on a weapon hit",
+     "dice": [
+      1,
+      8
+     ],
+     "dice_table": "divine_strike",
+     "dmg_type": "cold, fire or lightning",
+     "min_level": 8
+    }
+   ],
    "maneuver_pool": null,
-   "tables": {},
+   "tables": {
+    "divine_strike": {
+     "8": 1,
+     "14": 2
+    }
+   },
    "dice": {},
    "maneuvers_known": {},
    "features": {
