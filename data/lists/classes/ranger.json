@@ -1,4 +1,246 @@
 {
+ "casting": {
+  "ability": "WIS",
+  "kind": "half",
+  "mode": "known",
+  "list": "Ranger",
+  "known": {
+   "1": 0,
+   "2": 2,
+   "3": 3,
+   "5": 4,
+   "7": 5,
+   "9": 6,
+   "11": 7,
+   "13": 8,
+   "15": 9,
+   "17": 10,
+   "19": 11
+  },
+  "slots": {
+   "1": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "2": [
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "3": [
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "4": [
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "5": [
+    4,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "6": [
+    4,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "7": [
+    4,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "8": [
+    4,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "9": [
+    4,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "10": [
+    4,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "11": [
+    4,
+    3,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "12": [
+    4,
+    3,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "13": [
+    4,
+    3,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "14": [
+    4,
+    3,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "15": [
+    4,
+    3,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "16": [
+    4,
+    3,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "17": [
+    4,
+    3,
+    3,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "18": [
+    4,
+    3,
+    3,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "19": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0
+   ],
+   "20": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0
+   ]
+  }
+ },
+ "dice": {},
  "name": "Ranger",
  "hit_die": 10,
  "saves": [
@@ -147,12 +389,6 @@
     "desc": "Starting at 8th level, moving through nonmagical difficult terrain costs you no extra movement. You can also pass through nonmagical plants without being slowed by them and without taking damage from..."
    }
   ],
-  "9": [
-   {
-    "name": "6",
-    "desc": "6"
-   }
-  ],
   "10": [
    {
     "name": "Natural Explorer Improvement",
@@ -163,12 +399,6 @@
     "desc": "Starting at 10th level, you can spend 1 minute creating camouflage for yourself. You must have access to fresh mud, dirt, plants, soot, and other naturally occurring materials with which to create..."
    }
   ],
-  "13": [
-   {
-    "name": "8",
-    "desc": "8"
-   }
-  ],
   "14": [
    {
     "name": "Favored Enemy Improvement",
@@ -177,12 +407,6 @@
    {
     "name": "Vanish",
     "desc": "Starting at 14th level, you can use the Hide action as a bonus action on your turn. Also, you can't be tracked by nonmagical means, unless you choose to leave a trail."
-   }
-  ],
-  "17": [
-   {
-    "name": "10",
-    "desc": "10"
    }
   ],
   "18": [

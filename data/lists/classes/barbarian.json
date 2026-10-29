@@ -1,4 +1,6 @@
 {
+ "casting": null,
+ "dice": {},
  "name": "Barbarian",
  "hit_die": 12,
  "saves": [

@@ -19,6 +19,9 @@ pub struct Draft {
     pub class_skills: Vec<String>,
     pub free_skills: Vec<String>, // lineage/background "of your choice"
     pub expertise: Vec<String>,
+    pub cantrips: Vec<String>,
+    pub spells: Vec<String>,
+    pub prepared: Vec<String>,
     pub feats: Vec<String>,
     pub feat_picks: Vec<String>,  // ability raised by each feat, "" when it has no choice
     pub style: Option<String>,
@@ -138,6 +141,9 @@ pub fn build(d: &Draft) -> Character {
         save_profs: class.saves.clone(),
         skills,
         expertise: d.expertise.clone(),
+        cantrips: d.cantrips.clone(),
+        spells: d.spells.clone(),
+        prepared: d.prepared.clone(),
         ac_base: None,
         ac_dex_max: None,
         ac_extra: class.unarmored.as_ref().map(|u| u.ability.clone()),
@@ -187,6 +193,7 @@ pub fn build(d: &Draft) -> Character {
     if !gear.is_empty() { info.push(format!("Gear: {}", gear.join(", "))); }
     c.info = info;
 
+    c.sync_spell_resources();
     c.init();
     c
 }
@@ -375,6 +382,24 @@ mod tests {
         assert!(c.features.iter().any(|f| f.name == "Hide in Plain Sight"));
         assert!(half("Ranger", "Hunter", 14).features.iter().any(|f| f.name == "Vanish"));
         assert!(half("Ranger", "Hunter", 3).features.iter().any(|f| f.name == "Hunter's Prey"));
+    }
+
+    #[test]
+    fn casters_match_the_wikidot_tables() {
+        use crate::model::at;
+        let w = lists::casting_of("Wizard/School of Evocation").unwrap();
+        assert_eq!((w.slots_at(1, 1), w.slots_at(5, 3), w.slots_at(11, 6), w.slots_at(20, 9)), (2, 2, 1, 1));
+        assert_eq!((at(&w.cantrips, 1), at(&w.cantrips, 4), at(&w.cantrips, 10)), (3, 4, 5));
+        let k = lists::casting_of("Warlock/The Fiend").unwrap();
+        assert_eq!((at(&k.pact_slots, 1), at(&k.pact_slots, 2), at(&k.pact_slots, 11), at(&k.pact_level, 9)), (1, 2, 3, 5));
+        let b = lists::casting_of("Bard/College of Lore").unwrap();
+        assert_eq!((at(&b.known, 1), at(&b.known, 20)), (4, 22));
+        let ek = lists::casting_of("Fighter/Eldritch Knight").unwrap();
+        assert_eq!((ek.slots_at(3, 1), ek.slots_at(7, 2), at(&ek.cantrips, 10)), (2, 2, 3));
+        let at_ = lists::casting_of("Rogue/Arcane Trickster").unwrap();
+        assert_eq!(at(&at_.cantrips, 3), 3);
+        assert!(lists::always_spells("Cleric/Life", 3).iter().any(|s| s == "Bless"));
+        assert!(lists::casting_of("Barbarian/Path of the Berserker").is_none());
     }
 
     #[test]

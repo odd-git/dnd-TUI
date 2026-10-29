@@ -1,4 +1,234 @@
 {
+ "casting": {
+  "ability": "CHA",
+  "kind": "half",
+  "mode": "prepared",
+  "prepared": "mod+half",
+  "list": "Paladin",
+  "slots": {
+   "1": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "2": [
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "3": [
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "4": [
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "5": [
+    4,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "6": [
+    4,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "7": [
+    4,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "8": [
+    4,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "9": [
+    4,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "10": [
+    4,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "11": [
+    4,
+    3,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "12": [
+    4,
+    3,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "13": [
+    4,
+    3,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "14": [
+    4,
+    3,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "15": [
+    4,
+    3,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "16": [
+    4,
+    3,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "17": [
+    4,
+    3,
+    3,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "18": [
+    4,
+    3,
+    3,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "19": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0
+   ],
+   "20": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0
+   ]
+  }
+ },
+ "dice": {},
  "name": "Paladin",
  "hit_die": 10,
  "saves": [
@@ -207,12 +437,6 @@
     "desc": "Starting at 6th level, whenever you or a friendly creature within 10 feet of you must make a saving throw, the creature gains a bonus to the saving throw equal to your Charisma modifier (with a..."
    }
   ],
-  "9": [
-   {
-    "name": "4",
-    "desc": "4"
-   }
-  ],
   "10": [
    {
     "name": "Aura of Courage",
@@ -225,22 +449,10 @@
     "desc": "By 11th level, you are so suffused with righteous might that all your melee weapon strikes carry divine power with them. Whenever you hit a creature with a melee weapon, the creature takes an extra..."
    }
   ],
-  "13": [
-   {
-    "name": "4",
-    "desc": "4"
-   }
-  ],
   "14": [
    {
     "name": "Cleansing Touch",
     "desc": "Beginning at 14th level, you can use your action to end one spell on yourself or on one willing creature that you touch. You can use this feature a number of times equal to your Charisma modifier (a..."
-   }
-  ],
-  "17": [
-   {
-    "name": "4",
-    "desc": "4"
    }
   ],
   "18": [
@@ -286,6 +498,28 @@
       "desc": "At 20th level, you can assume the form of an ancient force of nature, taking on an appearance you choose. For example, your skin might turn..."
      }
     ]
+   },
+   "always": {
+    "3": [
+     "Ensnaring Strike",
+     "Speak with Animals"
+    ],
+    "5": [
+     "Moonbeam",
+     "Misty Step"
+    ],
+    "9": [
+     "Plant Growth",
+     "Protection from Energy"
+    ],
+    "13": [
+     "Ice Storm",
+     "Stoneskin"
+    ],
+    "17": [
+     "Commune with Nature",
+     "Tree Stride"
+    ]
    }
   },
   {
@@ -322,6 +556,28 @@
       "name": "Invincible Conqueror",
       "desc": "At 20th level, you gain the ability to harness extraordinary martial prowess. As an action, you can magically become an avatar of conquest..."
      }
+    ]
+   },
+   "always": {
+    "3": [
+     "Armor of Agathys",
+     "Command"
+    ],
+    "5": [
+     "Hold Person",
+     "Spiritual Weapon"
+    ],
+    "9": [
+     "Bestow Curse",
+     "Fear"
+    ],
+    "13": [
+     "Dominate Beast",
+     "Stoneskin"
+    ],
+    "17": [
+     "Cloudkill",
+     "Dominate Person"
     ]
    }
   },
@@ -360,6 +616,28 @@
       "desc": "At 20th level, your presence on the field of battle is an inspiration to those dedicated to your cause. You can use your action to gain the..."
      }
     ]
+   },
+   "always": {
+    "3": [
+     "Command",
+     "Compelled Duel"
+    ],
+    "5": [
+     "Warding Bond",
+     "Zone of Truth"
+    ],
+    "9": [
+     "Aura of Vitality",
+     "Spirit Guardians"
+    ],
+    "13": [
+     "Banishment",
+     "Guardian of Faith"
+    ],
+    "17": [
+     "Circle of Power",
+     "Geas"
+    ]
    }
   },
   {
@@ -396,6 +674,28 @@
       "name": "Holy Nimbus",
       "desc": "At 20th level, as an action, you can emanate an aura of sunlight. For 1 minute, bright light shines from you in a 30-foot radius, and dim..."
      }
+    ]
+   },
+   "always": {
+    "3": [
+     "Protection from Evil and Good",
+     "Sanctuary"
+    ],
+    "5": [
+     "Lesser Restoration",
+     "Zone of Truth"
+    ],
+    "9": [
+     "Beacon of Hope",
+     "Dispel Magic"
+    ],
+    "13": [
+     "Freedom of Movement",
+     "Guardian of Faith"
+    ],
+    "17": [
+     "Commune",
+     "Flame Strike"
     ]
    }
   },
@@ -434,6 +734,28 @@
       "desc": "At 20th level, you can empower yourself with the legends — whether true or exaggerated — of your great deeds. As a bonus action, you gain..."
      }
     ]
+   },
+   "always": {
+    "3": [
+     "Guiding Bolt",
+     "Heroism"
+    ],
+    "5": [
+     "Enhance Ability",
+     "Magic Weapon"
+    ],
+    "9": [
+     "Haste",
+     "Protection From Energy"
+    ],
+    "13": [
+     "Compulsion",
+     "Freedom Of Movement"
+    ],
+    "17": [
+     "Commune",
+     "Flame Strike"
+    ]
    }
   },
   {
@@ -470,6 +792,28 @@
       "name": "Dread Lord",
       "desc": "At 20th level, you can, as an action, surround yourself with an aura of gloom that lasts for 1 minute. The aura reduces any bright light in..."
      }
+    ]
+   },
+   "always": {
+    "3": [
+     "Hellish Rebuke",
+     "Inflict Wounds"
+    ],
+    "5": [
+     "Crown of Madness",
+     "Darkness"
+    ],
+    "9": [
+     "Animate Dead",
+     "Bestow Curse"
+    ],
+    "13": [
+     "Blight",
+     "Confusion"
+    ],
+    "17": [
+     "Contagion",
+     "Dominate Person"
     ]
    }
   },
@@ -508,6 +852,28 @@
       "desc": "At 20th level, you become an avatar of peace, which gives you two benefits: You have resistance to all damage dealt by other creatures..."
      }
     ]
+   },
+   "always": {
+    "3": [
+     "Sanctuary",
+     "Sleep"
+    ],
+    "5": [
+     "Calm Emotions",
+     "Hold Person"
+    ],
+    "9": [
+     "Counterspell",
+     "Hypnotic Pattern"
+    ],
+    "13": [
+     "Otiluke's Resilient Sphere",
+     "Stoneskin"
+    ],
+    "17": [
+     "Hold Monster",
+     "Wall of Force"
+    ]
    }
   },
   {
@@ -545,6 +911,28 @@
       "desc": "At 20th level, you can assume the form of an angelic avenger. Using your action, you undergo a transformation. For 1 hour, you gain the..."
      }
     ]
+   },
+   "always": {
+    "3": [
+     "Bane",
+     "Hunter's Mark"
+    ],
+    "5": [
+     "Hold Person",
+     "Misty Step"
+    ],
+    "9": [
+     "Haste",
+     "Protection from Energy"
+    ],
+    "13": [
+     "Banishment",
+     "Dimension Door"
+    ],
+    "17": [
+     "Hold Monster",
+     "Scrying"
+    ]
    }
   },
   {
@@ -581,6 +969,28 @@
       "name": "Mortal Bulwark",
       "desc": "At 20th level, you manifest a spark of divine power in defense of the mortal realms. As a bonus action, you gain the following benefits for..."
      }
+    ]
+   },
+   "always": {
+    "3": [
+     "Alarm",
+     "Detect Magic"
+    ],
+    "5": [
+     "Moonbeam",
+     "See Invisibility"
+    ],
+    "9": [
+     "Counterspell",
+     "Nondetection"
+    ],
+    "13": [
+     "Aura of Purity",
+     "Banishment"
+    ],
+    "17": [
+     "Hold Monster",
+     "Scrying"
     ]
    }
   }

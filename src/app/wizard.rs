@@ -2,6 +2,7 @@
 
 use super::*;
 use crate::builder::{build, Draft};
+use super::prepare_options;
 use crate::lists;
 
 const LANGUAGES: [&str; 16] = [
@@ -14,7 +15,7 @@ const METHODS: [&str; 4] = ["Standard array (15 14 13 12 10 8)", "Roll 4d6, drop
 #[derive(Clone, Copy)]
 pub enum Wz {
     Name, Level, Lineage, Sub, Class, Subclass, Background, Method, Score(usize), Asi(usize),
-    ClassSkills, FreeSkills, Languages, Tool, Feat(usize), FeatPick(usize), Style, Maneuvers, Expertise,
+    ClassSkills, FreeSkills, Languages, Tool, Feat(usize), FeatPick(usize), Style, Maneuvers, Expertise, Cantrips, Spells, Prepare,
     Armor, Shield, Weapons, Review,
 }
 
@@ -54,6 +55,31 @@ impl App {
         v.extend(d.class_skills.clone());
         v.extend(d.free_skills.clone());
         v
+    }
+
+    fn prog(&self) -> String {
+        let d = self.dr();
+        match &d.subclass { Some(s) => format!("{}/{s}", d.class), None => d.class.clone() }
+    }
+
+    fn casting_mode(&self) -> String { lists::casting_of(&self.prog()).map(|c| c.mode.clone()).unwrap_or_default() }
+
+    /// (how many to pick, names offered) for cantrips or known / spellbook spells.
+    fn spell_pick(&self, cantrips: bool) -> (usize, Vec<String>) {
+        let prog = self.prog();
+        let Some(c) = lists::casting_of(&prog) else { return (0, vec![]) };
+        let c = build(self.dr());
+        let n = if cantrips { c.cantrips_max() } else if c.casting().is_some_and(|x| x.mode == "prepared") { 0 } else { c.known_max() };
+        let names = lists::spell_choices(c.casting().unwrap(), &prog, c.level, cantrips).iter().map(|s| s.name.clone()).collect::<Vec<_>>();
+        (n.min(names.len()), names)
+    }
+
+    fn prepare_pick(&self) -> (usize, Vec<String>) {
+        let c = build(self.dr());
+        let Some(cast) = c.casting() else { return (0, vec![]) };
+        if cast.mode == "known" { return (0, vec![]); }
+        let names = prepare_options(&c);
+        (c.prepared_max().min(names.len()), names)
     }
 
     fn expertise_count(&self) -> usize { 2 * self.class().expertise.iter().filter(|&&l| l <= self.dr().level).count() }
@@ -196,8 +222,24 @@ impl App {
             }
             Wz::Expertise => {
                 let n = self.expertise_count();
-                if n == 0 { return skip(self, Wz::Armor); }
+                if n == 0 { return skip(self, Wz::Cantrips); }
                 self.wiz_multi(&format!("Expertise (double proficiency): choose {n}"), self.known_skills(), n, w);
+            }
+            Wz::Cantrips => {
+                let (n, names) = self.spell_pick(true);
+                if n == 0 { return skip(self, Wz::Spells); }
+                self.wiz_multi(&format!("Cantrips: choose {n}"), names, n, w);
+            }
+            Wz::Spells => {
+                let (n, names) = self.spell_pick(false);
+                if n == 0 { return skip(self, Wz::Prepare); }
+                let title = if self.casting_mode() == "spellbook" { "Spellbook" } else { "Spells known" };
+                self.wiz_multi(&format!("{title}: choose {n}"), names, n, w);
+            }
+            Wz::Prepare => {
+                let (n, names) = self.prepare_pick();
+                if n == 0 { return skip(self, Wz::Armor); }
+                self.wiz_multi(&format!("Prepare spells: choose {n}"), names, n, w);
             }
             Wz::Armor => {
                 let mut items = vec!["No armor".to_string()];
@@ -351,6 +393,21 @@ impl App {
             Wz::Expertise => {
                 let opts = self.known_skills();
                 self.d().expertise = picked.iter().map(|&i| opts[i].clone()).collect();
+                self.wiz_open(Wz::Cantrips);
+            }
+            Wz::Cantrips => {
+                let (_, names) = self.spell_pick(true);
+                self.d().cantrips = picked.iter().map(|&i| names[i].clone()).collect();
+                self.wiz_open(Wz::Spells);
+            }
+            Wz::Spells => {
+                let (_, names) = self.spell_pick(false);
+                self.d().spells = picked.iter().map(|&i| names[i].clone()).collect();
+                self.wiz_open(Wz::Prepare);
+            }
+            Wz::Prepare => {
+                let (_, names) = self.prepare_pick();
+                self.d().prepared = picked.iter().map(|&i| names[i].clone()).collect();
                 self.wiz_open(Wz::Armor);
             }
             Wz::Weapons => {

@@ -60,6 +60,11 @@ impl App {
             Step::CustomDice(..) => self.input("Damage dice, e.g. 1d8 (empty: no damage)", step, false),
             Step::CustomType(..) => self.input("Damage type", step, false),
             Step::RmAction => { let items = c.actions.iter().map(|a| a.name.clone()).collect(); self.list("Remove which action?", items, step, true) }
+            Step::SpellAdd => {
+                let items = self.spell_add_items().iter().map(|s| format!("{} {}", if s.level == 0 { "C".to_string() } else { s.level.to_string() }, s.name)).collect();
+                self.list("Add spell", items, step, true);
+            }
+            Step::SpellDel => { let items = self.spell_known_names(); self.list("Remove spell", items, step, true) }
             Step::FeatList => {
                 let items = self.feat_choices().iter().map(|f| match &f.prereq {
                     Some(p) => format!("{} ({})  [{p}]", f.name, lists::abbr(&f.source)),
@@ -116,6 +121,20 @@ impl App {
                 self.open(Step::CustomDice(name, ab));
             }
             Step::RmAction => { if i < self.ch.actions.len() { let a = self.ch.actions.remove(i); self.say(format!("Removed {}.", a.name), Tone::Dim); } }
+            Step::SpellAdd => {
+                let Some(s) = self.spell_add_items().get(i).copied() else { return };
+                if s.level == 0 { self.ch.cantrips.push(s.name.clone()) } else { self.ch.spells.push(s.name.clone()) }
+                self.say(format!("Added {}.", s.name), Tone::Good);
+            }
+            Step::SpellDel => {
+                let n = self.spell_known_names().get(i).cloned();
+                if let Some(n) = n {
+                    self.ch.cantrips.retain(|x| *x != n);
+                    self.ch.spells.retain(|x| *x != n);
+                    self.ch.prepared.retain(|x| *x != n);
+                    self.say(format!("Removed {n}."), Tone::Dim);
+                }
+            }
             Step::FeatList => {
                 let Some(f) = self.feat_choices().get(i).copied() else { return };
                 self.ch.features.push(Feature { name: format!("Feat: {}", f.name), desc: f.desc.clone() });

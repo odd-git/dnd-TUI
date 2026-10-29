@@ -156,7 +156,7 @@ def clean_source(text: str) -> str:
 
 def source_of(blocks) -> str | None:
     for _, _, t in blocks:
-        if m := re.match(r"Source:\s*(.+)", t):
+        if m := re.match(r"Sources?:\s*(.+)", t):
             return clean_source(m[1])
     return None
 

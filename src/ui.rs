@@ -57,7 +57,7 @@ pub fn draw(f: &mut Frame, app: &App) -> Hot {
         let parts = Layout::vertical([Constraint::Length(1), Constraint::Min(3), Constraint::Length(rows)]).split(area);
 
         let mut x = parts[0].x;
-        for (tab, name) in TABS {
+        for (tab, name) in app.tabs() {
             let w = name.len() as u16 + 2;
             let r = Rect::new(x, parts[0].y, w, 1);
             let style = if tab == app.tab { selected() } else { Style::new().fg(GREEN) };
@@ -65,11 +65,12 @@ pub fn draw(f: &mut Frame, app: &App) -> Hot {
             hot.push((r, Cmd::Tab(tab)));
             x += w + 1;
         }
-        let who = if app.searching || !app.query.is_empty() { search_text(app) } else { format!("{}  (Tab/F1-F3 switch, / search)", app.ch.name) };
+        let who = if app.searching || !app.query.is_empty() { search_text(app) } else { format!("{}  (Tab/F1-F4 switch, / search)", app.ch.name) };
         f.render_widget(Paragraph::new(who).style(tone(Tone::Dim)).alignment(Alignment::Right), parts[0]);
 
         match app.tab {
             Tab::Combat => draw_combat(f, app, parts[1], &mut hot),
+            Tab::Spells => draw_spells(f, app, parts[1], &mut hot),
             Tab::Character => draw_character(f, app, parts[1]),
             Tab::Journal => draw_journal(f, app, parts[1], &mut hot),
         }
@@ -99,6 +100,12 @@ fn footer(app: &App) -> Vec<(String, String, Cmd)> {
             if app.ch.resources.iter().any(|r| r.max.is_none()) { v.push(s("P", "Items", Cmd::Items)); }
             v.extend([s("S", "Short rest", Cmd::Short), s("L", "Long rest", Cmd::Long), s("U", "Level up", Cmd::Level),
                       s("E", "Edit", Cmd::Edit), s("Z", "Undo", Cmd::Undo), s("Q", "Sheets", Cmd::Back)]);
+            v
+        }
+        Tab::Spells => {
+            let mut v = vec![s("Enter", "Cast", Cmd::Cast)];
+            if app.ch.casting().is_some_and(|c| c.mode != "known") { v.push(s("P", "Prepare", Cmd::Prepare)); }
+            v.extend([s("E", "Edit", Cmd::Edit), s("Z", "Undo", Cmd::Undo), s("S", "Short rest", Cmd::Short), s("L", "Long rest", Cmd::Long), s("Q", "Sheets", Cmd::Back)]);
             v
         }
         Tab::Character => vec![s("↑↓", "Scroll", Cmd::Down), s("/", "Search", Cmd::Down), s("Z", "Undo", Cmd::Undo), s("Q", "Sheets", Cmd::Back)],
@@ -162,7 +169,7 @@ fn status_lines(app: &App) -> Vec<Line<'static>> {
     if !d.is_empty() { v.push(Line::from(d.join(" | "))); }
 
     let mut r: Vec<Span> = vec![];
-    for def in &c.resources {
+    for def in c.resources.iter().filter(|d| !(d.id.starts_with("slot") || d.id == "pact")) {
         let cur = c.res.get(&def.id).copied().unwrap_or(0);
         let die = c.res_die(&def.id).map(|x| format!(" d{x}")).unwrap_or_default();
         let text = match c.res_max(&def.id) {
@@ -175,6 +182,7 @@ fn status_lines(app: &App) -> Vec<Line<'static>> {
         r.push(Span::styled(text, if cur == 0 && def.pips { tone(Tone::Dim) } else { Style::new() }));
     }
     if !r.is_empty() { v.push(Line::from(r)); }
+    if let Some(l) = slots_line(c) { v.push(l); }
 
     let mut st = vec![];
     if !c.conditions.is_empty() { st.push(Span::styled(format!("Conditions: {}", c.conditions.join(", ")), Style::new().fg(Color::Yellow))); }
@@ -440,3 +448,64 @@ fn list_box(f: &mut Frame, area: Rect, hot: &mut Hot, title: &str, items: &[Stri
     let hint = if app.searching || !app.query.is_empty() { format!("{}  (Enter keeps, Esc clears)", search_text(app)) } else { format!("{hint}, / searches") };
     f.render_widget(Paragraph::new(format!(" {hint}")).style(tone(Tone::Dim)), Rect::new(inner.x, inner.y + inner.height.saturating_sub(1), inner.width, 1));
 }
+
+/// "Slots L1 ●●○ L2 ●" for the status box and the Spells tab.
+fn slots_line(c: &Character) -> Option<Line<'static>> {
+    let mut parts: Vec<String> = vec![];
+    for def in c.resources.iter().filter(|d| d.id.starts_with("slot") || d.id == "pact") {
+        let (cur, max) = (c.res.get(&def.id).copied().unwrap_or(0), c.res_max(&def.id).unwrap_or(0));
+        if max == 0 { continue; }
+        let label = if def.id == "pact" { format!("Pact L{}", c.casting().map_or(0, |k| at(&k.pact_level, c.level))) } else { format!("L{}", &def.id[4..]) };
+        parts.push(format!("{label} {}{}", "●".repeat(cur.min(max) as usize), "○".repeat((max - cur.min(max)) as usize)));
+    }
+    (!parts.is_empty()).then(|| Line::from(format!("Slots {}", parts.join("  "))))
+}
+
+fn draw_spells(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
+    let c = &app.ch;
+    let cols = Layout::horizontal([Constraint::Percentage(55), Constraint::Percentage(45)]).split(area);
+    let b = block(&format!("SPELLS | {} DC {} atk {:+}", c.spell_ability.as_deref().unwrap_or(""), c.spell_ability.as_deref().map_or(0, |a| c.dc(a)), c.spell_ability.as_deref().map_or(0, |a| c.prof() + c.md(a))));
+    let inner = b.inner(cols[0]);
+    f.render_widget(b, cols[0]);
+    let rows = app.spell_rows();
+    let mut head = vec![];
+    if let Some(l) = slots_line(c) { head.push(l); }
+    if let Some(cast) = c.casting() {
+        if cast.mode != "known" { head.push(Line::styled(format!("Prepared {}/{}", c.prepared.len(), c.prepared_max()), tone(Tone::Dim))); }
+    }
+    let hh = head.len() as u16;
+    f.render_widget(Paragraph::new(head), Rect::new(inner.x, inner.y, inner.width, hh));
+    let h = inner.height.saturating_sub(hh) as usize;
+    let start = app.ssel.saturating_sub(h.saturating_sub(1));
+    let mut last = u32::MAX;
+    let _ = &mut last;
+    for (k, sp) in rows.iter().enumerate().skip(start).take(h) {
+        let row = Rect::new(inner.x, inner.y + hh + (k - start) as u16, inner.width, 1);
+        let lvl = if sp.level == 0 { "C".to_string() } else { sp.level.to_string() };
+        let usable = sp.level == 0 || c.casting().is_some_and(|k| k.kind == "pact" && c.res.get("pact").copied().unwrap_or(0) > 0)
+            || (sp.level..=9).any(|l| c.res.get(&format!("slot{l}")).copied().unwrap_or(0) > 0);
+        let style = if k == app.ssel { selected() } else if usable { Style::new() } else { tone(Tone::Dim) };
+        let tag = format!("{}{}", if sp.conc { "c" } else { " " }, if sp.ritual { "r" } else { " " });
+        f.render_widget(Paragraph::new(format!(" {lvl} {tag} {}", sp.name)).style(style), row);
+        hot.push((row, Cmd::SpellClick(k)));
+    }
+    let db = block("DETAILS");
+    let di = db.inner(cols[1]);
+    f.render_widget(db, cols[1]);
+    if let Some(sp) = rows.get(app.ssel) {
+        let mut lines = vec![
+            Line::styled(format!("{} ({})", sp.name, if sp.level == 0 { format!("{} cantrip", sp.school) } else { format!("level {} {}", sp.level, sp.school) }), Style::new().fg(GREEN).bold()),
+            Line::from(format!("{} | {} | {}", sp.time, sp.range, sp.comp)),
+            Line::from(format!("{}{}{}", sp.duration, if sp.conc { " (concentration)" } else { "" }, if sp.ritual { " (ritual)" } else { "" })),
+            Line::default(),
+            Line::from(sp.desc.clone()),
+        ];
+        if let Some((n, s, k)) = &sp.dmg { lines.push(Line::default()); lines.push(Line::styled(format!("Damage {n}d{s} {k}{}", sp.upcast.map_or(String::new(), |u| format!(", +{}d{} per slot level", u.0, u.1))), tone(Tone::Dim))); }
+        lines.push(Line::styled(format!("{}", lists_abbr(&sp.source)), tone(Tone::Dim)));
+        f.render_widget(Paragraph::new(lines).wrap(Wrap { trim: false }), di);
+    } else {
+        f.render_widget(Paragraph::new("No spells yet. E opens the editor to add some.").style(tone(Tone::Dim)), di);
+    }
+}
+
+fn lists_abbr(s: &str) -> String { crate::lists::abbr(s) }

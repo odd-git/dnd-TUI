@@ -1,0 +1,785 @@
+{
+ "casting": {
+  "ability": "CHA",
+  "kind": "full",
+  "mode": "known",
+  "list": "Sorcerer",
+  "cantrips": {
+   "1": 4,
+   "4": 5,
+   "10": 6
+  },
+  "known": {
+   "1": 2,
+   "2": 3,
+   "3": 4,
+   "4": 5,
+   "5": 6,
+   "6": 7,
+   "7": 8,
+   "8": 9,
+   "9": 10,
+   "10": 11,
+   "11": 12,
+   "13": 13,
+   "15": 14,
+   "17": 15
+  },
+  "slots": {
+   "1": [
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "2": [
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "3": [
+    4,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "4": [
+    4,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "5": [
+    4,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "6": [
+    4,
+    3,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "7": [
+    4,
+    3,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "8": [
+    4,
+    3,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "9": [
+    4,
+    3,
+    3,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "10": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0
+   ],
+   "11": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    1,
+    0,
+    0,
+    0
+   ],
+   "12": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    1,
+    0,
+    0,
+    0
+   ],
+   "13": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    1,
+    1,
+    0,
+    0
+   ],
+   "14": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    1,
+    1,
+    0,
+    0
+   ],
+   "15": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    1,
+    1,
+    1,
+    0
+   ],
+   "16": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    1,
+    1,
+    1,
+    0
+   ],
+   "17": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    1,
+    1,
+    1,
+    1
+   ],
+   "18": [
+    4,
+    3,
+    3,
+    3,
+    3,
+    1,
+    1,
+    1,
+    1
+   ],
+   "19": [
+    4,
+    3,
+    3,
+    3,
+    3,
+    2,
+    1,
+    1,
+    1
+   ],
+   "20": [
+    4,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    1,
+    1
+   ]
+  }
+ },
+ "dice": {},
+ "name": "Sorcerer",
+ "hit_die": 6,
+ "saves": [
+  "CON",
+  "CHA"
+ ],
+ "skills": {
+  "choose": 2,
+  "from": [
+   "Arcana",
+   "Deception",
+   "Insight",
+   "Intimidation",
+   "Persuasion",
+   "Religion"
+  ]
+ },
+ "armor": [],
+ "weapons": [
+  "Daggers",
+  "Darts",
+  "Slings",
+  "Quarterstaffs",
+  "Light crossbows"
+ ],
+ "tools": [],
+ "equipment": [
+  "(a) a light crossbow and 20 bolts or (b) any simple weapon",
+  "(a) a component pouch or (b) an arcane focus",
+  "(a) a dungeoneer's pack or (b) an explorer's pack",
+  "Two daggers"
+ ],
+ "styles": [],
+ "asi_levels": [
+  4,
+  8,
+  12,
+  16,
+  19
+ ],
+ "subclass_level": 1,
+ "subclass_title": "Sorcerous Origin",
+ "attacks_per_action": {
+  "1": 1
+ },
+ "resources": [
+  {
+   "id": "sorcery_points",
+   "name": "Sorcery Points",
+   "recharge": "long",
+   "max": "table",
+   "pips": true
+  }
+ ],
+ "tables": {
+  "sorcery_points": {
+   "1": 0,
+   "2": 2,
+   "3": 3,
+   "4": 4,
+   "5": 5,
+   "6": 6,
+   "7": 7,
+   "8": 8,
+   "9": 9,
+   "10": 10,
+   "11": 11,
+   "12": 12,
+   "13": 13,
+   "14": 14,
+   "15": 15,
+   "16": 16,
+   "17": 17,
+   "18": 18,
+   "19": 19,
+   "20": 20
+  }
+ },
+ "actions": [],
+ "toggles": [],
+ "style_level": 1,
+ "expertise": [],
+ "unarmored": null,
+ "features": {
+  "1": [
+   {
+    "name": "Spellcasting",
+    "desc": "An event in your past, or in the life of a parent or ancestor, left an indelible mark on you, infusing you with arcane magic. This font of magic, whatever its origin, fuels your spells."
+   }
+  ],
+  "2": [
+   {
+    "name": "Font of Magic",
+    "desc": "At 2nd level, you tap into a deep wellspring of magic within yourself. This wellspring is represented by sorcery points, which allow you to create a variety of magical effects. Sorcery Points. You..."
+   }
+  ],
+  "3": [
+   {
+    "name": "Metamagic",
+    "desc": "At 3rd level, you gain the ability to twist your spells to suit your needs. You gain two of the following Metamagic options of your choice. You gain another one at 10th and 17th level. You can use..."
+   }
+  ],
+  "10": [
+   {
+    "name": "Metamagic",
+    "desc": "At 3rd level, you gain the ability to twist your spells to suit your needs. You gain two of the following Metamagic options of your choice. You gain another one at 10th and 17th level. You can use..."
+   }
+  ],
+  "17": [
+   {
+    "name": "Metamagic",
+    "desc": "At 3rd level, you gain the ability to twist your spells to suit your needs. You gain two of the following Metamagic options of your choice. You gain another one at 10th and 17th level. You can use..."
+   }
+  ],
+  "20": [
+   {
+    "name": "Sorcerous Restoration",
+    "desc": "At 20th level, you regain 4 expended sorcery points whenever you finish a short rest. window['nitroAds'].createAd('wad-dnd5e-floating-video', { \"refreshTime\": 30, \"format\": \"floating\", \"mediaQuery\"..."
+   }
+  ]
+ },
+ "subclasses": [
+  {
+   "name": "Aberrant Mind",
+   "source": "Tasha's Cauldron of Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "1": [
+     {
+      "name": "Psionic Spells",
+      "desc": "Starting at 1st level, you learn additional spells when you reach certain levels in this class, as shown on the Psionic Spells table. Each..."
+     },
+     {
+      "name": "Telepathic Speech",
+      "desc": "Starting at 1st level, you can form a telepathic connection between your mind and the mind of another. As a bonus action, choose one..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Psionic Sorcery",
+      "desc": "Beginning at 6th level, when you cast any spell of 1st level or higher from your Psionic Spells feature, you can cast it by expending a..."
+     },
+     {
+      "name": "Psychic Defenses",
+      "desc": "At 6th level, you gain resistance to psychic damage, and you have advantage on saving throws against being charmed or frightened."
+     }
+    ],
+    "14": [
+     {
+      "name": "Revelation in Flesh",
+      "desc": "Beginning at 14th level, you can unleash the aberrant truth hidden within yourself. As a bonus action, you can spend 1 or more sorcery..."
+     }
+    ],
+    "18": [
+     {
+      "name": "Warping Implosion",
+      "desc": "At 18th level, you can unleash your aberrant power as a space-warping anomaly. As an action, you can teleport to an unoccupied space you..."
+     }
+    ]
+   },
+   "always": {
+    "1": [
+     "Arms of Hadar",
+     "Dissonant Whispers",
+     "Mind Sliver"
+    ],
+    "3": [
+     "Calm Emotions",
+     "Detect Thoughts"
+    ],
+    "5": [
+     "Hunger of Hadar",
+     "Sending"
+    ],
+    "7": [
+     "Evard's Black Tentacles",
+     "Summon Aberration"
+    ],
+    "9": [
+     "Rary's Telepathic Bond",
+     "Telekinesis"
+    ]
+   }
+  },
+  {
+   "name": "Clockwork Soul",
+   "source": "Tasha's Cauldron of Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "1": [
+     {
+      "name": "Restore Balance",
+      "desc": "Starting at 1st level, your connection to the plane of absolute order allows you to equalize chaotic moments. When a creature you can see..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Bastion of Law",
+      "desc": "Starting at 6th level, you can tap into the grand equation of existence to imbue a creature with a shimmering shield of order. As an..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Trance of Order",
+      "desc": "Starting at 14th level, you gain the ability to align your consciousness to the endless calculations of Mechanus. As a bonus action, you..."
+     }
+    ],
+    "18": [
+     {
+      "name": "Clockwork Cavalcade",
+      "desc": "At 18th level, you summon spirits of order to expunge disorder around you. As an action, you summon the spirits in a 30-foot cube..."
+     }
+    ]
+   },
+   "always": {
+    "1": [
+     "Alarm",
+     "Protection from Evil and Good"
+    ],
+    "3": [
+     "Aid",
+     "Lesser Restoration"
+    ],
+    "5": [
+     "Dispel Magic",
+     "Protection from Energy"
+    ],
+    "7": [
+     "Freedom of Movement",
+     "Summon Construct"
+    ],
+    "9": [
+     "Greater Restoration",
+     "Wall of Force"
+    ]
+   }
+  },
+  {
+   "name": "Divine Soul",
+   "source": "Xanathar's Guide to Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "1": [
+     {
+      "name": "Divine Magic",
+      "desc": "Your link to the divine allows you to learn spells normally associated with the cleric class. When your Spellcasting feature lets you learn..."
+     },
+     {
+      "name": "Favored by the Gods",
+      "desc": "Starting at 1st level, divine power guards your destiny. If you fail a saving throw or miss with an attack roll, you can roll 2d4 and add..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Empowered Healing",
+      "desc": "Starting at 6th level, the divine energy coursing through you can empower healing spells. Whenever you or an ally within 5 feet of you..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Angelic Form",
+      "desc": "Starting at 14th level, you can use a bonus action to manifest a pair of spectral wings from your back. While the wings are present, you..."
+     }
+    ],
+    "18": [
+     {
+      "name": "Unearthly Recovery",
+      "desc": "At 18th level, you gain the ability to overcome grievous injuries. As a bonus action when you have fewer than half of your hit points..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Draconic Bloodline",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "1": [
+     {
+      "name": "Dragon Ancestor",
+      "desc": "At 1st level, you choose one type of dragon as your ancestor. The damage type associated with each dragon is used by features you gain..."
+     },
+     {
+      "name": "Draconic Resilience",
+      "desc": "As magic flows through your body, it causes physical traits of your dragon ancestors to emerge. At 1st level, your hit point maximum..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Elemental Affinity",
+      "desc": "Starting at 6th level, when you cast a spell that deals damage of the type associated with your draconic ancestry, add your Charisma..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Dragon Wings",
+      "desc": "At 14th level, you gain the ability to sprout a pair of dragon wings from your back, gaining a flying speed equal to your current speed...."
+     }
+    ],
+    "18": [
+     {
+      "name": "Draconic Presence",
+      "desc": "Beginning at 18th level, you can channel the dread presence of your dragon ancestor, causing those around you to become awestruck or..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Lunar Sorcery",
+   "source": "Dragonlance: Shadow of the Dragon Queen",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "1": [
+     {
+      "name": "Moon Fire",
+      "desc": "Starting at 1st level, you can call down the radiant light of the moon on command. You learn the Sacred Flame spell, which doesn’t count..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Lunar Boons",
+      "desc": "Starting at 6th level, the current phase of your Lunar Embodiment can affect your Metamagic feature. Each Lunar Embodiment phase is..."
+     },
+     {
+      "name": "Waxing and Waning",
+      "desc": "Starting at 6th level, you gain greater control over the phases of your lunar magic. As a bonus action, you can spend 1 sorcery point to..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Lunar Empowerment",
+      "desc": "Starting at 14th level, the power of a lunar phase saturates your being. While you are in a Lunar Embodiment phase, you also gain the..."
+     }
+    ],
+    "18": [
+     {
+      "name": "Lunar Phenomenon",
+      "desc": "At 18th level, as a bonus action, you can tap into a special power of your current Lunar Embodiment phase. Alternatively, as part of the..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Pyromancy",
+   "source": "Plane Shift - Kaladesh",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "1": [
+     {
+      "name": "Heart of Fire",
+      "desc": "At 1st level, whenever you start casting a spell of 1st level or higher that deals fire damage, fiery magic erupts from you. This eruption..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Fire in the Veins",
+      "desc": "At 6th level, you gain resistance to fire damage. In addition, spells you cast ignore resistance to fire damage."
+     }
+    ],
+    "14": [
+     {
+      "name": "Pyromancer's Fury",
+      "desc": "Starting at 14th level, when you are hit by a melee attack, you can use your reaction to deal fire damage to the attacker. The damage..."
+     }
+    ],
+    "18": [
+     {
+      "name": "Fiery Soul",
+      "desc": "At 18th level, you gain immunity to fire damage. In addition, any spell or effect you create ignores resistance to fire damage and treats..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Shadow Magic",
+   "source": "Xanathar's Guide to Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "1": [
+     {
+      "name": "Eyes of the Dark",
+      "desc": "From 1st level, you have darkvision with a range of 120 feet. When you reach 3rd level in this class, you learn the darkness spell, which..."
+     },
+     {
+      "name": "Strength of the Grave",
+      "desc": "Starting at 1st level, your existence in a twilight state between life and death makes you difficult to defeat. When damage reduces you to..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Hound of Ill Omen",
+      "desc": "At 6th level, you gain the ability to call forth a howling creature of darkness to harass your foes. As a bonus action, you can spend 3..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Shadow Walk",
+      "desc": "At 14th level, you gain the ability to step from one shadow into another. When you are in dim light or darkness, as a bonus action, you can..."
+     }
+    ],
+    "18": [
+     {
+      "name": "Umbral Form",
+      "desc": "Starting at 18th level, you can spend 6 sorcery points as a bonus action to transform yourself into a shadowy form. In this form, you have..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Storm Sorcery",
+   "source": "Sword Coast Adventurer's Guide",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "1": [
+     {
+      "name": "Tempestuous Magic",
+      "desc": "Starting at 1st level, you can use a bonus action on your turn to cause whirling gusts of elemental air to briefly surround you..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Heart of the Storm",
+      "desc": "At 6th level, you gain resistance to lightning and thunder damage. In addition, whenever you start casting a spell of 1st level or higher..."
+     },
+     {
+      "name": "Storm Guide",
+      "desc": "At 6th level, you gain the ability to subtly control the weather around you. If it is raining, you can use an action to cause the rain to..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Storm's Fury",
+      "desc": "Starting at 14th level, when you are hit by a melee attack, you can use your reaction to deal lightning damage to the attacker. The damage..."
+     }
+    ],
+    "18": [
+     {
+      "name": "Wind Soul",
+      "desc": "At 18th level, you gain immunity to lightning and thunder damage. You also gain a magical flying speed of 60 feet. As an action, you can..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Wild Magic",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "1": [
+     {
+      "name": "Wild Magic Surge",
+      "desc": "Starting when you choose this origin at 1st level, your spellcasting can unleash surges of untamed magic. Once per turn, the DM can have..."
+     },
+     {
+      "name": "Tides of Chaos",
+      "desc": "Starting at 1st level, you can manipulate the forces of chance and chaos to gain advantage on one attack roll, ability check, or saving..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Bend Luck",
+      "desc": "Starting at 6th level, you have the ability to twist fate using your wild magic. When another creature you can see makes an attack roll, an..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Controlled Chaos",
+      "desc": "At 14th level, you gain a modicum of control over the surges of your wild magic. Whenever you roll on the Wild Magic Surge table, you can..."
+     }
+    ],
+    "18": [
+     {
+      "name": "Spell Bombardment",
+      "desc": "Beginning at 18th level, the harmful energy of your spells intensifies. When you roll damage for a spell and roll the highest number..."
+     }
+    ]
+   }
+  }
+ ]
+}

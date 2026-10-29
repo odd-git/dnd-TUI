@@ -6,7 +6,7 @@ use std::sync::{Mutex, OnceLock};
 
 use serde::Deserialize;
 
-use crate::model::{ActionDef, Feature, ResourceDef, Toggle};
+use crate::model::{at, ActionDef, Feature, ResourceDef, Toggle};
 
 type Table = BTreeMap<u32, u32>;
 
@@ -151,6 +151,58 @@ pub struct Armor {
     pub dex: String,      // "full" | "max2" | "none"
 }
 
+// --- Spells ------------------------------------------------------------------------
+
+#[derive(Deserialize)]
+pub struct Spell {
+    pub name: String,
+    pub level: u32,
+    pub school: String,
+    pub source: String,
+    pub time: String,
+    pub range: String,
+    pub comp: String,
+    pub duration: String,
+    pub ritual: bool,
+    pub conc: bool,
+    pub classes: Vec<String>,
+    pub desc: String,
+    pub dmg: Option<(u32, u32, String)>,
+    pub attack: bool,
+    pub save: Option<String>,
+    pub upcast: Option<(u32, u32)>, // extra dice per slot level above the spell's own
+    pub scales: bool,               // cantrip damage grows at levels 5, 11, 17
+    pub healing: bool,
+}
+
+pub fn spell(name: &str) -> Option<&'static Spell> { spells().iter().find(|s| s.name.eq_ignore_ascii_case(name)) }
+
+/// Spellcasting rules of a class (or of a subclass such as Eldritch Knight), read from the wikidot level table.
+#[derive(Deserialize, Clone)]
+pub struct Casting {
+    pub ability: String,
+    pub kind: String,                     // full | half | third | pact
+    pub mode: String,                     // known | prepared | spellbook
+    pub prepared: Option<String>,         // "mod+level" | "mod+half"
+    pub list: String,                     // class whose spell list is used
+    #[serde(default)] pub cantrips: Table,
+    #[serde(default)] pub known: Table,
+    #[serde(default)] pub slots: BTreeMap<u32, Vec<u32>>, // class level -> slots of level 1..9
+    #[serde(default)] pub pact_slots: Table,
+    #[serde(default)] pub pact_level: Table,
+}
+
+impl Casting {
+    pub fn slots_at(&self, class_level: u32, slot_level: usize) -> u32 {
+        self.slots.get(&class_level).and_then(|v| v.get(slot_level - 1)).copied().unwrap_or(0)
+    }
+    /// Highest spell level castable at this class level.
+    pub fn top_level(&self, class_level: u32) -> u32 {
+        if self.kind == "pact" { return at(&self.pact_level, class_level); }
+        (1..=9).rev().find(|&l| self.slots_at(class_level, l as usize) > 0).unwrap_or(0)
+    }
+}
+
 // --- Classes -------------------------------------------------------------------------
 
 #[derive(Deserialize)]
@@ -176,6 +228,9 @@ pub struct Subclass {
     #[serde(default)] pub dice: BTreeMap<String, Table>,
     #[serde(default)] pub maneuvers_known: Table,
     #[serde(default)] pub features: BTreeMap<u32, Vec<Feature>>,
+    pub casting: Option<Casting>,
+    #[serde(default)] pub always: BTreeMap<u32, Vec<String>>,   // domain / oath / circle spells, by class level
+    #[serde(default)] pub expanded: BTreeMap<u32, Vec<String>>, // warlock patron spells added to the list, by spell level
 }
 
 /// Unarmored Defense: AC is 10 + DEX + `ability` while no armor is worn.
@@ -201,6 +256,8 @@ pub struct ClassData {
     #[serde(default)] pub actions: Vec<ActionDef>,
     #[serde(default)] pub toggles: Vec<Toggle>,
     pub unarmored: Option<Unarmored>,
+    pub casting: Option<Casting>,
+    #[serde(default)] pub dice: BTreeMap<String, Table>,
     #[serde(default = "one")] pub style_level: u32, // level that grants a fighting style
     #[serde(default)] pub expertise: Vec<u32>, // levels that grant two skills with double proficiency
     pub features: BTreeMap<u32, Vec<Feature>>,
@@ -234,11 +291,14 @@ list!(backgrounds, Background, "backgrounds.json");
 list!(feats, FeatDef, "feats.json");
 list!(weapons, Weapon, "weapons.json");
 list!(armors, Armor, "armor.json");
+list!(spells, Spell, "spells.json");
 
 pub fn classes() -> &'static Vec<ClassData> {
     static C: OnceLock<Vec<ClassData>> = OnceLock::new();
     C.get_or_init(|| {
         [include_str!("../data/lists/classes/fighter.json"), include_str!("../data/lists/classes/barbarian.json"),
+         include_str!("../data/lists/classes/wizard.json"), include_str!("../data/lists/classes/cleric.json"), include_str!("../data/lists/classes/druid.json"),
+         include_str!("../data/lists/classes/bard.json"), include_str!("../data/lists/classes/sorcerer.json"), include_str!("../data/lists/classes/warlock.json"),
          include_str!("../data/lists/classes/rogue.json"),
          include_str!("../data/lists/classes/monk.json"),
          include_str!("../data/lists/classes/paladin.json"), include_str!("../data/lists/classes/ranger.json")]
@@ -258,20 +318,56 @@ pub fn progression(class: &str, sub: Option<&str>) -> Option<&'static Progressio
     let mut p = Progression {
         asi_levels: cd.asi_levels.clone(),
         resources: cd.tables.clone(),
-        dice: BTreeMap::new(),
+        dice: cd.dice.clone(),
         maneuvers_known: Table::new(),
         attacks_per_action: cd.attacks_per_action.clone(),
         features: cd.features.clone(),
     };
     if let Some(sd) = sd {
         p.resources.extend(sd.tables.clone());
-        p.dice = sd.dice.clone();
+        p.dice.extend(sd.dice.clone());
         p.maneuvers_known = sd.maneuvers_known.clone();
         for (lvl, fs) in &sd.features { p.features.entry(*lvl).or_default().extend(fs.iter().cloned()); }
     }
     let leaked: &'static Progression = Box::leak(Box::new(p));
     cache.insert(key, leaked);
     Some(leaked)
+}
+
+fn split_prog(prog: &str) -> (&str, Option<&str>) {
+    prog.split_once('/').map_or((prog, None), |(c, s)| (c, Some(s)))
+}
+
+/// Casting rules for a "Class/Subclass" progression: the subclass's own (Eldritch Knight) or the class's.
+pub fn casting_of(prog: &str) -> Option<&'static Casting> {
+    let (class, sub) = split_prog(prog);
+    let cd = class_data(class)?;
+    sub.and_then(|s| cd.subclasses.iter().find(|x| x.name == s)).and_then(|s| s.casting.as_ref()).or(cd.casting.as_ref())
+}
+
+fn sub_of(prog: &str) -> Option<&'static Subclass> {
+    let (class, sub) = split_prog(prog);
+    class_data(class)?.subclasses.iter().find(|x| Some(x.name.as_str()) == sub)
+}
+
+/// Domain / oath / circle spells that are always prepared at this class level.
+pub fn always_spells(prog: &str, level: u32) -> Vec<String> {
+    sub_of(prog).map(|s| s.always.range(..=level).flat_map(|(_, v)| v.clone()).collect()).unwrap_or_default()
+}
+
+/// Patron spells added to a warlock's list, up to this spell level.
+pub fn expanded_spells(prog: &str, top: u32) -> Vec<String> {
+    sub_of(prog).map(|s| s.expanded.range(..=top).flat_map(|(_, v)| v.clone()).collect()).unwrap_or_default()
+}
+
+/// Spells a character with this casting can learn or prepare: its list, up to `top`, cantrips when `top` is 0.
+pub fn spell_choices(c: &Casting, prog: &str, level: u32, cantrips: bool) -> Vec<&'static Spell> {
+    let top = c.top_level(level);
+    let extra = expanded_spells(prog, top);
+    spells().iter()
+        .filter(|s| if cantrips { s.level == 0 } else { s.level >= 1 && s.level <= top })
+        .filter(|s| s.classes.iter().any(|x| *x == c.list) || extra.contains(&s.name))
+        .collect()
 }
 
 /// Short book names for menus.

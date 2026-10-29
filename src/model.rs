@@ -109,6 +109,9 @@ pub struct Character {
     #[serde(default)] pub save_profs: Vec<String>,
     #[serde(default)] pub skills: Vec<String>,
     #[serde(default)] pub expertise: Vec<String>, // double proficiency
+    #[serde(default)] pub cantrips: Vec<String>,
+    #[serde(default)] pub spells: Vec<String>,    // spells known, or the wizard's spellbook
+    #[serde(default)] pub prepared: Vec<String>,  // prepared spells (prepared / spellbook casters)
     pub ac_base: Option<i32>, // armor base (+ shield, style bonus) before DEX
     #[serde(default)] pub ac_dex_max: Option<i32>, // medium armor 2, heavy 0; None = full DEX
     #[serde(default)] pub ac_extra: Option<String>, // Unarmored Defense: second ability added with no armor
@@ -137,6 +140,58 @@ impl Character {
     pub fn prog(&self) -> Option<&'static Progression> {
         self.progression.as_deref().and_then(progression)
     }
+    pub fn casting(&self) -> Option<&'static crate::lists::Casting> {
+        crate::lists::casting_of(self.progression.as_deref()?)
+    }
+
+    /// True once there is anything to cast (a half caster has nothing at level 1).
+    pub fn casts(&self) -> bool {
+        self.casting().is_some_and(|c| c.top_level(self.level) > 0 || at(&c.cantrips, self.level) > 0)
+    }
+
+    pub fn cantrips_max(&self) -> usize { self.casting().map_or(0, |c| at(&c.cantrips, self.level) as usize) }
+
+    /// Spells to know: the class table, or for a wizard 6 in the book plus 2 per level after the first.
+    pub fn known_max(&self) -> usize {
+        match self.casting() {
+            Some(c) if c.mode == "spellbook" => 6 + 2 * (self.level as usize - 1),
+            Some(c) => at(&c.known, self.level) as usize,
+            None => 0,
+        }
+    }
+
+    /// Spells a prepared / spellbook caster can have prepared (ability modifier + level, or half level).
+    pub fn prepared_max(&self) -> usize {
+        let Some(c) = self.casting() else { return 0 };
+        let lvl = if c.prepared.as_deref() == Some("mod+half") { self.level as i32 / 2 } else { self.level as i32 };
+        (self.md(&c.ability) + lvl).max(1) as usize
+    }
+
+    /// Everything castable that is not a cantrip: known spells, or prepared ones plus domain / oath spells.
+    pub fn castable(&self) -> Vec<String> {
+        let Some(c) = self.casting() else { return vec![] };
+        let mut v = crate::lists::always_spells(self.progression.as_deref().unwrap_or(""), self.level);
+        v.extend(if c.mode == "known" { self.spells.iter() } else { self.prepared.iter() }.cloned());
+        v.dedup();
+        v
+    }
+
+    /// Make sure the spell slot resources of the casting rules exist (new caster, or a subclass that casts).
+    pub fn sync_spell_resources(&mut self) {
+        let Some(c) = self.casting() else { return };
+        self.spell_ability = Some(c.ability.clone());
+        let mut want: Vec<ResourceDef> = vec![];
+        if c.kind == "pact" {
+            want.push(ResourceDef { id: "pact".into(), name: "Pact slots".into(), recharge: "short".into(), max: Some(Max::Kw("pact".into())), start: None, pips: true, die: None });
+        } else {
+            for l in 1..=9 {
+                want.push(ResourceDef { id: format!("slot{l}"), name: format!("Level {l} slots"), recharge: "long".into(), max: Some(Max::Kw(format!("slot:{l}"))), start: None, pips: true, die: None });
+            }
+        }
+        for d in want { if self.def(&d.id).is_none() { self.resources.push(d); } }
+        self.init();
+    }
+
     pub fn prof(&self) -> i32 { (self.level as i32 - 1) / 4 + 2 }
     pub fn md(&self, ab: &str) -> i32 { mod_of(self.abilities.get(ab).copied().unwrap_or(10)) }
     pub fn ac(&self) -> Option<i32> {
@@ -176,6 +231,9 @@ impl Character {
         match self.def(id)?.max.as_ref()? {
             Max::N(n) => Some(*n),
             Max::Kw(k) if k == "level" => Some(self.level),
+            Max::Kw(k) if k == "pact" => Some(self.casting().map_or(0, |c| at(&c.pact_slots, self.level))),
+            Max::Kw(k) if k.starts_with("slot:") => Some(self.casting().map_or(0, |c| c.slots_at(self.level, k[5..].parse().unwrap_or(1)))),
+            Max::Kw(k) if k.starts_with("mod:") => Some(self.md(&k[4..]).max(1) as u32),
             Max::Kw(k) if k.starts_with("1+mod:") => Some((1 + self.md(&k[6..])).max(1) as u32),
             Max::Kw(_) => Some(self.prog().and_then(|p| p.resources.get(id)).map(|t| at(t, self.level)).unwrap_or(0)),
         }

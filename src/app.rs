@@ -7,11 +7,12 @@ use ratatui::layout::Rect;
 use crate::model::*;
 
 mod editor;
+mod spells;
 mod wizard;
 
 #[derive(Clone, Copy, PartialEq)]
-pub enum Tab { Combat, Character, Journal }
-pub const TABS: [(Tab, &str); 3] = [(Tab::Combat, "Combat"), (Tab::Character, "Character"), (Tab::Journal, "Journal")];
+pub enum Tab { Combat, Spells, Character, Journal }
+pub const TABS: [(Tab, &str); 4] = [(Tab::Combat, "Combat"), (Tab::Spells, "Spells"), (Tab::Character, "Character"), (Tab::Journal, "Journal")];
 
 #[derive(Clone, Copy, PartialEq)]
 pub enum Adv { Normal, Adv, Dis }
@@ -27,7 +28,7 @@ pub enum Item { Action(usize), Toggle(usize) }
 pub enum Cmd {
     Tab(Tab), Pick(usize), Select(usize), Click(usize), Enter, Up, Down, PageUp, PageDown,
     Damage, Heal, Init, Maneuver, Roll(String), CheckMenu, Adv, Cond, Death, Items, Short, Long,
-    Level, Edit, Undo, Back, New, Delete, JournalAdd, JournalDel, JournalSel(usize), ModalPick(usize),
+    Level, Edit, Undo, Back, New, Delete, Cast, Prepare, SpellClick(usize), JournalAdd, JournalDel, JournalSel(usize), ModalPick(usize),
 }
 
 /// What a modal is asking; the answer is handled in `resolve_*`.
@@ -37,6 +38,7 @@ pub enum Step {
     Asi, Ability { n: i32, optional: bool }, FeatList, FeatAsi(String),
     Maneuver { required: bool }, ReplaceAsk, Forget, Extras, Skill, NoteName, NoteDesc(String), JournalAdd,
     Subclass, DeleteSheet(usize), Expertise, Style, Pool(String),
+    Learn(bool), Prepare, CastSlot(String), SpellAdd, SpellDel,
     // editor
     Ident, IdentSet(usize), Scores, ScoreSet(String), Unskill, ArmorPick, ShieldPick(Option<String>), WeaponPick,
     CustomName, CustomAb(String), CustomDice(String, Option<String>), CustomType(String, Option<String>, (u32, u32)),
@@ -65,6 +67,7 @@ pub struct App {
     pub tab: Tab,
     pub sel: usize,
     pub jsel: usize,
+    pub ssel: usize,
     pub scroll: u16,
     pub log_off: usize,
     pub adv: Adv,
@@ -118,7 +121,7 @@ impl App {
         let sheets = load_sheets();
         let ch = sheets.first().map(|s| s.1.clone()).unwrap_or_else(|| serde_json::from_str(BUNDLED[0].1).expect("bundled sheet")); // placeholder while picking
         App {
-            picking: true, sheets, psel: 0, path: PathBuf::new(), ch, tab: Tab::Combat, sel: 0, jsel: 0,
+            picking: true, sheets, psel: 0, path: PathBuf::new(), ch, tab: Tab::Combat, sel: 0, jsel: 0, ssel: 0,
             scroll: 0, log_off: 0, adv: Adv::Normal, log: vec![Entry("System start.".into(), Tone::Dim)],
             modal: None, hot: vec![], quit: false, undo: vec![], queue: VecDeque::new(), flow: None, wiz: None, query: String::new(), searching: false,
         }
@@ -213,9 +216,13 @@ impl App {
         let cmd = match key.code {
             KeyCode::Up => Cmd::Up, KeyCode::Down => Cmd::Down, KeyCode::PageUp => Cmd::PageUp, KeyCode::PageDown => Cmd::PageDown,
             KeyCode::Enter => Cmd::Enter, KeyCode::Esc => Cmd::Back,
-            KeyCode::Tab => Cmd::Tab(match self.tab { Tab::Combat => Tab::Character, Tab::Character => Tab::Journal, Tab::Journal => Tab::Combat }),
-            KeyCode::BackTab => Cmd::Tab(match self.tab { Tab::Combat => Tab::Journal, Tab::Character => Tab::Combat, Tab::Journal => Tab::Character }),
-            KeyCode::F(1) => Cmd::Tab(Tab::Combat), KeyCode::F(2) => Cmd::Tab(Tab::Character), KeyCode::F(3) => Cmd::Tab(Tab::Journal),
+            KeyCode::Tab | KeyCode::BackTab => {
+                let tabs = self.tabs();
+                let i = tabs.iter().position(|t| t.0 == self.tab).unwrap_or(0);
+                let n = if key.code == KeyCode::Tab { (i + 1) % tabs.len() } else { (i + tabs.len() - 1) % tabs.len() };
+                Cmd::Tab(tabs[n].0)
+            }
+            KeyCode::F(n @ 1..=4) => match self.tabs().get(n as usize - 1) { Some(t) => Cmd::Tab(t.0), None => return },
             KeyCode::Delete if self.picking => Cmd::Delete,
             KeyCode::Delete | KeyCode::Backspace if self.tab == Tab::Journal && !self.picking => Cmd::JournalDel,
             _ => match (self.tab, c) {
@@ -228,6 +235,9 @@ impl App {
                 (Tab::Combat, 's') => Cmd::Short, (Tab::Combat, 'l') => Cmd::Long, (Tab::Combat, 'u') => Cmd::Level,
                 (Tab::Combat, 'e') => Cmd::Edit, (Tab::Combat, '1'..='9') => Cmd::Select(c as usize - '1' as usize),
                 (Tab::Journal, 'a') => Cmd::JournalAdd,
+                (Tab::Spells, 'p') => Cmd::Prepare,
+                (Tab::Spells, 'c') => Cmd::Cast,
+                (Tab::Spells, 'e') => Cmd::Edit, (Tab::Spells, 's') => Cmd::Short, (Tab::Spells, 'l') => Cmd::Long,
                 _ => return,
             },
         };
@@ -273,6 +283,7 @@ impl App {
             Some(Modal::Input { .. }) => {}
             None => match self.tab {
                 Tab::Journal => { if let Some(i) = self.ch.journal.iter().position(|x| hit(&q, x)) { self.jsel = i; } }
+                Tab::Spells => { if let Some(i) = self.spell_rows().iter().position(|x| hit(&q, &x.name)) { self.ssel = i; } }
                 _ => self.scroll = 0,
             },
         }
@@ -300,6 +311,7 @@ impl App {
             let picked = (0..last).filter(|&i| on[i]).collect();
             match step {
                 Step::Wiz(w) => self.wiz_multi_done(w, picked),
+                Step::Learn(_) | Step::Prepare => self.spells_done(step, picked),
                 Step::Expertise => {
                     let opts = self.expertise_options();
                     for i in picked { let s = opts[i].clone(); self.snap_in_flow(); self.say(format!("Expertise: {s}."), Tone::Good); self.ch.expertise.push(s); }
@@ -378,6 +390,10 @@ impl App {
                         let n = self.visible().len();
                         self.sel = if down { (self.sel + 1).min(n.saturating_sub(1)) } else { self.sel.saturating_sub(1) };
                     }
+                    Tab::Spells => {
+                        let n = self.spell_rows().len();
+                        self.ssel = if down { (self.ssel + 1).min(n.saturating_sub(1)) } else { self.ssel.saturating_sub(1) };
+                    }
                     Tab::Character => self.scroll = if down { self.scroll + 1 } else { self.scroll.saturating_sub(1) },
                     Tab::Journal => {
                         let j = &self.ch.journal;
@@ -427,6 +443,12 @@ impl App {
                 }
             }
             Cmd::JournalSel(i) => self.jsel = i,
+            Cmd::Cast => { if let Some(sp) = self.spell_rows().get(self.ssel) { let n = sp.name.clone(); self.cast(&n); } }
+            Cmd::SpellClick(i) => { self.ssel = i; self.exec(Cmd::Cast); }
+            Cmd::Prepare => {
+                if self.ch.casting().is_some_and(|c| c.mode == "known") { self.say("Known-spell casters do not prepare.", Tone::Dim); }
+                else { self.flow_begin(); self.queue.push_back(Step::Prepare); self.advance(); }
+            }
             Cmd::Pick(_) | Cmd::ModalPick(_) | Cmd::New | Cmd::Delete => {}
         }
         let n = self.visible().len();
@@ -597,6 +619,10 @@ impl App {
         let mut v = vec![("ident", "Name / race / background"), ("scores", "Ability scores"), ("skill", "Add skill proficiency"), ("unskill", "Remove skill proficiency"),
                          ("armor", "Armor and shield"), ("weapon", "Add weapon attack"), ("custom", "Add custom attack"), ("rmaction", "Remove attack or action")];
         if self.ch.maneuver_pool.is_some() { v.push(("learn", "Learn maneuver")); v.push(("replace", "Replace maneuver")); }
+        if self.ch.casts() {
+            v.extend([("spelladd", "Add spell"), ("spelldel", "Remove spell")]);
+            if self.ch.casting().is_some_and(|c| c.mode != "known") { v.push(("prepare", "Prepare spells")); }
+        }
         v.extend([("feat", "Add feat"), ("resource", "Add resource"), ("rmres", "Remove resource"), ("note", "Add feature / note"), ("rmfeat", "Remove feature"), ("done", "Done")]);
         v
     }
@@ -657,6 +683,9 @@ impl App {
                 let items = c.subclasses.iter().map(|s| format!("{} ({})", s.name, crate::lists::abbr(&s.source))).collect();
                 self.list(&c.subclass_title.clone(), items, step, false);
             }
+            Step::Learn(c) => self.open_learn(c, step),
+            Step::Prepare => self.open_prepare(step),
+            Step::CastSlot(ref name) => { let items = self.cast_slot_items(name); self.list("Cast with which slot?", items, step, true); }
             Step::Pool(id) => {
                 let t = format!("{}: points to spend ({} left)", self.res_name(&id), self.have(&id));
                 self.input(t, step, true);
@@ -800,6 +829,7 @@ impl App {
                 }
             }
             Step::Subclass => { if let Some(c) = self.class_data() { self.choose_subclass(c, i); } }
+            Step::CastSlot(name) => self.cast_slot_pick(&name, i),
             Step::Style => {
                 if let Some(s) = self.class_data().and_then(|c| c.styles.get(i)) {
                     self.snap_in_flow();
@@ -818,7 +848,7 @@ impl App {
                     "ident" => Step::Ident, "scores" => Step::Scores, "unskill" => Step::Unskill, "armor" => Step::ArmorPick,
                     "weapon" => Step::WeaponPick, "custom" => Step::CustomName, "rmaction" => Step::RmAction, "feat" => Step::FeatList,
                     "resource" => Step::ResName, "rmres" => Step::RmRes, "rmfeat" => Step::RmFeat,
-                    "skill" => Step::Skill,
+                    "skill" => Step::Skill, "spelladd" => Step::SpellAdd, "spelldel" => Step::SpellDel, "prepare" => Step::Prepare,
                     "learn" => Step::Maneuver { required: false },
                     "replace" => Step::Forget,
                     _ => Step::NoteName,
@@ -882,6 +912,7 @@ impl App {
         }
         let want = self.ch.prog().map_or(0, |p| at(&p.maneuvers_known, level));
         for _ in self.ch.maneuvers.len() as u32..want { self.queue.push_front(Step::Maneuver { required: true }); }
+        self.ch.sync_spell_resources();
         self.ch.init();
     }
 
@@ -908,6 +939,9 @@ impl App {
         if self.class_data().is_some_and(|c| c.subclass_level == l) && !self.ch.progression.as_deref().unwrap_or("").contains('/') {
             self.queue.push_back(Step::Subclass);
         }
+        self.queue.push_back(Step::Learn(true));
+        self.queue.push_back(Step::Learn(false));
+        self.queue.push_back(Step::Prepare);
         if self.class_data().is_some_and(|c| c.style_level == l && l > 1 && !c.styles.is_empty()) { self.queue.push_back(Step::Style); }
         if self.class_data().is_some_and(|c| c.expertise.contains(&l)) { self.queue.push_back(Step::Expertise); }
         if asi { self.queue.push_back(Step::Asi); }
@@ -916,4 +950,13 @@ impl App {
         self.queue.push_back(Step::Extras);
         self.advance();
     }
+}
+
+/// What a prepared / spellbook caster can pick to prepare: the spellbook, or the class list (minus always-prepared spells).
+pub(crate) fn prepare_options(c: &Character) -> Vec<String> {
+    let Some(cast) = c.casting() else { return vec![] };
+    let always = crate::lists::always_spells(c.progression.as_deref().unwrap_or(""), c.level);
+    if cast.mode == "spellbook" { return c.spells.iter().filter(|s| !always.contains(s)).cloned().collect(); }
+    crate::lists::spell_choices(cast, c.progression.as_deref().unwrap_or(""), c.level, false).iter()
+        .map(|s| s.name.clone()).filter(|n| !always.contains(n)).collect()
 }

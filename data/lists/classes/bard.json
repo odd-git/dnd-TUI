@@ -1,0 +1,741 @@
+{
+ "casting": {
+  "ability": "CHA",
+  "kind": "full",
+  "mode": "known",
+  "list": "Bard",
+  "cantrips": {
+   "1": 2,
+   "4": 3,
+   "10": 4
+  },
+  "known": {
+   "1": 4,
+   "2": 5,
+   "3": 6,
+   "4": 7,
+   "5": 8,
+   "6": 9,
+   "7": 10,
+   "8": 11,
+   "9": 12,
+   "10": 14,
+   "11": 15,
+   "13": 16,
+   "14": 18,
+   "15": 19,
+   "17": 20,
+   "18": 22
+  },
+  "slots": {
+   "1": [
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "2": [
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "3": [
+    4,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "4": [
+    4,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "5": [
+    4,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "6": [
+    4,
+    3,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "7": [
+    4,
+    3,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "8": [
+    4,
+    3,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "9": [
+    4,
+    3,
+    3,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "10": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0
+   ],
+   "11": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    1,
+    0,
+    0,
+    0
+   ],
+   "12": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    1,
+    0,
+    0,
+    0
+   ],
+   "13": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    1,
+    1,
+    0,
+    0
+   ],
+   "14": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    1,
+    1,
+    0,
+    0
+   ],
+   "15": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    1,
+    1,
+    1,
+    0
+   ],
+   "16": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    1,
+    1,
+    1,
+    0
+   ],
+   "17": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    1,
+    1,
+    1,
+    1
+   ],
+   "18": [
+    4,
+    3,
+    3,
+    3,
+    3,
+    1,
+    1,
+    1,
+    1
+   ],
+   "19": [
+    4,
+    3,
+    3,
+    3,
+    3,
+    2,
+    1,
+    1,
+    1
+   ],
+   "20": [
+    4,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    1,
+    1
+   ]
+  }
+ },
+ "dice": {
+  "inspiration": {
+   "1": 6,
+   "5": 8,
+   "10": 10,
+   "15": 12
+  }
+ },
+ "name": "Bard",
+ "hit_die": 8,
+ "saves": [
+  "DEX",
+  "CHA"
+ ],
+ "skills": {
+  "choose": 3,
+  "from": [
+   "Acrobatics",
+   "Animal Handling",
+   "Arcana",
+   "Athletics",
+   "Deception",
+   "History",
+   "Insight",
+   "Intimidation",
+   "Investigation",
+   "Medicine",
+   "Nature",
+   "Perception",
+   "Performance",
+   "Persuasion",
+   "Religion",
+   "Sleight of Hand",
+   "Stealth",
+   "Survival"
+  ]
+ },
+ "armor": [
+  "Light"
+ ],
+ "weapons": [
+  "Simple",
+  "Hand crossbows",
+  "Longswords",
+  "Rapiers",
+  "Shortswords"
+ ],
+ "tools": [
+  "Three musical instruments of your choice"
+ ],
+ "equipment": [
+  "(a) a rapier, (b) a longsword, or (c) any simple weapon",
+  "(a) a diplomat's pack or (b) an entertainer's pack",
+  "(a) a lute or (b) any other musical instrument",
+  "Leather armor and a dagger"
+ ],
+ "styles": [],
+ "asi_levels": [
+  4,
+  8,
+  12,
+  16,
+  19
+ ],
+ "subclass_level": 3,
+ "subclass_title": "Bard College",
+ "attacks_per_action": {
+  "1": 1
+ },
+ "resources": [
+  {
+   "id": "bardic_inspiration",
+   "name": "Bardic Inspiration",
+   "recharge": "long",
+   "max": "mod:CHA",
+   "pips": true,
+   "die": "inspiration"
+  }
+ ],
+ "tables": {},
+ "actions": [
+  {
+   "name": "Bardic Inspiration",
+   "desc": "Bonus action: an ally within 60 ft adds the die to one check, attack or save",
+   "uses": "bardic_inspiration"
+  }
+ ],
+ "toggles": [],
+ "style_level": 1,
+ "expertise": [
+  3,
+  10
+ ],
+ "unarmored": null,
+ "features": {
+  "1": [
+   {
+    "name": "Spellcasting",
+    "desc": "You have learned to untangle and reshape the fabric of reality in harmony with your wishes and music. Your spells are part of your vast repertoire, magic that you can tune to different situations."
+   },
+   {
+    "name": "Bardic Inspiration",
+    "desc": "You can inspire others through stirring words or music. To do so, you use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature..."
+   }
+  ],
+  "2": [
+   {
+    "name": "Jack of All Trades",
+    "desc": "Starting at 2nd level, you can add half your proficiency bonus, rounded down, to any ability check you make that doesn't already include your proficiency bonus."
+   },
+   {
+    "name": "Song of Rest",
+    "desc": "Beginning at 2nd level, you can use soothing music or oration to help revitalize your wounded allies during a short rest. If you or any friendly creatures who can hear your performance regain hit..."
+   }
+  ],
+  "3": [
+   {
+    "name": "Expertise",
+    "desc": "At 3rd level, choose two of your skill proficiencies. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies. At 10th level, you can choose..."
+   }
+  ],
+  "5": [
+   {
+    "name": "Bardic Inspiration",
+    "desc": "You can inspire others through stirring words or music. To do so, you use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature..."
+   },
+   {
+    "name": "Font of Inspiration",
+    "desc": "Beginning when you reach 5th level, you regain all of your expended uses of Bardic Inspiration when you finish a short or long rest."
+   }
+  ],
+  "6": [
+   {
+    "name": "Countercharm",
+    "desc": "At 6th level, you gain the ability to use musical notes or words of power to disrupt mind-influencing effects. As an action, you can start a performance that lasts until the end of your next turn...."
+   }
+  ],
+  "9": [
+   {
+    "name": "Song of Rest",
+    "desc": "Beginning at 2nd level, you can use soothing music or oration to help revitalize your wounded allies during a short rest. If you or any friendly creatures who can hear your performance regain hit..."
+   }
+  ],
+  "10": [
+   {
+    "name": "Bardic Inspiration",
+    "desc": "You can inspire others through stirring words or music. To do so, you use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature..."
+   },
+   {
+    "name": "Expertise",
+    "desc": "At 3rd level, choose two of your skill proficiencies. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies. At 10th level, you can choose..."
+   },
+   {
+    "name": "Magical Secrets",
+    "desc": "By 10th level, you have plundered magical knowledge from a wide spectrum of disciplines. Choose two spells from any classes, including this one. A spell you choose must be of a level you can cast, as..."
+   }
+  ],
+  "13": [
+   {
+    "name": "Song of Rest",
+    "desc": "Beginning at 2nd level, you can use soothing music or oration to help revitalize your wounded allies during a short rest. If you or any friendly creatures who can hear your performance regain hit..."
+   }
+  ],
+  "14": [
+   {
+    "name": "Magical Secrets",
+    "desc": "By 10th level, you have plundered magical knowledge from a wide spectrum of disciplines. Choose two spells from any classes, including this one. A spell you choose must be of a level you can cast, as..."
+   }
+  ],
+  "15": [
+   {
+    "name": "Bardic Inspiration",
+    "desc": "You can inspire others through stirring words or music. To do so, you use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature..."
+   }
+  ],
+  "17": [
+   {
+    "name": "Song of Rest",
+    "desc": "Beginning at 2nd level, you can use soothing music or oration to help revitalize your wounded allies during a short rest. If you or any friendly creatures who can hear your performance regain hit..."
+   }
+  ],
+  "18": [
+   {
+    "name": "Magical Secrets",
+    "desc": "By 10th level, you have plundered magical knowledge from a wide spectrum of disciplines. Choose two spells from any classes, including this one. A spell you choose must be of a level you can cast, as..."
+   }
+  ],
+  "20": [
+   {
+    "name": "Superior Inspiration",
+    "desc": "At 20th level, when you roll initiative and have no uses of Bardic Inspiration left, you regain one use. window['nitroAds'].createAd('wad-dnd5e-floating-video', { \"refreshTime\": 30, \"format\"..."
+   }
+  ]
+ },
+ "subclasses": [
+  {
+   "name": "Creation",
+   "source": "Tasha's Cauldron of Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Mote of Potential",
+      "desc": "When you join the College of Creation at 3rd level, whenever you give a creature a Bardic Inspiration die, you can utter a note from the..."
+     },
+     {
+      "name": "Performance of Creation",
+      "desc": "Also at 3rd level, as an action, you can channel the magic of the Song of Creation to create one nonmagical item of your choice in an..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Animating Performance",
+      "desc": "By 6th level, as an action, you can animate one Large or smaller nonmagical item within 30 feet of you that isn’t being worn or carried...."
+     }
+    ],
+    "14": [
+     {
+      "name": "Creative Crescendo",
+      "desc": "At 14th level, when you use your Performance of Creation feature, you can create more than one item at once. The number of items equals..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Eloquence",
+   "source": "Mythic Odysseys of Theros",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Silver Tongue",
+      "desc": "Starting at 3rd level, you are a master at saying the right thing at the right time. When you make a Charisma (Persuasion) or Charisma..."
+     },
+     {
+      "name": "Unsettling Words",
+      "desc": "Also at 3rd level, you can spin words laced with magic that unsettle a creature and cause it to doubt itself. As a bonus action, you can..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Unfailing Inspiration",
+      "desc": "At 6th level, your inspiring words are so persuasive that others feel driven to succeed. When a creature adds one of your Bardic..."
+     },
+     {
+      "name": "Universal Speech",
+      "desc": "Also at 6th level, you have gained the ability to make your speech intelligible to any creature. As an action, choose one or more creatures..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Infectious Inspiration",
+      "desc": "At 14th level, when you successfully inspire someone, the power of your eloquence can now spread to someone else. When a creature within 60..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Glamour",
+   "source": "Xanathar's Guide to Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Mantle of Inspiration",
+      "desc": "When you join the College of Glamour at 3rd level, you gain the ability to weave a song of fey magic that imbues your allies with vigor and..."
+     },
+     {
+      "name": "Enthralling Performance",
+      "desc": "Starting at 3rd level, you can charge your performance with seductive, fey magic. If you perform for at least 1 minute, you can attempt to..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Mantle of Majesty",
+      "desc": "At 6th level, you gain the ability to cloak yourself in a fey magic that makes others want to serve you. As a bonus action, you cast..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Unbreakable Majesty",
+      "desc": "At 14th level, your appearance permanently gains an otherworldly aspect that makes you look more lovely and fierce. In addition, as a bonus..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Lore",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Bonus Proficiencies",
+      "desc": "When you join the College of Lore at 3rd level, you gain proficiency with three skills of your choice."
+     },
+     {
+      "name": "Cutting Words",
+      "desc": "Also at 3rd level, you learn how to use your wit to distract, confuse, and otherwise sap the confidence and competence of others. When a..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Additional Magical Secrets",
+      "desc": "At 6th level, you learn two spells of your choice from any class. A spell you choose must be of a level you can cast, as shown on the Bard..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Peerless Skill",
+      "desc": "Starting at 14th level, when you make an ability check, you can expend one use of Bardic Inspiration. Roll a Bardic Inspiration die and add..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Spirits",
+   "source": "Van Richten's Guide to Ravenloft",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Guiding Whispers",
+      "desc": "At 3rd level, you can reach out to spirits to guide you and others. You learn the Guidance cantrip, which doesn’t count against the number..."
+     },
+     {
+      "name": "Spiritual Focus",
+      "desc": "At 3rd level, you employ tools that aid you in channeling spirits, be they historical figures or fictional archetypes. You can use the..."
+     },
+     {
+      "name": "Tales from Beyond",
+      "desc": "At 3rd level, you reach out to spirits who tell their tales through you. While you are holding your Spiritual Focus, you can use a bonus..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Spirit Session",
+      "desc": "At 6th level, spirits provide you with supernatural insights. You can conduct an hour-long ritual channeling spirits (which can be done..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Mystical Connection",
+      "desc": "At 14th level, you now have the ability to nudge the spirits of Tales from Beyond toward certain tales. Whenever you roll on the Spirit..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Swords",
+   "source": "Xanathar's Guide to Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Bonus Proficiencies",
+      "desc": "When you join the College of Swords at 3rd level, you gain proficiency with medium armor and the scimitar. If you’re proficient with a..."
+     },
+     {
+      "name": "Fighting Style",
+      "desc": "At 3rd level, you adopt a particular style of fighting as your specialty. Choose one of the following options. You can't take a Fighting..."
+     },
+     {
+      "name": "Blade Flourish",
+      "desc": "At 3rd level, you learn to conduct impressive displays of martial prowess and speed. Whenever you take the Attack action on your turn, your..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Extra Attack",
+      "desc": "Starting at 6th level, you can attack twice, instead of once, whenever you take the Attack action on your turn."
+     }
+    ],
+    "14": [
+     {
+      "name": "Master's Flourish",
+      "desc": "Starting at 14th level, whenever you use a Blade Flourish option, you can roll a d6 and use it instead of expending a Bardic Inspiration..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Valor",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Bonus Proficiencies",
+      "desc": "When you join the College of Valor at 3rd level, you gain proficiency with medium armor, shields, and martial weapons."
+     },
+     {
+      "name": "Combat Inspiration",
+      "desc": "Also at 3rd level, you learn to inspire others in battle. A creature that has a Bardic Inspiration die from you can roll that die and add..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Extra Attack",
+      "desc": "Starting at 6th level, you can attack twice, instead of once, whenever you take the Attack action on your turn."
+     }
+    ],
+    "14": [
+     {
+      "name": "Battle Magic",
+      "desc": "At 14th level, you have mastered the art of weaving spellcasting and weapon use into a single harmonious act. When you use your action to..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Whispers",
+   "source": "Xanathar's Guide to Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Psychic Blades",
+      "desc": "When you join the College of Whispers at 3rd level, you gain the ability to make your weapon attacks magically toxic to a creature's mind...."
+     },
+     {
+      "name": "Words of Terror",
+      "desc": "At 3rd level, you learn to infuse innocent-seeming words with an insidious magic that can inspire terror. If you speak to a humanoid alone..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Mantle of Whispers",
+      "desc": "At 6th level, you gain the ability to adopt a humanoid's persona. When a humanoid dies within 30 feet of you, you can magically capture its..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Shadow Lore",
+      "desc": "At 14th level, you gain the ability to weave dark magic into your words and tap into a creature’s deepest fears. As an action, you..."
+     }
+    ]
+   }
+  }
+ ]
+}

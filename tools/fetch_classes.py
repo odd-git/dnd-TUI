@@ -34,7 +34,8 @@ CONFIG = {
             {"name": "Lay on Hands", "desc": "Spend points from the pool; 5 points cure a disease or poison", "pool": "lay_on_hands"},
             {"name": "Channel Divinity", "desc": "Oath power, see your Sacred Oath", "uses": "channel_divinity", "min_level": 3},
         ],
-        "unarmored": None, "style_level": 2,
+        "unarmored": None, "style_level": 2, "spell_table": "always",
+        "casting": {"ability": "CHA", "kind": "half", "mode": "prepared", "prepared": "mod+half", "list": "Paladin"},
         "attacks": {"1": 1, "5": 2},
     },
     "ranger": {
@@ -43,7 +44,58 @@ CONFIG = {
         "columns": {},
         "resources": [], "toggles": [], "actions": [],
         "unarmored": None, "style_level": 2,
+        "casting": {"ability": "WIS", "kind": "half", "mode": "known", "list": "Ranger"},
         "attacks": {"1": 1, "5": 2},
+    },
+    "wizard": {
+        "strip": r"^School of ",
+        "subclass_title": "Arcane Tradition",
+        "columns": {}, "toggles": [], "unarmored": None, "attacks": {"1": 1},
+        "resources": [res("arcane_recovery", "Arcane Recovery", "long", 1)],
+        "actions": [{"name": "Arcane Recovery", "desc": "After a short rest: recover slots totalling up to half your wizard level (rounded up), none 6th or higher", "uses": "arcane_recovery"}],
+        "casting": {"ability": "INT", "kind": "full", "mode": "spellbook", "prepared": "mod+level", "list": "Wizard"},
+    },
+    "cleric": {
+        "strip": r" Domain$",
+        "subclass_title": "Divine Domain",
+        "columns": {}, "toggles": [], "unarmored": None, "attacks": {"1": 1}, "spell_table": "always",
+        "extra_tables": {"channel_divinity": {"2": 1, "6": 2, "18": 3}},
+        "resources": [res("channel_divinity", "Channel Divinity", "short", "table")],
+        "actions": [{"name": "Channel Divinity", "desc": "Turn Undead or your domain power", "uses": "channel_divinity", "min_level": 2}],
+        "casting": {"ability": "WIS", "kind": "full", "mode": "prepared", "prepared": "mod+level", "list": "Cleric"},
+    },
+    "druid": {
+        "strip": r"^Circle of (the )?",
+        "subclass_title": "Druid Circle",
+        "columns": {}, "toggles": [], "unarmored": None, "attacks": {"1": 1}, "spell_table": "always",
+        "resources": [res("wild_shape", "Wild Shape", "short", 2)],
+        "actions": [{"name": "Wild Shape", "desc": "Bonus action: become a beast you have seen (see the Druid page for limits)", "uses": "wild_shape", "min_level": 2}],
+        "casting": {"ability": "WIS", "kind": "full", "mode": "prepared", "prepared": "mod+level", "list": "Druid"},
+    },
+    "bard": {
+        "strip": r"^College of ",
+        "subclass_title": "Bard College",
+        "columns": {}, "toggles": [], "unarmored": None, "attacks": {"1": 1}, "expertise": [3, 10],
+        "dice": {"inspiration": {"1": 6, "5": 8, "10": 10, "15": 12}},
+        "resources": [res("bardic_inspiration", "Bardic Inspiration", "long", "mod:CHA", die="inspiration")],
+        "actions": [{"name": "Bardic Inspiration", "desc": "Bonus action: an ally within 60 ft adds the die to one check, attack or save", "uses": "bardic_inspiration"}],
+        "casting": {"ability": "CHA", "kind": "full", "mode": "known", "list": "Bard"},
+    },
+    "sorcerer": {
+        "strip": r"^$",
+        "subclass_title": "Sorcerous Origin",
+        "columns": {"Sorcery Points": "sorcery_points"}, "toggles": [], "unarmored": None, "attacks": {"1": 1},
+        "resources": [res("sorcery_points", "Sorcery Points", "long", "table")],
+        "actions": [], "spell_table": "always",
+        "casting": {"ability": "CHA", "kind": "full", "mode": "known", "list": "Sorcerer"},
+    },
+    "warlock": {
+        "strip": r"^The ",
+        "subclass_title": "Otherworldly Patron",
+        "columns": {"Invocations Known": "invocations"}, "toggles": [], "unarmored": None, "attacks": {"1": 1},
+        "skip_slugs": ["eldritch-invocations"], "spell_table": "expanded",
+        "resources": [], "actions": [],
+        "casting": {"ability": "CHA", "kind": "pact", "mode": "known", "list": "Warlock"},
     },
     "monk": {
         "strip": r"^Way of (the )?",
@@ -118,22 +170,74 @@ def num(t):
     return int(t) if t.lstrip("-").isdigit() else t
 
 
-def level_table(b):
-    """{column: [value per level 1..20]} from the class table (first table on the page)."""
-    cells, heads, rows_started = [], [], False
-    for tag, _, t in b:
-        if tag == "th" and not rows_started:
-            heads.append(t)
-        elif tag == "td":
-            rows_started = True
-            cells.append(t)
-        elif tag.startswith("h") and rows_started:
-            break
-    heads = heads[heads.index("Level"):]  # drop the caption and spell-slot banner
+def read_table(b, caption=None, first_level=1, needs_prof=True):
+    """(heads from the "Level" column, 20 or fewer rows padded) of the table whose first th is `caption` (default: first table)."""
+    i = next(k for k, (t, _, x) in enumerate(b) if t == "th" and (caption is None or x == caption))
+    heads, cells, k = [], [], i
+    while k < len(b) and b[k][0] == "th":
+        heads.append(b[k][2])
+        k += 1
+    while k < len(b) and b[k][0] == "td":
+        cells.append(b[k][2])
+        k += 1
+    heads = heads[next(j for j, h in enumerate(heads) if re.fullmatch(r"(?:\w+ )?Level", h) and not h.startswith("Spell")):]
     n = len(heads)
-    # rows start at "Nth" followed by "+P"; empty cells can be missing, so pad each row
-    starts = [i for i in range(len(cells) - 1) if re.fullmatch(r"\d+(?:st|nd|rd|th)", cells[i]) and re.fullmatch(r"\+\d", cells[i + 1])]
-    rows = [(cells[a:b] + [""] * n)[:n] for a, b in zip(starts, starts[1:] + [len(cells)])]
+    suffix = lambda l: "th" if 10 <= l % 100 <= 20 else {1: "st", 2: "nd", 3: "rd"}.get(l % 10, "th")
+    starts, want = [], first_level
+    for j in range(len(cells)):
+        if cells[j] == f"{want}{suffix(want)}" and (not needs_prof or (j + 1 < len(cells) and re.fullmatch(r"\+\d", cells[j + 1]))):
+            starts.append(j)
+            want += 1
+    rows = []
+    for a, b_ in zip(starts, starts[1:] + [len(cells)]):
+        row = cells[a:b_]
+        # an empty Features cell is dropped by the wiki: the next cell is then a number or a dash
+        fi = heads.index("Features") if "Features" in heads else None
+        if needs_prof and fi and len(row) == n - 1:
+            # the wiki drops empty cells: an empty Features cell leaves a number/dash in its place,
+            # otherwise the missing one is the column before it (Sorcery Points at level 1)
+            row.insert(fi if re.fullmatch(r"[\d\-–—]+", row[fi]) else fi - 1, "")
+        rows.append((row + [""] * n)[:n])
+    return heads, rows
+
+
+def casting_tables(heads, rows, first_level=1):
+    """Cantrips, spells known and slots read from a table with the usual wikidot columns."""
+    out = {}
+    col = lambda name: [r[heads.index(name)] for r in rows]
+    at_level = lambda vals: {str(first_level + i): v for i, v in enumerate(vals)}
+    squeeze = lambda d: {k: v for j, (k, v) in enumerate(d.items()) if j == 0 or v != list(d.values())[j - 1]}
+    if "Cantrips Known" in heads:
+        out["cantrips"] = squeeze(at_level([num(v) for v in col("Cantrips Known")]))
+    if "Spells Known" in heads:
+        out["known"] = squeeze(at_level([num(v) for v in col("Spells Known")]))
+    ords = [h for h in heads if re.fullmatch(r"[1-9](?:st|nd|rd|th)", h)]
+    if ords:
+        slots = {}
+        for i, r in enumerate(rows):
+            vals = [num(r[heads.index(h)]) for h in ords]
+            slots[str(first_level + i)] = [v if isinstance(v, int) else 0 for v in vals] + [0] * (9 - len(vals))
+        out["slots"] = slots
+    if "Slot Level" in heads:
+        out["pact_slots"] = squeeze(at_level([num(v) for v in col("Spell Slots")]))
+        out["pact_level"] = squeeze(at_level([int(v[0]) for v in col("Slot Level")]))
+    return out
+
+
+def spell_table(b):
+    """{level: [spells]} from a "<X> Spells | <Y> Level | Spells" table of a subclass page, or None."""
+    for i, (t, _, x) in enumerate(b):
+        if t == "th" and x.endswith("Spells") and i + 2 < len(b) and b[i + 1][0] == "th" and b[i + 1][2].endswith("Level"):
+            out, k = {}, i + 3
+            while k + 1 < len(b) and b[k][0] == "td" and re.match(r"\d+(?:st|nd|rd|th)$", b[k][2]):
+                out[str(ordinal(b[k][2]))] = [re.sub(r"\s*\(.*\)", "", n).strip().replace("Evil&Good", "Evil and Good") for n in re.split(r",| and ", b[k + 1][2].replace("Evil and Good", "Evil&Good")) if n.strip()]
+                k += 2
+            return out or None
+    return None
+
+
+def level_table(b):
+    heads, rows = read_table(b)
     assert len(rows) == 20 and heads[0] == "Level", (heads, len(rows))
     return heads, rows
 
@@ -159,7 +263,7 @@ def h3_sections(b):
 
 
 def proficiencies(b):
-    text = next(t for tag, _, t in b if tag == "p" and t.startswith("Armor:"))
+    text = next(t for tag, _, t in b if tag == "p" and t.startswith("Armor:")).replace("Sav ing", "Saving")
     g = lambda a, z: re.search(a + r":\s*(.*?)\s*" + z, text)
     armor = g("Armor", "Weapons:")[1]
     weapons = g("Weapons", "Tools:")[1]
@@ -178,7 +282,7 @@ def proficiencies(b):
     return arm, wp, tl, [ABIL[s.strip()] for s in saves.split(",")], {"choose": count, "from": pool}
 
 
-def subclass(slug, level, strip):
+def subclass(slug, level, strip, spell_table_kind=None):
     sh = w.get(slug)
     sb = w.blocks(w.content(sh))
     src = source_of(sb)
@@ -203,8 +307,11 @@ def subclass(slug, level, strip):
     title = re.sub(r"^[A-Za-z]+:\s*", "", page_name(sh, slug))
     if "(HB)" in title:  # homebrew pages hosted on the wiki
         return None
-    return {"name": re.sub(strip, "", title, flags=re.I), "source": src, "needs_spells": False, "resources": [], "actions": [],
-            "maneuver_pool": None, "tables": {}, "dice": {}, "maneuvers_known": {}, "features": by_level}
+    out = {"name": re.sub(strip, "", re.sub(r"\s*\([^)]*\)$", "", title), flags=re.I), "source": src, "needs_spells": False, "resources": [], "actions": [],
+           "maneuver_pool": None, "tables": {}, "dice": {}, "maneuvers_known": {}, "features": by_level}
+    if spell_table_kind and (table := spell_table(sb)):
+        out[spell_table_kind] = table
+    return out
 
 
 def fighting_styles(b):
@@ -219,6 +326,17 @@ def fighting_styles(b):
             if m := re.match(r"([A-Z][A-Za-z' -]+?)(?: \(([A-Z]+)\))?\.\s*(.*)", t):
                 styles.append({"name": m[1], "source": m[2] or "", "desc": clip(m[3], 130), "effect": STYLE_EFFECTS.get(m[1])})
     return styles
+
+
+def third_caster(slug, cls, base):
+    """Spellcasting table of Eldritch Knight / Arcane Trickster, keyed by class level."""
+    b = w.blocks(w.content(w.get(slug)))
+    caption = next(x for t, _, x in b if t == "th" and x.endswith("Spellcasting"))
+    heads, rows = read_table(b, caption, 3, False)
+    t = casting_tables(heads, rows, 3)
+    # Arcane Trickster lists "Mage Hand + N": Mage Hand is one of the cantrips
+    t["cantrips"] = {k: int(re.findall(r"\d+", v)[-1]) + 1 if isinstance(v, str) else v for k, v in t.get("cantrips", {}).items()}
+    return {**base, **t}
 
 
 def build(slug):
@@ -259,13 +377,17 @@ def build(slug):
         tables[tid] = steps(vals)
     subs = []
     for s in w.slugs(slug + ":"):
-        if s.endswith("-ua") or s.count(":") != 1:
+        if s.endswith(("-ua", "-hb")) or s.count(":") != 1 or s.split(":")[1] in cfg.get("skip_slugs", []):
             continue
-        sub = subclass(s, sub_level, cfg["strip"])
+        sub = subclass(s, sub_level, cfg["strip"], cfg.get("spell_table"))
         if sub:
-            sub["needs_spells"] = s.endswith(("arcane-trickster", "four-elements"))
+            sub["needs_spells"] = s.endswith("four-elements")
+            if s.endswith("arcane-trickster"):
+                sub["casting"] = third_caster(s, "Rogue", {"ability": "INT", "kind": "third", "mode": "known", "list": "Wizard"})
             subs.append(sub)
+    casting = {**cfg["casting"], **casting_tables(heads, rows)} if cfg.get("casting") else None
     return {
+        "casting": casting, "dice": cfg.get("dice", {}),
         "name": slug.capitalize(), "hit_die": hit_die, "saves": saves, "skills": skills, "armor": arm, "weapons": wp,
         "tools": tl, "equipment": equip, "styles": fighting_styles(b), "asi_levels": asi, "subclass_level": sub_level, "subclass_title": cfg["subclass_title"],
         "attacks_per_action": cfg["attacks"], "resources": cfg["resources"], "tables": tables, "actions": cfg["actions"],
@@ -275,6 +397,14 @@ def build(slug):
 
 if __name__ == "__main__":
     (OUT / "classes").mkdir(parents=True, exist_ok=True)
+    if "fighter-ek" in sys.argv:  # Fighter is built by fetch_lists.py; add the Eldritch Knight casting table to it
+        path = OUT / "classes" / "fighter.json"
+        data = json.loads(path.read_text())
+        for sub in data["subclasses"]:
+            if sub["name"] == "Eldritch Knight":
+                sub["casting"] = third_caster("fighter:eldritch-knight", "Fighter", {"ability": "INT", "kind": "third", "mode": "known", "list": "Wizard"})
+        path.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n")
+        sys.argv.remove("fighter-ek")
     for slug in sys.argv[1:] or CONFIG:
         data = build(slug)
         (OUT / "classes" / f"{slug}.json").write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n")

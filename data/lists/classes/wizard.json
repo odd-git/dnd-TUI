@@ -1,0 +1,854 @@
+{
+ "casting": {
+  "ability": "INT",
+  "kind": "full",
+  "mode": "spellbook",
+  "prepared": "mod+level",
+  "list": "Wizard",
+  "cantrips": {
+   "1": 3,
+   "4": 4,
+   "10": 5
+  },
+  "slots": {
+   "1": [
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "2": [
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "3": [
+    4,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "4": [
+    4,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "5": [
+    4,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "6": [
+    4,
+    3,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "7": [
+    4,
+    3,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "8": [
+    4,
+    3,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "9": [
+    4,
+    3,
+    3,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "10": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0
+   ],
+   "11": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    1,
+    0,
+    0,
+    0
+   ],
+   "12": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    1,
+    0,
+    0,
+    0
+   ],
+   "13": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    1,
+    1,
+    0,
+    0
+   ],
+   "14": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    1,
+    1,
+    0,
+    0
+   ],
+   "15": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    1,
+    1,
+    1,
+    0
+   ],
+   "16": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    1,
+    1,
+    1,
+    0
+   ],
+   "17": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    1,
+    1,
+    1,
+    1
+   ],
+   "18": [
+    4,
+    3,
+    3,
+    3,
+    3,
+    1,
+    1,
+    1,
+    1
+   ],
+   "19": [
+    4,
+    3,
+    3,
+    3,
+    3,
+    2,
+    1,
+    1,
+    1
+   ],
+   "20": [
+    4,
+    3,
+    3,
+    3,
+    3,
+    2,
+    2,
+    1,
+    1
+   ]
+  }
+ },
+ "dice": {},
+ "name": "Wizard",
+ "hit_die": 6,
+ "saves": [
+  "INT",
+  "WIS"
+ ],
+ "skills": {
+  "choose": 2,
+  "from": [
+   "Arcana",
+   "History",
+   "Insight",
+   "Investigation",
+   "Medicine",
+   "Religion"
+  ]
+ },
+ "armor": [],
+ "weapons": [
+  "Daggers",
+  "Darts",
+  "Slings",
+  "Quarterstaffs",
+  "Light crossbows"
+ ],
+ "tools": [],
+ "equipment": [
+  "(a) a quarterstaff or (b) a dagger",
+  "(a) a component pouch or (b) an arcane focus",
+  "(a) a scholar's pack or (b) an explorer's pack",
+  "A spellbook"
+ ],
+ "styles": [],
+ "asi_levels": [
+  4,
+  8,
+  12,
+  16,
+  19
+ ],
+ "subclass_level": 2,
+ "subclass_title": "Arcane Tradition",
+ "attacks_per_action": {
+  "1": 1
+ },
+ "resources": [
+  {
+   "id": "arcane_recovery",
+   "name": "Arcane Recovery",
+   "recharge": "long",
+   "max": 1,
+   "pips": true
+  }
+ ],
+ "tables": {},
+ "actions": [
+  {
+   "name": "Arcane Recovery",
+   "desc": "After a short rest: recover slots totalling up to half your wizard level (rounded up), none 6th or higher",
+   "uses": "arcane_recovery"
+  }
+ ],
+ "toggles": [],
+ "style_level": 1,
+ "expertise": [],
+ "unarmored": null,
+ "features": {
+  "1": [
+   {
+    "name": "Spellcasting",
+    "desc": "As a student of arcane magic, you have a spellbook containing spells that show the first glimmerings of your true power."
+   },
+   {
+    "name": "Arcane Recovery",
+    "desc": "You have learned to regain some of your magical energy by studying your spellbook. Once per day when you finish a short rest, you can choose expended spell slots to recover. The spell slots can have..."
+   }
+  ],
+  "18": [
+   {
+    "name": "Spell Mastery",
+    "desc": "At 18th level, you have achieved such mastery over certain spells that you can cast them at will. Choose a 1st-level wizard spell and a 2nd-level wizard spell that are in your spellbook. You can cast..."
+   }
+  ],
+  "20": [
+   {
+    "name": "Signature Spells",
+    "desc": "When you reach 20th level, you gain mastery over two powerful spells and can cast them with little effort. Choose two 3rd-level wizard spells in your spellbook as your signature spells. You always..."
+   }
+  ]
+ },
+ "subclasses": [
+  {
+   "name": "Abjuration",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "2": [
+     {
+      "name": "Abjuration Savant",
+      "desc": "Beginning when you select this school at 2nd level, the gold and time you must spend to copy an abjuration spell into your spellbook is..."
+     },
+     {
+      "name": "Arcane Ward",
+      "desc": "Starting at 2nd level, you can weave magic around yourself for protection. When you cast an abjuration spell of 1st level or higher, you..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Projected Ward",
+      "desc": "Starting at 6th level, when a creature that you can see within 30 feet of you takes damage, you can use your reaction to cause your Arcane..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Improved Abjuration",
+      "desc": "Beginning at 10th level, when you cast an abjuration spell that requires you to make an ability check as a part of casting that spell (as..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Spell Resistance",
+      "desc": "Starting at 14th level, you have advantage on saving throws against spells. Furthermore, you have resistance against the damage of spells...."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Bladesinging",
+   "source": "Tasha's Cauldron of Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "2": [
+     {
+      "name": "Training in War and Song",
+      "desc": "When you adopt this tradition at 2nd level, you gain proficiency with light armor, and you gain proficiency with one type of one-handed..."
+     },
+     {
+      "name": "Bladesong",
+      "desc": "Starting at 2nd level, you can invoke an elven magic called the Bladesong, provided that you aren't wearing medium or heavy armor or using..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Extra Attack",
+      "desc": "Starting at 6th level, you can attack twice, instead of once, whenever you take the Attack action on your turn. Moreover, you can cast one..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Song of Defense",
+      "desc": "Beginning at 10th level, you can direct your magic to absorb damage while your Bladesong is active. When you take damage, you can use your..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Song of Victory",
+      "desc": "Starting at 14th level, you can add your Intelligence modifier (minimum of +1) to the damage of your melee weapon attacks while your..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Chronurgy Magic",
+   "source": "Explorer's Guide to Wildemount",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "2": [
+     {
+      "name": "Chronal Shift",
+      "desc": "At 2nd level, you can magically exert limited control over the flow of time around a creature. As a reaction, after you or a creature you..."
+     },
+     {
+      "name": "Temporal Awareness",
+      "desc": "Starting at 2nd level, you can add your Intelligence modifiers to your initiative rolls."
+     }
+    ],
+    "6": [
+     {
+      "name": "Momentary Stasis",
+      "desc": "When you reach 6th level, as an action, you can magically force a Large or smaller creature you can see within 60 feet of you to make a..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Arcane Abeyance",
+      "desc": "At 10th level, when you cast a spell using a spell slot of 4th level or lower, you can condense the spell's magic into a mote. The spell is..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Convergent Future",
+      "desc": "Starting at 14th level, you can peer through possible futures and magically pull one of them into events around you, ensuring a particular..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Conjuration",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "2": [
+     {
+      "name": "Conjuration Savant",
+      "desc": "Beginning when you select this school at 2nd level, the gold and time you must spend to copy a Conjuration spell into your spellbook is..."
+     },
+     {
+      "name": "Minor Conjuration",
+      "desc": "Starting at 2nd level when you select this school, you can use your action to conjure up an inanimate object in your hand or on the ground..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Benign Transportation",
+      "desc": "Starting at 6th level, you can use your action to teleport up to 30 feet to an unoccupied space that you can see. Alternatively, you can..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Focused Conjuration",
+      "desc": "Beginning at 10th level, while you are concentrating on a conjuration spell, your concentration can't be broken as a result of taking..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Durable Summons",
+      "desc": "Starting at 14th level, any creature that you summon or create with a conjuration spell has 30 temporary hit points...."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Divination",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "2": [
+     {
+      "name": "Divination Savant",
+      "desc": "Beginning when you select this school at 2nd level, the gold and time you must spend to copy a Divination spell into your spellbook is..."
+     },
+     {
+      "name": "Portent",
+      "desc": "Starting at 2nd level when you choose this school, glimpses of the future begin to press in on your awareness. When you finish a long rest..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Expert Divination",
+      "desc": "Beginning at 6th level, casting divination spells comes so easily to you that it expends only a fraction of your spellcasting efforts. When..."
+     }
+    ],
+    "10": [
+     {
+      "name": "The Third Eye",
+      "desc": "Starting at 10th level, you can use your action to increase your powers of perception. When you do so, choose one of the following..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Greater Portent",
+      "desc": "Starting at 14th level, the visions in your dreams intensify and paint a more accurate picture in your mind of what is to come. You roll..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Enchantment",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "2": [
+     {
+      "name": "Enchantment Savant",
+      "desc": "Beginning when you select this school at 2nd level, the gold and time you must spend to copy a Enchantment spell into your spellbook is..."
+     },
+     {
+      "name": "Hypnotic Gaze",
+      "desc": "Starting at 2nd level when you choose this school, your soft words and enchanting gaze can magically enthrall another creature. As an..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Instinctive Charm",
+      "desc": "Beginning at 6th level, when a creature you can see within 30 feet of you makes an attack roll against you, you can use your reaction to..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Split Enchantment",
+      "desc": "Starting at 10th level, when you cast an enchantment spell of 1st level or higher that targets only one creature, you can have it target a..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Alter Memories",
+      "desc": "At 14th level, you gain the ability to make a creature unaware of your magical influence on it. When you cast an enchantment spell to charm..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Evocation",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "2": [
+     {
+      "name": "Evocation Savant",
+      "desc": "Beginning when you select this school at 2nd level, the gold and time you must spend to copy a Evocation spell into your spellbook is..."
+     },
+     {
+      "name": "Sculpt Spells",
+      "desc": "Beginning at 2nd level, you can create pockets of relative safety within the effects of your evocation spells. When you cast an evocation..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Potent Cantrip",
+      "desc": "Starting at 6th level, your damaging cantrips affect even creatures that avoid the brunt of the effect. When a creature succeeds on a..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Empowered Evocation",
+      "desc": "Beginning at 10th level, you can add your Intelligence modifier (minimum of +1) to one damage roll of any wizard evocation spell that you..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Overchannel",
+      "desc": "Starting at 14th level, you can increase the power of your simpler spells. When you cast a wizard spell of 1st through 5th level that deals..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Graviturgy Magic",
+   "source": "Explorer's Guide to Wildemount",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "2": [
+     {
+      "name": "Adjust Density",
+      "desc": "At 2nd level, as an action, you can magically alter the weight of one object or creature you can see within 30 feet of you. The object or..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Gravity Well",
+      "desc": "When you reach 6th level, whenever you cast a spell on a creature, you can move the target 5 feet to an unoccupied space of your choice if..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Violent Attraction",
+      "desc": "At 10th level, when another creature that you can see within 60 feet of you hits with a weapon attack, you can use your reaction to..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Event Horizon",
+      "desc": "Starting at 14th level, as an action, you can magically emit a powerful field of gravitational energy that tugs at other creatures for up..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Illusion",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "2": [
+     {
+      "name": "Illusion Savant",
+      "desc": "Beginning when you select this school at 2nd level, the gold and time you must spend to copy a Illusion spell into your spellbook is halved."
+     },
+     {
+      "name": "Improved Minor Illusion",
+      "desc": "When you choose this school at 2nd level, you learn the Minor Illusion cantrip. If you already know this cantrip, you learn a different..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Malleable Illusions",
+      "desc": "Starting at 6th level, when you cast an illusion spell that has a duration of 1 minute or longer, you can use your action to change the..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Illusory Self",
+      "desc": "Beginning at 10th level, you can create an illusory duplicate of yourself as an instant, almost instinctual reaction to danger. When a..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Illusory Reality",
+      "desc": "By 14th level, you have learned the secret of weaving shadow magic into your illusions to give them a semi-reality. When you cast an..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Necromancy",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "2": [
+     {
+      "name": "Necromancy Savant",
+      "desc": "Beginning when you select this school at 2nd level, the gold and time you must spend to copy a Necromancy spell into your spellbook is..."
+     },
+     {
+      "name": "Grim Harvest",
+      "desc": "At 2nd level, you gain the ability to reap life energy from creatures you kill with your spells. Once per turn when you kill one or more..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Undead Thralls",
+      "desc": "At 6th level, you add the Animate Dead spell to your spellbook if it is not there already. When you cast Animate Dead, you can target one..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Inured to Undeath",
+      "desc": "Beginning at 10th level, you have resistance to necrotic damage, and your hit point maximum can't be reduced. You have spent so much time..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Command Undead",
+      "desc": "Starting at 14th level, you can use magic to bring undead under your control, even those created by other wizards. As an action, you can..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Order of Scribes",
+   "source": "Tasha's Cauldron of Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "2": [
+     {
+      "name": "Wizardly Quill",
+      "desc": "At 2nd level, as a bonus action, you can magically create a Tiny quill in your free hand. The magic quill has the following properties: The..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Manifest Mind",
+      "desc": "At 6th level, you can conjure forth the mind of your Awakened Spellbook. As a bonus action while the book is on your person, you can cause..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Master Scriviner",
+      "desc": "At 10th level, whenever you finish a long rest, you can create one magic scroll by touching your Wizardly Quill to a blank piece of paper..."
+     }
+    ],
+    "14": [
+     {
+      "name": "One with the Word",
+      "desc": "At 14th level, your connection to your Awakened Spellbook has become so profound that your soul has become entwined with it. While the book..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Transmutation",
+   "source": "Player's Handbook",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "2": [
+     {
+      "name": "Transmutation Savant",
+      "desc": "Beginning when you select this school at 2nd level, the gold and time you must spend to copy a Transmutation spell into your spellbook is..."
+     },
+     {
+      "name": "Minor Alchemy",
+      "desc": "Starting at 2nd level when you select this school, you can temporarily alter the physical properties of one nonmagical object, changing it..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Transmuter's Stone",
+      "desc": "Starting at 6th level, you can spend 8 hours creating a transmuter's stone that stores transmutation magic. You can benefit from the stone..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Shapechanger",
+      "desc": "At 10th level, you add the Polymorph spell to your spellbook, if it is not there already. You can cast Polymorph without expending a spell..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Master Transmuter",
+      "desc": "Starting at 14th level, you can use your action to consume the reserve of transmutation magic stored within your transmuter's stone in a..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "War Magic",
+   "source": "Xanathar's Guide to Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "2": [
+     {
+      "name": "Arcane Deflection",
+      "desc": "At 2nd level, you have learned to weave your magic to fortify yourself against harm. When you are hit by an attack or you fail a saving..."
+     },
+     {
+      "name": "Tactical Wit",
+      "desc": "Starting at 2nd level, your keen ability to assess tactical situations allows you to act quickly in battle. You can give yourself a bonus..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Power Surge",
+      "desc": "Starting at 6th level, you can store magical energy within yourself to later empower your damaging spells. You can store a maximum number..."
+     }
+    ],
+    "10": [
+     {
+      "name": "Durable Magic",
+      "desc": "Beginning at 10th level, the magic you channel helps ward off harm. While you maintain concentration on a spell, you have a +2 bonus to AC..."
+     }
+    ],
+    "14": [
+     {
+      "name": "Deflecting Shroud",
+      "desc": "At 14th level, your Arcane Deflection becomes infused with deadly magic. When you use your Arcane Deflection feature, you can cause magical..."
+     }
+    ]
+   }
+  }
+ ]
+}

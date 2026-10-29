@@ -1,4 +1,6 @@
 {
+ "casting": null,
+ "dice": {},
  "name": "Monk",
  "hit_die": 8,
  "saves": [
@@ -557,6 +559,43 @@
      {
       "name": "Opportunist",
       "desc": "At 17th level, you can exploit a creature's momentary distraction when it is hit by an attack. Whenever a creature within 5 feet of you is..."
+     }
+    ]
+   }
+  },
+  {
+   "name": "Sun Soul",
+   "source": "Sword Coast Adventurer's Guide",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Radiant Sun Bolt",
+      "desc": "Starting when you choose this tradition at 3rd level, you can hurl searing bolts of magical radiance. You gain a new attack option that you..."
+     }
+    ],
+    "6": [
+     {
+      "name": "Searing Arc Strike",
+      "desc": "At 6th level, you gain the ability to channel your ki into searing waves of energy. Immediately after you take the Attack action on your..."
+     }
+    ],
+    "11": [
+     {
+      "name": "Searing Sunburst",
+      "desc": "At 11th level, you gain the ability to create an orb of light that erupts into a devastating explosion. As an action, you magically create..."
+     }
+    ],
+    "17": [
+     {
+      "name": "Sun Shield",
+      "desc": "At 17th level, you become wreathed in a luminous, magical aura. You shed bright light in a 30-foot radius and dim light for an additional..."
      }
     ]
    }
