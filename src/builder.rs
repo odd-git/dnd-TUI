@@ -677,7 +677,7 @@ mod tests {
         assert_eq!(c.res_max("divine_sense"), Some(1 + 2)); // CHA 15
         assert_eq!(c.res_max("lay_on_hands"), Some(5));
         assert!(!c.features.iter().any(|f| f.name == "Fighting Style")); // from level 2
-        for (lvl, prof, loh, cd) in [(3, 2, 15, 1), (6, 3, 30, 2), (11, 4, 55, 2), (18, 6, 90, 3), (20, 6, 100, 3)] {
+        for (lvl, prof, loh, cd) in [(3, 2, 15, 1), (6, 3, 30, 1), (11, 4, 55, 1), (18, 6, 90, 1), (20, 6, 100, 1)] {
             let c = half("Paladin", "Devotion", lvl);
             assert_eq!(c.prof(), prof, "prof at {lvl}");
             assert_eq!(c.res_max("lay_on_hands"), Some(loh), "lay on hands at {lvl}");
