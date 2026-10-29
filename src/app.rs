@@ -428,6 +428,7 @@ impl App {
                 }
             }
             Cmd::Select(i) => { if i < self.visible().len() { self.sel = i; } }
+            Cmd::Enter if self.tab == Tab::Spells => self.exec(Cmd::Cast),
             Cmd::Enter => self.run(self.sel),
             Cmd::Click(i) => { self.sel = i; self.run(i); }
             Cmd::Adv => {
