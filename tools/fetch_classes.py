@@ -197,6 +197,16 @@ SUB_MECH = {
             channel("Charm Animals and Plants", "Beasts and plants within 30 ft that see you make a WIS save DC {dc:WIS} or are charmed for 1 minute or until harmed"),
             divine_strike("cold, fire or lightning"),
         ]},
+        "Tempest": {
+            "tables": DIVINE_STRIKE,
+            "resources": [res("wrath_of_the_storm", "Wrath of the Storm", "long", "mod:WIS")],
+            "actions": [
+                {"name": "Wrath of the Storm", "desc": "Reaction to a hit from within 5 ft: the attacker makes a DEX save DC {dc:WIS}, half on a success",
+                 "uses": "wrath_of_the_storm", "dice": [2, 8], "dmg_type": "lightning or thunder"},
+                channel("Destructive Wrath", "Your next lightning or thunder damage roll deals its maximum"),
+                divine_strike("thunder"),
+            ],
+        },
     },
 }
 
