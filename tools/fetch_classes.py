@@ -184,6 +184,15 @@ SUB_MECH = {
             channel("Preserve Life", "Share out up to 5 HP per cleric level among creatures within 30 ft, none above half its max"),
             divine_strike("radiant"),
         ]},
+        "Light": {
+            "always": {"1": ["Light"]},
+            "resources": [res("warding_flare", "Warding Flare", "long", "mod:WIS")],
+            "actions": [
+                {"name": "Warding Flare", "desc": "Reaction: an attacker within 30 ft that can see you rolls with disadvantage (not if it can't be blinded)", "uses": "warding_flare"},
+                {**channel("Radiance of the Dawn", "Dispels magical darkness within 30 ft; hostile creatures there make a CON save DC {dc:WIS}, half on a success"),
+                 "dice": [2, 10], "level_bonus": True, "dmg_type": "radiant"},
+            ],
+        },
     },
 }
 

@@ -938,8 +938,34 @@
    "name": "Light",
    "source": "Player's Handbook",
    "needs_spells": false,
-   "resources": [],
-   "actions": [],
+   "resources": [
+    {
+     "id": "warding_flare",
+     "name": "Warding Flare",
+     "recharge": "long",
+     "max": "mod:WIS",
+     "pips": true
+    }
+   ],
+   "actions": [
+    {
+     "name": "Warding Flare",
+     "desc": "Reaction: an attacker within 30 ft that can see you rolls with disadvantage (not if it can't be blinded)",
+     "uses": "warding_flare"
+    },
+    {
+     "name": "Radiance of the Dawn",
+     "desc": "Dispels magical darkness within 30 ft; hostile creatures there make a CON save DC {dc:WIS}, half on a success",
+     "uses": "channel_divinity",
+     "min_level": 2,
+     "dice": [
+      2,
+      10
+     ],
+     "level_bonus": true,
+     "dmg_type": "radiant"
+    }
+   ],
    "maneuver_pool": null,
    "tables": {},
    "dice": {},
@@ -989,7 +1015,8 @@
    "always": {
     "1": [
      "Burning Hands",
-     "Faerie Fire"
+     "Faerie Fire",
+     "Light"
     ],
     "3": [
      "Flaming Sphere",

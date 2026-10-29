@@ -342,6 +342,15 @@ mod tests {
     }
 
     #[test]
+    fn light_domain_flare_and_dawn() {
+        let c = cleric("Light", 2);
+        assert_eq!(c.res_max("warding_flare"), Some(3)); // WIS 16
+        assert!(c.castable().contains(&"Light".to_string()));
+        let dawn = c.actions.iter().find(|a| a.name == "Radiance of the Dawn").expect("dawn");
+        assert!(dawn.level_bonus && c.dice(dawn) == Some((2, 10)) && dawn.uses.as_deref() == Some("channel_divinity"));
+    }
+
+    #[test]
     fn berserker_frenzy_and_presence() {
         let c = barbarian(3);
         assert!(c.toggles.iter().any(|t| t.name == "Frenzy" && t.exhaust));
