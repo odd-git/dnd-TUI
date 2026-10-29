@@ -49,7 +49,7 @@ pub enum Step {
     // editor
     Ident, IdentSet(usize), Scores, ScoreSet(String), Unskill, ArmorPick, ShieldPick(Option<String>), WeaponPick,
     CustomName, CustomAb(String), CustomDice(String, Option<String>), CustomType(String, Option<String>, (u32, u32)),
-    RmAction, ResName, ResMax(String), ResRecharge(String, u32), RmRes, RmFeat,
+    RmAction, ResName, ResMax(String), ResRecharge(String, u32), RmRes, RmFeat, ItemAdd, ItemDel, Attune, Coins,
     Wiz(wizard::Wz),
 }
 
@@ -652,7 +652,9 @@ impl App {
         v.push(("spelladd", "Add spell"));
         if self.ch.has_spells() { v.push(("spelldel", "Remove spell")); }
         if self.ch.casts() && self.ch.casting().is_some_and(|c| c.mode != "known") { v.push(("prepare", "Prepare spells")); }
-        v.extend([("feat", "Add feat"), ("resource", "Add resource"), ("rmres", "Remove resource"), ("note", "Add feature / note"), ("rmfeat", "Remove feature"), ("done", "Done")]);
+        v.extend([("feat", "Add feat"), ("resource", "Add resource"), ("rmres", "Remove resource"), ("note", "Add feature / note"), ("rmfeat", "Remove feature"), ("item", "Add item"), ("coins", "Coins")]);
+        if !self.ch.inventory.is_empty() { v.extend([("rmitem", "Remove item"), ("attune", "Attune / end attunement")]); }
+        v.push(("done", "Done"));
         v
     }
 
@@ -970,6 +972,7 @@ impl App {
                     "ident" => Step::Ident, "scores" => Step::Scores, "unskill" => Step::Unskill, "armor" => Step::ArmorPick,
                     "weapon" => Step::WeaponPick, "custom" => Step::CustomName, "rmaction" => Step::RmAction, "feat" => Step::FeatList,
                     "resource" => Step::ResName, "rmres" => Step::RmRes, "rmfeat" => Step::RmFeat,
+                    "item" => Step::ItemAdd, "rmitem" => Step::ItemDel, "attune" => Step::Attune, "coins" => Step::Coins,
                     "skill" => Step::Skill, "spelladd" => Step::SpellAdd, "spelldel" => Step::SpellDel, "prepare" => Step::Prepare,
                     "learn" => Step::Maneuver { required: false },
                     "replace" => Step::Forget,

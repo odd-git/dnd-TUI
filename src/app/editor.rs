@@ -10,6 +10,29 @@ fn parse_dice(t: &str) -> Option<(u32, u32)> {
     (n > 0 && s > 1).then_some((n, s))
 }
 
+/// "Rope (hempen) x2 10 lb": a name, then optionally a count and a weight per item.
+fn parse_gear(t: &str) -> Option<Gear> {
+    let mut words: Vec<&str> = t.split_whitespace().collect();
+    let (mut qty, mut weight) = (1, 0.0);
+    while let Some(w) = words.last().copied() {
+        let lw = w.to_lowercase();
+        if let Some(n) = lw.strip_prefix('x').and_then(|n| n.parse().ok()) { qty = n; }
+        else if let Some(n) = lw.strip_suffix("lb").and_then(|n| n.parse().ok()) { weight = n; }
+        else if lw == "lb" && words.len() > 1 && words[words.len() - 2].parse::<f32>().is_ok() { words.pop(); weight = words.last()?.parse().ok()?; }
+        else { break; }
+        words.pop();
+    }
+    (!words.is_empty() && qty > 0).then(|| Gear { name: words.join(" "), qty, weight, attuned: false })
+}
+
+/// "+15 gp", "-3 sp", "20gp": sign, denomination index into COINS, count.
+fn parse_coins(t: &str) -> Option<(bool, usize, u32)> {
+    let t = t.replace(' ', "").to_lowercase();
+    let (spend, t) = match t.strip_prefix('-') { Some(r) => (true, r.to_string()), None => (false, t.trim_start_matches('+').to_string()) };
+    let d = COINS.iter().position(|(c, _)| t.ends_with(c))?;
+    Some((spend, d, t[..t.len() - 2].parse().ok()?))
+}
+
 /// A feat is offered when its ability minimums hold and, for racial feats, the race matches.
 fn feat_ok(c: &Character, f: &lists::FeatDef) -> bool {
     if c.features.iter().any(|x| x.name == format!("Feat: {}", f.name)) { return false; }
@@ -82,6 +105,14 @@ impl App {
             Step::ResRecharge(..) => self.list("Recharges on", vec!["Short rest".into(), "Long rest".into(), "Never".into()], step, true),
             Step::RmRes => { let items = c.resources.iter().map(|r| r.name.clone()).collect(); self.list("Remove which resource?", items, step, true) }
             Step::RmFeat => { let items = c.features.iter().map(|f| f.name.clone()).collect(); self.list("Remove which feature?", items, step, true) }
+            Step::ItemAdd => self.input("Item, e.g. Rope (hempen) x1 10 lb", step, false),
+            Step::ItemDel => { let items = c.inventory.iter().map(|g| format!("{} x{}", g.name, g.qty)).collect(); self.list("Remove which item?", items, step, true) }
+            Step::Attune => {
+                let n = c.inventory.iter().filter(|g| g.attuned).count();
+                let items = c.inventory.iter().map(|g| format!("[{}] {}", if g.attuned { "x" } else { " " }, g.name)).collect();
+                self.list(&format!("Attunement ({n}/3)"), items, step, true);
+            }
+            Step::Coins => self.input(format!("Coins: {}. Add or spend, e.g. +15 gp, -3 sp", c.coins_text()), step, false),
             _ => {}
         }
     }
@@ -158,6 +189,15 @@ impl App {
                 if i < self.ch.resources.len() { let r = self.ch.resources.remove(i); self.ch.res.remove(&r.id); }
             }
             Step::RmFeat if i < self.ch.features.len() => { self.ch.features.remove(i); }
+            Step::ItemDel if i < self.ch.inventory.len() => { let g = self.ch.inventory.remove(i); self.say(format!("Removed {}.", g.name), Tone::Dim); }
+            Step::Attune if i < self.ch.inventory.len() => {
+                let full = self.ch.inventory.iter().filter(|g| g.attuned).count() >= 3;
+                let g = &mut self.ch.inventory[i];
+                if !g.attuned && full { return self.say("Already attuned to 3 items.", Tone::Warn); }
+                g.attuned = !g.attuned;
+                let msg = format!("{} {}.", if g.attuned { "Attuned to" } else { "Attunement ended:" }, g.name);
+                self.say(msg, Tone::Good);
+            }
             _ => {}
         }
     }
@@ -196,10 +236,48 @@ impl App {
                 self.ch.actions.push(ActionDef { name, dice: Some(dice), dmg_ability: ab.is_some(), ability: ab, dmg_type: text, ..Default::default() });
             }
             Step::ResName => { if !text.is_empty() { self.open(Step::ResMax(text)); } }
+            Step::ItemAdd => match parse_gear(&text) {
+                Some(g) => {
+                    self.say(format!("Added {} x{}.", g.name, g.qty), Tone::Good);
+                    match self.ch.inventory.iter_mut().find(|x| x.name.eq_ignore_ascii_case(&g.name)) {
+                        Some(x) => x.qty += g.qty,
+                        None => self.ch.inventory.push(g),
+                    }
+                }
+                None if text.is_empty() => {}
+                None => self.say("Write the item as: Rope (hempen) x1 10 lb", Tone::Warn),
+            },
+            Step::Coins => match parse_coins(&text) {
+                Some((true, d, n)) if !self.ch.pay(d, n) => self.say(format!("Not enough coins for {n} {}.", COINS[d].0), Tone::Warn),
+                Some((spend, d, n)) => {
+                    if !spend { self.ch.coins[d] += n; }
+                    self.say(format!("Coins: {}.", self.ch.coins_text()), Tone::Good);
+                }
+                None if text.is_empty() => {}
+                None => self.say("Write coins as +15 gp or -3 sp.", Tone::Warn),
+            },
             Step::ResMax(name) => {
                 if let Ok(n) = text.parse::<u32>() { if n > 0 { self.open(Step::ResRecharge(name, n)); } }
             }
             _ => {}
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn gear_and_coin_input() {
+        let g = parse_gear("Rope (hempen) x2 10 lb").unwrap();
+        assert_eq!((g.name.as_str(), g.qty, g.weight), ("Rope (hempen)", 2, 10.0));
+        let g = parse_gear("Potion of healing 0.5lb").unwrap();
+        assert_eq!((g.name.as_str(), g.qty, g.weight), ("Potion of healing", 1, 0.5));
+        assert!(parse_gear("x3").is_none());
+        assert_eq!(parse_coins("+15 gp"), Some((false, 1, 15)));
+        assert_eq!(parse_coins("-3sp"), Some((true, 3, 3)));
+        assert_eq!(parse_coins("20 GP"), Some((false, 1, 20)));
+        assert_eq!(parse_coins("20"), None);
     }
 }

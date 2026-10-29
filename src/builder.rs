@@ -167,6 +167,7 @@ pub fn build(d: &Draft) -> Character {
         hp: None,
         death: [0; 2],
         conditions: vec![], exhaustion: 0, inspiration: false,
+        inventory: vec![], coins: [0; 5],
         active: vec![],
         res: BTreeMap::new(),
     };
@@ -461,6 +462,19 @@ mod tests {
         assert!(!s.ritual_ok("Detect Magic"));
         s.features.push(crate::model::Feature { name: "Feat: Ritual Caster".into(), ..Default::default() });
         assert!(s.ritual_ok("Detect Magic"));
+    }
+
+    #[test]
+    fn paying_breaks_larger_coins_or_uses_smaller_ones() {
+        let mut c = rogue(1);
+        c.coins = [0, 2, 0, 0, 0]; // 2 gp
+        assert!(c.pay(3, 5)); // 5 sp: one gp broken into 10 sp
+        assert_eq!(c.coins, [0, 1, 0, 5, 0]);
+        c.coins = [0, 0, 1, 6, 0]; // 1 ep + 6 sp = 110 cp
+        assert!(c.pay(1, 1)); // 1 gp paid with the ep and 5 sp
+        assert_eq!(c.coins, [0, 0, 0, 1, 0]);
+        assert!(!c.pay(1, 1) && c.coins == [0, 0, 0, 1, 0]); // short: nothing spent
+        assert_eq!(c.coins_text(), "1 sp (0.10 gp)");
     }
 
     #[test]

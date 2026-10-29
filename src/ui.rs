@@ -372,6 +372,19 @@ fn draw_character(f: &mut Frame, app: &App, area: Rect) {
         v.push(head("PROFICIENCIES AND EQUIPMENT"));
         v.extend(c.info.iter().map(|s| Line::from(format!("  {s}"))));
     }
+    if !c.inventory.is_empty() || c.coins.iter().any(|n| *n > 0) {
+        v.push(Line::default());
+        v.push(head("INVENTORY"));
+        for g in &c.inventory {
+            let w = if g.weight > 0.0 { format!(", {} lb", g.weight * g.qty as f32) } else { String::new() };
+            v.push(Line::from(format!("  {}{} x{}{w}", g.name, if g.attuned { " (attuned)" } else { "" }, g.qty)));
+        }
+        let lb: f32 = c.inventory.iter().map(|g| g.weight * g.qty as f32).sum();
+        if lb > 0.0 { v.push(Line::styled(format!("  Carried: {lb} lb"), tone(Tone::Dim))); }
+        let att = c.inventory.iter().filter(|g| g.attuned).count();
+        if att > 0 { v.push(Line::styled(format!("  Attuned: {att}/3"), tone(Tone::Dim))); }
+        v.push(Line::from(format!("  Coins: {}", c.coins_text())));
+    }
     if !app.query.is_empty() {
         // keep each section's heading only when something under it matches
         let mut out: Vec<Line> = vec![];

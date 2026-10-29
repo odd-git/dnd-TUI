@@ -106,6 +106,13 @@ pub struct Toggle {
     pub dmg_ability: Option<String>, // ...applied to attacks made with this ability
 }
 
+/// Something carried: weight is per item, in pounds.
+#[derive(Serialize, Deserialize, Clone)]
+pub struct Gear { pub name: String, pub qty: u32, #[serde(default)] pub weight: f32, #[serde(default)] pub attuned: bool }
+
+/// Coin denominations and their value in copper, largest first (the order of `Character::coins`).
+pub const COINS: [(&str, u32); 5] = [("pp", 1000), ("gp", 100), ("ep", 50), ("sp", 10), ("cp", 1)];
+
 /// The beast a druid has turned into: its name and AC (its HP are the "beast_hp" counter, its attacks "Beast: " actions).
 #[derive(Serialize, Deserialize, Clone)]
 pub struct Beast { pub name: String, pub ac: i32, #[serde(default)] pub info: String }
@@ -146,6 +153,8 @@ pub struct Character {
     #[serde(default)] pub features: Vec<Feature>,
     #[serde(default)] pub info: Vec<String>,
     #[serde(default)] pub journal: Vec<String>,
+    #[serde(default)] pub inventory: Vec<Gear>,
+    #[serde(default)] pub coins: [u32; 5], // pp gp ep sp cp
     // live state
     pub hp: Option<i32>,
     #[serde(default)] pub temp_hp: i32,
@@ -250,6 +259,41 @@ impl Character {
             "Cleric" | "Druid" => prepared,
             _ => false,
         })
+    }
+
+    pub fn wealth_cp(&self) -> u32 { self.coins.iter().zip(COINS).map(|(n, (_, v))| n * v).sum() }
+
+    /// Spend `n` coins of denomination `d` (index into COINS), breaking larger coins for change or paying the
+    /// rest with smaller ones; false (nothing spent) if the purse is short.
+    pub fn pay(&mut self, d: usize, n: u32) -> bool {
+        if self.wealth_cp() < n * COINS[d].1 { return false; }
+        while self.coins[d] < n {
+            match (0..d).rev().find(|&h| self.coins[h] > 0) {
+                Some(h) => { self.coins[h] -= 1; self.coins[d] += COINS[h].1 / COINS[d].1; }
+                None => {
+                    // only smaller coins left: pay what is missing with them, largest first
+                    let mut rest = (n - self.coins[d]) * COINS[d].1;
+                    self.coins[d] = 0;
+                    for (n, (_, v)) in self.coins.iter_mut().zip(COINS).skip(d + 1) {
+                        let k = (*n).min(rest / v);
+                        *n -= k;
+                        rest -= k * v;
+                    }
+                    return true;
+                }
+            }
+        }
+        self.coins[d] -= n;
+        true
+    }
+
+    /// "2 pp, 15 gp (35 gp)": the coins held, then their worth in gold when not all gold.
+    pub fn coins_text(&self) -> String {
+        let held: Vec<String> = self.coins.iter().zip(COINS).filter(|(n, _)| **n > 0).map(|(n, (c, _))| format!("{n} {c}")).collect();
+        if held.is_empty() { return "none".into(); }
+        if self.coins.iter().enumerate().all(|(i, n)| i == 1 || *n == 0) { return held.join(", "); }
+        let gp = self.wealth_cp() as f32 / 100.0;
+        format!("{} ({} gp)", held.join(", "), if gp.fract() == 0.0 { format!("{gp}") } else { format!("{gp:.2}") })
     }
 
     pub fn cantrips_max(&self) -> usize { self.cast_src().map_or(0, |(c, l, _)| at(&c.cantrips, l) as usize) }
