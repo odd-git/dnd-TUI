@@ -569,6 +569,15 @@ mod tests {
     }
 
     #[test]
+    fn signature_spells_are_always_prepared() {
+        let mut c = wizard("Evocation", 20);
+        c.spells.push("Fireball".into());
+        assert!(!c.castable().contains(&"Fireball".to_string()));
+        c.features.push(Feature { name: "Signature Spell: Fireball".into(), ..Default::default() });
+        assert!(c.castable().contains(&"Fireball".to_string()));
+    }
+
+    #[test]
     fn enchanter_gaze_dc() {
         let c = wizard("Enchantment", 2);
         assert!(c.fmt(&c.actions.iter().find(|a| a.name == "Hypnotic Gaze").unwrap().desc).contains("DC 13")); // 8 + 2 + INT 16

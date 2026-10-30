@@ -61,6 +61,14 @@ impl App {
                     if lvl >= l && self.ch.def(&format!("arcanum{s}")).is_none() { v.push(Step::Arcanum(s)); }
                 }
             }
+            if cd.name == "Wizard" {
+                for l in [1, 2] {
+                    let has = self.ch.features.iter().any(|f| f.name.strip_prefix("Spell Mastery: ").and_then(lists::spell).is_some_and(|s| s.level == l));
+                    if lvl >= 18 && !has && !self.book_items(l, "Spell Mastery: ").is_empty() { v.push(Step::Mastery(l)); }
+                }
+                let want = if lvl >= 20 { 2.min(self.has_feature("Signature Spell: ") + self.book_items(3, "Signature Spell: ").len()) } else { 0 };
+                for _ in self.has_feature("Signature Spell: ")..want { v.push(Step::Signature); }
+            }
             if cd.name == "Bard" {
                 let mut want = 2 * [10, 14, 18].iter().filter(|&&l| lvl >= l).count();
                 if prog.ends_with("/Lore") && lvl >= 6 { want += 2; }
@@ -164,6 +172,25 @@ impl App {
         self.ch.resources.push(ResourceDef { id, name: format!("Arcanum L{level}"), recharge: "long".into(), max: Some(Max::N(1)), start: None, pips: true, die: None });
         self.ch.init();
         self.say(format!("Mystic Arcanum: {n}."), Tone::Good);
+    }
+
+    /// Spellbook spells of `level` not yet picked for the feature named by `prefix` (Spell Mastery, Signature Spells).
+    pub(super) fn book_items(&self, level: u32, prefix: &str) -> Vec<String> {
+        self.ch.spells.iter().filter(|n| lists::spell(n).is_some_and(|s| s.level == level && s.classes.iter().any(|c| c == "Wizard")))
+            .filter(|n| !self.ch.features.iter().any(|f| f.name == format!("{prefix}{n}"))).cloned().collect()
+    }
+
+    pub(super) fn book_pick(&mut self, step: &Step, i: usize) {
+        let (level, prefix) = if let Step::Mastery(l) = step { (*l, "Spell Mastery: ") } else { (3, "Signature Spell: ") };
+        let Some(n) = self.book_items(level, prefix).get(i).cloned() else { return };
+        self.snap_in_flow();
+        let desc = if level == 3 { "Always prepared; once per short rest at 3rd level without a slot" } else { "At will at its own level while prepared" };
+        self.ch.features.push(Feature { name: format!("{prefix}{n}"), desc: desc.into(), url: String::new() });
+        if level == 3 {
+            self.ch.resources.push(ResourceDef { id: format!("sig:{n}"), name: n.clone(), recharge: "short".into(), max: Some(Max::N(1)), start: None, pips: true, die: None });
+            self.ch.init();
+        }
+        self.say(format!("{prefix}{n}."), Tone::Good);
     }
 
     /// Magical Secrets: a spell or cantrip from any class, up to the highest level the bard can cast.

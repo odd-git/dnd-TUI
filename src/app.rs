@@ -45,7 +45,7 @@ pub enum Step {
     Maneuver { required: bool }, ReplaceAsk, Forget, Extras, Skill, NoteName, NoteDesc(String), JournalAdd,
     Subclass, DeleteSheet(usize), Expertise, Style, Pool(String),
     Learn(bool), Prepare, CastSlot(String), SpellAdd, SpellDel, LevelClass,
-    Opt(String), Arcanum(u32), Secret, Smite, MoonHeal, Companion, Portent, Recover(u32), FontSlot, FontPoints, BeastPick, BeastName, BeastHp(String), BeastAc(String, i32), BeastAtk, Hd(usize), AnyCantrip, TempHp,
+    Opt(String), Arcanum(u32), Mastery(u32), Signature, Secret, Smite, MoonHeal, Companion, Portent, Recover(u32), FontSlot, FontPoints, BeastPick, BeastName, BeastHp(String), BeastAc(String, i32), BeastAtk, Hd(usize), AnyCantrip, TempHp,
     // editor
     Ident, IdentSet(usize), Scores, ScoreSet(String), Unskill, ArmorPick, ShieldPick(Option<String>), WeaponPick,
     CustomName, CustomAb(String), CustomDice(String, Option<String>), CustomType(String, Option<String>, (u32, u32)),
@@ -760,6 +760,8 @@ impl App {
             Step::LevelClass => { let items = self.level_options().into_iter().map(|o| o.0).collect(); self.list("Level up in which class?", items, step, true) }
             Step::Opt(ref kind) => { let k = kind.clone(); self.opt_open(&k, step) }
             Step::Arcanum(l) => { let items = self.arcanum_items(l); self.list(&format!("Mystic Arcanum: a level {l} warlock spell"), items, step, false) }
+            Step::Mastery(l) => { let items = self.book_items(l, "Spell Mastery: "); self.list(&format!("Spell Mastery: a level {l} spell from your spellbook, cast at will"), items, step, false) }
+            Step::Signature => { let items = self.book_items(3, "Signature Spell: "); self.list("Signature Spell: a level 3 spell, always prepared, once per short rest without a slot", items, step, false) }
             Step::Secret => {
                 let items = self.secret_items().iter().map(|s| format!("{} {} ({})", if s.level == 0 { "C".into() } else { s.level.to_string() }, s.name, s.classes.join("/"))).collect();
                 self.list("Magical Secrets: a spell from any class", items, step, false);
@@ -995,6 +997,7 @@ impl App {
             Step::BeastPick => self.beast_pick(i),
             Step::Opt(kind) => self.opt_pick(&kind, i),
             Step::Arcanum(l) => self.arcanum_pick(l, i),
+            Step::Mastery(_) | Step::Signature => self.book_pick(&step, i),
             Step::Secret => self.secret_pick(i),
             Step::AnyCantrip => { if let Some(n) = self.any_cantrips().get(i).cloned() { self.grant_spell(&n, "Pact of the Tome"); } }
             Step::Smite => self.smite_pick(i),

@@ -336,6 +336,7 @@ impl Character {
         let mut v = crate::lists::always_spells(&prog, l);
         v.extend(if c.mode == "known" { self.spells.iter() } else { self.prepared.iter() }.cloned());
         v.extend(off_list);
+        v.extend(self.features.iter().filter_map(|f| f.name.strip_prefix("Signature Spell: ")).map(String::from)); // always prepared
         v.sort();
         v.dedup();
         v

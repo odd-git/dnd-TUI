@@ -42,8 +42,15 @@ impl App {
     }
 
     /// Slots this spell may use: none for a spellbook ritual the wizard has not prepared.
+    /// Spell Mastery and Signature Spells come first: they cost no slot.
     fn cast_slots(&self, sp: &Spell) -> Vec<(String, u32, u32)> {
-        if self.ch.castable().contains(&sp.name) { self.slot_options(sp.level) } else { vec![] }
+        if !self.ch.castable().contains(&sp.name) { return vec![] }
+        let mut v = vec![];
+        if self.ch.features.iter().any(|f| f.name == format!("Spell Mastery: {}", sp.name)) { v.push(("mastery".to_string(), sp.level, 0)); }
+        let sig = format!("sig:{}", sp.name);
+        if self.have(&sig) > 0 { v.push((sig.clone(), 3, self.have(&sig))); }
+        v.extend(self.slot_options(sp.level));
+        v
     }
 
     pub(super) fn cast(&mut self, name: &str) {
@@ -60,7 +67,12 @@ impl App {
     pub(super) fn cast_slot_items(&self, name: &str) -> Vec<String> {
         let Some(sp) = lists::spell(name) else { return vec![] };
         let mut v: Vec<String> = self.cast_slots(sp).iter().map(|(id, l, left)| {
-            if id == "pact" { format!("Pact slot, level {l} ({left} left)") } else { format!("Level {l} slot ({left} left)") }
+            match id.as_str() {
+                "pact" => format!("Pact slot, level {l} ({left} left)"),
+                "mastery" => format!("Spell Mastery, level {l} (no slot)"),
+                s if s.starts_with("sig:") => format!("Signature Spell, level {l} ({left} left)"),
+                _ => format!("Level {l} slot ({left} left)"),
+            }
         }).collect();
         if self.ch.ritual_ok(name) { v.push("As a ritual (+10 min, no slot)".into()); }
         v
