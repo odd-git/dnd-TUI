@@ -67,7 +67,7 @@ def parse(slug):
     hf = re.search(r"regains? (\d+)d(\d+) hit points", text)
     count = re.search(r"\b(two|three|four|five) (?:glowing )?(?:darts|rays|beams|bolts)", text)
     save = re.search(r"(Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma) saving throw", text)
-    up = re.search(r"increases? by (\d+)d(\d+)[^.]*each (?:slot )?level above", higher)
+    up = re.search(r"increases?\b[^.]*? by (\d+)d(\d+)[^.]*each (?:slot )?(?:level )?above", higher)
     name = re.sub(r"[-_]", " ", slug.split(":")[1]).title()
     t = w.get(slug)
     mt = re.search(r"<title>(.*?)</title>", t, re.S)

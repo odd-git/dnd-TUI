@@ -3520,7 +3520,10 @@
   "beams": false,
   "attack": false,
   "save": "CON",
-  "upcast": null,
+  "upcast": [
+   1,
+   6
+  ],
   "scales": false,
   "healing": false
  },
@@ -6109,7 +6112,10 @@
   "beams": false,
   "attack": false,
   "save": "CON",
-  "upcast": null,
+  "upcast": [
+   1,
+   8
+  ],
   "scales": false,
   "healing": false
  },
@@ -6803,7 +6809,10 @@
   "beams": false,
   "attack": false,
   "save": "CON",
-  "upcast": null,
+  "upcast": [
+   1,
+   6
+  ],
   "scales": false,
   "healing": true
  },
@@ -10668,7 +10677,10 @@
   "beams": false,
   "attack": true,
   "save": "STR",
-  "upcast": null,
+  "upcast": [
+   1,
+   6
+  ],
   "scales": false,
   "healing": false
  },
