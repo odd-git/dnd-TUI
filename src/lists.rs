@@ -396,7 +396,8 @@ pub fn classes() -> &'static Vec<ClassData> {
          include_str!("../data/lists/classes/bard.json"), include_str!("../data/lists/classes/sorcerer.json"), include_str!("../data/lists/classes/warlock.json"),
          include_str!("../data/lists/classes/rogue.json"),
          include_str!("../data/lists/classes/monk.json"),
-         include_str!("../data/lists/classes/paladin.json"), include_str!("../data/lists/classes/ranger.json")]
+         include_str!("../data/lists/classes/paladin.json"), include_str!("../data/lists/classes/ranger.json"),
+         include_str!("../data/lists/classes/artificer.json")]
             .iter().map(|j| serde_json::from_str(j).expect("class json")).collect()
     })
 }

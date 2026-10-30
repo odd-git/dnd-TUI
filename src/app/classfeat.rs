@@ -7,7 +7,7 @@ use crate::lists::{self, OptionDef};
 /// Feature-name prefix of each option kind: a picked option is stored as the feature "Metamagic: Quickened Spell".
 fn label(kind: &str) -> &'static str {
     match kind { "metamagic" => "Metamagic", "invocations" => "Invocation", "pact_boons" => "Pact Boon", "disciplines" => "Discipline",
-        "dragon_ancestor" => "Dragon Ancestor", "hunters_prey" => "Hunter's Prey", "defensive_tactics" => "Defensive Tactics", "multiattack" => "Multiattack", "superior_defense" => "Superior Hunter's Defense",
+        "dragon_ancestor" => "Dragon Ancestor", "hunters_prey" => "Hunter's Prey", "defensive_tactics" => "Defensive Tactics", "multiattack" => "Multiattack", "superior_defense" => "Superior Hunter's Defense", "infusions" => "Infusion",
         _ => "Option" }
 }
 
@@ -25,6 +25,7 @@ fn multiclass_profs(class: &str) -> (&'static str, bool) {
         "Ranger" => ("Light and medium armor, shields, simple and martial weapons", true),
         "Rogue" => ("Light armor, thieves' tools", true),
         "Warlock" => ("Light armor, simple weapons", false),
+        "Artificer" => ("Light and medium armor, shields, thieves' tools, tinker's tools", false),
         _ => ("", false),
     }
 }
@@ -124,7 +125,7 @@ impl App {
     }
 
     pub(super) fn opt_items(&self, kind: &str) -> Vec<&'static OptionDef> {
-        let lvl = self.level_of(match kind { "metamagic" | "dragon_ancestor" => "Sorcerer", "disciplines" => "Monk", "invocations" | "pact_boons" => "Warlock", _ => "Ranger" });
+        let lvl = self.level_of(match kind { "metamagic" | "dragon_ancestor" => "Sorcerer", "disciplines" => "Monk", "invocations" | "pact_boons" => "Warlock", "infusions" => "Artificer", _ => "Ranger" });
         let have = |n: &str| self.ch.features.iter().any(|f| f.name == format!("{}: {n}", label(kind)));
         lists::options(kind).iter().filter(|o| !have(&o.name) && self.prereq_ok(o, lvl)).collect()
     }

@@ -202,14 +202,15 @@ impl Character {
     }
     pub fn casting(&self) -> Option<&'static crate::lists::Casting> { self.cast_src().map(|x| x.0) }
 
-    /// Spell slots of a level: multiclass casters pool their levels (full + half/2 + third/3) on the wizard table.
+    /// Spell slots of a level: multiclass casters pool their levels (full + half/2 + third/3, artificer half rounded up)
+    /// on the wizard table.
     fn slots(&self, l: usize) -> u32 {
         let cs: Vec<_> = self.casters().into_iter().filter(|(c, ..)| c.kind != "pact").collect();
         match cs.as_slice() {
             [] => 0,
             [(c, lv, _)] => c.slots_at(*lv, l),
             _ => {
-                let cl: u32 = cs.iter().map(|(c, lv, _)| match c.kind.as_str() { "half" => lv / 2, "third" => lv / 3, _ => *lv }).sum();
+                let cl: u32 = cs.iter().map(|(c, lv, _)| match c.kind.as_str() { "half" => lv / 2, "artificer" => lv.div_ceil(2), "third" => lv / 3, _ => *lv }).sum();
                 crate::lists::class_data("Wizard").and_then(|w| w.casting.as_ref()).map_or(0, |w| w.slots_at(cl, l))
             }
         }
@@ -273,14 +274,14 @@ impl Character {
     }
 
     /// Castable as a ritual (10 minutes longer, no slot): a wizard from the spellbook, a cleric or druid if prepared,
-    /// a bard if known, any ritual the sheet has with Book of Ancient Secrets or the Ritual Caster feat, or a subclass's.
+    /// an artificer if prepared, a bard if known, any ritual the sheet has with Book of Ancient Secrets or the Ritual Caster feat, or a subclass's.
     pub fn ritual_ok(&self, name: &str) -> bool {
         let Some(sp) = crate::lists::spell(name).filter(|s| s.ritual && s.level > 0) else { return false };
         let (known, prepared) = (self.spells.contains(&sp.name), self.prepared.contains(&sp.name));
         let book = self.features.iter().any(|f| f.name == "Invocation: Book of Ancient Secrets" || f.name == "Feat: Ritual Caster");
         (book && (known || prepared)) || self.rituals().contains(&sp.name) || self.casters().iter().any(|(c, ..)| sp.classes.contains(&c.list) && match c.list.as_str() {
             "Wizard" | "Bard" => known,
-            "Cleric" | "Druid" => prepared,
+            "Cleric" | "Druid" | "Artificer" => prepared,
             _ => false,
         })
     }
@@ -512,7 +513,11 @@ impl Character {
             Max::Kw(k) if k.starts_with("class:") => Some(self.res_max_class(&k[6..])),
             Max::Kw(k) if k == "pact" => Some(self.casters().iter().find(|(c, ..)| c.kind == "pact").map_or(0, |(c, l, _)| at(&c.pact_slots, *l))),
             Max::Kw(k) if k.starts_with("slot:") => Some(self.slots(k[5..].parse().unwrap_or(1))),
-            Max::Kw(k) if k.starts_with("mod:") => Some(self.md(&k[4..]).max(1) as u32),
+            // "mod:INT@7": the modifier (at least 1) from the 7th class level
+            Max::Kw(k) if k.starts_with("mod:") => {
+                let (ab, from) = k[4..].split_once('@').unwrap_or((&k[4..], "1"));
+                Some(if self.class_level() < from.parse().unwrap_or(1) { 0 } else { self.md(ab).max(1) as u32 })
+            }
             Max::Kw(k) if k == "arcane_ward" => Some((2 * self.res_max_class("Wizard") as i32 + self.md("INT")).max(0) as u32),
             Max::Kw(k) if k.starts_with("from:") => Some(u32::from(self.level >= k[5..].parse().unwrap_or(1))),
             Max::Kw(k) if k.starts_with("1+mod:") => Some((1 + self.md(&k[6..])).max(1) as u32),

@@ -133,6 +133,17 @@ CONFIG = {
         "expertise": [1, 6],
         "attacks": {"1": 1},
     },
+    "artificer": {
+        "strip": r"^$",
+        "subclass_title": "Artificer Specialist",
+        "columns": {"Infusions Known": "infusions", "Infused Items": "infused_items"}, "toggles": [], "unarmored": None, "attacks": {"1": 1},
+        "skip_slugs": ["infusions"], "spell_table": "always",
+        # Flash of Genius only from 7th level: "@7" in the max
+        "resources": [res("flash_of_genius", "Flash of Genius", "long", "mod:INT@7")],
+        "actions": [{"name": "Flash of Genius", "desc": "Reaction: a creature within 30 ft adds your INT modifier to an ability check or saving throw", "uses": "flash_of_genius", "min_level": 7}],
+        "options": {"infusions": "infusions"},
+        "casting": {"ability": "INT", "kind": "artificer", "mode": "prepared", "prepared": "mod+half", "list": "Artificer"},
+    },
     "barbarian": {
         "strip": r"^Path of the |^Path of ",
         "subclass_title": "Primal Path",
@@ -216,6 +227,7 @@ assert len(SURGE) == 50
 
 # PHB subclass mechanics the page cannot say (like BATTLE_MASTER in fetch_lists.py), merged into the scraped subclass
 SUB_MECH = {
+    "artificer": {"Armorer": {"attacks_per_action": {"1": 1, "5": 2}}, "Battle Smith": {"attacks_per_action": {"1": 1, "5": 2}}},
     "barbarian": {
         "Berserker": {
             "toggles": [{"name": "Frenzy", "exhaust": True, "desc": "While raging: an extra melee swing each turn (bonus action); +1 exhaustion when you stop"}],
@@ -658,7 +670,7 @@ def build(slug):
     for lvl, text in enumerate(col["Features"], 1):
         for raw in split_top(text):
             name = re.sub(r"\s*\(.*\)$", "", raw)
-            if "Optional" in raw or name in ("—", ""):
+            if "Optional" in raw or name in ("—", "-", ""):
                 continue
             if name == "Ability Score Improvement":
                 asi.append(lvl)

@@ -5,6 +5,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+### Added
+- Artificer (Tasha's Cauldron of Everything): spell slots from 1st level, half caster rounded up when multiclassing,
+  rituals when prepared, infusions chosen as they unlock (level prerequisites included), Flash of Genius from 7th level,
+  Extra Attack for Armorer and Battle Smith, the four specialists with their always-prepared spells.
+
 ### Changed
 - The web version is a touch-friendly page instead of the terminal drawn on a canvas: sticky HP bar, action cards,
   checks and spells as buttons, questions as bottom sheets, a log you can open; works on phones. The terminal keys

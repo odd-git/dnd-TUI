@@ -735,6 +735,120 @@
    "url": "http://dnd5e.wikidot.com/sorcerer:draconic-bloodline"
   }
  ],
+ "infusions": [
+  {
+   "name": "Arcane Propulsion Armor",
+   "source": "Tasha's Cauldron of Everything",
+   "prereq": "14th-level artificer",
+   "desc": "Armor (attunement): +5 ft speed; gauntlets are 1d8 force weapons, thrown 20/60 ft and return; can't be removed, replaces missing limbs.",
+   "url": "http://dnd5e.wikidot.com/artificer:infusions"
+  },
+  {
+   "name": "Armor of Magical Strength",
+   "source": "Tasha's Cauldron of Everything",
+   "prereq": null,
+   "desc": "Armor (attunement), 6 charges: add INT mod to a STR check or save, or a reaction to avoid being knocked prone; 1d6 back at dawn.",
+   "url": "http://dnd5e.wikidot.com/artificer:infusions"
+  },
+  {
+   "name": "Boots of the Winding Path",
+   "source": "Tasha's Cauldron of Everything",
+   "prereq": "6th-level artificer",
+   "desc": "Boots (attunement): bonus action to teleport up to 15 ft back to a space you were in this turn.",
+   "url": "http://dnd5e.wikidot.com/artificer:infusions"
+  },
+  {
+   "name": "Enhanced Arcane Focus",
+   "source": "Tasha's Cauldron of Everything",
+   "prereq": null,
+   "desc": "Rod, staff or wand (attunement): +1 to spell attacks and ignore half cover; +2 from 10th level.",
+   "url": "http://dnd5e.wikidot.com/artificer:infusions"
+  },
+  {
+   "name": "Enhanced Defense",
+   "source": "Tasha's Cauldron of Everything",
+   "prereq": null,
+   "desc": "Armor or shield: +1 AC; +2 from 10th level.",
+   "url": "http://dnd5e.wikidot.com/artificer:infusions"
+  },
+  {
+   "name": "Enhanced Weapon",
+   "source": "Tasha's Cauldron of Everything",
+   "prereq": null,
+   "desc": "Simple or martial weapon: +1 to attack and damage; +2 from 10th level.",
+   "url": "http://dnd5e.wikidot.com/artificer:infusions"
+  },
+  {
+   "name": "Helm of Awareness",
+   "source": "Tasha's Cauldron of Everything",
+   "prereq": "10th-level artificer",
+   "desc": "Helmet (attunement): advantage on initiative and can't be surprised while not incapacitated.",
+   "url": "http://dnd5e.wikidot.com/artificer:infusions"
+  },
+  {
+   "name": "Homunculus Servant",
+   "source": "Tasha's Cauldron of Everything",
+   "prereq": null,
+   "desc": "Gem worth 100 gp: becomes a homunculus companion that acts after you, Dodges unless commanded (bonus action), and can deliver your touch spells.",
+   "url": "http://dnd5e.wikidot.com/artificer:infusions"
+  },
+  {
+   "name": "Mind Sharpener",
+   "source": "Tasha's Cauldron of Everything",
+   "prereq": null,
+   "desc": "Armor or robes, 4 charges: reaction to turn a failed concentration save into a success; 1d4 back at dawn.",
+   "url": "http://dnd5e.wikidot.com/artificer:infusions"
+  },
+  {
+   "name": "Radiant Weapon",
+   "source": "Tasha's Cauldron of Everything",
+   "prereq": "6th-level artificer",
+   "desc": "Weapon (attunement): +1 attack and damage, light on command; 4 charges, reaction when hit to blind the attacker (CON save vs spell DC); 1d4 back at dawn.",
+   "url": "http://dnd5e.wikidot.com/artificer:infusions"
+  },
+  {
+   "name": "Repeating Shot",
+   "source": "Tasha's Cauldron of Everything",
+   "prereq": null,
+   "desc": "Ammunition weapon (attunement): +1 on ranged attacks, ignores loading, makes its own ammunition.",
+   "url": "http://dnd5e.wikidot.com/artificer:infusions"
+  },
+  {
+   "name": "Replicate Magic Item",
+   "source": "Tasha's Cauldron of Everything",
+   "prereq": null,
+   "desc": "Learn the recipe for one magic item from the artificer tables (by level) or a common item; can be learned more than once.",
+   "url": "http://dnd5e.wikidot.com/artificer:infusions"
+  },
+  {
+   "name": "Repulsion Shield",
+   "source": "Tasha's Cauldron of Everything",
+   "prereq": "6th-level artificer",
+   "desc": "Shield (attunement): +1 AC; 4 charges, reaction when hit in melee to push the attacker 15 ft; 1d4 back at dawn.",
+   "url": "http://dnd5e.wikidot.com/artificer:infusions"
+  },
+  {
+   "name": "Resistant Armor",
+   "source": "Tasha's Cauldron of Everything",
+   "prereq": "6th-level artificer",
+   "desc": "Armor (attunement): resistance to one damage type chosen when infused.",
+   "url": "http://dnd5e.wikidot.com/artificer:infusions"
+  },
+  {
+   "name": "Returning Weapon",
+   "source": "Tasha's Cauldron of Everything",
+   "prereq": null,
+   "desc": "Thrown weapon: +1 attack and damage, flies back to the hand after a ranged attack.",
+   "url": "http://dnd5e.wikidot.com/artificer:infusions"
+  },
+  {
+   "name": "Spell-Refueling Ring",
+   "source": "Tasha's Cauldron of Everything",
+   "prereq": "6th-level artificer",
+   "desc": "Ring (attunement): action to recover one spent slot of 3rd level or lower, once per dawn.",
+   "url": "http://dnd5e.wikidot.com/artificer:infusions"
+  }
+ ],
  "hunters_prey": [
   {
    "name": "Colossus Slayer",

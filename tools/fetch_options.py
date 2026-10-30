@@ -1,4 +1,4 @@
-"""Class option lists (Metamagic, Eldritch Invocations, Pact Boons, Elemental Disciplines, Hunter options) from dnd5e.wikidot.com -> data/lists/options.json.
+"""Class option lists (Metamagic, Eldritch Invocations, Pact Boons, Elemental Disciplines, Hunter options, Artificer Infusions) from dnd5e.wikidot.com -> data/lists/options.json.
 
 Official content only: Unearthed Arcana entries are skipped.
 """
@@ -118,8 +118,28 @@ def hunter():
     return out
 
 
+def infusions():
+    """Artificer infusions: one h3 per infusion, "Prerequisite: 6th-level artificer Item: ..." then the text."""
+    slug = "artificer:infusions"
+    out, cur = [], None
+    for tag, _, t in w.blocks(w.content(w.get(slug))):
+        if tag.startswith("h"):
+            cur = None
+            if tag == "h3" and "(UA)" not in t:
+                cur = {"name": t, "source": TCOE, "prereq": None, "desc": "", "url": w.url(slug)}
+                out.append(cur)
+        elif cur and tag in ("p", "li"):
+            if m := re.match(r"(?:Prerequisite: (.*?) )?Item: (.*)", t):
+                cur["prereq"], cur["item"] = m[1], m[2]
+            else:
+                cur["desc"] = (cur["desc"] + " " + t).strip()
+    for i in out:
+        i["desc"] = w.summary(w.key(slug, i["name"]), f"Item: {i.pop('item', '')}. {i['desc']}")
+    return out
+
+
 if __name__ == "__main__":
-    data = {"metamagic": metamagic(), "invocations": invocations(), "pact_boons": pact_boons(), "disciplines": disciplines(), "dragon_ancestor": dragon_ancestor(), **hunter()}
+    data = {"metamagic": metamagic(), "invocations": invocations(), "pact_boons": pact_boons(), "disciplines": disciplines(), "dragon_ancestor": dragon_ancestor(), "infusions": infusions(), **hunter()}
     (OUT / "options.json").write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n")
     print({k: len(v) for k, v in data.items()})
     w.save_todo()

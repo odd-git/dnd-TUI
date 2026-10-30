@@ -60,7 +60,7 @@ Keys are shown in the footer, and every footer button, list row, check and tab i
 | Journal | `A` / `Del` | add / delete a note |
 
 ## Rules covered
-- All 12 classes from level 1 to 20 with multiclassing: features, resources, pooled spell slots and pact slots, hit dice per class.
+- All 13 classes (the twelve of the Player's Handbook and the Artificer) from level 1 to 20 with multiclassing: features, resources, pooled spell slots and pact slots, hit dice per class.
 - Every Player's Handbook subclass has its mechanics (Channel Divinity options, Arcane Ward, Portent, Wild Magic surges, the Beast Master's companion, Wild Shape with the SRD beasts...). **Subclasses from other books are text only**: their features are listed with a summary and a link, without automation.
 - Spellcasting: known, prepared and spellbook casters, upcasting, cantrip scaling, concentration with automatic CON saves, ritual casting.
 - Exhaustion, conditions, temporary HP, death saves, Heroic Inspiration.

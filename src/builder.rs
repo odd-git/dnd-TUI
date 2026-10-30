@@ -826,7 +826,7 @@ mod tests {
     fn every_class_matches_the_wikidot_tables() {
         const LEVELS: [u32; 4] = [1, 5, 11, 20];
         let subs = [("Barbarian", "Berserker"), ("Bard", "Lore"), ("Cleric", "Life"), ("Druid", "Moon"), ("Fighter", "Champion"), ("Monk", "Open Hand"),
-            ("Paladin", "Devotion"), ("Ranger", "Hunter"), ("Rogue", "Thief"), ("Sorcerer", "Wild Magic"), ("Warlock", "Fiend"), ("Wizard", "Evocation")];
+            ("Paladin", "Devotion"), ("Ranger", "Hunter"), ("Rogue", "Thief"), ("Sorcerer", "Wild Magic"), ("Warlock", "Fiend"), ("Wizard", "Evocation"), ("Artificer", "Battle Smith")];
         let full = [vec![2], vec![4, 3, 2], vec![4, 3, 3, 3, 2, 1], vec![4, 3, 3, 3, 3, 2, 2, 1, 1]];
         let half = [vec![], vec![4, 2], vec![4, 3, 3], vec![4, 3, 3, 3, 2]];
         let slots = |c: &Character| (1..=9).map(|l| c.res_max(&format!("slot{l}")).unwrap_or(0)).filter(|&n| n > 0).collect::<Vec<_>>();
@@ -840,6 +840,7 @@ mod tests {
                 let want = match class {
                     "Bard" | "Cleric" | "Druid" | "Sorcerer" | "Wizard" => full[i].clone(),
                     "Paladin" | "Ranger" => half[i].clone(),
+                    "Artificer" => [vec![2], vec![4, 2], vec![4, 3, 3], vec![4, 3, 3, 3, 2]][i].clone(),
                     _ => vec![],
                 };
                 assert_eq!(slots(&c), want, "slots, {at}");
@@ -847,6 +848,7 @@ mod tests {
                     "Bard" | "Druid" | "Warlock" => [2, 3, 4, 4][i],
                     "Cleric" | "Wizard" => [3, 4, 5, 5][i],
                     "Sorcerer" => [4, 5, 6, 6][i],
+                    "Artificer" => [2, 2, 3, 4][i],
                     _ => 0,
                 };
                 assert_eq!(c.cantrips_max(), cantrips, "cantrips, {at}");
@@ -862,6 +864,7 @@ mod tests {
                 let prepared = match class {
                     "Cleric" | "Druid" | "Wizard" => 2 + lvl as usize,
                     "Paladin" if lvl > 1 => 2 + lvl as usize / 2,
+                    "Artificer" => 2 + lvl as usize / 2,
                     _ => 0,
                 };
                 if prepared > 0 { assert_eq!(c.prepared_max(), prepared, "prepared, {at}"); }
@@ -875,6 +878,10 @@ mod tests {
                     "Monk" => assert_eq!(res("ki"), [0, 5, 11, 20][i], "ki, {at}"),
                     "Paladin" => assert_eq!((res("lay_on_hands"), res("divine_sense")), (5 * lvl, 3), "{at}"),
                     "Sorcerer" => assert_eq!(res("sorcery_points"), [0, 5, 11, 20][i], "sorcery points, {at}"),
+                    "Artificer" => {
+                        assert_eq!((res("flash_of_genius"), c.table("infusions").unwrap_or(0), c.attacks()), ([0, 0, 2, 2][i], [0, 4, 8, 12][i], [1, 2, 2, 2][i]), "{at}");
+                        assert!(c.ritual_ok("Detect Magic") == c.prepared.iter().any(|p| p == "Detect Magic"), "artificer rituals need preparing, {at}");
+                    }
                     "Warlock" => {
                         assert_eq!((res("pact"), c.casting().unwrap().top_level(lvl)), ([1, 2, 3, 4][i], [1, 3, 5, 5][i]), "pact slots, {at}");
                         assert_eq!(c.table("invocations").unwrap_or(0), [0, 3, 5, 8][i], "invocations, {at}");
@@ -891,6 +898,15 @@ mod tests {
         assert_eq!(slots(&c), full[2]);
         let mut c = plain("Paladin", "Devotion", 8);
         c.multi.push(Extra { prog: "Sorcerer/Wild Magic".into(), level: 3 });
+        c.sync_spell_resources();
+        assert_eq!(slots(&c), full[1]);
+        // the artificer rounds up: Artificer 3 (2) + Wizard 3 = 5, Paladin 4 (2) + Artificer 5 (3) = 5
+        let mut c = plain("Artificer", "Alchemist", 6); // character level: 3 artificer + 3 wizard
+        c.multi.push(Extra { prog: "Wizard/Evocation".into(), level: 3 });
+        c.sync_spell_resources();
+        assert_eq!(slots(&c), full[1]);
+        let mut c = plain("Paladin", "Devotion", 9);
+        c.multi.push(Extra { prog: "Artificer/Armorer".into(), level: 5 });
         c.sync_spell_resources();
         assert_eq!(slots(&c), full[1]);
     }

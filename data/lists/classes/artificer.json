@@ -1,0 +1,725 @@
+{
+ "casting": {
+  "ability": "INT",
+  "kind": "artificer",
+  "mode": "prepared",
+  "prepared": "mod+half",
+  "list": "Artificer",
+  "cantrips": {
+   "1": 2,
+   "10": 3,
+   "14": 4
+  },
+  "slots": {
+   "1": [
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "2": [
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "3": [
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "4": [
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "5": [
+    4,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "6": [
+    4,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "7": [
+    4,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "8": [
+    4,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "9": [
+    4,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "10": [
+    4,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "11": [
+    4,
+    3,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "12": [
+    4,
+    3,
+    3,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "13": [
+    4,
+    3,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "14": [
+    4,
+    3,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "15": [
+    4,
+    3,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "16": [
+    4,
+    3,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "17": [
+    4,
+    3,
+    3,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "18": [
+    4,
+    3,
+    3,
+    3,
+    1,
+    0,
+    0,
+    0,
+    0
+   ],
+   "19": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0
+   ],
+   "20": [
+    4,
+    3,
+    3,
+    3,
+    2,
+    0,
+    0,
+    0,
+    0
+   ]
+  }
+ },
+ "dice": {},
+ "options": {
+  "infusions": {
+   "1": 0,
+   "2": 4,
+   "6": 6,
+   "10": 8,
+   "14": 10,
+   "18": 12
+  }
+ },
+ "name": "Artificer",
+ "hit_die": 8,
+ "saves": [
+  "CON",
+  "INT"
+ ],
+ "skills": {
+  "choose": 2,
+  "from": [
+   "Arcana",
+   "History",
+   "Investigation",
+   "Medicine",
+   "Nature",
+   "Perception",
+   "Sleight of Hand"
+  ]
+ },
+ "armor": [
+  "Light",
+  "Medium",
+  "Shield"
+ ],
+ "weapons": [
+  "Simple"
+ ],
+ "tools": [
+  "Thieves’ tools",
+  "tinker’s tools",
+  "one type of artisan’s tools of your choice"
+ ],
+ "equipment": [
+  "any two simple weapons",
+  "a light crossbow and 20 bolts",
+  "(a) studded leather armor or (b) scale mail",
+  "thieves’ tools and a dungeoneer’s pack"
+ ],
+ "styles": [],
+ "asi_levels": [
+  4,
+  8,
+  12,
+  16,
+  19
+ ],
+ "subclass_level": 3,
+ "subclass_title": "Artificer Specialist",
+ "attacks_per_action": {
+  "1": 1
+ },
+ "resources": [
+  {
+   "id": "flash_of_genius",
+   "name": "Flash of Genius",
+   "recharge": "long",
+   "max": "mod:INT@7",
+   "pips": true
+  }
+ ],
+ "tables": {
+  "infusions": {
+   "1": 0,
+   "2": 4,
+   "6": 6,
+   "10": 8,
+   "14": 10,
+   "18": 12
+  },
+  "infused_items": {
+   "1": 0,
+   "2": 2,
+   "6": 3,
+   "10": 4,
+   "14": 5,
+   "18": 6
+  }
+ },
+ "actions": [
+  {
+   "name": "Flash of Genius",
+   "desc": "Reaction: a creature within 30 ft adds your INT modifier to an ability check or saving throw",
+   "uses": "flash_of_genius",
+   "min_level": 7
+  }
+ ],
+ "toggles": [],
+ "style_level": 1,
+ "expertise": [],
+ "unarmored": null,
+ "features": {
+  "1": [
+   {
+    "name": "Magical Tinkering",
+    "desc": "With thieves' or artisan's tools, touch a Tiny object (action) to give it a small magic trait: light, a recorded message, a smell or sound, or a still image. INT mod objects at once.",
+    "url": "http://dnd5e.wikidot.com/artificer"
+   },
+   {
+    "name": "Spellcasting",
+    "desc": "Prepared INT caster working through tools or infused items as the focus; can cast rituals it has prepared.",
+    "url": "http://dnd5e.wikidot.com/artificer"
+   }
+  ],
+  "2": [
+   {
+    "name": "Infuse Item",
+    "desc": "After a long rest, turn ordinary objects into magic items with the infusions you know (Infused Items column caps how many at once).",
+    "url": "http://dnd5e.wikidot.com/artificer"
+   }
+  ],
+  "3": [
+   {
+    "name": "The Right Tool for the Job",
+    "desc": "1 hour with tools in hand (can be during a rest): create one set of nonmagical artisan's tools.",
+    "url": "http://dnd5e.wikidot.com/artificer"
+   }
+  ],
+  "6": [
+   {
+    "name": "Tool Expertise",
+    "desc": "Double proficiency bonus on ability checks made with tools you are proficient in.",
+    "url": "http://dnd5e.wikidot.com/artificer"
+   }
+  ],
+  "7": [
+   {
+    "name": "Flash of Genius",
+    "desc": "Reaction: you or a creature within 30 ft adds your INT mod to a check or save; INT mod uses per long rest.",
+    "url": "http://dnd5e.wikidot.com/artificer"
+   }
+  ],
+  "10": [
+   {
+    "name": "Magic Item Adept",
+    "desc": "Attune to 4 items; common and uncommon items take a quarter of the time and half the gold to craft.",
+    "url": "http://dnd5e.wikidot.com/artificer"
+   }
+  ],
+  "11": [
+   {
+    "name": "Spell-Storing Item",
+    "desc": "After a long rest store a 1st or 2nd level, 1-action artificer spell in a weapon or focus; the holder casts it with your modifier, 2x INT mod times.",
+    "url": "http://dnd5e.wikidot.com/artificer"
+   }
+  ],
+  "14": [
+   {
+    "name": "Magic Item Savant",
+    "desc": "Attune to 5 items; ignore class, race, spell and level requirements of magic items.",
+    "url": "http://dnd5e.wikidot.com/artificer"
+   }
+  ],
+  "18": [
+   {
+    "name": "Magic Item Master",
+    "desc": "Attune to 6 items.",
+    "url": "http://dnd5e.wikidot.com/artificer"
+   }
+  ],
+  "20": [
+   {
+    "name": "Soul of Artifice",
+    "desc": "+1 to all saves per attuned item; dropping to 0 HP, end an infusion (reaction) to stay at 1 HP.",
+    "url": "http://dnd5e.wikidot.com/artificer"
+   }
+  ]
+ },
+ "subclasses": [
+  {
+   "name": "Alchemist",
+   "source": "Tasha's Cauldron of Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Tool Proficiency",
+      "desc": "Proficiency with alchemist's supplies (or another artisan's tool if you have it).",
+      "url": "http://dnd5e.wikidot.com/artificer:alchemist"
+     },
+     {
+      "name": "Alchemist Spells",
+      "desc": "Subclass spells always prepared, not counted against your prepared spells.",
+      "url": "http://dnd5e.wikidot.com/artificer:alchemist"
+     },
+     {
+      "name": "Experimental Elixir",
+      "desc": "After a long rest make a random elixir (healing, swiftness, resilience, boldness, flight or transformation); more for a spell slot each, effect chosen. More free ones at 6th and 15th.",
+      "url": "http://dnd5e.wikidot.com/artificer:alchemist"
+     }
+    ],
+    "5": [
+     {
+      "name": "Alchemical Savant",
+      "desc": "Spells cast through alchemist's supplies add INT mod to one healing roll or acid, fire, necrotic or poison damage roll.",
+      "url": "http://dnd5e.wikidot.com/artificer:alchemist"
+     }
+    ],
+    "9": [
+     {
+      "name": "Restorative Reagents",
+      "desc": "Elixirs also give 2d6 + INT temp HP; Lesser Restoration without a slot INT mod times per long rest.",
+      "url": "http://dnd5e.wikidot.com/artificer:alchemist"
+     }
+    ],
+    "15": [
+     {
+      "name": "Chemical Mastery",
+      "desc": "Resist acid and poison, immune to poisoned; Greater Restoration and Heal once each per long rest without a slot or components.",
+      "url": "http://dnd5e.wikidot.com/artificer:alchemist"
+     }
+    ]
+   },
+   "always": {
+    "3": [
+     "Healing Word",
+     "Ray of Sickness"
+    ],
+    "5": [
+     "Flaming Sphere",
+     "Melf's Acid Arrow"
+    ],
+    "9": [
+     "Gaseous Form",
+     "Mass Healing Word"
+    ],
+    "13": [
+     "Blight",
+     "Death Ward"
+    ],
+    "17": [
+     "Cloudkill",
+     "Raise Dead"
+    ]
+   }
+  },
+  {
+   "name": "Armorer",
+   "source": "Tasha's Cauldron of Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Tools of the Trade",
+      "desc": "Proficiency with heavy armor and smith's tools.",
+      "url": "http://dnd5e.wikidot.com/artificer:armorer"
+     },
+     {
+      "name": "Armorer Spells",
+      "desc": "Subclass spells always prepared, not counted against your prepared spells.",
+      "url": "http://dnd5e.wikidot.com/artificer:armorer"
+     },
+     {
+      "name": "Arcane Armor",
+      "desc": "Action with smith's tools: your armor becomes Arcane Armor, no STR requirement, works as a focus, can't be removed against your will.",
+      "url": "http://dnd5e.wikidot.com/artificer:armorer"
+     },
+     {
+      "name": "Armor Model",
+      "desc": "Guardian (thunder gauntlets 1d8, foes hit have disadvantage against others; Defensive Field temp HP) or Infiltrator (lightning launcher 1d6 ranged, +1d6 once per turn; faster and stealthier). Uses INT; swap on a rest.",
+      "url": "http://dnd5e.wikidot.com/artificer:armorer"
+     }
+    ],
+    "5": [
+     {
+      "name": "Extra Attack",
+      "desc": "Attack twice with the Attack action.",
+      "url": "http://dnd5e.wikidot.com/artificer:armorer"
+     }
+    ],
+    "9": [
+     {
+      "name": "Armor Modifications",
+      "desc": "The armor counts as four items for infusions (chest, boots, helmet, weapon); +2 infused items, only on the armor.",
+      "url": "http://dnd5e.wikidot.com/artificer:armorer"
+     }
+    ],
+    "15": [
+     {
+      "name": "Perfected Armor",
+      "desc": "Guardian: reaction pulls a creature 25 ft (STR save vs spell DC), then a melee attack, PB times per long rest. Infiltrator: lightning hits make the target glimmer, next attack against it has advantage and +1d6 lightning.",
+      "url": "http://dnd5e.wikidot.com/artificer:armorer"
+     }
+    ]
+   },
+   "always": {
+    "3": [
+     "Magic Missile",
+     "Thunderwave"
+    ],
+    "5": [
+     "Mirror Image",
+     "Shatter"
+    ],
+    "9": [
+     "Hypnotic Pattern",
+     "Lightning Bolt"
+    ],
+    "13": [
+     "Fire Shield",
+     "Greater Invisibility"
+    ],
+    "17": [
+     "Passwall",
+     "Wall of Force"
+    ]
+   },
+   "attacks_per_action": {
+    "1": 1,
+    "5": 2
+   }
+  },
+  {
+   "name": "Artillerist",
+   "source": "Tasha's Cauldron of Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Tool Proficiency",
+      "desc": "Proficiency with woodcarver's tools (or another artisan's tool if you have it).",
+      "url": "http://dnd5e.wikidot.com/artificer:artillerist"
+     },
+     {
+      "name": "Artillerist Spells",
+      "desc": "Subclass spells always prepared, not counted against your prepared spells.",
+      "url": "http://dnd5e.wikidot.com/artificer:artillerist"
+     },
+     {
+      "name": "Eldritch Cannon",
+      "desc": "Action: create a cannon (AC 18, 5x level HP) once per long rest or for a slot; bonus action to fire: Flamethrower 2d8 fire cone, Force Ballista 2d8 force ranged, or Protector 1d8 + INT temp HP nearby.",
+      "url": "http://dnd5e.wikidot.com/artificer:artillerist"
+     }
+    ],
+    "5": [
+     {
+      "name": "Arcane Firearm",
+      "desc": "Carve a wand, staff or rod into a firearm focus: artificer spells through it add 1d8 to one damage roll.",
+      "url": "http://dnd5e.wikidot.com/artificer:artillerist"
+     }
+    ],
+    "9": [
+     {
+      "name": "Explosive Cannon",
+      "desc": "Cannon damage +1d8; action to detonate it: 3d8 force within 20 ft, DEX save for half.",
+      "url": "http://dnd5e.wikidot.com/artificer:artillerist"
+     }
+    ],
+    "15": [
+     {
+      "name": "Fortified Position",
+      "desc": "Half cover within 10 ft of your cannon; two cannons at once, fired with one bonus action.",
+      "url": "http://dnd5e.wikidot.com/artificer:artillerist"
+     }
+    ]
+   },
+   "always": {
+    "3": [
+     "Shield",
+     "Thunderwave"
+    ],
+    "5": [
+     "Scorching Ray",
+     "Shatter"
+    ],
+    "9": [
+     "Fireball",
+     "Wind Wall"
+    ],
+    "13": [
+     "Ice Storm",
+     "Wall of Fire"
+    ],
+    "17": [
+     "Cone of Cold",
+     "Wall of Force"
+    ]
+   }
+  },
+  {
+   "name": "Battle Smith",
+   "source": "Tasha's Cauldron of Everything",
+   "needs_spells": false,
+   "resources": [],
+   "actions": [],
+   "maneuver_pool": null,
+   "tables": {},
+   "dice": {},
+   "maneuvers_known": {},
+   "features": {
+    "3": [
+     {
+      "name": "Tool Proficiency",
+      "desc": "Proficiency with smith's tools (or another artisan's tool if you have it).",
+      "url": "http://dnd5e.wikidot.com/artificer:battle-smith"
+     },
+     {
+      "name": "Battle Smith Spells",
+      "desc": "Subclass spells always prepared, not counted against your prepared spells.",
+      "url": "http://dnd5e.wikidot.com/artificer:battle-smith"
+     },
+     {
+      "name": "Battle Ready",
+      "desc": "Proficiency with martial weapons; magic weapons can use INT for attack and damage.",
+      "url": "http://dnd5e.wikidot.com/artificer:battle-smith"
+     },
+     {
+      "name": "Steel Defender",
+      "desc": "A construct companion that acts after you: it Dodges unless you command it with a bonus action (Force-Empowered Rend, or Repair); reaction imposes disadvantage on an attack near it.",
+      "url": "http://dnd5e.wikidot.com/artificer:battle-smith"
+     }
+    ],
+    "5": [
+     {
+      "name": "Extra Attack",
+      "desc": "Attack twice with the Attack action.",
+      "url": "http://dnd5e.wikidot.com/artificer:battle-smith"
+     }
+    ],
+    "9": [
+     {
+      "name": "Arcane Jolt",
+      "desc": "Once per turn when you or the defender hit with a magic weapon: +2d6 force, or heal 2d6 to a creature within 30 ft; INT mod times per long rest.",
+      "url": "http://dnd5e.wikidot.com/artificer:battle-smith"
+     }
+    ],
+    "15": [
+     {
+      "name": "Improved Defender",
+      "desc": "Arcane Jolt becomes 4d6; defender +2 AC and its Deflect Attack deals 1d4 + INT force to the attacker.",
+      "url": "http://dnd5e.wikidot.com/artificer:battle-smith"
+     }
+    ]
+   },
+   "always": {
+    "3": [
+     "Heroism",
+     "Shield"
+    ],
+    "5": [
+     "Branding Smite",
+     "Warding Bond"
+    ],
+    "9": [
+     "Aura of Vitality",
+     "Conjure Barrage"
+    ],
+    "13": [
+     "Aura of Purity",
+     "Fire Shield"
+    ],
+    "17": [
+     "Banishing Smite",
+     "Mass Cure Wounds"
+    ]
+   },
+   "attacks_per_action": {
+    "1": 1,
+    "5": 2
+   }
+  }
+ ]
+}
