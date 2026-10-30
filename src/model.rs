@@ -428,7 +428,9 @@ impl Character {
             e.level as i32 * (hd / 2 + 1 + cm)
         }).sum();
         let subs: i32 = self.classes().iter().filter_map(|(p, l)| Some(crate::lists::sub_of(p)?.hp_per_level * *l as i32)).sum();
-        let max = d + cm + (self.class_level() as i32 - 1) * (d / 2 + 1 + cm) + others + subs;
+        // hit points per character level from a feat or trait
+        let tough: i32 = self.features.iter().map(|f| match f.name.as_str() { "Dwarven Toughness" => 1, "Feat: Tough" | "Tough" => 2, _ => 0 }).sum();
+        let max = d + cm + (self.class_level() as i32 - 1) * (d / 2 + 1 + cm) + others + subs + tough * self.level as i32;
         Some(if self.exhaustion >= 4 { max / 2 } else { max })
     }
 

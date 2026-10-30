@@ -621,14 +621,16 @@ mod tests {
         assert_eq!(c.ac(), Some(13));
     }
 
-    fn rogue(level: u32) -> Character {
+    fn rogue(level: u32) -> Character { build(&rogue_draft(level)) }
+
+    fn rogue_draft(level: u32) -> Draft {
         let s = |x: &str| x.to_string();
-        build(&Draft {
+        Draft {
             name: s("Vex"), lineage: s("Human"), class: s("Rogue"), subclass: Some(s("Thief")), level, background: s("Criminal"),
             base: [("STR", 8), ("DEX", 15), ("CON", 13), ("INT", 12), ("WIS", 10), ("CHA", 14)].iter().map(|(a, v)| (a.to_string(), *v)).collect(),
             class_skills: ["Acrobatics", "Insight", "Perception", "Persuasion"].iter().map(|x| s(x)).collect(),
             expertise: vec![s("Stealth"), s("Acrobatics")], ..Default::default()
-        })
+        }
     }
 
     #[test]
@@ -700,6 +702,16 @@ mod tests {
         assert_eq!(five.check_mod("Arcana"), five.md("INT") + 1);
         assert_eq!(five.check_mod("DEX"), five.md("DEX") + 1); // initiative too
         assert_eq!(five.check_mod("STR save"), five.md("STR")); // not saves
+    }
+
+    #[test]
+    fn tough_and_dwarven_toughness() {
+        let s = |x: &str| x.to_string();
+        let base = rogue(5).hp_max().unwrap();
+        let hill = build(&Draft { lineage: s("Dwarf"), sub: Some(s("Hill Dwarf")), ..rogue_draft(5) });
+        assert_eq!(hill.hp_max().unwrap(), base + 5); // CON 15 like the human 14: +2 either way; +1 per level
+        let tough = build(&Draft { feats: vec![s("Tough")], feat_picks: vec![s("")], ..rogue_draft(5) });
+        assert_eq!(tough.hp_max().unwrap(), base + 2 * 5);
     }
 
     #[test]
