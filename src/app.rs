@@ -1,9 +1,9 @@
 use std::collections::{BTreeMap, VecDeque};
 use std::path::PathBuf;
 
-use ratatui::crossterm::event::{KeyCode, KeyEvent, KeyModifiers};
 use ratatui::layout::Rect;
 
+use crate::keys::{KeyCode, KeyEvent, KeyModifiers};
 use crate::model::*;
 use crate::store::{self, data_dir};
 
@@ -495,15 +495,11 @@ impl App {
         self.say(format!("Deleted {}.", c.name), Tone::Dim);
     }
 
-    /// Write the sheet as a PDF in the current directory and say where it went.
+    /// Save the sheet as a PDF (current directory, or a browser download) and say where it went.
     fn export_pdf(&mut self, mut ch: Character) {
         ch.init();
         let file: String = ch.name.chars().map(|c| if c.is_alphanumeric() { c } else { '_' }).collect();
-        let path = std::env::current_dir().unwrap_or_default().join(format!("{file}.pdf"));
-        let msg = match std::fs::write(&path, crate::pdf::sheet(&ch)) {
-            Ok(()) => vec![format!("{file}.pdf"), format!("in {}", path.parent().unwrap_or(&path).display())],
-            Err(e) => vec![format!("Could not write {file}.pdf: {e}")],
-        };
+        let msg = store::save_file(&format!("{file}.pdf"), &crate::pdf::sheet(&ch));
         self.list("PDF sheet (Enter closes)", msg, Step::Notice, true);
     }
 
