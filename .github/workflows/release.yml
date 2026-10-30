@@ -1,0 +1,82 @@
+# Builds the program for Linux, macOS and Windows and attaches the archives to a GitHub release.
+# A pushed tag v* builds and publishes; "Run workflow" with a tag name publishes that existing tag, with it empty only builds.
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Existing tag to publish (empty = build only, nothing published)"
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          # Linux is built against musl: one static file that runs on any distribution
+          - { os: ubuntu-latest,     target: x86_64-unknown-linux-musl,  name: linux-x86_64 }
+          - { os: ubuntu-24.04-arm,  target: aarch64-unknown-linux-musl, name: linux-aarch64 }
+          - { os: macos-15-intel,    target: x86_64-apple-darwin,        name: macos-x86_64 }
+          - { os: macos-latest,      target: aarch64-apple-darwin,       name: macos-aarch64 }
+          - { os: windows-latest,    target: x86_64-pc-windows-msvc,     name: windows-x86_64 }
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: ${{ matrix.target }}
+      - if: contains(matrix.target, 'musl')
+        run: sudo apt-get install -y musl-tools
+      - uses: Swatinem/rust-cache@v2
+        with:
+          key: ${{ matrix.target }}
+      - run: cargo build --release --target ${{ matrix.target }}
+      - name: Package
+        shell: bash
+        run: |
+          dir="dnd-tui-${{ matrix.name }}"
+          mkdir "$dir"
+          cp README.md LICENSE CHANGELOG.md "$dir"/
+          if [ "${{ runner.os }}" = Windows ]; then
+            cp "target/${{ matrix.target }}/release/dnd-tui.exe" "$dir"/
+            7z a "$dir.zip" "$dir" >/dev/null
+          else
+            cp "target/${{ matrix.target }}/release/dnd-tui" "$dir"/
+            tar czf "$dir.tar.gz" "$dir"
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dnd-tui-${{ matrix.name }}
+          path: dnd-tui-${{ matrix.name }}.*
+
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/') || inputs.tag != ''
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          ref: ${{ inputs.tag || github.ref }}
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - name: Publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="${{ inputs.tag || github.ref_name }}"
+          ver="${tag#v}"
+          cd dist && sha256sum * > SHA256SUMS && cd ..
+          # the release notes are this version's section of the changelog
+          awk -v v="$ver" '/^## \[/ { on = index($0, "[" v "]") > 0; next } on' CHANGELOG.md > notes.md
+          gh release create "$tag" dist/* --title "dnd-tui $ver" --notes-file notes.md --verify-tag

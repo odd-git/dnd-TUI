@@ -10,15 +10,30 @@ Scope: **D&D 5e, 2014 rules, official content only** (Player's Handbook and the 
 | ![Spells tab with the slot popup](docs/elm-cast.png) | ![Race list in the creation wizard](docs/wizard-race.png) |
 
 ## Install
+Download the archive for your system from the [latest release](https://github.com/odd-git/dnd-TUI/releases/latest), unpack it and run `dnd-tui` from a terminal:
+
+| System | File |
+|---|---|
+| Linux (any distribution) | `dnd-tui-linux-x86_64.tar.gz`, or `-aarch64` for ARM |
+| macOS | `dnd-tui-macos-aarch64.tar.gz` (Apple silicon) or `-x86_64` (Intel) |
+| Windows | `dnd-tui-windows-x86_64.zip`, best in Windows Terminal |
+
+```
+tar xzf dnd-tui-linux-x86_64.tar.gz
+./dnd-tui-linux-x86_64/dnd-tui
+```
+To keep it: `install -Dm755 dnd-tui-*/dnd-tui ~/.local/bin/dnd-tui`. `SHA256SUMS` in the release lists the checksums.
+The binaries are not signed: on macOS, if the system refuses to open it, run `xattr -d com.apple.quarantine dnd-tui` once; on Windows, SmartScreen asks for "More info", then "Run anyway".
+
+To build it yourself you need a recent stable Rust toolchain:
 ```
 cargo build --release
 install -Dm755 target/release/dnd-tui ~/.local/bin/dnd-tui
-dnd-tui
 ```
-Needs a recent stable Rust toolchain. Pick a sheet at start, or press `N` to create a character.
+Pick a sheet at start, or press `N` to create a character.
 
 ## Data
-Each character is one JSON file in `~/.local/share/dnd-tui/` (`$XDG_DATA_HOME/dnd-tui/`), sheet and live state together, saved after every action. The bundled sheets in `data/characters/` are copied there on first run (the `.seeded` file marks it): delete a sheet to remove it; to get a bundled sheet back, delete it and `.seeded` (the other sheets are kept); drop a `.json` there to add a character. If the program crashes it writes the error, a backtrace and the last 40 inputs to `crash.log` in the same folder: please attach it to the issue.
+Each character is one JSON file in `~/.local/share/dnd-tui/` (`$XDG_DATA_HOME/dnd-tui/`; on Windows `%LOCALAPPDATA%\\dnd-tui\\`), sheet and live state together, saved after every action. The bundled sheets in `data/characters/` are copied there on first run (the `.seeded` file marks it): delete a sheet to remove it; to get a bundled sheet back, delete it and `.seeded` (the other sheets are kept); drop a `.json` there to add a character. If the program crashes it writes the error, a backtrace and the last 40 inputs to `crash.log` in the same folder: please attach it to the issue.
 
 ## Keys
 Keys are shown in the footer, and every footer button, list row, check and tab is clickable. `Tab` or `F1`-`F4` switch tabs, `/` searches lists, `Z` undoes, `Q` goes back to the sheets.

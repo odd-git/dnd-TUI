@@ -99,6 +99,7 @@ fn d(sides: u32) -> u32 { rand::random_range(1..=sides) }
 
 pub(crate) fn data_dir() -> PathBuf {
     let base = std::env::var_os("XDG_DATA_HOME").map(PathBuf::from)
+        .or_else(|| std::env::var_os("LOCALAPPDATA").map(PathBuf::from)) // Windows has no HOME
         .unwrap_or_else(|| PathBuf::from(std::env::var_os("HOME").unwrap_or_default()).join(".local/share"));
     base.join("dnd-tui")
 }
