@@ -33,7 +33,7 @@ install -Dm755 target/release/dnd-tui ~/.local/bin/dnd-tui
 Pick a sheet at start, or press `N` to create a character.
 
 ## Data
-Each character is one JSON file in `~/.local/share/dnd-tui/` (`$XDG_DATA_HOME/dnd-tui/`; on Windows `%LOCALAPPDATA%\\dnd-tui\\`), sheet and live state together, saved after every action. The bundled sheets in `data/characters/` are copied there on first run (the `.seeded` file marks it): delete a sheet to remove it; to get a bundled sheet back, delete it and `.seeded` (the other sheets are kept); drop a `.json` there to add a character. If the program crashes it writes the error, a backtrace and the last 40 inputs to `crash.log` in the same folder: please attach it to the issue.
+Each character is one JSON file in `~/.local/share/dnd-tui/` (`$XDG_DATA_HOME/dnd-tui/`; on Windows `%LOCALAPPDATA%\dnd-tui\`), sheet and live state together, saved after every action. The bundled sheets in `data/characters/` are copied there on first run (the `.seeded` file marks it): delete a sheet to remove it; to get a bundled sheet back, delete it and `.seeded` (the other sheets are kept); drop a `.json` there to add a character. If the program crashes it writes the error, a backtrace and the last 40 inputs to `crash.log` in the same folder: please attach it to the issue.
 
 ## Keys
 Keys are shown in the footer, and every footer button, list row, check and tab is clickable. `Tab` or `F1`-`F4` switch tabs, `/` searches lists, `Z` undoes, `Q` goes back to the sheets.
