@@ -238,7 +238,7 @@ mod tests {
     }
 
     #[test]
-    fn rebuilding_rowan_matches_his_sheet() {
+    fn rebuilding_rowan_matches_the_sheet() {
         let c = build(&rowan());
         let paper: Character = serde_json::from_str(crate::model::BUNDLED[0].1).unwrap();
         assert_eq!(c.abilities, paper.abilities);

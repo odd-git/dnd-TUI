@@ -1,0 +1,55 @@
+{
+    "daggers": 10,
+    "char": {
+        "name": "Rowan Ashford",
+        "race": "Variant Human",
+        "background": "Noble",
+        "level": 3,
+        "stats": {
+            "STR": 9,
+            "DEX": 16,
+            "CON": 14,
+            "INT": 16,
+            "WIS": 11,
+            "CHA": 10
+        },
+        "ac_base": 11,
+        "skills": [
+            "Insight",
+            "Perception",
+            "History",
+            "Persuasion",
+            "Investigation"
+        ],
+        "maneuvers": [
+            "Maneuvering Attack",
+            "Commander's Strike",
+            "Distracting Strike"
+        ],
+        "features": {
+            "Fighting Style": "Thrown Weapon Fighting, draw with attack, +2 thrown dmg",
+            "Second Wind": "Bonus action, heal d10 + level, 1/short rest",
+            "Action Surge": "One extra action, per short rest",
+            "Combat Superiority": "Maneuvers fueled by superiority dice, short rest",
+            "Student of War": "Cartographer's tools",
+            "Feat: Fey Touched": "Misty Step + Command 1/long rest, INT"
+        },
+        "info": [
+            "Tools: chess set, cartographer's tools",
+            "Armor: all + shields | Weapons: simple + martial",
+            "Gear: leather armor, daggers, chess set, fine clothes,",
+            "      signet ring, scroll of pedigree",
+            "Languages: Common + 2 (to agree with the DM)"
+        ]
+    },
+    "res": {
+        "superiority": 3,
+        "second_wind": 1,
+        "action_surge": 1,
+        "indomitable": 0,
+        "misty_step": 1,
+        "command": 1,
+        "hit_dice": 3
+    },
+    "hp": 28
+}

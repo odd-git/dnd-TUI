@@ -79,7 +79,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 ## [0.1.0] - 2026-10-27
 
 ### Added
-- Rust rewrite of the sheet tracker (ratatui), with the Fighter / Battle Master sheet of Rowan Ashford.
+- Rust rewrite of the sheet tracker (ratatui), with a Fighter / Battle Master sheet.
 
 [Unreleased]: https://github.com/odd-git/dnd-TUI/compare/v0.9.3...HEAD
 [0.9.3]: https://github.com/odd-git/dnd-TUI/compare/v0.9.2...v0.9.3
