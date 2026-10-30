@@ -3,6 +3,7 @@ use std::collections::BTreeMap;
 use std::sync::OnceLock;
 
 pub const ABILITIES: [&str; 6] = ["STR", "DEX", "CON", "INT", "WIS", "CHA"];
+pub const FULL: [&str; 6] = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"];
 
 pub const SKILLS: [(&str, &str); 18] = [
     ("Acrobatics", "DEX"), ("Animal Handling", "WIS"), ("Arcana", "INT"), ("Athletics", "STR"),
@@ -337,6 +338,20 @@ impl Character {
         (self.md(&c.ability) + lvl).max(1) as usize
     }
 
+    /// Rows of the Spells tab: cantrips, then castable spells by level.
+    pub fn spell_rows(&self) -> Vec<&'static crate::lists::Spell> {
+        let by = |names: &[String]| {
+            let mut v: Vec<&'static crate::lists::Spell> = names.iter().filter_map(|n| crate::lists::spell(n)).collect();
+            v.sort_by(|a, b| (a.level, &a.name).cmp(&(b.level, &b.name)));
+            v
+        };
+        let rituals = self.spells.iter().filter(|n| self.ritual_ok(n)).cloned();
+        let all: Vec<String> = self.cantrips.iter().cloned().chain(self.castable()).chain(rituals).chain(self.rituals()).collect();
+        let mut rows = by(&all);
+        rows.dedup_by_key(|s| &s.name);
+        rows
+    }
+
     /// Everything castable that is not a cantrip: known spells, or prepared ones plus domain / oath spells.
     pub fn castable(&self) -> Vec<String> {
         let off_list = self.spells.iter().filter(|s| !self.on_list(s)).cloned().chain(self.innate().into_iter().map(|x| x.0));
@@ -409,6 +424,44 @@ impl Character {
         let table = |t: &Option<String>| t.as_ref().and_then(|t| self.table(t).or_else(|| self.die_table(t)));
         Some((table(&a.dice_table).unwrap_or(n), table(&a.die_table).unwrap_or(sides)))
     }
+    /// To-hit and damage of an action as the sheet shows them ("+5", "1d8+3"; "auto" and "heal" without a roll).
+    pub fn attack_text(&self, a: &ActionDef) -> (String, String) {
+        let dice = self.dice(a);
+        let hit = match (self.hit_bonus(a).map(|h| format!("{h:+}")), dice) { (Some(h), Some(_)) => h, (None, Some(_)) => if a.heal { "heal".into() } else { "auto".into() }, _ => String::new() };
+        let dmg = dice.map(|(n, s)| {
+            let mut b = a.bonus + if a.level_bonus { self.level as i32 } else { 0 } + a.level_x as i32 * self.level as i32;
+            if a.dmg_ability { b += a.ability.as_deref().map_or(0, |x| self.md(x)); }
+            b += self.toggle_bonus(a.ability.as_deref());
+            if n == 0 { return b.to_string(); } // fixed damage (a cat's claws)
+            format!("{}d{s}{}", if n == 1 { String::new() } else { n.to_string() }, if b != 0 { format!("{b:+}") } else { String::new() })
+        }).unwrap_or_default();
+        (hit, dmg)
+    }
+
+    /// Indexes of the actions the sheet lists (one whose resource has no uses at this level is hidden).
+    pub fn shown_actions(&self) -> Vec<usize> {
+        (0..self.actions.len())
+            .filter(|&i| self.actions[i].uses.as_ref().is_none_or(|u| self.res_max(u) != Some(0)) && self.class_level() >= self.actions[i].min_level)
+            // in beast form the druid's own weapons give way to the beast's attacks
+            .filter(|&i| self.beast.is_none() || self.actions[i].ability.is_none() || self.actions[i].hit.is_some())
+            .collect()
+    }
+    pub fn shown_toggles(&self) -> Vec<usize> {
+        (0..self.toggles.len()).filter(|&t| self.class_level() >= self.toggles[t].min_level).collect()
+    }
+
+    /// Spell slots as (label, left, max): "L1".."L9" and the pact slots.
+    pub fn slot_rows(&self) -> Vec<(String, u32, u32)> {
+        let mut v = vec![];
+        for def in self.resources.iter().filter(|d| d.id.starts_with("slot") || d.id == "pact") {
+            let (cur, max) = (self.res.get(&def.id).copied().unwrap_or(0), self.res_max(&def.id).unwrap_or(0));
+            if max == 0 { continue; }
+            let label = if def.id == "pact" { format!("Pact L{}", self.casters().iter().find(|(k, ..)| k.kind == "pact").map_or(0, |(k, l, _)| at(&k.pact_level, *l))) } else { format!("L{}", &def.id[4..]) };
+            v.push((label, cur, max));
+        }
+        v
+    }
+
     pub fn dc(&self, ab: &str) -> i32 { 8 + self.prof() + self.md(ab) }
     /// A level table of any of the classes, at the levels in that class.
     pub fn table(&self, id: &str) -> Option<u32> {

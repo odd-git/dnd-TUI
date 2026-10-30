@@ -109,7 +109,7 @@ fn footer(app: &App) -> Vec<(String, String, Cmd)> {
             v.extend([s("E", "Edit", Cmd::Edit), s("Z", "Undo", Cmd::Undo), s("S", "Short rest", Cmd::Short), s("L", "Long rest", Cmd::Long), s("Q", "Sheets", Cmd::Back)]);
             v
         }
-        Tab::Character => vec![s("↑↓", "Scroll", Cmd::Down), s("/", "Search", Cmd::Down), s("Z", "Undo", Cmd::Undo), s("Q", "Sheets", Cmd::Back)],
+        Tab::Character => vec![s("↑↓", "Scroll", Cmd::Down), s("/", "Search", Cmd::Down), s("P", "Export PDF", Cmd::Export), s("Z", "Undo", Cmd::Undo), s("Q", "Sheets", Cmd::Back)],
         Tab::Journal => vec![s("A", "Add note", Cmd::JournalAdd), s("/", "Search", Cmd::Down), s("Del", "Delete note", Cmd::JournalDel), s("Z", "Undo", Cmd::Undo), s("Q", "Sheets", Cmd::Back)],
     }
 }
@@ -133,7 +133,7 @@ fn draw_picker(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
         hot.push((new, Cmd::New));
     }
     let hint = Rect::new(inner.x, inner.y + inner.height.saturating_sub(1), inner.width, 1);
-    f.render_widget(Paragraph::new(" ↑↓ select, Enter open, N new, D delete, Q quit").style(tone(Tone::Dim)), hint);
+    f.render_widget(Paragraph::new(" ↑↓ select, Enter open, N new, P PDF, D delete, Q quit").style(tone(Tone::Dim)), hint);
 }
 
 fn status_lines(app: &App) -> Vec<Line<'static>> {
@@ -213,15 +213,7 @@ fn action_row(c: &Character, it: Item) -> (String, bool) {
         }
         Item::Action(i) => {
             let a = &c.actions[i];
-            let dice = c.dice(a);
-            let hit = match (c.hit_bonus(a).map(|h| format!("{h:+}")), dice) { (Some(h), Some(_)) => h, (None, Some(_)) => if a.heal { "heal".into() } else { "auto".into() }, _ => String::new() };
-            let dmg = dice.map(|(n, s)| {
-                let mut b = a.bonus + if a.level_bonus { c.level as i32 } else { 0 } + a.level_x as i32 * c.level as i32;
-                if a.dmg_ability { b += a.ability.as_deref().map_or(0, |x| c.md(x)); }
-                b += c.toggle_bonus(a.ability.as_deref());
-                if n == 0 { return b.to_string(); } // fixed damage (a cat's claws)
-                format!("{}d{s}{}", if n == 1 { String::new() } else { n.to_string() }, if b != 0 { format!("{b:+}") } else { String::new() })
-            }).unwrap_or_default();
+            let (hit, dmg) = c.attack_text(a);
             let left = a.uses.as_ref().map(|u| c.res.get(u).copied().unwrap_or(0));
             let uses = left.map(|n| format!(" x{n}")).unwrap_or_default();
             (format!("{:<20} {:>5} {:<8} {}{uses}", a.name, hit, dmg, c.fmt(&a.desc)), left != Some(0))
@@ -295,7 +287,6 @@ fn draw_combat(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
     }
 }
 
-const FULL: [&str; 6] = ["Strength", "Dexterity", "Constitution", "Intelligence", "Wisdom", "Charisma"];
 
 /// One row per line, each clickable; rows past the box are dropped.
 fn rows(f: &mut Frame, b: Block, area: Rect, lines: Vec<(Line<'static>, Cmd)>, hot: &mut Hot) {
@@ -485,13 +476,8 @@ fn list_box(f: &mut Frame, area: Rect, hot: &mut Hot, title: &str, items: &[Stri
 
 /// "Slots L1 ●●○ L2 ●" for the status box and the Spells tab.
 fn slots_line(c: &Character) -> Option<Line<'static>> {
-    let mut parts: Vec<String> = vec![];
-    for def in c.resources.iter().filter(|d| d.id.starts_with("slot") || d.id == "pact") {
-        let (cur, max) = (c.res.get(&def.id).copied().unwrap_or(0), c.res_max(&def.id).unwrap_or(0));
-        if max == 0 { continue; }
-        let label = if def.id == "pact" { format!("Pact L{}", c.casters().iter().find(|(k, ..)| k.kind == "pact").map_or(0, |(k, l, _)| at(&k.pact_level, *l))) } else { format!("L{}", &def.id[4..]) };
-        parts.push(format!("{label} {}{}", "●".repeat(cur.min(max) as usize), "○".repeat((max - cur.min(max)) as usize)));
-    }
+    let parts: Vec<String> = c.slot_rows().into_iter()
+        .map(|(label, cur, max)| format!("{label} {}{}", "●".repeat(cur.min(max) as usize), "○".repeat((max - cur.min(max)) as usize))).collect();
     (!parts.is_empty()).then(|| Line::from(format!("Slots {}", parts.join("  "))))
 }
 
@@ -502,7 +488,7 @@ fn draw_spells(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
     let b = block(&if dcs.is_empty() { "SPELLS".to_string() } else { format!("SPELLS | {dcs}") });
     let inner = b.inner(cols[0]);
     f.render_widget(b, cols[0]);
-    let rows = app.spell_rows();
+    let rows = app.ch.spell_rows();
     let mut head = vec![];
     if let Some(l) = slots_line(c) { head.push(l); }
     if let Some(cast) = c.casting() {

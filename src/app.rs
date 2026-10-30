@@ -34,7 +34,7 @@ pub enum Item { Action(usize), Toggle(usize) }
 pub enum Cmd {
     Tab(Tab), Pick(usize), Select(usize), Click(usize), Enter, Up, Down, PageUp, PageDown,
     Damage, Heal, Temp, EndConc, Init, Maneuver, Roll(String), CheckMenu, Adv, Inspire, Cond, Exhaustion, Death, Items, Short, Long,
-    Level, Edit, Undo, Back, New, Delete, Cast, Prepare, SpellClick(usize), JournalAdd, JournalDel, JournalSel(usize), ModalPick(usize),
+    Level, Edit, Undo, Back, New, Delete, Export, Cast, Prepare, SpellClick(usize), JournalAdd, JournalDel, JournalSel(usize), ModalPick(usize),
 }
 
 /// What a modal is asking; the answer is handled in `resolve_*`.
@@ -43,7 +43,7 @@ pub enum Step {
     Damage, Heal, Check, Cond, Exhaustion, Items, SetItem(String), Short,
     Asi, Ability { n: i32, optional: bool }, FeatList, FeatAsi(String),
     Maneuver { required: bool }, ReplaceAsk, Forget, Extras, Skill, NoteName, NoteDesc(String), JournalAdd,
-    Subclass, DeleteSheet(usize), Expertise, Style, Pool(String),
+    Subclass, Notice, DeleteSheet(usize), Expertise, Style, Pool(String),
     Learn(bool), Prepare, CastSlot(String), SpellAdd, SpellDel, LevelClass,
     Opt(String), Arcanum(u32), Mastery(u32), Signature, Secret, Smite, MoonHeal, Companion, Portent, Recover(u32), FontSlot, FontPoints, BeastPick, BeastName, BeastHp(String), BeastAc(String, i32), BeastAtk, Hd(usize), AnyCantrip, TempHp,
     // editor
@@ -168,12 +168,8 @@ impl App {
 
     /// Actions and toggles shown in the list (an action whose resource has no uses at this level is hidden).
     pub fn visible(&self) -> Vec<Item> {
-        let mut v: Vec<Item> = (0..self.ch.actions.len())
-            .filter(|&i| self.ch.actions[i].uses.as_ref().is_none_or(|u| self.ch.res_max(u) != Some(0)) && self.ch.class_level() >= self.ch.actions[i].min_level)
-            // in beast form the druid's own weapons give way to the beast's attacks
-            .filter(|&i| self.ch.beast.is_none() || self.ch.actions[i].ability.is_none() || self.ch.actions[i].hit.is_some())
-            .map(Item::Action).collect();
-        v.extend((0..self.ch.toggles.len()).filter(|&t| self.ch.class_level() >= self.ch.toggles[t].min_level).map(Item::Toggle));
+        let mut v: Vec<Item> = self.ch.shown_actions().into_iter().map(Item::Action).collect();
+        v.extend(self.ch.shown_toggles().into_iter().map(Item::Toggle));
         v
     }
 
@@ -252,6 +248,7 @@ impl App {
             _ => match (self.tab, c) {
                 (_, 'n') if self.picking => Cmd::New,
                 (_, 'd') if self.picking => Cmd::Delete,
+                (_, 'p') if self.picking => Cmd::Export, (Tab::Character, 'p') => Cmd::Export,
                 (_, 'q') => Cmd::Back, (_, 'z') => Cmd::Undo, (_, 'k') => Cmd::Up, (_, 'j') => Cmd::Down,
                 (Tab::Combat, 'd') => Cmd::Damage, (Tab::Combat, 'h') => Cmd::Heal, (Tab::Combat, 'g') => Cmd::Temp, (_, 'o') if self.ch.concentration.is_some() => Cmd::EndConc, (Tab::Combat, 'i') => Cmd::Init,
                 (Tab::Combat, 'm') => Cmd::Maneuver, (Tab::Combat, 't') => Cmd::CheckMenu, (Tab::Combat, 'v') => Cmd::Adv,
@@ -307,7 +304,7 @@ impl App {
             Some(Modal::Input { .. }) => {}
             None => match self.tab {
                 Tab::Journal => { if let Some(i) = self.ch.journal.iter().position(|x| hit(&q, x)) { self.jsel = i; } }
-                Tab::Spells => { if let Some(i) = self.spell_rows().iter().position(|x| hit(&q, &x.name)) { self.ssel = i; } }
+                Tab::Spells => { if let Some(i) = self.ch.spell_rows().iter().position(|x| hit(&q, &x.name)) { self.ssel = i; } }
                 _ => self.scroll = 0,
             },
         }
@@ -390,6 +387,7 @@ impl App {
                 Cmd::Pick(i) => self.pick_sheet(i),
                 Cmd::New => self.wiz_start(),
                 Cmd::Delete => { if self.psel < self.sheets.len() { self.open(Step::DeleteSheet(self.psel)); } }
+                Cmd::Export => { if let Some(c) = self.sheets.get(self.psel).map(|s| s.1.clone()) { self.export_pdf(c); } }
                 Cmd::Back => self.quit = true,
                 _ => {}
             }
@@ -415,7 +413,7 @@ impl App {
                         self.sel = if down { (self.sel + 1).min(n.saturating_sub(1)) } else { self.sel.saturating_sub(1) };
                     }
                     Tab::Spells => {
-                        let n = self.spell_rows().len();
+                        let n = self.ch.spell_rows().len();
                         self.ssel = if down { (self.ssel + 1).min(n.saturating_sub(1)) } else { self.ssel.saturating_sub(1) };
                     }
                     Tab::Character => self.scroll = if down { self.scroll + 1 } else { self.scroll.saturating_sub(1) },
@@ -480,12 +478,13 @@ impl App {
                 }
             }
             Cmd::JournalSel(i) => self.jsel = i,
-            Cmd::Cast => { if let Some(sp) = self.spell_rows().get(self.ssel) { let n = sp.name.clone(); self.cast(&n); } }
+            Cmd::Cast => { if let Some(sp) = self.ch.spell_rows().get(self.ssel) { let n = sp.name.clone(); self.cast(&n); } }
             Cmd::SpellClick(i) => { self.ssel = i; self.exec(Cmd::Cast); }
             Cmd::Prepare => {
                 if self.ch.casting().is_some_and(|c| c.mode == "known") { self.say("Known-spell casters do not prepare.", Tone::Dim); }
                 else { self.flow_begin(); self.queue.push_back(Step::Prepare); self.advance(); }
             }
+            Cmd::Export => self.export_pdf(self.ch.clone()),
             Cmd::Pick(_) | Cmd::ModalPick(_) | Cmd::New | Cmd::Delete => {}
         }
         let n = self.visible().len();
@@ -502,6 +501,18 @@ impl App {
         let _ = std::fs::remove_file(path);
         self.psel = self.psel.min(self.sheets.len());
         self.say(format!("Deleted {}.", c.name), Tone::Dim);
+    }
+
+    /// Write the sheet as a PDF in the current directory and say where it went.
+    fn export_pdf(&mut self, mut ch: Character) {
+        ch.init();
+        let file: String = ch.name.chars().map(|c| if c.is_alphanumeric() { c } else { '_' }).collect();
+        let path = std::env::current_dir().unwrap_or_default().join(format!("{file}.pdf"));
+        let msg = match std::fs::write(&path, crate::pdf::sheet(&ch)) {
+            Ok(()) => vec![format!("{file}.pdf"), format!("in {}", path.parent().unwrap_or(&path).display())],
+            Err(e) => vec![format!("Could not write {file}.pdf: {e}")],
+        };
+        self.list("PDF sheet (Enter closes)", msg, Step::Notice, true);
     }
 
     fn open_sheet(&mut self, i: usize) {
@@ -937,6 +948,7 @@ impl App {
 
     fn resolve_list(&mut self, step: Step, i: usize) {
         match step {
+            Step::Notice => {}
             Step::Check => { if let Some(n) = self.ch.checks().get(i).map(|c| c.0.clone()) { self.roll_check(&n); } }
             Step::Cond => {
                 self.snap();

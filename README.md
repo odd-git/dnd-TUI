@@ -26,6 +26,7 @@ Keys are shown in the footer, and every footer button, list row, check and tab i
 | Where | Key | Does |
 |---|---|---|
 | Sheets | `N` / `D` | new character (wizard: race, class, background, scores, skills, spells, gear) / delete |
+| Sheets, Character | `P` | export the sheet as a printable PDF (A4) in the folder you started the program from: to play on paper |
 | Combat | `Enter`, `1`-`9` | run an action: attack and damage rolls, healing, resources spent |
 | | `D` / `H` / `G` | damage / heal / temporary HP (the higher value stays; damage takes them first) |
 | | `I` / `T` / `V` | initiative / ability check, skill or save / next roll with advantage or disadvantage |

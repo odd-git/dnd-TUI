@@ -9,20 +9,6 @@ impl App {
         TABS.iter().copied().filter(|(t, _)| *t != Tab::Spells || self.ch.has_spells()).collect()
     }
 
-    /// Rows of the Spells tab: cantrips, then castable spells by level.
-    pub fn spell_rows(&self) -> Vec<&'static Spell> {
-        let by = |names: &[String]| {
-            let mut v: Vec<&'static Spell> = names.iter().filter_map(|n| lists::spell(n)).collect();
-            v.sort_by(|a, b| (a.level, &a.name).cmp(&(b.level, &b.name)));
-            v
-        };
-        let rituals = self.ch.spells.iter().filter(|n| self.ch.ritual_ok(n)).cloned();
-        let all: Vec<String> = self.ch.cantrips.iter().cloned().chain(self.ch.castable()).chain(rituals).chain(self.ch.rituals()).collect();
-        let mut rows = by(&all);
-        rows.dedup_by_key(|s| &s.name);
-        rows
-    }
-
     /// Slots a spell of `level` can be cast with: (resource id, slot level, left).
     pub(super) fn slot_options(&self, level: u32) -> Vec<(String, u32, u32)> {
         let mut v = vec![];

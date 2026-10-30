@@ -2,6 +2,7 @@ mod app;
 mod builder;
 mod lists;
 mod model;
+mod pdf;
 mod ui;
 
 use std::collections::VecDeque;

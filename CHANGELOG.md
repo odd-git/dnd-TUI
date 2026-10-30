@@ -6,6 +6,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 ## [Unreleased]
 
 ### Added
+- PDF export (`P` on the sheet list or the Character tab): an A4 character sheet to print, with abilities, saves, skills, attacks,
+  resources and spell slots as boxes to tick, features, spell list, inventory and ruled notes.
 - Racial spells: leveled spells of a lineage (Drow Magic, Infernal Legacy, Githyanki and Githzerai Psionics, Firbolg Magic...)
   are cast once per long rest from the character level that unlocks them, at their set slot level, with the lineage's ability.
 
