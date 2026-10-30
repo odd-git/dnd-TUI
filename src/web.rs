@@ -7,7 +7,7 @@ use web_sys::wasm_bindgen::{convert::FromWasmAbi, prelude::Closure, JsCast};
 
 use crate::app::App;
 use crate::keys::{KeyCode, KeyEvent, KeyModifiers};
-use crate::ui;
+use crate::{store, ui};
 
 /// The canvas backend draws fixed 10x19 pixel cells.
 const CELL: (i32, i32) = (10, 19);
@@ -67,6 +67,7 @@ pub fn run() {
 
     terminal.draw_web(move |f| {
         let mut a = app.borrow_mut();
+        if store::take_imported() { a.reload_sheets(); }
         let hot = ui::draw(f, &a);
         a.hot = hot;
     });

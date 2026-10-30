@@ -133,7 +133,7 @@ fn draw_picker(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
         hot.push((new, Cmd::New));
     }
     let hint = Rect::new(inner.x, inner.y + inner.height.saturating_sub(1), inner.width, 1);
-    f.render_widget(Paragraph::new(" ↑↓ select, Enter open, N new, P PDF, D delete, Q quit").style(tone(Tone::Dim)), hint);
+    f.render_widget(Paragraph::new(if cfg!(target_arch = "wasm32") { " ↑↓ select, Enter open, N new, P PDF, E export, I import, D delete" } else { " ↑↓ select, Enter open, N new, P PDF, E export, D delete, Q quit" }).style(tone(Tone::Dim)), hint);
 }
 
 fn status_lines(app: &App) -> Vec<Line<'static>> {

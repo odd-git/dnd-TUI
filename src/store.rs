@@ -35,6 +35,9 @@ mod disk {
         }
     }
 
+    /// Importing is a browser need: on disk, copy the file into the data dir.
+    pub(crate) fn pick_import() {}
+
     /// Every `*.json` in the data dir with its text.
     pub(crate) fn list_json() -> Vec<(PathBuf, String)> {
         std::fs::read_dir(data_dir()).into_iter().flatten().flatten()
@@ -80,6 +83,39 @@ mod browser {
             Some(()) => vec![name.to_string(), "downloaded by the browser".to_string()],
             None => vec![format!("Could not save {name}")],
         }
+    }
+
+    static IMPORTED: std::sync::atomic::AtomicBool = std::sync::atomic::AtomicBool::new(false);
+
+    /// True once after a sheet was imported, so the app reloads its list.
+    pub(crate) fn take_imported() -> bool { IMPORTED.swap(false, std::sync::atomic::Ordering::Relaxed) }
+
+    /// Ask for a sheet file (the JSON of an export); a valid one is stored under its character name.
+    pub(crate) fn pick_import() {
+        use web_sys::wasm_bindgen::{prelude::Closure, JsCast};
+        let Some(doc) = web_sys::window().and_then(|w| w.document()) else { return };
+        let Some(input) = doc.create_element("input").ok().and_then(|e| e.dyn_into::<web_sys::HtmlInputElement>().ok()) else { return };
+        input.set_type("file");
+        input.set_accept(".json,application/json");
+        let picked = input.clone();
+        let onchange = Closure::once(move || {
+            let Some(file) = picked.files().and_then(|f| f.get(0)) else { return };
+            let Ok(reader) = web_sys::FileReader::new() else { return };
+            let done = reader.clone();
+            let onload = Closure::once(move || {
+                let Some(text) = done.result().ok().and_then(|r| r.as_string()) else { return };
+                let Ok(c) = serde_json::from_str::<crate::model::Character>(&text) else { return };
+                let slug: String = c.name.to_lowercase().chars().map(|ch| if ch.is_ascii_alphanumeric() { ch } else { '-' }).collect();
+                write(&data_dir().join(format!("imported-{slug}.json")), &text);
+                IMPORTED.store(true, std::sync::atomic::Ordering::Relaxed);
+            });
+            reader.set_onloadend(Some(onload.as_ref().unchecked_ref()));
+            onload.forget();
+            let _ = reader.read_as_text(&file);
+        });
+        input.set_onchange(Some(onchange.as_ref().unchecked_ref()));
+        onchange.forget();
+        input.click();
     }
 
     pub(crate) fn list_json() -> Vec<(PathBuf, String)> {

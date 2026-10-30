@@ -20,7 +20,7 @@ ratatui = { version = "0.29", features = ["crossterm", "underline-color"] }
 ratzilla = "0.2"
 console_error_panic_hook = "0.1"
 getrandom = { version = "0.3", features = ["wasm_js"] }
-web-sys = { version = "0.3", features = ["Window", "Document", "Storage", "KeyboardEvent", "MouseEvent", "WheelEvent", "Event", "EventTarget", "Blob", "Url", "HtmlAnchorElement"] }
+web-sys = { version = "0.3", features = ["Window", "Document", "Storage", "KeyboardEvent", "MouseEvent", "WheelEvent", "Event", "EventTarget", "Blob", "Url", "HtmlAnchorElement", "HtmlInputElement", "FileReader", "FileList", "File"] }
 
 [profile.release]
 debug = "line-tables-only" # file:line in crash.log backtraces

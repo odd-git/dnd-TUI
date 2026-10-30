@@ -35,7 +35,7 @@ pub enum Item { Action(usize), Toggle(usize) }
 pub enum Cmd {
     Tab(Tab), Pick(usize), Select(usize), Click(usize), Enter, Up, Down, PageUp, PageDown,
     Damage, Heal, Temp, EndConc, Init, Maneuver, Roll(String), CheckMenu, Adv, Inspire, Cond, Exhaustion, Death, Items, Short, Long,
-    Level, Edit, Undo, Back, New, Delete, Export, Cast, Prepare, SpellClick(usize), JournalAdd, JournalDel, JournalSel(usize), ModalPick(usize),
+    Level, Edit, Undo, Back, New, Delete, Export, ExportJson, Import, Cast, Prepare, SpellClick(usize), JournalAdd, JournalDel, JournalSel(usize), ModalPick(usize),
 }
 
 /// What a modal is asking; the answer is handled in `resolve_*`.
@@ -240,7 +240,7 @@ impl App {
             _ => match (self.tab, c) {
                 (_, 'n') if self.picking => Cmd::New,
                 (_, 'd') if self.picking => Cmd::Delete,
-                (_, 'p') if self.picking => Cmd::Export, (Tab::Character, 'p') => Cmd::Export,
+                (_, 'p') if self.picking => Cmd::Export, (_, 'e') if self.picking => Cmd::ExportJson, (_, 'i') if self.picking => Cmd::Import, (Tab::Character, 'p') => Cmd::Export,
                 (_, 'q') => Cmd::Back, (_, 'z') => Cmd::Undo, (_, 'k') => Cmd::Up, (_, 'j') => Cmd::Down,
                 (Tab::Combat, 'd') => Cmd::Damage, (Tab::Combat, 'h') => Cmd::Heal, (Tab::Combat, 'g') => Cmd::Temp, (_, 'o') if self.ch.concentration.is_some() => Cmd::EndConc, (Tab::Combat, 'i') => Cmd::Init,
                 (Tab::Combat, 'm') => Cmd::Maneuver, (Tab::Combat, 't') => Cmd::CheckMenu, (Tab::Combat, 'v') => Cmd::Adv,
@@ -380,6 +380,8 @@ impl App {
                 Cmd::New => self.wiz_start(),
                 Cmd::Delete => { if self.psel < self.sheets.len() { self.open(Step::DeleteSheet(self.psel)); } }
                 Cmd::Export => { if let Some(c) = self.sheets.get(self.psel).map(|s| s.1.clone()) { self.export_pdf(c); } }
+                Cmd::ExportJson => { if let Some(c) = self.sheets.get(self.psel).map(|s| s.1.clone()) { self.export_json(c); } }
+                Cmd::Import => store::pick_import(),
                 Cmd::Back => self.quit = true,
                 _ => {}
             }
@@ -477,7 +479,7 @@ impl App {
                 else { self.flow_begin(); self.queue.push_back(Step::Prepare); self.advance(); }
             }
             Cmd::Export => self.export_pdf(self.ch.clone()),
-            Cmd::Pick(_) | Cmd::ModalPick(_) | Cmd::New | Cmd::Delete => {}
+            Cmd::Pick(_) | Cmd::ModalPick(_) | Cmd::New | Cmd::Delete | Cmd::ExportJson | Cmd::Import => {}
         }
         let n = self.visible().len();
         self.sel = self.sel.min(n.saturating_sub(1));
@@ -501,6 +503,22 @@ impl App {
         let file: String = ch.name.chars().map(|c| if c.is_alphanumeric() { c } else { '_' }).collect();
         let msg = store::save_file(&format!("{file}.pdf"), &crate::pdf::sheet(&ch));
         self.list("PDF sheet (Enter closes)", msg, Step::Notice, true);
+    }
+
+    /// Save the sheet as JSON, the portable copy that Import reads back.
+    fn export_json(&mut self, ch: Character) {
+        let file: String = ch.name.chars().map(|c| if c.is_alphanumeric() { c } else { '_' }).collect();
+        let json = serde_json::to_string_pretty(&ch).unwrap_or_default();
+        let msg = store::save_file(&format!("{file}.json"), json.as_bytes());
+        self.list("Sheet file (Enter closes)", msg, Step::Notice, true);
+    }
+
+    /// Re-read the sheet list after the browser imported one.
+    #[cfg(target_arch = "wasm32")]
+    pub fn reload_sheets(&mut self) {
+        if !self.picking { return; }
+        self.sheets = load_sheets();
+        self.psel = self.psel.min(self.sheets.len());
     }
 
     fn open_sheet(&mut self, i: usize) {
