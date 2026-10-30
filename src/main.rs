@@ -3,6 +3,7 @@ mod builder;
 mod lists;
 mod model;
 mod pdf;
+mod store;
 mod ui;
 
 use std::collections::VecDeque;
@@ -28,8 +29,8 @@ fn remember(e: &Event) {
 
 /// Append a crash report (message, backtrace, recent input) to crash.log in the data dir.
 fn crash_log(what: &str) {
-    let path = app::data_dir().join("crash.log");
-    let _ = std::fs::create_dir_all(app::data_dir());
+    let path = store::data_dir().join("crash.log");
+    let _ = std::fs::create_dir_all(store::data_dir());
     let Ok(mut f) = std::fs::OpenOptions::new().create(true).append(true).open(&path) else { return };
     let secs = std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).map_or(0, |d| d.as_secs());
     let recent = RECENT.lock().map(|r| r.iter().cloned().collect::<Vec<_>>().join("\n  ")).unwrap_or_default();

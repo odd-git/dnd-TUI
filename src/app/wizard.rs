@@ -444,11 +444,11 @@ impl App {
         let dir = data_dir();
         let mut path = dir.join(format!("{slug}.json"));
         for n in 2.. {
-            if !path.exists() { break; }
+            if !store::exists(&path) { break; }
             path = dir.join(format!("{slug}-{n}.json"));
         }
         c.init();
-        if let Ok(json) = serde_json::to_string_pretty(&c) { let _ = std::fs::write(&path, json); }
+        if let Ok(json) = serde_json::to_string_pretty(&c) { store::write(&path, &json); }
         self.sheets.push((path.clone(), c));
         self.sheets.sort_by(|a, b| a.1.name.cmp(&b.1.name));
         let i = self.sheets.iter().position(|s| s.0 == path).unwrap_or(0);

@@ -5,6 +5,7 @@ use ratatui::crossterm::event::{KeyCode, KeyEvent, KeyModifiers};
 use ratatui::layout::Rect;
 
 use crate::model::*;
+use crate::store::{self, data_dir};
 
 mod classfeat;
 mod editor;
@@ -97,30 +98,20 @@ pub fn hit(query: &str, text: &str) -> bool { query.is_empty() || text.to_lowerc
 
 fn d(sides: u32) -> u32 { rand::random_range(1..=sides) }
 
-pub(crate) fn data_dir() -> PathBuf {
-    let base = std::env::var_os("XDG_DATA_HOME").map(PathBuf::from)
-        .or_else(|| std::env::var_os("LOCALAPPDATA").map(PathBuf::from)) // Windows has no HOME
-        .unwrap_or_else(|| PathBuf::from(std::env::var_os("HOME").unwrap_or_default()).join(".local/share"));
-    base.join("dnd-tui")
-}
-
 /// Seed the bundled sheets on first run, then read every sheet in the data dir.
 fn load_sheets() -> Vec<(PathBuf, Character)> {
     let dir = data_dir();
-    let _ = std::fs::create_dir_all(&dir);
     // seeded once: a deleted bundled sheet must stay deleted
     let marker = dir.join(".seeded");
-    if !marker.exists() {
+    if !store::exists(&marker) {
         for (name, json) in BUNDLED {
             let p = dir.join(name);
-            if !p.exists() { let _ = std::fs::write(p, json); }
+            if !store::exists(&p) { store::write(&p, json); }
         }
-        let _ = std::fs::write(marker, "");
+        store::write(&marker, "");
     }
-    let mut v: Vec<(PathBuf, Character)> = std::fs::read_dir(&dir).into_iter().flatten().flatten()
-        .map(|e| e.path())
-        .filter(|p| p.extension().is_some_and(|x| x == "json"))
-        .filter_map(|p| serde_json::from_str(&std::fs::read_to_string(&p).ok()?).ok().map(|c| (p, c)))
+    let mut v: Vec<(PathBuf, Character)> = store::list_json().into_iter()
+        .filter_map(|(p, s)| serde_json::from_str(&s).ok().map(|c| (p, c)))
         .collect();
     v.sort_by(|a, b| a.1.name.cmp(&b.1.name));
     v
@@ -163,7 +154,7 @@ impl App {
 
     pub fn save(&self) {
         if !self.picking {
-            if let Ok(json) = serde_json::to_string_pretty(&self.ch) { let _ = std::fs::write(&self.path, json); }
+            if let Ok(json) = serde_json::to_string_pretty(&self.ch) { store::write(&self.path, &json); }
         }
     }
 
@@ -499,7 +490,7 @@ impl App {
 
     fn delete_sheet(&mut self, i: usize) {
         let (path, c) = self.sheets.remove(i);
-        let _ = std::fs::remove_file(path);
+        store::remove(&path);
         self.psel = self.psel.min(self.sheets.len());
         self.say(format!("Deleted {}.", c.name), Tone::Dim);
     }
