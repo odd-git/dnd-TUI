@@ -141,7 +141,7 @@ impl App {
             Step::WeaponPick => {
                 if let Some(w) = lists::weapons().get(i) {
                     let style = builder::style_effect(&self.ch);
-                    for a in builder::weapon_actions(w, &self.ch, style) {
+                    for a in builder::weapon_actions(w, style) {
                         self.ch.actions.retain(|x| x.name != a.name);
                         self.say(format!("Added attack: {}.", a.name), Tone::Good);
                         self.ch.actions.push(a);

@@ -44,9 +44,9 @@ fn put_feature(v: &mut Vec<Feature>, f: &Feature) {
     }
 }
 
-pub fn weapon_actions(w: &Weapon, c: &Character, style: Option<&str>) -> Vec<ActionDef> {
-    // finesse: whichever of STR/DEX is higher
-    let ability = if w.ranged || (w.finesse && c.md("DEX") >= c.md("STR")) { "DEX" } else { "STR" };
+pub fn weapon_actions(w: &Weapon, style: Option<&str>) -> Vec<ActionDef> {
+    // finesse: whichever of STR/DEX is higher when rolled, so it follows later score increases
+    let ability = if w.finesse { "FINESSE" } else if w.ranged { "DEX" } else { "STR" };
     let flat = if w.dice.0 == 0 { w.dice.1 as i32 } else { 0 }; // the blowgun's 1 point: no dice, a fixed bonus
     let mk = |name: String, desc: String, bonus: i32| ActionDef {
         name, desc, ability: Some(ability.into()), dice: Some(w.dice), dmg_ability: true, bonus: bonus + flat,
@@ -177,7 +177,7 @@ pub fn build(d: &Draft) -> Character {
     // attacks from the chosen weapons, then the class actions
     let style = d.style.as_ref().and_then(|s| class.styles.iter().find(|x| &x.name == s)).and_then(|s| s.effect.as_deref());
     for w in d.weapons.iter().filter_map(|n| lists::weapons().iter().find(|w| &w.name == n)) {
-        c.actions.extend(weapon_actions(w, &c, style));
+        c.actions.extend(weapon_actions(w, style));
     }
     c.actions.extend(actions);
 
@@ -631,8 +631,18 @@ mod tests {
     fn blowgun_deals_one_plus_dex() {
         let c = rogue(1);
         let blowgun = lists::weapons().iter().find(|w| w.name == "Blowgun").unwrap();
-        let a = &weapon_actions(blowgun, &c, None)[0];
+        let a = &weapon_actions(blowgun, None)[0];
         assert_eq!((c.dice(a), a.bonus, c.md("DEX")), (Some((0, 1)), 1, 3)); // rolls 1 + 3
+    }
+
+    #[test]
+    fn finesse_follows_the_better_score() {
+        let dagger = lists::weapons().iter().find(|w| w.name == "Dagger").unwrap();
+        let mut c = rogue(1); // STR 8, DEX 16
+        let a = weapon_actions(dagger, None).remove(0);
+        assert_eq!(c.md(a.ability.as_deref().unwrap()), 3);
+        c.abilities.insert("STR".into(), 18); // an ability score increase later on
+        assert_eq!((c.md(a.ability.as_deref().unwrap()), c.hit_bonus(&a)), (4, Some(4 + 2)));
     }
 
     #[test]
