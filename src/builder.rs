@@ -693,6 +693,16 @@ mod tests {
     }
 
     #[test]
+    fn jack_of_all_trades_half_proficiency() {
+        let (one, five) = (bard("Lore", 1), bard("Lore", 5)); // prof +2 / +3, rounded down to +1
+        assert!(!five.proficient("Arcana"));
+        assert_eq!(one.check_mod("Arcana"), one.md("INT"));
+        assert_eq!(five.check_mod("Arcana"), five.md("INT") + 1);
+        assert_eq!(five.check_mod("DEX"), five.md("DEX") + 1); // initiative too
+        assert_eq!(five.check_mod("STR save"), five.md("STR")); // not saves
+    }
+
+    #[test]
     fn expertise_doubles_proficiency() {
         let c = rogue(1);
         // DEX 16: Stealth and Acrobatics expert (+3 +4), Insight plain (+0 +2), Arcana untrained

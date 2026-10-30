@@ -494,9 +494,14 @@ impl Character {
         let save = name.strip_suffix(" save");
         let ab = save.unwrap_or_else(|| if ABILITIES.contains(&name) { name } else { SKILLS.iter().find(|(n, _)| *n == name).map_or("INT", |x| x.1) });
         let mult = if self.expertise.iter().any(|s| s == name) { 2 } else { i32::from(self.proficient(name)) };
-        // Remarkable Athlete (Champion): half proficiency, rounded up, to STR, DEX and CON checks without it
-        let athlete = mult == 0 && save.is_none() && ["STR", "DEX", "CON"].contains(&ab) && self.features.iter().any(|f| f.name == "Remarkable Athlete");
-        self.md(ab) + mult * self.prof() + if athlete { (self.prof() + 1) / 2 } else { 0 }
+        // checks without proficiency: Remarkable Athlete (Champion) adds half, rounded up, to STR, DEX and CON;
+        // Jack of All Trades (Bard) half, rounded down, to any; they do not stack
+        let has = |n: &str| self.features.iter().any(|f| f.name == n);
+        let half = if mult > 0 || save.is_some() { 0 } else {
+            let athlete = if ["STR", "DEX", "CON"].contains(&ab) && has("Remarkable Athlete") { (self.prof() + 1) / 2 } else { 0 };
+            athlete.max(if has("Jack of All Trades") { self.prof() / 2 } else { 0 })
+        };
+        self.md(ab) + mult * self.prof() + half
     }
 
     /// Abilities, saves and proficient skills (the quick-roll list).

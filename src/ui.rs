@@ -151,7 +151,7 @@ fn status_lines(app: &App) -> Vec<Line<'static>> {
         l2.push(Span::raw(" | "));
     }
     if let Some(ac) = c.ac() { l2.push(Span::raw(format!("AC {ac} | "))); }
-    l2.push(Span::raw(format!("Init {:+} | Prof +{}", c.md("DEX"), c.prof())));
+    l2.push(Span::raw(format!("Init {:+} | Prof +{}", c.check_mod("DEX"), c.prof())));
     v.push(Line::from(l2));
 
     if let Some(sp) = &c.concentration { v.push(Line::styled(format!("Concentrating: {sp} (O ends)"), Style::new().fg(Color::Magenta))); }

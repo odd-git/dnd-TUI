@@ -448,7 +448,7 @@ impl App {
             Cmd::EndConc => { if let Some(s) = self.ch.concentration.clone() { self.snap(); self.ch.concentration = None; self.say(format!("Concentration on {s} ends."), Tone::Dim); } }
             Cmd::Init => {
                 let (r, note) = self.d20(Roll::Check);
-                let m = self.ch.md("DEX");
+                let m = self.ch.check_mod("DEX"); // a DEX check: Jack of All Trades, Remarkable Athlete
                 let total = r as i32 + m;
                 // Thief's Reflexes: a second turn in the first round, ten lower
                 let second = if self.ch.features.iter().any(|f| f.name == "Thief's Reflexes") { format!(", second turn at {}", total - 10) } else { String::new() };
