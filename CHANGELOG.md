@@ -11,9 +11,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
   Extra Attack for Armorer and Battle Smith, the four specialists with their always-prepared spells.
 
 ### Changed
-- The web version is a touch-friendly page instead of the terminal drawn on a canvas: sticky HP bar, action cards,
-  checks and spells as buttons, questions as bottom sheets, a log you can open; works on phones. The terminal keys
-  still work on a desktop keyboard. Same rules and flows as the terminal app, which is unchanged.
+- The web version is a touch-friendly page instead of the terminal drawn on a canvas: sticky HP bar, actions,
+  abilities, saves, every skill and spells as buttons, questions as bottom sheets, a log you can open; works on phones.
+  It looks like the terminal (green boxes with the title in the border, monospace, the same dark palette), one column
+  on a phone and two on a wide screen. The terminal keys still work on a desktop keyboard. Same rules and flows as the
+  terminal app, which is unchanged.
 
 ## [0.9.4] - 2026-10-30
 

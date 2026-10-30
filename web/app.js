@@ -22,6 +22,21 @@ function line(spans) {
 }
 const lines = (ls) => (ls || []).map(line).join("");
 
+// a status line cut at " | " and double spaces, so on a phone it wraps between items, never inside one
+function chunks(spans) {
+  const items = [""];
+  for (const s of spans) {
+    esc(s.t).split(/ \| |\s{2,}/).forEach((p, i) => {
+      if (i) items.push("");
+      if (p.trim()) items[items.length - 1] += `<span class="c-${s.c || "norm"}${s.b ? " b" : ""}">${p}</span>`;
+    });
+  }
+  return '<div class="ln chunks">' + items.filter((x) => x).map((x) => `<span>${x}</span>`).join("") + "</div>";
+}
+
+// a box with its title in the border, as in the terminal
+const box = (title, body, cls = "") => `<fieldset class="box ${cls}"><legend>${title}</legend>${body}</fieldset>`;
+
 function btn(label, c, cls = "") {
   return `<button class="${cls}" data-cmd="${cmd(c)}">${esc(label)}</button>`;
 }
@@ -29,8 +44,8 @@ function btn(label, c, cls = "") {
 // --- screens --------------------------------------------------------------
 
 function picker() {
-  const cards = v.sheets.map((s, i) => `
-    <div class="card sheet">
+  const rows = v.sheets.map((s, i) => `
+    <div class="sheet">
       <button class="open" data-cmd="${cmd({ Pick: i })}"><b>${esc(s.name)}</b><small>${esc(s.title)}</small></button>
       <div class="row">
         <button data-sel="${i}" data-then="${cmd("Export")}">PDF</button>
@@ -39,18 +54,16 @@ function picker() {
       </div>
     </div>`).join("");
   return `<header class="top"><h1>DND TUI</h1><small>D&amp;D 5e character sheets</small></header>
-    <main class="sheets">${cards}
+    <main>${box("CHARACTERS", rows || '<p class="dim">No characters yet.</p>', "sheets")}
       <div class="row big">${btn("+ New character", "New", "primary")}${btn("Import sheet", "Import")}</div>
     </main>`;
 }
 
 function header() {
+  const bar = v.hp_max ? `<span class="bar"><i style="width:${Math.max(0, Math.min(100, (100 * v.hp) / v.hp_max))}%" class="${v.hp * 4 <= v.hp_max ? "low" : v.hp * 2 <= v.hp_max ? "mid" : ""}"></i></span>` : "";
   const hp = v.hp_max ? `
-    <button class="hp" data-sheet="hp">
-      <span>HP <b>${v.hp}</b>/${v.hp_max}${v.temp_hp ? ` <em>+${v.temp_hp}</em>` : ""}</span>
-      <i style="width:${Math.max(0, Math.min(100, (100 * v.hp) / v.hp_max))}%" class="${v.hp * 4 <= v.hp_max ? "low" : v.hp * 2 <= v.hp_max ? "mid" : ""}"></i>
-    </button>` : "";
-  const adv = { normal: "Normal", advantage: "Advantage", disadvantage: "Disadvantage" }[v.adv];
+    <button class="hp" data-sheet="hp">HP <b>${v.hp}/${v.hp_max}</b>${v.temp_hp ? ` <em>+${v.temp_hp}</em>` : ""} ${bar}</button>` : "";
+  const adv = { normal: "Roll: normal", advantage: "ADVANTAGE", disadvantage: "DISADVANTAGE" }[v.adv];
   return `<header class="top">
     <div class="row">
       ${btn("‹", "Back", "icon")}
@@ -59,68 +72,73 @@ function header() {
       ${btn("↶", "Undo", "icon")}
     </div>
     ${hp}
-    <div class="row chips">
-      ${v.ac != null ? `<span class="chip">AC <b>${v.ac}</b></span>` : ""}
-      <button class="chip" data-cmd="${cmd("Init")}">Init <b>${sign(v.init)}</b></button>
-      <span class="chip">Prof <b>+${v.prof}</b></span>
-      <button class="chip adv-${v.adv}" data-cmd="${cmd("Adv")}">${adv}</button>
+    <div class="row stats">
+      ${v.ac != null ? `<span>AC <b>${v.ac}</b></span>` : ""}
+      <button data-cmd="${cmd("Init")}">Init <b>${sign(v.init)}</b></button>
+      <span>Prof <b>+${v.prof}</b></span>
+      <button class="adv adv-${v.adv}" data-cmd="${cmd("Adv")}">${adv}</button>
     </div>
   </header>`;
 }
 
-// the tab's commands as buttons; the header already has Undo and Back
+// the tab's commands as the terminal's footer: key and label; the header already has Undo and Back
 function commands() {
   const skip = new Set(['"Back"', '"Undo"', '"Down"', '"Enter"', '"Cast"']);
-  return '<div class="cmds">' + v.commands.filter((c) => !skip.has(JSON.stringify(c.cmd)))
-    .map((c) => btn(c.label, c.cmd)).join("") + "</div>";
+  return box("COMMANDS", '<div class="cmds">' + v.commands.filter((c) => !skip.has(JSON.stringify(c.cmd)))
+    .map((c) => `<button data-cmd="${cmd(c.cmd)}"><b>${esc(c.key)}</b> ${esc(c.label)}</button>`).join("") + "</div>", "wide");
 }
 
 function search() {
   return `<input class="search" type="search" placeholder="Search" value="${esc(v.query)}" data-query="1">`;
 }
 
+const mark = (on) => `<span class="${on ? "c-green" : "c-darkgray"}">${on ? "●" : "○"}</span>`;
+
 function combat() {
   const acts = v.actions.map((a, i) => a.toggle
-    ? `<button class="card act" data-cmd="${cmd({ Click: i })}"><b>${esc(a.name)}</b><span class="tag ${a.on ? "on" : ""}">${a.on ? "ON" : "off"}</span></button>`
-    : `<button class="card act ${a.ready ? "" : "spent"}" data-cmd="${cmd({ Click: i })}">
-        <span class="top"><b>${esc(a.name)}</b>${a.hit ? `<span class="tag">${esc(a.hit)}</span>` : ""}${a.dmg ? `<span class="tag dmg">${esc(a.dmg)}</span>` : ""}${a.uses != null ? `<span class="tag">×${a.uses}</span>` : ""}</span>
+    ? `<button class="item" data-cmd="${cmd({ Click: i })}"><b>${esc(a.name)}</b><span class="${a.on ? "tag on" : "dim"}">${a.on ? "ON" : "off"}</span></button>`
+    : `<button class="item act ${a.ready ? "" : "spent"} ${i === v.sel ? "sel" : ""}" data-cmd="${cmd({ Click: i })}">
+        <span class="top"><b>${esc(a.name)}</b><span>${esc(a.hit)} <span class="c-red">${esc(a.dmg)}</span>${a.uses != null ? ` <span class="dim">×${a.uses}</span>` : ""}</span></span>
         ${a.desc ? `<small>${esc(a.desc)}</small>` : ""}
       </button>`).join("");
-  const man = v.maneuver ? `<h2>Maneuvers <small>d${v.maneuver.die}, ${v.maneuver.left} left</small></h2>` +
-    v.maneuver.list.map((m) => `<button class="card act" data-cmd="${cmd("Maneuver")}"><b>${esc(m.name)}</b><small>${esc(m.desc)}</small></button>`).join("") : "";
-  const checks = v.checks.map((c) => `<button class="check ${c.prof ? "prof" : ""}" data-cmd="${cmd({ Roll: c.name })}"><span>${esc(c.name)}</span><b>${sign(c.mod)}</b></button>`).join("");
-  return `<section class="card status">${lines(v.status)}</section>
-    <h2>Actions</h2>${acts}${man}
-    <h2>Checks</h2><div class="checks">${checks}</div>
-    <h2>More</h2>${commands()}`;
+  const man = v.maneuver ? box(`MANEUVERS · d${v.maneuver.die} · ${v.maneuver.left} left`,
+    v.maneuver.list.map((m) => `<button class="item act" data-cmd="${cmd("Maneuver")}"><b>${esc(m.name)}</b><small>${esc(m.desc)}</small></button>`).join("")) : "";
+  const abs = v.abilities.map((a) => `<div class="ab">
+      <button data-cmd="${cmd({ Roll: a.ab })}"><small>${a.ab}</small><b>${sign(a.mod)}</b><small>${a.score}</small></button>
+      <button class="save" data-cmd="${cmd({ Roll: a.ab + " save" })}">${mark(a.save_prof)} ${sign(a.save)}</button>
+    </div>`).join("");
+  const skills = v.skills.map((s) => `<button class="skill" data-cmd="${cmd({ Roll: s.name })}">${mark(s.prof)} <b>${sign(s.mod)}</b> ${esc(s.name)} <small>${s.ab}</small></button>`).join("");
+  return `<div>${box("STATUS", v.status.map(chunks).join(""))}${box("ACTIONS", acts)}${man}</div>
+    <div>${box('ABILITIES <small>tap: check · bottom: save</small>', `<div class="abs">${abs}</div>`)}
+    ${box("SKILLS", `<div class="skills">${skills}</div>`)}</div>
+    ${commands()}`;
 }
 
 function spells() {
   const s = v.spells;
-  let last = -1;
-  const rows = s.rows.map((sp, i) => {
-    if (!hit(v.query, sp.name)) return "";
-    const head = sp.level !== last ? `<h3>${sp.level ? "Level " + sp.level : "Cantrips"}</h3>` : "";
-    last = sp.level;
+  const groups = [];
+  s.rows.forEach((sp, i) => {
+    if (!hit(v.query, sp.name)) return;
+    if (!groups.length || groups[groups.length - 1].level !== sp.level) groups.push({ level: sp.level, html: "" });
     const open = i === s.sel;
-    return head + `<div class="card spell ${sp.usable ? "" : "spent"} ${open ? "open" : ""}">
-      <button class="name" data-cmd="${cmd({ Select: i })}"><b>${esc(sp.name)}</b>${sp.conc ? '<span class="tag">C</span>' : ""}${sp.ritual ? '<span class="tag">R</span>' : ""}</button>
-      ${open ? `<div class="detail">${lines(s.detail)}<div class="row">${btn("Cast", { SpellClick: i }, "primary")}</div></div>` : ""}
-    </div>`;
-  }).join("");
-  return `<section class="card">${s.slots ? `<div>${esc(s.slots)}</div>` : ""}<small>${esc(s.dcs)}${s.prepared ? " · " + esc(s.prepared) : ""}</small></section>
+    groups[groups.length - 1].html += `<button class="item ${sp.usable ? "" : "spent"} ${open ? "sel" : ""}" data-cmd="${cmd({ Select: i })}">
+        <b>${esc(sp.name)}</b><span class="dim">${sp.conc ? "C" : ""}${sp.ritual ? " R" : ""}</span></button>
+      ${open ? `<div class="detail">${lines(s.detail)}<div class="row">${btn("Cast", { SpellClick: i }, "primary")}</div></div>` : ""}`;
+  });
+  const rows = groups.map((g) => box(g.level ? "LEVEL " + g.level : "CANTRIPS", g.html)).join("");
+  return `${box("SPELLCASTING", `${s.slots ? `<div class="ln">${esc(s.slots)}</div>` : ""}<div class="ln dim">${esc(s.dcs)}${s.prepared ? " · " + esc(s.prepared) : ""}</div>`, "wide")}
     ${search()}${rows || '<p class="dim">No spells yet: Edit adds some.</p>'}
-    <h2>More</h2>${commands()}`;
+    ${commands()}`;
 }
 
 function character() {
-  return `${search()}<section class="card text">${lines(v.character)}</section><h2>More</h2>${commands()}`;
+  return `${search()}${box("CHARACTER", lines(v.character), "text wide")}${commands()}`;
 }
 
 function journal() {
   const notes = v.journal.map((n, i) => hit(v.query, n)
-    ? `<button class="card note ${i === v.jsel ? "open" : ""}" data-cmd="${cmd({ JournalSel: i })}">${esc(n)}</button>` : "").join("");
-  return `${search()}${notes || '<p class="dim">The journal is empty.</p>'}<h2>More</h2>${commands()}`;
+    ? `<button class="item note ${i === v.jsel ? "sel" : ""}" data-cmd="${cmd({ JournalSel: i })}">${esc(n)}</button>` : "").join("");
+  return `${search()}${box("JOURNAL", notes || '<p class="dim">The journal is empty.</p>', "wide")}${commands()}`;
 }
 
 function tabs() {
@@ -141,7 +159,7 @@ function modal() {
     const done = m.kind === "multi" && m.limit === 0;
     const items = m.items.map((t, i) => {
       if (done && i === m.items.length - 1) return "";
-      const on = m.kind === "multi" ? `<span class="box">${m.on[i] ? "✓" : ""}</span>` : "";
+      const on = m.kind === "multi" ? `<span class="tick">${m.on[i] ? "✓" : ""}</span>` : "";
       return `<button class="item ${i === m.sel ? "sel" : ""} ${m.on && m.on[i] ? "on" : ""}" data-pick="${i}" data-text="${esc(t.toLowerCase())}">${on}${esc(t)}</button>`;
     }).join("");
     const filter = m.items.length > 8 ? `<input class="search" type="search" placeholder="Search" value="${esc(v.query)}" data-filter="1">` : "";

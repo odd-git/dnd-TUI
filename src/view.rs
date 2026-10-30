@@ -4,7 +4,7 @@ use ratatui::text::Line;
 use serde_json::{json, Value};
 
 use crate::app::{Adv, App, Item, Modal, Tone};
-use crate::model::maneuvers;
+use crate::model::{maneuvers, SKILLS};
 use crate::ui;
 
 /// A line as spans of text with a colour name ("green", "darkgray"...) and boldness.
@@ -52,7 +52,12 @@ pub fn view(app: &App) -> Value {
             json!({ "toggle": false, "name": a.name, "hit": hit.trim(), "dmg": dmg.trim(), "desc": c.fmt(&a.desc), "uses": left, "ready": left != Some(0) })
         }
     }).collect();
-    let checks: Vec<Value> = c.checks().into_iter().map(|(n, m)| json!({ "name": n, "mod": m, "prof": c.proficient(&n) })).collect();
+    let abilities: Vec<Value> = c.ability_names().iter().map(|a| {
+        let save = format!("{a} save");
+        json!({ "ab": a, "score": c.abilities[*a], "mod": c.md(a), "save": c.check_mod(&save), "save_prof": c.proficient(&save) })
+    }).collect();
+    let skills: Vec<Value> = SKILLS.iter().filter(|(_, a)| c.abilities.contains_key(*a))
+        .map(|(n, a)| json!({ "name": n, "ab": a, "mod": c.check_mod(n), "prof": c.proficient(n) })).collect();
     let maneuver = c.maneuver_pool.as_ref().map(|pool| json!({
         "die": c.res_die(pool).unwrap_or(8), "left": c.res.get(pool).copied().unwrap_or(0),
         "list": c.maneuvers.iter().map(|m| json!({ "name": m, "desc": maneuvers().get(m) })).collect::<Vec<_>>(),
@@ -66,14 +71,15 @@ pub fn view(app: &App) -> Value {
         "sel": app.ssel,
         "detail": rows.get(app.ssel).map(|sp| lines(&ui::spell_detail(c, sp))),
     });
-    let status = ui::status_lines(app);
+    let abs = ui::abilities_line(c);
+    let status: Vec<Line> = ui::status_lines(app).into_iter().skip(2).filter(|l| *l != abs).collect();
     merge(base, json!({
         "tab": app.tab, "tabs": tabs, "commands": commands,
         "name": c.name, "title": c.title(),
         "hp": c.hp, "hp_max": c.hp_max(), "temp_hp": c.temp_hp, "ac": c.ac(), "init": c.check_mod("DEX"), "prof": c.prof(),
-        "status": lines(&status[2.min(status.len())..]),
+        "status": lines(&status),
         "adv": match app.adv { Adv::Normal => "normal", Adv::Adv => "advantage", Adv::Dis => "disadvantage" },
-        "actions": actions, "sel": app.sel, "checks": checks, "maneuver": maneuver, "spells": spells,
+        "actions": actions, "sel": app.sel, "abilities": abilities, "skills": skills, "maneuver": maneuver, "spells": spells,
         "character": lines(&ui::character_lines(app)),
         "journal": c.journal, "jsel": app.jsel,
     }))
@@ -99,6 +105,9 @@ mod tests {
             app.exec(Cmd::Pick(i));
             let v = view(&app);
             assert!(v["actions"].as_array().is_some_and(|a| !a.is_empty()) && v["hp"].is_number());
+            assert!(["abilities", "skills"].iter().all(|k| v[k].as_array().is_some_and(|a| !a.is_empty())));
+            // the abilities have their own box: not repeated in the status
+            assert!(!v["status"].to_string().contains("STR "));
             app.exec(Cmd::Damage);
             assert_eq!(view(&app)["modal"]["kind"], "input");
             app.submit("3");

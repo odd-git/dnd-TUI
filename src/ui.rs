@@ -136,6 +136,11 @@ fn draw_picker(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
     f.render_widget(Paragraph::new(if cfg!(target_arch = "wasm32") { " ↑↓, Enter open, N new, P PDF, E export, I import, D del" } else { " ↑↓, Enter open, N new, P PDF, E export, D del, Q quit" }).style(tone(Tone::Dim)), hint);
 }
 
+/// "STR 9(-1) | DEX 16(+3) | ..." (the web page shows the abilities in their own box instead).
+pub(crate) fn abilities_line(c: &Character) -> Line<'static> {
+    Line::from(ABILITIES.iter().filter(|a| c.abilities.contains_key(**a)).map(|a| format!("{a} {}({:+})", c.abilities[*a], c.md(a))).collect::<Vec<_>>().join(" | "))
+}
+
 pub(crate) fn status_lines(app: &App) -> Vec<Line<'static>> {
     let c = &app.ch;
     let mut v: Vec<Line> = vec![];
@@ -159,7 +164,7 @@ pub(crate) fn status_lines(app: &App) -> Vec<Line<'static>> {
         let mark = |n: u8, on: &str| format!("{}{}", on.repeat(n as usize), "○".repeat(3 - n as usize));
         v.push(Line::from(Span::styled(format!("DOWN: death saves  {}  {}", mark(c.death[0], "✔"), mark(c.death[1], "✘")), Style::new().fg(Color::Red).bold())));
     }
-    v.push(Line::from(ABILITIES.iter().filter(|a| c.abilities.contains_key(**a)).map(|a| format!("{a} {}({:+})", c.abilities[*a], c.md(a))).collect::<Vec<_>>().join(" | ")));
+    v.push(abilities_line(c));
 
     let mut d = vec![];
     if c.prog().is_some_and(|p| !p.attacks_per_action.is_empty()) { d.push(format!("Attacks/action: {}", c.attacks())); }
