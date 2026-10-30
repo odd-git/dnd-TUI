@@ -28,8 +28,6 @@ REVIEWED = {
     "Glyph of Warding: save DEX vs intelligence",    # Investigation finds the glyph
     "Symbol: save CON vs intelligence",              # the save depends on the glyph; Death comes first
     "Shapechange: save None vs charisma",
-    "Prismatic Spray: no damage vs 10d6",            # the ray's colour is rolled: roll by hand
-    "Prismatic Wall: no damage vs 10d6",
 }
 
 
@@ -51,10 +49,16 @@ def audit(ours, theirs):
         out.append(f"type {dmg[2]} vs {types}")
     opts = {o["type"]: o for o in theirs["casting_options"]}
     nxt = opts.get(f"slot_level_{ours['level'] + 1}", {})
-    if d0 and (d1 := dice(nxt.get("damage_roll"))) and d1[1] == d0[1]:
-        up = [d1[0] - d0[0], d0[1]] if d1[0] > d0[0] else None
-        if up != ours["upcast"]:
-            out.append(f"upcast {ours['upcast']} vs {up}")
+    if dmg:  # dice at every slot level Open5e lists
+        for lvl in range(ours["level"] + 1, 10):
+            d1 = dice(opts.get(f"slot_level_{lvl}", {}).get("damage_roll"))
+            if not d1 or d1[1] != dmg[1]:
+                continue
+            steps = sum(l <= lvl for l in ours["upcast_at"]) if ours["upcast_at"] else lvl - ours["level"]
+            mine = dmg[0] + (ours["upcast"][0] * steps if ours["upcast"] else 0)
+            if mine != d1[0]:
+                out.append(f"at slot {lvl} {mine}d{dmg[1]} vs {d1[0]}d{d1[1]}")
+                break
     n = int(theirs["target_count"] or 1)  # our count is darts, rays and beams of a damage spell, not targets
     if dmg and n > 1 and n != ours["count"]:
         out.append(f"count {ours['count']} vs {n}")

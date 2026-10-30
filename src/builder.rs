@@ -682,6 +682,17 @@ mod tests {
     }
 
     #[test]
+    fn upcasting_in_steps() {
+        let up = |n: &str, slots: &[u32]| slots.iter().map(|&l| lists::spell(n).unwrap().upcast_dice(l)).collect::<Vec<_>>();
+        assert_eq!(up("Fireball", &[3, 5]), [0, 2]);
+        assert_eq!(up("Shadow Blade", &[2, 3, 4, 5, 6, 7, 9]), [0, 1, 1, 2, 2, 3, 3]); // 2d8, 3d8 at 3rd-4th, 4d8 at 5th-6th, 5d8 from 7th
+        assert_eq!(up("Spiritual Weapon", &[2, 3, 4, 6]), [0, 0, 1, 2]);
+        assert_eq!(up("Spirit Shroud", &[3, 4, 5, 7]), [0, 0, 1, 2]);
+        assert!(lists::spell("Spiritual Weapon").unwrap().dmg_mod);
+        assert_eq!(lists::spell("Prismatic Spray").unwrap().dmg, Some((10, 6, "chosen".into())));
+    }
+
+    #[test]
     fn expertise_doubles_proficiency() {
         let c = rogue(1);
         // DEX 16: Stealth and Acrobatics expert (+3 +4), Insight plain (+0 +2), Arcana untrained

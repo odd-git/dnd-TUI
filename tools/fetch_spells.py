@@ -63,11 +63,29 @@ def parse(slug):
     dm = re.search(r"(\d+)d(\d+)(?: \+ (\d+))? (\w+) damage", text)
     if not dm and (m2 := re.search(r"(\d+)d(\d+) (?:damage of the type|\w+(?:,? (?:or )?\w+)+ damage)", text)):  # Chromatic Orb, Glyph of Warding...
         dm = [None, m2[1], m2[2], None, "chosen"]
+    dmg_mod = False
+    if not dm and (m2 := re.search(r"(\w+) damage equal to (\d+)d(\d+) \+ your spellcasting ability modifier", text)):  # Spiritual Weapon
+        dm, dmg_mod = [None, m2[2], m2[3], None, m2[1]], True
+    if dm and dm[4].lower() == "extra":  # Spirit Shroud: "1d8 extra damage", the type is chosen
+        dm = [None, dm[1], dm[2], dm[3], "chosen"]
+    if not dm:  # Prismatic Spray / Wall: the same dice in a table, one damage type per colour
+        by = {}
+        for c in (t for tag, _, t in b if tag == "td"):
+            if m2 := re.search(r"(\d+)d(\d+) (\w+) damage", c):
+                by.setdefault((m2[1], m2[2]), set()).add(m2[3])
+        if (k := next((k for k, v in by.items() if len(v) >= 3), None)):
+            dm = [None, k[0], k[1], None, "chosen"]
     hm = re.search(r"hit points equal to (\d+)d(\d+) \+ your spellcasting ability modifier", text)
     hf = re.search(r"regains? (\d+)d(\d+) hit points", text)
     count = re.search(r"\b(two|three|four|five) (?:glowing )?(?:darts|rays|beams|bolts)", text)
     save = re.search(r"(Strength|Dexterity|Constitution|Intelligence|Wisdom|Charisma) saving throw", text)
-    up = re.search(r"increases?\b[^.]*? by (\d+)d(\d+)[^.]*each (?:slot )?(?:level )?above", higher)
+    up = re.search(r"increases?\b[^.]*? by (\d+)d(\d+)[^.]*(?:each|every two) (?:slot )?(?:level |levels )?above", higher)
+    # dice added only at some slot levels: every two levels (Spirit Shroud), or a table in words (Shadow Blade)
+    steps = [int(m2[1] or m2[2]) for m2 in re.finditer(r"(?:(\d)(?:st|nd|rd|th)[- ]+(?:or \d(?:st|nd|rd|th)-)?level (?:spell )?slot|slot of (\d)(?:st|nd|rd|th) level or higher), the damage increases to \d+d", higher)]
+    if re.search(r"every two slot levels above", higher):
+        steps = list(range(level + 2, 10, 2))
+    if steps and not up and dm:
+        up = [None, 1, dm[2]]
     name = re.sub(r"[-_]", " ", slug.split(":")[1]).title()
     t = w.get(slug)
     mt = re.search(r"<title>(.*?)</title>", t, re.S)
@@ -80,11 +98,13 @@ def parse(slug):
         "dmg": [int(dm[1]), int(dm[2]), dm[4].lower()] if dm else [int(h[1]), int(h[2]), "healing"] if (h := hm or hf) else None,
         "flat": int(dm[3]) if dm and dm[3] else 0,
         "heal_mod": bool(hm) and not dm,
+        "dmg_mod": dmg_mod,
         "count": {"two": 2, "three": 3, "four": 4, "five": 5}[count[1]] if count else 1,
         "count_up": bool(re.search(r"one (?:more|additional) (?:dart|ray|beam|bolt)", higher)),
         "beams": level == 0 and "beam" in text,
         "attack": "spell attack" in text.lower(), "save": ABIL[save[1]] if save else None,
         "upcast": [int(up[1]), int(up[2])] if up else None,
+        "upcast_at": steps,
         "scales": level == 0 and "5th level" in higher,
         "healing": bool(re.search(r"regains? (?:a number of )?hit points|regains? \d+d\d+", text)),
     }

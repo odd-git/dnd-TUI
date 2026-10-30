@@ -219,6 +219,8 @@ pub struct Spell {
     pub attack: bool,
     pub save: Option<String>,
     pub upcast: Option<(u32, u32)>, // extra dice per slot level above the spell's own
+    #[serde(default)] pub upcast_at: Vec<u32>, // ...or only at these slot levels (Shadow Blade, Spiritual Weapon)
+    #[serde(default)] pub dmg_mod: bool,       // damage adds the spellcasting modifier (Spiritual Weapon)
     pub scales: bool,               // cantrip damage grows at levels 5, 11, 17
     pub healing: bool,                // dmg then holds the healing dice
     #[serde(default)] pub heal_mod: bool,  // ...plus the spellcasting modifier
@@ -226,6 +228,14 @@ pub struct Spell {
     #[serde(default = "one")] pub count: u32, // darts / rays, each rolled on its own
     #[serde(default)] pub count_up: bool,  // one more per slot level above the spell's own
     #[serde(default)] pub beams: bool,     // cantrip that scales in beams, not dice (Eldritch Blast)
+}
+
+impl Spell {
+    /// Dice added by casting at `slot`: per level above the spell's, or at the listed slot levels only.
+    pub fn upcast_dice(&self, slot: u32) -> u32 {
+        let Some((n, _)) = self.upcast.filter(|_| self.level > 0) else { return 0 };
+        n * if self.upcast_at.is_empty() { slot.saturating_sub(self.level) } else { self.upcast_at.iter().filter(|&&l| l <= slot).count() as u32 }
+    }
 }
 
 pub fn spell(name: &str) -> Option<&'static Spell> { spells().iter().find(|s| s.name.eq_ignore_ascii_case(name)) }

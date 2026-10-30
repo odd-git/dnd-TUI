@@ -123,7 +123,7 @@ impl App {
         let above = slot_level.saturating_sub(sp.level);
         let tier = 1 + u32::from(self.ch.level >= 5) + u32::from(self.ch.level >= 11) + u32::from(self.ch.level >= 17);
         let mut dice = *n;
-        if sp.level > 0 { dice += sp.upcast.map_or(0, |u| u.0) * above; }
+        dice += sp.upcast_dice(slot_level);
         if sp.scales && !sp.beams { dice = n * tier; }
         if sp.healing {
             let has = |n: &str| self.ch.features.iter().any(|f| f.name == n);
@@ -137,7 +137,7 @@ impl App {
         let rolls = if crit { 2 * dice } else { dice };
         // Potent Spellcasting (Knowledge, Light): WIS to the damage of cleric cantrips
         let potent = sp.level == 0 && sp.classes.iter().any(|c| c == "Cleric") && self.ch.features.iter().any(|f| f.name == "Potent Spellcasting");
-        let add = sp.flat as i32 + if potent { self.ch.md("WIS") } else { 0 };
+        let add = sp.flat as i32 + if potent { self.ch.md("WIS") } else { 0 } + if sp.dmg_mod { self.ch.md(&ab) } else { 0 };
         // Overchannel (Evocation, 14th level): a 1st-5th level spell deals its maximum damage
         let overchannel = (1..=5).contains(&sp.level) && sp.classes.iter().any(|c| c == "Wizard") && self.ch.active.iter().any(|t| t == "Overchannel");
         let mut per: Vec<u32> = (0..hits).map(|_| ((0..rolls).map(|_| if overchannel { *sides } else { d(*sides) }).sum::<u32>() as i32 + add).max(0) as u32).collect();
