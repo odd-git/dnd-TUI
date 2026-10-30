@@ -1047,7 +1047,8 @@ impl App {
     fn flow_begin(&mut self) {
         self.snap();
         self.lv = 0;
-        let res = self.ch.resources.iter().filter_map(|r| Some((r.id.clone(), self.ch.res_max(&r.id)?))).collect();
+        // a pool that starts at a set value (Arcane Ward) does not fill up with its maximum
+        let res = self.ch.resources.iter().filter(|r| r.start.is_none()).filter_map(|r| Some((r.id.clone(), self.ch.res_max(&r.id)?))).collect();
         self.flow = Some(Flow { level: self.ch.level, hp_max: self.ch.hp_max(), res });
     }
 
