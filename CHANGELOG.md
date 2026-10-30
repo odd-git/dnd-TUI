@@ -3,6 +3,15 @@
 All notable changes to this project are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Added
+- Racial spells: leveled spells of a lineage (Drow Magic, Infernal Legacy, Githyanki and Githzerai Psionics, Firbolg Magic...)
+  are cast once per long rest from the character level that unlocks them, at their set slot level, with the lineage's ability.
+
+### Changed
+- CI uses actions/checkout v5.
+
 ## [0.9.1] - 2026-10-30
 
 ### Added
@@ -58,6 +67,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 ### Added
 - Rust rewrite of the sheet tracker (ratatui), with the Fighter / Battle Master sheet of Rowan Ashford.
 
+[Unreleased]: https://github.com/odd-git/dnd-TUI/compare/v0.9.1...HEAD
 [0.9.1]: https://github.com/odd-git/dnd-TUI/compare/v0.1.9...v0.9.1
 [0.1.9]: https://github.com/odd-git/dnd-TUI/compare/c22fc8a...v0.1.9
 [0.1.0]: https://github.com/odd-git/dnd-TUI/commit/c22fc8a
