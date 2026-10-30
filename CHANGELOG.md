@@ -5,6 +5,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.9.2] - 2026-10-30
+
 ### Added
 - PDF export (`P` on the sheet list or the Character tab): an A4 character sheet to print, with abilities, saves, skills, attacks,
   resources and spell slots as boxes to tick, features, spell list, inventory and ruled notes.
@@ -69,7 +71,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 ### Added
 - Rust rewrite of the sheet tracker (ratatui), with the Fighter / Battle Master sheet of Rowan Ashford.
 
-[Unreleased]: https://github.com/odd-git/dnd-TUI/compare/v0.9.1...HEAD
+[Unreleased]: https://github.com/odd-git/dnd-TUI/compare/v0.9.2...HEAD
+[0.9.2]: https://github.com/odd-git/dnd-TUI/compare/v0.9.1...v0.9.2
 [0.9.1]: https://github.com/odd-git/dnd-TUI/compare/v0.1.9...v0.9.1
 [0.1.9]: https://github.com/odd-git/dnd-TUI/compare/c22fc8a...v0.1.9
 [0.1.0]: https://github.com/odd-git/dnd-TUI/commit/c22fc8a
