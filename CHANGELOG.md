@@ -5,6 +5,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.9.4] - 2026-10-30
+
+### Changed
+- The bundled Fighter / Battle Master sheet is a demo character (Rowan Ashford) instead of a real player's character.
+
 ## [0.9.3] - 2026-10-30
 
 ### Added
@@ -81,7 +86,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 ### Added
 - Rust rewrite of the sheet tracker (ratatui), with a Fighter / Battle Master sheet.
 
-[Unreleased]: https://github.com/odd-git/dnd-TUI/compare/v0.9.3...HEAD
+[Unreleased]: https://github.com/odd-git/dnd-TUI/compare/v0.9.4...HEAD
+[0.9.4]: https://github.com/odd-git/dnd-TUI/compare/v0.9.3...v0.9.4
 [0.9.3]: https://github.com/odd-git/dnd-TUI/compare/v0.9.2...v0.9.3
 [0.9.2]: https://github.com/odd-git/dnd-TUI/compare/v0.9.1...v0.9.2
 [0.9.1]: https://github.com/odd-git/dnd-TUI/compare/v0.1.9...v0.9.1
