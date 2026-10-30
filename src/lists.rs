@@ -32,6 +32,9 @@ pub struct Section {
     pub skills: Vec<String>,
     pub extra_skills: u32,
     pub feats: u32,
+    pub cantrip_list: Option<String>, // one cantrip of your choice from this class list (High Elf)
+    pub cantrips: Vec<String>,        // named cantrips (Forest Gnome)
+    pub spell_ability: Option<String>,
     pub traits: Vec<Feature>,
 }
 
@@ -62,6 +65,9 @@ pub struct Effective {
     pub skills: Vec<String>,
     pub extra_skills: u32,
     pub feats: u32,
+    pub cantrip_list: Option<String>,
+    pub cantrips: Vec<String>,
+    pub spell_ability: Option<String>,
     pub traits: Vec<Feature>,
 }
 
@@ -86,9 +92,12 @@ impl Lineage {
         e.extra_languages = base.extra_languages + sub.map_or(0, |s| s.sec.extra_languages);
         e.extra_skills = base.extra_skills + sub.map_or(0, |s| s.sec.extra_skills);
         e.feats = base.feats + sub.map_or(0, |s| s.sec.feats);
+        e.cantrip_list = sub.and_then(|s| s.sec.cantrip_list.clone()).or(base.cantrip_list.clone());
+        e.spell_ability = sub.and_then(|s| s.sec.spell_ability.clone()).or(base.spell_ability.clone());
         for sec in std::iter::once(base).chain(sub.map(|s| &s.sec)) {
             for l in &sec.languages { if !e.languages.contains(l) { e.languages.push(l.clone()); } }
             for sk in &sec.skills { if !e.skills.contains(sk) { e.skills.push(sk.clone()); } }
+            for c in &sec.cantrips { if !e.cantrips.contains(c) { e.cantrips.push(c.clone()); } }
             for t in &sec.traits {
                 match e.traits.iter_mut().find(|x| x.name == t.name) {
                     Some(x) => *x = t.clone(),

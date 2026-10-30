@@ -15,7 +15,7 @@ const METHODS: [&str; 4] = ["Standard array (15 14 13 12 10 8)", "Roll 4d6, drop
 #[derive(Clone, Copy)]
 pub enum Wz {
     Name, Level, Lineage, Sub, Class, Subclass, Background, Method, Score(usize), Asi(usize),
-    ClassSkills, FreeSkills, Languages, Tool, Feat(usize), FeatPick(usize), Style, Maneuvers, Expertise, Cantrips, Spells, Prepare,
+    ClassSkills, FreeSkills, Languages, RaceCantrip, Tool, Feat(usize), FeatPick(usize), Style, Maneuvers, Expertise, Cantrips, Spells, Prepare,
     Armor, Shield, Weapons, Review,
 }
 
@@ -71,7 +71,7 @@ impl App {
         // a paladin or ranger has no spells at 1st level
         let Some(cast) = c.casting() else { return (0, vec![]) };
         let n = if cantrips { c.cantrips_max() } else if cast.mode == "prepared" { 0 } else { c.known_max() };
-        let names = lists::spell_choices(cast, &prog, c.level, cantrips).iter().map(|s| s.name.clone()).collect::<Vec<_>>();
+        let names = lists::spell_choices(cast, &prog, c.level, cantrips).iter().map(|s| s.name.clone()).filter(|n| !cantrips || !c.cantrips.contains(n)).collect::<Vec<_>>(); // a racial cantrip is already known
         (n.min(names.len()), names)
     }
 
@@ -114,6 +114,10 @@ impl App {
     fn language_options(&self) -> Vec<String> {
         let have = self.eff().languages;
         LANGUAGES.iter().map(|s| s.to_string()).filter(|s| !have.contains(s)).collect()
+    }
+    fn race_cantrip_options(&self) -> Vec<String> {
+        let list = self.eff().cantrip_list.unwrap_or_default();
+        lists::spells().iter().filter(|s| s.level == 0 && s.classes.contains(&list)).map(|s| s.name.clone()).collect()
     }
     fn armor_options() -> Vec<&'static lists::Armor> { lists::armors().iter().filter(|a| a.category != "Shield").collect() }
     fn score_options(&self) -> Vec<i32> {
@@ -186,8 +190,12 @@ impl App {
             }
             Wz::Languages => {
                 let n = self.language_count();
-                if n == 0 { return skip(self, Wz::Tool); }
+                if n == 0 { return skip(self, Wz::RaceCantrip); }
                 self.wiz_multi(&format!("Extra languages: choose {n}"), self.language_options(), n, w);
+            }
+            Wz::RaceCantrip => {
+                let Some(list) = self.eff().cantrip_list else { return skip(self, Wz::Tool) };
+                self.wiz_list(&format!("{} cantrip ({list} list)", self.lineage().name), self.race_cantrip_options(), w);
             }
             Wz::Tool => {
                 let t = self.bg().map(|b| b.tools.clone()).unwrap_or_default();
@@ -321,6 +329,7 @@ impl App {
             Wz::Class => { let c = lists::classes()[i].name.clone(); self.d().class = c; self.d().subclass = None; self.wiz_open(Wz::Subclass); }
             Wz::Subclass => { let s = self.class().subclasses[i].name.clone(); self.d().subclass = Some(s); self.wiz_open(Wz::Background); }
             Wz::Background => { self.d().background = lists::backgrounds()[i].name.clone(); self.wiz_open(Wz::Method); }
+            Wz::RaceCantrip => { self.d().race_cantrip = self.race_cantrip_options().get(i).cloned(); self.wiz_open(Wz::Tool); }
             Wz::Method => {
                 let mut rolled: Vec<i32> = vec![];
                 if i == 1 {
@@ -388,7 +397,7 @@ impl App {
             Wz::Languages => {
                 let opts = self.language_options();
                 self.d().languages = picked.iter().map(|&i| opts[i].clone()).collect();
-                self.wiz_open(Wz::Tool);
+                self.wiz_open(Wz::RaceCantrip);
             }
             Wz::Maneuvers => {
                 let names: Vec<String> = maneuvers().keys().cloned().collect();

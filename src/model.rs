@@ -230,6 +230,10 @@ impl Character {
     /// Spellcasting ability for a spell: the class whose list has it (the better one when two do), the warlock's
     /// for pact gifts, otherwise the sheet's.
     pub fn ability_for(&self, name: &str) -> String {
+        // a racial cantrip names its ability: "From High Elf Elf (INT)"
+        let own = self.features.iter().find(|f| f.name == format!("Bonus spell: {name}"))
+            .and_then(|f| f.desc.strip_suffix(')')?.rsplit_once(" (").map(|(_, a)| a.to_string())).filter(|a| ABILITIES.contains(&a.as_str()));
+        if let Some(a) = own { return a; }
         let sp = crate::lists::spell(name);
         let pact = self.features.iter().any(|f| f.name == format!("Bonus spell: {name}") && f.desc.starts_with("From Pact"));
         let mut best: Option<String> = None;

@@ -20,6 +20,7 @@ pub struct Draft {
     pub free_skills: Vec<String>, // lineage/background "of your choice"
     pub expertise: Vec<String>,
     pub cantrips: Vec<String>,
+    pub race_cantrip: Option<String>, // from the lineage's cantrip list (High Elf)
     pub spells: Vec<String>,
     pub prepared: Vec<String>,
     pub feats: Vec<String>,
@@ -169,6 +170,14 @@ pub fn build(d: &Draft) -> Character {
         active: vec![],
         res: BTreeMap::new(),
     };
+
+    // racial cantrips: known on top of the class picks, cast with the lineage's ability (the best mental one when it lets you choose)
+    let ability = eff.spell_ability.clone().unwrap_or_else(|| ["INT", "WIS", "CHA"].into_iter().max_by_key(|a| c.md(a)).unwrap().to_string());
+    for name in eff.cantrips.iter().chain(&d.race_cantrip) {
+        let Some(sp) = lists::spell(name) else { continue };
+        push_unique(&mut c.cantrips, [sp.name.clone()]);
+        put_feature(&mut c.features, &Feature { name: format!("Bonus spell: {}", sp.name), desc: format!("From {} ({ability})", c.race), url: sp.url.clone() });
+    }
 
     // armor class
     let defense = d.style.as_ref().and_then(|s| class.styles.iter().find(|x| &x.name == s)).and_then(|s| s.effect.as_deref()) == Some("defense");
@@ -643,6 +652,24 @@ mod tests {
         assert_eq!(c.md(a.ability.as_deref().unwrap()), 3);
         c.abilities.insert("STR".into(), 18); // an ability score increase later on
         assert_eq!((c.md(a.ability.as_deref().unwrap()), c.hit_bonus(&a)), (4, Some(4 + 2)));
+    }
+
+    #[test]
+    fn racial_cantrips_and_languages() {
+        let s = |x: &str| x.to_string();
+        let elf = lists::lineages().iter().find(|l| l.name == "Elf").unwrap();
+        let high = elf.effective(elf.subs.iter().position(|x| x.name == "High Elf"));
+        assert_eq!((high.extra_languages, high.cantrip_list.as_deref(), high.spell_ability.as_deref()), (1, Some("Wizard"), Some("INT")));
+        let c = build(&Draft { lineage: s("Elf"), sub: Some(s("High Elf")), race_cantrip: Some(s("Fire Bolt")), ..rowan() });
+        assert!(c.cantrips.contains(&s("Fire Bolt")) && c.has_spells());
+        assert_eq!(c.ability_for("Fire Bolt"), "INT"); // a fighter casts it with the elf's ability
+        let gnome = |class: &str| build(&Draft {
+            name: s("Pip"), lineage: s("Gnome"), sub: Some(s("Forest")), class: s(class), level: 1, background: s("Sage"),
+            base: ["STR", "DEX", "CON", "INT", "WIS", "CHA"].iter().map(|a| (a.to_string(), 12)).collect(), ..Default::default()
+        });
+        let c = gnome("Rogue");
+        assert_eq!((c.cantrips.clone(), c.ability_for("Minor Illusion")), (vec![s("Minor Illusion")], s("INT")));
+        assert!(c.bonus_spell("Minor Illusion"));
     }
 
     #[test]

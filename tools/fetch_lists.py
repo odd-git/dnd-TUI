@@ -51,7 +51,7 @@ def parse_asi(text: str) -> dict | None:
 def section(traits: list[tuple[str, str]], at: str = "", page: str = "") -> dict:
     """Structured lineage section from its (name, text) traits; `at` prefixes the summary keys."""
     sec = {"asi": None, "size": None, "speed": None, "languages": [], "extra_languages": 0,
-           "skills": [], "extra_skills": 0, "feats": 0, "traits": []}
+           "skills": [], "extra_skills": 0, "feats": 0, "cantrip_list": None, "cantrips": [], "spell_ability": None, "traits": []}
     for name, text in traits:
         low = name.lower()
         if low.startswith("ability score"):
@@ -69,7 +69,7 @@ def section(traits: list[tuple[str, str]], at: str = "", page: str = "") -> dict
             first = text.split(".")[0].replace("Elven", "Elvish")
             sec["languages"] = [l for l in LANGS if re.search(r"\b" + l + r"\b", first)]
             if m := re.search(r"\b(one|two|three)\b[^.]*?\blanguages?\b[^.]*?\bof your choice", text, re.I):
-                sec["extra_languages"] = NUM[m[1].lower()]
+                sec["extra_languages"] += NUM[m[1].lower()]
         elif "(" not in name:  # names with (...) are menu options (Half-Elf heritages): no auto grants
             for m in re.finditer(r"proficiency (?:in|with) the (" + "|".join(SKILLS) + r") skill", text):
                 sec["skills"].append(m[1])
@@ -77,6 +77,14 @@ def section(traits: list[tuple[str, str]], at: str = "", page: str = "") -> dict
                 sec["extra_skills"] += NUM[m[1].lower()]
             if re.search(r"\b(one|a) feat\b", text, re.I) and "choice" in text:
                 sec["feats"] += 1
+            if m := re.search(r"\b(one|two) (?:additional |extra )?languages? of your choice", text, re.I):
+                sec["extra_languages"] += NUM[m[1].lower()]
+            # racial cantrips: one from a class list (High Elf) or a named one (Forest Gnome); leveled racial spells stay text
+            if m := re.search(r"You know one cantrip of your choice from the (\w+) spell list", text):
+                sec["cantrip_list"] = m[1].capitalize()
+            sec["cantrips"] += [m[1] for m in re.finditer(r"You know the ([A-Za-z' ]+?) cantrip", text)]
+            if (sec["cantrip_list"] or sec["cantrips"]) and (m := re.search(r"(Intelligence|Wisdom|Charisma) is your spellcasting (?:ability|modifier)", text, re.I)):
+                sec["spell_ability"] = ABIL[m[1].capitalize()]
         if text.strip() and low not in ("size", "speed") and not low.startswith("language"):
             sec["traits"].append({"name": name, "desc": w.summary(w.key(at, name), text), "url": w.url(page)})
     return sec

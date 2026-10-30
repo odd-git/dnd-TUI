@@ -14,6 +14,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -59,6 +62,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Flight",
@@ -88,6 +94,11 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [
+   "Light"
+  ],
+  "spell_ability": "CHA",
   "traits": [
    {
     "name": "Creature Type",
@@ -158,6 +169,11 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [
+   "Light"
+  ],
+  "spell_ability": "CHA",
   "traits": [
    {
     "name": "Darkvision",
@@ -202,6 +218,9 @@
     "skills": [],
     "extra_skills": 0,
     "feats": 0,
+    "cantrip_list": null,
+    "cantrips": [],
+    "spell_ability": null,
     "traits": [
      {
       "name": "Radiant Soul",
@@ -226,6 +245,9 @@
     "skills": [],
     "extra_skills": 0,
     "feats": 0,
+    "cantrip_list": null,
+    "cantrips": [],
+    "spell_ability": null,
     "traits": [
      {
       "name": "Radiant Consumption",
@@ -250,6 +272,9 @@
     "skills": [],
     "extra_skills": 0,
     "feats": 0,
+    "cantrip_list": null,
+    "cantrips": [],
+    "spell_ability": null,
     "traits": [
      {
       "name": "Necrotic Shroud",
@@ -287,6 +312,9 @@
   ],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -326,6 +354,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [],
   "subs": []
  },
@@ -344,6 +375,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -405,6 +439,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -449,6 +486,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -500,6 +540,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Fey",
@@ -551,6 +594,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Fey",
@@ -595,6 +641,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -639,6 +688,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Shapechanger",
@@ -668,6 +720,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -719,6 +774,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Superior Darkvision",
@@ -760,6 +818,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Draconic Ancestry",
@@ -794,6 +855,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -845,6 +909,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Superior Darkvision",
@@ -910,6 +977,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -954,6 +1024,9 @@
     "skills": [],
     "extra_skills": 0,
     "feats": 0,
+    "cantrip_list": null,
+    "cantrips": [],
+    "spell_ability": null,
     "traits": [
      {
       "name": "Dwarven Toughness",
@@ -978,6 +1051,9 @@
     "skills": [],
     "extra_skills": 0,
     "feats": 0,
+    "cantrip_list": null,
+    "cantrips": [],
+    "spell_ability": null,
     "traits": [
      {
       "name": "Dwarven Armor Training",
@@ -1010,6 +1086,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -1051,6 +1130,9 @@
   ],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -1129,6 +1211,9 @@
   ],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Autumn",
@@ -1221,6 +1306,9 @@
   ],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -1260,6 +1348,11 @@
     "skills": [],
     "extra_skills": 0,
     "feats": 0,
+    "cantrip_list": null,
+    "cantrips": [
+     "Dancing Lights"
+    ],
+    "spell_ability": "CHA",
     "traits": [
      {
       "name": "Superior Darkvision",
@@ -1295,10 +1388,13 @@
     "size": null,
     "speed": null,
     "languages": [],
-    "extra_languages": 0,
+    "extra_languages": 1,
     "skills": [],
     "extra_skills": 0,
     "feats": 0,
+    "cantrip_list": "Wizard",
+    "cantrips": [],
+    "spell_ability": "INT",
     "traits": [
      {
       "name": "Cantrip",
@@ -1333,6 +1429,9 @@
     "skills": [],
     "extra_skills": 0,
     "feats": 0,
+    "cantrip_list": null,
+    "cantrips": [],
+    "spell_ability": null,
     "traits": [
      {
       "name": "Elf Weapon Training",
@@ -1368,6 +1467,11 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [
+   "Druidcraft"
+  ],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -1402,6 +1506,11 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [
+   "Druidcraft"
+  ],
+  "spell_ability": "CHA",
   "traits": [
    {
     "name": "Creature Type",
@@ -1441,6 +1550,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -1493,6 +1605,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Firbolg Magic",
@@ -1532,6 +1647,11 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [
+   "Shocking Grasp"
+  ],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -1583,6 +1703,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Unending Breath",
@@ -1612,6 +1735,11 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [
+   "Blade Ward"
+  ],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -1658,6 +1786,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Earth Walk",
@@ -1687,6 +1818,11 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [
+   "Produce Flame"
+  ],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -1733,6 +1869,11 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [
+   "Produce Flame"
+  ],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -1767,6 +1908,11 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [
+   "Acid Splash"
+  ],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -1818,6 +1964,11 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [
+   "Shape Water"
+  ],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Swim",
@@ -1857,6 +2008,11 @@
   "skills": [],
   "extra_skills": 1,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [
+   "Mage Hand"
+  ],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -1898,10 +2054,15 @@
   "languages": [
    "Common"
   ],
-  "extra_languages": 0,
+  "extra_languages": 1,
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [
+   "Mage Hand"
+  ],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Decadent Mastery",
@@ -1941,6 +2102,11 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [
+   "Mage Hand"
+  ],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -1986,6 +2152,11 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [
+   "Mage Hand"
+  ],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Mental Discipline",
@@ -2026,6 +2197,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -2055,6 +2229,11 @@
     "skills": [],
     "extra_skills": 0,
     "feats": 0,
+    "cantrip_list": null,
+    "cantrips": [
+     "Minor Illusion"
+    ],
+    "spell_ability": "INT",
     "traits": [
      {
       "name": "Natural Illusionist",
@@ -2084,6 +2263,9 @@
     "skills": [],
     "extra_skills": 0,
     "feats": 0,
+    "cantrip_list": null,
+    "cantrips": [],
+    "spell_ability": null,
     "traits": [
      {
       "name": "Artificer's Lore",
@@ -2129,6 +2311,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -2180,6 +2365,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -2221,6 +2409,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -2261,6 +2452,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Agile Climber",
@@ -2298,6 +2492,9 @@
   ],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -2349,6 +2546,9 @@
   ],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -2397,6 +2597,9 @@
   ],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Natural Athlete",
@@ -2447,6 +2650,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -2525,6 +2731,9 @@
   ],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -2570,6 +2779,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Lucky",
@@ -2604,6 +2816,9 @@
     "skills": [],
     "extra_skills": 0,
     "feats": 0,
+    "cantrip_list": null,
+    "cantrips": [],
+    "spell_ability": null,
     "traits": [
      {
       "name": "Naturally Stealthy",
@@ -2628,6 +2843,9 @@
     "skills": [],
     "extra_skills": 0,
     "feats": 0,
+    "cantrip_list": null,
+    "cantrips": [],
+    "spell_ability": null,
     "traits": [
      {
       "name": "Stout Resilience",
@@ -2655,6 +2873,9 @@
   ],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -2701,6 +2922,9 @@
   ],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -2750,6 +2974,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -2816,6 +3043,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -2860,6 +3090,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [],
   "subs": [
    {
@@ -2881,6 +3114,9 @@
     "skills": [],
     "extra_skills": 1,
     "feats": 1,
+    "cantrip_list": null,
+    "cantrips": [],
+    "spell_ability": null,
     "traits": [
      {
       "name": "Skills",
@@ -2911,6 +3147,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Provincial Origin",
@@ -2940,6 +3179,9 @@
     "skills": [],
     "extra_skills": 0,
     "feats": 0,
+    "cantrip_list": null,
+    "cantrips": [],
+    "spell_ability": null,
     "traits": []
    },
    {
@@ -2955,6 +3197,9 @@
     ],
     "extra_skills": 0,
     "feats": 0,
+    "cantrip_list": null,
+    "cantrips": [],
+    "spell_ability": null,
     "traits": [
      {
       "name": "Forest Folk",
@@ -2989,6 +3234,9 @@
     "skills": [],
     "extra_skills": 0,
     "feats": 0,
+    "cantrip_list": null,
+    "cantrips": [],
+    "spell_ability": null,
     "traits": [
      {
       "name": "Breadth of Knowledge",
@@ -3010,6 +3258,9 @@
     ],
     "extra_skills": 0,
     "feats": 0,
+    "cantrip_list": null,
+    "cantrips": [],
+    "spell_ability": null,
     "traits": [
      {
       "name": "Daunting",
@@ -3046,6 +3297,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Dual Mind",
@@ -3085,6 +3339,9 @@
   "skills": [],
   "extra_skills": 2,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -3130,6 +3387,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Expert Forgery",
@@ -3170,6 +3430,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Khenra Weapon Training",
@@ -3199,6 +3462,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": "Sorcerer",
+  "cantrips": [],
+  "spell_ability": "CHA",
   "traits": [
    {
     "name": "Creature Type",
@@ -3259,6 +3525,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -3304,6 +3573,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Kor Climbing",
@@ -3344,6 +3616,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -3383,6 +3658,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -3439,6 +3717,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Bite",
@@ -3494,6 +3775,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Powerful Build",
@@ -3543,6 +3827,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": "Wizard",
+  "cantrips": [],
+  "spell_ability": "INT",
   "traits": [
    {
     "name": "Amphibious",
@@ -3597,6 +3884,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": "Bard",
+  "cantrips": [],
+  "spell_ability": "CHA",
   "traits": [
    {
     "name": "Amphibious",
@@ -3656,6 +3946,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -3706,6 +3999,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Horns",
@@ -3751,6 +4047,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Horns",
@@ -3798,6 +4097,9 @@
   ],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Natural Weapon",
@@ -3843,6 +4145,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Speed Burst",
@@ -3882,6 +4187,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -3933,6 +4241,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -3979,6 +4290,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -4025,6 +4339,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -4073,6 +4390,9 @@
   ],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -4112,6 +4432,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -4163,6 +4486,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Fey",
@@ -4209,6 +4535,9 @@
   ],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -4272,6 +4601,9 @@
   ],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -4328,6 +4660,9 @@
   ],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -4391,6 +4726,9 @@
   ],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -4440,6 +4778,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -4501,6 +4842,9 @@
   ],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -4543,6 +4887,9 @@
     ],
     "extra_skills": 0,
     "feats": 0,
+    "cantrip_list": null,
+    "cantrips": [],
+    "spell_ability": null,
     "traits": [
      {
       "name": "Natural Athlete",
@@ -4575,6 +4922,9 @@
     ],
     "extra_skills": 0,
     "feats": 0,
+    "cantrip_list": null,
+    "cantrips": [],
+    "spell_ability": null,
     "traits": [
      {
       "name": "Fierce",
@@ -4607,6 +4957,9 @@
     ],
     "extra_skills": 0,
     "feats": 0,
+    "cantrip_list": null,
+    "cantrips": [],
+    "spell_ability": null,
     "traits": [
      {
       "name": "Graceful",
@@ -4638,6 +4991,9 @@
     ],
     "extra_skills": 0,
     "feats": 0,
+    "cantrip_list": null,
+    "cantrips": [],
+    "spell_ability": null,
     "traits": [
      {
       "name": "Natural Tracker",
@@ -4679,6 +5035,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -4743,6 +5102,11 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [
+   "Friends"
+  ],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Flight",
@@ -4772,6 +5136,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -4822,6 +5189,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -4867,6 +5237,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -4896,6 +5269,11 @@
     "skills": [],
     "extra_skills": 0,
     "feats": 0,
+    "cantrip_list": null,
+    "cantrips": [
+     "Thaumaturgy"
+    ],
+    "spell_ability": "CHA",
     "traits": [
      {
       "name": "Infernal Legacy",
@@ -4921,6 +5299,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -4978,6 +5359,9 @@
   ],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Claws",
@@ -5022,6 +5406,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -5072,6 +5459,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Amphibious",
@@ -5122,6 +5512,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -5167,6 +5560,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Darkvision",
@@ -5207,6 +5603,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Vedalken Dispassion",
@@ -5247,6 +5646,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Vedalken Cunning",
@@ -5286,6 +5688,9 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Constructed Resilience",
@@ -5325,6 +5730,11 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [
+   "Poison Spray"
+  ],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -5377,6 +5787,11 @@
   "skills": [],
   "extra_skills": 0,
   "feats": 0,
+  "cantrip_list": null,
+  "cantrips": [
+   "Poison Spray"
+  ],
+  "spell_ability": "CHA",
   "traits": [
    {
     "name": "Darkvision",
