@@ -190,7 +190,7 @@ checksum = "9e9de72ce2ad1f90dc62fa25f0f430ef85eb4b0d8fa0be4f30373bc40a21d28e"
 
 [[package]]
 name = "dnd-tui"
-version = "0.9.2"
+version = "0.9.3"
 dependencies = [
  "console_error_panic_hook",
  "getrandom",

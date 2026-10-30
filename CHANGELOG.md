@@ -5,6 +5,16 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.9.3] - 2026-10-30
+
+### Added
+- Browser version: the same sheet runs in a web page (WebAssembly, drawn on a canvas), with sheets kept in the browser's
+  local storage. Published on GitHub Pages at https://odd-git.github.io/dnd-TUI/.
+- `E` on the sheet list saves a sheet as a JSON file; in the browser `I` loads one back.
+
+### Changed
+- All disk access goes through one module, so the terminal and browser builds share the rest of the code.
+
 ## [0.9.2] - 2026-10-30
 
 ### Added
@@ -71,7 +81,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 ### Added
 - Rust rewrite of the sheet tracker (ratatui), with the Fighter / Battle Master sheet of Rowan Ashford.
 
-[Unreleased]: https://github.com/odd-git/dnd-TUI/compare/v0.9.2...HEAD
+[Unreleased]: https://github.com/odd-git/dnd-TUI/compare/v0.9.3...HEAD
+[0.9.3]: https://github.com/odd-git/dnd-TUI/compare/v0.9.2...v0.9.3
 [0.9.2]: https://github.com/odd-git/dnd-TUI/compare/v0.9.1...v0.9.2
 [0.9.1]: https://github.com/odd-git/dnd-TUI/compare/v0.1.9...v0.9.1
 [0.1.9]: https://github.com/odd-git/dnd-TUI/compare/c22fc8a...v0.1.9
