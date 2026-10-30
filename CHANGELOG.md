@@ -5,6 +5,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+## [0.9.5] - 2026-10-30
+
 ### Added
 - Artificer (Tasha's Cauldron of Everything): spell slots from 1st level, half caster rounded up when multiclassing,
   rituals when prepared, infusions chosen as they unlock (level prerequisites included), Flash of Genius from 7th level,
@@ -98,7 +100,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 ### Added
 - Rust rewrite of the sheet tracker (ratatui), with a Fighter / Battle Master sheet.
 
-[Unreleased]: https://github.com/odd-git/dnd-TUI/compare/v0.9.4...HEAD
+[Unreleased]: https://github.com/odd-git/dnd-TUI/compare/v0.9.5...HEAD
+[0.9.5]: https://github.com/odd-git/dnd-TUI/compare/v0.9.4...v0.9.5
 [0.9.4]: https://github.com/odd-git/dnd-TUI/compare/v0.9.3...v0.9.4
 [0.9.3]: https://github.com/odd-git/dnd-TUI/compare/v0.9.2...v0.9.3
 [0.9.2]: https://github.com/odd-git/dnd-TUI/compare/v0.9.1...v0.9.2
