@@ -3,3 +3,4 @@
 .dnd_character.json
 __pycache__/
 target/
+dist/
