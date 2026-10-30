@@ -3,7 +3,7 @@
 All notable changes to this project are documented here.
 The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and the project uses [Semantic Versioning](https://semver.org/).
 
-## [1.0.0] - 2026-10-30
+## [0.9.1] - 2026-10-30
 
 ### Added
 - Exhaustion (F): six levels, disadvantage on the rolls they affect, HP maximum halved from level 4, one level removed by a long rest.
@@ -13,8 +13,15 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - Mechanics for every Player's Handbook subclass: Channel Divinity options, Divine Strike, Arcane Ward, Portent, Wild Magic surges,
   Hunter's choices, the Beast Master's companion, school restrictions for the Eldritch Knight and Arcane Trickster, and more.
   Subclasses from other books keep their features as text with a link.
+- Racial cantrips and languages: the High Elf picks a wizard cantrip and an extra language; named racial cantrips
+  (Light, Minor Illusion, Thaumaturgy...) are known and cast with the lineage's ability.
+- Wizard: Spell Mastery casts its two spells at will, Signature Spells are always prepared and cast once per short rest without a slot.
+- Jack of All Trades: half proficiency to checks without it, initiative included.
+- Tough and Dwarven Toughness add their hit points per level.
+- Spells that grow in steps (Shadow Blade, Spiritual Weapon, Spirit Shroud, Flame Blade); Prismatic Spray and Wall roll 10d6
+  of the colour's type; Spiritual Weapon and Magic Stone add the spellcasting modifier.
 - Tests of every class against the class tables at levels 1, 5, 11 and 20, single class and multiclass.
-- `tools/audit_spells.py`: checks spell damage, saves and upcasting against the Open5e API.
+- `tools/audit_spells.py`: checks spell damage, saves and upcasting at every slot level against the Open5e API.
 
 ### Changed
 - Descriptions are our own summaries with a link to the wiki page; SRD 5.1 spells keep their full text.
@@ -33,6 +40,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 - Spells with damage or saves in bullet lists, several damage types, or upcasting worded differently now roll them.
 - The blowgun deals 1 + DEX piercing damage.
 - Finesse weapons use the better of STR and DEX when rolled, so they follow later ability score increases.
+- Initiative counts as a DEX check, so Remarkable Athlete applies.
 
 ## [0.1.9] - 2026-10-29
 
@@ -50,6 +58,6 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 ### Added
 - Rust rewrite of the sheet tracker (ratatui), with the Fighter / Battle Master sheet of Rowan Ashford.
 
-[1.0.0]: https://github.com/odd-git/dnd-TUI/compare/v0.1.9...v1.0.0
+[0.9.1]: https://github.com/odd-git/dnd-TUI/compare/v0.1.9...v0.9.1
 [0.1.9]: https://github.com/odd-git/dnd-TUI/compare/c22fc8a...v0.1.9
 [0.1.0]: https://github.com/odd-git/dnd-TUI/commit/c22fc8a
