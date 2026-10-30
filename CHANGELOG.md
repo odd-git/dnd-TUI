@@ -5,6 +5,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+### Changed
+- The web version is a touch-friendly page instead of the terminal drawn on a canvas: sticky HP bar, action cards,
+  checks and spells as buttons, questions as bottom sheets, a log you can open; works on phones. The terminal keys
+  still work on a desktop keyboard. Same rules and flows as the terminal app, which is unchanged.
+
 ## [0.9.4] - 2026-10-30
 
 ### Changed

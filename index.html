@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#2f6b45">
   <title>dnd-tui</title>
   <link data-trunk rel="rust" data-bin="dnd-tui" data-wasm-opt="z">
-  <style>html, body { margin: 0; background: #000; overflow: hidden; }
-    footer { position: fixed; left: 0; right: 0; bottom: 0; height: 24px; box-sizing: border-box; padding: 0 8px;
-             font: 11px/24px monospace; color: #777; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; background: #000; }
-    footer a { color: #999; }</style>
+  <link data-trunk rel="css" href="web/style.css">
+  <script data-trunk src="web/app.js"></script>
 </head>
 <body>
-  <footer>
+  <div id="app"><p style="padding:24px">Loading…</p></div>
+  <footer class="legal">
     Unofficial fan project, not affiliated with or endorsed by Wizards of the Coast; Dungeons &amp; Dragons is a trademark of Wizards of the Coast LLC.
-    Sheets stay in this browser (E exports a file). Open source, GPL-3.0-or-later:
+    Sheets stay in this browser: use Export to keep a copy. Open source, GPL-3.0-or-later:
     <a href="https://github.com/odd-git/dnd-TUI">github.com/odd-git/dnd-TUI</a>
   </footer>
 </body>

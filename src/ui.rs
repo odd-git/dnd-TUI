@@ -89,7 +89,7 @@ pub fn draw(f: &mut Frame, app: &App) -> Hot {
     hot
 }
 
-fn footer(app: &App) -> Vec<(String, String, Cmd)> {
+pub(crate) fn footer(app: &App) -> Vec<(String, String, Cmd)> {
     let s = |k: &str, l: &str, c: Cmd| (k.to_string(), l.to_string(), c);
     match app.tab {
         Tab::Combat => {
@@ -136,7 +136,7 @@ fn draw_picker(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
     f.render_widget(Paragraph::new(if cfg!(target_arch = "wasm32") { " ↑↓, Enter open, N new, P PDF, E export, I import, D del" } else { " ↑↓, Enter open, N new, P PDF, E export, D del, Q quit" }).style(tone(Tone::Dim)), hint);
 }
 
-fn status_lines(app: &App) -> Vec<Line<'static>> {
+pub(crate) fn status_lines(app: &App) -> Vec<Line<'static>> {
     let c = &app.ch;
     let mut v: Vec<Line> = vec![];
     let who = [c.name.as_str(), c.race.as_str(), &c.title(), c.background.as_str()].iter().filter(|s| !s.is_empty()).map(|s| s.to_string()).collect::<Vec<_>>().join(" | ");
@@ -336,7 +336,8 @@ fn draw_log(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
     f.render_widget(Paragraph::new(lines), inner);
 }
 
-fn draw_character(f: &mut Frame, app: &App, area: Rect) {
+/// The Character tab's text, filtered by the search query.
+pub(crate) fn character_lines(app: &App) -> Vec<Line<'static>> {
     let c = &app.ch;
     let head = |t: &str| Line::styled(t.to_string(), Style::new().fg(GREEN).bold());
     let mut v: Vec<Line> = vec![head("ABILITIES AND SAVES")];
@@ -400,6 +401,12 @@ fn draw_character(f: &mut Frame, app: &App, area: Rect) {
         if out.is_empty() { out.push(Line::styled("Nothing matches.", tone(Tone::Dim))); }
         v = out;
     }
+    v
+}
+
+fn draw_character(f: &mut Frame, app: &App, area: Rect) {
+    let c = &app.ch;
+    let v = character_lines(app);
     let max = (rows_needed(&v, area.width.saturating_sub(2)) + 2).saturating_sub(area.height);
     f.render_widget(Paragraph::new(v).wrap(Wrap { trim: false }).scroll((app.scroll.min(max), 0)).block(block(&format!("{} | {}", c.name, c.title()))), area);
 }
@@ -475,7 +482,7 @@ fn list_box(f: &mut Frame, area: Rect, hot: &mut Hot, title: &str, items: &[Stri
 }
 
 /// "Slots L1 ●●○ L2 ●" for the status box and the Spells tab.
-fn slots_line(c: &Character) -> Option<Line<'static>> {
+pub(crate) fn slots_line(c: &Character) -> Option<Line<'static>> {
     let parts: Vec<String> = c.slot_rows().into_iter()
         .map(|(label, cur, max)| format!("{label} {}{}", "●".repeat(cur.min(max) as usize), "○".repeat((max - cur.min(max)) as usize))).collect();
     (!parts.is_empty()).then(|| Line::from(format!("Slots {}", parts.join("  "))))
@@ -503,9 +510,7 @@ fn draw_spells(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
     for (k, sp) in rows.iter().enumerate().skip(start).take(h) {
         let row = Rect::new(inner.x, inner.y + hh + (k - start) as u16, inner.width, 1);
         let lvl = if sp.level == 0 { "C".to_string() } else { sp.level.to_string() };
-        let usable = sp.level == 0 || c.casting().is_some_and(|k| k.kind == "pact" && c.res.get("pact").copied().unwrap_or(0) > 0)
-            || (sp.level..=9).any(|l| c.res.get(&format!("slot{l}")).copied().unwrap_or(0) > 0)
-            || c.res.get(&format!("arcanum{}", sp.level)).copied().unwrap_or(0) > 0;
+        let usable = spell_usable(c, sp);
         let style = if k == app.ssel { selected() } else if usable { Style::new() } else { tone(Tone::Dim) };
         let tag = format!("{}{}", if sp.conc { "c" } else { " " }, if sp.ritual { "r" } else { " " });
         f.render_widget(Paragraph::new(format!(" {lvl} {tag} {}", sp.name)).style(style), row);
@@ -515,22 +520,35 @@ fn draw_spells(f: &mut Frame, app: &App, area: Rect, hot: &mut Hot) {
     let di = db.inner(cols[1]);
     f.render_widget(db, cols[1]);
     if let Some(sp) = rows.get(app.ssel) {
-        let mut lines = vec![
-            Line::styled(format!("{} ({})", sp.name, if sp.level == 0 { format!("{} cantrip", sp.school) } else { format!("level {} {}", sp.level, sp.school) }), Style::new().fg(GREEN).bold()),
-            Line::from(format!("{} | {} | {}", sp.time, sp.range, sp.comp)),
-            Line::from(format!("{}{}{}", sp.duration, if sp.conc { " (concentration)" } else { "" }, if sp.ritual { " (ritual)" } else { "" })),
-            if c.rituals().contains(&sp.name) && !c.casts() { Line::styled(if sp.level == 0 { "Subclass cantrip" } else { "Ritual only (subclass feature)" }, tone(Tone::Dim)) }
-            else { let a = c.ability_for(&sp.name); Line::styled(format!("Cast with {a}: DC {}, attack {:+}", c.dc(&a), c.prof() + c.md(&a)), tone(Tone::Dim)) },
-            Line::default(),
-            Line::from(sp.desc.clone()),
-        ];
-        if !sp.url.is_empty() { lines.push(Line::styled(format!("More: {}", sp.url), tone(Tone::Dim))); }
-        if let Some((n, s, k)) = &sp.dmg { lines.push(Line::default()); lines.push(Line::styled(format!("{} {}{n}d{s}{} {k}{}", if sp.healing { "Heals" } else { "Damage" }, if sp.count > 1 { format!("{} x ", sp.count) } else { String::new() }, if sp.flat > 0 { format!("+{}", sp.flat) } else { String::new() }, sp.upcast.map_or(String::new(), |u| format!(", +{}d{} per slot level", u.0, u.1))), tone(Tone::Dim))); }
-        lines.push(Line::styled(lists_abbr(&sp.source).to_string(), tone(Tone::Dim)));
+        let lines = spell_detail(c, sp);
         f.render_widget(Paragraph::new(lines).wrap(Wrap { trim: false }), di);
     } else {
         f.render_widget(Paragraph::new("No spells yet. E opens the editor to add some.").style(tone(Tone::Dim)), di);
     }
+}
+
+/// A spell has a slot (or pact slot, or arcanum) left to cast it with; cantrips always do.
+pub(crate) fn spell_usable(c: &Character, sp: &crate::lists::Spell) -> bool {
+    sp.level == 0 || c.casting().is_some_and(|k| k.kind == "pact" && c.res.get("pact").copied().unwrap_or(0) > 0)
+        || (sp.level..=9).any(|l| c.res.get(&format!("slot{l}")).copied().unwrap_or(0) > 0)
+        || c.res.get(&format!("arcanum{}", sp.level)).copied().unwrap_or(0) > 0
+}
+
+/// The details box of the Spells tab.
+pub(crate) fn spell_detail(c: &Character, sp: &crate::lists::Spell) -> Vec<Line<'static>> {
+    let mut lines = vec![
+        Line::styled(format!("{} ({})", sp.name, if sp.level == 0 { format!("{} cantrip", sp.school) } else { format!("level {} {}", sp.level, sp.school) }), Style::new().fg(GREEN).bold()),
+        Line::from(format!("{} | {} | {}", sp.time, sp.range, sp.comp)),
+        Line::from(format!("{}{}{}", sp.duration, if sp.conc { " (concentration)" } else { "" }, if sp.ritual { " (ritual)" } else { "" })),
+        if c.rituals().contains(&sp.name) && !c.casts() { Line::styled(if sp.level == 0 { "Subclass cantrip" } else { "Ritual only (subclass feature)" }, tone(Tone::Dim)) }
+        else { let a = c.ability_for(&sp.name); Line::styled(format!("Cast with {a}: DC {}, attack {:+}", c.dc(&a), c.prof() + c.md(&a)), tone(Tone::Dim)) },
+        Line::default(),
+        Line::from(sp.desc.clone()),
+    ];
+    if !sp.url.is_empty() { lines.push(Line::styled(format!("More: {}", sp.url), tone(Tone::Dim))); }
+    if let Some((n, s, k)) = &sp.dmg { lines.push(Line::default()); lines.push(Line::styled(format!("{} {}{n}d{s}{} {k}{}", if sp.healing { "Heals" } else { "Damage" }, if sp.count > 1 { format!("{} x ", sp.count) } else { String::new() }, if sp.flat > 0 { format!("+{}", sp.flat) } else { String::new() }, sp.upcast.map_or(String::new(), |u| format!(", +{}d{} per slot level", u.0, u.1))), tone(Tone::Dim))); }
+    lines.push(Line::styled(lists_abbr(&sp.source).to_string(), tone(Tone::Dim)));
+    lines
 }
 
 fn lists_abbr(s: &str) -> String { crate::lists::abbr(s) }

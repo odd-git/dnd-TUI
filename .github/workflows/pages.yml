@@ -1,8 +1,9 @@
 name: Pages
 
+# the github-pages environment only accepts main
 on:
   push:
-    tags: ['v*']
+    branches: [main]
   workflow_dispatch:
 
 permissions:

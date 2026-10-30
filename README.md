@@ -10,6 +10,9 @@ Scope: **D&D 5e, 2014 rules, official content only** (Player's Handbook and the 
 | ![Spells tab with the slot popup](docs/elm-cast.png) | ![Race list in the creation wizard](docs/wizard-race.png) |
 
 ## Install
+To try it without installing anything, open the web version at https://odd-git.github.io/dnd-TUI/: the same rules
+in a page that works on phones too. Sheets stay in that browser; Export saves a copy you can import elsewhere.
+
 Download the archive for your system from the [latest release](https://github.com/odd-git/dnd-TUI/releases/latest), unpack it and run `dnd-tui` from a terminal:
 
 | System | File |

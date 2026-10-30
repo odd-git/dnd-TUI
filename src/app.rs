@@ -3,6 +3,8 @@ use std::path::PathBuf;
 
 use ratatui::layout::Rect;
 
+use serde::{Deserialize, Serialize};
+
 use crate::keys::{KeyCode, KeyEvent, KeyModifiers};
 use crate::model::*;
 use crate::store::{self, data_dir};
@@ -12,7 +14,7 @@ mod editor;
 mod spells;
 mod wizard;
 
-#[derive(Clone, Copy, PartialEq)]
+#[derive(Clone, Copy, PartialEq, Serialize, Deserialize)]
 pub enum Tab { Combat, Spells, Character, Journal }
 pub const TABS: [(Tab, &str); 4] = [(Tab::Combat, "Combat"), (Tab::Spells, "Spells"), (Tab::Character, "Character"), (Tab::Journal, "Journal")];
 
@@ -30,8 +32,8 @@ pub enum Tone { Norm, Good, Warn, Dim }
 #[derive(Clone, Copy)]
 pub enum Item { Action(usize), Toggle(usize) }
 
-/// Everything a key or a mouse click can ask for.
-#[derive(Clone, PartialEq)]
+/// Everything a key, a mouse click or a tap in the web page can ask for.
+#[derive(Clone, PartialEq, Serialize, Deserialize)]
 pub enum Cmd {
     Tab(Tab), Pick(usize), Select(usize), Click(usize), Enter, Up, Down, PageUp, PageDown,
     Damage, Heal, Temp, EndConc, Init, Maneuver, Roll(String), CheckMenu, Adv, Inspire, Cond, Exhaustion, Death, Items, Short, Long,
@@ -118,8 +120,9 @@ fn load_sheets() -> Vec<(PathBuf, Character)> {
 }
 
 impl App {
-    pub fn new() -> Self {
-        let sheets = load_sheets();
+    pub fn new() -> Self { Self::new_with(load_sheets()) }
+
+    pub fn new_with(sheets: Vec<(PathBuf, Character)>) -> Self {
         let ch = sheets.first().map(|s| s.1.clone()).unwrap_or_else(|| serde_json::from_str(BUNDLED[0].1).expect("bundled sheet")); // placeholder while picking
         App {
             picking: true, sheets, psel: 0, path: PathBuf::new(), ch, tab: Tab::Combat, sel: 0, jsel: 0, ssel: 0,
@@ -377,6 +380,7 @@ impl App {
                 Cmd::Down => self.psel = (self.psel + 1).min(self.sheets.len()),
                 Cmd::Enter => self.pick_sheet(self.psel),
                 Cmd::Pick(i) => self.pick_sheet(i),
+                Cmd::Select(i) => self.psel = i.min(self.sheets.len()),
                 Cmd::New => self.wiz_start(),
                 Cmd::Delete => { if self.psel < self.sheets.len() { self.open(Step::DeleteSheet(self.psel)); } }
                 Cmd::Export => { if let Some(c) = self.sheets.get(self.psel).map(|s| s.1.clone()) { self.export_pdf(c); } }
@@ -426,6 +430,7 @@ impl App {
                     _ => self.scroll = if down { self.scroll + 8 } else { self.scroll.saturating_sub(8) },
                 }
             }
+            Cmd::Select(i) if self.tab == Tab::Spells => self.ssel = i.min(self.ch.spell_rows().len().saturating_sub(1)),
             Cmd::Select(i) => { if i < self.visible().len() { self.sel = i; } }
             Cmd::Enter if self.tab == Tab::Spells => self.exec(Cmd::Cast),
             Cmd::Enter => self.run(self.sel),
@@ -511,6 +516,25 @@ impl App {
         let json = serde_json::to_string_pretty(&ch).unwrap_or_default();
         let msg = store::save_file(&format!("{file}.json"), json.as_bytes());
         self.list("Sheet file (Enter closes)", msg, Step::Notice, true);
+    }
+
+    /// Answer the open text prompt (the web page has its own input field).
+    #[cfg_attr(not(target_arch = "wasm32"), allow(dead_code))]
+    pub fn submit(&mut self, text: &str) {
+        if let Some(Modal::Input { buf, .. }) = &mut self.modal { *buf = text.to_string(); self.modal_confirm(None); }
+    }
+
+    /// Cancel the open question when it can be cancelled (Esc).
+    #[cfg_attr(not(target_arch = "wasm32"), allow(dead_code))]
+    pub fn cancel(&mut self) {
+        if matches!(self.modal, Some(Modal::List { cancel: true, .. } | Modal::Multi { .. } | Modal::Input { .. })) { self.close_modal(); }
+    }
+
+    /// Search typed in the web page's search box.
+    #[cfg_attr(not(target_arch = "wasm32"), allow(dead_code))]
+    pub fn set_query(&mut self, q: &str) {
+        self.query = q.to_string();
+        self.refit();
     }
 
     /// Re-read the sheet list after the browser imported one.
