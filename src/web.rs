@@ -2,7 +2,7 @@
 use std::{cell::RefCell, rc::Rc};
 
 use ratzilla::ratatui::Terminal;
-use ratzilla::{CanvasBackend, WebRenderer};
+use ratzilla::{backend::canvas::CanvasBackendOptions, CanvasBackend, WebRenderer};
 use web_sys::wasm_bindgen::{convert::FromWasmAbi, prelude::Closure, JsCast};
 
 use crate::app::App;
@@ -35,7 +35,12 @@ fn listen<E: FromWasmAbi + 'static>(name: &str, mut f: impl FnMut(E) + 'static) 
 
 pub fn run() {
     console_error_panic_hook::set_once();
-    let terminal = Terminal::new(CanvasBackend::new().expect("canvas")).expect("terminal");
+    // the page footer (licence and disclaimer, index.html) takes the bottom 24 px
+    let win = web_sys::window().expect("window");
+    let px = |v: Result<_, _>| v.ok().and_then(|v: web_sys::wasm_bindgen::JsValue| v.as_f64()).unwrap_or(800.0) as u32;
+    let size = (px(win.inner_width()), px(win.inner_height()).saturating_sub(24));
+    let backend = CanvasBackend::new_with_options(CanvasBackendOptions::new().size(size)).expect("canvas");
+    let terminal = Terminal::new(backend).expect("terminal");
     let app = Rc::new(RefCell::new(App::new()));
 
     listen("keydown", {
