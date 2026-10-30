@@ -3,6 +3,12 @@ Terminal character sheets for D&D 5e sessions, written in Rust ([ratatui](https:
 
 Scope: **D&D 5e, 2014 rules, official content only** (Player's Handbook and the other Wizards of the Coast books; no Unearthed Arcana, no homebrew). The 2024 rules are not covered.
 
+![Combat tab of a Paladin/Warlock: status, resources, attacks and the combat log](docs/hex-combat.png)
+
+| Casting Fireball | Character creation |
+|---|---|
+| ![Spells tab with the slot popup](docs/elm-cast.png) | ![Race list in the creation wizard](docs/wizard-race.png) |
+
 ## Install
 ```
 cargo build --release
