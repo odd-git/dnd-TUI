@@ -47,8 +47,9 @@ fn put_feature(v: &mut Vec<Feature>, f: &Feature) {
 pub fn weapon_actions(w: &Weapon, c: &Character, style: Option<&str>) -> Vec<ActionDef> {
     // finesse: whichever of STR/DEX is higher
     let ability = if w.ranged || (w.finesse && c.md("DEX") >= c.md("STR")) { "DEX" } else { "STR" };
+    let flat = if w.dice.0 == 0 { w.dice.1 as i32 } else { 0 }; // the blowgun's 1 point: no dice, a fixed bonus
     let mk = |name: String, desc: String, bonus: i32| ActionDef {
-        name, desc, ability: Some(ability.into()), dice: Some(w.dice), dmg_ability: true, bonus,
+        name, desc, ability: Some(ability.into()), dice: Some(w.dice), dmg_ability: true, bonus: bonus + flat,
         dmg_type: w.dmg_type.clone(), ..Default::default()
     };
     let thrown_bonus = if style == Some("thrown") { 2 } else { 0 };
@@ -624,6 +625,14 @@ mod tests {
         assert_eq!(rogue(1).hp_max(), Some(8 + 2)); // CON 14
         assert!(rogue(1).features.iter().any(|f| f.name == "Expertise"));
         assert!(rogue(3).features.iter().any(|f| f.name == "Fast Hands"));
+    }
+
+    #[test]
+    fn blowgun_deals_one_plus_dex() {
+        let c = rogue(1);
+        let blowgun = lists::weapons().iter().find(|w| w.name == "Blowgun").unwrap();
+        let a = &weapon_actions(blowgun, &c, None)[0];
+        assert_eq!((c.dice(a), a.bonus, c.md("DEX")), (Some((0, 1)), 1, 3)); // rolls 1 + 3
     }
 
     #[test]

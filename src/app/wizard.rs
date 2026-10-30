@@ -252,7 +252,7 @@ impl App {
             }
             Wz::Shield => self.wiz_list("Shield?", vec!["No".into(), "Yes".into()], w),
             Wz::Weapons => {
-                let items = lists::weapons().iter().map(|x| format!("{} ({}d{} {})", x.name, x.dice.0, x.dice.1, x.dmg_type)).collect();
+                let items = lists::weapons().iter().map(|x| match x.dice { (0, n) => format!("{} ({n} {})", x.name, x.dmg_type), (n, d) => format!("{} ({n}d{d} {})", x.name, x.dmg_type) }).collect();
                 self.wiz_multi("Weapons (Enter toggles, pick Done at the end)", items, 0, w);
             }
             Wz::Review => {
