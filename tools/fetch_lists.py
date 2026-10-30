@@ -22,6 +22,8 @@ SKILLS = ["Acrobatics", "Animal Handling", "Arcana", "Athletics", "Deception", "
 LANGS = ["Common", "Dwarvish", "Elvish", "Giant", "Gnomish", "Goblin", "Halfling", "Orc", "Abyssal",
          "Celestial", "Draconic", "Deep Speech", "Infernal", "Primordial", "Sylvan", "Undercommon"]
 NUM = {"one": 1, "two": 2, "three": 3, "four": 4}
+# (name, level) of the official spells, longest names first, to find them in racial traits (fetch_spells.py writes the file)
+SPELL_LEVELS = sorted(((s["name"], s["level"]) for s in json.loads((Path(__file__).parent.parent / "data/lists/spells.json").read_text())), key=lambda x: -len(x[0]))
 
 
 def official(source: str) -> bool:
@@ -48,10 +50,27 @@ def parse_asi(text: str) -> dict | None:
     return {"fixed": fixed, "choose": choose} if fixed or choose else None
 
 
+def racial_spells(text: str) -> list[dict]:
+    """Leveled spells a trait lets you cast once per long rest: [{"name", "min": character level, "at": slot level}]."""
+    out = []
+    for sent in re.split(r"(?<=\.)\s*", text):
+        low = sent.lower()
+        if "cast" not in low or "cantrip" in low:
+            continue
+        at = re.search(r"as an? (\d)(?:st|nd|rd|th)[- ]level spell", low)
+        for name, level in SPELL_LEVELS:
+            m = re.search(r"\b" + re.escape(name.lower()) + r"\b(?! cantrip)", low)
+            if level and m and low.find("cast") < m.start() and not any(x["name"] == name for x in out):
+                # the character level named last before the spell: "starting at 5th level, ... wall of water"
+                lvl = re.findall(r"(?:reach|at) (\d+)(?:st|nd|rd|th) level", low[:m.start()])
+                out.append({"name": name, "min": int(lvl[-1]) if lvl else 1, "at": int(at[1]) if at else level})
+    return out
+
+
 def section(traits: list[tuple[str, str]], at: str = "", page: str = "") -> dict:
     """Structured lineage section from its (name, text) traits; `at` prefixes the summary keys."""
     sec = {"asi": None, "size": None, "speed": None, "languages": [], "extra_languages": 0,
-           "skills": [], "extra_skills": 0, "feats": 0, "cantrip_list": None, "cantrips": [], "spell_ability": None, "traits": []}
+           "skills": [], "extra_skills": 0, "feats": 0, "cantrip_list": None, "cantrips": [], "spells": [], "spell_ability": None, "traits": []}
     for name, text in traits:
         low = name.lower()
         if low.startswith("ability score"):
@@ -83,7 +102,9 @@ def section(traits: list[tuple[str, str]], at: str = "", page: str = "") -> dict
             if m := re.search(r"You know one cantrip of your choice from the (\w+) spell list", text):
                 sec["cantrip_list"] = m[1].capitalize()
             sec["cantrips"] += [m[1] for m in re.finditer(r"You know the ([A-Za-z' ]+?) cantrip", text)]
-            if (sec["cantrip_list"] or sec["cantrips"]) and (m := re.search(r"(Intelligence|Wisdom|Charisma) is your spellcasting (?:ability|modifier)", text, re.I)):
+            sec["spells"] += racial_spells(text)
+            choice = re.search(r"Intelligence, Wisdom, or Charisma is your spellcasting", text)  # MotM: the best one is used
+            if (sec["cantrip_list"] or sec["cantrips"] or sec["spells"]) and not choice and (m := re.search(r"(Intelligence|Wisdom|Charisma) is your spellcasting (?:ability|modifier)", text, re.I)):
                 sec["spell_ability"] = ABIL[m[1].capitalize()]
         if text.strip() and low not in ("size", "speed") and not low.startswith("language"):
             sec["traits"].append({"name": name, "desc": w.summary(w.key(at, name), text), "url": w.url(page)})
@@ -123,6 +144,8 @@ def lineages() -> list[dict]:
                 sub["replaces"] = True
             elif tag == "li" and source and (l := w.lead(raw)):
                 items.append(l)
+            elif tag == "li" and source and items:  # a bullet without a name continues the trait above (Githyanki Psionics)
+                items[-1] = (items[-1][0], items[-1][1] + " " + text)
         close()
         if source:
             entries.append((source, base, subs))

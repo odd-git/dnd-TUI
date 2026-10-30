@@ -34,8 +34,16 @@ pub struct Section {
     pub feats: u32,
     pub cantrip_list: Option<String>, // one cantrip of your choice from this class list (High Elf)
     pub cantrips: Vec<String>,        // named cantrips (Forest Gnome)
+    pub spells: Vec<RacialSpell>,     // leveled spells once per long rest (Drow Magic)
     pub spell_ability: Option<String>,
     pub traits: Vec<Feature>,
+}
+
+#[derive(Deserialize, Clone)]
+pub struct RacialSpell {
+    pub name: String,
+    pub min: u32, // character level that unlocks it
+    pub at: u32,  // slot level it is cast at
 }
 
 #[derive(Deserialize)]
@@ -67,6 +75,7 @@ pub struct Effective {
     pub feats: u32,
     pub cantrip_list: Option<String>,
     pub cantrips: Vec<String>,
+    pub spells: Vec<RacialSpell>,
     pub spell_ability: Option<String>,
     pub traits: Vec<Feature>,
 }
@@ -98,6 +107,7 @@ impl Lineage {
             for l in &sec.languages { if !e.languages.contains(l) { e.languages.push(l.clone()); } }
             for sk in &sec.skills { if !e.skills.contains(sk) { e.skills.push(sk.clone()); } }
             for c in &sec.cantrips { if !e.cantrips.contains(c) { e.cantrips.push(c.clone()); } }
+            for sp in &sec.spells { if !e.spells.iter().any(|x| x.name == sp.name) { e.spells.push(sp.clone()); } }
             for t in &sec.traits {
                 match e.traits.iter_mut().find(|x| x.name == t.name) {
                     Some(x) => *x = t.clone(),

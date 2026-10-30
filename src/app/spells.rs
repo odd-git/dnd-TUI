@@ -49,6 +49,7 @@ impl App {
         if self.ch.features.iter().any(|f| f.name == format!("Spell Mastery: {}", sp.name)) { v.push(("mastery".to_string(), sp.level, 0)); }
         let sig = format!("sig:{}", sp.name);
         if self.have(&sig) > 0 { v.push((sig.clone(), 3, self.have(&sig))); }
+        for (_, l, id) in self.ch.innate().into_iter().filter(|x| x.0 == sp.name) { if self.have(&id) > 0 { v.push((id.clone(), l, 1)); } }
         v.extend(self.slot_options(sp.level));
         v
     }
@@ -71,6 +72,7 @@ impl App {
                 "pact" => format!("Pact slot, level {l} ({left} left)"),
                 "mastery" => format!("Spell Mastery, level {l} (no slot)"),
                 s if s.starts_with("sig:") => format!("Signature Spell, level {l} ({left} left)"),
+                s if s.starts_with("innate") => format!("Racial, level {l} (once per long rest)"),
                 _ => format!("Level {l} slot ({left} left)"),
             }
         }).collect();

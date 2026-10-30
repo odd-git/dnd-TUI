@@ -16,6 +16,13 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [
+   {
+    "name": "Gust of Wind",
+    "min": 3,
+    "at": 2
+   }
+  ],
   "spell_ability": null,
   "traits": [
    {
@@ -64,6 +71,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -98,6 +106,7 @@
   "cantrips": [
    "Light"
   ],
+  "spells": [],
   "spell_ability": "CHA",
   "traits": [
    {
@@ -173,6 +182,7 @@
   "cantrips": [
    "Light"
   ],
+  "spells": [],
   "spell_ability": "CHA",
   "traits": [
    {
@@ -220,6 +230,7 @@
     "feats": 0,
     "cantrip_list": null,
     "cantrips": [],
+    "spells": [],
     "spell_ability": null,
     "traits": [
      {
@@ -247,6 +258,7 @@
     "feats": 0,
     "cantrip_list": null,
     "cantrips": [],
+    "spells": [],
     "spell_ability": null,
     "traits": [
      {
@@ -274,6 +286,7 @@
     "feats": 0,
     "cantrip_list": null,
     "cantrips": [],
+    "spells": [],
     "spell_ability": null,
     "traits": [
      {
@@ -314,6 +327,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -356,6 +370,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [],
   "subs": []
@@ -377,6 +392,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -441,6 +457,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -488,6 +505,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -542,6 +560,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -596,6 +615,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -643,6 +663,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -690,6 +711,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -722,6 +744,18 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [
+   {
+    "name": "Disguise Self",
+    "min": 3,
+    "at": 1
+   },
+   {
+    "name": "Nondetection",
+    "min": 5,
+    "at": 3
+   }
+  ],
   "spell_ability": null,
   "traits": [
    {
@@ -776,6 +810,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -820,6 +855,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -857,6 +893,18 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [
+   {
+    "name": "Enlarge/Reduce",
+    "min": 3,
+    "at": 2
+   },
+   {
+    "name": "Invisibility",
+    "min": 5,
+    "at": 2
+   }
+  ],
   "spell_ability": null,
   "traits": [
    {
@@ -911,7 +959,19 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
-  "spell_ability": null,
+  "spells": [
+   {
+    "name": "Enlarge/Reduce",
+    "min": 3,
+    "at": 2
+   },
+   {
+    "name": "Invisibility",
+    "min": 5,
+    "at": 2
+   }
+  ],
+  "spell_ability": "INT",
   "traits": [
    {
     "name": "Superior Darkvision",
@@ -979,6 +1039,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -1026,6 +1087,7 @@
     "feats": 0,
     "cantrip_list": null,
     "cantrips": [],
+    "spells": [],
     "spell_ability": null,
     "traits": [
      {
@@ -1053,6 +1115,7 @@
     "feats": 0,
     "cantrip_list": null,
     "cantrips": [],
+    "spells": [],
     "spell_ability": null,
     "traits": [
      {
@@ -1088,6 +1151,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -1132,6 +1196,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -1213,6 +1278,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -1308,6 +1374,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -1352,6 +1419,18 @@
     "cantrips": [
      "Dancing Lights"
     ],
+    "spells": [
+     {
+      "name": "Faerie Fire",
+      "min": 3,
+      "at": 1
+     },
+     {
+      "name": "Darkness",
+      "min": 5,
+      "at": 2
+     }
+    ],
     "spell_ability": "CHA",
     "traits": [
      {
@@ -1394,6 +1473,7 @@
     "feats": 0,
     "cantrip_list": "Wizard",
     "cantrips": [],
+    "spells": [],
     "spell_ability": "INT",
     "traits": [
      {
@@ -1431,6 +1511,7 @@
     "feats": 0,
     "cantrip_list": null,
     "cantrips": [],
+    "spells": [],
     "spell_ability": null,
     "traits": [
      {
@@ -1471,6 +1552,18 @@
   "cantrips": [
    "Druidcraft"
   ],
+  "spells": [
+   {
+    "name": "Faerie Fire",
+    "min": 3,
+    "at": 1
+   },
+   {
+    "name": "Enlarge/Reduce",
+    "min": 5,
+    "at": 2
+   }
+  ],
   "spell_ability": null,
   "traits": [
    {
@@ -1510,7 +1603,19 @@
   "cantrips": [
    "Druidcraft"
   ],
-  "spell_ability": "CHA",
+  "spells": [
+   {
+    "name": "Faerie Fire",
+    "min": 3,
+    "at": 1
+   },
+   {
+    "name": "Enlarge/Reduce",
+    "min": 5,
+    "at": 2
+   }
+  ],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -1552,6 +1657,18 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [
+   {
+    "name": "Disguise Self",
+    "min": 1,
+    "at": 1
+   },
+   {
+    "name": "Detect Magic",
+    "min": 1,
+    "at": 1
+   }
+  ],
   "spell_ability": null,
   "traits": [
    {
@@ -1607,6 +1724,18 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [
+   {
+    "name": "Disguise Self",
+    "min": 1,
+    "at": 1
+   },
+   {
+    "name": "Detect Magic",
+    "min": 1,
+    "at": 1
+   }
+  ],
   "spell_ability": null,
   "traits": [
    {
@@ -1650,6 +1779,18 @@
   "cantrip_list": null,
   "cantrips": [
    "Shocking Grasp"
+  ],
+  "spells": [
+   {
+    "name": "Feather Fall",
+    "min": 3,
+    "at": 1
+   },
+   {
+    "name": "Levitate",
+    "min": 5,
+    "at": 2
+   }
   ],
   "spell_ability": null,
   "traits": [
@@ -1705,6 +1846,13 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [
+   {
+    "name": "Levitate",
+    "min": 1,
+    "at": 2
+   }
+  ],
   "spell_ability": null,
   "traits": [
    {
@@ -1738,6 +1886,13 @@
   "cantrip_list": null,
   "cantrips": [
    "Blade Ward"
+  ],
+  "spells": [
+   {
+    "name": "Pass Without Trace",
+    "min": 5,
+    "at": 2
+   }
   ],
   "spell_ability": null,
   "traits": [
@@ -1788,6 +1943,13 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [
+   {
+    "name": "Pass Without Trace",
+    "min": 1,
+    "at": 2
+   }
+  ],
   "spell_ability": null,
   "traits": [
    {
@@ -1821,6 +1983,18 @@
   "cantrip_list": null,
   "cantrips": [
    "Produce Flame"
+  ],
+  "spells": [
+   {
+    "name": "Burning Hands",
+    "min": 3,
+    "at": 1
+   },
+   {
+    "name": "Flame Blade",
+    "min": 5,
+    "at": 2
+   }
   ],
   "spell_ability": null,
   "traits": [
@@ -1873,6 +2047,13 @@
   "cantrips": [
    "Produce Flame"
   ],
+  "spells": [
+   {
+    "name": "Burning Hands",
+    "min": 3,
+    "at": 1
+   }
+  ],
   "spell_ability": null,
   "traits": [
    {
@@ -1911,6 +2092,18 @@
   "cantrip_list": null,
   "cantrips": [
    "Acid Splash"
+  ],
+  "spells": [
+   {
+    "name": "Create or Destroy Water",
+    "min": 3,
+    "at": 1
+   },
+   {
+    "name": "Water Walk",
+    "min": 5,
+    "at": 3
+   }
   ],
   "spell_ability": null,
   "traits": [
@@ -1968,6 +2161,13 @@
   "cantrips": [
    "Shape Water"
   ],
+  "spells": [
+   {
+    "name": "Create or Destroy Water",
+    "min": 3,
+    "at": 2
+   }
+  ],
   "spell_ability": null,
   "traits": [
    {
@@ -2011,6 +2211,18 @@
   "cantrip_list": null,
   "cantrips": [
    "Mage Hand"
+  ],
+  "spells": [
+   {
+    "name": "Jump",
+    "min": 3,
+    "at": 1
+   },
+   {
+    "name": "Misty Step",
+    "min": 5,
+    "at": 2
+   }
   ],
   "spell_ability": null,
   "traits": [
@@ -2062,7 +2274,19 @@
   "cantrips": [
    "Mage Hand"
   ],
-  "spell_ability": null,
+  "spells": [
+   {
+    "name": "Jump",
+    "min": 3,
+    "at": 1
+   },
+   {
+    "name": "Misty Step",
+    "min": 5,
+    "at": 2
+   }
+  ],
+  "spell_ability": "INT",
   "traits": [
    {
     "name": "Decadent Mastery",
@@ -2105,6 +2329,18 @@
   "cantrip_list": null,
   "cantrips": [
    "Mage Hand"
+  ],
+  "spells": [
+   {
+    "name": "Shield",
+    "min": 3,
+    "at": 1
+   },
+   {
+    "name": "Detect Thoughts",
+    "min": 5,
+    "at": 2
+   }
   ],
   "spell_ability": null,
   "traits": [
@@ -2156,7 +2392,19 @@
   "cantrips": [
    "Mage Hand"
   ],
-  "spell_ability": null,
+  "spells": [
+   {
+    "name": "Shield",
+    "min": 3,
+    "at": 1
+   },
+   {
+    "name": "Detect Thoughts",
+    "min": 5,
+    "at": 2
+   }
+  ],
+  "spell_ability": "WIS",
   "traits": [
    {
     "name": "Mental Discipline",
@@ -2199,6 +2447,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -2233,6 +2482,7 @@
     "cantrips": [
      "Minor Illusion"
     ],
+    "spells": [],
     "spell_ability": "INT",
     "traits": [
      {
@@ -2265,6 +2515,7 @@
     "feats": 0,
     "cantrip_list": null,
     "cantrips": [],
+    "spells": [],
     "spell_ability": null,
     "traits": [
      {
@@ -2313,6 +2564,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -2367,6 +2619,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -2411,6 +2664,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -2454,6 +2708,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -2494,6 +2749,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -2548,6 +2804,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -2599,6 +2856,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -2652,6 +2910,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -2733,6 +2992,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -2781,6 +3041,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -2818,6 +3079,7 @@
     "feats": 0,
     "cantrip_list": null,
     "cantrips": [],
+    "spells": [],
     "spell_ability": null,
     "traits": [
      {
@@ -2845,6 +3107,7 @@
     "feats": 0,
     "cantrip_list": null,
     "cantrips": [],
+    "spells": [],
     "spell_ability": null,
     "traits": [
      {
@@ -2875,6 +3138,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -2924,6 +3188,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -2976,6 +3241,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -3045,6 +3311,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -3092,6 +3359,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [],
   "subs": [
@@ -3116,6 +3384,7 @@
     "feats": 1,
     "cantrip_list": null,
     "cantrips": [],
+    "spells": [],
     "spell_ability": null,
     "traits": [
      {
@@ -3149,6 +3418,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -3181,6 +3451,7 @@
     "feats": 0,
     "cantrip_list": null,
     "cantrips": [],
+    "spells": [],
     "spell_ability": null,
     "traits": []
    },
@@ -3199,6 +3470,7 @@
     "feats": 0,
     "cantrip_list": null,
     "cantrips": [],
+    "spells": [],
     "spell_ability": null,
     "traits": [
      {
@@ -3236,6 +3508,7 @@
     "feats": 0,
     "cantrip_list": null,
     "cantrips": [],
+    "spells": [],
     "spell_ability": null,
     "traits": [
      {
@@ -3260,6 +3533,7 @@
     "feats": 0,
     "cantrip_list": null,
     "cantrips": [],
+    "spells": [],
     "spell_ability": null,
     "traits": [
      {
@@ -3299,6 +3573,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -3341,6 +3616,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -3389,6 +3665,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -3432,6 +3709,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -3464,7 +3742,8 @@
   "feats": 0,
   "cantrip_list": "Sorcerer",
   "cantrips": [],
-  "spell_ability": "CHA",
+  "spells": [],
+  "spell_ability": null,
   "traits": [
    {
     "name": "Creature Type",
@@ -3527,6 +3806,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -3575,6 +3855,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -3618,6 +3899,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -3660,6 +3942,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -3719,6 +4002,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -3777,6 +4061,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -3829,6 +4114,7 @@
   "feats": 0,
   "cantrip_list": "Wizard",
   "cantrips": [],
+  "spells": [],
   "spell_ability": "INT",
   "traits": [
    {
@@ -3886,6 +4172,7 @@
   "feats": 0,
   "cantrip_list": "Bard",
   "cantrips": [],
+  "spells": [],
   "spell_ability": "CHA",
   "traits": [
    {
@@ -3948,6 +4235,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -4001,6 +4289,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -4049,6 +4338,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -4099,6 +4389,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -4147,6 +4438,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -4189,6 +4481,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -4243,6 +4536,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -4292,6 +4586,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -4341,6 +4636,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -4392,6 +4688,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -4434,6 +4731,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -4488,6 +4786,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -4537,6 +4836,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -4603,6 +4903,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -4662,6 +4963,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -4728,6 +5030,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -4780,6 +5083,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -4844,6 +5148,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -4889,6 +5194,7 @@
     "feats": 0,
     "cantrip_list": null,
     "cantrips": [],
+    "spells": [],
     "spell_ability": null,
     "traits": [
      {
@@ -4924,6 +5230,7 @@
     "feats": 0,
     "cantrip_list": null,
     "cantrips": [],
+    "spells": [],
     "spell_ability": null,
     "traits": [
      {
@@ -4959,6 +5266,7 @@
     "feats": 0,
     "cantrip_list": null,
     "cantrips": [],
+    "spells": [],
     "spell_ability": null,
     "traits": [
      {
@@ -4993,6 +5301,7 @@
     "feats": 0,
     "cantrip_list": null,
     "cantrips": [],
+    "spells": [],
     "spell_ability": null,
     "traits": [
      {
@@ -5037,6 +5346,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -5106,6 +5416,7 @@
   "cantrips": [
    "Friends"
   ],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -5138,6 +5449,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -5191,6 +5503,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -5239,6 +5552,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -5273,6 +5587,18 @@
     "cantrips": [
      "Thaumaturgy"
     ],
+    "spells": [
+     {
+      "name": "Hellish Rebuke",
+      "min": 3,
+      "at": 2
+     },
+     {
+      "name": "Darkness",
+      "min": 5,
+      "at": 2
+     }
+    ],
     "spell_ability": "CHA",
     "traits": [
      {
@@ -5301,6 +5627,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -5361,6 +5688,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -5408,6 +5736,23 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [
+   {
+    "name": "Fog Cloud",
+    "min": 1,
+    "at": 1
+   },
+   {
+    "name": "Gust of Wind",
+    "min": 3,
+    "at": 2
+   },
+   {
+    "name": "Water Walk",
+    "min": 5,
+    "at": 3
+   }
+  ],
   "spell_ability": null,
   "traits": [
    {
@@ -5461,7 +5806,24 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
-  "spell_ability": null,
+  "spells": [
+   {
+    "name": "Fog Cloud",
+    "min": 1,
+    "at": 1
+   },
+   {
+    "name": "Wall of Water",
+    "min": 5,
+    "at": 3
+   },
+   {
+    "name": "Gust of Wind",
+    "min": 3,
+    "at": 2
+   }
+  ],
+  "spell_ability": "CHA",
   "traits": [
    {
     "name": "Amphibious",
@@ -5514,6 +5876,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -5562,6 +5925,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -5605,6 +5969,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -5648,6 +6013,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -5690,6 +6056,7 @@
   "feats": 0,
   "cantrip_list": null,
   "cantrips": [],
+  "spells": [],
   "spell_ability": null,
   "traits": [
    {
@@ -5733,6 +6100,18 @@
   "cantrip_list": null,
   "cantrips": [
    "Poison Spray"
+  ],
+  "spells": [
+   {
+    "name": "Animal Friendship",
+    "min": 1,
+    "at": 1
+   },
+   {
+    "name": "Suggestion",
+    "min": 3,
+    "at": 2
+   }
   ],
   "spell_ability": null,
   "traits": [
@@ -5790,6 +6169,18 @@
   "cantrip_list": null,
   "cantrips": [
    "Poison Spray"
+  ],
+  "spells": [
+   {
+    "name": "Animal Friendship",
+    "min": 1,
+    "at": 1
+   },
+   {
+    "name": "Suggestion",
+    "min": 3,
+    "at": 2
+   }
   ],
   "spell_ability": "CHA",
   "traits": [

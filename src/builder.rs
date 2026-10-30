@@ -178,6 +178,12 @@ pub fn build(d: &Draft) -> Character {
         push_unique(&mut c.cantrips, [sp.name.clone()]);
         put_feature(&mut c.features, &Feature { name: format!("Bonus spell: {}", sp.name), desc: format!("From {} ({ability})", c.race), url: sp.url.clone() });
     }
+    // racial spells: once per long rest from a character level, at a set slot level ("innate2:Darkness")
+    for r in &eff.spells {
+        let Some(sp) = lists::spell(&r.name) else { continue };
+        c.resources.push(ResourceDef { id: format!("innate{}:{}", r.at, sp.name), name: sp.name.clone(), recharge: "long".into(), max: Some(crate::model::Max::Kw(format!("from:{}", r.min))), start: None, pips: true, die: None });
+        put_feature(&mut c.features, &Feature { name: format!("Bonus spell: {}", sp.name), desc: format!("From {}, once per long rest from level {} ({ability})", c.race, r.min), url: sp.url.clone() });
+    }
 
     // armor class
     let defense = d.style.as_ref().and_then(|s| class.styles.iter().find(|x| &x.name == s)).and_then(|s| s.effect.as_deref()) == Some("defense");
@@ -712,6 +718,19 @@ mod tests {
         assert_eq!(hill.hp_max().unwrap(), base + 5); // CON 15 like the human 14: +2 either way; +1 per level
         let tough = build(&Draft { feats: vec![s("Tough")], feat_picks: vec![s("")], ..rogue_draft(5) });
         assert_eq!(tough.hp_max().unwrap(), base + 2 * 5);
+    }
+
+    #[test]
+    fn drow_magic_unlocks_with_level() {
+        let s = |x: &str| x.to_string();
+        let drow = |level| build(&Draft { lineage: s("Elf"), sub: Some(s("Dark Elf")), ..rogue_draft(level) });
+        let one = drow(1);
+        assert!(one.innate().is_empty() && one.castable().is_empty() && one.cantrips == [s("Dancing Lights")]);
+        let five = drow(5);
+        assert_eq!(five.innate().iter().map(|x| (x.0.as_str(), x.1)).collect::<Vec<_>>(), [("Faerie Fire", 1), ("Darkness", 2)]);
+        assert!(five.castable().contains(&s("Darkness")) && five.has_spells());
+        assert_eq!((five.ability_for("Darkness"), five.res_max("innate2:Darkness")), (s("CHA"), Some(1)));
+        assert_eq!(drow(3).res_max("innate2:Darkness"), Some(0));
     }
 
     #[test]

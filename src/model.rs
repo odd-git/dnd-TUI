@@ -218,7 +218,15 @@ impl Character {
     pub fn casts(&self) -> bool { self.cast_src().is_some() }
 
     /// Anything for the Spells tab: a casting class, or spells from a feat, race or pact on any sheet.
-    pub fn has_spells(&self) -> bool { self.casts() || !self.cantrips.is_empty() || !self.spells.is_empty() || !self.rituals().is_empty() }
+    pub fn has_spells(&self) -> bool { self.casts() || !self.cantrips.is_empty() || !self.spells.is_empty() || !self.rituals().is_empty() || !self.innate().is_empty() }
+
+    /// Racial spells unlocked so far: (name, slot level, resource id).
+    pub fn innate(&self) -> Vec<(String, u32, String)> {
+        self.resources.iter().filter(|r| self.res_max(&r.id).unwrap_or(0) > 0).filter_map(|r| {
+            let (lvl, name) = r.id.strip_prefix("innate")?.split_once(':')?;
+            Some((name.to_string(), lvl.parse().ok()?, r.id.clone()))
+        }).collect()
+    }
 
     /// Spells a subclass that does not cast gives: rituals (Totem Warrior) or cantrips (Shadow); never with slots.
     pub fn rituals(&self) -> Vec<String> {
@@ -331,8 +339,8 @@ impl Character {
 
     /// Everything castable that is not a cantrip: known spells, or prepared ones plus domain / oath spells.
     pub fn castable(&self) -> Vec<String> {
-        let off_list = self.spells.iter().filter(|s| !self.on_list(s)).cloned();
-        let Some((c, l, prog)) = self.cast_src() else { return off_list.collect() };
+        let off_list = self.spells.iter().filter(|s| !self.on_list(s)).cloned().chain(self.innate().into_iter().map(|x| x.0));
+        let Some((c, l, prog)) = self.cast_src() else { let mut v: Vec<String> = off_list.collect(); v.sort(); v.dedup(); return v };
         let mut v = crate::lists::always_spells(&prog, l);
         v.extend(if c.mode == "known" { self.spells.iter() } else { self.prepared.iter() }.cloned());
         v.extend(off_list);
@@ -453,6 +461,7 @@ impl Character {
             Max::Kw(k) if k.starts_with("slot:") => Some(self.slots(k[5..].parse().unwrap_or(1))),
             Max::Kw(k) if k.starts_with("mod:") => Some(self.md(&k[4..]).max(1) as u32),
             Max::Kw(k) if k == "arcane_ward" => Some((2 * self.res_max_class("Wizard") as i32 + self.md("INT")).max(0) as u32),
+            Max::Kw(k) if k.starts_with("from:") => Some(u32::from(self.level >= k[5..].parse().unwrap_or(1))),
             Max::Kw(k) if k.starts_with("1+mod:") => Some((1 + self.md(&k[6..])).max(1) as u32),
             Max::Kw(_) => Some(self.prog().and_then(|p| p.resources.get(id)).map(|t| at(t, self.class_level())).or_else(|| self.table(id)).unwrap_or(0)),
         }
